@@ -1,13 +1,13 @@
 ---
-title: 【机器视觉笔录】OpenCV特征提取与检测
-date: 2018-12-15 21:19:55
+layout: post
+title: "【机器视觉笔录】OpenCV特征提取与检测"
+subtitle: ''
+author: "ShawnD"
+header-style: text
 tags:
+  - CV
 ---
-##### --------------------------------
-##### Author ： ShawnDong
-##### updateDate ：2018.11.28
-##### Blog ： ShawnDong98.github.io
-##### --------------------------------
+
 
 ### 概述
 **什么是图像特征**
