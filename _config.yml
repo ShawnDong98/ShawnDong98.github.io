@@ -1,10 +1,10 @@
 # Site settings
-title: Hux Blog
-SEOTitle: 黄玄的博客 | Hux Blog
+title: MrD's Blog
+SEOTitle: 董少捷的博客 | MrD's Blog
 header-img: img/home-bg.jpg
 email: huxpro@gmail.com
-description: "关于程序与设计、黑客与画家 | 黄玄，Web & Mobile Lover，Software Engineer，UX Designer | 这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界。"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, 前端, 设计"
+description: "关于程序与设计、数据科学、图像处理 | ShawnD，VUI & 对信息生成和语音交互有兴趣 | 这里是 董少捷 的个人博客，与你一起发现更大的世界。"
+keyword: "董少捷, ShawnD, MrD's Blog,  博客, 个人网站, 互联网, 机器学习, 深度学习, 嵌入式, 设计"
 url: "https://shawndong98.github.io/"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -13,10 +13,10 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username:     huxpro
-zhihu_username:     huxpro
-github_username:    huxpro
-twitter_username:   huxpro
+#weibo_username:     huxpro
+zhihu_username:     花落丶羁绊
+github_username:    ShawnDong98.github.io
+#twitter_username:   huxpro
 #facebook_username:  huxpro
 #linkedin_username:  firstname-lastname-idxxxx
 
@@ -102,35 +102,35 @@ page-mathjax: false
 
 # Friends
 friends: [
-    {
+    #{
     #     title: "Su",
     #     href: "http://su.gallery/"
     # },{
-        title: "乱序",
-        href: "http://mida.re/"
-    },{
-        title: "Sherry Wu",
-        href: "https://xuechundesign.github.io"
-    },{
-        title: "Luke 的自留地",
-        href: "http://hmqk1995.github.io"
-    },{
-        title: "Ebn's Blog",
-        href: "http://ebnbin.com/"
-    },{
-        title: "SmdCn's Blog",
-        href: "http://blog.smdcn.net"
-    },{
-        title: "JiyinYiyong",
-        href: "http://tiye.me/"
-    },{
-        title: "David's Game",
-        href: "https://www.ruoyaowu.com/"
-    },{
-        title: "DHong Say",
-        href: "http://dhong.co"
-    },{
-        title: "尹峰以为",
-        href: "http://ingf.github.io/"
-    }
+        # title: "乱序",
+        # href: "http://mida.re/"
+    # },{
+    #     title: "Sherry Wu",
+    #     href: "https://xuechundesign.github.io"
+    # },{
+    #     title: "Luke 的自留地",
+    #     href: "http://hmqk1995.github.io"
+    # },{
+    #     title: "Ebn's Blog",
+    #     href: "http://ebnbin.com/"
+    # },{
+    #     title: "SmdCn's Blog",
+    #     href: "http://blog.smdcn.net"
+    # },{
+    #     title: "JiyinYiyong",
+    #     href: "http://tiye.me/"
+    # },{
+    #     title: "David's Game",
+    #     href: "https://www.ruoyaowu.com/"
+    # },{
+    #     title: "DHong Say",
+    #     href: "http://dhong.co"
+    # },{
+    #     title: "尹峰以为",
+    #     href: "http://ingf.github.io/"
+    # }
 ]
