@@ -61,6 +61,38 @@ disqus被墙不能用
 ### 给Blog加上catalog
 
 - 修改markdown的yaml文件
+像这样
+```
+---
+layout:     post
+title:      "【机器学习】PyTorch学习笔记"
+subtitle:   ""
+date:       2019-04-03 22:02:36
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:    true
+tags:
+    - 机器学习
+    - 深度学习
+    - Pytorch
+    - CV
+---
+```
+
+- 下载一个js文件
+在这里下载[catalog js文件](https://github.com/ghiculescu/jekyll-table-of-contents)
+
+- 在_layout文件夹下的post.html添加代码
+```html
+<!--//添加catalog-->
+<div id="toc"></div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
+    </script>
+```
+添加在头部就行
 
 
 
@@ -75,3 +107,4 @@ disqus被墙不能用
 3. [Hux Blog](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)
 4. [gitalk配置](https://yizibi.github.io/2018/09/26/Mac-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E6%95%99%E4%BD%A0%E5%9C%A8Jekyll%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/)
 5. [PicGo下载](https://github.com/Molunerfinn/PicGo)
+6. [catalog js文件](https://github.com/ghiculescu/jekyll-table-of-contents)
