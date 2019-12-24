@@ -59,10 +59,19 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: hux
+# disqus_username: Shawn Dong
 
 # Netease settings
 netease_comment: false
+
+// 添加这个就行,上面的只是为了你能方便找到地方
+gitalk:
+enable: true
+owner: ShawnDong98
+repo: ShawnDong98.github.io
+clientID: 3c84e2c9fa410411b0d0
+clientSecret: e4a9844f07144534b61afbb38a37abedbf252f2a
+admin: ShawnDong98
 
 
 
