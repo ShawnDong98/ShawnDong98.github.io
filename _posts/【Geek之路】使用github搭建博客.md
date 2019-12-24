@@ -1,0 +1,68 @@
+---
+layout:     post
+title:      "【Geek之路】使用github搭建博客"
+subtitle:   ""
+date:    2019-12-24   
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+tags:
+    - Geek
+    - Life
+---
+
+之前搭的hexo，感觉用起来很麻烦。
+
+换了电脑，要重新配环境，索性重新搭个动态博客，使用docker来做，一次部署就行了。
+
+然后发现好像不太好做，前后端知识差了不少。
+
+最后选择了Hux Blog + 小书匠 + Github图床的解决方案。
+
+
+## Hux Blog
+
+感谢Hux大佬的开源
+
+## 修改yaml文件
+
+根据[Hux Blog](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)进行相应个性化配置
+
+### Post文章
+
+注意：Jekyll的文章格式要求前面必须是日期，类似2018-09-17-这样的
+
+## 小书匠markdown编辑器
+
+小书匠支持直接绑定github并支持github图床
+
+配置可以参考reference
+[在github上搭建个人博客并在线更新。](https://www.cnblogs.com/wxyww/p/xiaoshujiang.html)
+
+## 评论功能和网站分析
+
+### 评论功能
+Hux说可以用disqus和多说，但是那个markdown可能太久没更新了
+disqus被墙不能用
+多说已经倒闭了
+
+因此选择使用gitalk
+
+根据Reference [gitalk配置](https://yizibi.github.io/2018/09/26/Mac-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E6%95%99%E4%BD%A0%E5%9C%A8Jekyll%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/)即可
+
+## 网站分析
+
+
+
+
+
+
+
+
+
+
+## Reference
+1. [在github上搭建个人博客并在线更新。](https://www.cnblogs.com/wxyww/p/xiaoshujiang.html)
+2. [Jekyll Themes （主题下载）](http://jekyllthemes.org/)
+3. [Hux Blog](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)
+4. [gitalk配置](https://yizibi.github.io/2018/09/26/Mac-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E6%95%99%E4%BD%A0%E5%9C%A8Jekyll%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/)
+5. [PicGo下载](https://github.com/Molunerfinn/PicGo)
