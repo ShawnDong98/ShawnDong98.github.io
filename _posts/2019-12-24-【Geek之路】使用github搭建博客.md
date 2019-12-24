@@ -82,6 +82,8 @@ tags:
 在这里下载[catalog js文件](https://github.com/ghiculescu/jekyll-table-of-contents)
 
 - 在_layout文件夹下的post.html添加代码
+
+
 ```html
 <!--//添加catalog-->
 <div id="toc"></div>
@@ -91,6 +93,8 @@ tags:
     });
     </script>
 ```
+
+
 添加在头部就行
 
 
@@ -100,10 +104,14 @@ tags:
 
 使用不蒜子
 在footer.html中添加以下代码
+
+
 ```html
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
                 </script>
 ```
+
+
 这个是不蒜子的js脚本
 
 ```html
