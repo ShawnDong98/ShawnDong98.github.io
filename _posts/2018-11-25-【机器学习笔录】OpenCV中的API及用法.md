@@ -1,15 +1,18 @@
 ---
-title: 【机器学习笔录】OpenCV中的API及用法
-date: 2018-11-25 21:14:14
+layout:     post
+title:      "【机器学习笔录】OpenCV中的API及用法"
+subtitle:   ""
+date:       2018-11-25 21:14:14
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
 tags:
+    - 机器学习
+    - 深度学习
+    - CV
 ---
 
 
-##### --------------------------------
-##### Author ： ShawnDong
-##### updataDate ：2019.1.25
-##### Blog ： ShawnDong98.github.io
-##### --------------------------------
+
 # C++部分
 
 ### 图像的加载显示与保存

@@ -1,13 +1,16 @@
 ---
-title: 【Hacker之梦】Scrapy框架爬取URP教务系统
-date: 2018-10-31 18:38:17
+layout:     post
+title:      "【Hacker之梦】Scrapy框架爬取URP教务系统"
+subtitle:   ""
+date:       2018-10-31 18:38:17
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
 tags:
+    - 爬虫
+    - Hacker
 ---
-##### --------------------------------
-##### Author ： ShawnDong
-##### updateDate ：2018.10.31
-##### Blog ： ShawnDong98.github.io
-##### --------------------------------
+
+
 ![](https://upload-images.jianshu.io/upload_images/8332901-98f8e52580c86fbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 

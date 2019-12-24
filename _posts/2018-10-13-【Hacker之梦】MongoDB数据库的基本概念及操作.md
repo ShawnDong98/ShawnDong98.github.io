@@ -1,13 +1,15 @@
 ---
-title: 【Hacker之梦】MongoDB数据库的基本概念及操作
-date: 2018-10-13 18:37:16
+layout:     post
+title:      "【Hacker之梦】MongoDB数据库的基本概念及操作"
+subtitle:   ""
+date:       2018-10-13 18:37:16
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
 tags:
+    - 数据库
+    - MongoDB
 ---
-##### --------------------------------
-##### Author ： ShawnDong
-##### updateDate ：2018.10.13
-##### Blog ： ShawnDong98.github.io
-##### --------------------------------
+
 
 ### MongoDB基本概念
 

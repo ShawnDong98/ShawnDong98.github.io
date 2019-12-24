@@ -1,13 +1,17 @@
 ---
-title: '[机器学习笔录]TensorFlow的数据读取机制以及在服务器上使用TensorBoard'
-date: 2018-09-23 19:48:23
+layout:     post
+title:      "【机器学习笔录】TensorFlow的数据读取机制以及在服务器上使用TensorBoard"
+subtitle:   ""
+date:       2018-09-23 19:48:23
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
 tags:
+    - 机器学习
+    - 深度学习
+    - Tensorflow
 ---
-##### --------------------------------
-##### Author ： ShawnDong
-##### updateDate ：2018.9.25
-##### Blog ： ShawnDong98.github.io
-##### --------------------------------
+
+
 
 ### TensorFlow的数据读取机制
 > tf.train.string_input_producer(list， shuffle， num_epochs)
