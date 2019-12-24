@@ -96,8 +96,33 @@ tags:
 
 
 
+###  给博客添加访问量
 
 
+使用不蒜子
+在footer.html中添加以下代码
+```html
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+                </script>
+```
+这个是不蒜子的js脚本
+
+```html
+<!--本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次-->
+                    <span class="site-uv" title="总点击人数">
+                    <img src="/img/vendor/octicons/svg/person.svg" width="10" height="16">
+                    <span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span class="site-pv" title="总点击量">
+                    <img src="/img/vendor/octicons/svg/eye.svg" width="16" height="16">
+                    <span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span class="page-pv"title="本页面点击人数">
+                    <img src="/img/vendor/octicons/svg/file-text.svg" width="12" height="16">
+                    <span class="busuanzi-value" id="busuanzi_value_page_pv"></span></span>
+                    <br>
+```
+这个是显示的图标
 
 
 
@@ -108,3 +133,4 @@ tags:
 4. [gitalk配置](https://yizibi.github.io/2018/09/26/Mac-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E6%95%99%E4%BD%A0%E5%9C%A8Jekyll%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/)
 5. [PicGo下载](https://github.com/Molunerfinn/PicGo)
 6. [catalog js文件](https://github.com/ghiculescu/jekyll-table-of-contents)
+7. [不蒜子](http://ibruce.info/2015/04/04/busuanzi/)
