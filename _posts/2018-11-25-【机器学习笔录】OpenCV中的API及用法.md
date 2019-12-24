@@ -5,6 +5,7 @@ subtitle:   ""
 date:       2018-11-25 21:14:14
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
+catalog:    true
 tags:
     - 机器学习
     - 深度学习
