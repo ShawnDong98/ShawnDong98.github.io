@@ -38,6 +38,9 @@ tags:
 配置可以参考reference
 [在github上搭建个人博客并在线更新。](https://www.cnblogs.com/wxyww/p/xiaoshujiang.html)
 
+注意： 小书匠绑定github和github图床的时候token得是一样的
+github图床的那个url用默认的就好，我自定义试了一下，显示不出来，可能路径不对
+
 ## 评论功能和网站分析
 
 ### 评论功能
@@ -51,7 +54,13 @@ disqus被墙不能用
 
 ## 网站分析
 
+去Google Analytics注册一个ID粘贴到yml文件里就行，很简单。
+具体可见[Hux Blog](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)
 
+
+### 给Blog加上catalog
+
+- 修改markdown的yaml文件
 
 
 
