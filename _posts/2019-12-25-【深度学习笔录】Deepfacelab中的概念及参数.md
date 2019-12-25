@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习笔录】Deepfacelab"
+title:      "【深度学习笔录】Deepfacelab中的概念及参数"
 subtitle:   ""
 date:       2019-12-25
 author:     "ShawnD"
