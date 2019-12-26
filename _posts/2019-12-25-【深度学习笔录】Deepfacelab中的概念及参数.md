@@ -124,14 +124,15 @@ Enable random warp of samples? ( y/n, ?:help skip:y) :
 Face style power ( 0.0 .. 100.0 ?:help skip:0.00) :
 > 学习人物风格，体现在面部细节和光照。
 默认不开启，建议合成之前开启，数值不宜过大。
+这个在模型训练完毕后，对模型进行备份。然后启用这个调节脸部颜色，需要变的颜色越多值越大，一般半小时到一小时就可以了。
 
 Background style power ( 0.0 .. 100.0 ?:help skip:0.00) :
 > 学习人物背景风格，体现在边缘。
 默认不开启，建议合成之前开启，数值不宜过大。
+这个在模型训练完毕后，对模型进行备份。然后启用这个调节脸部边缘的颜色，需要变的颜色越多值越大，一般半小时到一小时就可以了。
 
 Color transfer mode apply to src faceset. ( none/rct/lct/mkl/idt/sot, ?:help skip:none) :
-> 调色模式，不同模式会有不同效果。
-默认不开启，建议合成之前开启rct使肤色自然
+> 更改接近dst样本的src样本的颜色分布。尝试所有模式去找到最佳模式（可以参考合成的颜色调整经验）。老版本默认是lct，在一些数据集上表现并不好。
 
 Enable gradient clipping? (y/n, ?:help skip:n) :
 > 是否开启梯度剪切。使用会减少模型损坏几率，但会影响效率。
