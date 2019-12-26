@@ -146,3 +146,4 @@ Pretrain the model? (y/n, ?:help skip:n) :
 1. [一张图看懂DeepFaceLab的全脸，中脸，半脸！](https://www.deepfakescn.com/?p=1453)
 2. [选择合适的模型 H64 -H128 -DF -SAE -SAEHD](https://www.deepfacelabs.com/read-12-1.html)
 3. [DeepFaceLab不同模型的参数含义](https://www.deepfacelabs.com/read-49-1.html)
+4. [deepfacelab SAE SAEHD模型训练参数详解](https://www.jianshu.com/p/461a92184a1d)
