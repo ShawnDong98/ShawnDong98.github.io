@@ -268,7 +268,7 @@ d_loss_fake：利用loss函数计算判决器D对于假图片的的损失
 fake_scores：这里的值其实和fake_out相同，因为经过tanh激活，所以值在-1~1之间
 d_loss：就是d_loss_real和d_loss_fake相加的值
 回忆一下这个公式
-
+$$\min_G \max_D V(D, G) =E_{x\thicksim p_{data}(x)}[logD(x)] +  E_{z\thicksim{p_z}(z)}[log(1-D(G(z)))]$$
 
 ### 训练生成器
 ```python
