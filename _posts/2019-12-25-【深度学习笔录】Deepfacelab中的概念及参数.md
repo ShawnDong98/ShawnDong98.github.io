@@ -149,8 +149,49 @@ Pretrain the model? (y/n, ?:help skip:n) :
 > 是否使用预训练，开启预训练会使用_internal\pretrain_CelebA文件夹下的24711个脸部图片进行训练，适当训练可以达到一个尚可的角度值。
 默认不开启，不建议过度预训练，如开启可训练1-10万迭代后正式训练。
 
+## FAN-X
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1577448670246.png)
+希亚·拉博夫的手指被托尼的脸给覆盖了。这显然不是我们要的结果。我们希望的是手指能露出来，但是脸是托尼的。
+
+将遮罩模式（Mask mode）切换成 Fan-dst
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1577448704035.png)
+
+可以非常清楚的看到，手指出来了，脸往后贴了
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1577448723685.png)
+
+### FAN-X背后的原理
+FAN的实现主要体现在FANSegmentator，而这个FANSegmentator其实是基于TernausNet。
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1577448768064.png)
+
+大概意思是，这是一个使用Vgg11编码器的U-NET网络，使用ImageNet进行了预训练，主要应用于图像分割。
+
+## convert mode
+合成模式其实主要可以分为3类：overlay，histmatch，seamless
+
+### overlay
+> 可以简单的理解为叠加覆盖。在DFL中有不少人喜欢使用这个模式，但是这个模型往往让人感觉有一层淡淡薄膜，最终导致“脸色”不是太好。
+
+### seamless
+> 泊松图像编辑是一种全自动的“无缝融合”技术，由Microsoft Research UK的Patrick Perez，Michel Gangnet, and Andrew Blake在论文“Poisson Image Editing”中首次提出。opencv3.0 photo 模块加入了seamless_cloning类。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1577449089835.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1577449105067.png)
+
+> 但是用在DFL中，并不是非常理想。首先他很容易出现类似“乌云密布”的感觉，就是脸上偏灰色，偏暗淡。还有合成视频时候容易出现闪烁，也有人描述成抖动。不过当遇到遮挡的时候，似乎这种算法出来的结果最佳，对于单图的处理结果往往也不错。
+
+### histmatch
+> 直方图匹配又称为直方图规定化，是指将一幅图像的直方图变成规定形状的直方图而进行的图像增强方法。即将某幅影像或某一区域的直方图匹配到另一幅影像上。使两幅影像的色调保持一致。可以在单波段影像直方图之间进行匹配，也可以对多波段影像进行同时匹配。两幅图像比对前，通常要使其直方图形式一致。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1577449261944.png)
+
+
+在DFL中的表现还是非常不错的。从图中看以看出来，两张脸的色彩非常接近，这一点其实很重要。
+
 ## Reference
 1. [一张图看懂DeepFaceLab的全脸，中脸，半脸！](https://www.deepfakescn.com/?p=1453)
 2. [选择合适的模型 H64 -H128 -DF -SAE -SAEHD](https://www.deepfacelabs.com/read-12-1.html)
 3. [DeepFaceLab不同模型的参数含义](https://www.deepfacelabs.com/read-49-1.html)
 4. [deepfacelab SAE SAEHD模型训练参数详解](https://www.jianshu.com/p/461a92184a1d)
+5. https://github.com/ternaus/TernausNet
+6. https://arxiv.org/abs/1801.05746
