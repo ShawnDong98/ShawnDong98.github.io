@@ -131,6 +131,21 @@ tags:
 ```
 这个是显示的图标
 
+## 使用MathJax显示Latex公式
+
+在_includes/head.html的<head> </head>之间加入下列语句
+```html
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
+```
+
 
 
 ## Reference
@@ -141,3 +156,4 @@ tags:
 5. [PicGo下载](https://github.com/Molunerfinn/PicGo)
 6. [catalog js文件](https://github.com/ghiculescu/jekyll-table-of-contents)
 7. [不蒜子](http://ibruce.info/2015/04/04/busuanzi/)
+8. [[已解决]如何在kramdown中插入数学公式并在这个博客中展现出来](https://www.dazhuanlan.com/2019/11/21/5dd5dcaf771d1/)
