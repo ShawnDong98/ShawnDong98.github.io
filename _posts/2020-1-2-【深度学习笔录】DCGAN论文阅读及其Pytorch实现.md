@@ -15,7 +15,6 @@ tags:
 ## 论文部分
 
 论文的主要在三个方面对GAN进行了改进： \\
-
 1）使用了all convolutional net，用卷积层替换了池化层， 对生成器使用fractional-strided convolutions，对判决器使用strided convolutions。  \\
 2）取消了全连接层。 \\
 3）使用了BatchNorm标准化
