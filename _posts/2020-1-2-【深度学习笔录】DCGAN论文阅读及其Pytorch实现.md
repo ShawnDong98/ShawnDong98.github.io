@@ -14,13 +14,14 @@ tags:
 
 ## 论文部分
 
-论文的主要在三个方面对GAN进行了改进：
-1）使用了all convolutional net，用卷积层替换了池化层， 对生成器使用fractional-strided convolutions，对判决器使用strided convolutions。
-2）取消了全连接层。
+论文的主要在三个方面对GAN进行了改进： \\
+
+1）使用了all convolutional net，用卷积层替换了池化层， 对生成器使用fractional-strided convolutions，对判决器使用strided convolutions。  \\
+2）取消了全连接层。 \\
 3）使用了BatchNorm标准化
 
-在训练生成器和判决器的时候使用了不同的激活函数：
-1）对于生成器，除了输出层使用了Tanh激活函数外，其余层全部使用ReLU函数激活
+在训练生成器和判决器的时候使用了不同的激活函数： \\
+1）对于生成器，除了输出层使用了Tanh激活函数外，其余层全部使用ReLU函数激活 \\
 2）对于判决器，则全部使用了LeakyReLU激活函数
 
 论文的内容主要就在讲自己实验的改进，实验的细节，和实验结果的对比。未对原理做过多陈述。
