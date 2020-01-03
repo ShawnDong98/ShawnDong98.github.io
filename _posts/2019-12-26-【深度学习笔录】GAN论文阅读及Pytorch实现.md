@@ -8,6 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     true
 tags:
     - GAN
+    - 生成对抗网络
     - 深度学习
 ---
 
