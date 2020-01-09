@@ -32,6 +32,8 @@ def move_file(src_path, dst_path, file):
     except Exception as e:
         print('move_file ERROR: ',e)
 	
+i = 0
+j = 0
 for i in range(200000):
     move_file(("./data/img_align_celeba/"),\
                   ("./data/"+str(j)+"/"), (str(i).rjust(6,'0')+".jpg"))
