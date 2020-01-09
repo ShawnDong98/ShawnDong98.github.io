@@ -22,10 +22,22 @@ drive.mount('/content/drive')
  !kaggle competitions download -c digit-recognizer
  
  这里将username和key改为自己的。
+ 
+ ## ipynb文件直接在colab中打开
+ 
+ 添加markdown，输入以下内容
+ ```
+ <a href="https://colab.research.google.com/github/ShawnDong98/GAN/blob/master/DCGAN/DCGAN.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+ ```
+ 
+ 将后面github的内容改为自己的
+ 
+>  <a href="https://colab.research.google.com/github/ShawnDong98/GAN/blob/master/DCGAN/DCGAN.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+
 
 
 ## 解压缩
-
 
 
 ### 解压缩卡死问题
