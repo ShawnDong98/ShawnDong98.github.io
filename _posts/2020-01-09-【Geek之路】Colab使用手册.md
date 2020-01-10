@@ -10,6 +10,8 @@ tags:
     - Colab
     - 深度学习
 ---
+
+
 ## 挂载硬盘
 > from google.colab import drive
 drive.mount('/content/drive')
@@ -61,6 +63,22 @@ drive.mount('/content/drive')
 
 colab上的train.log和本地的train.log的两者大小的比值就是当前的解压进度．
 
+## Colab自动掉线问题
+
+```
+function ClickConnect(){
+console.log("Working"); 
+document.querySelector("colab-toolbar-button#connect").click() 
+}
+setInterval(ClickConnect,60000)
+```
+
+打开你的浏览器，执行F12或者Ctrl + Shift + i ， 将上面代码复制粘贴到Console框里按回车即可。
+
+
+
 ## Reference
 1. [google drive的压缩包直接解压到google drive](https://blog.csdn.net/appleyuchi/article/details/102539962)
 2. [利用kaggle的API将数据集直接下载到Google Colab](https://blog.csdn.net/qq_35654046/article/details/87621396)
+3. [探索Baidu AI Studio时的一些坎坷](https://blog.csdn.net/Hilary_Choi/article/details/98250715)
+4. [不做无用功 Google Colab掉线自动重连“助手”](https://zhuanlan.zhihu.com/p/101652327)
