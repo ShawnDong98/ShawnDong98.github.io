@@ -63,7 +63,7 @@ drive.mount('/content/drive')
 
 colab上的train.log和本地的train.log的两者大小的比值就是当前的解压进度．
 
-## Colab自动掉线问题
+## Colab掉线问题
 
 ```
 function ClickConnect(){
