@@ -74,6 +74,17 @@ setInterval(ClickConnect,60000)
 ```
 
 打开你的浏览器，执行F12或者Ctrl + Shift + i ， 将上面代码复制粘贴到Console框里按回车即可。
+这个原理是一直模拟点击，用于防止断连。
+
+```
+setInterval(()=>{
+	if(Array.from(document.getElementById("connect").children[0].children[2].innerHTML).splice(3,4).toString() === '重,新,连,接'){
+		document.getElementById("connect").children[0].children[2].click()
+	}
+},1000)
+
+```
+这个原理是检测到connect字样，去点击Reconnect，用于重连。
 
 
 
