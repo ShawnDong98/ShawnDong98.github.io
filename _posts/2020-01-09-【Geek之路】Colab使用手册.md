@@ -93,3 +93,4 @@ setInterval(()=>{
 2. [利用kaggle的API将数据集直接下载到Google Colab](https://blog.csdn.net/qq_35654046/article/details/87621396)
 3. [探索Baidu AI Studio时的一些坎坷](https://blog.csdn.net/Hilary_Choi/article/details/98250715)
 4. [不做无用功 Google Colab掉线自动重连“助手”](https://zhuanlan.zhihu.com/p/101652327)
+5. [google colab断线自动重连](https://blog.csdn.net/qq_35493664/article/details/94726560)
