@@ -680,18 +680,20 @@ for epoch in range(opt.n_epochs):
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/31200.png)
 
 
+笔者在用DCGAN训练celeba数据集时，遇到G_loss不断上升的问题。
 
+在卷积层后加上BatchNorm层后，效果变好。
 
 
 
 
 ## 总结
 
+
+
 DCGAN相较于GAN的网络结构主要将线性层改成了卷积层，整体思路还是不变的。
 
-笔者在用DCGAN训练celeba数据集时，遇到G_loss不断上升的问题。
 
-在卷积层后加上BatchNorm层后，效果变好。
 
 ## Reference
 1. [Radford A, Metz L, Chintala S. Unsupervised representation learning with deep convolutional generative adversarial networks[J]. arXiv preprint arXiv:1511.06434, 2015.](https://arxiv.org/abs/1511.06434)
