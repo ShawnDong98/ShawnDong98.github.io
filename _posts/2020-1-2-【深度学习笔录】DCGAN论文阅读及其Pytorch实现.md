@@ -689,6 +689,9 @@ for epoch in range(opt.n_epochs):
 
 DCGAN相较于GAN的网络结构主要将线性层改成了卷积层，整体思路还是不变的。
 
+笔者在用DCGAN训练celeba数据集时，遇到G_loss不断上升的问题。
+
+
 ## Reference
 1. [Radford A, Metz L, Chintala S. Unsupervised representation learning with deep convolutional generative adversarial networks[J]. arXiv preprint arXiv:1511.06434, 2015.](https://arxiv.org/abs/1511.06434)
 2. [数据集下载](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
