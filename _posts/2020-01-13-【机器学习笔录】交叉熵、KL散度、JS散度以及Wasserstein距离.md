@@ -7,7 +7,7 @@ author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     true
 tags:
-    - 熵
+    - 信息论
     - 机器学习
 ---
 
