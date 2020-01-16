@@ -33,7 +33,7 @@ $$H(x) = -\sum_{i=1}^{n}p(x_i)log(p(x_i)) = -p(x)log(p(x)) - (1-p(x))log(1-p(x))
 
 当为离散的随机变量时：
 
-$$D_{KL}(p||q) = \sum_{i=1}^{n}p(x_i)log(\frac{p(x_i)}{q(x_i)})$$
+$$D_{KL}(p|q) = \sum_{i=1}^{n}p(x_i)log(\frac{p(x_i)}{q(x_i)})$$
 
 当为连续的随机变量时：
 
@@ -54,7 +54,7 @@ $$D_{KL}(P_r||P_g) = \int P_r(x) log(\frac{P_r(x)}{P_g(x)})d\mu(x)$$
 因此$D_{KL}$的取值范围为0到inf。
 
 有时会将KL散度称为KL距离，但它并不满足距离的性质：
-- KL 散度是非对称，即$ D(p||q)$ 不一定等于 $D(q||p)$
+- KL 散度是非对称，即$ D(p|q)$ 不一定等于 $D(q|p)$
 - KL散度不满足三角不等式
 
 ## KL散度的实战---1维高斯分布
