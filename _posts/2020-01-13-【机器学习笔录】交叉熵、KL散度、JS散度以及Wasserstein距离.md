@@ -125,7 +125,7 @@ $$W(P_1, P_2) = \inf_{\gamma \thicksim \Pi (P_1, P_2) }E_{(x, y)\thicksim \gamma
 
 $\Pi (P_1, P_2)$是$P_1$和$P_2$分布组合起来的所有可能的联合分布的集合。
 
-对于每一个可能的联合分布$\gamma$， 可以从采样$(x, y)\thicksim \gamma$得到一个样本x和y， 并计算出这对样本的距离$\lVert x-y r\Vert$， 所以可以计算该联合分布$\gamma$下，样本对距离的期望值$E(x, y) \thicksim \gamma[\Vert x - y \Vert$]即样本的均值等于分布的期望。
+对于每一个可能的联合分布$\gamma$， 可以从采样$(x, y)\thicksim \gamma$得到一个样本x和y， 并计算出这对样本的距离$\lVert x-y \Vert$， 所以可以计算该联合分布$\gamma$下，样本对距离的期望值$E(x, y) \thicksim \gamma[\Vert x - y \Vert$]即样本的均值等于分布的期望。
 
 在所有的联合分布中能够对这个期望值取到的下界$infy \thicksim \Pi(P_1, P_2)E(x,y) \thicksim \gamma[\Vert x-y \Vert]$就是Wasserstein距离。
 
