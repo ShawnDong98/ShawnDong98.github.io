@@ -54,7 +54,7 @@ $$D_{KL}(P_r||P_g) = \int P_r(x) log(\frac{P_r(x)}{P_g(x)})d\mu(x)$$
 因此$D_{KL}$的取值范围为0到inf。
 
 有时会将KL散度称为KL距离，但它并不满足距离的性质：
-- KL 散度是非对称，即$ D(p|q)$ 不一定等于 $D(q|p)$
+- KL 散度是非对称，即$D(p|q)$ 不一定等于 $D(q|p)$
 - KL散度不满足三角不等式
 
 ## KL散度的实战---1维高斯分布
@@ -125,11 +125,11 @@ $$W(P_1, P_2) = \inf_{\gamma \thicksim \Pi (P_1, P_2) }E_{(x, y)\thicksim \gamma
 
 $\Pi (P_1, P_2)$是$P_1$和$P_2$分布组合起来的所有可能的联合分布的集合。
 
-对于每一个可能的联合分布$\gamma$， 可以从采样$(x, y)\thicksim \gamma$得到一个样本x和y， 并计算出这对样本的距离$|x-y|$， 所以可以计算该联合分布$\gamma$下，样本对距离的期望值$E(x, y) \thicksim \gamma[|x - y|]$， 即样本的均值等于分布的期望。
+对于每一个可能的联合分布$\gamma$， 可以从采样$(x, y)\thicksim \gamma$得到一个样本x和y， 并计算出这对样本的距离$||x-y||$， 所以可以计算该联合分布$\gamma$下，样本对距离的期望值$E(x, y) \thicksim \gamma[||x - y||$]即样本的均值等于分布的期望。
 
-在所有的联合分布中能够对这个期望值取到的下界$infy \thicksim \Pi(P_1, P_2)E(x,y) \thicksim \gamma[|x-y|]$就是Wasserstein距离。
+在所有的联合分布中能够对这个期望值取到的下界$infy \thicksim \Pi(P_1, P_2)E(x,y) \thicksim \gamma[||x-y||]$就是Wasserstein距离。
 
-直观上可以把$E(x,y)∼γ[|x−y|]$理解为在$γ$这个路径规划下把土堆P1挪到土堆P2所需要的消耗。而Wasserstein距离就是在最优路径规划下的最小消耗。所以Wesserstein距离又叫Earth-Mover距离。
+直观上可以把$E(x,y)∼γ[||x−y||]$理解为在$γ$这个路径规划下把土堆P1挪到土堆P2所需要的消耗。而Wasserstein距离就是在最优路径规划下的最小消耗。所以Wesserstein距离又叫Earth-Mover距离。
 
 **Wasserstein距离相比KL散度、JS散度的优越性在于，即便两个分布没有重叠，Wasserstein距离仍然能够反映它们的远近**；而JS散度在此情况下是常量，KL散度可能无意义。WGAN本作通过简单的例子展示了这一点。考虑如下二维空间中的两个分布$P_1$和$P_2$，$P_1$在线段AB上均匀分布，$P_2$在线段CD上均匀分布，通过控制参数$\theta$可以控制着两个分布的距离远近。
 
