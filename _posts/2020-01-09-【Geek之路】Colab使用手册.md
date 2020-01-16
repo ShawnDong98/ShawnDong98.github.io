@@ -76,17 +76,6 @@ setInterval(ClickConnect,60000)
 打开你的浏览器，执行F12或者Ctrl + Shift + i ， 将上面代码复制粘贴到Console框里按回车即可。
 
 
-```
-setInterval(()=>{
-	if(Array.from(document.getElementById("connect").children[0].children[2].innerHTML).splice(3,4).toString() === '重,新,连,接'){
-		document.getElementById("connect").children[0].children[2].click()
-	}
-},1000)
-
-```
-
-两个的原理都是帮你去点击Reconnect。
-
 
 
 ## Reference
