@@ -50,6 +50,49 @@ tags:
 ```
 
 
+## Python中collections模块
+
+这个模块实现了特定目标的容器，以提供Python标准内建容器 dict、list、set、tuple 的替代选择。
+
+- Counter：字典的子类，提供了可哈希对象的计数功能
+- defaultdict：字典的子类，提供了一个工厂函数，为字典查询提供了默认值
+- OrderedDict：字典的子类，保留了他们被添加的顺序
+- namedtuple：创建命名元组子类的工厂函数
+- deque：类似列表容器，实现了在两端快速添加(append)和弹出(pop)
+- ChainMap：类似字典的容器类，将多个映射集合到一个视图里面
+
+**defaultdict**
+
+defaultdict的一个典型用法是使用其中一种内置类型(如str、int、list或dict)作为默认工厂，因为这些内置类型在没有参数调用时返回空类型。
+
+使用int作为default_factory的例子：
+
+```python
+>>> from collections import defaultdict
+>>> fruit = defaultdict(int)
+>>> fruit['apple'] += 2 
+>>> fruit
+defaultdict(<class 'int'>, {'apple': 2})
+>>> fruit
+defaultdict(<class 'int'>, {'apple': 2})
+>>> fruit['banana']  # 没有对象时，返回0
+0
+>>> fruit
+defaultdict(<class 'int'>, {'apple': 2, 'banana': 0})
+```
+使用list作为default_factory的例子：
+
+```python
+>>> s = [('NC', 'Raleigh'), ('VA', 'Richmond'), ('WA', 'Seattle'), ('NC', 'Asheville')]
+>>> d = collections.defaultdict(list)
+>>> for k,v in s:
+...      d[k].append(v)
+... 
+>>> d
+defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'], 'WA': ['Seattle']})
+```
+
+
 # Python Tricks
 
 ## 将20W张图片分别存放在100个文件夹中
