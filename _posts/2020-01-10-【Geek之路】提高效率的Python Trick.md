@@ -90,7 +90,19 @@ defaultdict(<class 'int'>, {'apple': 2, 'banana': 0})
 ... 
 >>> d
 defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'], 'WA': ['Seattle']})
+
 ```
+
+
+# numpy语法
+
+
+# pandas语法
+
+# matplotlib语法
+
+# seaborn语法
+
 
 
 # Python Tricks
