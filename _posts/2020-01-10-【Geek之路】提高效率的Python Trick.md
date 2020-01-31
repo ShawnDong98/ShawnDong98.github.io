@@ -125,8 +125,20 @@ defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'],
 　　我们更经常会用到np.random.randn(size)所谓标准正太分布（μ=0, σ=1），对应于np.random.normal(loc=0, scale=1, size)
 
 
+## numpy.random.randint
 
-好文要顶 关注我 收藏该文  
+> numpy.random.randint(low, high=None, size=None, dtype='l')
+
+- low: int
+生成的数值最低要大于等于low。
+（hign = None时，生成的数值要在[0, low)区间内）
+- high: int (可选)
+如果使用这个值，则生成的数值在[low, high)区间。
+- size: int or tuple of ints(可选)
+输出随机数的尺寸，比如size = (m * n* k)则输出同规模即m * n* k个随机数。默认是None的，仅仅返回满足要求的单一随机数。
+- dtype: dtype(可选)：
+想要输出的格式。如int64、int等等
+
 
 # pandas语法
 
