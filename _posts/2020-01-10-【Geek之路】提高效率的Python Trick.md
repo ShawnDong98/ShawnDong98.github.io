@@ -96,6 +96,37 @@ defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'],
 
 # numpy语法
 
+## np.prod
+
+> np.prod()
+
+用来计算所有元素的乘积，对于有多个维度的数组可以指定轴，如axis=1指定计算每一行的乘积。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1580285712009.png)
+
+## np.random.normal()
+
+> numpy.random.normal(loc=0.0, scale=1.0, size=None) 
+
+参数的意义为：
+
+　　loc:float
+
+　　概率分布的均值，对应着整个分布的中心center
+
+　　scale:float
+
+　　概率分布的标准差，对应于分布的宽度，scale越大越矮胖，scale越小，越瘦高
+
+　　size:int or tuple of ints
+
+　　输出的shape，默认为None，只输出一个值
+
+　　我们更经常会用到np.random.randn(size)所谓标准正太分布（μ=0, σ=1），对应于np.random.normal(loc=0, scale=1, size)
+
+
+
+好文要顶 关注我 收藏该文  
 
 # pandas语法
 
@@ -141,3 +172,4 @@ for i in range(200000):
 # Reference
 1. [python 字符串补全填充固定长度（补0）的三种方法](https://blog.csdn.net/weixin_42317507/article/details/93411132)
 2. [Python3 菜鸟教程](https://www.runoob.com/python3/python3-assert.html)
+3. [np.prod() 函数计算数组元素乘积等](https://blog.csdn.net/Hero_Never_GIVE_UP/article/details/81114308)
