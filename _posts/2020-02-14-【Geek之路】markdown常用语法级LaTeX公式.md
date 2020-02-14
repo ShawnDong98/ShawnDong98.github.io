@@ -28,6 +28,21 @@ tags:
 
 $$x+y = z \tag{1.1}$$
 
+## LaTex 箭头上添加文字
+
+用法：
+
+> \stackrel{a}{\longrightarrow}
+
+示例：
+
+ \$0\stackrel{a}{\longrightarrow}1\$
+ 
+ 效果：
+ 
+  $$0\stackrel{a}{\longrightarrow}1$$
+
 
 # Reference
-1[Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
+1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
+2. [LaTex 箭头上添加文字](https://blog.csdn.net/z_feng12489/article/details/99861893)
