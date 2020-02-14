@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【Geek之路】markdown常用语法级LaTeX公式"
+title:      "【Geek之路】markdown常用语法及LaTeX公式"
 subtitle:   ""
 date:       2020-02-14
 author:     "ShawnD"
