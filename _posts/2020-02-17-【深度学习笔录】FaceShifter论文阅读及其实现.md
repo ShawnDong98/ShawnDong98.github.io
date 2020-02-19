@@ -119,6 +119,20 @@ $$L_{att} = \frac{1}{2} \| z_{att}^k(\hat Y_{s, t}) - z_{att}^k(X_t) \|_2^2 \tag
 
 当源图像和目标图像是相同的训练样本时， 我们定义一个重构误差为目标图像$X_t$和$\hat Y_{s, t}$之间像素级别的L2距离。
 
+$$
+L_{rec} = \
+\begin{cases}
+\frac{1}{2}\| \hat Y_{s, t} - X_t\|_2^2	, & \text{if X_t = X_s} \\
+0, & \text{otherwise}
+\end{cases}
+\tag{8}
+$$
+
+AEI-Net最终用一个带权重以下loss之和来训练：
+
+$$L_{AEI-Net} = L_{adv} + \lambda_{att}L_{att} + \lambda_{id}L_{id} + \lambda_{rec}L_{rec} \tag{9}$$
+
+其中 $\lambda_{att} = \lambda_{rec} = 10, \lambda_{id} = 5$, 可训练的AEI_Net模块包括多级特征编码器和AAD-Generator。
 
 
 # 实现部分
