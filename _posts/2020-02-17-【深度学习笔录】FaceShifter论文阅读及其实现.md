@@ -186,7 +186,13 @@ AEI-Net的训练使用了CelebA-HQ， FFHQ和VGGFace。 然而，在这些数据
 
 ### Comparison with Previous Methods
 
-**质量对比:** 如图5，我们将我们的方式与FaceSwap， Nirkin等人，DeepFakes， 和IPGAN在FaceForensic++测试图像进行了比较。与最新的作品FSGAN的比较如图5所示。 我们可以看到， 因为FaceSwap， Nirkin等人，DeepFakes， 和FSGAN都使用了首先合成人脸区域， 然后将它混合进目标人脸， 预料之中， 它们都有混合的不连续性的问题。
+![Fig 5](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582123058172.png)
+
+![Fig 6](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582123090198.png)
+
+**质量对比:** 如图5，我们将我们的方式与FaceSwap， Nirkin等人，DeepFakes， 和IPGAN在FaceForensic++测试图像进行了比较。与最新的作品FSGAN的比较如图5所示。 我们可以看到， 因为FaceSwap， Nirkin等人，DeepFakes， 和FSGAN都使用了首先合成人脸区域， 然后将它混合进目标人脸， 预料之中， 它们都有混合的不连续性的问题。所有由这些方式生成的人脸与它们的目标人脸共享相同的轮廓， 忽视源人脸的形状（图5行1-4， 图6行1-2）.此外，它们也不能很好的尊重目标图片的关键信息， 如灯光（图5行3， 图6行3-5），图片的分辨率（图5行2和4）。IPGAN在所有的样本中都有减小分辨率的问题， 由于它的单层特征表征。IPGAN不能很好地保留目标人脸的表情，比如说闭着的眼睛（图5行2）。
+
+
 
 # 实现部分
 
