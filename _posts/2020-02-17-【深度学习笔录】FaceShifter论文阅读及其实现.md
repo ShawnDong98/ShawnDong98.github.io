@@ -33,13 +33,13 @@ tags:
 
 为了取得高保真度的面部交换结果， 在我们框架的第一阶段， 我们设计了一个基于GAN的网络， 叫做 Adaptive Embedding Integration Network(AEI-Net)， 为了彻底地和自适应地完成目标特征的融合。我们给网络结构做了两个提升： 1）我们提出了一种新型的多级的特征编码器， 用于提取不同空间分辨率的目标特征， 而不是像RSGAN或者IPGAN那样将它压缩为一个单向量。 2）提出了一种具有精心设计的Adaptive Attentional Denormalization (AAD)层的新型生成器，它能自适应地学习在何处集成属性或身份嵌入。这样的自适应合成带来可观的提升，相比于RSGAN、FSGAN和IPGAN使用的单向量合成方法。 有了这两大提升， 我们提出的AEI-Net能够解决光照与脸型不一致的问题，如图2所示。
 
-此外，解决面部遮挡是面部交换的一个常见的挑战。不像Nirkin等人训练的面部分割网络来获取面部遮挡的掩膜， 我们的方式能够在没有人工标注数据的情况下，以一种自监督学习的方式修复面部异常区域。我们观察发现把相同的面部图像同时送入一个训练好的AEI-Net时， 重构后的图像在多个区域偏离输入， 这些偏离强烈地暗示了面部遮挡的位置。因此， 我们提出了一种新的Heuristic Error Acknowledging Refinement Network (HEAR-Net) 在重构误差的指导下来更好地限制结果。该方法更加通用，因此可以识别更多的异常类型，如眼镜、阴影和反射效应以及其他不常见的遮挡。
+此外，解决面部遮挡是面部交换的一个常见的挑战。不像Nirkin等人训练的面部分割网络来获取面部遮挡的掩膜， 我们的方式能够在没有人工标注数据的情况下，以一种自监督学习的方式修复面部异常区域。我们观察发现把相同的面部图像同时送入一个训练好的AEI-Net时， 重构后的图像在多个区域偏离输入， 这些偏离强烈地暗示了面部遮挡的位置。因此， 我们提出了一种新的Heuristic Error Acknowledging Refinement Network (HEAR-Net) 在重构误差的指导下来更好地改善结果。该方法更加通用，因此可以识别更多的异常类型，如眼镜、阴影和反射效应以及其他不常见的遮挡。
 
 我们提出的两阶段面部交换框架，FaceShifter， 与主体无关。一旦训练完成，该模型就可以应用于任何新的人脸对，而不需要像DeepFakes和Korshunova等人那样， 对特定的人进行特定的训练。实验结果表明，与其他先进的方法相比，我们的方法获得的结果更真实、更可靠。
 
 ## Related Works 
 
-人脸交换在视觉和图形学的研究中有很长的一段历史。 早期的努力仅仅是相似姿势的面部进行交换。这样的限制被近年来的算法粗略地分为了两种策略：基于3D的方式和基于GAN的方式。
+人脸交换在视觉和图形学的研究中有很长的一段历史。 早期的努力仅仅是相似姿势的面部进行交换。这些改善方式被近年来的算法粗略地分为了两种策略：基于3D的方式和基于GAN的方式。
 
 **基于3D的方式**
 
@@ -122,7 +122,7 @@ $$L_{att} = \frac{1}{2} \| z_{att}^k(\hat Y_{s, t}) - z_{att}^k(X_t) \|_2^2 \tag
 $$
 L_{rec} = \
 \begin{cases}
-\frac{1}{2}\| \hat Y_{s, t} - X_t\|_2^2	, & \text{if X_t = X_s} \\
+\frac{1}{2}\| \hat Y_{s, t} - X_t\|_2^2	, & \text{if $X_t = X_s$} \\
 0, & \text{otherwise}
 \end{cases}
 \tag{8}
@@ -133,6 +133,45 @@ AEI-Net最终用一个带权重以下loss之和来训练：
 $$L_{AEI-Net} = L_{adv} + \lambda_{att}L_{att} + \lambda_{id}L_{id} + \lambda_{rec}L_{rec} \tag{9}$$
 
 其中 $\lambda_{att} = \lambda_{rec} = 10, \lambda_{id} = 5$, 可训练的AEI_Net模块包括多级特征编码器和AAD-Generator。
+
+### Heuristic Error Acknowledging Refinement Network
+
+![Fig 4](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582100585512.png)
+
+尽管在第一阶段由AEI-Net生成的换脸的结果$\hat Y_{s, t}$能够很好地保留目标特征比如姿势、表情和背景灯光， 它常常很难保留出现在目标面部$X_t$的遮挡。之前的方式用一个额外的面部分割网络解决面部遮挡的问题。它在带有面部遮挡标注的数据集上进行训练， 这需要大量的人工标注。此外， 这样的一个监督方式可能很难识别没有见过的遮挡类型。 
+
+我们提出了一个heuristic method来解决面部遮挡的问题。 如图4(a)所示， 当目标面部被遮挡， 一些遮挡在被换的脸上会消失， 比如刘海覆盖了脸部或者冠冕上的链子。同时，我们观察到如果我们将相同的图片同时作为源图像和目标图像送进训练好的AEI-Net， 这些遮挡也会在重构的图片上消失。 因此，重构图像和输入之间的误差可以被用来定位面部遮挡。我们把它叫做输入图像的heuristic error， 因为它启发式地按时哪里会出现标注。
+
+受到以上观察的启发， 我们充分利用并提出了一种新的HEAR-Net来改善面部图片。 我们首先得到了目标图像的heuristic error如下：
+
+$$\Delta Y_t = X_t - AEI\_Net(X_t, X_t) \tag{10}$$
+
+然后我们将heuristic error $\Delta Y_t$和第一阶段的结果$\hat Y_{s, t}$送入一个U-Net结构， 得到改善后的图像$Y_{s, t}$:
+
+$$Y_{s, t} = HEAR\_Net(\hat Y_{s, t}, \Delta Y_t) \tag{11}$$
+
+HEAR-Net的结构如图4(b)所示。
+
+我们训练HEAR-Net以一种完全自监督的方式， 不需要使用任何人工的标注。 给定任意的目标面部图像$X_t$, 有或者没有遮挡区域， 我们利用以下损失来训练HEAR-Net. 首先是一个identity preservation loss来保存源图像的身份。 与第一阶段相似， 公式如下：
+
+$$L'_{id} = 1 - cos(z_{id}(Y_{s, t}, z_{id}(X_s))) \tag{12}$$
+
+change loss $L'_{chg}$保证第一阶段的结果和第二阶段结果的一致性。
+
+$$L'_{chg} = \vert \hat Y_{s, t} - Y_{s, t} \vert \tag{13}$$
+
+当源图像和目标图像相同时， 重构误差$L'_{rec}$限制第二阶段能够重构输入：
+
+$$
+L'_{rec} = 
+\begin{cases}
+\frac{1}{2} \|\hat Y_{s, t} - X_t \|_2^2 & \text{if $X_t = X_s$} \\
+0 & \text{otherwise}
+\end{cases}
+\tag{14}
+$$
+
+
 
 
 # 实现部分
