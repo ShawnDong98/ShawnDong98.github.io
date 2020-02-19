@@ -177,7 +177,16 @@ $$
 
 $$L_{HEAR-Net} = L'_{rec} + L'_{id} + L'_{chg} \tag{15}$$
 
+## Experiments
 
+**执行细节:** 对于每张人脸图片， 我们首先使用[Joint cascade face detection and alignment](http://soc.fudan.edu.cn/vip/attachments/download/3890/Joint_Cascade_Face_Detection.pdf)通过5个关键点对齐和裁剪人脸， 裁剪的尺寸是$256 \times 256$覆盖整张脸， 同时包含背景区域。 在AEI-Net中的特征嵌入的数量设置为$n=8$(等式1)。在HEAR-Net中降采样/升采样数量设置为5。关于网络结构和培训策略的更多细节，请参考补充资料。
+
+AEI-Net的训练使用了CelebA-HQ， FFHQ和VGGFace。 然而，在这些数据集中，HEAR-Net使用部分具有Top-10%的heuristic errors的人脸进行训练， 以及额外的合成的遮掩进行过数据增强的数据集。遮掩图像从EgoHands、GTEA Hand2K和ShapeNet中随机采样。
+
+
+### Comparison with Previous Methods
+
+**质量对比:** 如图5，我们将我们的方式与FaceSwap， Nirkin等人，DeepFakes， 和IPGAN在FaceForensic++测试图像进行了比较。与最新的作品FSGAN的比较如图5所示。 我们可以看到， 因为FaceSwap， Nirkin等人，DeepFakes， 和FSGAN都使用了首先合成人脸区域， 然后将它混合进目标人脸， 预料之中， 它们都有混合的不连续性的问题。
 
 # 实现部分
 
