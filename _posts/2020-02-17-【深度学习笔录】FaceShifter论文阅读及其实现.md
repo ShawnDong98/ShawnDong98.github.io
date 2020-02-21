@@ -5,7 +5,7 @@ subtitle:   ""
 date:       2020-02-17
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
-catalog:     flase
+catalog:     true
 tags:
     - FaceShifter
     - 深度学习
