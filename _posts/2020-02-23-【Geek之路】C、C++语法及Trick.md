@@ -188,8 +188,57 @@ int a[6]={1,2,3,4,5,6};
   find(a.begin(),a.end(),10);
 ```
 
+### vector的嵌套使用
+
+**1. 定义**
+
+> vector\<vector\<int\>\> M;
+
+**2. 添加元素**
+
+这里是vector的嵌套使用，本质是vector元素里的每个元素也是vector类型，所以抓住本质来添加元素就比较容易理解。
+
+我们假设外层的vector的对象为M，为外层vector对象，则M中的每一个元素也是vector类型，记为N1，N2，N3……，为内层对象
+
+则，我们得先形成一个个的N1，N2等的vector对象，然后再将这些vector对象添加进入外层vector对象M中
+
+这样就比较容易理解向vector\<vector\<int\>\>对象添加元素的原理了，实现如下：
+
+如M=[[1 2 3], [4 5 6]]，添加方式如下：
+
+```c++
+
+vector<vector<int>> M;  //外层vector对象M
+vector<int> N;   //内层vector对象
+ 
+N.push_back(1);
+N.push_back(2);
+N.push_back(3);  //已经形成第一个内层vector对象N1
+ 
+M.push_back(N);  //将形第一个内层vector对象N添加到外层vector对象M中
+N.clear();       //清楚N中的元素，可以继续存放后续vector对象
+ 
+N.push_back(4);
+N.push_back(5);
+N.push_back(6);  //已经形成第一个内层vector对象N2
+ 
+M.push_back(N);  //将形第一个内层vector对象N添加到外层vector对象M中
+N.clear();       //清楚N中的元素，可以继续存放后续vector对象
+```
+
+**3. 访问元素**
+
+访问元素和二维数组相同，M[0][0]，访问M中第一个vector对象的第一个元素，值为1；
+
+**4、长度**
+
+（1）M中vector的个数：M.size();
+
+（2）M中第i个vector元素的长度：M[i].size();
+
 # C/C++ Trick
 
 
 # Reference
 1. [C++_vector操作](https://blog.csdn.net/weixin_41743247/article/details/90635931)
+2. [C++ 中vector的嵌套使用](https://blog.csdn.net/Sophia_11/article/details/89328992)
