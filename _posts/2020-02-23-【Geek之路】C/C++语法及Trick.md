@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【Geek之路】C\/C++语法及Trick"
+title:      "【Geek之路】C/\C++语法及Trick"
 subtitle:   ""
 date:       2020-02-23
 author:     "ShawnD"
