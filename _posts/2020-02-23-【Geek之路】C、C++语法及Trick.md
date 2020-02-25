@@ -589,8 +589,18 @@ int pos3 = str.find_last_not_of("aeiou", 20, 2);       // 20
 int pos4 = str.find_last_not_of('r', 30);              // 29
 ```
 
+## 静态数组不能扩容（realloc）
 
+新分配在堆内的内存,数组定义之后不能改变大小，realloc(p,sizeof(p)+sizeof(int))函数不会改变p的值，新的内存地址是函数的返回值:
 
+```c++
+//动态分配的内存才可能扩大
+int *p = (int *)malloc(4);
+int *q = (int *)realloc(p, 8);
+if(q==p) 只是扩大内存
+if(q!=p) 重新分配内存，并拷贝数据
+if(q==NULL) 函数调用失败
+```
 # C/C++ Trick
 
 
@@ -598,3 +608,4 @@ int pos4 = str.find_last_not_of('r', 30);              // 29
 1. [C++_vector操作](https://blog.csdn.net/weixin_41743247/article/details/90635931)
 2. [C++ 中vector的嵌套使用](https://blog.csdn.net/Sophia_11/article/details/89328992)
 3. [c++中string的用法](https://blog.csdn.net/qq_30534935/article/details/82227364)
+4. [静态数组不能扩容（realloc），动态的才可以（如何创建动态数组）](https://blog.csdn.net/WXXGoodJob/article/details/74296420)
