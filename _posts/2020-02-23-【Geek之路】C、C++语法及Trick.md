@@ -609,6 +609,7 @@ if(!(str = (char*)realloc(str, 13*sizeof(char)))){
 	cout << "out of memory" << endl;
 };
 ```
+
 这样将字符串赋值给str， 分配内存仍会失败。
 
 
