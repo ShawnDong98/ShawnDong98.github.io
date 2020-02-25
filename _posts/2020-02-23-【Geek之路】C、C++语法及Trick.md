@@ -601,6 +601,17 @@ if(q==p) 只是扩大内存
 if(q!=p) 重新分配内存，并拷贝数据
 if(q==NULL) 函数调用失败
 ```
+
+```c++
+char *str = (char*)malloc(12 * sizeof(char));
+str = "We Are Happy";
+if(!(str = (char*)realloc(str, 13*sizeof(char)))){
+	cout << "out of memory" << endl;
+};
+```
+这样将字符串赋值给str， 分配内存仍会失败。
+
+
 # C/C++ Trick
 
 
