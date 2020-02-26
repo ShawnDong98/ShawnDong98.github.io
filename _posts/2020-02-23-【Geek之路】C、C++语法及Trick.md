@@ -703,6 +703,56 @@ int *p   //不应该将 *p 理解为一个整体
 我们理解时，将p理解为一个 int* 的变量， 这样就不容易陷入误区。
 
 
+C++中\*\&(指针引用)与\*(指针)的区别
+
+\*指针是一个存放地址的变量，指针引用指的是这个存放地址的变量的引用。
+
+C++中如果参数不是引用的话，会调用参数对象的拷贝构造函数，所以如果有需求想改变指针所指的对象即想要改变指针变量里存放的地址，就要使用指针引用。
+
+下面用一个测试例子和过程图结合进行说明：
+
+```c++
+#include <iostream>
+using namespace std;
+struct Node {
+	int data;
+};
+
+void ChangeNode1(Node*& pnode) {
+	pnode = new Node;
+	pnode->data = 5;
+}
+
+void ChangeNode2(Node *pnode) {
+	pnode = new Node;
+	pnode->data = 5;
+}
+
+
+void Test1() {
+	Node *node = new Node;
+	node->data = 10;
+	ChangeNode1(node);
+	std::cout << "指针引用" << node->data << endl;
+}
+
+void Test2() {
+	Node *node = new Node;
+	node->data = 10;
+	ChangeNode2(node);
+	std::cout << "指针" << node->data << endl;
+}
+
+int main() {
+	Test1();
+	Test2();
+	return 0;
+}
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582718653864.png)
+
+
 
 # C/C++ Trick
 
@@ -715,3 +765,4 @@ int *p   //不应该将 *p 理解为一个整体
 4. [静态数组不能扩容（realloc），动态的才可以（如何创建动态数组）](https://blog.csdn.net/WXXGoodJob/article/details/74296420)
 5. [C++ - 结构体构造函数使用总结](https://www.cnblogs.com/wlw-x/p/11566191.html)
 6. [C++ 结构体（struct）最全详解](https://www.jianshu.com/p/18307f614c5b)
+7. [C++中指针*与指针引用*&的区别说明](https://blog.csdn.net/zyb228/article/details/90040262)
