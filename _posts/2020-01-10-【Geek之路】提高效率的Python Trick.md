@@ -113,8 +113,131 @@ defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'],
 - 在函数体中改变变量指向的堆中的值 , 对函数外变量有效.
 - 在函数体中改变变量的引用 , 对函数外变量无效
 
+## glob
+
+glob 文件名模式匹配，不用遍历整个目录判断每个文件是不是符合。
+
+1、通配符
+
+星号(\*)匹配零个或多个字符
+
+```python
+import glob
+for name in glob.glob('dir/*'):
+    print (name)
+```
+
+```python
+dir/file.txt
+dir/file1.txt
+dir/file2.txt
+dir/filea.txt
+dir/fileb.txt
+dir/subdir
+```
+
+列出子目录中的文件，必须在模式中包括子目录名：
+
+```python
+import glob
+
+#用子目录查询文件
+print ('Named explicitly:')
+for name in glob.glob('dir/subdir/*'):
+    print ('\t', name)
+#用通配符* 代替子目录名
+print ('Named with wildcard:')
+for name in glob.glob('dir/*/*'):
+    print ('\t', name)
+```
+
+```python
+Named explicitly:
+        dir/subdir/subfile.txt
+Named with wildcard:
+        dir/subdir/subfile.txt
+```
+
+2、单个字符通配符
+
+用问号(?)匹配任何单个的字符。
+
+```python
+import glob
+
+for name in glob.glob('dir/file?.txt'):
+    print (name)
+```
+
+```python
+dir/file1.txt
+dir/file2.txt
+dir/filea.txt
+dir/fileb.txt
+```
+
+3、字符范围
+
+当需要匹配一个特定的字符，可以使用一个范围
+
+```python
+import glob
+for name in glob.glob('dir/*[0-9].*'):
+    print (name)
+```
+
+```python
+dir/file1.txt
+dir/file2.txt
+```
+
+## python字符串前加r、f、u、l 的区别
+
+### 字符串前加 “f”
+
+f-strings 是指以 f 或 F 开头的字符串，其中以 {} 包含的表达式会进行值替换。（目前支持python3.6版本）
+
+下面看下 f-strings 的使用方法
+
+基本使用（作用：替换值）
+
+```python
+>>>name = 'hoxis'
+>>> age = 18
+>>> f"hi, {name}, are you {age}"
+#结果如下
+'hi, hoxis, are you 18'
+>>> F"hi, {name}, are you {age}"
+'hi, hoxis, are you 18'
+```
+
+### 字符串前加 “r”
+
+在字符串前加r可防止字符串转义
 
 
+### 字符串前加 “u”
+
+u/U:表示unicode字符串 
+
+不是仅仅是针对中文, 可以针对任何的字符串，代表是对字符串进行unicode编码。 
+
+一般英文字符在使用各种编码下, 基本都可以正常解析, 所以一般不带u；但是中文, 必须表明所需编码, 否则一旦编码转换就会出现乱码。 
+
+建议所有编码方式采用utf8
+
+### 字符串前加 “l”
+
+表示宽字符，unicode字符（ unicode字符集是两个字节组成的。L告示编译器使用两个字节的 unicode 字符集） 如  L"我的字符串"    表示将ANSI字符串转换成unicode的字符串，就是每个字符占用两个字节。
+
+```python
+不加时占用字节
+strlen("asd")   =   3;   
+  
+  
+加之后占用字节
+strlen(L"asd")   =   6;
+```
 # numpy语法
 
 ## np.prod
@@ -211,3 +334,4 @@ for i in range(200000):
 3. [np.prod() 函数计算数组元素乘积等](https://blog.csdn.net/Hero_Never_GIVE_UP/article/details/81114308)
 4. [H5文件简介和使用](https://blog.csdn.net/omg_orange/article/details/90378193)
 5. [python：函数传参是否会改变函数外参数的值](https://blog.csdn.net/liuxiao214/article/details/81673093)
+6. [python字符串前加r、f、u、l 的区别](https://www.cnblogs.com/navysummer/p/12131824.html)
