@@ -53,6 +53,11 @@ vector<int>a(b);
 vector<int>a(b.begin(),b.begin+3);
 ```
 
+> // 这种方式得到的是两个地址之间截到的的变量
+>    vector\<int\> test = vector\<int\>(vin.begin(), vin.begin()+1);
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582899219223.png)
+
 方式5：
 
 ```c++
@@ -235,6 +240,9 @@ N.clear();       //清楚N中的元素，可以继续存放后续vector对象
 （1）M中vector的个数：M.size();
 
 （2）M中第i个vector元素的长度：M[i].size();
+
+
+
 
 
 ## string用法
