@@ -50,7 +50,7 @@ $$x+y = z \tag{1.1}$$
 
 效果：
 
-$\sum\limits_{n = 0}^\infty$
+$$\sum\limits_{n = 0}^\infty$$
 
 # Reference
 1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
