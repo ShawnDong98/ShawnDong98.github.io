@@ -41,8 +41,18 @@ $$x+y = z \tag{1.1}$$
  效果：
  
   $$0\stackrel{a}{\longrightarrow}1$$
+  
+  ## Latex在符号上下加文字
+  
+  inline mode 的话，默认是出现在右上和右下。可以使用 \limits 命令强制放在正上和正下。例如：
+  
+ > \$\sum\limits_{n = 0}^\infty\$
 
+效果：
+
+$\sum\limits_{n = 0}^\infty$
 
 # Reference
 1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
 2. [LaTex 箭头上添加文字](https://blog.csdn.net/z_feng12489/article/details/99861893)
+3. [latex中怎么在符号正上和正下方编写公式](https://blog.csdn.net/WASEFADG/article/details/50499350?utm_source=blogxgwz0)
