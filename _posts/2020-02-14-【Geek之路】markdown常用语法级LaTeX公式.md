@@ -44,7 +44,7 @@ $$x+y = z \tag{1.1}$$
   
   ## Latex在符号上下加文字
   
-  inline mode 的话，默认是出现在右上和右下。可以使用 \limits 命令强制放在正上和正下。例如：
+1. 如果是数学符号，那么直接用\limits命令放在正下方，如
   
  > \$\sum\limits_{n = 0}^\infty\$
 
@@ -52,7 +52,16 @@ $$x+y = z \tag{1.1}$$
 
 $$\sum\limits_{n = 0}^\infty$$
 
+2. 若是普通符号，那么要用\mathop先转成数学符号再用\limits，如
+
+> \$\mathop{\theta}\limits_{i=1}^2\$
+
+效果：
+
+$$\mathop{\theta}\limits_{i=1}^2$$
+
 # Reference
 1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
 2. [LaTex 箭头上添加文字](https://blog.csdn.net/z_feng12489/article/details/99861893)
 3. [latex中怎么在符号正上和正下方编写公式](https://blog.csdn.net/WASEFADG/article/details/50499350?utm_source=blogxgwz0)
+4. [LaTex 把上下标符号放在正上和正下方公式介绍](https://blog.csdn.net/z_feng12489/article/details/101422618)
