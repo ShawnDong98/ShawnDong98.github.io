@@ -42,6 +42,8 @@ for file in os.listdir():
  
  这里将username和key改为自己的。
  
+ 数据集也换成自己要下载的。
+ 
  ## ipynb文件直接在colab中打开
  
  
