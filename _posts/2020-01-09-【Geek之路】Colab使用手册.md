@@ -97,9 +97,9 @@ document.querySelector("colab-toolbar-button").click()
 2020-02-26:
 ```
 function ClickConnect(){
-var reconnect = document.querySelector(“colab-toolbar-button#connect”)
+var reconnect = document.querySelector("colab-toolbar-button#connect")
 if(reconnect != null){
-console.log(“working”)
+console.log("working")
 reconnect.click()
 }
 }
@@ -108,9 +108,9 @@ setInterval(ClickConnect,60000)
 
 ```
 function ClickConnect(){
-var reconnect = document.querySelector(“paper-button#ok”)
+var reconnect = document.querySelector("paper-button#ok")
 if(reconnect != null){
-console.log(“working”)
+console.log("working")
 reconnect.click()
 }
 }
@@ -123,8 +123,8 @@ The reason it didn’t work was due to `shadowRoot` blocking getElementById.
 
 ```
 function ClickConnect(){
-console.log(“Working”);
-document.querySelector(“colab-connect-button”).shadowRoot.getElementById(‘connect’).click()
+console.log("Working");
+document.querySelector("colab-connect-button").shadowRoot.getElementById('connect').click()
 }
 setInterval(ClickConnect,60000)
 ```
@@ -133,8 +133,8 @@ setInterval(ClickConnect,60000)
 
 ```
 function ClickConnect(){
-console.log(“Working”);
-document.querySelector(“colab-connect-button”).click()
+console.log("Working");
+document.querySelector("colab-connect-button").click()
 }
 setInterval(ClickConnect,6000)
 ```
