@@ -75,6 +75,17 @@ setInterval(ClickConnect,60000)
 
 打开你的浏览器，执行F12或者Ctrl + Shift + i ， 将上面代码复制粘贴到Console框里按回车即可。
 
+报错:
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583111833616.png)
+
+```
+function ClickConnect(){
+console.log("Working"); 
+document.querySelector("colab-toolbar-button").click() 
+}setInterval(ClickConnect,60000)
+```
 
 
 
@@ -84,3 +95,4 @@ setInterval(ClickConnect,60000)
 3. [探索Baidu AI Studio时的一些坎坷](https://blog.csdn.net/Hilary_Choi/article/details/98250715)
 4. [不做无用功 Google Colab掉线自动重连“助手”](https://zhuanlan.zhihu.com/p/101652327)
 5. [google colab断线自动重连](https://blog.csdn.net/qq_35493664/article/details/94726560)
+6. [How to prevent Google Colab from disconnecting ?](https://medium.com/@shivamrawat_756/how-to-prevent-google-colab-from-disconnecting-717b88a128c0)
