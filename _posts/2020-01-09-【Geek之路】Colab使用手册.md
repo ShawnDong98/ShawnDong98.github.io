@@ -17,17 +17,36 @@ tags:
 drive.mount('/content/drive')
 
 ## 下载kaggle数据集
-> !pip install -U -q kaggle
-!mkdir -p ~/.kaggle
-!echo '{"username":"abc","key":"123"}' > ~/.kaggle/kaggle.json
-!chmod 600 ~/.kaggle/kaggle.json
- !kaggle competitions download -c digit-recognizer
+```
+%cd /content/
+!mkdir .kaggle
+!pip install kaggle
+import json
+import zipfile
+import os
+token = {"username":"xxx","key":"xxx"}
+with open('/content/.kaggle/kaggle.json', 'w') as file:
+    json.dump(token, file)
+
+!chmod 600 /content/.kaggle/kaggle.json
+!cp /content/.kaggle/kaggle.json ~/.kaggle/kaggle.json
+!kaggle config set -n path -v /content
+
+!kaggle datasets download -d jessicali9530/celeba-dataset
+os.chdir('/content/datasets/jessicali9530/celeba-dataset')
+for file in os.listdir():
+    zip_ref = zipfile.ZipFile(file, 'r')
+    zip_ref.extractall()
+    zip_ref.close()
+```
  
  这里将username和key改为自己的。
  
  ## ipynb文件直接在colab中打开
  
+ 
  添加markdown，输入以下内容
+ 
  ```
  <a href="https://colab.research.google.com/github/ShawnDong98/GAN/blob/master/DCGAN/DCGAN.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
  ```
