@@ -87,6 +87,59 @@ document.querySelector("colab-toolbar-button").click()
 }setInterval(ClickConnect,60000)
 ```
 
+这个有效，但是会产生这样的cell
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583137163151.png)
+
+其他的一些方案：
+
+
+2020-02-26:
+```
+function ClickConnect(){
+var reconnect = document.querySelector(“colab-toolbar-button#connect”)
+if(reconnect != null){
+console.log(“working”)
+reconnect.click()
+}
+}
+setInterval(ClickConnect,60000)
+```
+
+```
+function ClickConnect(){
+var reconnect = document.querySelector(“paper-button#ok”)
+if(reconnect != null){
+console.log(“working”)
+reconnect.click()
+}
+}
+setInterval(ClickConnect,60000)
+```
+
+2020-02-24
+
+The reason it didn’t work was due to `shadowRoot` blocking getElementById.
+
+```c++
+function ClickConnect(){
+console.log(“Working”);
+document.querySelector(“colab-connect-button”).shadowRoot.getElementById(‘connect’).click()
+}
+setInterval(ClickConnect,60000)
+```
+
+2020-02-23
+
+```
+function ClickConnect(){
+console.log(“Working”);
+document.querySelector(“colab-connect-button”).click()
+}
+setInterval(ClickConnect,6000)
+```
+
+
 
 
 ## Reference
