@@ -121,7 +121,7 @@ setInterval(ClickConnect,60000)
 
 The reason it didn’t work was due to `shadowRoot` blocking getElementById.
 
-```c++
+```
 function ClickConnect(){
 console.log(“Working”);
 document.querySelector(“colab-connect-button”).shadowRoot.getElementById(‘connect’).click()
