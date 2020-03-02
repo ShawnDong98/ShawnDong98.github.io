@@ -76,8 +76,7 @@ for file in os.listdir():
 colab上的train.log和本地的train.log的两者大小的比值就是当前的解压进度．
 
 
- 
- ## 直接在colab中打开ipynb文件
+## 直接在colab中打开ipynb文件
  
  
  添加markdown，输入以下内容
