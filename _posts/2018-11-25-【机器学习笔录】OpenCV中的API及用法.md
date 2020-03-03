@@ -118,14 +118,15 @@ ps: 感觉和卷积很相似
    - uchar* ptr(i=0) 
 
 **Mat对象使用**
-- 部分复制：一般情况下只会复制Mat对象的头和指针部分，不会复制数据部分
+
+部分复制：一般情况下只会复制Mat对象的头和指针部分，不会复制数据部分
 
 ```
 Mat A = imread(imgFilePath);
 Mat B(A) //只复制
 ```
 
-- 完全复制：如果想把Mat对象的头部和数据部分一起复制，可以通过以下两个API实现
+完全复制：如果想把Mat对象的头部和数据部分一起复制，可以通过以下两个API实现
 ```
 Mat F = A.clone();
 Mat G;
@@ -164,7 +165,9 @@ cout << "C = " << endl << C << endl << endl;
 - 读写图像
 - 读写像素
 - 修改像素值
-  - 灰度图像
+- 灰度图像
+
+
  ```
 	cvtColor(src, gray_src, CV_BGR2GRAY);
 	int height = gray_src.rows;
@@ -201,7 +204,9 @@ for (int row = 0; row < height; row++)
 		}
 	}
 ```
+
 其实以上代码和 bitwise_not(src. dst) 这个api效果是一样的
+
   - 空白图像赋值
   - ROI选择
 
@@ -231,8 +236,11 @@ void cv::addWeighted(inputArray src1,
 参数4： 输入图像src2的alpha值
 参数5： gamma值
 参数6： 输出混合图像
-**注意：**两张图像的大小和类型必须一致才可以
-- 代码演示
+**注意：** 两张图像的大小和类型必须一致才可以
+
+
+代码演示
+
 ```
 	double alpha = 0.5;
 	if (src1.rows == src2.rows && src1.cols == src2.cols && src1.type() == src2.type())
@@ -252,6 +260,7 @@ void cv::addWeighted(inputArray src1,
  - 像素变换-点操作
  - 邻域操作-区域
 调整图像亮度和对比度属于像素变换-点操作
+
 ![](https://upload-images.jianshu.io/upload_images/8332901-cc7dd5d2625adcc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **代码演示**
@@ -285,59 +294,77 @@ for (int row = 0; row < height; row++)
 
 ### 绘制形状和文字
 - 使用cv::Point与cv::Scalar
-  - Point表示2D平面上一个点x, y
+- Point表示2D平面上一个点x, y
     Point p;
     p.x = 10;
     p.y = 8;
     or
     p = Point(10, 8) 
-  - Scalar表示四个元素的向量
+- Scalar表示四个元素的向量
+
+
   ```
     Scalar(a, b, c); //a = blue, b = green, c = red表示RGB三个通道
   ```
-- 绘制线、矩形、圆、椭圆等基本几何形状
-  - 画线cv::line(LINE_4\LINE_8\LINE_AA)
-  ```
-  void myLines()
-  {
+  
+绘制线、矩形、圆、椭圆等基本几何形状
+
+- 画线cv::line(LINE_4\LINE_8\LINE_AA)
+
+
+```
+void myLines()
+{
 	Point p1 = Point(20, 30);
 	Point p2;
 	p2.x = 400;
 	p2.y = 400;
 	Scalar color = Scalar(0, 0, 255);
 	line(src, p1, p2, color, 1, LINE_8);
-  }
-  ```
-  - 画椭圆cv::ellipse
-  ```
-  void myEllipse()
-  {
+}
+```
+
+- 画椭圆cv::ellipse
+
+
+```
+void myEllipse()
+{
 	Scalar color = Scalar(0, 255, 0);
 	ellipse(src, Point(src.cols / 2, src.rows / 2), Size(src.cols / 4, src.rows / 8), 90, 0, 360, color, 2, LINE_8);
-  }
-  ```
-  - 画矩形cv::rectangle
-  ```
-  void myRectangle()
-  {
+}
+```
+
+- 画矩形cv::rectangle
+
+
+```
+void myRectangle()
+{
 	Rect rect = Rect(200, 100, 300, 300);
 	Scalar color = Scalar(255, 0, 0);
 	rectangle(src, rect, color, 1, LINE_8);
-  }
-  ```
-  - 画圆cv::circle
-  ```
-  void myCircle()
-  {
+}
+```
+
+
+- 画圆cv::circle
+
+
+```
+void myCircle()
+{
 	Scalar color = Scalar(0, 255, 255);
 	Point center = Point(src.cols / 2, src.rows / 2);
 	circle(src, center, 150, color, 1, LINE_8);
-  }
-  ```
-  - 画填充cv::fillPoly 
-  ```
-  void myPolygon()
-  {
+}
+```
+
+
+- 画填充cv::fillPoly 
+```
+void myPolygon()
+{
 	Point pts[1][5];
 	pts[0][0] = Point(100, 100);
 	pts[0][1] = Point(100, 200);
@@ -350,15 +377,20 @@ for (int row = 0; row < height; row++)
 	Scalar color = Scalar(255, 12, 255);
 
 	fillPoly(src, ppts, npt, 1, color, 8);
-  }
-  ```
+}
+```
   
-- 随机生成(随机数生成cv::RNG)与绘制文本
-  - 生成高斯随机数gaussian(double sigma)
-  - 生成正态分布随机数uniform(int a, int b)
-  ```
-  void RandomLineDemo()
-  {
+随机生成(随机数生成cv::RNG)与绘制文本
+
+- 生成高斯随机数gaussian(double sigma)
+
+
+- 生成正态分布随机数uniform(int a, int b)
+
+
+```
+void RandomLineDemo()
+{
 	RNG rng(12345);
 	Point pt1;
 	Point pt2;
@@ -377,42 +409,62 @@ for (int row = 0; row < height; row++)
 		imshow("random line demo", bg);
 	}
 
-  }
-  ```
+}
+```
+
+
 ### 模糊操作一
-- 模糊原理
-  - Smooth/Blur是图像处理中最简单和常用的操作之一
-  - 使用该操作的原因之一就是为了给图像预处理时候减低噪声
-  - 使用Smooth/Blur操作背后是数学的卷积计算
+
+模糊原理
+
+- Smooth/Blur是图像处理中最简单和常用的操作之一
+- 使用该操作的原因之一就是为了给图像预处理时候减低噪声
+- 使用Smooth/Blur操作背后是数学的卷积计算
+
+
 ![](https://upload-images.jianshu.io/upload_images/8332901-fb9e1ac912d43a61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-  - 通常这些卷积算子计算都是线性操作，所以又叫线性滤波
-  - 归一化盒子滤波(均值滤波）
+- 通常这些卷积算子计算都是线性操作，所以又叫线性滤波
+- 归一化盒子滤波(均值滤波）
+
+
 ![](https://upload-images.jianshu.io/upload_images/8332901-7708e223e17c0c65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-  - 高斯滤波
+
+- 高斯滤波
+
+
 ![](https://upload-images.jianshu.io/upload_images/8332901-4e5f39fcb63bed59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![](https://upload-images.jianshu.io/upload_images/8332901-24a38b82a066faf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 假设有6x6的图像像素点矩阵
 卷积过程：6x6上面是个3x3的窗口，从左到右，从上向下移动，黄色的每个像素点值之和取平均值赋给中心红色像素作为它卷积处理之后新的像素值。每次移动一个像素格。(均值滤波)
 
-- 相关API
-  - 均值模糊
+相关API
+- 均值模糊
     blur(Mat src, Mat dst, Size(xradius, yradius), Point(-1, -1));
+	
     ![](https://upload-images.jianshu.io/upload_images/8332901-76d3284f5c3b0648.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-  - 高斯模糊
+- 高斯模糊
     GaussianBlur(Mat src, Mat dst, Size(11, 11), sigmax, sigmay);
     其中Size(x, y), x, y必须为正数而且是奇数
 
 ### 模糊操作二
-- 中值滤波
-  - 统计排序滤波器
-  - 中值对椒盐噪声有很好的抑制作用(巡线时可以用到)
-- 双边滤波(高斯双边滤波)
-  - 均值模糊无法克服边缘像素信息丢失缺陷。原因是均值滤波是基于平均权重。
-  - 高斯模糊部分克服了该缺陷，但是无法完全避免， 因为没有考虑像素值的不同
-  - 高斯双边模糊-是边缘保留的滤波方法，避免了边缘信息丢失，保留了图像轮廓不变
+
+ 中值滤波
+ 
+- 统计排序滤波器
+- 中值对椒盐噪声有很好的抑制作用(巡线时可以用到)
+
+
+双边滤波(高斯双边滤波)
+
+- 均值模糊无法克服边缘像素信息丢失缺陷。原因是均值滤波是基于平均权重。
+- 高斯模糊部分克服了该缺陷，但是无法完全避免， 因为没有考虑像素值的不同
+- 高斯双边模糊-是边缘保留的滤波方法，避免了边缘信息丢失，保留了图像轮廓不变
+
+
 ![](https://upload-images.jianshu.io/upload_images/8332901-cbbe1a3094f42ac3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
