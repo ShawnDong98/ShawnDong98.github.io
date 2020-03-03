@@ -1091,22 +1091,24 @@ ps：不是很明白
 
 
 
-
-
-
-
 ***
+
+
 # python部分
+
+
 ```
 import cv2 as cv
 ```
 
-
-
 ###  色彩空间转换
+
 **cv.cvtColor()** 
+
 参数：
+
 > imgae： 图片
+  
   
 ```
     gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
@@ -1116,12 +1118,17 @@ import cv2 as cv
     yuv = cv.cvtColor(image, cv.COLOR_BGR2YUV)
     cv.imshow("yuv", yuv)
 ```
+
 **cv.inRange()**
+
 ### 通道的分离与合并
+
 **cv.split()**: 通道的分离
+
 **cv.merge()**: 通道的合并
 
 ### 像素运算
+
 **加**: cv.add(m1, m2)
 **减**: cv.subtract(m1, m2)
 **乘**: cv.multiply(m1, m2)
