@@ -391,8 +391,75 @@ public:
 };
 ```
 
+# 跳台阶以及变态跳台阶
 
+## 跳台阶
+
+一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
+
+一开始还是想着递归，然后时间超限， 放弃。
+
+后来没什么思路， 百度得到结果， 原来思路和斐波那契数列是一样的。
+
+另外，上楼梯比下楼梯想起来要容易一些。
+
+代码：
+
+```c++
+class Solution {
+public:
+    int jumpFloor(int number){
+        if(number==2) return 2;
+        if(number==1) return 1;
+        int F, F_pre, F_pre_pre;
+        F_pre = 2;
+        F_pre_pre = 1;
+        for(int i=3; i<=number; ++i){
+            F = F_pre + F_pre_pre;
+            F_pre_pre =F_pre;
+            F_pre = F;
+        }
+        return F;
+    }
+    // 时间超限
+    int jumpFloor_1(int number) {
+        if(number==0) return 1;
+        if(number<0) return 0;
+        return jumpFloor(number-1) + jumpFloor(number-2);
+    }
+};
+```
+
+## 变态跳台阶
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583140936014.png)
+
+ 我们用f(n)来表示跳n级台阶的跳法数量
+ 
+  f(1)=1表示跳1级台阶的跳法数量;
+  
+   f(2)=2表示跳2级台阶的跳法数量;
+   
+   f(3)=f(2)+f(1)+1  我们可以递推出  f(n)=f(n-1)+f(n-2)+ *** +f(1)+1 ,
+   
+   而f(n-1)=f(n-2)+ *** +f(1)+1。
+   
+   将两式相减可以求出递推公式，也即是 f(n)-f(n-1)=f(n-1)，即f(n)=2\*f(n-1); 
+
+代码：
+
+```c++
+class Solution {
+public:
+    int jumpFloorII(int number) {
+        if(number == 1) return 1;
+        return 2*jumpFloorII(number-1);
+    }
+};
+```
 
 # Reference
 1. [剑指offer(1)二维数组中的查找](https://blog.csdn.net/weixin_43624053/article/details/84204474)
 2. [静态数组不能扩容（realloc），动态的才可以（如何创建动态数组）](https://blog.csdn.net/WXXGoodJob/article/details/74296420)
+3. [剑指Offer | 跳台阶](https://blog.csdn.net/mengmengdastyle/article/details/80304755?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+4. [变态跳台阶（剑指offer第九题）](https://blog.csdn.net/alan_gaohaodong/article/details/80987412)
