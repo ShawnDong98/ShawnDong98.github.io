@@ -11,7 +11,7 @@ tags:
     - 
 ---
 
-# 二维数组中的查找
+# 1. 二维数组中的查找
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582537671052.png)
 
@@ -74,7 +74,7 @@ public:
 
 ---
 
-# 替换空格
+# 2. 替换空格
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582632770744.png)
 
@@ -126,7 +126,7 @@ public:
 
 ---
 
-# 从尾到头打印链表
+# 3. 从尾到头打印链表
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582720386152.png)
 
@@ -205,7 +205,7 @@ public:
 
 ---
 
-# 重建二叉树
+# 4. 重建二叉树
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582898688205.png)
 
@@ -272,7 +272,7 @@ public:
 
 ---
 
-# 用两个栈实现队列
+# 5. 用两个栈实现队列
 
 > 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
 
@@ -314,7 +314,7 @@ private:
 ---
 
 
-# 旋转数组的最小数字
+# 6. 旋转数组的最小数字
 
 > 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
 > 输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。
@@ -359,7 +359,7 @@ public:
 
 ---
 
-# 斐波那契数列
+# 7. 斐波那契数列
 
 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
 n<=39
@@ -406,7 +406,7 @@ public:
 
 ---
 
-# 跳台阶以及变态跳台阶
+# [8 9]. 跳台阶以及变态跳台阶
 
 ## 跳台阶
 
@@ -475,7 +475,7 @@ public:
 
 ---
 
-# 矩形覆盖
+# 10. 矩形覆盖
 
 
 我们可以用2\*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2\*1的小矩形无重叠地覆盖一个2\*n的大矩形，总共有多少种方法？
@@ -513,7 +513,7 @@ public:
 
 ---
 
-# 二进制中1的个数
+# 11. 二进制中1的个数
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583241937303.png)
 
@@ -569,7 +569,7 @@ public:
 
 ---
 
-# 数值的整数次方
+# 12. 数值的整数次方
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583244248813.png)
 
