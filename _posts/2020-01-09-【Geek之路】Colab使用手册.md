@@ -18,6 +18,28 @@ tags:
 > from google.colab import drive
 drive.mount('/content/drive')
 
+# kaggle 上传与更新数据
+
+建立数据文件夹：
+
+１．建立文件夹放入数据
+
+２．初始化数据集
+
+> kaggle datasets init -p ~/Documents/barley_data/
+
+３．编辑json文件
+
+上传数据：
+
+> kaggle datasets create -p ~/Documents/barley_data/
+
+更新数据：
+
+> kaggle datasets version -p ~/Documents/barley_data/ -m "added info file with additional metadata"
+
+【注】下载数据可以用curl工具
+
 
 
 # 下载kaggle数据集
@@ -179,3 +201,4 @@ setInterval(ClickConnect,6000)
 4. [不做无用功 Google Colab掉线自动重连“助手”](https://zhuanlan.zhihu.com/p/101652327)
 5. [google colab断线自动重连](https://blog.csdn.net/qq_35493664/article/details/94726560)
 6. [How to prevent Google Colab from disconnecting ?](https://medium.com/@shivamrawat_756/how-to-prevent-google-colab-from-disconnecting-717b88a128c0)
+7. [kaggle 上传与更新数据](https://www.jianshu.com/p/f964baa360e5)
