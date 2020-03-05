@@ -458,8 +458,136 @@ public:
 };
 ```
 
+# 矩形覆盖
+
+
+我们可以用2\*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2\*1的小矩形无重叠地覆盖一个2\*n的大矩形，总共有多少种方法？
+
+比如n=3时，2\*3的矩形块有3种覆盖方法：
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583162150804.png)
+
+实际上，可以将这个问题转化为一个斐波那契数列的问题， 如图：
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583162191462.png)
+
+代码：
+
+```c++
+class Solution {
+public:
+    // 斐波那契数列
+    int rectCover(int number) {
+        if(number==1) return 1;
+        if(number==2) return 2;
+        int F, F_pre, F_pre_pre;
+        F_pre_pre = 1;
+        F_pre = 2;
+        F = 0;
+        for(int i=3; i<=number; ++i){
+            F = F_pre + F_pre_pre;
+            F_pre_pre = F_pre;
+            F_pre = F;
+        }
+        return F;
+    }
+};
+```
+
+# 二进制中1的个数
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583241937303.png)
+
+
+## 解法一
+
+第一种方法：令flag为无符号数1， 假设为32位， 那么flag即为0000 0000 0000 0001， 然后flag不断左移，如0000 0000 0000 0010, 0000 0000 0000 0100,...，直到溢出，此时flag = 0000 0000 0000 0000, 即0，也就是循环停止条件。每次左移与n进行按位与，若结果大于0，计数器count加一。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583242840437.png)
+
+代码
+
+```c++
+class Solution {
+public:
+     int  NumberOf1(int n) {
+         unsigned int flag = 1;
+         int count = 0;
+         while(flag >= 1){
+            if((n&flag) > 0){
+                ++count;
+            }
+            flag  = flag << 1;
+         }
+         return count;
+     }
+};
+
+```
+
+## 解法二
+
+第二种方法：令无符号数a等于n， 然后a = a & (a - 1)循环， 这个等式的数学意义不好理解，但是记住它的功能就好， 它的功能是令a的二进制表示右边的1消失一个。循环结束条件是a=0， 每次循环计数器count加一。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583242851893.png)
+
+代码：
+
+```c++
+class Solution {
+public:
+     int  NumberOf1(int n) {
+         unsigned int a = n;
+         int count = 0;
+         while(a != 0){
+            a = a & (a - 1);
+            ++count;
+         }
+         return count;
+     }
+};
+```
+
+# 数值的整数次方
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583244248813.png)
+
+很简单的一道题目。
+
+主要考虑指数为正，为负， 为1的情况。
+
+虽然人脑的计算的时候是$2 \times 2 \times 2$。但是计算机不能循环$base *= base$， 因为base是个变量，假设$base = 2$， 指数等于3，第一次运算结果base就等于4了，再运算就是4乘以4了。
+
+```c++
+class Solution {
+public:
+    double Power(double base, int exponent) {
+        double out = base;
+        if(exponent==0) return 1;
+        if(exponent>0){
+            for(int i=1; i<exponent; ++i){
+                out *= base;
+            }
+        }
+        if(exponent<0){
+            base = 1.0 / base;
+            out = base;
+            for(int i=1; i<-exponent; ++i){
+                out *= base;
+            }
+        }
+        return out;
+
+    }
+};
+
+```
+
+
 # Reference
 1. [剑指offer(1)二维数组中的查找](https://blog.csdn.net/weixin_43624053/article/details/84204474)
 2. [静态数组不能扩容（realloc），动态的才可以（如何创建动态数组）](https://blog.csdn.net/WXXGoodJob/article/details/74296420)
 3. [剑指Offer | 跳台阶](https://blog.csdn.net/mengmengdastyle/article/details/80304755?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
 4. [变态跳台阶（剑指offer第九题）](https://blog.csdn.net/alan_gaohaodong/article/details/80987412)
+5. [剑指offer——矩形覆盖问题](https://blog.csdn.net/sbq63683210/article/details/52071387)
+6. [牛客网_剑指offer_二进制中1的个数](https://blog.csdn.net/weixin_40349531/article/details/89513811)
