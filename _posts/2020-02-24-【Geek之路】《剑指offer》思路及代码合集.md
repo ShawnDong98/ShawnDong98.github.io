@@ -606,7 +606,7 @@ public:
 
 ---
 
-# 调整数组顺序使奇数位于偶数前面
+# 13. 调整数组顺序使奇数位于偶数前面
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583314073818.png)
 
