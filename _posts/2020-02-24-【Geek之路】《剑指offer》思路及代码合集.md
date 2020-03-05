@@ -672,7 +672,7 @@ public:
 
 ----
 
-# 链表中倒数第k个结点
+# 14. 链表中倒数第k个结点
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583317361339.png)
 
@@ -730,7 +730,7 @@ public:
 ---
 
 
-# 反转链表
+# 15. 反转链表
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583423483096.png)
 
@@ -784,7 +784,7 @@ public:
 
 ----
 
-# 合并两个排序的链表
+# 16. 合并两个排序的链表
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583427781894.png)
 
