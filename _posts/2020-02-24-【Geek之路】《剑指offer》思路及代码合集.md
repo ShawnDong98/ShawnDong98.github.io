@@ -584,6 +584,71 @@ public:
 ```
 
 
+# 调整数组顺序使奇数位于偶数前面
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583314073818.png)
+
+思路一：刚看到这道题想到的就是这种方法， 创建一个和原数组相等大小的数组， 遍历两次原数组，第一次将奇数按序存入新数组，第二次将偶数按序存入新数组，最后新数组和原数组交换元素。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583314613122.png)
+
+代码：
+```c++
+    void reOrderArray_1(vector<int> &array) {
+        vector<int> tmp;
+        for(vector<int>::iterator it=array.begin(); it!=array.end(); ++it){
+            if(*it%2==1){
+                tmp.push_back(*it);
+            }
+        }
+        for(vector<int>::iterator it=array.begin(); it!=array.end(); ++it){
+            if(*it%2==0){
+                tmp.push_back(*it);
+            }
+        }
+        array.swap(tmp);
+
+```
+
+思路2：
+
+- 先找到第一个偶数
+- 从第一个偶数后找到第一个奇数
+- 将第一个偶数和第一个奇数之间的元素（包含第一个偶数）往后移一位，这些元素是偶元素序列
+- 将第一个奇数填入到第一个偶数的位置
+- 循环2， 3， 4
+
+也就是不断地在第一个偶元素的后面找奇元素，将偶序列后移，并将奇元素填到偶元素的位置
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583314984894.png)
+
+代码：
+
+```c++
+    void reOrderArray(vector<int> &array) {
+        if(array.size()==0) return;
+        int i = 0, j, tmp;
+        //找到第一个偶元素
+        while(array[i]%2!=0) ++i;
+        j = i+1;
+        while(j<array.size()){
+            //找到i之后的第一个奇元素
+            while(array[j]%2==0) ++j;
+            if(j>=array.size()) break;
+            tmp = array[j];
+            // i到j之间的偶元素后移一位
+            for(int k=j; k>i; --k){
+                array[k] = array[k-1];
+            }
+            array[i] = tmp;
+            ++i;
+            j = i+1;
+        }
+
+    }
+```
+
+
 # Reference
 1. [剑指offer(1)二维数组中的查找](https://blog.csdn.net/weixin_43624053/article/details/84204474)
 2. [静态数组不能扩容（realloc），动态的才可以（如何创建动态数组）](https://blog.csdn.net/WXXGoodJob/article/details/74296420)
@@ -591,3 +656,4 @@ public:
 4. [变态跳台阶（剑指offer第九题）](https://blog.csdn.net/alan_gaohaodong/article/details/80987412)
 5. [剑指offer——矩形覆盖问题](https://blog.csdn.net/sbq63683210/article/details/52071387)
 6. [牛客网_剑指offer_二进制中1的个数](https://blog.csdn.net/weixin_40349531/article/details/89513811)
+7. [【剑指offer】面试题21：调整数组顺序使奇数位于偶数前面](https://blog.csdn.net/pcwl1206/article/details/85916375)
