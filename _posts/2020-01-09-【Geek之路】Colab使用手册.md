@@ -12,13 +12,15 @@ tags:
 ---
 
 
-## 挂载硬盘
+# 挂载硬盘
 
 
 > from google.colab import drive
 drive.mount('/content/drive')
 
-## 下载kaggle数据集
+
+
+# 下载kaggle数据集
 
 
 ```
@@ -51,10 +53,10 @@ for file in os.listdir():
 
 
 
-## 解压缩
+# 解压缩
 
 
-### 解压缩卡死问题
+## 解压缩卡死问题
 **unzip**
 - -d<目录> 指定文件解压缩后所要存储的目录
 - -o 不必先询问用户，unzip执行后覆盖原有文件。
@@ -76,7 +78,7 @@ for file in os.listdir():
 colab上的train.log和本地的train.log的两者大小的比值就是当前的解压进度．
 
 
-## ipynb文件直接在colab中打开
+# ipynb文件直接在colab中打开
  
  
  添加markdown，输入以下内容
@@ -91,7 +93,7 @@ colab上的train.log和本地的train.log的两者大小的比值就是当前的
 
 
 
-## Colab掉线问题
+# Colab掉线问题
 
 ```
 function ClickConnect(){
@@ -170,7 +172,7 @@ setInterval(ClickConnect,6000)
 
 
 
-## Reference
+# Reference
 1. [google drive的压缩包直接解压到google drive](https://blog.csdn.net/appleyuchi/article/details/102539962)
 2. [利用kaggle的API将数据集直接下载到Google Colab](https://blog.csdn.net/qq_35654046/article/details/87621396)
 3. [探索Baidu AI Studio时的一些坎坷](https://blog.csdn.net/Hilary_Choi/article/details/98250715)
