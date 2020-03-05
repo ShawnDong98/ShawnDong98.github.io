@@ -72,6 +72,8 @@ public:
 };
 ```
 
+---
+
 # 替换空格
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582632770744.png)
@@ -121,6 +123,8 @@ public:
 	}
 };
 ```
+
+---
 
 # 从尾到头打印链表
 
@@ -199,6 +203,8 @@ public:
 };
 ```
 
+---
+
 # 重建二叉树
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582898688205.png)
@@ -264,6 +270,8 @@ public:
 
 ```
 
+---
+
 # 用两个栈实现队列
 
 > 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
@@ -302,6 +310,9 @@ private:
     stack<int> stack2;
 };
 ```
+
+---
+
 
 # 旋转数组的最小数字
 
@@ -345,6 +356,8 @@ public:
 };
 
 ```
+
+---
 
 # 斐波那契数列
 
@@ -390,6 +403,8 @@ public:
     }
 };
 ```
+
+---
 
 # 跳台阶以及变态跳台阶
 
@@ -458,6 +473,8 @@ public:
 };
 ```
 
+---
+
 # 矩形覆盖
 
 
@@ -493,6 +510,8 @@ public:
     }
 };
 ```
+
+---
 
 # 二进制中1的个数
 
@@ -548,6 +567,8 @@ public:
 };
 ```
 
+---
+
 # 数值的整数次方
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583244248813.png)
@@ -583,6 +604,7 @@ public:
 
 ```
 
+---
 
 # 调整数组顺序使奇数位于偶数前面
 
@@ -648,6 +670,8 @@ public:
     }
 ```
 
+----
+
 # 链表中倒数第k个结点
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583317361339.png)
@@ -703,6 +727,9 @@ public:
 
 ```
 
+---
+
+
 # 反转链表
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583423483096.png)
@@ -755,6 +782,7 @@ public:
 };
 ```
 
+----
 
 # 合并两个排序的链表
 
@@ -816,6 +844,7 @@ public:
 };
 ```
 
+----
 
 # Reference
 1. [剑指offer(1)二维数组中的查找](https://blog.csdn.net/weixin_43624053/article/details/84204474)
