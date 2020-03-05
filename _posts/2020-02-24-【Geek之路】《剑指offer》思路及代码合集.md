@@ -703,6 +703,119 @@ public:
 
 ```
 
+# 反转链表
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583423483096.png)
+
+题目很简单，用头插法即可，用指针p定位要插入的元素，用指针r定位原链表的下一元素位置，要注意p和r的位置关系，以及循环停止条件。
+
+代码：
+
+```c++
+class Solution {
+public:
+    // 头插法
+    ListNode* ReverseList(ListNode* pHead){
+        if(pHead==NULL) return NULL;
+        if(pHead->next==NULL) return pHead;
+        ListNode *p = pHead, *r = pHead->next;
+        ListNode* H = (ListNode*)malloc(sizeof(ListNode));
+        H->next = NULL;
+        while(r!=NULL){
+            r = p->next;
+            p->next = H->next;
+            H->next = p;
+            p = r;
+
+        }
+        p = H->next;
+        delete H;
+        return p;
+    }
+    void CreateLinkList(ListNode* &L, int n){
+        ListNode* p = (ListNode*)malloc(sizeof(ListNode));
+        p->val = 1;
+        p->next = NULL;
+        L = p;
+        for(int i=n; i>1; --i){
+            p = (ListNode*)malloc(sizeof(ListNode));
+            p->next = L->next;
+            p->val = i;
+            L->next = p;
+        }
+    }
+    void printLinkList(ListNode* L){
+        ListNode* p = L;
+        while(p!=NULL){
+            cout << p->val << ' ';
+            p = p->next;
+        }
+        cout << endl;
+    }
+};
+```
+
+
+# 合并两个排序的链表
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583427781894.png)
+
+这个题目在考研初试时练的很多，很简单的题目。
+
+指针p1用于遍历链表1， 指针p2用于遍历链表2， 比较两个指针指向元素的大小，用另一个指针p将它们串起来。
+
+代码：
+
+```c++
+class Solution {
+public:
+    ListNode* Merge(ListNode* pHead1, ListNode* pHead2)
+    {
+        ListNode *p1 = pHead1, *p2 = pHead2;
+        ListNode *H = (ListNode*)malloc(sizeof(ListNode));
+        H->next = NULL;
+        ListNode *p = H;
+        while(p1!=NULL && p2!=NULL){
+            if(p1->val>p2->val){
+                p->next = p2;
+                p = p2;
+                p2 = p2->next;
+            }else{
+                p->next = p1;
+                p = p1;
+                p1 = p1->next;
+            }
+        }
+        if(p1!=NULL) p->next = p1;
+        if(p2!=NULL) p->next = p2;
+        p = H->next;
+        delete H;
+        return p;
+    }
+    void CreateLinkList(ListNode* &L, int n){
+        ListNode* p = (ListNode*)malloc(sizeof(ListNode));
+        p->val = 1;
+        p->next = NULL;
+        L = p;
+        for(int i=n; i>1; --i){
+            p = (ListNode*)malloc(sizeof(ListNode));
+            p->next = L->next;
+            p->val = i;
+            L->next = p;
+        }
+        if(n==0) L = NULL;
+    }
+    void printLinkList(ListNode* L){
+        ListNode* p = L;
+        while(p!=NULL){
+            cout << p->val << ' ';
+            p = p->next;
+        }
+        cout << endl;
+    }
+};
+```
+
 
 # Reference
 1. [剑指offer(1)二维数组中的查找](https://blog.csdn.net/weixin_43624053/article/details/84204474)
