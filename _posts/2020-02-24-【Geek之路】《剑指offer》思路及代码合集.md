@@ -122,6 +122,82 @@ public:
 };
 ```
 
+# 从尾到头打印链表
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582720386152.png)
+
+这道题很简单，将单链表头插法逆序，然后顺序将val存入vector即可。
+
+一开始不知道单链表是否带有头结点， 经测试，单链表为不带头结点的单链表。
+
+这道题解决长久以来多级指针， 以及指针的引用上的困惑。
+
+长久以来，我对指针的理解都是 多一个 * 就是深一级的地址。
+
+我都是将 " \*变量名称" 理解为一个整体， 事实上这样理解很容易把自己整懵。
+
+如果将 "数据类型*" 理解为一个整体，这就是一个地址， 每多一个 \*， 那么地址就深一级， 而变量就是指代这个深一级的地址， 这样就会好理解很多。
+
+将这个多级指针视作一个变量后， 就很容易理解指针的引用了。
+
+代码：
+
+```c++
+class Solution {
+public:
+    // 经测试，链表为不带头节点的单链表
+    // 将链表使用头插法逆置，再将val顺序存入vector
+    vector<int> printListFromTailToHead(ListNode* head) {
+
+        vector<int> buffer;
+        if(!head) return buffer;
+
+        ListNode* H = (ListNode*)malloc(sizeof(ListNode));
+        H->next = head;
+        ListNode* p = H->next;
+        ListNode* r;
+
+        H->next = NULL;
+        while(p){
+            r = p->next;
+            p->next = H->next;
+            H->next = p;
+            p = r;
+
+        }
+        p = H->next;
+        while(p){
+            buffer.push_back(p->val);
+            p = p->next;
+        }
+        delete H;
+        return buffer;
+
+    }
+
+    void CreateLinkList(ListNode* &L, int n){
+        ListNode* H = (ListNode*)malloc(sizeof(ListNode));
+        H->next = NULL;
+        ListNode *p;
+        for(int i=0; i<n; ++i){
+            p = (ListNode*)malloc(sizeof(ListNode));
+            p->next = H->next;
+            p->val = i;
+            H->next = p;
+        }
+        L = H->next;
+    }
+
+    void printList(ListNode* &L){
+        ListNode *p = L;
+        while(p!=NULL){
+            cout << p->val << ' ';
+            p = p->next;
+        }
+        cout << endl;
+    }
+};
+```
 
 # Reference
 1. [剑指offer(1)二维数组中的查找](https://blog.csdn.net/weixin_43624053/article/details/84204474)
