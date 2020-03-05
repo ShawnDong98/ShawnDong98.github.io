@@ -264,6 +264,89 @@ public:
 
 ```
 
+# 用两个栈实现队列
+
+> 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+
+
+思路很简单，一个栈stack1用来push，另一个栈stack2用来pop。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582965285485.png)
+
+代码：
+
+```c++
+class Solution
+{
+public:
+    void push(int node) {
+        while(!stack2.empty()){
+            stack1.push(stack2.top());
+            stack2.pop();
+        }
+        stack1.push(node);
+    }
+
+    int pop() {
+        while(!stack1.empty()){
+            stack2.push(stack1.top());
+            stack1.pop();
+        }
+        int node = stack2.top();
+        stack2.pop();
+        return node;
+    }
+
+private:
+    stack<int> stack1;
+    stack<int> stack2;
+};
+```
+
+# 旋转数组的最小数字
+
+> 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
+> 输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。
+> 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
+> NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
+
+很简单的题目，找到最小的元素的位置，然后对相应元素进行搬移，输出搬移后的数组的第一个元素即可。
+
+代码：
+
+```c++
+class Solution {
+public:
+    int minNumberInRotateArray(vector<int> rotateArray) {
+        if(rotateArray.size() == 0) return 0;
+        int m = find_min(rotateArray);
+        for(int i=0; i<m; ++i){
+            rotateArray.push_back(rotateArray[i]);
+        }
+        rotateArray.erase(rotateArray.begin(), rotateArray.begin()+m);
+        return rotateArray[0];
+
+    }
+    int find_min(vector<int> rotateArray){
+        int m = 0;
+        for(int i=0; i<rotateArray.size();++i){
+            if(rotateArray[i]<rotateArray[m]){
+                m = i;
+            }
+        }
+        return m;
+    }
+    void print(vector<int> A){
+        for(vector<int>::iterator it=A.begin();it!=A.end();++it){
+            cout << *it << ' ';
+        }
+        cout << endl;
+    }
+};
+
+```
+
+
 
 # Reference
 1. [剑指offer(1)二维数组中的查找](https://blog.csdn.net/weixin_43624053/article/details/84204474)
