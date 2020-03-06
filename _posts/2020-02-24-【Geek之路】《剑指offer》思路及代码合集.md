@@ -904,6 +904,49 @@ public:
 };
 ```
 
+----
+
+# 18. 二叉树的镜像
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583493123539.png
+
+将根节点的左右子树交换。
+
+递归分别将子树的左右子树交换即可。
+
+代码：
+
+```c++
+class Solution {
+public:
+    void Mirror(TreeNode *pRoot) {
+        if(pRoot==NULL) return;
+        TreeNode* p = (TreeNode*)malloc(sizeof(TreeNode));
+        p->left = pRoot->left;
+        p->right = pRoot->right;
+        pRoot->left = p->right;
+        pRoot->right = p->left;
+        delete p;
+        Mirror(pRoot->left);
+        Mirror(pRoot->right);
+    }
+    void Tree_Structor(TreeNode* &T, int n){
+        if(n<=0){T = NULL; return;}
+        T = (TreeNode*)malloc(sizeof(TreeNode));
+        T->val = n;
+        Tree_Structor(T->left, n-1);
+        Tree_Structor(T->right, n-2);
+    }
+    void print_Tree(TreeNode* T){
+        if(T==NULL) return;
+        cout << T->val << ' ';
+        print_Tree(T->left);
+        print_Tree(T->right);
+    }
+};
+
+```
+
 
 ----
 
