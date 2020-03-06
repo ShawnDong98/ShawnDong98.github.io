@@ -843,6 +843,67 @@ public:
     }
 };
 ```
+----
+
+# 17. 树的子结构
+
+![enter description here](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583489994945.png)
+
+递归查找子结构
+
+- 当树2为空或树2不为空且树1为空时，若是， 返回0
+- 判断树1从根节点开始有没有树2的子结构，若是，  返回1
+- 递归判断树1的左子树从根节点开始有没有树2的子结构，若是， 返回1
+- 递归判断树1的右子树从根节点开始有没有树2的子结构， 若是，返回1
+- 否则，返回0
+
+关键是写一个从根节点开始判断一棵树是否是另一棵树的一部分的函数， 注意这个并不是判断两个树是否相似，也就是说当树2到了树底的时候，树1未必到了树底。因此，我们以树2的结构依次判断树1中是否有对应的元素即可。
+
+判断的条件为：
+- 当树2为空时，返回1
+- 当树2不为空，树1为空时，返回0
+- 当树2不为空，树1也不为空，树1与树2的值相等时，返回1
+- 当树2不为空，树1也不为空，树1与树2的值不相等时，返回0
+- 然后递归分别判断左子树和右子树
+
+代码：
+
+```c++
+class Solution {
+public:
+    bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+    {
+        if(pRoot2==NULL || (pRoot1==NULL&&pRoot2!=NULL)) return 0;
+        if(Tree_if_same(pRoot1, pRoot2)==1) return 1;
+        if(HasSubtree(pRoot1->left, pRoot2)) return 1;
+        if(HasSubtree(pRoot1->right, pRoot2)) return 1;
+        return 0;
+    }
+    bool Tree_if_same(TreeNode* pRoot1, TreeNode* pRoot2){
+        if(pRoot2==NULL) return 1;
+        if((pRoot1==NULL&&pRoot2!=NULL)) return 0;
+        if(pRoot1->val!=pRoot2->val) return 0;
+        else{
+            return Tree_if_same(pRoot1->left, pRoot2->left) & Tree_if_same(pRoot1->right, pRoot2->right);
+        }
+
+    }
+    void Tree_Structor(TreeNode* &T, int n){
+        if(n<=0){T = NULL; return;}
+        T = (TreeNode*)malloc(sizeof(TreeNode));
+        T->val = n;
+        Tree_Structor(T->left, n-1);
+        Tree_Structor(T->right, n-2);
+    }
+    void print_Tree(TreeNode* T){
+        if(T==NULL) return;
+        cout << T->val << ' ';
+        print_Tree(T->left);
+        print_Tree(T->right);
+    }
+};
+```
+
 
 ----
 
