@@ -760,6 +760,37 @@ int main() {
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1582718653864.png)
 
+## C/C++产生随机数
+
+C++中没有自带的random函数，要实现随机数的生成就需要使用rand()和srand()。
+
+不过，由于rand()的内部实现是用线性同余法做的，所以生成的并不是真正的随机数，而是在一定范围内可看为随机的伪随机数。
+
+**rand（）**
+
+rand()会返回一随机数值, 范围在0至RAND_MAX 间。RAND_MAX定义在stdlib.h, 其值为2147483647。
+
+**srand（）**
+
+srand()可用来设置rand()产生随机数时的随机数种子。通过设置不同的种子，我们可以获取不同的随机数序列。
+
+可以利用srand((int)(time(NULL))的方法，利用系统时钟，产生不同的随机数种子。不过要调用time()，需要加入头文件< ctime >。
+
+**其他的随机数的范围通式**
+
+产生一定范围随机数的通用表示公式是：
+
+要取得[0,n)  就是rand（）%n     表示 从0到n-1的数
+
+要取得[a,b)的随机整数，使用(rand() % (b-a))+ a; 
+要取得[a,b]的随机整数，使用(rand() % (b-a+1))+ a; 
+要取得(a,b]的随机整数，使用(rand() % (b-a))+ a + 1; 
+通用公式:a + rand() % n；其中的a是起始值，n是整数的范围。 
+要取得a到b之间的随机整数，另一种表示：a + (int)b * rand() / (RAND_MAX + 1)。 
+要取得0～1之间的浮点数，可以使用rand() / double(RAND_MAX)。
+
+
+## 格式化输入输出
 
 
 # C/C++ Trick
@@ -774,3 +805,4 @@ int main() {
 5. [C++ - 结构体构造函数使用总结](https://www.cnblogs.com/wlw-x/p/11566191.html)
 6. [C++ 结构体（struct）最全详解](https://www.jianshu.com/p/18307f614c5b)
 7. [C++中指针*与指针引用*&的区别说明](https://blog.csdn.net/zyb228/article/details/90040262)
+8. [C++产生随机数](https://www.cnblogs.com/xiaokang01/p/9786751.html)
