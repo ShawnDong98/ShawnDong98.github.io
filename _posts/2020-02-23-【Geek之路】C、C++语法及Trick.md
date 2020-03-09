@@ -952,13 +952,13 @@ scanf()函数执行成功时的返回值是成功读取的变量数,也就是说
 
 ### cin
 
-**cin>>**
+#### cin>>
 
 用法一：最常用、最基本的用法，输入一个数字：
 
 用法二：接受一个字符串，遇“空格”、“Tab”、“回车”都结束
 
-**cin.get()**
+#### cin.get()
 
 用法一：cin.get(字符变量名)可以用来接收字符
 
@@ -966,7 +966,7 @@ scanf()函数执行成功时的返回值是成功读取的变量数,也就是说
 
 用法三：cin.get(无参数)没有参数主要是用于舍弃输入流中的不需要的字符,或者舍弃回车,弥补cin.get(字符数组名,接收字符数目)的不足.
 
-**cin.getline()**
+#### cin.getline()
 
 cin.getline() // 接受一个字符串，可以接收空格并输出
 
@@ -989,7 +989,7 @@ main ()
 延伸：
 cin.getline()实际上有三个参数，cin.getline(接受字符串到m,接受个数5,结束字符)
 
-**getline()**
+#### getline()
 
 getline() // 接受一个字符串，可以接收空格并输出，需包含“#include\<string\>”
 
@@ -1016,7 +1016,7 @@ main ()
 
 和cin.getline()类似，但是cin.getline()属于istream流，而getline()属于string流，是不一样的两个函数
 
-**gets()**
+#### gets()
 
 gets()// 接受一个字符串，可以接收空格并输出，需包含“#include\<cstdio\>"
 
@@ -1044,7 +1044,7 @@ main ()
 
 类似cin.getline()里面的一个例子，gets()同样可以用在多维数组里面：
 
-**getchar()**
+#### getchar()
 
 
 getchar()//接受一个字符，需包含“#include\<cstdio\>"
@@ -1061,6 +1061,91 @@ main ()
 }
 
 ```
+
+#### cin的条件状态
+
+使用cin读取键盘输入时，难免发生错误，一旦出错，cin将设置条件状态(condition state)。条件状态标识符号为:
+goodbit:无错误
+eofbit:已到达文件尾
+failbit:非致命的输入/输出错误，可挽回
+badbit:致命的输入/输出错误,无法挽回
+若在输入输出类里.需要加iOS::标识符号。与这些条件状态对应的就是设置、读取和判断条件状态的流对象的成员函数。他们主要有：
+s.eof()：若流s的eofbit置位，则返回true；
+s.fail()：若流s的failbit置位，则返回true；
+s.bad()：若流s的badbit置位，则返回true；
+s.good()：若流s的goodbit置位，则返回true；
+s.clear(flags)：清空状态标志位，并将给定的标志位flags置为1，返回void。
+s.setstate(flags)：根据给定的flags条件状态标志位，将流s中对应的条件状态位置为1，返回void。
+s.rdstate()：返回流s的当前条件状态，返回值类型为strm::iostate。strm::iostate 机器相关的整形名,由各个iostream类定义,用于定义条件状态。
+
+了解以上关于输入流的条件状态与相关操作函数，下面看一个因输入缓冲区未读取完造成的条件状态位failbit被置位，再通过clear()复位的例子。
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char ch, str[20]; 
+    cin.getline(str, 5);
+    cout<<"flag1:"<<cin.good()<<endl;    // 查看goodbit状态，即是否有异常
+    cin.clear();                         // 清除错误标志
+    cout<<"flag1:"<<cin.good()<<endl;    // 清除标志后再查看异常状态
+    cin>>ch; 
+    cout<<"str:"<<str<<endl;
+    cout<<"ch :"<<ch<<endl;
+
+    system("pause");
+    return 0;
+}
+```
+输入：12345[回车]，输出结果为：
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583756338621.png)
+
+可以看出，因输入缓冲区未读取完造成输入异常，通过clear()可以清除输入流对象cin的异常状态。，不影响后面的cin>>ch从输入缓冲区读取数据。因为cin.getline读取之后，输入缓冲区中残留的字符串是：5[换行]，所以cin>>ch将5读取并存入ch，打印输入并输出5。
+
+如果将clear()注释，cin>>ch;将读取失败，ch为空。
+cin.clear()等同于cin.clear(ios::goodbit);因为cin.clear()的默认参数是ios::goodbit，所以不需显示传递，故而你最常看到的就是:
+cin.clear()。
+
+####  cin清空输入缓冲区
+从上文中可以看出，上一次的输入操作很有可能是输入缓冲区中残留数据，影响下一次的输入。那么如何解决这个问题呢？自然而然，我们想到了在进行输入时，对输入缓冲区进行清空和状态条件的复位。条件状态的复位使用clear()，清空输入缓冲区应该使用：
+
+> iostream &ignore( streamsize num=1, int delim=EOF );
+
+函数作用：跳过输入流中n个字符，或在遇到指定的终止字符时提前结束（此时跳过包括终止字符在内的若干字符）。
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char str1[20]={NULL},str2[20]={NULL};
+    cin.getline(str1,5);
+    cin.clear();  // 清除错误标志   
+    cin.ignore(numeric_limits<std::streamsize>::max(),'\n'); //清除缓冲区的当前行
+    cin.getline(str2,20);
+    cout<<"str1:"<<str1<<endl;
+    cout<<"str2:"<<str2<<endl;
+    system("pause");
+    return 0;
+}
+```
+
+程序输入：12345[回车]success[回车]，程序输出：
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1583757857417.png)
+
+**Note**:
+（1）程序中使用cin.ignore清空了输入缓冲区的当前行，使上次的输入残留下的数据没有影响到下一次的输入，这就是ignore()函数的主要作用。其中，numeric_limits::max()不过是头文件定义的流使用的最大值，你也可以用一个足够大的整数代替它。
+如果想清空输入缓冲区，去掉换行符，使用：
+cin.ignore(numeric_limits< std::streamsize>::max()); 清除cin里所有内容。
+
+（2）cin.ignore()；当输入缓冲区没有数据时，也会阻塞等待数据的到来。
+
+（3）有个疑问，网上很多资料说调用cin.sync()即可清空输入缓冲区，经测试，VC++可以，但是在linux下使用GNU C++却不行，无奈之下，linux下就选择了cin.ignore()。
 
 ****
 # C/C++ Trick
