@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     true
 tags:
     - C/C++
-    - 
+    - Geek
 ---
 
 # C/C++语法
@@ -950,7 +950,87 @@ int main()
 
 scanf()函数执行成功时的返回值是成功读取的变量数,也就是说，你这个scanf()函数有几个变量，如果scanf()函数全部正常读取，它就返回几。但这里还要注意另一个问题，如果输入了非法数据，键盘缓冲区就可能还个有残余信息问题。
 
+### cin
 
+**cin>>**
+
+用法一：最常用、最基本的用法，输入一个数字：
+
+用法二：接受一个字符串，遇“空格”、“Tab”、“回车”都结束
+
+**cin.get()**
+
+用法一：cin.get(字符变量名)可以用来接收字符
+
+用法二：cin.get(字符数组名，接收字符数)用来接收一行字符串，可以接收空格
+
+用法三：cin.get(无参数)没有参数主要是用于舍弃输入流中的不需要的字符,或者舍弃回车,弥补cin.get(字符数组名,接收字符数目)的不足.
+
+**cin.getline()**
+
+cin.getline() // 接受一个字符串，可以接收空格并输出
+
+```c++
+#include <iostream>
+using namespace std;
+main ()
+{
+char m[20];
+cin.getline(m,5); //与上面基本相同。
+cout<<m<<endl;
+}
+​
+输入：jkljkljkl
+输出：jklj
+接受5个字符到m中，其中最后一个为'\0'，所以只看到4个字符输出；
+​
+如果把5改成20：
+输入：jkljkljkl
+输出：jkljkljkl
+​
+输入：jklf fjlsjf fjsdklf
+输出：jklf fjlsjf fjsdklf
+//延伸：
+//cin.getline()实际上有三个参数，cin.getline(接受字符串到m,接受个数5,结束字符)
+//当第三个参数省略时，系统默认为'\0' 是‘/n’吧。
+//如果将例子中cin.getline()改为cin.getline(m,5,'a');当输入jlkjkljkl时输出jklj，输入jkaljkljkl时，输出jk
+当用在多维数组中的时候，也可以用cin.getline(m[i],20)之类的用法：
+​
+#include<iostream>
+#include<string>
+using namespace std;
+​
+main ()
+{
+	char m[3][20];
+	for(int i=0;i<3;i++)
+	{
+		cout<<"\n请输入第"<<i+1<<"个字符串："<<endl;
+		cin.getline(m[i],20);
+	}
+	​
+	cout<<endl;
+	for(int j=0;j<3;j++)
+		cout<<"输出m["<<j<<"]的值:"<<m[j]<<endl;
+	​
+}
+	​
+	请输入第1个字符串：
+	kskr1
+	​
+	请输入第2个字符串：
+	kskr2
+	​
+	请输入第3个字符串：
+	kskr3
+	​
+	输出m[0]的值:kskr1
+	输出m[1]的值:kskr2
+	输出m[2]的值:kskr3
+	​
+```
+
+****
 # C/C++ Trick
 
 
@@ -965,3 +1045,4 @@ scanf()函数执行成功时的返回值是成功读取的变量数,也就是说
 7. [C++中指针*与指针引用*&的区别说明](https://blog.csdn.net/zyb228/article/details/90040262)
 8. [C++产生随机数](https://www.cnblogs.com/xiaokang01/p/9786751.html)
 9. [C语言scanf函数详细解释](https://blog.csdn.net/21aspnet/article/details/174326)
+10. [C++中输入字符串的几种方法](https://blog.csdn.net/u011486738/article/details/82082405)
