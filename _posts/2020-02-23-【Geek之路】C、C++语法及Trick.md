@@ -975,59 +975,91 @@ cin.getline() // 接受一个字符串，可以接收空格并输出
 using namespace std;
 main ()
 {
-char m[20];
-cin.getline(m,5); //与上面基本相同。
-cout<<m<<endl;
+	char m[20];
+	cin.getline(m,5); 
+	cout<<m<<endl;
 }
-​
+
+```
+
 输入：jkljkljkl
 输出：jklj
 接受5个字符到m中，其中最后一个为'\0'，所以只看到4个字符输出；
-​
-如果把5改成20：
-输入：jkljkljkl
-输出：jkljkljkl
-​
-输入：jklf fjlsjf fjsdklf
-输出：jklf fjlsjf fjsdklf
-//延伸：
-//cin.getline()实际上有三个参数，cin.getline(接受字符串到m,接受个数5,结束字符)
-//当第三个参数省略时，系统默认为'\0' 是‘/n’吧。
-//如果将例子中cin.getline()改为cin.getline(m,5,'a');当输入jlkjkljkl时输出jklj，输入jkaljkljkl时，输出jk
-当用在多维数组中的时候，也可以用cin.getline(m[i],20)之类的用法：
-​
+
+延伸：
+cin.getline()实际上有三个参数，cin.getline(接受字符串到m,接受个数5,结束字符)
+
+**getline()**
+
+getline() // 接受一个字符串，可以接收空格并输出，需包含“#include\<string\>”
+
+接受的字符串只能是string类型。
+
+```c++
+
 #include<iostream>
 #include<string>
 using namespace std;
-​
 main ()
 {
-	char m[3][20];
-	for(int i=0;i<3;i++)
-	{
-		cout<<"\n请输入第"<<i+1<<"个字符串："<<endl;
-		cin.getline(m[i],20);
-	}
-	​
-	cout<<endl;
-	for(int j=0;j<3;j++)
-		cout<<"输出m["<<j<<"]的值:"<<m[j]<<endl;
-	​
+	string str;
+	getline(cin,str);
+	cout<<str<<endl;
 }
-	​
-	请输入第1个字符串：
-	kskr1
-	​
-	请输入第2个字符串：
-	kskr2
-	​
-	请输入第3个字符串：
-	kskr3
-	​
-	输出m[0]的值:kskr1
-	输出m[1]的值:kskr2
-	输出m[2]的值:kskr3
-	​
+```
+
+输入：jkljkljkl 
+输出：jkljkljkl
+
+输入：jkl jfksldfj jklsjfl
+输出：jkl jfksldfj jklsjfl
+
+和cin.getline()类似，但是cin.getline()属于istream流，而getline()属于string流，是不一样的两个函数
+
+**gets()**
+
+gets()// 接受一个字符串，可以接收空格并输出，需包含“#include\<cstdio\>"
+
+接受的字符串只能是char类型。
+
+```c++
+
+#include<iostream>
+#include<cstdio>
+using namespace std;
+main ()
+{
+	char m[20];
+	gets(m); //不能写成m=gets();
+	cout<<m<<endl;
+}
+
+```
+
+输入：jkljkljkl
+输出：jkljkljkl
+
+输入：jkl jkl jkl
+输出：jkl jkl jkl
+
+类似cin.getline()里面的一个例子，gets()同样可以用在多维数组里面：
+
+**getchar()**
+
+
+getchar()//接受一个字符，需包含“#include\<cstdio\>"
+
+```c++
+#include<iostream>
+#include <cstdio>
+using namespace std;
+main ()
+{
+	char ch;
+	ch=getchar(); //不能写成getchar(ch);
+	cout<<ch<<endl;
+}
+
 ```
 
 ****
