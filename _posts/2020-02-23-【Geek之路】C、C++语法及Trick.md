@@ -1163,3 +1163,4 @@ cin.ignore(numeric_limits< std::streamsize>::max()); 清除cin里所有内容。
 8. [C++产生随机数](https://www.cnblogs.com/xiaokang01/p/9786751.html)
 9. [C语言scanf函数详细解释](https://blog.csdn.net/21aspnet/article/details/174326)
 10. [C++中输入字符串的几种方法](https://blog.csdn.net/u011486738/article/details/82082405)
+11. [C++中cin的详细用法](https://blog.csdn.net/bravedence/article/details/77282039)
