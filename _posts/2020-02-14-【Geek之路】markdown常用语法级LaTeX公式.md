@@ -24,6 +24,7 @@ tags:
 - 属于$\in$：\in
 - 不属于$\notin$： \notin
 - 包含于$\subseteq$：\subseteq
+- 不等于$\neq$： \neq， 不是\noteq
 
 
 
