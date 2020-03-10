@@ -13,6 +13,10 @@ tags:
 
 # Markdown
 
+## Markdown公式符号表
+
+
+[Markdown公式符号表](https://blog.csdn.net/xufox/article/details/91048187)
 
 # LaTex
 
@@ -60,8 +64,10 @@ $$\sum\limits_{n = 0}^\infty$$
 
 $$\mathop{\theta}\limits_{i=1}^2$$
 
+
 # Reference
 1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
 2. [LaTex 箭头上添加文字](https://blog.csdn.net/z_feng12489/article/details/99861893)
 3. [latex中怎么在符号正上和正下方编写公式](https://blog.csdn.net/WASEFADG/article/details/50499350?utm_source=blogxgwz0)
 4. [LaTex 把上下标符号放在正上和正下方公式介绍](https://blog.csdn.net/z_feng12489/article/details/101422618)
+5. [Markdown符号和公式](https://blog.csdn.net/xufox/article/details/91048187)
