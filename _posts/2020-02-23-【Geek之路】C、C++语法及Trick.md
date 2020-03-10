@@ -901,7 +901,7 @@ int main()
 }
 ```
 
-输入：I love you!
+输入：I love you! \\
 输出：I
       love
       you!
@@ -927,7 +927,9 @@ int main()
 **键盘缓冲区残余信息问题**
 
 函数名: fflush
+
 功 能: 清除一个流
+
 用 法:
 
 > int fflush(FILE *stream);
@@ -985,11 +987,13 @@ main ()
 
 ```
 
-输入：jkljkljkl
+输入：jkljkljkl \\
 输出：jklj
+
 接受5个字符到m中，其中最后一个为'\0'，所以只看到4个字符输出；
 
 延伸：
+
 cin.getline()实际上有三个参数，cin.getline(接受字符串到m,接受个数5,结束字符)
 
 #### getline()
@@ -1011,10 +1015,10 @@ main ()
 }
 ```
 
-输入：jkljkljkl 
+输入：jkljkljkl  \\
 输出：jkljkljkl
 
-输入：jkl jfksldfj jklsjfl
+输入：jkl jfksldfj jklsjfl \\
 输出：jkl jfksldfj jklsjfl
 
 和cin.getline()类似，但是cin.getline()属于istream流，而getline()属于string流，是不一样的两个函数
@@ -1039,10 +1043,10 @@ main ()
 
 ```
 
-输入：jkljkljkl
+输入：jkljkljkl \\
 输出：jkljkljkl
 
-输入：jkl jkl jkl
+输入：jkl jkl jkl \\
 输出：jkl jkl jkl
 
 类似cin.getline()里面的一个例子，gets()同样可以用在多维数组里面：
