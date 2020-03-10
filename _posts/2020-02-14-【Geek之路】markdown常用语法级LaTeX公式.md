@@ -18,6 +18,15 @@ tags:
 
 [Markdown公式符号表](https://blog.csdn.net/xufox/article/details/91048187)
 
+### 常用符号
+
+- 空集$\emptyset$： \emptyset
+- 属于$\in$：\in
+- 不属于$\notin$： \notin
+- 包含于$\subseteq$：\subseteq
+
+
+
 # LaTex
 
 ## Markdown中LaTeX公式编号
