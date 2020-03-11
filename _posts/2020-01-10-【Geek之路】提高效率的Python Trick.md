@@ -310,6 +310,94 @@ array([2, 2, 3, 4, 5])
  
 >>> np.minimum([2, 3, 4], [1, 5, 2])
 array([1, 3, 2])
+
+```
+
+
+## np.expand_dims
+
+np.expand_dims:用于扩展数组的形状
+
+原始数组：
+
+```python
+import numpy as np
+
+In [12]:
+a = np.array([[[1,2,3],[4,5,6]]])
+a.shape
+Out[12]:
+(1, 2, 3)
+```
+
+np.expand_dims(a, axis=0)表示在0位置添加数据,转换结果如下：
+
+```python
+In [13]:
+b = np.expand_dims(a, axis=0)
+b
+Out[13]:
+array([[[[1, 2, 3],
+         [4, 5, 6]]]])
+
+In [14]:
+b.shape
+Out[14]:
+(1, 1, 2, 3)
+```
+
+np.expand_dims(a, axis=1)表示在1位置添加数据,转换结果如下：
+
+```python
+In [15]:
+c = np.expand_dims(a, axis=1)
+c
+Out[15]:
+array([[[[1, 2, 3],
+         [4, 5, 6]]]])
+
+In [16]:
+c.shape
+Out[16]:
+(1, 1, 2, 3)
+```
+
+np.expand_dims(a, axis=2)表示在2位置添加数据,转换结果如下：
+
+```python
+In [17]:
+d = np.expand_dims(a, axis=2)
+d
+Out[17]:
+array([[[[1, 2, 3]],
+        [[4, 5, 6]]]])
+
+In [18]:
+d.shape
+Out[18]:
+(1, 2, 1, 3)
+```
+
+np.expand_dims(a, axis=3)表示在3位置添加数据,转换结果如下：
+
+```python
+In [19]:
+e = np.expand_dims(a, axis=3)
+e
+
+In [20]:
+e.shape
+Out[20]:
+(1, 2, 3, 1)
+```
+
+能在(1,2,3)中插入的位置总共为4个，再添加就会出现以下的警告，要不然也会在后面某一处提示AxisError。
+
+```python
+In [21]:
+f = np.expand_dims(a, axis=4)
+D:\ProgramData\Anaconda3\envs\dlnd\lib\site-packages\ipykernel_launcher.py:1: DeprecationWarning: Both axis > a.ndim and axis < -a.ndim - 1 are deprecated and will raise an AxisError in the future.
+  """Entry point for launching an IPython kernel.
 ```
 
 
