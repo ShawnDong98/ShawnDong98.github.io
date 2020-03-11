@@ -283,6 +283,26 @@ strlen(L"asd")   =   6;
 - dtype: dtype(可选)：
 想要输出的格式。如int64、int等等
 
+## np.maximum、 np.minimum
+
+### np.max 与 np.maximum
+
+> np.max(a, axis=None, out=None, keepdims=False)
+
+- 求序列的最值
+- 最少接收一个参数
+- axis：默认为列向（也即 axis=0），axis = 1 时为行方向的最值；
+
+> np.maximum：(X, Y, out=None)
+
+- X 与 Y 逐位比较取其大者；
+- 最少接收两个参数
+- 带有广播机制
+
+> np.minimum：(X, Y, out=None)
+
+- 与maximum基本一致，只不过取小者
+
 
 # pandas语法
 
@@ -371,3 +391,5 @@ for i in range(200000):
 7. [Python图像库PIL的类Image及其方法介绍](https://blog.csdn.net/leemboy/article/details/83792729)
 8. [Python的Tqdm模块——进度条配置](https://blog.csdn.net/qq_33472765/article/details/82940843)
 9. [python3 sys模块](https://www.jianshu.com/p/985980202ea7)
+10. [np.max 与 np.maximum](https://blog.csdn.net/lanchunhui/article/details/52700895)
+11. [np.maximum vs np.minimum](https://blog.csdn.net/u014080555/article/details/93859079)
