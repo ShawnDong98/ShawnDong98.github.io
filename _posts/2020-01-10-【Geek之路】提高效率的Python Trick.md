@@ -292,7 +292,14 @@ strlen(L"asd")   =   6;
 
 # PIL(Image)用法
 
+**transpose方法**
 
+>   im.transpose(method)⇒ image
+
+返回当前图像的翻转或者旋转的拷贝。变量方法的取值为：FLIP_LEFT_RIGHT，FLIP_TOP_BOTTOM，ROTATE_90，ROTATE_180，或ROTATE_270。
+
+
+# tqdm
 
 
 
@@ -342,3 +349,4 @@ for i in range(200000):
 5. [python：函数传参是否会改变函数外参数的值](https://blog.csdn.net/liuxiao214/article/details/81673093)
 6. [python字符串前加r、f、u、l 的区别](https://www.cnblogs.com/navysummer/p/12131824.html)
 7. [Python图像库PIL的类Image及其方法介绍](https://blog.csdn.net/leemboy/article/details/83792729)
+8. [Python的Tqdm模块——进度条配置](https://blog.csdn.net/qq_33472765/article/details/82940843)
