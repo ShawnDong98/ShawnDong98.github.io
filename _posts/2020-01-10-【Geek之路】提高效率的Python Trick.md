@@ -303,6 +303,15 @@ strlen(L"asd")   =   6;
 
 - 与maximum基本一致，只不过取小者
 
+```python
+import numpy as np
+>>> np.maximum([1,2,3,4,5],2)
+array([2, 2, 3, 4, 5])
+ 
+>>> np.minimum([2, 3, 4], [1, 5, 2])
+array([1, 3, 2])
+```
+
 
 # pandas语法
 
