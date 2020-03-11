@@ -290,6 +290,12 @@ strlen(L"asd")   =   6;
 
 # seaborn语法
 
+# PIL(Image)用法
+
+
+
+
+
 
 
 # Python Tricks
@@ -335,3 +341,4 @@ for i in range(200000):
 4. [H5文件简介和使用](https://blog.csdn.net/omg_orange/article/details/90378193)
 5. [python：函数传参是否会改变函数外参数的值](https://blog.csdn.net/liuxiao214/article/details/81673093)
 6. [python字符串前加r、f、u、l 的区别](https://www.cnblogs.com/navysummer/p/12131824.html)
+7. [Python图像库PIL的类Image及其方法介绍](https://blog.csdn.net/leemboy/article/details/83792729)
