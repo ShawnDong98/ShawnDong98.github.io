@@ -303,6 +303,15 @@ strlen(L"asd")   =   6;
 
 
 
+# sys
+
+## sys.path
+
+返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
+
+比如就是我们在python源文件中import引入模块的时候就会在sys.path的目录中查找相应的模块，如果在这里面的目录中没有找到你要倒入的模块则会报错。
+
+返回值是一个list则我们如果想倒入一个自定义模块下面的的包或者是模块则可以使用list的append方法在PYTHONPATH环境变量中增加相应的路径。
 
 
 # Python Tricks
@@ -350,3 +359,4 @@ for i in range(200000):
 6. [python字符串前加r、f、u、l 的区别](https://www.cnblogs.com/navysummer/p/12131824.html)
 7. [Python图像库PIL的类Image及其方法介绍](https://blog.csdn.net/leemboy/article/details/83792729)
 8. [Python的Tqdm模块——进度条配置](https://blog.csdn.net/qq_33472765/article/details/82940843)
+9. [python3 sys模块](https://www.jianshu.com/p/985980202ea7)
