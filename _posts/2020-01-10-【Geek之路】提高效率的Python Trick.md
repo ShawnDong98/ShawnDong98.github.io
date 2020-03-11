@@ -490,3 +490,4 @@ for i in range(200000):
 9. [python3 sys模块](https://www.jianshu.com/p/985980202ea7)
 10. [np.max 与 np.maximum](https://blog.csdn.net/lanchunhui/article/details/52700895)
 11. [np.maximum vs np.minimum](https://blog.csdn.net/u014080555/article/details/93859079)
+12. [Numpy知识点补充：np.expand_dims()&np.argmax()](https://www.jianshu.com/p/da10840660cb)
