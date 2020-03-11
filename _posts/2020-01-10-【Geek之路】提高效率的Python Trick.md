@@ -400,6 +400,16 @@ D:\ProgramData\Anaconda3\envs\dlnd\lib\site-packages\ipykernel_launcher.py:1: De
   """Entry point for launching an IPython kernel.
 ```
 
+axis = -1 也就是相当于在最后插入
+
+```
+a = np.array([[[1,2,3],[4,5,6]]])
+b = np.expand_dims(a,axis=-1)
+print(b.shape)
+```
+
+输出：\\
+> (1, 2, 3, 1)
 
 # pandas语法
 
