@@ -292,11 +292,22 @@ strlen(L"asd")   =   6;
 
 # PIL(Image)用法
 
-**transpose方法**
+## transpose方法
 
 >   im.transpose(method)⇒ image
 
 返回当前图像的翻转或者旋转的拷贝。变量方法的取值为：FLIP_LEFT_RIGHT，FLIP_TOP_BOTTOM，ROTATE_90，ROTATE_180，或ROTATE_270。
+
+## Image、numpy转化
+
+Image转numpy：
+
+> img = numpy.array(im)
+
+numpy转Image：
+
+> img = Image.fromarray(img.astype('uint8')).convert('RGB')
+
 
 
 # tqdm
