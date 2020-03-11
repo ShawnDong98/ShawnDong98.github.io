@@ -78,6 +78,38 @@ cap.release()#关闭相机
 cv2.destroyAllWindows()#关闭窗口
 ```
 
+## 仿射变换（Affine Transformation）
+
+**图像的几何变换——拉伸、收缩、扭曲、旋转（stretch，shrink，distortion，rotation）**
+
+> 拉伸、收缩、扭曲、旋转是图像的几何变换，在三维视觉技术中大量应用到这些变换，又分为仿射变换和透视变换。仿射变换通常用单应性（homography）建模，利用cvWarpAffine解决稠密仿射变换，用cvTransform解决稀疏仿射变换。仿射变换可以将矩形转换成平行四边形，它可以将矩形的边压扁但必须保持边是平行的，也可以将矩形旋转或者按比例变化。透视变换提供了更大的灵活性，一个透视变换可以将矩阵转变成梯形。当然，平行四边形也是梯形，所以仿射变换是透视变换的子集。
+
+### 算法原理简介
+
+首先，我们需要使用轮廓检测等其它方法获取到目标的4个关键点坐标值；然后利用相应的变换关系获取到新的4个坐标点；接着利用这4对关键点计算出仿射变换矩阵M；最后应用仿射变换矩阵到目标中即可。
+
+### 算法实现步骤
+
+- 读取输入图片；
+- 获取原始目标的4个坐标点（左上，左下，右上，右下）；
+- 通过4个坐标点计算出新的坐标点；
+- 使用opencv计算仿射变换矩阵M；
+- 应用仿射变换进行变换并进行结果显示。
+
+> cv2.warpAffine(src, M, dsize[, dst[, flags[, borderMode[, borderValue]]]])
+
+- dst: output image that has the size dsize and the same type as src .
+- dsize:   size of the output image.
+- flags:  combination of interpolation methods (see InterpolationFlags) and the optional flag WARP_INVERSE_MAP that means that M is the inverse transformation ( dst→src ).
+- borderMode:  pixel extrapolation method (see BorderTypes); when borderMode=BORDER_TRANSPARENT, it means that the pixels in the destination image corresponding to the "outliers" in the source image are not modified by the function.
+- borderValue: value used in case of a constant border; by default, it is 0.
+
+> cv.GetAffineTransform(src, dst, mapMatrix) → None
+
+- src – Coordinates of triangle vertices in the source image
+- dst – Coordinates of the corresponding triangle vertices in the destination image.
+
+M=cv2.getAffineTransform(pos1,pos2),其中两个位置就是变换前后的对应位置关系。输出的就是仿射矩阵M。然后在使用函数cv2.warpAffine()。
 
 # Reference
 1. [OpenCV——图片的加载、显示、保存(python)](https://blog.csdn.net/u014630987/article/details/76713814)、
