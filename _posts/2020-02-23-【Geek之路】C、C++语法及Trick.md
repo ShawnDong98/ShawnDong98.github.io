@@ -1153,7 +1153,201 @@ cin.ignore(numeric_limits< std::streamsize>::max()); 清除cin里所有内容。
 
 （3）有个疑问，网上很多资料说调用cin.sync()即可清空输入缓冲区，经测试，VC++可以，但是在linux下使用GNU C++却不行，无奈之下，linux下就选择了cin.ignore()。
 
-****
+
+## 文件操作
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1584022410981.png)
+
+这里主要是讨论fstream的内容：
+
+```c++
+#include <fstream>  
+ofstream         //文件写操作 内存写入存储设备   
+ifstream         //文件读操作，存储设备读区到内存中  
+fstream          //读写操作，对打开的文件可进行读写操作   
+```
+
+### 打开文件
+
+在fstream类中，成员函数open（）实现打开文件的操作，从而将数据流和文件进行关联，通过ofstream,ifstream,fstream对象进行对文件的读写操作
+
+函数：open（）
+
+```c++
+public member function
+
+void open ( const char * filename,
+            ios_base::openmode mode = ios_base::in | ios_base::out );
+
+void open(const wchar_t *_Filename,
+        ios_base::openmode mode= ios_base::in | ios_base::out,
+        int prot = ios_base::_Openprot)；
+```
+
+参数： 
+- filename:   操作文件名
+- mode:       打开文件的方式
+- prot :        打开文件的属性   //基本很少用到，在查看资料时，发现有两种方式
+
+打开文件的方式在ios类(所以流式I/O的基类)中定义，有如下几种方式：
+
+|方式|功能|
+|:-:|:-:|
+|ios::in|为输入（读）而打开文件|
+|ios::out|为输出（写）而打开文件|
+|ios::ate|初始位置：文件尾|
+|ios::app|所有输出附加在文件末尾|
+|ios::trunc|如果文件已存在则先删除该文件|
+|ios::binary|二进制方式|
+
+这些方式是能够进行组合使用的，以“或”运算（“|”）的方式：例如
+
+```
+ofstream out;  
+out.open(”Hello.txt”, ios::in|ios::out|ios::binary)   //根据自己需要进行适当的选取  
+```
+
+打开文件的属性也可以使用“或”运算和“+”进行组合使用
+
+很多程序中，可能会碰到ofstream out(“Hello.txt”), ifstream in(“…”),fstream foi(“…”)这样的的使用，并没有显式的去调用open（）函数就进行文件的操作，直接调用了其默认的打开方式，因为在stream类的构造函数中调用了open()函数,并拥有同样的构造函数，所以在这里可以直接使用流对象进行文件的操作，默认方式如下：
+
+```c++
+ofstream out("...", ios::out);
+ifstream in("...", ios::in);
+fstream foi("...", ios::in|ios::out);
+```
+
+当使用默认方式对文件的操作时吗，你可以使用成员函数is_open()对文件是否打开进行验证。
+
+
+### 关闭文件
+
+当文件读写操作完成之后，我们必须将文件关闭以使文件重新变为可访问的。成员函数close()，它负责将缓存中的数据排放出来并关闭文件。这个函数一旦被调用，原先的流对象就可以被用来打开其它的文件了，这个文件也就可以重新被其它的进程所访问了。为防止流对象被销毁时还联系着打开的文件，析构函数将会自动调用关闭函数close。
+
+### 文本文件的读写
+
+类ofstream, ifstream 和fstream 是分别从ostream, istream 和iostream 中引申而来的。这就是为什么 fstream 的对象可以使用其父类的成员来访问数据。
+
+一般来说，我们将使用这些类与同控制台(console)交互同样的成员函数(cin 和 cout)来进行输入输出。如下面的例题所示，我们使用重载的插入操作符<<：
+
+```c++
+     // writing on a text file
+    #include <fiostream.h>
+    int main () {
+        ofstream out("out.txt");
+        if (out.is_open()) 
+       {
+            out << "This is a line.\n";
+            out << "This is another line.\n";
+            out.close();
+        }
+        return 0;
+    }
+
+```
+
+  结果: 在out.txt中写入：
+  
+  This is a line. \\
+  This is another line 
+  
+  
+  从文件中读入数据也可以用与 cin>>的使用同样的方法：
+  
+  ```
+// reading a text file
+#include <iostream.h>
+#include <fstream.h>
+#include <stdlib.h>
+
+int main () {
+	char buffer[256];
+	ifstream in("test.txt");
+	if (! in.is_open())
+	{ cout << "Error opening file"; exit (1); }
+	while (!in.eof() )
+	{
+		in.getline (buffer,100);
+		cout << buffer << endl;
+	}
+	return 0;
+}
+ 
+  ```
+  
+结果 在屏幕上输出 \\
+This is a line. \\
+This is another line 
+
+上面的例子读入一个文本文件的内容，然后将它打印到屏幕上。注意我们使用了一个新的成员函数叫做eof ，它是ifstream 从类 ios 中继承过来的，当到达文件末尾时返回true 。
+
+### 按行读取字符串，并（追加）写入另一个文件
+
+注意：ifstream和ofstream的定义，ofstream里的ios::app，以及getline函数，“<<”重定向的使用。
+
+```c++
+
+int main()
+{
+	ifstream myfile("in.txt");
+	ofstream outfile("out.txt",ios::app); //ios::app指追加写入
+	string temp;
+	while(getline(myfile,temp)) //按行读取字符串 
+	{
+		outfile<<temp;//写文件
+		outfile<<endl; 
+	} 
+	myfile.close();
+	outfile.close();
+	return 0;
+}
+
+```
+
+### （重要）读取数字
+
+!myfile.eof()和重定向符号的使用。
+
+```c++
+int a[1005];
+int b[1005];
+int main()
+{
+	ifstream myfile("in.txt");
+	int i=0;
+	while(!myfile.eof()) //直到文件结尾
+	{
+		myfile>>a[i]>>b[i];
+		i++;
+	} 
+	myfile.close();
+	cout<<a[0]<<" "<<b[0]<<endl;
+	return 0;
+}
+```
+
+### （重要）分段读数字
+
+```c++
+int a[1005];
+int b[1005];
+int main()
+{
+	ifstream myfile("in.txt");
+	int N;  
+	myfile>>N;
+	for(int i=0;i<N;i++) 
+	{
+		myfile>>a[i]>>b[i];
+	} 
+	myfile.close();
+	cout<<a[0]<<" "<<b[0]<<endl;
+	cout<<a[1]<<" "<<b[1]<<endl;
+	return 0;
+}
+```
+
+
 # C/C++ Trick
 
 
@@ -1170,3 +1364,5 @@ cin.ignore(numeric_limits< std::streamsize>::max()); 清除cin里所有内容。
 9. [C语言scanf函数详细解释](https://blog.csdn.net/21aspnet/article/details/174326)
 10. [C++中输入字符串的几种方法](https://blog.csdn.net/u011486738/article/details/82082405)
 11. [C++中cin的详细用法](https://blog.csdn.net/bravedence/article/details/77282039)
+12. [C++文件读写详解（ofstream,ifstream,fstream）](https://blog.csdn.net/kingstar158/article/details/6859379)
+13. [C++读取txt文件](https://blog.csdn.net/m0_38033475/article/details/94394087)
