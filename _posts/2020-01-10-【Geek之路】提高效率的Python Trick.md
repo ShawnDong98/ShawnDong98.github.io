@@ -240,6 +240,66 @@ strlen(L"asd")   =   6;
 ```
 # numpy语法
 
+## numpy 模块的 size,shape, len的用法
+
+### size的用法
+
+```python
+import numpy as np
+X=np.array([[1,2,3,4],
+              [5,6,7,8],
+              [9,10,11,12]])
+ 
+number=X.size  # 计算 X 中所有元素的个数
+X_row=np.size(X,0)  #计算 X 一行元素的个数
+X_col=np.size(X,1)  #计算 X 一列元素的个数
+ 
+print("number:",number)
+print("X_row:",X_row)
+print("X_col:",X_col)
+ 
+<<
+number: 12
+X_row: 3
+X_col: 4
+```
+
+### shape的用法
+
+```python
+import numpy as np
+X=np.array([[1,2,3,4],
+              [5,6,7,8],
+              [9,10,11,12]])
+ 
+X_dim=X.shape  # 以元组形式，返回数组的维数
+print("X_dim:",X_dim)
+print(X.shape[0])  # 输出行的个数
+print(X.shape[1])  #输出列的个数
+ 
+<<
+X_dim: (3, 4)
+3
+4
+```
+
+注意返回的是个元组
+
+### len的用法
+
+```python
+import numpy as np
+X=np.array([[1,2,3,4],
+              [5,6,7,8],
+              [9,10,11,12]])
+ 
+length=len(X)  #返回对象的长度   不是元素的个数
+print("length of X:",length)
+ 
+<<
+length of X: 3
+```
+
 ## np.prod
 
 > np.prod()
