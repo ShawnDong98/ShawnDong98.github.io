@@ -1281,6 +1281,24 @@ This is another line
 
 上面的例子读入一个文本文件的内容，然后将它打印到屏幕上。注意我们使用了一个新的成员函数叫做eof ，它是ifstream 从类 ios 中继承过来的，当到达文件末尾时返回true 。
 
+
+**使用vc6.0的那种#include <fstream.h>方式，但是编译时提示fatal error C1083: 无法打开包括文件:“fstream.h”: No such file or directory。**
+
+从 Visual C++ .NET 2003 开始，移除了旧的 iostream 库。
+
+标准 C++ 库和以前的运行时库之间的主要差异在于 iostream 库。iostream 实现的具体细节已经更改，如果想链接标准 C++ 库，可能有必要重写代码中使用 iostream的部分。
+
+必须移除任何包含在代码中的旧 iostream 头文件（fstream.h、iomanip.h、ios.h、iostream.h、istream.h、ostream.h、streamb.h 和 strstrea.h），并添加一个或多个新的标准 C++ iostream 头文件（\<fstream>、\<iomanip>、\<ios>、\<iosfwd>、\<iostream>、\<istream>、\<ostream>、\<sstream>、\<streambuf> 和 \<strstream>，所有头文件都没有 .h 扩展名）。
+
+在新的标准 C++ iostream 库中：
+- open 函数不采用第三个参数（保护参数）。
+- 无法从文件句柄创建流。
+- 除了几个例外，新的标准 C++ 库中的所有名称都在 std 命名空间中。有关更多信息，请参见使用 C++ 库头。
+-  单独用 ios::out 标志无法打开 ofstream 对象。ios::out 标志必须在逻辑 OR 中和另一个 ios 枚举数组合；比如，和 ios::in 或 ios::app 组合。
+-  因为设置了 eofbit 状态，到达文件尾后 ios::good 不再返回非零值。 除非知道当前没有设置基标志，否则 ios::setf(_IFlags)
+
+不应和 ios::dec、ios::oct 或 ios::hex 的标志值一起使用。格式化的输入/输出函数和运算符假定只设置了一个基。改用 ios_base。 
+
 ### 按行读取字符串，并（追加）写入另一个文件
 
 注意：ifstream和ofstream的定义，ofstream里的ios::app，以及getline函数，“<<”重定向的使用。
