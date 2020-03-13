@@ -1260,3 +1260,4 @@ public:
 1. [【机试】ProblemC（整数的最大素因子）](https://blog.csdn.net/coderwait/article/details/92712249)
 2. [【Geek之路】《剑指offer》思路及代码合集](https://shawndong98.github.io/2020/02/24/Geek%E4%B9%8B%E8%B7%AF-%E5%89%91%E6%8C%87offer-%E6%80%9D%E8%B7%AF%E5%8F%8A%E4%BB%A3%E7%A0%81%E5%90%88%E9%9B%86/)
 3. [哈夫曼树算法及C++实现](https://www.cnblogs.com/smile233/p/8184492.html)
+4. [编程题——机器人走迷宫 （用C语言）](https://ask.csdn.net/questions/682814?sort=id)
