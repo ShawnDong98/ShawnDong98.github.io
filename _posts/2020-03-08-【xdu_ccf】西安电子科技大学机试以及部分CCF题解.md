@@ -863,7 +863,7 @@ public:
 };
 ```
 
-注意这里str.erase()的用法是不对的，应该用索引，结果正确可能是碰巧。
+注意这里str.erase()的用法是不对的，str.erase(pos, n)删除从pos开始的n个字符，结果正确可能碰巧。
 
 ## Problems D
 用于通信的电文由n(4<n<30)个字符组成， 字符在电文中出现的频度（权值）为w1，w2,,,,wn,试根据该权值序列构成哈大蔓树,并计算该树的带权路径长度。
@@ -1254,6 +1254,136 @@ public:
 
 };
 ```
+
+# 2015年机试
+
+## Problems A
+
+求一串数中大于1的素数之和
+
+输入不超过100个数 不超过10 组 输入0结束
+
+例：
+
+输入 \\
+4 1 2 3 4 \\
+5 1 2 3 4 5 \\
+0
+
+输出 \\
+5 \\
+10
+
+思路：
+- 用字符串一行一行地读入，再将字符串转成整型。
+- 依次判断是否是素数，并判断是否重复，若不重复，存入vector。
+- 求和输出。
+
+
+此题收获在于不容易判断换行符时，读入一行数据的处理方式
+
+代码：
+
+```c++
+class SolutionA{
+public:
+    void ProblemsA(){
+        string line;
+        vector<ll> A;
+        while(1){
+            getline(cin, line);
+            if(line[0]=='0') break;
+            cout << prime_num_sum(str2vec(line)) << endl;
+        }
+
+    }
+    ll prime_num_sum(vector<ll> A){
+        vector<ll> prime_nums;
+        for(int i=0; i<A.size(); ++i){
+            if(if_prime_number(A[i])){
+               vector<ll>::iterator pos = find(prime_nums.begin(), prime_nums.end(), A[i]);
+               if(pos == prime_nums.end()) prime_nums.push_back(A[i]);
+            }
+        }
+        ll sum = 0;
+        for(int i=0; i<prime_nums.size(); ++i){
+                sum += prime_nums[i];
+        }
+        return sum;
+    }
+    bool if_prime_number(ll n){
+        if(n==0 || n==1) return 0;
+        ll i = 2;
+        while(i!=n){
+            if(n%i==0) return 0;
+            i++;
+        }
+        return 1;
+    }
+    vector<ll> str2vec(string line){
+        vector<ll> A;
+        for(int i=0; i<line.size(); ++i){
+            if(line[i]>'0' && line[i]<='9'){
+                A.push_back(line[i] - '0');
+            }
+        }
+        return A;
+    }
+};
+```
+
+## Problems B
+
+压缩字符串
+
+输入只含A-Z的字符串 不超过1000个字母将连续相同字母压缩为重复次数+字母（这个
+忘记是多组输入还是单组了）
+
+例：
+
+输入 \\
+ABBCCC
+
+输出 \\
+A2B3C
+
+思路：
+
+- 通过两个指针pre和i， 计算相同字符地个数
+- 如果个数大于1，进行替换
+
+```c++
+class SolutionB{
+public:
+    void ProblemsB(){
+        string str;
+        getline(cin, str);
+        ll pre = 0;
+        ll Size = str.size();
+        for(int i=1; i<Size; ++i){
+            if(str[pre]==str[i]) continue;
+            else{
+                if(i-pre>1){
+                    char c = str[i-1];
+                    str.erase(str.begin()+pre, str.begin()+i-1);
+                    str.insert(pre, 1, i-pre+'0');
+                    str.insert(pre+1, 1, c);
+                }
+                pre = i;
+            }
+        }
+        if(Size-pre>1){
+            char c = str[Size-1];
+            str.erase(str.begin()+pre, str.begin()+Size-1);
+            str.insert(pre, 1, Size-pre+'0');
+            str.insert(pre+1, 1, c);
+        }
+        cout << str << endl;
+    }
+};
+```
+
+这里string中用erase的方法不对，应该用坐标的
 
 
 # Reference
