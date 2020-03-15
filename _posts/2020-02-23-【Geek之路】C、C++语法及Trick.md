@@ -1423,6 +1423,60 @@ int main()
 
 # C/C++ Trick
 
+## 按照日期进行排序
+
+```c++
+#include <iostream>
+#include <set>
+#include <algorithm>
+#include <iterator>
+using namespace std;
+class Date{
+private:
+    int year;
+    int month;
+    int day;
+public:
+    Date(int y=0,int m=0,int d=0):year(y),month(m),day(d){}
+ 
+friend bool operator<(const Date & a,const Date &b) //重载<运算符 因为SET容器排序需要用到
+{
+    if(a.year==b.year)
+    {
+        if(a.month==b.month)
+            return a.day<b.day;
+        else
+            return a.month<b.month;
+ 
+    }
+    else return a.year<b.year;
+}
+friend ostream &operator<<(ostream &os,Date  d){   //重载>>运算符 因为ostream迭代器 需要调用
+ 
+    os<<d.year<<"/"<<d.month<<"/"<<d.day;
+    return os;
+}
+ 
+};
+ 
+int main()
+{   int y,m,d,n;
+    multiset <Date> date;
+    cin>>n;                 //multiset 容器 输入时间可重复
+    cin>>y>>m>>d;
+    while(n)
+       {
+          date.insert(Date(y,m,d));
+          n--;
+         if(n!=0)   cin>>y>>m>>d;
+ 
+       }
+ 
+copy(date.begin(),date.end(),ostream_iterator <Date,char>(cout,"\n"));  //遍历输出容器
+ 
+    return 0;
+}
+```
 
 # Reference
 
