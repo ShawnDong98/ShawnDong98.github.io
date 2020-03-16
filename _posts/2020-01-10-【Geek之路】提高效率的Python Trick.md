@@ -189,7 +189,16 @@ for name in glob.glob('dir/*[0-9].*'):
 ```python
 dir/file1.txt
 dir/file2.txt
+
 ```
+
+
+## setattr()、getattr()、hasattr() 
+在动态检查对象是否包含某些属性（包括方法〉相关的函数有如下几个：
+
+- hasattr(object,name)：检查 object 对象是否包含名为 name 的属性或方法。
+- getattr(object,name,default=None)：获取 object 对象中名为 name 的属性的属性值(属性和函数都叫做属性)。
+- setattr(object,name,value)：将 object 对象的 name 属性设为 value。
 
 ## python字符串前加r、f、u、l 的区别
 
@@ -561,3 +570,4 @@ for i in range(200000):
 10. [np.max 与 np.maximum](https://blog.csdn.net/lanchunhui/article/details/52700895)
 11. [np.maximum vs np.minimum](https://blog.csdn.net/u014080555/article/details/93859079)
 12. [Numpy知识点补充：np.expand_dims()&np.argmax()](https://www.jianshu.com/p/da10840660cb)
+13. [python setattr()、getattr()、hasattr() 函数用法介绍](https://www.cnblogs.com/hao2018/p/11428951.html)
