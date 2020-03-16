@@ -1511,3 +1511,4 @@ copy(date.begin(),date.end(),ostream_iterator <Date,char>(cout,"\n"));  //遍历
 13. [C++读取txt文件](https://blog.csdn.net/m0_38033475/article/details/94394087)
 14. [vs++2010 编译说找不到 fstream.h 解决方法](https://www.cnblogs.com/lingshaohu/archive/2011/11/07/2239453.html)
 15. [C++ find()函数用法(一般用于vector的查找)](https://blog.csdn.net/zhangweijiqn/article/details/9107571)
+16. [C++ 中的sort()排序函数用法](https://www.cnblogs.com/stones-dream/p/10183210.html)
