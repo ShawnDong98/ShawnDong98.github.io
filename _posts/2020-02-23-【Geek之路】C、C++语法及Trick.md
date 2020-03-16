@@ -839,6 +839,8 @@ int main(){
 
 ```
 
+##  sort用法
+
 
 
 
@@ -1419,6 +1421,10 @@ int main()
 	return 0;
 }
 ```
+
+## friend
+
+
 
 
 # C/C++ Trick
