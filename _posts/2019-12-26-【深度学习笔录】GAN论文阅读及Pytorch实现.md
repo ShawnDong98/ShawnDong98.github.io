@@ -8,7 +8,6 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     true
 tags:
     - GAN
-    - GAN
     - 深度学习
 ---
 
