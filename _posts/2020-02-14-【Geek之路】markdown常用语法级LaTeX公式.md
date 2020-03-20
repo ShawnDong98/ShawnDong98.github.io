@@ -26,6 +26,7 @@ tags:
 - 包含于$\subseteq$：\subseteq
 - 不等于$\neq$： \neq， 不是\noteq
 - 布尔积$\odot$： \odot
+- $\nabla$： \nabla
 
 
 
