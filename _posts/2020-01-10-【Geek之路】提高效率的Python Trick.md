@@ -13,6 +13,39 @@ tags:
 
 # Python 语法
 
+## list
+
+\*list[:2]和list[:2]区别
+
+- list[:2]：返回的还是一个list
+- \*list[:2]：返回的是内容
+
+例子：
+
+```python
+ll = ['lalala', 'test', 'hello world']
+print(ll[0:2])
+print(*ll[0:2])
+```
+
+输出：\\
+['lalala', 'test'] \\
+lalala test
+
+拓展来讲，一个迭代器使用\*返回的一串迭代结果。
+
+如：
+
+```
+ll = ['lalala', 'test', 'hello world']
+print(ll[0])
+print(*ll[0])
+```
+
+输出：\\
+lalala \\
+l a l a l a
+
 
 ## assert(断言)
 
