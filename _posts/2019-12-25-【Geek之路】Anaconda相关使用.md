@@ -86,3 +86,4 @@ vscode的代码补全比jupyter好用很多，集成jupyter的强大功能，十
 2. [【环境配置】Jupytext详细安装及踩坑过程](https://blog.csdn.net/BatFlo_wsh/article/details/90140451)
 3. [Jupyter Notebook介绍、安装及使用教程](https://www.jianshu.com/p/91365f343585/)
 4. [Is there an equivalent to hinterland notebook extensions in JupyterLab?](https://www.cnblogs.com/world-0-1/p/11748216.htm)
+5. [神器与神器：微软宣布VsCode支持Jupyter Notebook](https://cloud.tencent.com/developer/article/1534115)
