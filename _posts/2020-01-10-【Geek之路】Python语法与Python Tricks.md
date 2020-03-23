@@ -7,8 +7,8 @@ author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     true
 tags:
+    - Geek
     - Python
-    - 
 ---
 
 # Python 语法
