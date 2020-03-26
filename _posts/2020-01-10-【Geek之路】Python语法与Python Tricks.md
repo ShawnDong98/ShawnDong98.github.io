@@ -104,6 +104,27 @@ map也可以用作类型转换， 如
 
 返回字符串128， 128
 
+## lambda
+
+```python
+g = lambda x:x+1
+```
+
+lambda作为一个表达式，定义了一个匿名函数，上例的代码x为入口参数，x+1为函数体
+
+
+```python
+>>> foo = [2, 18, 9, 22, 17, 24, 8, 12, 27]
+>>>
+>>> print filter(lambda x: x % 3 == 0, foo)
+[18, 9, 24, 12, 27]
+>>>
+>>> print map(lambda x: x * 2 + 10, foo)
+[14, 46, 28, 54, 44, 58, 26, 34, 64]
+>>>
+>>> print reduce(lambda x, y: x + y, foo)
+```
+
 
 ## assert(断言)
 
