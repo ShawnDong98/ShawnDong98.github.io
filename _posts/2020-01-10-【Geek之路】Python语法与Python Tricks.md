@@ -196,6 +196,36 @@ TypeError: a() takes exactly 0 arguments (2 given)
 
 ```
 
+**优先级**：
+
+```python
+def test0(arg, *args):
+    print(arg)
+    print(args)
+
+def test1(*args, arg):
+    print(arg)
+    print(args)
+
+def test2(*args, arg=None):
+    print(arg)
+    print(args)
+
+test0(1, 2, 3, 4)
+test1(1, 2, 3, 4)
+test2(1, 2, 3, 4)
+```
+
+打印结果分别为：
+
+1 \\
+(2, 3, 4)
+
+TypeError: test1() missing 1 required keyword-only argument: 'arg'
+
+None \\
+(1, 2, 3, 4)
+
 
 ## glob
 
