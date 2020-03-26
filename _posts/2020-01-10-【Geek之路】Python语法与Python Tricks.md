@@ -146,6 +146,57 @@ defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'],
 - 在函数体中改变变量指向的堆中的值 , 对函数外变量有效.
 - 在函数体中改变变量的引用 , 对函数外变量无效
 
+### 参数带星号的说明
+
+> F(\*arg1)
+
+有时候会不确定有多少个参数，它以一个\*加上形参名的方式来表示这个函数 的实参个数不定，可能为0个也可能为n个。注意一点是，不管有多少个，在函数内部都被存放在以形参名为标识符的tuple中。
+
+```python
+>>> def a(*x):
+if len(x)==0:
+print 'None'
+else:
+print x
+>>> a(1)
+(1,)        #存放在元组中
+>>> a()
+None
+>>> a(1,2,3)
+(1, 2, 3)
+>>> a(m=1,y=2,z=3)
+
+Traceback (most recent call last):
+File "<pyshell#16>", line 1, in -toplevel-
+a(m=1,y=2,z=3)
+TypeError: a() got an unexpected keyword argument 'm
+```
+
+> F(**arg1)
+
+
+形参名前加俩个\*表示，参数在函数内部将被存放在以形式名为标识符的dictionary中，这时调用函数的方法则需要采用arg1=value1,arg2=value2这样的形式。
+
+```python
+>>> def a(**x):
+if len(x)==0:
+print 'None'
+else:
+print x  
+>>> a()
+None
+>>> a(x=1,y=2)
+{'y': 2, 'x': 1}      #存放在字典中
+>>> a(1,2)            #这种调用则报错
+
+Traceback (most recent call last):
+File "<pyshell#25>", line 1, in -toplevel-
+a(1,2)
+TypeError: a() takes exactly 0 arguments (2 given)
+
+```
+
+
 ## glob
 
 glob 文件名模式匹配，不用遍历整个目录判断每个文件是不是符合。
@@ -280,6 +331,25 @@ strlen("asd")   =   3;
 加之后占用字节
 strlen(L"asd")   =   6;
 ```
+
+## sys
+
+### sys.path
+
+返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
+
+比如就是我们在python源文件中import引入模块的时候就会在sys.path的目录中查找相应的模块，如果在这里面的目录中没有找到你要倒入的模块则会报错。
+
+返回值是一个list则我们如果想倒入一个自定义模块下面的的包或者是模块则可以使用list的append方法在PYTHONPATH环境变量中增加相应的路径。
+
+
+## os
+
+## time和timeit
+
+
+
+
 # numpy语法
 
 ## numpy 模块的 size,shape, len的用法
@@ -543,15 +613,7 @@ numpy转Image：
 
 
 
-# sys
 
-## sys.path
-
-返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
-
-比如就是我们在python源文件中import引入模块的时候就会在sys.path的目录中查找相应的模块，如果在这里面的目录中没有找到你要倒入的模块则会报错。
-
-返回值是一个list则我们如果想倒入一个自定义模块下面的的包或者是模块则可以使用list的append方法在PYTHONPATH环境变量中增加相应的路径。
 
 
 # Python Tricks
