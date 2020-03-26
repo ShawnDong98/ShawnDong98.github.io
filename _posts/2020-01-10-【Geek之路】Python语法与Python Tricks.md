@@ -742,7 +742,11 @@ for i in range(200000):
         j = j + 1
 ```
 
-## .h5文件的使用
+## 判断一个数是不是2的n次幂
+
+```python
+assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size is not power of 2"
+```
 
 
 
