@@ -230,7 +230,7 @@ None \\
 
 当\*args在arg前，且arg没有默认值，且送入函数的值没有keywords， 报错。
 
-当\*args在args前，args有默认参数，且送入函数的值没有keywords，参数全为\*args， arg为默认值。
+当\*args在arg前，arg有默认参数，且送入函数的值没有keywords，参数全为\*args， arg为默认值。
 
 
 ## glob
