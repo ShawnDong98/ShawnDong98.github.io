@@ -35,6 +35,18 @@ tags:
 
 小书匠支持直接绑定github并支持github图床
 
+在github的settings中
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585191571848.png)
+
+找到Developer settigns
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585191612776.png)
+
+在Personal access tokens中生成token， 选好权限，记得保存下来。
+
+在小书匠的绑定中绑定github和githubimg。
+
 配置可以参考reference
 [在github上搭建个人博客并在线更新。](https://www.cnblogs.com/wxyww/p/xiaoshujiang.html)
 
