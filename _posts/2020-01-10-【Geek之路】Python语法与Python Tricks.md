@@ -764,3 +764,5 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 11. [np.maximum vs np.minimum](https://blog.csdn.net/u014080555/article/details/93859079)
 12. [Numpy知识点补充：np.expand_dims()&np.argmax()](https://www.jianshu.com/p/da10840660cb)
 13. [python setattr()、getattr()、hasattr() 函数用法介绍](https://www.cnblogs.com/hao2018/p/11428951.html)
+14. [Python的map()](https://blog.csdn.net/qq_41709494/article/details/98984765)
+15. [python中join()函数的使用方法](https://www.cnblogs.com/sui776265233/p/10755525.html)
