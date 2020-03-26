@@ -47,6 +47,64 @@ lalala \\
 l a l a l a
 
 
+## str
+
+join()：连接字符串数组。将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串
+
+## map
+
+> map（func, *iterables）:第一个是函数，第二个是可迭代序列
+
+```
+>>> help(map)
+Help on class map in module builtins:
+ 
+class map(object)
+ |  map(func, *iterables) --> map object
+ |  
+ |  Make an iterator that computes the function using arguments from
+ |  each of the iterables.  Stops when the shortest iterable is exhausted.
+ |  
+ |  Methods defined here:
+ |  
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  __next__(self, /)
+ |      Implement next(self).
+ |  
+ |  __reduce__(...)
+ |      Return state information for pickling.
+```
+
+
+map的用法：将序列的每一个元素作为函数的参数进行运算 
+
+```python
+>>> list(map(lambda x : x / 2 ,(1,2,3,4,5)))
+[0.5, 1.0, 1.5, 2.0, 2.5]
+ 
+>>> list(map(lambda x : x / 2,range(1,6)))
+[0.5, 1.0, 1.5, 2.0, 2.5]
+```
+
+map返回的是一个迭代器
+
+map也可以用作类型转换， 如
+
+```python
+",".join(map(str, (128, 128)))
+```
+
+返回字符串128， 128
+
+
 ## assert(断言)
 
 > Python assert（断言）用于判断一个表达式，在表达式条件为 false 的时候触发异常。
