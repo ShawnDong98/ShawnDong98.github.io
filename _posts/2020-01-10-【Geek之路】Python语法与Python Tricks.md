@@ -874,4 +874,5 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 15. [python中join()函数的使用方法](https://www.cnblogs.com/sui776265233/p/10755525.html)
 16. [Python lambda介绍](https://www.cnblogs.com/evening/archive/2012/03/29/2423554.html)
 17. [python中copy()和deepcopy()详解](https://blog.csdn.net/u010712012/article/details/79754132)
-18. [python super()](https://www.cnblogs.com/lovemo1314/archive/2011/05/03/2035005.html)
+18. [Python中的super()用法](https://blog.csdn.net/qq_14935437/article/details/81458506)
+19. [Python super() 函数](https://www.runoob.com/python/python-func-super.html)
