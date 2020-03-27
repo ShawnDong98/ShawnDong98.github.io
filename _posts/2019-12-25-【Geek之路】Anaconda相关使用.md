@@ -81,6 +81,8 @@ vscode的代码补全比jupyter好用很多，集成jupyter的强大功能，十
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1584930909594.png)
 
 
+
+
 ## vscode切换默认terminal
 
 terminal默认为powershell， 我们切换成cmd
@@ -108,3 +110,4 @@ terminal默认为powershell， 我们切换成cmd
 5. [神器与神器：微软宣布VsCode支持Jupyter Notebook](https://cloud.tencent.com/developer/article/1534115)
 6. [修改 vscode 默认的终端](https://blog.csdn.net/u013517122/article/details/82776607)
 7. [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)
+8. [高效的python编程神器——kite](https://blog.csdn.net/hajungong007/article/details/99641342)
