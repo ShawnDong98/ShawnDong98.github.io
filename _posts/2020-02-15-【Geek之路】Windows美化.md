@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【Geek之路】Windows美化即使用技巧"
+title:      "【Geek之路】Windows美化及使用技巧"
 subtitle:   ""
 date:       2020-02-15
 author:     "ShawnD"
