@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【Geek之路】Anaconda相关使用"
+title:      "【Geek之路】深度学习环境和工具搭建"
 subtitle:   ""
 date:       2019-12-25
 author:     "ShawnD"
@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     true
 tags:
     - Geek
-    - Anaconda
+    - 深度学习
 ---
 
 
@@ -71,13 +71,32 @@ jytext可以使jupyter同时保存ipy文件和.py文件
 (d) 保存配置文件
 
 
-# vscode集成jupyter
+# vscode
+## vscode集成jupyter
 
 发现一个优雅地使用jupyter的方式，使用vscode集成jupyter。
 
 vscode的代码补全比jupyter好用很多，集成jupyter的强大功能，十分优雅。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1584930909594.png)
+
+
+## vscode切换默认terminal
+
+terminal默认为powershell， 我们切换成cmd
+
+在设置中
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585279328486.png)
+
+搜索shell， 找到
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585279372401.png)
+
+编辑它为
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585279406014.png)
+
 
 
 
@@ -87,3 +106,5 @@ vscode的代码补全比jupyter好用很多，集成jupyter的强大功能，十
 3. [Jupyter Notebook介绍、安装及使用教程](https://www.jianshu.com/p/91365f343585/)
 4. [Is there an equivalent to hinterland notebook extensions in JupyterLab?](https://www.cnblogs.com/world-0-1/p/11748216.htm)
 5. [神器与神器：微软宣布VsCode支持Jupyter Notebook](https://cloud.tencent.com/developer/article/1534115)
+6. [修改 vscode 默认的终端](https://blog.csdn.net/u013517122/article/details/82776607)
+7. [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)
