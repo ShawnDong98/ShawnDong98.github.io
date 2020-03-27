@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【Geek之路】Windows美化"
+title:      "【Geek之路】Windows美化即使用技巧"
 subtitle:   ""
 date:       2020-02-15
 author:     "ShawnD"
@@ -11,9 +11,10 @@ tags:
     - Windows
 ---
 
-# Rainmeter
+# windows美化
+## Rainmeter
 
-## Rainmeter监控GPU
+### Rainmeter监控GPU
 
 安装完毕后
 
@@ -63,6 +64,21 @@ W=190
 H=1
 ```
 
+# windows 使用技巧
+
+查看端口占用情况
+
+> netstat -ano
+
+查看进程
+
+> tasklist
+
+杀死进程：
+
+> taskkill /f /t /im "进程id或者进程名称"
+
 
 # Reference
 1. [Rainmeter监控GPU](https://blog.csdn.net/weixin_33699914/article/details/92760589)
+2. [windows系统如何查看端口被占用、杀进程](https://jingyan.baidu.com/article/fdffd1f89a0c8af3e98ca10e.html)
