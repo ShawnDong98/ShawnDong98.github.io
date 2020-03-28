@@ -218,6 +218,54 @@ f.x()
 Python3.x 和 Python2.x 的一个区别是: Python 3 可以使用直接使用 super().xxx 代替 super(Class, self).xxx 
 
 
+## 装饰器 
+
+### @staticmethod@classmethod
+
+一般来说，调用某个类的方法，需要先生成一个实例，再通过实例调用方法。Java中有静态变量，静态方法，可以使用类直接进行调用。Python提供了两个修饰符@staticmethod @classmethod也可以达到类似效果。
+
+@staticmethod 声明方法为静态方法，直接通过 类||实例.静态方法（）调用。经过@staticmethod修饰的方法，不需要self参数，其使用方法和直接调用函数一样。
+
+```python
+#直接定义一个test()函数
+def test():
+    print "i am a normal method!"
+#定义一个类，其中包括一个类方法，采用@staticmethod修饰    
+class T:
+
+    @staticmethod
+    def static_test():#没有self参数
+        print "i am a static method!"
+
+if __name__ == "__main__":
+    test()
+    T.static_test()
+    T().static_test()
+
+output:
+i am a normal method!
+i am a static method!
+i am a static method!      
+```
+
+@classmethod声明方法为类方法,直接通过 类||实例.类方法（）调用。经过@classmethod修饰的方法，不需要self参数，但是需要一个标识类本身的cls参数。
+
+```python
+class T:
+    @classmethod
+    def class_test(cls):#必须有cls参数
+        print "i am a class method"
+if __name__ == "__main__":
+    T.class_test()
+    T().class_test()
+
+output:
+i am a class method
+i am a class method   
+```
+
+
+
  ## zip() 函数
  
  > zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。
@@ -876,3 +924,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 17. [python中copy()和deepcopy()详解](https://blog.csdn.net/u010712012/article/details/79754132)
 18. [Python中的super()用法](https://blog.csdn.net/qq_14935437/article/details/81458506)
 19. [Python super() 函数](https://www.runoob.com/python/python-func-super.html)
+20. [Python @staticmethod@classmethod用法](https://blog.csdn.net/qq_26369907/article/details/88824385)
