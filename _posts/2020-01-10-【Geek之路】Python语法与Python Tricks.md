@@ -223,29 +223,31 @@ Python3.x 和 Python2.x 的一个区别是: Python 3 可以使用直接使用 su
 在类中定义__call__可以像调用函数一样使用实例调用__call__这个方法。
 
 ```python
-class Demo(object):
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+class test:
+    def __init__(self):
+        super().__init__()
+        print("I'm in init")
 
-    def my_print(self,):
-        print("a = ", self.a, "b = ", self.b)
+    @staticmethod
+    def apply():
+        t = test()
+        print("I'm in apply")
+        
+        return t
 
-    def __call__(self, *args, **kwargs):
-        self.a = args[0]
-        self.b = args[1]
-        print("call: a = ", self.a, "b = ", self.b)
-
-if __name__ == "__main__":
-    demo = Demo(10, 20)
-    demo.my_print()
-
-    demo(50, 60)
+    def __call__(self):
+        print("I'm in call")
+		
+		
+tt = test.apply()
+tt()
 ```
 
-结果如下：\\
-a =  10 b =  20 \\
-call: a =  50 b =  60
+输出：\\
+I'm in init \\
+I'm in apply \\
+I'm in call
+
 
 
 ## 装饰器 
