@@ -46,6 +46,32 @@ print(*ll[0])
 lalala \\
 l a l a l a
 
+## dict
+
+### get
+通过dict提供的get方法，如果key不存在，可以返回None，或者自己指定的value：
+
+```python
+>>> d.get('Thomas')
+>>> d.get('Thomas', -1)
+-1
+```
+
+注意：返回None的时候Python的交互式命令行不显示结果。
+
+### pop
+
+要删除一个key，用pop(key)方法，对应的value也会从dict中删除：
+
+```python
+>>> d.pop('Bob')
+75
+>>> d
+{'Michael': 95, 'Tracy': 85}
+```
+
+
+
 
 ## str
 
