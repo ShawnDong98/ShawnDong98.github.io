@@ -1025,3 +1025,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 19. [Python super() 函数](https://www.runoob.com/python/python-func-super.html)
 20. [Python @staticmethod@classmethod用法](https://blog.csdn.net/qq_26369907/article/details/88824385)
 21. [random --- 生成伪随机数](https://docs.python.org/zh-cn/3.7/library/random.html)
+22. [Python的Tqdm模块——进度条配置](https://blog.csdn.net/qq_33472765/article/details/82940843)
