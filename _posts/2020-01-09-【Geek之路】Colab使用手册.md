@@ -195,7 +195,11 @@ document.querySelector("colab-connect-button").click()
 setInterval(ClickConnect,6000)
 ```
 
+# 使用vscode连接到colab
 
+这似乎是可行的， 但是体验并不好，因为每次colab terminate之后seesion会断开，端口号也会切换。
+
+先[mark](https://stackoverflow.com/questions/59508225/is-it-possible-to-connect-vscode-on-a-local-machine-with-google-colab-the-fre)一下
 
 
 # Reference
@@ -206,3 +210,4 @@ setInterval(ClickConnect,6000)
 5. [google colab断线自动重连](https://blog.csdn.net/qq_35493664/article/details/94726560)
 6. [How to prevent Google Colab from disconnecting ?](https://medium.com/@shivamrawat_756/how-to-prevent-google-colab-from-disconnecting-717b88a128c0)
 7. [kaggle 上传与更新数据](https://www.jianshu.com/p/f964baa360e5)
+8. [Is it possible to connect vscode (on a local machine) with Google Colab (the free service) runtime?](https://stackoverflow.com/questions/59508225/is-it-possible-to-connect-vscode-on-a-local-machine-with-google-colab-the-fre)
