@@ -934,10 +934,34 @@ numpy转Image：
 
 # tqdm
 
+## 关于tqdm对于range的封装
 
+```python
+from tqdm import tqdm
+import time
 
+pbar = tqdm(range(3_000))
 
+for i in pbar:
+    time.sleep(0.01)
+```
 
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585587118021.png)
+
+## set_description
+
+```python
+from tqdm import tqdm
+import time
+
+pbar = tqdm(range(3_000))
+
+for i in pbar:
+    time.sleep(0.01)
+    pbar.set_description(f"Now get {i}")
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585587226945.png)
 
 # Python Tricks
 
