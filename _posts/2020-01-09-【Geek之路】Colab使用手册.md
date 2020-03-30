@@ -12,6 +12,10 @@ tags:
 ---
 
 
+# 查看分配的GPU
+
+> ! /opt/bin/nvidia-smi
+
 # 挂载硬盘
 
 
