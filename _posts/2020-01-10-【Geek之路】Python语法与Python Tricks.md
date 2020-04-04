@@ -668,6 +668,10 @@ strlen(L"asd")   =   6;
 
 ## os
 
+> os.listdir(path)
+
+返回指定目录下的所有文件和目录名。
+
 ## time和timeit
 
 
@@ -1026,3 +1030,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 20. [Python @staticmethod@classmethod用法](https://blog.csdn.net/qq_26369907/article/details/88824385)
 21. [random --- 生成伪随机数](https://docs.python.org/zh-cn/3.7/library/random.html)
 22. [Python的Tqdm模块——进度条配置](https://blog.csdn.net/qq_33472765/article/details/82940843)
+23. [python中os的常用方法](https://www.cnblogs.com/lixiaoting/p/11136866.html)
