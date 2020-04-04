@@ -668,9 +668,31 @@ strlen(L"asd")   =   6;
 
 ## os
 
+
+**os模块：**
+
 > os.listdir(path)
 
 返回指定目录下的所有文件和目录名。
+
+> os.walk(top, topdown=True, οnerrοr=None, followlinks=False)
+
+- top 是你所要便利的目录的地址
+- topdown 为真，则优先遍历top目录，否则优先遍历top的子目录(默认为开启)
+- onerror 需要一个 callable 对象，当walk需要异常时，会调用
+- followlinks 如果为真，则会遍历目录下的快捷方式(linux 下是 symbolic link)实际所指的目录(默认关闭)
+
+os.walk 的返回值是一个生成器(generator),也就是说我们需要不断的遍历它，来获得所有的内容。
+
+
+
+**os.path常用方法：**
+
+> os.path.join(path1[, path2[, ...]])
+
+将多个路径组合后返回，第一个绝对路径之前的参数将被忽略
+
+
 
 ## time和timeit
 
@@ -1031,3 +1053,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 21. [random --- 生成伪随机数](https://docs.python.org/zh-cn/3.7/library/random.html)
 22. [Python的Tqdm模块——进度条配置](https://blog.csdn.net/qq_33472765/article/details/82940843)
 23. [python中os的常用方法](https://www.cnblogs.com/lixiaoting/p/11136866.html)
+24. [python中os.walk的用法详解](https://www.cnblogs.com/xiajq/p/11232574.html)
