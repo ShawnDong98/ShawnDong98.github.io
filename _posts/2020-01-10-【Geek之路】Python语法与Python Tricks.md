@@ -932,6 +932,24 @@ print(b.shape)
 输出：\\
 > (1, 2, 3, 1)
 
+
+## 完整打印矩阵
+
+np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
+
+> numpy.set_printoptions(precision=None, 
+                       threshold=None, 
+                       edgeitems=None, 
+                       linewidth=None, 
+                       suppress=None, 
+                       nanstr=None, 
+                       infstr=None, 
+
+
+np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 1000000.0此方法为设置一较大值
+
+
+
 # pandas语法
 
 # matplotlib语法
@@ -1054,3 +1072,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 22. [Python的Tqdm模块——进度条配置](https://blog.csdn.net/qq_33472765/article/details/82940843)
 23. [python中os的常用方法](https://www.cnblogs.com/lixiaoting/p/11136866.html)
 24. [python中os.walk的用法详解](https://www.cnblogs.com/xiajq/p/11232574.html)
+25. [【NumPy】 print 打印全部 np.set_printoptions](https://blog.csdn.net/tz_zs/article/details/87105524)
