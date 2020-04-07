@@ -30,6 +30,7 @@ tags:
 - $\nabla$： \nabla
 - $\epsilon$： \epsilon
 - 恒等$\equiv$： \equiv
+- $\mapsto$： \mapsto
 
 
 
