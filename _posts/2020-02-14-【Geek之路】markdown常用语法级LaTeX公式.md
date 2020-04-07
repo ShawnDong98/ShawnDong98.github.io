@@ -65,7 +65,7 @@ $$x+y = z \tag{1.1}$$
   
 1. 如果是数学符号，那么直接用\limits命令放在正下方，如
   
- > $ \sum\limits_{n = 0}^\infty $
+ ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1586270033422.png)
 
 效果：
 
@@ -73,7 +73,7 @@ $$\sum\limits_{n = 0}^\infty$$
 
 2. 若是普通符号，那么要用\mathop先转成数学符号再用\limits，如
 
-> $ \mathop{\theta}\limits_{i=1}^2 $
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1586270053224.png)
 
 效果：
 
