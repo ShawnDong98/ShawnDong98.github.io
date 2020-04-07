@@ -65,7 +65,7 @@ $$x+y = z \tag{1.1}$$
   
 1. 如果是数学符号，那么直接用\limits命令放在正下方，如
   
- > $ \sum\limits_{n = 0}^\infty  $
+ > $ \sum\limits_{n = 0}^\infty $
 
 效果：
 
