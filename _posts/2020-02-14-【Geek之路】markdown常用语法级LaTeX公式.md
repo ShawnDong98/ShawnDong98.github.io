@@ -34,6 +34,7 @@ tags:
 - $\Theta$：\Theta
 - $\xi$： \xi
 - 累乘$\prod$： \prod
+- 偏导$\partial$：\partial
 
 
 
