@@ -64,7 +64,7 @@ $$x+y = z \tag{1.1}$$
  
   $$0\stackrel{a}{\longrightarrow}1$$
   
- ## Latex在符号上下加文字
+## Latex在符号上下加文字
   
 1. 如果是数学符号，那么直接用\limits命令放在正下方，如
   
