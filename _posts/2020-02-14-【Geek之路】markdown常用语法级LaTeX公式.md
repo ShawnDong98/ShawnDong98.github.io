@@ -33,6 +33,7 @@ tags:
 - $\mapsto$： \mapsto
 - $\Theta$：\Theta
 - $\xi$： \xi
+- 累乘$\prod$： \prod
 
 
 
