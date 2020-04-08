@@ -31,6 +31,7 @@ tags:
 - $\epsilon$： \epsilon
 - 恒等$\equiv$： \equiv
 - $\mapsto$： \mapsto
+- $\Theta$：\Theta
 
 
 
