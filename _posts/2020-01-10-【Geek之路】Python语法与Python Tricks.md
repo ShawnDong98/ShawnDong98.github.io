@@ -954,9 +954,31 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 
 # matplotlib语法
 
+## subplot
+
+subplot前面俩参数指定的是一个画板被分割成的行和列，后面一个参数则指的是当前正在绘制的编号！
+
+那是个什么编号规则呢？就是 行优先数数规则！
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1586527444810.png)
+
 # seaborn语法
 
 ## 绘制线图
+
+> seaborn.lineplot(x=None, y=None, hue=None, size=None, style=None,
+ data=None, palette=None, hue_order=None, hue_norm=None, sizes=None,
+  size_order=None, size_norm=None, dashes=True, markers=None, 
+  style_order=None, units=None, estimator='mean', ci=95, n_boot=1000, 
+  sort=True, err_style='band', err_kws=None, legend='brief', ax=None, \*\*kwargs)
+  
+参数：
+- x, y：输入数据变量，必须是数字。可以直接传递数据或引用数据中的列
+- hue：分组变量将产生具有不同颜色的线。可以是分类的也可以是数字的，尽管颜色映射在后一种情况下的表现会有所不同。
+- size：分组变量将产生不同宽度的线。可以是分类的也可以是数字的，尽管大小映射在后一种情况下会有所不同。
+- style：分组变量将产生带有不同破折号和/或标记的线。可以具有数字dtype，但始终将其视为类别。
+- data：整齐（“长格式”）数据帧，其中每一列都是变量，每一行都是观察值。
+
 
 # PIL(Image)用法
 
