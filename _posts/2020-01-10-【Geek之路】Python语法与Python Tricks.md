@@ -956,6 +956,8 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 
 # seaborn语法
 
+## 绘制线图
+
 # PIL(Image)用法
 
 ## transpose方法
@@ -1073,3 +1075,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 23. [python中os的常用方法](https://www.cnblogs.com/lixiaoting/p/11136866.html)
 24. [python中os.walk的用法详解](https://www.cnblogs.com/xiajq/p/11232574.html)
 25. [【NumPy】 print 打印全部 np.set_printoptions](https://blog.csdn.net/tz_zs/article/details/87105524)
+26. [Seaborn常见绘图总结](https://blog.csdn.net/qq_40195360/article/details/86605860)
