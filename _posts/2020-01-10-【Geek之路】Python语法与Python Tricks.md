@@ -933,6 +933,13 @@ print(b.shape)
 > (1, 2, 3, 1)
 
 
+
+## numpy.broadcast_to
+
+> numpy.broadcast_to(array, shape, subok)
+
+将array广播成shape的形状
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
