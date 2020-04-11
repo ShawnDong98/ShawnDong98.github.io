@@ -89,6 +89,15 @@ COLOR_RGB2HSV
 - map2：数据类型为CV_16SC2 , CV_32FC1, 或者CV_32FC2的y的第二个映射， 或者none（如果map1是点(x, y)则为空映射）
 - interpolation：插值方式
 
+## cv2.warpAffine
+
+> cv2.warpAffine(src, M, dsize[, dst[, flags[, borderMode[, borderValue]]]])
+
+- dst: 输出图像，尺寸为dsize， 类型和src相同
+- dsize:   输出图像的尺寸
+- flags:  结合的插值方式 (see InterpolationFlags) 以及选项 WARP_INVERSE_MAP意思是 M 是变换的逆 ( dst→src ).
+- borderMode:  pixel extrapolation method (see BorderTypes); when borderMode=BORDER_TRANSPARENT, it means that the pixels in the destination image corresponding to the "outliers" in the source image are not modified by the function.
+- borderValue: value used in case of a constant border; by default, it is 0.
 
 # Trick
 
