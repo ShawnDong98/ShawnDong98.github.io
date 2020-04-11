@@ -99,6 +99,14 @@ COLOR_RGB2HSV
 - borderMode:  pixel extrapolation method (see BorderTypes); when borderMode=BORDER_TRANSPARENT, it means that the pixels in the destination image corresponding to the "outliers" in the source image are not modified by the function.
 - borderValue: value used in case of a constant border; by default, it is 0.
 
+## cv2.getRotationMatrix2D
+
+> getRotationMatrix2D(center, angle, scale)
+
+- center表示中间点的位置
+- angle表示逆时针旋转角度
+- scale表示缩放比例
+
 # Trick
 
 ## 视频的加载和保存
