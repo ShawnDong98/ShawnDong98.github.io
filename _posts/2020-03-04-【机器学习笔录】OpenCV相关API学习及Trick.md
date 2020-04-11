@@ -11,11 +11,7 @@ tags:
     - 机器学习
 ---
 
-# C++部分
-
-
-# Python部分
-
+# API
 
 ## cv2.imread
 
@@ -92,6 +88,9 @@ COLOR_RGB2HSV
 - map1： 点(x, y)或者数据类型为CV_16SC2 , CV_32FC1, 或者CV_32FC2的x的第一个映射。
 - map2：数据类型为CV_16SC2 , CV_32FC1, 或者CV_32FC2的y的第二个映射， 或者none（如果map1是点(x, y)则为空映射）
 - interpolation：插值方式
+
+
+# Trick
 
 ## 视频的加载和保存
 
