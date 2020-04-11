@@ -761,6 +761,12 @@ print("length of X:",length)
 length of X: 3
 ```
 
+## np.stack
+
+> numpy.stack(arrays, axis=0)
+
+沿着新轴连接数组的序列。
+
 ## np.prod
 
 > np.prod()
