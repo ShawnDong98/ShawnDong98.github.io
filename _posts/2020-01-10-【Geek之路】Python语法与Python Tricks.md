@@ -767,7 +767,7 @@ length of X: 3
 
 沿着新轴连接数组的序列。
 
-## numpy.ravel
+## np.ravel
 
 > numpy.ravel(a, order='C')
 
@@ -777,6 +777,46 @@ length of X: 3
 
 - a：输入的数组
 - order {‘C’,’F’, ‘A’, ‘K’}, optional ： a的元素按照这个索引顺序读取。'C'意味着按行索引元素， ‘F’意味着按列索引元素。
+
+## np.mgrid
+
+> np.mgrid[start:end:step]
+
+```python
+mgrid[[1:3:3j, 4:5:2j]] 
+```
+
+- 3j：3个点
+- 步长为复数表示点数，左闭右闭
+- 步长为实数表示间隔，左闭右开
+
+**例如1D结构（array），如下：**
+
+```python
+>>> import numpy as np
+>>> x=np.mgrid[-5:5:5j]
+>>> x
+array([-5. , -2.5,  0. ,  2.5,  5. ])
+>>> 
+```
+
+**例如2D结构 (2D矩阵)，如下：**
+
+```python
+>>> import numpy as np
+>>> x,y=np.mgrid[-5:5:3j,-2:2:3j]
+>>> x
+array([[-5., -5., -5.],
+       [ 0.,  0.,  0.],
+       [ 5.,  5.,  5.]])
+>>> y
+array([[-2.,  0.,  2.],
+       [-2.,  0.,  2.],
+       [-2.,  0.,  2.]])
+>>> 
+```
+
+其中x沿着水平向右的方向扩展(即是：每列都相同)，y沿着垂直的向下的方向扩展(即是：每行都相同)。
 
 ## np.prod
 
@@ -1122,3 +1162,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 24. [python中os.walk的用法详解](https://www.cnblogs.com/xiajq/p/11232574.html)
 25. [【NumPy】 print 打印全部 np.set_printoptions](https://blog.csdn.net/tz_zs/article/details/87105524)
 26. [Seaborn常见绘图总结](https://blog.csdn.net/qq_40195360/article/details/86605860)
+27. [python笔记：numpy中mgrid的用法](https://blog.csdn.net/abc13526222160/article/details/88559162)
