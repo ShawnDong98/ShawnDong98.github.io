@@ -2322,7 +2322,57 @@ class SolutionC {
 
 代码：
 
-```
+```c++
+class SolutionD {
+public:
+    void ProblemD() {
+        string s;
+        getline(cin, s);
+        calculate(s);
+    }
+
+    int calculate(string s) {
+        stack<ll> num;
+        stack<char> sign;
+        for(int i=0; i<s.size(); ++i){
+            
+            if(s[i]>='0' && s[i] <='9'){
+                num.push(s[i]-'0');
+            }else{
+                if(s[i]=='+'){
+                    sign.push(s[i]);
+                }
+                // 以下做法思路可借鉴，将减法转为加法
+                // 且不拘泥于一个元素一个元素处理
+                if(s[i]=='-'){
+                    num.push((s[i+1] - '0') * (-1));
+                    sign.push(s[i]);
+                    ++i;
+                }
+                if(s[i]=='x'){
+                    ll a = num.top(); num.pop();
+                    ll b = s[i+1] - '0';
+                    num.push(a*b);
+                    ++i;
+                }
+                if(s[i]=='/'){
+                    ll a = num.top(); num.pop();
+                    ll b = s[i+1] - '0';
+                    num.push(a/b);
+                    ++i;
+                }
+
+            }    
+        }
+        while(!sign.empty()){
+            sign.pop();
+            ll a = num.top(); num.pop();
+            ll b = num.top(); num.pop();
+            num.push(a+b);
+        } 
+        cout << num.top() << endl;
+    }
+};
 ```
 
 
