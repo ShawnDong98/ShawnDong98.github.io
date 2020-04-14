@@ -22,6 +22,17 @@ tags:
 > from google.colab import drive
 drive.mount('/content/drive')
 
+# 安装pytorch和torchvision
+
+colab本身就安装好pytorch的，但是安装的是最新版本的pytorch，常有坑出现
+
+因此追求稳定， 使用pytorch1.3版本
+
+```python
+!pip install torch===1.3.0 torchvision==0.4.1
+!pip3 install 'pillow<7.0.0'
+```
+
 # kaggle 上传与更新数据
 
 建立数据文件夹：
