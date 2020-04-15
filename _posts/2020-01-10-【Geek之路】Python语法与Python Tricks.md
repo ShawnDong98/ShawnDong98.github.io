@@ -669,11 +669,14 @@ strlen(L"asd")   =   6;
 # os和sys
 
 
-## os模块
+## os.listdir
 
 > os.listdir(path)
 
 返回指定目录下的所有文件和目录名。
+
+
+## os.walk
 
 > os.walk(top, topdown=True, οnerrοr=None, followlinks=False)
 
@@ -714,6 +717,36 @@ sys.path.append(path)    #将路径添加到python的搜索路径中
 #import 你想导入的文件
 
 ```
+
+## os.getcwd
+
+> os.getcwd()
+
+得到当前工作目录，即当前Python脚本工作的目录路径。
+
+
+### 获取当前路径
+
+```python
+print("===获取当前文件目录===")
+# 当前脚本工作的目录路径
+print(os.getcwd())
+# os.path.abspath()获得绝对路径
+print(os.path.abspath(os.path.dirname(__file__)))
+```
+
+
+### 获取上层路径
+
+```python
+print("=== 获取当前文件上层目录 ===")
+print(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+print(os.path.abspath(os.path.dirname(os.getcwd())))
+print(os.path.abspath(os.path.join(os.getcwd(), "..")))
+print(os.path.dirname(os.getcwd()))
+# os.path.join()连接目录名与文件或目录
+```
+
 
 
 
@@ -1188,3 +1221,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 26. [Seaborn常见绘图总结](https://blog.csdn.net/qq_40195360/article/details/86605860)
 27. [python笔记：numpy中mgrid的用法](https://blog.csdn.net/abc13526222160/article/details/88559162)
 28. [Python怎么导入上一级文件，使用相对路径，被导入文件，导入自己路径下文件，就报不能导入此模块名？](https://www.zhihu.com/question/337566959/answer/786352423)
+29. [python：获取当前目录、上层目录路径](https://www.cnblogs.com/juankai/p/11580122.html)
