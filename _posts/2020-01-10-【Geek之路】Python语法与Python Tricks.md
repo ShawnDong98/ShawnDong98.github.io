@@ -655,21 +655,21 @@ strlen("asd")   =   3;
 strlen(L"asd")   =   6;
 ```
 
-## sys
-
-### sys.path
-
-返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
-
-比如就是我们在python源文件中import引入模块的时候就会在sys.path的目录中查找相应的模块，如果在这里面的目录中没有找到你要倒入的模块则会报错。
-
-返回值是一个list则我们如果想倒入一个自定义模块下面的的包或者是模块则可以使用list的append方法在PYTHONPATH环境变量中增加相应的路径。
 
 
-## os
 
 
-**os模块：**
+
+
+
+## time和timeit
+
+
+
+# os和sys
+
+
+## os模块
 
 > os.listdir(path)
 
@@ -686,15 +686,34 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 
 
-**os.path常用方法：**
+## os.path常用方法：
 
 > os.path.join(path1[, path2[, ...]])
 
 将多个路径组合后返回，第一个绝对路径之前的参数将被忽略
 
+> os.path.split(path)
+
+将path分割成目录和文件名二元组返回。
 
 
-## time和timeit
+
+## sys.path
+
+返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
+
+比如就是我们在python源文件中import引入模块的时候就会在sys.path的目录中查找相应的模块，如果在这里面的目录中没有找到你要倒入的模块则会报错。
+
+返回值是一个list则我们如果想导入一个自定义模块下面的的包或者是模块则可以使用list的append方法在PYTHONPATH环境变量中增加相应的路径。
+
+```python
+import os
+import sys
+path=os.path.dirname(__file__)    #os.path.dirname通俗的讲是返回上一级文件夹绝对路径的意思，多套一层就多返回一层
+sys.path.append(path)    #将路径添加到python的搜索路径中
+#import 你想导入的文件
+
+```
 
 
 
@@ -1163,3 +1182,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 25. [【NumPy】 print 打印全部 np.set_printoptions](https://blog.csdn.net/tz_zs/article/details/87105524)
 26. [Seaborn常见绘图总结](https://blog.csdn.net/qq_40195360/article/details/86605860)
 27. [python笔记：numpy中mgrid的用法](https://blog.csdn.net/abc13526222160/article/details/88559162)
+28. [Python怎么导入上一级文件，使用相对路径，被导入文件，导入自己路径下文件，就报不能导入此模块名？](https://www.zhihu.com/question/337566959/answer/786352423)
