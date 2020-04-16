@@ -130,6 +130,20 @@ for file in os.listdir():
  数据集也换成自己要下载的。
  
 
+# python查看已用显存
+
+首先安装：
+
+> pip install nvidia-ml-py3
+
+```python
+import pynvml
+pynvml.nvmlInit()
+# 这里的0是GPU id
+handle = pynvml.nvmlDeviceGetHandleByIndex(0)
+meminfo = pynvml.nvmlDeviceGetMemoryInfo(handle)
+print(meminfo.used)
+```
 
 
 # 解压缩
@@ -267,3 +281,4 @@ setInterval(ClickConnect,6000)
 9. [NVIDIA/apex](https://github.com/NVIDIA/apex)
 10. [【PyTorch】唯快不破：基于Apex的混合精度加速](https://zhuanlan.zhihu.com/p/79887894)
 11. [Solution for CUDA Installation Issues #754](https://github.com/NVIDIA/apex/issues/754)
+12. [pynvml 查看GPU已使用的显存](https://blog.csdn.net/jacke121/article/details/82982693)
