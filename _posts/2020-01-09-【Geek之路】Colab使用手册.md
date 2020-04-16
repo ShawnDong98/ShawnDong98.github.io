@@ -70,6 +70,10 @@ with amp.scale_loss(loss, optimizer) as scaled_loss:
 
 实验发现，按照上述方法使用， 并没有加速，反而慢了（使用前batch_time: 1.3s, 使用之后batch_time: 1.7s），费解。
 
+并且显存占用量并没有降低多少（大概500M）。
+
+大胆地猜测， 应该是网络中有些运算不能加速造成的。
+
 
 # kaggle 上传与更新数据
 
