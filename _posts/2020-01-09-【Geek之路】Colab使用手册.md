@@ -72,7 +72,11 @@ with amp.scale_loss(loss, optimizer) as scaled_loss:
 
 并且显存占用量并没有降低多少（大概500M）。
 
-大胆地猜测， 应该是网络中有些运算不能加速造成的。
+
+> Also for completeness, pure fp16 training on P100 is not recommended and not supported, pseudo-fp16 (with storage in fp16, and math in fp32) can be used, but it's math throughput is approx equal to fp32 throughput on P100, so the only benefit is coming from less memory needed.
+
+>  Because of accumulation in fp16. If you use Apex on p100, it would still call pytorch, and pytorch does not support fp16 accumulation, you'll get pseudo-fp16 whether you want it or not.
+
 
 
 # kaggle 上传与更新数据
@@ -282,3 +286,4 @@ setInterval(ClickConnect,6000)
 10. [【PyTorch】唯快不破：基于Apex的混合精度加速](https://zhuanlan.zhihu.com/p/79887894)
 11. [Solution for CUDA Installation Issues #754](https://github.com/NVIDIA/apex/issues/754)
 12. [pynvml 查看GPU已使用的显存](https://blog.csdn.net/jacke121/article/details/82982693)
+13. [Would apex still be useful for non Volta architectures? #14](https://github.com/NVIDIA/apex/issues/14)
