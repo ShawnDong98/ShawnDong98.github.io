@@ -35,6 +35,8 @@ tags:
 - $\xi$： \xi
 - 累乘$\prod$： \prod
 - 偏导$\partial$：\partial
+- $\star$： \star
+- $\bigstar$： \bigstar
 
 
 
