@@ -878,6 +878,35 @@ array([[-2.,  0.,  2.],
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1580285712009.png)
 
+## np.where
+
+### np.where(condition, x, y)
+
+满足条件(condition)，输出x，不满足输出y。
+
+```python
+>>> aa = np.arange(10)
+>>> np.where(aa,1,-1)
+array([-1,  1,  1,  1,  1,  1,  1,  1,  1,  1])  # 0为False，所以第一个输出-1
+>>> np.where(aa > 5,1,-1)
+array([-1, -1, -1, -1, -1, -1,  1,  1,  1,  1])
+```
+
+### np.where(condition)
+
+只有条件 (condition)，没有x和y，则输出满足条件 (即非0) 元素的坐标 (等价于numpy.nonzero)。这里的坐标以tuple的形式给出，通常原数组有多少维，输出的tuple中就包含几个数组，分别对应符合条件元素的各维坐标。
+
+```python
+>>> a = np.array([2,4,6,8,10])
+>>> np.where(a > 5)				# 返回索引
+(array([2, 3, 4]),)   
+>>> a[np.where(a > 5)]  			# 等价于 a[a>5]
+array([ 6,  8, 10])
+
+>>> np.where([[0, 1], [1, 0]])
+(array([0, 1]), array([1, 0]))
+```
+
 ## np.random.normal()
 
 > numpy.random.normal(loc=0.0, scale=1.0, size=None) 
@@ -1222,3 +1251,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 27. [python笔记：numpy中mgrid的用法](https://blog.csdn.net/abc13526222160/article/details/88559162)
 28. [Python怎么导入上一级文件，使用相对路径，被导入文件，导入自己路径下文件，就报不能导入此模块名？](https://www.zhihu.com/question/337566959/answer/786352423)
 29. [python：获取当前目录、上层目录路径](https://www.cnblogs.com/juankai/p/11580122.html)
+30. [numpy.where() 用法详解](https://www.cnblogs.com/massquantity/p/8908859.html)
