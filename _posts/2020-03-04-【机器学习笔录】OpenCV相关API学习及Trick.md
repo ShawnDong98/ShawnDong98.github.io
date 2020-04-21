@@ -107,6 +107,19 @@ COLOR_RGB2HSV
 - angle表示逆时针旋转角度
 - scale表示缩放比例
 
+
+## cv2.addWeighted
+
+> cv2.addWeighted(src1, alpha, src2, beta, gamma[, dst[, dtype]]) → dst
+
+- src1： 第一个输入数组
+- alpha：第一个数组元素的权重
+- src2： 和src1形同通道和尺寸大小的第二个输入数组
+- beta：第二个数组元素的权重
+- dst：和输入元素相同通道和尺寸的输出数组
+- gamma：给个和上加上的标量
+- dtype：输出数组可选的深度；当两个输入数组具有相同的深度， dtype可以被设置为-1， 它等价于src1.depth().
+
 # Trick
 
 ## 视频的加载和保存
