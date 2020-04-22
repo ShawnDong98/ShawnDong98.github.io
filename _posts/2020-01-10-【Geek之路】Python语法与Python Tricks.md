@@ -1307,3 +1307,4 @@ assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size 
 28. [Python怎么导入上一级文件，使用相对路径，被导入文件，导入自己路径下文件，就报不能导入此模块名？](https://www.zhihu.com/question/337566959/answer/786352423)
 29. [python：获取当前目录、上层目录路径](https://www.cnblogs.com/juankai/p/11580122.html)
 30. [numpy.where() 用法详解](https://www.cnblogs.com/massquantity/p/8908859.html)
+31. [python闭包与nonlocal简单注意点](https://blog.csdn.net/weixin_42404145/article/details/90317221)
