@@ -1274,6 +1274,30 @@ for i in range(200000):
 assert latent_size!=0 and (latent_size & (latent_size - 1)) == 0), "latent size is not power of 2"
 ```
 
+## 拼接多张图为一个网格
+
+```python
+# 18, 19, 20, 22, 34
+
+l = [18, 19, 20, 22, 34]
+pic = []
+
+for i in l:
+    if i<=11:
+        img = cv2.imread("show_{}.png".format(i))
+    else:
+        img = cv2.imread("show{}.png".format(i))
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = cv2.resize(img, (265, 800))
+    img = loader(img).unsqueeze(0)
+    print(img.shape)
+    pic.append(img)
+    
+pics = torch.cat(pic, dim=0)
+pics = unloader(make_grid(pics, nrow=pics.size(0)))
+pics.save("./processed_pic/merge_1.jpg")
+```
+
 
 
 # Reference
