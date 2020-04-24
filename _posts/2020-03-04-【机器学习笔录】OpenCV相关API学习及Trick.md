@@ -86,8 +86,8 @@ COLOR_RGB2HSV
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1586617413791.png)
 
-- map1： 点(x, y)或者数据类型为CV_16SC2 , CV_32FC1, 或者CV_32FC2的x的第一个映射。
-- map2：数据类型为CV_16SC2 , CV_32FC1, 或者CV_32FC2的y的第二个映射， 或者none（如果map1是点(x, y)则为空映射）
+- map1： 用于存放图像X方向的映射关系，类型必须是CV_32FC1的。
+- map2：于存放图像Y方向的映射关系，类型必须是CV_32FC1的。
 - interpolation：插值方式
 
 ## cv2.warpAffine
