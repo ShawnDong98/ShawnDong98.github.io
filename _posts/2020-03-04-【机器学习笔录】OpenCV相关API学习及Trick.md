@@ -7,8 +7,9 @@ author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
-    - OpenCV
     - 机器学习
+    - 深度学习
+    - CV
 ---
 
 # API
