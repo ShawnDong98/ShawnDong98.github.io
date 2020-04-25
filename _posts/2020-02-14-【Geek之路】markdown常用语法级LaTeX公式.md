@@ -37,6 +37,7 @@ tags:
 - 偏导$\partial$：\partial
 - $\star$： \star
 - $\bigstar$： \bigstar
+- $\mathfrak{ABCdef}$：\mathfrak{ABCdef}
 
 
 
