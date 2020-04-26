@@ -59,8 +59,19 @@ image_input = Input(shape=(None, None, input_shape[2])) #input_shape= (416, 416,
 model_body = tiny_yolo_body(image_input, num_anchors//2, num_classes)
 ```
 
+## Lambda
 
 
+> keras.layers.core.Lambda(function, output_shape=None, mask=None, arguments=None)
+
+本函数用以对上一层的输出施以任何Theano/TensorFlow表达式。
+
+如果你只是想对流经该层的数据做个变换，而这个变换本身没有什么需要学习的参数，那么直接用Lambda Layer是最合适的了。
+
+- function：要实现的函数，该函数仅接受一个变量，即上一层的输出
+- output_shape：函数应该返回的值的shape，可以是一个tuple，也可以是一个根据输入shape计算输出shape的函数
+- mask: 
+- arguments：可选，字典，用来记录向函数中传递的其他关键字参数
 
 # Tensorflow
 
