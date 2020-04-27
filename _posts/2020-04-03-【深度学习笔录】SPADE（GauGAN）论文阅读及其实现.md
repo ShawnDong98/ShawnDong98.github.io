@@ -51,7 +51,7 @@ $$\gamma_{c, y, x}(m) \frac{h_{n, c, y, x}^i - \mu_c^i}{\sigma_c^i} + \beta_{c, 
 
 其中$h_{n, c, y, x}^i$是该节点规范化之前的激活， $\mu_c^i$和$\sigma_c^i$是激活在通道c中的均值和标准差：
 
-$$\mu_c^i = \frac{1}{NH^iW^i} \sum_{n, y, x} h_{m, c, y, x}^i \tag 2$$
+$$\mu_c^i = \frac{1}{NH^iW^i} \sum_{n, y, x} h_{n, c, y, x}^i \tag 2$$
 
 $$\sigma_c^i = \sqrt{\frac{1}{NH^iW^i}\sum_{n, y, x}((h_{n, c, y, x}^i)^2 - (\mu_c^i)^2)} \tag 3$$
 
