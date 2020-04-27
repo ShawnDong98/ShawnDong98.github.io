@@ -2112,7 +2112,7 @@ class SolutionA {
 };
 ```
 
-### Problems B
+### ProblemsB
 
 问题描述　　\\
     给定n个整数，请统计出每个整数各位数字和，按出现数字和从大到小的顺序输出。
