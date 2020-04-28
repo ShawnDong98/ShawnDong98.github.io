@@ -13,6 +13,23 @@ tags:
 
 # C/C++语法
 
+## 重载
+
+### 重载操作符
+
+您可以重定义或重载大部分 C++ 内置的运算符。这样，您就能使用自定义类型的运算符。
+
+重载的运算符是带有特殊名称的函数，函数名是由关键字 operator 和其后要重载的运算符符号构成的。与其他函数一样，重载运算符有一个返回类型和一个参数列表。
+
+```python
+bool operator<(const node &oth)const
+{
+	if(x!=oth.x)
+		return x<oth.x;
+	return y<oth.y;
+}
+```
+
 ## Vector用法
 
 ### vector 说明
@@ -1560,6 +1577,12 @@ int main()
 
 
 
+## 函数后加const
+
+一些成员函数不改变类的数据成员，这些函数是"只读"函数， 如果把不改变数据成员的函数都加上const关键字进行标识，显然，可提高程序的可读性。
+
+其实，它还能提高程序的可靠性，已定义成const的成员函数，一旦企图修改数据成员的值，则编译器按错误处理。
+
 
 # C/C++ Trick
 
@@ -1637,3 +1660,4 @@ copy(date.begin(),date.end(),ostream_iterator <Date,char>(cout,"\n"));  //遍历
 15. [C++ find()函数用法(一般用于vector的查找)](https://blog.csdn.net/zhangweijiqn/article/details/9107571)
 16. [C++ 中的sort()排序函数用法](https://www.cnblogs.com/stones-dream/p/10183210.html)
 17. [C++ map用法总结（整理）](https://blog.csdn.net/u010029439/article/details/89681773)
+18. [c++　在函数后加const的意义：](https://blog.csdn.net/qq_32739503/article/details/83341222)
