@@ -597,6 +597,130 @@ int pos3 = str.find_last_not_of("aeiou", 20, 2);       // 20
 int pos4 = str.find_last_not_of('r', 30);              // 29
 ```
 
+
+## map
+
+自动建立key － value的对应。key 和 value可以是任意你需要的类型。
+
+我们通常用如下方法构造一个map：
+
+map<int, string> mapStudent;
+
+### 插入元素
+
+```c++
+// 定义一个map对象
+map<int, string> mapStudent;
+
+// 第一种 用insert函數插入pair
+mapStudent.insert(pair<int, string>(000, "student_zero"));
+
+// 第二种 用insert函数插入value_type数据
+mapStudent.insert(map<int, string>::value_type(001, "student_one"));
+
+// 第三种 用"array"方式插入
+mapStudent[123] = "student_first";
+mapStudent[456] = "student_second";
+```
+
+以上三种用法，虽然都可以实现数据的插入，但是它们是有区别的，当然了第一种和第二种在效果上是完成一样的，用insert函数插入数据，在数据的 插入上涉及到集合的唯一性这个概念，即当map中有这个关键字时，insert操作是不能在插入数据的，但是用数组方式就不同了，它可以覆盖以前该关键字对 应的值，用程序说明如下：
+
+mapStudent.insert(map<int, string>::value_type (001, "student_one"));
+ 
+mapStudent.insert(map<int, string>::value_type (001, "student_two"));
+
+上面这两条语句执行后，map中001这个关键字对应的值是“student_one”，第二条语句并没有生效，那么这就涉及到我们怎么知道insert语句是否插入成功的问题了，可以用pair来获得是否插入成功，程序如下:
+
+```c++
+// 构造定义，返回一个pair对象
+pair<iterator,bool> insert (const value_type& val);
+ 
+pair<map<int, string>::iterator, bool> Insert_Pair;
+ 
+Insert_Pair = mapStudent.insert(map<int, string>::value_type (001, "student_one"));
+ 
+if(!Insert_Pair.second)
+    cout << ""Error insert new element" << endl;
+```
+
+我们通过pair的第二个变量来知道是否插入成功，它的第一个变量返回的是一个map的迭代器，如果插入成功的话Insert_Pair.second应该是true的，否则为false。
+
+### 查找元素
+
+当所查找的关键key出现时，它返回数据所在对象的位置，如果沒有，返回iter与end函数的值相同。
+
+```c++
+// find 返回迭代器指向当前查找元素的位置否则返回map::end()位置
+iter = mapStudent.find("123");
+ 
+if(iter != mapStudent.end())
+       cout<<"Find, the value is"<<iter->second<<endl;
+else
+   cout<<"Do not Find"<<endl;
+```
+
+### 刪除与清空元素
+
+```c++
+//迭代器刪除
+iter = mapStudent.find("123");
+mapStudent.erase(iter);
+ 
+//用关键字刪除
+int n = mapStudent.erase("123"); //如果刪除了會返回1，否則返回0
+ 
+//用迭代器范围刪除 : 把整个map清空
+mapStudent.erase(mapStudent.begin(), mapStudent.end());
+//等同于mapStudent.clear()
+```
+
+### map的大小
+
+在往map里面插入了数据，我们怎么知道当前已经插入了多少数据呢，可以用size函数，用法如下：
+
+int nSize = mapStudent.size();
+
+### map的基本操作函数
+
+ begin()         返回指向map头部的迭代器
+
+ clear(）        删除所有元素
+
+ count()         返回指定元素出现的次数
+
+ empty()         如果map为空则返回true
+
+ end()           返回指向map末尾的迭代器
+
+ equal_range()   返回特殊条目的迭代器对
+
+ erase()         删除一个元素
+
+ find()          查找一个元素
+
+ get_allocator() 返回map的配置器
+
+ insert()        插入元素
+
+ key_comp()      返回比较元素key的函数
+
+ lower_bound()   返回键值>=给定元素的第一个位置
+
+ max_size()      返回可以容纳的最大元素个数
+
+ rbegin()        返回一个指向map尾部的逆向迭代器
+
+ rend()          返回一个指向map头部的逆向迭代器
+
+ size()          返回map中元素的个数
+
+ swap()           交换两个map
+
+ upper_bound()    返回键值>给定元素的第一个位置
+
+ value_comp()     返回比较元素value的函数
+
+
 ## 静态数组不能扩容（realloc）
 
 新分配在堆内的内存,数组定义之后不能改变大小，realloc(p,sizeof(p)+sizeof(int))函数不会改变p的值，新的内存地址是函数的返回值:
