@@ -45,7 +45,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1586096085316.png)
 
-**空间自适应反规范化**。 用$h^i$表示一批N个样本的深度卷积网络的第i层的激活。 用$C^i$表示第i层中通道的数量。用$H^i$和$W^i$表示第i层激活映射的高和宽。 我们提出一种新的条件规范化方式叫做空间自适应反规范化（SPADE）。与BatchNorm相似， 激活进行通道级别的规范化，然后使用学习到的放缩和偏置因子调整。图2展示了SPADE的设计。激活的值在该节点为$(n \in N, c \in C^i, y \in H^i, x \in W^i)$：
+**空间自适应反规范化**。 用$h^i$表示一批N个样本的深度卷积网络的第i层的激活。 用$C^i$表示第i层中通道的数量。用$H^i$和$W^i$表示第i层激活映射的高和宽。 我们提出一种新的条件规范化方式叫做空间自适应反规范化（SPADE）。与BatchNorm相似， 激活进行通道级别的规范化，然后使用学习到的放缩和偏置因子调整。图2展示了SPADE的设计。激活在某一节点使用SPADE规范化计算公式为$(n \in N, c \in C^i, y \in H^i, x \in W^i)$：
 
 $$\gamma_{c, y, x}(m) \frac{h_{n, c, y, x}^i - \mu_c^i}{\sigma_c^i} + \beta_{c, y, x}^i \tag 1$$
 
@@ -54,6 +54,7 @@ $$\gamma_{c, y, x}(m) \frac{h_{n, c, y, x}^i - \mu_c^i}{\sigma_c^i} + \beta_{c, 
 $$\mu_c^i = \frac{1}{NH^iW^i} \sum_{n, y, x} h_{n, c, y, x}^i \tag 2$$
 
 $$\sigma_c^i = \sqrt{\frac{1}{NH^iW^i}\sum_{n, y, x}((h_{n, c, y, x}^i)^2 - (\mu_c^i)^2)} \tag 3$$
+
 
 在（1）中的变量$\gamma_{c, y, x}^i(m)$和$\beta_{c, y, x}^i(m)$是规范化层学习到的调节参数。相比于BatchNorm， 它们依赖于输入分割掩膜，并分别随位置(y，x)而变化。我们使用符号$\gamma_{c, y, x}^i$和$\beta_{c, y, x}^i$表示在第i层激活映射节点(c, y, x)将m转化为放缩和偏置值的函数。 我们使用简单的两层卷积网络执行函数$\gamma_{c, y, x}^i$和$\beta_{c, y, x}^i$， 它的设计在附录中。
 
