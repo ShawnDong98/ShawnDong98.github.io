@@ -1133,6 +1133,18 @@ print(b.shape)
 
 将array广播成shape的形状
 
+
+## numpy.rollaxis
+
+numpy.rollaxis(arr, axis, start)
+
+- arr：数组
+- axis：要向后滚动的轴，其它轴的相对位置不会改变
+- start：默认为零，表示完整的滚动。会滚动到特定位置。
+
+
+
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
@@ -1243,6 +1255,17 @@ for i in pbar:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585587226945.png)
 
+
+
+# Bugs
+
+## NameError:name ‘xrange’ is not defined
+
+在Python 3中，range()与xrange()合并为range( )。
+我的python版本为python3.5。
+
+将xrange( )函数全部换为range( )。
+
 # Python Tricks
 
 ## 将20W张图片分别存放在100个文件夹中
@@ -1340,3 +1363,4 @@ pics.save("./processed_pic/merge_1.jpg")
 30. [numpy.where() 用法详解](https://www.cnblogs.com/massquantity/p/8908859.html)
 31. [python闭包与nonlocal简单注意点](https://blog.csdn.net/weixin_42404145/article/details/90317221)
 32. [matplotlib.pyplot中cla()、cls()、close()区别详解](https://blog.csdn.net/The_Time_Runner/article/details/89887802)
+33. [NameError:name ‘xrange’ is not defined](https://www.cnblogs.com/hdk1993/p/8893991.html)
