@@ -38,6 +38,7 @@ tags:
 - $\star$： \star
 - $\bigstar$： \bigstar
 - $\mathfrak{ABCdef}$：\mathfrak{ABCdef}
+- 向量$\vec{x}$： \vec{x}
 
 
 
