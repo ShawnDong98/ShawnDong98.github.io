@@ -41,6 +41,8 @@ tags:
 - 向量$\vec{x}$： \vec{x}
 
 
+$\downarrow$
+
 
 # LaTex
 
@@ -87,6 +89,36 @@ $$\sum\limits_{n = 0}^\infty$$
 效果：
 
 $$\mathop{\theta}\limits_{i=1}^2$$
+
+
+# 小书匠PPT常用语法
+
+## 水平幻灯片
+
+语法：
+```
+----
+```
+
+## 垂直幻灯片
+
+**注意前后都需要空一行**
+
+## convex动画转场
+
+```html
+<!-- .slide: data-transition="convex"-->
+```
+
+
+## concave背景动画转场
+
+```html
+<!-- .slide: data-background="#4d7e65" data-background-transition="concave"-->
+```
+
+
+
 
 
 # Reference
