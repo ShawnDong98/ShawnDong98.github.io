@@ -93,6 +93,18 @@ $$\mathop{\theta}\limits_{i=1}^2$$
 
 # 小书匠PPT常用语法
 
+## 颜色幻灯片背景
+
+``` html
+<!-- .slide: data-background="#ff0000" -->
+```
+
+## 图片幻灯片背景
+
+```html
+<!-- .slide: data-background="img/zen/3.jpg" -->
+```
+
 ## 水平幻灯片
 
 语法：
@@ -102,7 +114,13 @@ $$\mathop{\theta}\limits_{i=1}^2$$
 
 ## 垂直幻灯片
 
+语法：
+```
+--
+```
+
 **注意前后都需要空一行**
+
 
 ## convex动画转场
 
