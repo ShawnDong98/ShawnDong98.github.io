@@ -46,6 +46,13 @@ $\downarrow$
 
 # LaTex
 
+## LaTex语法
+
+引入中文包：
+
+这是为了显示中文字体 \\
+\usepackage[UTF8]{ctex}
+
 ## Markdown中LaTeX公式编号
 
 在Markdown中使用LaTeX公式时，加上\tag{...}标签可以生成对应的编号。
