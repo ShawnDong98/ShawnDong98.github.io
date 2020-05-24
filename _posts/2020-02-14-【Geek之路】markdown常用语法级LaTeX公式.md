@@ -40,14 +40,7 @@ tags:
 - $\mathfrak{ABCdef}$：\mathfrak{ABCdef}
 - 向量$\vec{x}$： \vec{x}
 
-$$g(z) = max(0, z)$$
-$$
-g(z)' = \begin{cases}
-0 & \text{if z < 0} \\
-1 & \text{if z > 0} \\
-undifined & \text{if z = 0}
-\end{cases}
-$$
+
 
 
 # LaTex
