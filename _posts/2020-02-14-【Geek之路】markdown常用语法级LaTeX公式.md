@@ -40,18 +40,35 @@ tags:
 - $\mathfrak{ABCdef}$：\mathfrak{ABCdef}
 - 向量$\vec{x}$： \vec{x}
 
-
-$\downarrow$
+$$g(z) = max(0, z)$$
+$$
+g(z)' = \begin{cases}
+0 & \text{if z < 0} \\
+1 & \text{if z > 0} \\
+undifined & \text{if z = 0}
+\end{cases}
+$$
 
 
 # LaTex
 
 ## LaTex语法
 
-引入中文包：
+
+### 引入中文包：
 
 这是为了显示中文字体 \\
 \usepackage[UTF8]{ctex}
+
+### 数学多条件公式
+
+```
+\begin{cases}
+
+\end{cases}
+```
+
+
 
 ## Markdown中LaTeX公式编号
 
