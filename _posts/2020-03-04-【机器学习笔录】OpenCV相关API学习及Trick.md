@@ -282,6 +282,59 @@ cv2.destroyAllWindows()#关闭窗口
 M=cv2.getAffineTransform(pos1,pos2),其中两个位置就是变换前后的对应位置关系。输出的就是仿射矩阵M。然后在使用函数cv2.warpAffine()。
 
 
+## 画矩形
+
+> cv2.rectangle(img, pt1, pt2, color[, thickness[, lineType[, shift]]]) 
+
+- img：要画的圆所在的矩形或图像
+- pt1：矩形左上角的点
+- pt2：矩形右下角的点
+- color：线条颜色，如 (0, 0, 255) 红色，BGR
+- thickness：线条宽度
+- lineType：\\
+8 (or omitted) ： 8-connected line \\
+4：4-connected line \\
+CV_AA - antialiased line
+- shift：坐标点小数点位数
+
+```python
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+"""
+@Time    : 2018-11-13 21：03
+@Author  : jianjun.wang
+@Email   : alanwang6584@gmail.com
+"""
+
+import numpy as np
+import cv2 as cv
+ 
+img = np.zeros((320, 320, 3), np.uint8) #生成一个空灰度图像
+print img.shape # 输出：(320, 320, 3)
+
+# 矩形左上角和右上角的坐标，绘制一个绿色矩形
+ptLeftTop = (60, 60)
+ptRightBottom = (260, 260)
+point_color = (0, 255, 0) # BGR
+thickness = 1 
+lineType = 4
+cv.rectangle(img, ptLeftTop, ptRightBottom, point_color, thickness, lineType)
+
+# 绘制一个红色矩形
+ptLeftTop = (120, 100)
+ptRightBottom = (200, 150)
+point_color = (0, 0, 255) # BGR
+thickness = 1
+lineType = 8
+cv.rectangle(img, ptLeftTop, ptRightBottom, point_color, thickness, lineType)
+
+cv.namedWindow("AlanWang")
+cv.imshow('AlanWang', img)
+cv.waitKey (10000) # 显示 10000 ms 即 10s 后消失
+cv.destroyAllWindows()
+
+```
+
 # Bug总结
 
 ## 'depth' is 6 (CV_64F)
@@ -302,3 +355,4 @@ http://blog.sina.com.cn/s/blog_662c7859010105za.html
 7. [How do I use OpenCV's remap function?](https://stackoverflow.com/questions/46520123/how-do-i-use-opencvs-remap-function)
 8. [opencv-python图片边框填充（padding）](https://blog.csdn.net/ngy321/article/details/80145242)
 9. [opencv关于图像imshow显示报错'depth' is 6 (CV_64F)](https://blog.csdn.net/qq_40637643/article/details/89704900)
+10. [Python 用 OpenCV 画矩形 (4)]https://blog.csdn.net/u011520181/article/details/84036425
