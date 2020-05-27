@@ -282,7 +282,7 @@ cv2.destroyAllWindows()#关闭窗口
 M=cv2.getAffineTransform(pos1,pos2),其中两个位置就是变换前后的对应位置关系。输出的就是仿射矩阵M。然后在使用函数cv2.warpAffine()。
 
 
-## 画矩形
+## 画矩形和文字注释
 
 > cv2.rectangle(img, pt1, pt2, color[, thickness[, lineType[, shift]]]) 
 
@@ -335,6 +335,11 @@ cv.destroyAllWindows()
 
 ```
 
+> cv2.putText(img, 'lena', (50,150), cv2.FONT_HERSHEY_COMPLEX, 5, (0, 255, 0), 12)
+
+
+
+
 # Bug总结
 
 ## 'depth' is 6 (CV_64F)
@@ -356,3 +361,4 @@ http://blog.sina.com.cn/s/blog_662c7859010105za.html
 8. [opencv-python图片边框填充（padding）](https://blog.csdn.net/ngy321/article/details/80145242)
 9. [opencv关于图像imshow显示报错'depth' is 6 (CV_64F)](https://blog.csdn.net/qq_40637643/article/details/89704900)
 10. [Python 用 OpenCV 画矩形 (4)]https://blog.csdn.net/u011520181/article/details/84036425
+11. [python下的opencv画矩形和文字注释](https://blog.csdn.net/alansss/article/details/84978672)
