@@ -1329,6 +1329,15 @@ pics.save("./processed_pic/merge_1.jpg")
 ```
 
 
+## 导入当前路径
+
+```python
+import sys 
+import os
+path = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(path)
+```
+
 
 # Reference
 1. [python 字符串补全填充固定长度（补0）的三种方法](https://blog.csdn.net/weixin_42317507/article/details/93411132)
