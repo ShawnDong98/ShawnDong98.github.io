@@ -1266,6 +1266,13 @@ for i in pbar:
 
 将xrange( )函数全部换为range( )。
 
+## python3出现module "importlib.\_bootstrap" has no attribute "SourceFileLoader"
+
+
+>有时候python或者pycharm会报出这个工具错误，此时使用如下命令重新安装工具包即可。
+python3 -m ensurepip --upgrade
+python会重新安装setuptools工具包
+
 # Python Tricks
 
 ## 将20W张图片分别存放在100个文件夹中
@@ -1373,3 +1380,4 @@ sys.path.append(path)
 31. [python闭包与nonlocal简单注意点](https://blog.csdn.net/weixin_42404145/article/details/90317221)
 32. [matplotlib.pyplot中cla()、cls()、close()区别详解](https://blog.csdn.net/The_Time_Runner/article/details/89887802)
 33. [NameError:name ‘xrange’ is not defined](https://www.cnblogs.com/hdk1993/p/8893991.html)
+34. [python3出现module "importlib._bootstrap" has no attribute "SourceFileLoader"](https://blog.csdn.net/qq_34696824/article/details/89609291)
