@@ -887,6 +887,29 @@ middleware是介于服务器程序和应用程序中间的部分，middleware对
 
 Eventlet 主要是用于网络并发的库，专注于代码运行逻辑。
 
+>  eventlet.listen(addr, family=2, backlog=50)
+
+创建套接字，可以用于 serve() 或一个定制的 accept() 循环。设置套接字的 SO_REUSEADDR 可以减少打扰。
+
+参数： \\
+- addr：要监听的地址，比如对于 TCP 协议的套接字，这是一个(host, port) 元组。
+- family：套接字族。
+- backlog：排队连接的最大个数，至少是1，上限由系统决定。
+
+返回:
+
+监听中的“绿色”套接字对象。
+
+> eventlet.wsgi.server(sock, site, log=None, environ=None, max_size=None, ...)
+
+创建一个WSGI服务器
+
+- sock: 服务器套接字，必须绑定一个端口监听
+- site：+WSGI应用函数
+- log：应写入日志的日志记录器实例或类似文件的对象。 如果提供了 Logger 实例，消息将被发送到 INFO 日志级别。 如果未指定，则使用 sys.stderr。
+- environ：每个请求的 environ 字典中的附加参数。
+- max_size： 此服务器在任何时候打开的客户端连接的最大数量。默认值为1024。
+
 
 
 
