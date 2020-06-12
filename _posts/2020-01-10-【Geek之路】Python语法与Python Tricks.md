@@ -793,6 +793,34 @@ sio.emit('my event', {'data': 'foobar'})
 sio.emit('my event', {'data': 'foobar'}, room=user_sid)
 ```
 
+Socket.IO server 是 socketio.Server 的一个实例。 通过使用 socketio.WSGIApp 类包装这个实例，可以将其转换为标准的 WSGI 应用程序:
+
+```python
+import socketio
+
+# create a Socket.IO server
+sio = socketio.Server()
+
+# wrap with a WSGI application
+app = socketio.WSGIApp(sio)
+```
+
+对于基于异步的服务器, socketio.AsyncServer类提供了相同的功能, 但是是以协同程序友好的格式。如果需要，socketio.ASGIApp 类可以将服务器转换为标准的 ASGI 应用程序:
+
+```python
+# create a Socket.IO server
+sio = socketio.AsyncServer()
+
+# wrap with ASGI application
+app = socketio.ASGIApp(sio)
+```
+
+这两个包装器还可以充当中间件，将不打算发送到 Socket.IO 服务器的任何流量转发到另一个应用程序。 这使得 Socket.IO 服务器可以轻松地集成到现有的 WSGI 或 ASGI 应用程序中:
+
+```python
+from wsgi import app  # a Flask, Django, etc. application
+app = socketio.WSGIApp(sio, app)
+```
 
 
 ## eventlet
