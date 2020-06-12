@@ -827,6 +827,64 @@ app = socketio.WSGIApp(sio, app)
 
 ## eventlet
 
+Eventlet 主要是用于网络并发的库，专注于代码运行逻辑。
+
+### 什么是 WSGI
+
+Python web开发中，服务端程序可分为2个部分：
+- 1、服务器程序（用来接收、整理客户端发送的请求）
+- 2、应用程序（处理服务器程序传递过来的请求）
+
+在开发应用程序的时候，我们会把常用的功能封装起来，成为各种框架，比如Flask，Django，Tornado（使用某框架进行web开发，相当于开发服务端的应用程序，处理后台逻辑）但是，服务器程序和应用程序互相配合才能给用户提供服务，而不同应用程序（不同框架）会有不同的函数、功能。 此时，我们就需要一个标准，让服务器程序和应用程序都支持这个标准，那么，二者就能很好的配合了
+
+WSGI 是 python web 开发的标准，类似于协议。它是服务器程序和应用程序的一个约定，规定了各自使用的接口和功能，以便二和互相配合
+
+WSGI应用程序的部分规定
+
+1. 应用程序是一个可调用的对象 \\
+    可调用的对象有三种：\\
+  1)、一个函数 \\
+  2)、一个类，必须实现call()方法 \\
+  3)、一个类的实例 \\
+2. 这个对象接收两个参数 \\
+    这两个参数是environ, start_response. 以可调用对象为一个类为例:
+	
+```python
+class application:
+    def __call__(self, environ, start_response):
+        pass
+```
+
+3. 可调用对象需要返回一个可迭代的值。以可调用对象为一个类为例：
+
+```python
+class application:
+    def __call__(self, environ, start_response):
+        return [xxx]
+```
+
+WSGI服务器程序的部分规定
+
+服务器程序需要调用应用程序
+
+```python
+def run(application):               #服务器程序调用应用程序
+    environ = {}                    #设定参数
+    def start_response(xxx):        #设定参数
+        pass
+    result = application(environ, start_response)          #调用应用程序的__call__函数（这里应用程序是一个类）
+    def write(data):
+               pass
+    def data in result:             #迭代访问
+        write(data)
+```
+
+Middleware
+
+middleware是介于服务器程序和应用程序中间的部分，middleware对服务器程序和应用程序是透明的。
+
+- 对于服务器程序来说，middleware就是应用程序，middleware需要伪装成应用程序，传递给服务器程序
+- 对于应用程序来说，middleware就是服务器程序，middleware需要伪装成服务器程序，接受并调用应用程序
 
 
 # os和sys
@@ -1490,3 +1548,4 @@ sys.path.append(path)
 33. [NameError:name ‘xrange’ is not defined](https://www.cnblogs.com/hdk1993/p/8893991.html)
 34. [python3出现module "importlib._bootstrap" has no attribute "SourceFileLoader"](https://blog.csdn.net/qq_34696824/article/details/89609291)
 35. [python中的base64加密解密](https://www.cnblogs.com/songzhixue/p/11253243.html)
+36. [Python eventlet 模块笔记](https://blog.csdn.net/u010827484/article/details/81223035)
