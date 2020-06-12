@@ -822,14 +822,9 @@ from wsgi import app  # a Flask, Django, etc. application
 app = socketio.WSGIApp(sio, app)
 ```
 
-> Web服务器网关接口（Python Web Server Gateway Interface，缩写为WSGI）是为Python语言定义的Web服务器和Web应用程序或框架之间的一种简单而通用的接口。自从WSGI被开发出来以后，许多其它语言中也出现了类似接口。
-
-
-## eventlet
-
-Eventlet 主要是用于网络并发的库，专注于代码运行逻辑。
-
 ### 什么是 WSGI
+
+> Web服务器网关接口（Python Web Server Gateway Interface，缩写为WSGI）是为Python语言定义的Web服务器和Web应用程序或框架之间的一种简单而通用的接口。自从WSGI被开发出来以后，许多其它语言中也出现了类似接口。
 
 Python web开发中，服务端程序可分为2个部分：
 - 1、服务器程序（用来接收、整理客户端发送的请求）
@@ -885,6 +880,15 @@ middleware是介于服务器程序和应用程序中间的部分，middleware对
 
 - 对于服务器程序来说，middleware就是应用程序，middleware需要伪装成应用程序，传递给服务器程序
 - 对于应用程序来说，middleware就是服务器程序，middleware需要伪装成服务器程序，接受并调用应用程序
+
+
+
+## eventlet
+
+Eventlet 主要是用于网络并发的库，专注于代码运行逻辑。
+
+
+
 
 
 # os和sys
