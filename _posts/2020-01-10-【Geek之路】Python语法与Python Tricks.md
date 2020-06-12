@@ -760,7 +760,7 @@ print(str_url)
 
 Socket.IO协议是基于事件的。 当一个客户端想要和服务器通信时，它会发出一个事件。每个事件都有一个名字和一系列参数。 
 
-服务器使用 socketio.Server.event() 或者 socketio.Server.on() 装饰器注册时间句柄。
+服务器使用 socketio.Server.event() 或者 socketio.Server.on() 装饰器注册事件句柄。
 
 > @sio.on('telemetry')
 
