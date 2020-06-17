@@ -1359,7 +1359,7 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 
 ## 读取csv文件
 
-> pandas.read_csv(filepath_or_buffer, sep=’, ‘, delimiter=None, header=’infer’, ...)
+> pandas.read_csv(filepath_or_buffer, sep=’, ‘, delimiter=None, header=’infer’, encoding=None,  ...)
 
 - filepath_or_buffer : 路径 URL 可以是http, ftp, s3, 和 file.
 
@@ -1371,6 +1371,27 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 
 - header: 指定第几行作为列名(忽略注解行)，如果没有指定列名，默认header=0; 如果指定了列名header=None
 
+- encoding: 编码方式
+
+## iloc
+
+iloc按位置进行提取, 按索引提取区域行数值
+
+> df_inner.iloc[0:5]
+
+
+## loc 
+
+loc函数按标签值进行提取, 按索引提取单行的数值
+
+> df_inner.loc[3]
+
+## ix
+
+
+ix可以同时按标签和位置进行提取。
+
+> df_inner.ix[:'2013-01-03',:4] #2013-01-03号之前，前四列数据
 
 
 # matplotlib语法
