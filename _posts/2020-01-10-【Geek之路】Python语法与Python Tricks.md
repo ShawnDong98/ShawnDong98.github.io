@@ -1357,6 +1357,22 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 
 # pandas语法
 
+## 读取csv文件
+
+> pandas.read_csv(filepath_or_buffer, sep=’, ‘, delimiter=None, header=’infer’, ...)
+
+- filepath_or_buffer : 路径 URL 可以是http, ftp, s3, 和 file.
+
+- sep: 指定分割符，默认是’,’C引擎不能自动检测分隔符，但Python解析引擎可以
+
+- delimiter: 同sep
+
+- delimiter_whitespace: True or False 默认False, 用空格作为分隔符等价于spe=’\s+’如果该参数被调用，则delimite不会起作用
+
+- header: 指定第几行作为列名(忽略注解行)，如果没有指定列名，默认header=0; 如果指定了列名header=None
+
+
+
 # matplotlib语法
 
 ## subplot
@@ -1576,3 +1592,4 @@ sys.path.append(path)
 34. [python3出现module "importlib._bootstrap" has no attribute "SourceFileLoader"](https://blog.csdn.net/qq_34696824/article/details/89609291)
 35. [python中的base64加密解密](https://www.cnblogs.com/songzhixue/p/11253243.html)
 36. [Python eventlet 模块笔记](https://blog.csdn.net/u010827484/article/details/81223035)
+37. [pd.read_csv用法](https://blog.csdn.net/weixin_44056331/article/details/89366105)
