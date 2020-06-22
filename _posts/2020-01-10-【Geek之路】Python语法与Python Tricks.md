@@ -948,6 +948,38 @@ list 的 sort 方法返回的是对已经存在的列表进行操作，而内建
 - required - 此命令行选项是否可省略 （仅选项可用）。
 - metavar - 在使用方法消息中使用的参数值示例。
 - dest - 设置参数在代码中的变量名。
+- action - add_argument中默认action=’store‘，直接保存从运行终端或程序中传入的变量。如果想修改为常量，需要修改action='store_const'，然后指定const。
+
+```python
+parser.add_argument('--foo', action='store_const', const=42)
+```
+
+store_true/false - 如果需要存储True或者False，只要指定action='store_true/false'
+
+```python
+parser.add_argument('--foo', action='store_true')
+parser.add_argument('--foo', action='store_false')
+```
+
+需要注意的是，如果指定action为store_const或者store_true，则参数不可再进行赋值
+
+append - 同一参数，需要多个值时候，需要指定action='append'
+
+```python
+parser.add_argument('--foo', action='append')
+
+D:\desktop>python argparseLearn.py  --foo 1 --foo 2
+Namespace(foo=['1', '2'])
+```
+
+version - 需要指定action='version'，打印version后会自动退出
+
+```python
+parser.add_argument('--version',action='version',version='PROG 2.0')
+
+D:\desktop>python argparseLearn.py  --version
+PROG 2.0
+```
 
 # os和sys
 
