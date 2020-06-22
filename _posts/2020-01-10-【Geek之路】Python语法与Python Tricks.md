@@ -933,7 +933,20 @@ list 的 sort 方法返回的是对已经存在的列表进行操作，而内建
 
 > sorted(iterable, key=None, reverse=False)  
 
+## argparse
 
+创建解析器对象
+
+> class argparse.ArgumentParser(prog=None, usage=None, description=None, epilog=None, parents=[], formatter_class=argparse.HelpFormatter, prefix_chars='-', fromfile_prefix_chars=None, argument_default=None, conflict_handler='error', add_help=True, allow_abbrev=True)
+
+添加参数
+
+> ArgumentParser.add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])
+
+- name or flags - 一个命名或者一个选项字符串的列表，例如 foo 或 -f, --foo
+- choices - 可用的参数的容器。
+- required - 此命令行选项是否可省略 （仅选项可用）。
+- metavar - 在使用方法消息中使用的参数值示例。
 
 # os和sys
 
