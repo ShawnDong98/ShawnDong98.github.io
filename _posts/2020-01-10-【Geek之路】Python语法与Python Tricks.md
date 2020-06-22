@@ -309,7 +309,11 @@ I'm in init \\
 I'm in apply \\
 I'm in call
 
+## callable
 
+callable() 函数用于检查一个对象是否是可调用的。如果返回 True，object 仍然可能调用失败；但如果返回 False，调用对象 object 绝对不会成功。
+
+> callable(object)
 
 ## 装饰器 
 
