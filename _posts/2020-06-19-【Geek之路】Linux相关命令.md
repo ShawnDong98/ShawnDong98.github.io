@@ -75,5 +75,42 @@ tmpfs                         3.9G     0  3.9G   0% /dev/shm
 
 # 进程
 
+
+# screen命令
+
+进入screen会话后，可在会话中创建多个窗口（window），并对窗口进行管理，管理命令以ctrl + a开头。
+
+在已有screen会话中创建新的窗口:
+
+1.在当前screen窗口中键入C-a c，即Ctrl键+a键，之后再按下c键，screen 在该会话内生成一个新的窗口并切换到该窗口
+
+2. C-a n，即Ctrl键+a键,之后再按下n键, 切换到下一个窗口； C-a p，即Ctrl键+a键,之后再按下p键, 切换到前一个窗口
+
+3. ctrl a + k 关闭当前窗口
+
+4.常用screen参数:
+
+screen -S yourname -> 新建一个叫yourname的session
+
+screen -ls -> 列出当前所有的session
+
+screen -r yourname -> 回到yourname这个session
+
+screen -d yourname -> 远程detach某个session
+
+screen -d -r yourname -> 结束当前session并回到yourname这个session
+
+screen -D -r yourname-> 结束当前的session,并logout,再链接yourname这个session
+
+用screen -d命令detached 会话后， 如何杀死会话：
+
+screen -S 23536 -X quit
+
+# 压缩与解压
+
+
+
+
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
+2. [linux screen 命令小结](https://zhuanlan.zhihu.com/p/42551093)
