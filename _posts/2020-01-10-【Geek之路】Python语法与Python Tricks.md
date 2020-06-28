@@ -981,6 +981,7 @@ D:\desktop>python argparseLearn.py  --version
 PROG 2.0
 ```
 
+
 # os和sys
 
 
@@ -1643,6 +1644,44 @@ sys.path.append(path)
 ```
 
 
+## 引用不同目录下的包
+
+### import 上级目录
+
+有时候我们可能需要import另一个路径下的python文件，例如下面这个目录结构，我们想要在_train.py里import在networks目录下的_lstm.py和上级目录下的_config.py。
+
+```python
+_config.py
+networks
+    _lstm.py
+    _cnn.py
+pipelines
+    _train.py
+```
+
+- 在networks文件夹下创建空的__init__.py文件
+
+```python
+_config.py
+networks
+    __init__.py
+    _lstm.py
+    _cnn.py
+pipelines
+    _train.py
+```
+
+- 使用sys库添加路径
+
+```python
+import sys
+sys.path.append("..")
+from networks._lstm import *
+from _config import *
+```
+
+
+
 # Reference
 1. [python 字符串补全填充固定长度（补0）的三种方法](https://blog.csdn.net/weixin_42317507/article/details/93411132)
 2. [Python3 菜鸟教程](https://www.runoob.com/python3/python3-assert.html)
@@ -1683,3 +1722,4 @@ sys.path.append(path)
 37. [pd.read_csv用法](https://blog.csdn.net/weixin_44056331/article/details/89366105)
 38. [pandas用法总结](https://blog.csdn.net/yiyele/article/details/80605909)
 39. [argparse简要用法总结](http://vra.github.io/2017/12/02/argparse-usage/)
+40. [python 导入同级目录文件、上级目录文件以及下级目录数据集和模块包](https://www.cnblogs.com/ipersevere/p/10916803.html)
