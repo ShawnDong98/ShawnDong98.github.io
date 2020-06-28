@@ -1065,7 +1065,11 @@ print(os.path.dirname(os.getcwd()))
 
 
 
+## os.environ
 
+可用于设置可用GPU
+
+> os.environ['CUDA_VISIBLE_DEVICES'] = '0, 2, 3, 4'
 
 # numpy语法
 
