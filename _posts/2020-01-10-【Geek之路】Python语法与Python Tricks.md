@@ -1737,3 +1737,4 @@ pip install -r requirements.txt
 38. [pandas用法总结](https://blog.csdn.net/yiyele/article/details/80605909)
 39. [argparse简要用法总结](http://vra.github.io/2017/12/02/argparse-usage/)
 40. [python 导入同级目录文件、上级目录文件以及下级目录数据集和模块包](https://www.cnblogs.com/ipersevere/p/10916803.html)
+41. [Python 生成requirement 使用requirements.txt](https://blog.csdn.net/qq_41856814/article/details/89739514)
