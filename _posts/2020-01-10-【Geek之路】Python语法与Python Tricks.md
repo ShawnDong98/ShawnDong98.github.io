@@ -1687,7 +1687,7 @@ from _config import *
 
 ## 生成 requirements
 
-```python
+```
 生成requirements.txt文件
 pip freeze > requirements.txt
 
