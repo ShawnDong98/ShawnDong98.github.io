@@ -1685,6 +1685,16 @@ from _config import *
 ```
 
 
+## 生成 requirements
+
+```python
+生成requirements.txt文件
+pip freeze > requirements.txt
+
+安装requirements.txt依赖
+pip install -r requirements.txt
+```
+
 
 # Reference
 1. [python 字符串补全填充固定长度（补0）的三种方法](https://blog.csdn.net/weixin_42317507/article/details/93411132)
