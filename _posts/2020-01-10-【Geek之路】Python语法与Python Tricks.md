@@ -1139,6 +1139,19 @@ length of X: 3
 
 沿着新轴连接数组的序列。
 
+## np.vstack
+
+vstack 表示将数组在第一维进行堆叠（即最外层的方括号），可将 arr1 和 arr2 第一维内的部分视为一个整体
+
+
+## np.hstack
+
+hstack 表示将数组在第二维进行堆叠（即第二层方括号），可将 arr 第二层括号里面的东西视为一个整体
+
+## np.dstack
+
+dstack 表示将数组在第三维进行堆叠（即第三层方括号），可将 arr 第三层括号里面的东西视为一个整体
+
 ## np.ravel
 
 > numpy.ravel(a, order='C')
@@ -1738,3 +1751,4 @@ pip install -r requirements.txt
 39. [argparse简要用法总结](http://vra.github.io/2017/12/02/argparse-usage/)
 40. [python 导入同级目录文件、上级目录文件以及下级目录数据集和模块包](https://www.cnblogs.com/ipersevere/p/10916803.html)
 41. [Python 生成requirement 使用requirements.txt](https://blog.csdn.net/qq_41856814/article/details/89739514)
+42. [numpy vstack hstack dstack 区别](https://www.jianshu.com/p/07fd005b0b42)
