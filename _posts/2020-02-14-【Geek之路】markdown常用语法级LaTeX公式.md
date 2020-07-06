@@ -42,7 +42,6 @@ tags:
 
 
 
-
 # LaTex
 
 ## LaTex语法
@@ -61,9 +60,23 @@ tags:
 \end{cases}
 ```
 
+### 矩阵
+
+$$
+P = from \quad
+\begin{matrix}
+    to \\
+	\left[\begin{array}{rr}
+	p_{11} & ... & p_{1n} \\
+	... \\
+	p_{n1} & ... & p_{nn}
+	\end{array}\right]
+\end{matrix}
+$$
 
 
-## Markdown中LaTeX公式编号
+
+### Markdown中LaTeX公式编号
 
 在Markdown中使用LaTeX公式时，加上\tag{...}标签可以生成对应的编号。
 
@@ -75,7 +88,7 @@ tags:
 
 $$x+y = z \tag{1.1}$$
 
-## LaTex 箭头上添加文字
+### LaTex 箭头上添加文字
 
 用法：
 
@@ -89,7 +102,7 @@ $$x+y = z \tag{1.1}$$
  
   $$0\stackrel{a}{\longrightarrow}1$$
   
-## Latex在符号上下加文字
+### Latex在符号上下加文字
   
 1. 如果是数学符号，那么直接用\limits命令放在正下方，如
   
@@ -162,3 +175,4 @@ $$\mathop{\theta}\limits_{i=1}^2$$
 3. [latex中怎么在符号正上和正下方编写公式](https://blog.csdn.net/WASEFADG/article/details/50499350?utm_source=blogxgwz0)
 4. [LaTex 把上下标符号放在正上和正下方公式介绍](https://blog.csdn.net/z_feng12489/article/details/101422618)
 5. [Markdown符号和公式](https://blog.csdn.net/xufox/article/details/91048187)
+6. [markdown中在矩阵运算上方增加矩阵名称](https://blog.csdn.net/banglu2731/article/details/101079241)
