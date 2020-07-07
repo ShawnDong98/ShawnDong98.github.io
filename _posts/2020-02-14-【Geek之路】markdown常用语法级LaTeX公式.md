@@ -88,6 +88,65 @@ P = from \quad
 \end{matrix}
 $$
 
+矩阵中加入省略号
+
+```
+$$
+\begin{matrix}\
+	\left[\begin{array}{ccc}
+	v(1) \\
+	\vdots \\
+	v(n)
+	\end{array}\right]
+	= 
+	\left[\begin{array}{ccc}
+	R_1 \\
+	\vdots\\
+	R_n
+	\end{array}\right]
+	+ \gamma
+	\left[\begin{array}{ccc}
+	P_{11} & \cdots & P_{1n}\\
+	\vdots \\
+	P_{n1} & \cdots & P_{nn}
+	\end{array}\right]
+	\left[\begin{array}{ccc}
+	v(1) \\
+	\vdots \\
+	v(n)
+	\end{array}\right]
+\end{matrix}
+$$
+```
+
+$$
+\begin{matrix}\
+	\left[\begin{array}{ccc}
+	v(1) \\
+	\vdots \\
+	v(n)
+	\end{array}\right]
+	= 
+	\left[\begin{array}{ccc}
+	R_1 \\
+	\vdots\\
+	R_n
+	\end{array}\right]
+	+ \gamma
+	\left[\begin{array}{ccc}
+	P_{11} & \cdots & P_{1n}\\
+	\vdots \\
+	P_{n1} & \cdots & P_{nn}
+	\end{array}\right]
+	\left[\begin{array}{ccc}
+	v(1) \\
+	\vdots \\
+	v(n)
+	\end{array}\right]
+\end{matrix}
+$$
+
+其中{ccc}居中，{rr}向右对齐
 
 
 ### Markdown中LaTeX公式编号
