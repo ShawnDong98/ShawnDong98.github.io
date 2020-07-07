@@ -62,6 +62,20 @@ tags:
 
 ### 矩阵
 
+```latex
+$$
+P = from \quad
+\begin{matrix}
+    to \\
+	\left[\begin{array}{rr}
+	p_{11} & ... & p_{1n} \\
+	... \\
+	p_{n1} & ... & p_{nn}
+	\end{array}\right]
+\end{matrix}
+$$
+```
+
 $$
 P = from \quad
 \begin{matrix}
