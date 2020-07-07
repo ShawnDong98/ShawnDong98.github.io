@@ -249,3 +249,4 @@ $$\mathop{\theta}\limits_{i=1}^2$$
 4. [LaTex 把上下标符号放在正上和正下方公式介绍](https://blog.csdn.net/z_feng12489/article/details/101422618)
 5. [Markdown符号和公式](https://blog.csdn.net/xufox/article/details/91048187)
 6. [markdown中在矩阵运算上方增加矩阵名称](https://blog.csdn.net/banglu2731/article/details/101079241)
+7. [latex中矩阵里面的省略号怎么表示](https://zhidao.baidu.com/question/162572792.html)
