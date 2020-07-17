@@ -1240,6 +1240,26 @@ array([ 6,  8, 10])
 (array([0, 1]), array([1, 0]))
 ```
 
+## np.all()
+
+> np.all()
+
+返回的是一个布尔类型的值
+
+例子：
+
+```python
+np.all([[True,False],[True,True]])
+False
+默认为对数组里的每个元素进行与运算
+```
+
+```python
+np.all([[True,False],[True,True]], axis=0)
+array([ True, False], dtype=bool)
+当给定axis的值时，则是按照给定方向进行与运算
+```
+
 ## np.random.normal()
 
 > numpy.random.normal(loc=0.0, scale=1.0, size=None) 
