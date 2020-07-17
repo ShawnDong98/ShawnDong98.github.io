@@ -1275,6 +1275,18 @@ array([ 6,  8, 10])
 - dtype: dtype(可选)：
 想要输出的格式。如int64、int等等
 
+## np.random.choice
+
+> numpy.random.choice(a, size=None, replace=True, p=None)
+
+从a(只要是ndarray都可以，但必须是一维的)中随机抽取数字，并组成指定大小(size)的数组
+
+size可以是list或者tuple
+
+replace:True表示可以取相同数字，False表示不可以取相同数字
+
+数组p：与数组a相对应，表示取数组a中每个元素的概率，默认为选取每个元素的概率相同。
+
 ## np.maximum、 np.minimum
 
 ### np.max 与 np.maximum
@@ -1752,3 +1764,4 @@ pip install -r requirements.txt
 40. [python 导入同级目录文件、上级目录文件以及下级目录数据集和模块包](https://www.cnblogs.com/ipersevere/p/10916803.html)
 41. [Python 生成requirement 使用requirements.txt](https://blog.csdn.net/qq_41856814/article/details/89739514)
 42. [numpy vstack hstack dstack 区别](https://www.jianshu.com/p/07fd005b0b42)
+43. [python，numpy中np.random.choice()的用法详解及其参考代码](https://blog.csdn.net/ImwaterP/article/details/96282230)
