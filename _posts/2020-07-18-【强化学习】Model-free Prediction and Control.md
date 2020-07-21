@@ -199,6 +199,29 @@ MC仅工作在episodic（终结的）的环境
 TD利用了马尔科夫属性， 在马尔科夫环境中更有效 \\
 MC没有使用马尔科夫属性， 在非马尔科夫环境中更有效
 
+
+### n-step TD
+
+n-step TD 方法可以推广位 one-step TD 和 MC
+
+我们可以从1到移动到其他的一个特定任务所需的数
+
+对于$n = 1, 2, \infty$, 考虑下面的 n-step 回报：
+
+$$n=1(TD) \quad G_t^{(1)} = R_{t+1} + \gamma v(S_{t+1})$$
+
+$$n=2 \quad G_t^{(2)} = R_{t+1} + \gamma R_{t+2} + \gamma^2 v(S_{t+2})$$
+
+$$n = \infty(MC) \quad G_t^{\infty} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{T-t-1} R_T$$
+
+因此 n-step 回报可以定义为：
+
+$$G_t^n = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{n-1} R_{t+n} + \gamma^n v(S_{t+n})$$
+
+n-step TD:
+
+$$v(S_t) \leftarrow v(S_t) + \alpha(G_t^n - v(S_t))$$
+
 # Model-free Control
 
 最优化未知MDP的价值函数
