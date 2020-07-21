@@ -121,9 +121,9 @@ $$v(S_t) \leftarrow v(S_t) + \alpha (G_t - v(S_t))$$
 如果在计算之前，你不清楚有多少数据，且数据是一个一个获得， 此时计算的平均值称之为running_mean, 这样的计算场景称之为online。 
 
 
-# 策略评估中DP和MC的区别
+### 策略评估中DP和MC的区别
 
-## 动态规划（DP）
+**动态规划（DP）**
 
 动态规划(DP)通过由$v_{i-1}$估计的价值 bootstrapping得到其余的期望回报计算$v_i$
 
@@ -136,7 +136,7 @@ $$v_i(s) \leftarrow \sum_{a \in A} \pi(a \mid s) (R(s, a) + \gamma \sum_{s' \in 
 
 
 
-## 蒙特卡罗（MC）
+**蒙特卡罗（MC）**
 
 MC通过**一个采样的episode**更新期望回报
 
@@ -144,7 +144,7 @@ $$v(S_t) \leftarrow v(S_t) + \alpha (G_{i, t} - v(S_t))$$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595320632024.png)
 
-## MC相对DP的优势
+**MC相对DP的优势**
 
 MC可以工作在环境未知的情况下
 
@@ -152,7 +152,52 @@ MC可以工作在环境未知的情况下
 
 计算单个状态价值的成本独立于状态的总数量。 因此我们可以从感兴趣的状态开始采样episodes， 然后平均回报。
 
+## Temporal-Difference（TD）Learning
 
+TD方法从经历的episodes中直接学习
+
+TD是model-free的： 无 MDP 转移/奖励 的知识
+
+TD从不完整的episodes中通过bootstrapping学习
+
+
+目标： 在策略$pi$下从经历中在线学习$v_\pi$
+
+最简单的TD算法： TD(0)
+- 通过估计回报$R_{t+1} + \gamma v(S_{t+1})$更新$v(S_t)$
+- $$v(S_t) \leftarrow v(S_t) + \alpha(R_{t+1} + \gamma v(S_{t+1}) - v(S_t))$$
+
+$R_{t+1} + \gamma v(S_{t+1})$被叫做TD target
+
+$\delta_t = R_{t+1} + \gamma v(S_{t+1}) - v(S_t)$被叫做TD error
+
+比较： 增量式的Monte-Carlo
+- 给定一个episode $i$，  通过真实的回报 $G_t$ 更新 $v(S_t)$
+- $$v(S_t) \leftarrow v(S_t) + \alpha (G_{i, t} - v(S_t))$$
+
+### TD相对MC的优势
+
+TD更新价值估计 使用$s_{t+1}$的采样 去估计一个期望
+
+TD更新价值估计通过bootstrapping， 使用$V(s_{t+1})$估计
+
+MC更新价值估计 使用一个回报的采样 去估计一个期望
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595322149696.png)
+
+### TD和MC的比较
+
+TD能够在每一步后在线学习 \\
+MC在回报已知前必须等待至episode的结束
+
+TD可以从不完整的序列中学习 \\
+MC只能从完成的序列中学习
+
+TD工作在连续的(非终结的)环境 \\
+MC仅工作在episodic（终结的）的环境
+
+TD利用了马尔科夫属性， 在马尔科夫环境中更有效 \\
+MC没有使用马尔科夫属性， 在非马尔科夫环境中更有效
 
 # Model-free Control
 
