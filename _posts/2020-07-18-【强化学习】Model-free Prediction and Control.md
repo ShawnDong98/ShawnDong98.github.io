@@ -222,9 +222,56 @@ n-step TD:
 
 $$v(S_t) \leftarrow v(S_t) + \alpha(G_t^n - v(S_t))$$
 
+## 对于DP、MC和TD的Bootstrapping和Sampling
+
+Bootstrapping： 一次估计一次更新
+- MC没有bootstrap
+- DP有bootstrap
+- TD有bootstrap
+
+Sampling： 采样一次期望更新一次
+- MC 采样
+- DP不采样
+- TD采样
+
+
+![Dynamic Programming Backup](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595346873170.png)
+
+![Monte-Carlo Backup](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595346904246.png)
+
+![Temporal-Difference Backup](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595346929158.png)
+
 # Model-free Control
 
 最优化未知MDP的价值函数
+
+## Policy Iteration
+
+通过两步迭代：
+- 评估策略$\pi$（给定当前$\pi$， 计算$v$）
+- 分别对$v_\pi$使用贪心算法提升策略
+
+$$\pi' = greedy(v_\pi)$$
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595410221707.png)
+
+## 已知MDP的Policy Iteration
+
+这是一个动态规划（DP）方法的Policy Iteration
+
+计算一个策略$\pi$的state-action value：
+
+$$q_{\pi_i}(s, a) = R(s, a) + \gamma \sum_{s' \in S} P(s' \mid s, a) v_{\pi_i}(s')$$
+
+对所有的$s \in S$计算新的策略$\pi_{i+1}$有：
+
+$$\pi_{i+1}(s) = \mathop{argmax}_a q_{\pi_i}(s, a)$$
+
+问题：如果没有$R_{s, a}$和$P(s' \mid s, a)$应该怎么做？
+
+## 使用Action-Value函数的广义Policy Iteration
+
+
 
 
 
