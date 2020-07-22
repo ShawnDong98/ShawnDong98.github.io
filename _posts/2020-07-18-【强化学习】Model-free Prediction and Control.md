@@ -271,6 +271,14 @@ $$\pi_{i+1}(s) = \mathop{argmax}_a q_{\pi_i}(s, a)$$
 
 ## 使用Action-Value函数的广义Policy Iteration
 
+这是一个使用蒙特卡洛方法的Policy Iteration
+
+策略评估： 蒙特卡罗策略评估： $Q = q_\pi$
+
+策略提升： 通过贪心策略改进它
+
+$$\pi(s) = \mathop{argmax}_a q(s, a)$$
+
 
 
 
