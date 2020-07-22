@@ -280,6 +280,28 @@ $$\pi_{i+1}(s) = \mathop{argmax}_a q_{\pi_i}(s, a)$$
 $$\pi(s) = \mathop{argmax}_a q(s, a)$$
 
 
+## 探索开始的蒙特卡罗（Monte Carlo ES（Exploring Starts））
+
+能够保证$\pi$收敛的一个假设是： episode有探索的开始
+
+探索的开始可以保证所有的action被无限地选择
+
+初始化：
+- 对于所有的$s \in S$， $\pi(s) \in A(s)$(任意地)
+- 对于所有的$s \in S, a \in A(s)$， $Q(s, a) \in R$(任意地)
+- 对于所有的$s \in S, a \in A(s)$， $Returns(s, a) \leftarrow$ empty list
+
+无限循环(对于每一个episode)：
+- 当概率大于0时，随机地选择$S_0 \in S, A_0 \in A(S_0)$
+- 在策略$\pi$下， 从$S_0, A_0$产生一段episode： $S_0, A_0, R_1, ..., S_{T-1}, A_{T-1}, R_T$, $G \leftarrow 0$
+- $t = T-1, T-2, ..., 0$, episode的每步循环：\\
+$G \leftarrow \gamma G + R_{t+1}$ \\
+除非在$S_0, A_0, S_1, A_1, ..., S_{t-1}, A_{t-1}$中出现$S_t, A_t$ \\
+添加$G$到$Returns(S_t, A_t)$ \\
+$Q(S_t, A_t) \leftarrow average(Returns(S_t, A_t))$ \\
+$\pi(S_t) \leftarrow \mathop{argmax}_a Q(S_t, a)$
+
+
 
 
 
