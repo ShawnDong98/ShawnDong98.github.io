@@ -95,6 +95,16 @@ Python startswith() 方法用于检查字符串是否是以指定子字符串开
 
 检测是否是小写
 
+
+### split
+
+> str.split(str="", num=string.count(str)).
+
+通过指定分隔符对字符串进行切片，如果参数 num 有指定值，则分隔 num+1 个子字符串
+
+- str -- 分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等。
+- num -- 分割次数。默认为 -1, 即分隔所有。
+
 ## map
 
 > map（func, *iterables）:第一个是函数，第二个是可迭代序列
