@@ -302,6 +302,34 @@ $Q(S_t, A_t) \leftarrow average(Returns(S_t, A_t))$ \\
 $\pi(S_t) \leftarrow \mathop{argmax}_a Q(S_t, a)$
 
 
+# $\epsilon$-Greedy 探索的蒙特卡罗
+
+权衡探索和发掘
+
+$epsilon$-Greedy 探索： 确保连续的探索
+- 所有的action以一个非零的概率尝试
+- 以 $1 - \epsilon$ 的概率选择贪心策略的action
+- 以概率$\epsilon$随机地选择action
+
+$$
+\pi(a \mid s) = 
+\begin{cases}
+\epsilon / \mid A \mid + 1 - \epsilon &  if \quad a* = argmax_{a \in A} Q(s, a) \\
+\epsilon / \mid A \mid & otherwise
+\end{cases}
+$$
+
+
+策略提升理论： 对于任意的$\epsilon$-greedy策略$\pi$， $\epsilon$-greedy策略$\pi'$关于$q_\pi$是一种改进， $v_{\pi'} \geq v_{\pi}(s)$
+
+$$
+q(s, \pi'(s)) = \sum_{a \in A} \pi'(a \mid s) q_\pi(s, a) \\
+= \frac{\epsilon}{\mid A \mid} \sum_{a \in A} q_\pi(s, a) + (1 - \epsilon) \max_a q_\pi(s, a) \\
+\geq \frac{\epsilon}{\mid A \mid} \sum_{a \in A} q_\pi(s, a) + (1 - \epsilon) \sum_{a \in A} \frac{\pi(a \mid s) - \frac{\epsilon}{\mid A \mid}}{1 - \epsilon} q_\pi(s, a) \\
+= \sum_{a \in A} \pi(a \mid s) q_\pi(s, a) = v_\pi(s)
+$$
+
+
 
 
 
