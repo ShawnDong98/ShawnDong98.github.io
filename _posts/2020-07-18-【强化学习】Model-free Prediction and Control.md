@@ -329,6 +329,8 @@ q(s, \pi'(s)) = \sum_{a \in A} \pi'(a \mid s) q_\pi(s, a) \\
 = \sum_{a \in A} \pi(a \mid s) q_\pi(s, a) = v_\pi(s)
 $$
 
+因此， $v_{\pi'}(s) \geq v_\pi(s)$
+
 
 
 
