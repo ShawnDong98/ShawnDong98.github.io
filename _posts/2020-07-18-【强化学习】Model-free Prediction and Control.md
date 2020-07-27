@@ -302,7 +302,7 @@ $Q(S_t, A_t) \leftarrow average(Returns(S_t, A_t))$ \\
 $\pi(S_t) \leftarrow \mathop{argmax}_a Q(S_t, a)$
 
 
-# $\epsilon$-Greedy 探索的蒙特卡罗
+## $\epsilon$-Greedy 探索的蒙特卡罗
 
 权衡探索和发掘
 
@@ -330,6 +330,13 @@ q(s, \pi'(s)) = \sum_{a \in A} \pi'(a \mid s) q_\pi(s, a) \\
 $$
 
 因此， $v_{\pi'}(s) \geq v_\pi(s)$
+
+
+算法：
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595813340154.png)
+
+## 
 
 
 
