@@ -336,7 +336,24 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1595813340154.png)
 
-## 
+## MC和TDPrediction和Control
+
+Temporal-difference（TD）learning相较于Monte-Carlo（MC）有几个优势：
+- Lower variance
+- Online
+- 可以是不完整的序列
+
+因此在我们的控制循环中可以使用TD替代MC：
+- 将TD应用于$Q(S, A)$
+- 使用$\epsilon-greedy$策略提升
+- 每个time-step更新， 而不是一个episode的最后更新
+
+
+## 回忆 TD Prediction
+
+一个epsiode有几个state和state-action对的变化的序列组成：
+
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1595813818513]]]" )
 
 
 
