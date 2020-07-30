@@ -98,7 +98,6 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 
 > \maketitle
 
-
 整篇文档的标题(title) 由以上命令产生。
 
 标题的内容必须在调用\maketitle 以前，由命令\title{...}, \author{...} 和可选的\date{...}
@@ -107,7 +106,27 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 
 
 
+### 交叉引用
 
+> \label{marker}, \ref{marker} 和\pageref{marker}
+
+如果在节、子节、图、表或定理后面输入\label 命令，LATEX 把\ref 替换为相应的序号。\pageref 命令排印\label输入处的页码
+
+
+### 脚注
+
+> \footnote{footnote text}
+
+把脚注内容排印于当前页的页脚位置。
+
+### 页面样式pagestyle
+
+
+> \pagestyle{style}
+
+LATEX 支持三种预定义的页眉/页脚(header/footer) 样式， 称为页面样式(pagestyle)
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596122782197.png)
 
 ### 引入中文包：
 
