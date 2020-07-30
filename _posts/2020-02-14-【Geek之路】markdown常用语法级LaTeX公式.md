@@ -44,8 +44,55 @@ tags:
 
 # LaTex
 
+pdfTeX程序：Tex语言的一个实现，也就是把Tex语言转换为排版的一个程序。它会把 TeX 语言写的代码直接编译成 PDF 文件。
+
+pdftex命令：pdfTex程序中的命令，用来编译用Plain TeX格式写的tex文件。
+
+pdflatex命令：pdfTex程序中的命令，用来编译用LaTeX格式写的tex文件。
+
+XeTeX程序：TeX语言的新的实现，即把Tex语言转换为排版的一个新程序。支持Unicode 编码和直接访问操作系统字体。
+
+xetex命令：XeTeX程序中的命令，用来编译用Plain TeX格式写的tex文件。
+
+xelatex命令：XeTeX程序中的命令，用来编译用LaTeX格式写的tex文件。
+
+解释：
+
+pdfLaTeX是比较原始的版本，对Unicode的支持不是很好，所以显示汉字需要使用CJK宏包。它不支持操作系统的truetype字体(\*.ttf)，只能使用type1字体。优点是支持的宏包比较多，有些老一点的宏包必须用pdfLaTeX来编译。
+
+
+
+XeLaTeX是新的Unicode版本，内建支持Unicode(UTF-8)，自然也包括汉字在内，而且可以调用操作系统的truetype字体。如果你的文档有汉字，那么推荐用XeLaTeX。缺点是不支持某一些宏包。
+
+
+
+
 ## LaTex语法
 
+
+### documentclass
+
+> \documentclass[option]{class}
+
+clsss 指定想要的文档类型。通过options 参数可以定制文档类的属性。同的选项之间须用逗号隔开。
+
+例子：
+
+```
+\documentclass[11pt,twoside,a4paper]{article}
+```
+
+这条命令会引导 latex 使用article 格式、 11 磅大小的字体来排版该文档， 并得到在A4 纸上双面打印的效果。 
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596116872759.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596116898459.png)
+
+### usepackage
+
+> \usepackage[options]{package}
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596117424185.png)
 
 ### 引入中文包：
 
@@ -250,3 +297,4 @@ $$\mathop{\theta}\limits_{i=1}^2$$
 5. [Markdown符号和公式](https://blog.csdn.net/xufox/article/details/91048187)
 6. [markdown中在矩阵运算上方增加矩阵名称](https://blog.csdn.net/banglu2731/article/details/101079241)
 7. [latex中矩阵里面的省略号怎么表示](https://zhidao.baidu.com/question/162572792.html)
+8. [Tex, LaTex, pdflatex, xelatex, xetex等的区别和关系](https://blog.csdn.net/chen_shiqiang/article/details/52101836)
