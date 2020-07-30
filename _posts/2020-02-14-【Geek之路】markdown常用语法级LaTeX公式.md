@@ -94,6 +94,21 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596117424185.png)
 
+### maketitle
+
+> \maketitle
+
+
+整篇文档的标题(title) 由以上命令产生。
+
+标题的内容必须在调用\maketitle 以前，由命令\title{...}, \author{...} 和可选的\date{...}
+
+在命令\author 的参量中，可以输入几个用\and 命令分开的名字。
+
+
+
+
+
 ### 引入中文包：
 
 这是为了显示中文字体 \\
