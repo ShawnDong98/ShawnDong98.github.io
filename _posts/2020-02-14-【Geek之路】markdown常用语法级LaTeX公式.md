@@ -94,6 +94,16 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596117424185.png)
 
+### \begin{document}
+
+> \begin{document}
+
+此时可以输入带有LATEX 命令的正文。 在文章末尾使用命令
+
+> \end{document}
+
+来告诉LATEX 文档已经结束。LATEX 会忽略此命令后的所有内容。
+
 ### maketitle
 
 > \maketitle
