@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【Geek之路】markdown常用语法及LaTeX公式"
+title:      "【Geek之路】markdown及LaTeX常用语法"
 subtitle:   ""
 date:       2020-02-14
 author:     "ShawnD"
@@ -103,6 +103,28 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 > \end{document}
 
 来告诉LATEX 文档已经结束。LATEX 会忽略此命令后的所有内容。
+
+
+### include
+
+> \include{filename}
+
+可以使用该命令将名为filename.tex 的文档内容插入到当前文档中。 需要注意
+的是，在处理插入的filename.tex 文档前，LATEX 会另起一页。
+
+
+### includeonly
+
+> \includeonly{filename,filename,. . . }
+
+该命令只能在导言区使用。 它可以让LATEX 仅读入某些\include 文件。
+
+这条命令在文档的导言区执行后，在所有的\include 命令中，只有文档名出现在\includeonly 的命令参数中的文档才会被导入。注意文档名和逗号之间不能有空格。
+
+\include 命令会在新的一页上排版载入的文本。当使用\includeonly 命
+令时会很有帮助，因为即使一些载入的文本被忽略，分页处也不会发生变化。
+
+##
 
 ### maketitle
 
