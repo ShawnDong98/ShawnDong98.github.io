@@ -307,7 +307,30 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 
 > {\songti 宋体} {\heiti 黑体} {\fangsong 仿宋} {\kaishu 楷书}  
 
+中文字体的\textbf{粗体}与\textit{斜体}
+
+粗体是用黑体表示的，斜体是用楷书表示的。
+
+**字体大小**
+
+字体大小是相对normalsize设置的
+
+> {\tiny Hello} \\
+> {\scriptsize Hello} \\
+> {\footnotesize Hello} \\
+> {\small Hello} \\
+> {\normalsize Hello} \\
+> {\large Hello} \\
+> {\Large Hello} \\
+> {\LARGE Hello} \\
+> {\huge Hello} \\
+> {\Huge Hello}
+
+
+
 ### 数学多条件公式
+
+
 
 ```
 \begin{cases}
