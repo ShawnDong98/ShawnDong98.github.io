@@ -437,7 +437,7 @@ $$\mathop{\theta}\limits_{i=1}^2$$
 
 生成讲义版本
 
-> \mode\<beamer>{% \\
+> \mode\<beamer>\{\% \\
 \usetheme[hideothersubsections, \\
 right,width=22mm]{Goettingen} \\
 }
