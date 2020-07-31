@@ -303,6 +303,10 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 
 > {\upshape Upright Shape} {\itshape Italic Shape} {\slshape Slanted Shape} {\scshape Small Caps Shape}
 
+**中文字体**
+
+> {\songti 宋体} {\heiti 黑体} {\fangsong 仿宋} {\kaishu 楷书}  
+
 ### 数学多条件公式
 
 ```
