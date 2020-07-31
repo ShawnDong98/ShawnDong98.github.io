@@ -237,10 +237,21 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 
 可以完成类似的功能。 + 仅是分隔符的一个例子。除了* 或空格，可以使用任意一个字符。
 
+### \begin{equation}
+
+> \begin{equation}
+
+产生带标号的公式
+
 ### 引入中文包：
 
 这是为了显示中文字体 \\
 \usepackage\[UTF8\]{ctex}
+
+可以用以下命令替代
+
+> \documentclass{ctexart}
+
 
 ### 数学多条件公式
 
