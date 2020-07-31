@@ -395,6 +395,21 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 引入图片路径
 
 
+### 插入表格
+
+> \begin{tabular}{l|c|c|c|r}
+
+l居左 c居中 r居右 插入竖线
+
+> \hline
+
+插入横线
+
+> \hline \hline
+
+插入双横线
+
+
 ### 数学多条件公式
 
 
