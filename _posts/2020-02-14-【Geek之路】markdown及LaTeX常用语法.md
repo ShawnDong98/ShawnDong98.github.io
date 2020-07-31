@@ -384,6 +384,12 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 填满空间
 
+### 插入图片
+
+> \usepackage{graphicx}
+
+> \includegraphics[\<选项\>]{\<文件名\>}
+
 
 ### 数学多条件公式
 
