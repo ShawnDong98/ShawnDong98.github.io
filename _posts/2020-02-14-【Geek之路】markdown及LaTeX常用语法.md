@@ -390,6 +390,10 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 > \includegraphics[\<选项\>]{\<文件名\>}
 
+> \graphicspath{{figures/}, {pics/}}
+
+引入图片路径
+
 
 ### 数学多条件公式
 
