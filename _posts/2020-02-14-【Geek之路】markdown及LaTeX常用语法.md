@@ -326,6 +326,8 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 > {\huge Hello} \\
 > {\Huge Hello}
 
+normalsize在documentclass的参数中设置，一般只有10pt、11pt、12pt
+
 
 
 ### 数学多条件公式
