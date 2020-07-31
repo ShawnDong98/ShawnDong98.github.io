@@ -397,9 +397,11 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 ### 插入表格
 
-> \begin{tabular}{l|c|c|c|r}
+> \begin{tabular}{|l|c|c|c|p{1.5cm}|}
 
 l居左 c居中 r居右 | 插入竖线 || 插入双竖线
+
+p指定行宽
 
 > \hline
 
@@ -408,6 +410,7 @@ l居左 c居中 r居右 | 插入竖线 || 插入双竖线
 > \hline \hline
 
 插入双横线
+
 
 
 ### 数学多条件公式
