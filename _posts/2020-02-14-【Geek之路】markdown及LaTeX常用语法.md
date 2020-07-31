@@ -38,7 +38,8 @@ tags:
 - $\star$： \star
 - $\bigstar$： \bigstar
 - $\mathfrak{ABCdef}$：\mathfrak{ABCdef}
-- 向量$\vec{x}$： \vec{x}
+- 向量$\vec{x}$： \vec{x}\
+- $\Omega$: \Omega 
 
 
 
@@ -467,8 +468,7 @@ right,width=22mm]{Goettingen} \\
 - 默认: PDF屏幕阅读 (尺寸 128mm × 96 mm)3
 - [handout] 适用于 PDF 讲义.
 - [trans] 适用于 PDF 幻灯片.
--  [notes=hide/show/only] 适用于笔记。隐藏注释(默认), 为 PDF screen 添
-加注释, 仅产生 PDF 注释。
+-  [notes=hide/show/only] 适用于笔记。隐藏注释(默认), 为 PDF screen 添加注释, 仅产生 PDF 注释。
 
 ### frame
 
