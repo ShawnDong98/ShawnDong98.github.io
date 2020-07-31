@@ -258,6 +258,13 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 > \heiti， \kaishu
 
 
+### \newcommand
+
+> \newcommand\degree{^\circ}
+
+定义命令，类似宏定义
+
+
 ### 数学多条件公式
 
 ```
