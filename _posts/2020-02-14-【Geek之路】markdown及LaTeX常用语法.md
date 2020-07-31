@@ -265,6 +265,22 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 定义命令，类似宏定义
 
 
+### 字体设置
+
+> \textrm{Roman Family}
+
+> \textsf{Sans Serif Family}
+
+> texttt{Typewriter Family}
+
+> {\rmfamily Roman Family}
+
+> {\sffamily Sans Serif Family}
+
+> {\ttfamily Typewriter Family}
+
+
+
 ### 数学多条件公式
 
 ```
