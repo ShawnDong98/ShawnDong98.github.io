@@ -433,7 +433,7 @@ $$\mathop{\theta}\limits_{i=1}^2$$
 
 ## beamer
 
-> \documentclass[10pt,handout]{beamer}
+> \documentclass\[10pt,handout]{beamer}
 
 生成讲义版本
 
