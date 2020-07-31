@@ -144,6 +144,10 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 
 ### 标题、章和节
 
+> \ctexset
+
+设置ctex的格式
+
 > \part{...}
 
 把文档分成几个部分而且不影响章节编号
@@ -328,6 +332,57 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 
 normalsize在documentclass的参数中设置，一般只有10pt、11pt、12pt
 
+**中文字号设置命令**
+
+> \zihao{5} 你好！
+
+latex中有格式与内容分离的思想，应该使用newcomand设置自己的命令
+
+### 特殊符号
+
+空白符
+
+> \quad
+
+1em（当前字体中M的宽度）
+
+> \qquad
+
+2em
+
+> \thinspace
+
+约为1/6个em
+
+> \enspace
+
+0.5个em
+
+> \ 
+
+上面其实是\加上空格， 这样就能输出空格
+
+> ~
+
+硬空格
+
+> \kern 1pc
+
+1pc = 12pt = 4.218mm
+
+> \kern -1em
+
+> hskip 1em
+
+> hspace{35pt}
+
+> hphantom{xyz}
+
+产生和xyz一样长度的占位符
+
+> \hfill
+
+填满空间
 
 
 ### 数学多条件公式
