@@ -71,7 +71,171 @@ bibtex： 参考文献相关
 ## LaTex语法
 
 
+### documentclass
 
+> \documentclass[option]{class}
+
+clsss 指定想要的文档类型。通过options 参数可以定制文档类的属性。同的选项之间须用逗号隔开。
+
+例子：
+
+```
+\documentclass[11pt,twoside,a4paper]{article}
+```
+
+这条命令会引导 latex 使用article 格式、 11 磅大小的字体来排版该文档， 并得到在A4 纸上双面打印的效果。 
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596116872759.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596116898459.png)
+
+### usepackage
+
+> \usepackage[options]{package}
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596117424185.png)
+
+### \begin
+
+> \begin{document}
+
+此时可以输入带有LATEX 命令的正文。 在文章末尾使用命令
+
+> \end{document}
+
+来告诉LATEX 文档已经结束。LATEX 会忽略此命令后的所有内容。
+
+
+### include
+
+> \include{filename}
+
+可以使用该命令将名为filename.tex 的文档内容插入到当前文档中。 需要注意
+的是，在处理插入的filename.tex 文档前，LATEX 会另起一页。
+
+
+### includeonly
+
+> \includeonly{filename,filename,. . . }
+
+该命令只能在导言区使用。 它可以让LATEX 仅读入某些\include 文件。
+
+这条命令在文档的导言区执行后，在所有的\include 命令中，只有文档名出现在\includeonly 的命令参数中的文档才会被导入。注意文档名和逗号之间不能有空格。
+
+\include 命令会在新的一页上排版载入的文本。当使用\includeonly 命
+令时会很有帮助，因为即使一些载入的文本被忽略，分页处也不会发生变化。
+
+### input
+
+> \input{filename}
+
+有些时候可能不希望在新的一页上排版载入的文本， \input 命令只是简单的载入指定的文本，没有其他限制。
+
+### maketitle
+
+> \maketitle
+
+整篇文档的标题(title) 由以上命令产生。
+
+标题的内容必须在调用\maketitle 以前，由命令\title{...}, \author{...} 和可选的\date{...}
+
+在命令\author 的参量中，可以输入几个用\and 命令分开的名字。
+
+### 标题、章和节
+
+> \part{...}
+
+把文档分成几个部分而且不影响章节编号
+
+> \chapter{...}
+
+使用report 或者book 类的时候，可以用这个高层次的分节命令
+
+- 命令\part 不影响章的序号。
+- 命令\appendix 不带参量，只把章的序号改用为字母标记
+
+> \tableofcontents
+
+在其出现的位置插入目录。
+
+
+> \frontmatter
+
+它应接着命令\begin{document} 使用。它把页码更换为罗马数字，而且章节不计数。当你使用带星的分节命令(例如，\chapter*{Preface}) 时，这些章节就不会出现在目录里
+
+> \mainmatter
+
+应出现在书的第一章前面。它启用阿拉伯数字的页码计数器，并对页码重新计数。
+
+> \appendix
+
+标志书中附录材料的开始。该命令后的各章序号改用字母标记。
+
+> \backmatter
+
+应该插入与书中最后一部分内容的前面，如参考文献和索引。在标准文档类型中，它对页面没有什么效果。
+
+
+### 交叉引用
+
+> \label{marker}, \ref{marker} 和\pageref{marker}
+
+如果在节、子节、图、表或定理后面输入\label 命令，LATEX 把\ref 替换为相应的序号。\pageref 命令排印\label输入处的页码
+
+
+### 脚注
+
+> \footnote{footnote text}
+
+把脚注内容排印于当前页的页脚位置。
+
+### 页面样式pagestyle
+
+
+> \pagestyle{style}
+
+LATEX 支持三种预定义的页眉/页脚(header/footer) 样式， 称为页面样式(pagestyle)
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596122782197.png)
+
+
+### Itemize、Enumerate 和 Description
+
+itemize 环境适用于简单的列表，enumerate 环境适用于有排列序号的列表， 而description 环境用于带描述的列表。
+
+> \begin{enumerate}
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596153280445.png)
+
+> \begin{itemize}
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596153315338.png)
+
+> \begin{description}
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596153369664.png)
+
+
+### 左对齐、右对齐和居中
+
+> \begin{flushleft}
+
+> \begin{flushright}
+
+> \begin{center}
+
+flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(right-aligned) 的段落。center 环境产生居中的文本。如果你不输入命令\\\\ 指定断行点，LATEX 将自行决定。
+
+### 按原文输出
+
+> \begin{verbatim}
+
+位于\begin{verbatim} 和\end{verbatim} 之间的文本将直接打印，包括所有的断行和空白
+
+
+> \verb+text+
+
+可以完成类似的功能。 + 仅是分隔符的一个例子。除了* 或空格，可以使用任意一个字符。
 
 ### 引入中文包：
 
@@ -302,9 +466,9 @@ right,width=22mm]{Goettingen} \\
 ### Beamer输出
 
 - 默认: PDF屏幕阅读 (尺寸 128mm × 96 mm)3
-- [handout] 适用于 PDF 讲义.
-- [trans] 适用于 PDF 幻灯片.
--  [notes=hide/show/only] 适用于笔记。隐藏注释(默认), 为 PDF screen 添加注释, 仅产生 PDF 注释。
+- \[handout\] 适用于 PDF 讲义.
+- \[trans\] 适用于 PDF 幻灯片.
+-  \[notes=hide/show/only\] 适用于笔记。隐藏注释(默认), 为 PDF screen 添加注释, 仅产生 PDF 注释。
 
 ### frame
 
