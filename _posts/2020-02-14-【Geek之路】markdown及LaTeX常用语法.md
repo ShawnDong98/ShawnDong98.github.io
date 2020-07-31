@@ -240,7 +240,7 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 ### 引入中文包：
 
 这是为了显示中文字体 \\
-\usepackage[UTF8]{ctex}
+\usepackage\[UTF8\]{ctex}
 
 ### 数学多条件公式
 
