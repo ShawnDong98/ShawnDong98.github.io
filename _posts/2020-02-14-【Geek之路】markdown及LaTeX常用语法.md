@@ -267,6 +267,8 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 
 ### 字体设置
 
+**字体族设置**
+
 > \textrm{Roman Family}
 
 > \textsf{Sans Serif Family}
@@ -279,7 +281,27 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 
 > {\ttfamily Typewriter Family}
 
+**字体系列设置（粗细、宽度）**
 
+> \textmd{Medium Series}
+
+> \textbf{Boldface Series}
+
+> {\mdseries Medium Series} 
+
+> {\bfseries Boldface Series}
+
+**字体形状（直立、斜体、伪斜体、小型大写）**
+
+> \textup{Upright Shape}
+
+> \textit{Italic Shape}
+
+> \textsl{Slanted Shape}
+
+> \textsc{Small Caps Shape}
+
+> {\upshape Upright Shape} {\itshape Italic Shape} {\slshape Slanted Shape} {\scshape Small Caps Shape}
 
 ### 数学多条件公式
 
