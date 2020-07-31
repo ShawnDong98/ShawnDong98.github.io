@@ -95,7 +95,7 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596117424185.png)
 
-### \begin{document}
+### \begin
 
 > \begin{document}
 
