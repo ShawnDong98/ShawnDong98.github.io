@@ -141,6 +141,7 @@ clsss 指定想要的文档类型。通过options 参数可以定制文档类的
 
 在命令\author 的参量中，可以输入几个用\and 命令分开的名字。
 
+
 ### 标题、章和节
 
 > \part{...}
@@ -251,6 +252,10 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 可以用以下命令替代
 
 > \documentclass{ctexart}
+
+在写中文时，可以使用以下命令设置字体
+
+> \heiti， \kaishu
 
 
 ### 数学多条件公式
