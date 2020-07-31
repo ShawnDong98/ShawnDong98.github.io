@@ -472,11 +472,11 @@ right,width=22mm]{Goettingen} \\
 
 ### frame
 
-- \frame[plain]{\frametitle{}..}
-- [containsverbatim] 适用于使用 verbatim 环境和 \verb 命令。
-- [allowframebreaks] 适用于一张幻灯片放不下内容时自动分开。
-- [shrink] 适用于缩小内容充满一张幻灯片。
-- [squeeze] 适用于挤压垂直空间。
+- \frame\[plain\]{\frametitle{}..}
+- \[containsverbatim\] 适用于使用 verbatim 环境和 \verb 命令。
+- \[allowframebreaks\] 适用于一张幻灯片放不下内容时自动分开。
+- \[shrink\] 适用于缩小内容充满一张幻灯片。
+- \[squeeze\] 适用于挤压垂直空间。
 
 # Reference
 1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
