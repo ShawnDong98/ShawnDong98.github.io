@@ -390,8 +390,8 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 > \includegraphics[\<选项\>]{\<文件名\>}
 
-> \graphicspath{{figures/}, {pics/}}
-
+> \graphicspath\{\{figures/\}, \{pics/\}\}
+fi
 引入图片路径
 
 
@@ -410,6 +410,10 @@ p指定行宽， 当宽度不足时，自动产生换行
 > \hline \hline
 
 插入双横线
+
+
+表格宏包：booktab、 longtab、tabu
+
 
 
 
