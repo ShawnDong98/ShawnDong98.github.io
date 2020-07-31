@@ -399,7 +399,7 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 > \begin{tabular}{l|c|c|c|r}
 
-l居左 c居中 r居右 插入竖线
+l居左 c居中 r居右 | 插入竖线 || 插入双竖线
 
 > \hline
 
