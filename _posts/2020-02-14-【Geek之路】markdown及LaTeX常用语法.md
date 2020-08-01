@@ -440,6 +440,34 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 绕排（picinpar、wrapfig等宏包）
 
+### 参考文献Bibtex
+
+创建.bib后缀的文献数据库
+
+> bibliographystyle{alpha} %plain
+
+设定参考文献的样式
+
+使用natbib宏包选用更多的样式
+
+
+> \bibliography{test， cnki}
+
+引入文献数据库
+
+> \cite{}
+
+无格式化引用
+
+> \parencite
+
+带方括号的引用
+
+> \supercite
+
+上标引用
+
+
 
 ### 数学多条件公式
 
