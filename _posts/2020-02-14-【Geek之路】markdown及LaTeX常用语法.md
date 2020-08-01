@@ -414,7 +414,17 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 表格宏包：booktab、 longtab、tabu
 
+### 浮动体环境
 
+> begin{figure}
+
+> begin{tabular}
+
+在环境中可使用\centering设置位置
+
+使用\caption设置环境标题
+
+\label为浮动体设置标签， 通过该标签使用\ref引用
 
 
 ### 数学多条件公式
