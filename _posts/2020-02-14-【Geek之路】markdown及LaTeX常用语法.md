@@ -735,3 +735,4 @@ right,width=22mm]{Goettingen} \\
 6. [markdown中在矩阵运算上方增加矩阵名称](https://blog.csdn.net/banglu2731/article/details/101079241)
 7. [latex中矩阵里面的省略号怎么表示](https://zhidao.baidu.com/question/162572792.html)
 8. [Tex, LaTex, pdflatex, xelatex, xetex等的区别和关系](https://blog.csdn.net/chen_shiqiang/article/details/52101836)
+9. [LaTeX学习（入门到入土）](https://www.bilibili.com/video/BV147411G7yk?p=13)
