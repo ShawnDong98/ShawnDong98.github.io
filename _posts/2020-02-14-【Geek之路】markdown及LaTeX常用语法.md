@@ -442,6 +442,20 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 ### 参考文献Bibtex
 
+
+**一次管理、一次引用**
+
+> \begin{thebibography}  
+> 
+> \bibitem{article1/book1} ...  \emph{}
+> 
+> \end{thebibography}
+
+
+emph强调某些内容
+
+**一次管理、多次使用**
+
 创建.bib后缀的文献数据库
 
 > bibliographystyle{alpha} %plain
@@ -453,16 +467,8 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 > \bibliography{test， cnki}
 
-引入文献数据库
+在需要输出参考文献的地方， 引入文献数据库
 
-
-> \begin{thebibography}  
-> 
-> \bibitem{article1/book1} ...  
-> 
-> \end{thebibography}
-
-一次管理、一次引用
 
 > \cite{}
 
@@ -475,6 +481,10 @@ p指定行宽， 当宽度不足时，自动产生换行
 > \supercite{}
 
 上标引用
+
+> \nocite{\*} 
+
+无参考文献的引用
 
 
 
