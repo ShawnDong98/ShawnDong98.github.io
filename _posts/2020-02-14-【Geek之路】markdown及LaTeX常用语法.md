@@ -455,6 +455,13 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 引入文献数据库
 
+
+> \begin{thebibography} \\
+> \bibitem{article1/book1} ... \\
+> \end{thebibography}
+
+一次管理、一次引用
+
 > \cite{}
 
 无格式化引用
