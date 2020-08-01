@@ -40,6 +40,8 @@ tags:
 - $\mathfrak{ABCdef}$：\mathfrak{ABCdef}
 - 向量$\vec{x}$： \vec{x}\
 - $\Omega$: \Omega 
+- $\cap$： \cap
+- $\cup$： \cup
 
 
 
