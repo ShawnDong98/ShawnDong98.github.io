@@ -434,6 +434,12 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 \label为浮动体设置标签， 通过该标签使用\ref引用
 
+标题控制(captipn、bicaption等宏包)
+
+并排与子图标（subcaption、subfig、floatrow等宏包）
+
+绕排（picinpar、wrapfig等宏包）
+
 
 ### 数学多条件公式
 
