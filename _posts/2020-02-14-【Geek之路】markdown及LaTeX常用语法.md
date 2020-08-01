@@ -459,11 +459,11 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 无格式化引用
 
-> \parencite
+> \parencite{}
 
 带方括号的引用
 
-> \supercite
+> \supercite{}
 
 上标引用
 
