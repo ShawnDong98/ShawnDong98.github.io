@@ -449,6 +449,8 @@ p指定行宽， 当宽度不足时，自动产生换行
 
 绕排（picinpar、wrapfig等宏包）
 
+
+
 ### 参考文献Bibtex
 
 
@@ -734,6 +736,19 @@ right,width=22mm]{Goettingen} \\
 - \[allowframebreaks\] 适用于一张幻灯片放不下内容时自动分开。
 - \[shrink\] 适用于缩小内容充满一张幻灯片。
 - \[squeeze\] 适用于挤压垂直空间。
+
+
+### 定理与区块
+
+在beamer中， 已经预定义了许多定理类环境： theorem， corollary， definition， definitions， fact， example以及examples， 它们都以英文名称给出。
+
+不过我们需要的是中文定理环境，可以使用\newtheorem另行定义：
+
+> \newtheorem{thm}{定理}
+
+证明环境汉化：
+
+> \renewcommand\proofname{证明}
 
 # Reference
 1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
