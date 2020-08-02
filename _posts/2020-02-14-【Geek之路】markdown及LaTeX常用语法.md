@@ -753,6 +753,18 @@ right,width=22mm]{Goettingen} \\
 block、alertblock和exampleblock环境是beamer定义的三种区块环境， 它们除了配色不同外，用法和结果大致相同。
 
 
+### 左右分栏
+
+在columns 环境中，用 \column 命令产生新的一栏
+
+> \begin{在columns}
+
+> \column{.5\textwidth}
+
+左右两边块垂直顶部对齐, 在 columns 环境中加入\[t\] 选项
+
+在第一栏的末尾放置 \pause 命令, 允许只“显示（uncover）”帧的第二张幻灯片的第二栏
+
 # Reference
 1. [Markdown中LaTeX公式编号](https://blog.csdn.net/KitKat09/article/details/89162216)
 2. [LaTex 箭头上添加文字](https://blog.csdn.net/z_feng12489/article/details/99861893)
