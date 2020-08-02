@@ -392,6 +392,13 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 > \includegraphics[width/height/scale/angle]{\<文件名\>}
 
+
+```
+\includegraphics[angle=-45, origin=c]
+```
+
+使用angle选项可以让图形逆时针旋转一定角度， 旋转的中心可以用origin选项确定。origin的值可以用字符l, r, c, t, b, B中的一个或两个， 分别表示左、右、中、上、下和基线。
+
 > \graphicspath\{\{figures/\}, \{pics/\}\}
 
 引入图片路径
