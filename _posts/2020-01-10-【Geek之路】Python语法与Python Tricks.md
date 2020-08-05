@@ -488,6 +488,47 @@ defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'],
 
 ```
 
+### OrderedDict
+
+python中的字典是无序的，因为它是按照hash来存储的。
+
+python中有个模块collections(英文，收集、集合)，里面自带了一个子类OrderedDict，实现了对字典对象中元素的排序。
+
+```python
+import collections
+print "Regular dictionary"
+d={}
+d['a']='A'
+d['b']='B'
+d['c']='C'
+for k,v in d.items():
+    print k,v
+print "\nOrder dictionary"
+d1 = collections.OrderedDict()
+d1['a'] = 'A'
+d1['b'] = 'B'
+d1['c'] = 'C'
+d1['1'] = '1'
+d1['2'] = '2'
+for k,v in d1.items():
+    print k,v
+
+输出：
+Regular dictionary
+a A
+c C
+b B
+
+Order dictionary
+a A
+b B
+c C
+1 1
+2 2
+```
+
+可以看到，同样是保存了ABC等几个元素，但是使用OrderedDict会根据放入元素的先后顺序进行排序。所以输出的值是排好序的。
+
 ## 介绍python函数传参
 
 1. Python不允许程序员选择采用传值还是传引用。Python参数传递采用的肯定是“传对象引用”的方式。实际上，这种方式相当于传值和传引用的一种综合。如果函数收到的是一个可变对象（比如字典或者列表）的引用，就能修改对象的原始值——相当于通过“传引用”来传递对象。如果函数收到的是一个不可变对象（比如数字、字符或者元组）的引用，就不能直接修改原始对象——相当于通过“传值”来传递对象。
@@ -1481,6 +1522,12 @@ np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数
 np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 1000000.0此方法为设置一较大值
 
 
+## npy文件ndarray转list
+
+> np.load('./saved_models/pnet.npy')\[()\]
+
+在后面加上\[()\]
+
 
 # pandas语法
 
@@ -1605,6 +1652,33 @@ hist()第一个返回值是统计各个区间的频数，第二个返回值是bi
 
 PS: 返回值的bins的数据长度比频数的长度大1，这里推荐使用从1开始直到bins结束，即将第0个元素去掉，保证二者的长度一致，当然还需要减去width的一半，保证在中点。
  
+## plot
+
+> Axes.plot(self, *args, scalex=True, scaley=True, data=None, \*\*kwargs)
+
+画出y对x的线
+
+可选参数\[fmt\] 是一个字符串来定义图的基本属性如：颜色（color），点型（marker），线型（linestyle），
+
+具体形式 fmt = '\[color]\[marker]\[line]'，如指定fmt为'bo-' # 蓝色圆点实线
+
+fmt接收的是每个属性的单个字母缩写，例如：plot(x, y, 'bo-') # 蓝色圆点实线
+
+**1.  其中常见的颜色参数：colors**
+
+也可以对关键字参数color赋十六进制的RGB字符串如 color='#900302'
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596427201177.png)
+
+**2. 点型参数Markers**
+
+用关键字参数对单个属性赋值，如：marker='+'这个只有简写，英文描述不被识别
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596427248153.png)
+
+**3. 线型参数Line Styles**
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596427289786.png)
 
 ## 多个图重叠
 
