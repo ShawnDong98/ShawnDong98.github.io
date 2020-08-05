@@ -42,6 +42,7 @@ tags:
 - $\Omega$: \Omega 
 - $\cap$： \cap
 - $\cup$： \cup
+- $\hat{a}$： \hat{a}
 
 
 
