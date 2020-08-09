@@ -1844,6 +1844,23 @@ for i in pbar:
 python3 -m ensurepip --upgrade
 python会重新安装setuptools工具包
 
+
+## UserWarning: Boolean Series key will be reindexed to match DataFrame index
+
+```python
+sample_df[sample_df['money']<=10][(sample_df['money']>0]
+```
+
+布尔型系列键将索引匹配获得对应的索引
+
+意思就是这里有两个布尔值，就会语义不明，所以报错
+
+方法
+
+```python
+sample_df[(sample_df['money']<=10)&(sample_df['money']>0)]
+```
+
 # Python Tricks
 
 ## 将20W张图片分别存放在100个文件夹中
@@ -2012,3 +2029,4 @@ pip install -r requirements.txt
 44. [subplots()使用方法举例说明](https://blog.csdn.net/missyougoon/article/details/90510183)
 45. [python中用matplotlib画多幅图时出现图形部分重叠的解决方案](https://blog.csdn.net/ymznice/article/details/83274600)
 46. [matplotlib可视化篇hist()--直方图](https://www.jianshu.com/p/f2f75754d4b3)
+47. [错误解决1：UserWarning: Boolean Series key will be reindexed to match DataFrame index](https://blog.csdn.net/qq_43003405/article/details/100005786)
