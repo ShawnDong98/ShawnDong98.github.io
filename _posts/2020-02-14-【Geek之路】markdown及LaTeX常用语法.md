@@ -45,6 +45,7 @@ tags:
 - $\hat{a}$： \hat{a}
 - $\pm$： \pm
 - $\propto$： \propto
+- $\Gamma$： \Gamma
 
 
 
