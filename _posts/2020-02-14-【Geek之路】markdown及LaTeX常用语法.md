@@ -392,6 +392,8 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 > \usepackage{graphicx}
 
+> \graphicspath{}
+
 > \includegraphics[width/height/scale/angle]{\<文件名\>}
 
 
