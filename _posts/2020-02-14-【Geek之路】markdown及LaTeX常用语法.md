@@ -266,11 +266,15 @@ flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(r
 > \heiti， \kaishu
 
 
-### \newcommand
+### 定义命令
 
 > \newcommand\degree{^\circ}
 
+> \newtheorem{defn}{定义}
+
 定义命令，类似宏定义
+
+
 
 
 ### 字体设置
