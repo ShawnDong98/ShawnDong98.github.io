@@ -44,6 +44,7 @@ tags:
 - $\cup$： \cup
 - $\hat{a}$： \hat{a}
 - $\pm$： \pm
+- $\propto$： \propto
 
 
 
