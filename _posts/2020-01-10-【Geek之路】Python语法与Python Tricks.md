@@ -1596,9 +1596,11 @@ ix可以同时按标签和位置进行提取。
 
 norm.rvs通过loc和scale参数可以指定随机变量的偏移和缩放参数，这里对应的是正态分布的期望和标准差。size得到随机数数组的形状参数。
 
-> st.norm.pdf(0,loc = 0,scale = 1)
+> st.norm.pdf(x,loc = 0,scale = 1)
 
 正态分布概率密度函数。
+
+横轴为x， 纵轴为标准正态分布， 返回的值是纵轴坐标。
 
 # matplotlib语法
 
