@@ -1519,6 +1519,13 @@ $$R_{ij} = \frac{C_{ij}}{\sqrt{C_{ii} * C_{jj}}}$$
 返回：
 - R：变量得相关系数矩阵
 
+## np.arange()
+
+np.arange()函数分为一个参数，两个参数，三个参数三种情况
+- 一个参数时，参数值为终点，起点取默认值0，步长取默认值1。
+- 两个参数时，第一个参数为起点，第二个参数为终点，步长取默认值1。
+- 三个参数时，第一个参数为起点，第二个参数为终点，第三个参数为步长。其中步长支持小数
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
@@ -2030,3 +2037,4 @@ pip install -r requirements.txt
 45. [python中用matplotlib画多幅图时出现图形部分重叠的解决方案](https://blog.csdn.net/ymznice/article/details/83274600)
 46. [matplotlib可视化篇hist()--直方图](https://www.jianshu.com/p/f2f75754d4b3)
 47. [错误解决1：UserWarning: Boolean Series key will be reindexed to match DataFrame index](https://blog.csdn.net/qq_43003405/article/details/100005786)
+48. [np.arange()用法](https://blog.csdn.net/qq_41550480/article/details/89390579)
