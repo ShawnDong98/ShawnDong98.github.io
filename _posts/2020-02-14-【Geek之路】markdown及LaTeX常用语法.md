@@ -755,26 +755,26 @@ $$
 **第二种方法是使用array环境来输入矩阵，示例如下：**
 
 ```
-\begin{equation}       %开始数学环境
+\begin{matrix}       %开始数学环境
 \left(                 %左括号
   \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置
     a11 & a12 & a13\\  %第一行元素
     a21 & a22 & a23\\  %第二行元素
   \end{array}
 \right)                 %右括号
-\end{equation}
+\end{matrix}
 ```
 效果为：
 
 $$
-\begin{equation}       %开始数学环境
+\begin{matrix}       %开始数学环境
 \left(                 %左括号
   \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置
     a11 & a12 & a13\\  %第一行元素
     a21 & a22 & a23\\  %第二行元素
   \end{array}
 \right)                 %右括号
-\end{equation}
+\end{matrix}
 $$
 
 
