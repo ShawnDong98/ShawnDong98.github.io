@@ -891,7 +891,7 @@ fancyhdr的fancy页面风格把页面的页眉和页脚都分成左、中、右3
 使用fancyhdr还可以使用\fancypagestyle命令重定义原有的页面风格， 通常可以用它来重新定义plain风格， 这样在每章的第1页等位置也可以使用特殊的页面风格， 如
 
 ```
-\fancypagestyle{plain}{%
+\fancypagestyle{plain}{
 	\fancyhf{}
 	\cfoot{--\textit{\thepage}--} % 改变页码形状
 	\renewcommand\headrulewidth{0pt} % 无页眉线
