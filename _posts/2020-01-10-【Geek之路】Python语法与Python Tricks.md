@@ -1526,6 +1526,14 @@ np.arange()函数分为一个参数，两个参数，三个参数三种情况
 - 两个参数时，第一个参数为起点，第二个参数为终点，步长取默认值1。
 - 三个参数时，第一个参数为起点，第二个参数为终点，第三个参数为步长。其中步长支持小数
 
+## np.cov
+
+> numpy.cov(m, y=None, rowvar=True)
+
+- m：array_like 包含多个变量和观测值的1-D或2-D数组。 m的每一行代表一个变量，每一列都是对所有这些变量的单一观察。
+- y：array_like，可选。 另外一组变量和观察。 y具有与m相同的形式。
+- rowvar：布尔值，可选。 如果rowvar为True（默认值），则每行代表一个变量X，另一个行为变量Y。否则，转换关系：每列代表一个变量X，另一个列为变量Y。
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
@@ -2050,3 +2058,4 @@ pip install -r requirements.txt
 46. [matplotlib可视化篇hist()--直方图](https://www.jianshu.com/p/f2f75754d4b3)
 47. [错误解决1：UserWarning: Boolean Series key will be reindexed to match DataFrame index](https://blog.csdn.net/qq_43003405/article/details/100005786)
 48. [np.arange()用法](https://blog.csdn.net/qq_41550480/article/details/89390579)
+49. [Numpy中 cov() 的使用方法](https://blog.csdn.net/qq_41800366/article/details/88063772)
