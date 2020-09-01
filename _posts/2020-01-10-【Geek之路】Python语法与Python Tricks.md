@@ -2096,3 +2096,4 @@ pip install -r requirements.txt
 48. [np.arange()用法](https://blog.csdn.net/qq_41550480/article/details/89390579)
 49. [Numpy中 cov() 的使用方法](https://blog.csdn.net/qq_41800366/article/details/88063772)
 50. [numpy.loadtxt()](https://www.jianshu.com/p/ef37f739b531)
+51. [Matplotlib之设置x,y坐标轴的位置](https://blog.csdn.net/beautiful77moon/article/details/96478238)
