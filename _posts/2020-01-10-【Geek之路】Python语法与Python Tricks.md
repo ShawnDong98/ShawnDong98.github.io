@@ -1534,6 +1534,19 @@ np.arange()函数分为一个参数，两个参数，三个参数三种情况
 - y：array_like，可选。 另外一组变量和观察。 y具有与m相同的形式。
 - rowvar：布尔值，可选。 如果rowvar为True（默认值），则每行代表一个变量X，另一个行为变量Y。否则，转换关系：每列代表一个变量X，另一个列为变量Y。
 
+## np.loadtxt
+
+> numpy.loadtxt(fname, dtype=, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0)
+
+- fname要读取的文件、文件名、或生成器。
+- dtype数据类型，默认float。
+- comments注释。
+- delimiter分隔符，默认是空格。
+- skiprows跳过前几行读取，默认是0，必须是int整型。
+- usecols：要读取哪些列，0是第一列。例如，usecols = （1,4,5）将提取第2，第5和第6列。默认读取所有列。
+- unpack如果为True，将分列读取。
+
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
@@ -2059,3 +2072,4 @@ pip install -r requirements.txt
 47. [错误解决1：UserWarning: Boolean Series key will be reindexed to match DataFrame index](https://blog.csdn.net/qq_43003405/article/details/100005786)
 48. [np.arange()用法](https://blog.csdn.net/qq_41550480/article/details/89390579)
 49. [Numpy中 cov() 的使用方法](https://blog.csdn.net/qq_41800366/article/details/88063772)
+50. [numpy.loadtxt()](https://www.jianshu.com/p/ef37f739b531)
