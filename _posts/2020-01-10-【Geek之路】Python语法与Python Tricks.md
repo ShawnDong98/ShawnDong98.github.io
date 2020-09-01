@@ -1778,6 +1778,29 @@ fmt接收的是每个属性的单个字母缩写，例如：plot(x, y, 'bo-') # 
 
 >  plt.rcParams['font.family'] = 'SimHei'
 
+## 设置x， y坐标轴的位置
+
+```python
+import matplotlib.pyplot as plt
+from numpy import *
+x=linspace(-2,2)
+y=2*x+1
+plt.xlim(-2,2)
+plt.ylim(-3,5)
+ 
+ax=plt.gca()  #gca:get current axis得到当前轴
+#设置图片的右边框和上边框为不显示
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+ 
+#挪动x，y轴的位置，也就是图片下边框和左边框的位置
+ax.spines['bottom'].set_position(('data',0))  #data表示通过值来设置x轴的位置，将x轴绑定在y=0的位置
+ax.spines['left'].set_position(('axes',0.5))  #axes表示以百分比的形式设置轴的位置，即将y轴绑定在x轴50%的位置，也就是x轴的中点
+ 
+plt.plot(x,y)
+
+```
+
 # seaborn语法
 
 ## seaborn.set()
