@@ -46,6 +46,7 @@ tags:
 - $\pm$： \pm
 - $\propto$： \propto
 - $\Gamma$： \Gamma
+- $\partial$： \partial
 
 
 
