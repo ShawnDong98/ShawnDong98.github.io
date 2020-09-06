@@ -1547,6 +1547,33 @@ np.arange()函数分为一个参数，两个参数，三个参数三种情况
 - unpack如果为True，将分列读取。
 
 
+## np.meshgrid
+
+
+二维坐标系中,X轴可以取三个值1,2,3, Y轴可以取三个值7,8, 请问可以获得多少个点的坐标?
+
+显而易见是6个:
+
+(1,7)(2,7)(3,7)
+(1,8)(2,8)(3,8)
+
+**np.meshgrid()就是干这个的!**
+
+```python
+#coding:utf-8
+import numpy as np
+# 坐标向量
+a = np.array([1,2,3])
+# 坐标向量
+b = np.array([7,8])
+# 从坐标向量中返回坐标矩阵
+# 返回list,有两个元素,第一个元素是X轴的取值,第二个元素是Y轴的取值
+res = np.meshgrid(a,b)
+#返回结果: [array([ [1,2,3] [1,2,3] ]), array([ [7,7,7] [8,8,8] ])]
+```
+
+同理还可以生成更高维度的坐标矩阵
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
@@ -2136,3 +2163,4 @@ pip install -r requirements.txt
 50. [numpy.loadtxt()](https://www.jianshu.com/p/ef37f739b531)
 51. [Matplotlib之设置x,y坐标轴的位置](https://blog.csdn.net/beautiful77moon/article/details/96478238)
 52. [Matplotlib：mpl_toolkits.mplot3d工具包](https://www.jianshu.com/p/b563920fa7a8)
+53. [3分钟理解np.meshgrid()](https://blog.csdn.net/littlehaes/article/details/83543459)
