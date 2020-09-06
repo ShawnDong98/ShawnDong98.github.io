@@ -1866,6 +1866,17 @@ In [1]: %matplotlib inline
 效果如下：
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1599375546609.png)
+
+### plot_surface
+
+3D 图形需要的数据与等高线图基本相同：X、Y 数据决定坐标点，Z 轴数据决定 X、Y 坐标点对应的高度。与等高线图使用等高线来代表高度不同，3D 图形将会以更直观的形式来表示高度。
+
+为了绘制 3D 图形，需要调用 Axes3D 对象的 plot_surface()方法来完成。
+
+plot_surface参数:
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1599376104600.png)
+
 # seaborn语法
 
 ## seaborn.set()
@@ -2164,3 +2175,4 @@ pip install -r requirements.txt
 51. [Matplotlib之设置x,y坐标轴的位置](https://blog.csdn.net/beautiful77moon/article/details/96478238)
 52. [Matplotlib：mpl_toolkits.mplot3d工具包](https://www.jianshu.com/p/b563920fa7a8)
 53. [3分钟理解np.meshgrid()](https://blog.csdn.net/littlehaes/article/details/83543459)
+54. [3D绘图&ax.plot_surface()](https://blog.csdn.net/weixin_43584807/article/details/102331755)
