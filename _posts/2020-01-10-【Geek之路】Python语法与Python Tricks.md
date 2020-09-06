@@ -1801,6 +1801,44 @@ plt.plot(x,y)
 
 ```
 
+## mpl_toolkits.mplot3d
+
+mpl_toolkits.mplot3d是Matplotlib里面专门用来画三维图的工具包，官方指南请点击此处[《mplot3d tutorial》](https://matplotlib.org/tutorials/toolkits/mplot3d.html)
+
+使用from mpl_toolkits.mplot3d import \*或者import mpl_toolkits.mplot3d as p3d导入
+
+有两种画图方式
+
+```python
+fig = plt.figure()
+ax = p3d.Axes3D(fig)
+```
+
+```python
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+```
+
+画三维图需要先得到一个Axes3D对象，上面两种方式得到的ax都是Axes3D对象，接下来就可以调用函数在ax上画图了。如下(IPython)：
+
+```python
+In [1]: %matplotlib inline
+        import numpy as np
+        import matplotlib.pyplot as plt
+        import mpl_toolkits.mplot3d as p3d
+
+        fig = plt.figure()
+        ax = p3d.Axes3D(fig)
+
+        z = np.linspace(0, 15, 1000)
+        x = np.sin(z)
+        y = np.cos(z)
+        ax.plot(x, y, z, 'green')
+```
+
+效果如下：
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1599375546609.png)
 # seaborn语法
 
 ## seaborn.set()
@@ -2097,3 +2135,4 @@ pip install -r requirements.txt
 49. [Numpy中 cov() 的使用方法](https://blog.csdn.net/qq_41800366/article/details/88063772)
 50. [numpy.loadtxt()](https://www.jianshu.com/p/ef37f739b531)
 51. [Matplotlib之设置x,y坐标轴的位置](https://blog.csdn.net/beautiful77moon/article/details/96478238)
+52. [Matplotlib：mpl_toolkits.mplot3d工具包](https://www.jianshu.com/p/b563920fa7a8)
