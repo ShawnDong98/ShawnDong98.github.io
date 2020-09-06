@@ -1794,6 +1794,14 @@ fmt接收的是每个属性的单个字母缩写，例如：plot(x, y, 'bo-') # 
 如果想显示热力图，那只要在plt.contourf()函数中添加属性cmap=plt.cm.hot就能显示热力图，其中cmap代表为color map，我们把color map映射成hot(热力图)
 
 
+## plt.clabel()
+
+> plt.clabel(C,inline = True,fontsize = 10)
+
+该函数用于定义等高线中的标签。
+
+其中，C代表需要添加标签的线；inline代表标签添加的位置，当其为True时是上面那副等高线图的效果，当其为False时，线会穿过数字；fontsize代表标签大小。
+
 ## 多个图重叠
 
 > plt.tight_layout()
