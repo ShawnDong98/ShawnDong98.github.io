@@ -1783,6 +1783,16 @@ fmt接收的是每个属性的单个字母缩写，例如：plot(x, y, 'bo-') # 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596427289786.png)
 
  
+ ## matplotlib.pyplot contourf()
+ 
+ > coutour(\[X, Y,] Z,\[levels], \*\*kwargs)
+
+是来绘制等高线的，contour和contourf都是画三维等高线图的，不同点在于contour() 是绘制轮廓线，contourf()会填充轮廓。除非另有说明，否则两个版本的函数是相同的。
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1599377031709.png)
+
+如果想显示热力图，那只要在plt.contourf()函数中添加属性cmap=plt.cm.hot就能显示热力图，其中cmap代表为color map，我们把color map映射成hot(热力图)
+
 
 ## 多个图重叠
 
@@ -2176,3 +2186,4 @@ pip install -r requirements.txt
 52. [Matplotlib：mpl_toolkits.mplot3d工具包](https://www.jianshu.com/p/b563920fa7a8)
 53. [3分钟理解np.meshgrid()](https://blog.csdn.net/littlehaes/article/details/83543459)
 54. [3D绘图&ax.plot_surface()](https://blog.csdn.net/weixin_43584807/article/details/102331755)
+55. [matplotlib.pyplot contourf()函数的使用](https://blog.csdn.net/lens___/article/details/83960810)
