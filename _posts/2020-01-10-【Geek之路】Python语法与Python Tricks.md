@@ -1802,6 +1802,28 @@ fmt接收的是每个属性的单个字母缩写，例如：plot(x, y, 'bo-') # 
 
 其中，C代表需要添加标签的线；inline代表标签添加的位置，当其为True时是上面那副等高线图的效果，当其为False时，线会穿过数字；fontsize代表标签大小。
 
+## plt.quiver()
+
+> plt.quiver(*args, \*\*kw)
+
+```
+quiver(U, V, **kw)
+
+quiver(U, V, C, **kw)
+
+quiver(X, Y, U, V, **kw)
+
+quiver(X, Y, U, V, C, **kw)
+```
+
+X 和 Y 是箭头的 x 和 y 坐标（默认是箭头的尾部）
+
+U 和 V  是箭头矢量的 x 和 y 分量
+
+C 是映射箭头和颜色的颜色数组
+
+所有参数可能是 1D或2D数组及序列。如果 X 和 Y 缺省，将视为规则网格。如果 U 和 V是 2D 数组，但 X 和 Y 是 1D 数组，并且 len(X) 和 len(Y) 与 U 的列和行相同，则使用 numpy.meshgrid 生成 2D 网格。
+
 ## 多个图重叠
 
 > plt.tight_layout()
