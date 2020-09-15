@@ -99,9 +99,9 @@ $$1 - (\frac{31}{32})^{150} > 99\%$$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1600171878353.png)
 
-其中， M是hypothesis的个数， N是样本D的数量， $\epsilon$是参数。 该union bound表明，当 M有限，且N足够大的时候，Bad Data出现的概率就更低了，即能保证D对于所有的h都有$E_{in} \approx E_{out}$，满足PAC，演算法A的选择不受限制。那么满足这种union bound 的情况，我们就可以和之前一样，选取一个合理的演算法（PLA/pocket），选择使$E_{in}$最小的$h_m$作为矩g，一般能够保证$g \approx f$，即有不错的泛化能力。
+其中， M是hypothesis的个数， N是样本D的数量， $\epsilon$是参数。 该union bound表明，当 M有限，且N足够大的时候，Bad Data出现的概率就更低了，即能保证D对于所有的h都有$E_{in} \approx E_{out}$，满足PAC，演算法A的选择不受限制。那么满足这种union bound 的情况，我们就可以和之前一样，选取一个合理的演算法（PLA/pocket），选择使$E_{in}$最小的$h_m$作为g，一般能够保证$g \approx f$，即有不错的泛化能力。
 
-所以，如果hypothesis的个数M是有限的，N足够大，那么通过演算法A任意选择一个矩g，都有$E_{in} \approx E_{out}$成立；同时，如果找到一个矩g，使$E_{in} \approx 0$，PAC就能保证$E_{out} \approx 0$。至此，就证明了机器学习是可行的。
+所以，如果hypothesis的个数M是有限的，N足够大，那么通过演算法A任意选择一个g，都有$E_{in} \approx E_{out}$成立；同时，如果找到一个g，使$E_{in} \approx 0$，PAC就能保证$E_{out} \approx 0$。至此，就证明了机器学习是可行的。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1600175738298.png)
 
