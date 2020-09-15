@@ -1824,6 +1824,14 @@ C 是映射箭头和颜色的颜色数组
 
 所有参数可能是 1D或2D数组及序列。如果 X 和 Y 缺省，将视为规则网格。如果 U 和 V是 2D 数组，但 X 和 Y 是 1D 数组，并且 len(X) 和 len(Y) 与 U 的列和行相同，则使用 numpy.meshgrid 生成 2D 网格。
 
+## matplotlib.use('agg')
+
+python3 中用matplotlib 不进行交互画图，而是直接将图保存到硬盘，主要的一个设置就是  matplotlib.use('agg')。
+
+其实不设置  matplotlib.use('agg') 也可以把图片保存到硬盘，但是设置了这条语句再调用 matplotlib.pyplot.show 等进行交互式图片查看就会报错。
+
+可以这么理解，设置了  matplotlib.use('agg') 后便强制你不能交互式查看显示图片，而只能保存到磁盘再查看。
+
 ## 多个图重叠
 
 > plt.tight_layout()
@@ -2217,3 +2225,4 @@ pip install -r requirements.txt
 53. [3分钟理解np.meshgrid()](https://blog.csdn.net/littlehaes/article/details/83543459)
 54. [3D绘图&ax.plot_surface()](https://blog.csdn.net/weixin_43584807/article/details/102331755)
 55. [matplotlib.pyplot contourf()函数的使用](https://blog.csdn.net/lens___/article/details/83960810)
+56. [Linux服务器没有GUI的情况下使用matplotlib绘图](https://www.cnblogs.com/devilmaycry812839668/p/10201971.html)
