@@ -130,9 +130,15 @@ $$P[\mid E_{in}(g) - E_{out}(g) \mid > \epsilon] \leq 2 · effective(N)· exp(-2
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1600179375376.png)
 
+
+
+
 它的成长函数可以由下面推导得出：
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1600179396421.png)
+
+
+思考： 怎么推导的？
 
 这种情况下，$m_H(N) = \frac{1}{2}N^2 + \frac{1}{2}N + 1 << 2^N$ ，在N很大的时候，仍然是满足的。
 
