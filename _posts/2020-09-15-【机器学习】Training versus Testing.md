@@ -85,7 +85,7 @@ $$P[B_1 or B_2 or \cdots or B_M] \leq P[B_1] + P[B_2] + \cdots + P[B_M] \leq 2 M
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1600177911893.png)
 
 
-如果平面上有三个点x1、x2、x3，那么直线的种类共8种：
+如果平面上有三个点x1、x2、x3，那么直线的种类**最多**8种：
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1600177938030.png)
 
