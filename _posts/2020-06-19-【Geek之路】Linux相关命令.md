@@ -108,9 +108,37 @@ screen -S 23536 -X quit
 
 # 压缩与解压
 
+# iptables 开启指定端口
+
+iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+
+iptables -I OUTPUT -p tcp --sport 8080 -j ACCEPT
+
+给指定ip开启某端口访问权限：
+
+iptables -I INPUT -p tcp --dport 55618  -j DROP
+
+iptables -I INPUT -s 115.28.139.46 -p tcp --dport 55618  -j ACCEPT
+
+iptables -I INPUT -p tcp --dport 2181 -j DROP
+
+iptables -I INPUT -s 127.0.0.1 -p tcp --dport 2181 -j ACCEPT
+
+ 
+
+删除某一条规则：
+iptables -D INPUT 2
+
+ 
+
+service iptables save
+
+service iptables restart
+
 
 
 
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
 2. [linux screen 命令小结](https://zhuanlan.zhihu.com/p/42551093)
+3. [iptables 开启指定端口](https://blog.csdn.net/iteye_7816/article/details/82584207)
