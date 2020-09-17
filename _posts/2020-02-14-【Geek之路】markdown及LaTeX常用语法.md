@@ -48,7 +48,7 @@ tags:
 - $\Gamma$： \Gamma
 - $\partial$： \partial
 - $\check{a}$： \check
-
+- $\tilde{a}$： \tilde
 
 
 # LaTex
