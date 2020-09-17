@@ -110,6 +110,33 @@ screen -S 23536 -X quit
 
 # iptables 开启指定端口
 
+iptables其实不是真正的防火墙，我们可以把它理解成一个客户端代理，用户通过iptables这个代理，将用户的安全设定执行到对应的"安全框架"中，这个"安全框架"才是真正的防火墙，这个框架的名字叫netfilter
+
+ 
+
+netfilter才是防火墙真正的安全框架（framework），netfilter位于内核空间。
+
+iptables其实是一个命令行工具，位于用户空间，我们用这个工具操作真正的框架。
+
+ 
+
+netfilter/iptables（下文中简称为iptables）组成Linux平台下的包过滤防火墙，与大多数的Linux软件一样，这个包过滤防火墙是免费的，它可以代替昂贵的商业防火墙解决方案，完成封包过滤、封包重定向和网络地址转换（NAT）等功能。
+
+  
+
+Netfilter是Linux操作系统核心层内部的一个数据包处理模块，它具有如下功能：
+
+网络地址转换(Network Address Translate)
+
+数据包内容修改
+
+以及数据包过滤的防火墙功能
+
+
+所以说，虽然我们使用service iptables start启动iptables"服务"，但是其实准确的来说，iptables并没有一个守护进程，所以并不能算是真正意义上的服务，而应该算是内核提供的功能。
+
+
+
 iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
 
 iptables -I OUTPUT -p tcp --sport 8080 -j ACCEPT
@@ -134,6 +161,12 @@ iptables -D INPUT 2
 service iptables save
 
 service iptables restart
+
+
+## UFW和iptables的关系
+
+UFW全称为Uncomplicated Firewall，是Ubuntu系统上配置iptables防火墙的工具。UFW提供一个非常友好的命令用于创建基于IPV4，IPV6的防火墙规则。由于Ubuntu下的iptables操作起来比较复杂，依赖关系比较多，所以使用UFW时可以简化很多操作。
+
 
 
 
