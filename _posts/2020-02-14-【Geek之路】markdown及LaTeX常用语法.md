@@ -47,6 +47,7 @@ tags:
 - $\propto$： \propto
 - $\Gamma$： \Gamma
 - $\partial$： \partial
+- $\check{a}$： \check
 
 
 
