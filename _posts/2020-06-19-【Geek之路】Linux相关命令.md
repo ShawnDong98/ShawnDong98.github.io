@@ -11,6 +11,21 @@ tags:
     - Linux
 ---
 
+
+# 创建sudo用户
+
+
+## 创建新用户
+
+> sudo adduser username
+
+
+## 把用户添加到sudo组
+
+> sudo usermod -aG sudo username
+
+
+
 # CPU
 
 lscpu：显示cpu架构信息
