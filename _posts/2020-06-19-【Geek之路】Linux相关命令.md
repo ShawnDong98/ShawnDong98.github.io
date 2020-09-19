@@ -105,6 +105,11 @@ p列出当前的分区
 > sudo mkfs -t ext4 /dev/sdx1
 
 
+### 修改文件夹权限给用户
+
+> sudo chown -R 你的用户名 /media/datadisk
+
+
 
 
 # GPU
