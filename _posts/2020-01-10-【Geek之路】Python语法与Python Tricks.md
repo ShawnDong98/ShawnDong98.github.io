@@ -1574,6 +1574,21 @@ res = np.meshgrid(a,b)
 
 同理还可以生成更高维度的坐标矩阵
 
+# np.random.multivariate_normal
+
+> def multivariate_normal(mean, cov, size=None, check_valid=None, tol=None) 
+
+
+其中mean和cov为必要的传参而size，check_valid以及tol为可选参数。
+
+- mean：mean是多维分布的均值, 维度为1；
+- cov：协方差矩阵（，注意：协方差矩阵必须是对称的且需为半正定矩阵；
+- size：指定生成的正态分布矩阵的维度（例：若size=(1, 1, 2)，则输出的矩阵的shape即形状为 1X1X2XN（N为mean的长度））。
+-  check_valid：这个参数用于决定当cov即协方差矩阵不是半正定矩阵时程序的处理方式，它一共有三个值：warn，raise以及ignore。当使用warn作为传入的参数时，如果cov不是半正定的程序会输出警告但仍旧会得到结果；当使用raise作为传入的参数时，如果cov不是半正定的程序会报错且不会计算出结果；当使用ignore时忽略这个问题即无论cov是否为半正定的都会计算出结果。
+-   tol：检查协方差矩阵奇异值时的公差，float类型。
+
+np.random.multivariate_normal方法用于根据实际情况生成一个多元正态分布矩阵
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
@@ -2226,3 +2241,4 @@ pip install -r requirements.txt
 54. [3D绘图&ax.plot_surface()](https://blog.csdn.net/weixin_43584807/article/details/102331755)
 55. [matplotlib.pyplot contourf()函数的使用](https://blog.csdn.net/lens___/article/details/83960810)
 56. [Linux服务器没有GUI的情况下使用matplotlib绘图](https://www.cnblogs.com/devilmaycry812839668/p/10201971.html)
+57. [np.random.multivariate_normal方法浅析](https://blog.csdn.net/zch1990s/article/details/80005940)
