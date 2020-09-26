@@ -1809,6 +1809,71 @@ fmt接收的是每个属性的单个字母缩写，例如：plot(x, y, 'bo-') # 
 如果想显示热力图，那只要在plt.contourf()函数中添加属性cmap=plt.cm.hot就能显示热力图，其中cmap代表为color map，我们把color map映射成hot(热力图)
 
 
+## plt.legend()
+
+plt.legend（）函数主要的作用就是给图加上图例。
+
+> 图例是集中于地图一角或一侧的地图上各种符号和颜色所代表内容与指标的说明，有助于更好的认识地图。
+
+语法参数如下: matplotlib.pyplot.legend(\*args, \*\*kwargs)
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1601110509950.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1601110531343.png)
+
+常用的几个参数：
+
+(1)设置图列位置
+
+plt.legend(loc='upper center')
+
+![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1601110570789.png)
+
+(2)设置图例字体大小
+
+fontsize : int or float or {‘xx-small’, ‘x-small’, ‘small’, ‘medium’, ‘large’, ‘x-large’, ‘xx-large’}
+
+(3)设置图例边框及背景
+
+plt.legend(loc='best',frameon=False) #去掉图例边框
+plt.legend(loc='best',edgecolor='blue') #设置图例边框颜色
+plt.legend(loc='best',facecolor='blue') #设置图例背景颜色,若无边框,参数无效
+
+对于边框还可以采用面向对象方式：
+
+legend = plt.legend(\[\"First\", \"Second\"\])
+frame = legend.get_frame()
+frame.set_facecolor('blue')
+
+4)设置图例标题
+
+legend = plt.legend(\[\"CH\", \"US\"\], title='China VS Us')
+
+(5)设置图例名字及对应关系
+
+legend = plt.legend(\[p1, p2\],\[\"CH\",\"US\"\])
+
+
+### 采用plt.legend( )默认参数
+
+
+**第一步**：给plt.plot( )中参数label=''传入字符串类型的值，也就是图例的名称
+
+**第二步**： 使用plt.legend( )使上述代码产生效果
+
+### 向plt.legend( )中设置参数，进行个性化图例定制
+
+
+plt.legend( )中有handles、labels和loc三个参数，其中：
+
+handles需要传入你所画线条的实例对象，这个我也解释不清楚......
+
+labels是图例的名称（能够覆盖在plt.plot( )中label参数值）
+
+loc代表了图例在整个坐标轴平面中的位置（一般选取'best'这个参数值）
+
+
+
 ## plt.clabel()
 
 > plt.clabel(C,inline = True,fontsize = 10)
@@ -2242,3 +2307,4 @@ pip install -r requirements.txt
 55. [matplotlib.pyplot contourf()函数的使用](https://blog.csdn.net/lens___/article/details/83960810)
 56. [Linux服务器没有GUI的情况下使用matplotlib绘图](https://www.cnblogs.com/devilmaycry812839668/p/10201971.html)
 57. [np.random.multivariate_normal方法浅析](https://blog.csdn.net/zch1990s/article/details/80005940)
+58. [Matplotlib入门-4-plt.legend( )创建图例](https://zhuanlan.zhihu.com/p/111108841)
