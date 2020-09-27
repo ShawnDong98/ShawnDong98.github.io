@@ -615,6 +615,7 @@ int pos4 = str.find_last_not_of('r', 30);              // 29
 ```
 
 
+
 ## map
 
 自动建立key － value的对应。key 和 value可以是任意你需要的类型。
@@ -1638,6 +1639,18 @@ int main()
 copy(date.begin(),date.end(),ostream_iterator <Date,char>(cout,"\n"));  //遍历输出容器
  
     return 0;
+}
+```
+
+
+## 初始化vector\<string\>
+
+```c++
+ string strs[4] = {"d1/","../","../","../"};
+vector<string> logs(strs, strs+4);
+
+for(int i=0; i<logs.size(); ++i){
+	cout << logs[i] << endl;
 }
 ```
 
