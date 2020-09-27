@@ -151,13 +151,15 @@ screen -r yourname -> 回到yourname这个session
 
 screen -d yourname -> 远程detach某个session
 
-screen -d -r yourname -> 结束当前session并回到yourname这个session
+screen -d -r yourname -> 暂时断开当前session并回到yourname这个session
 
-screen -D -r yourname-> 结束当前的session,并logout,再链接yourname这个session
+screen -D -r yourname-> 暂停当前的session,并logout,再链接yourname这个session
 
 用screen -d命令detached 会话后， 如何杀死会话：
 
 screen -S 23536 -X quit
+
+ps: 暂时断开（detach）screen会话
 
 # 压缩与解压
 
