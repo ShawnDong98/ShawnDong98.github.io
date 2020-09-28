@@ -50,6 +50,7 @@ tags:
 - $\partial$： \partial
 - $\check{a}$： \check{a}
 - $\tilde{a}$： \tilde{a}
+- $\perp$： \perp
 
 
 # LaTex
