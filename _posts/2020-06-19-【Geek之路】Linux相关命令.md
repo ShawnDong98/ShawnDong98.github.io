@@ -121,6 +121,12 @@ p列出当前的分区
 
 > sudo vim /etc/fstab
 
+```
+UUID=0fa95857-d952-41c8-838a-ca3dea2d57ad /home/ShawnD/4t1     ext4    errors=remount-ro 0       1
+```
+
+重启
+
 ### 修改文件夹权限给用户
 
 > sudo chown -R 你的用户名 /media/datadisk
