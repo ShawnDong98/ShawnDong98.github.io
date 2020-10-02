@@ -94,13 +94,13 @@ $$KL(N(\mu, \sigma^2)||N(0, 1)) \\
 
 将KL散度公式进行变形：
 
-$$D_{KL} = \sum_{i=1}^{n}p(x_i)log(\frac{p(x_i)}{q(x_i)}) = \sum_{i=1}^{n}p(x_i)log(q(x_i)) - \sum_{i=1}^{n}p(x_i)log(q(x_i)) = -H(p(x)) + [-\sum_{i=1}^{n}p(x_i)log(q(x_i))]$$
+$$D_{KL} = \sum_{i=1}^{n}p(x_i)log(\frac{p(x_i)}{p(x_i)}) = \sum_{i=1}^{n}p(x_i)log(q(x_i)) - \sum_{i=1}^{n}p(x_i)log(q(x_i)) = -H(p(x)) + [-\sum_{i=1}^{n}p(x_i)log(q(x_i))]$$
 
 等式前一部分是p的熵， 等式的后一部分， 就是交叉熵：
 
 $$H(p, q) = -\sum_{i=1}^{n}p(x_i)log(q(x_i))$$
 
-对于分类任务，评估label和predicts之间的差距， p的熵是一个常数，所以在优化过程中只关注交叉熵就可以了。
+对于分类任务，评估label和predicts之间的差距。 我们是已知label的分布的， p的熵是一个常数，所以在优化过程中只关注交叉熵就可以了。
 
 # JS散度
 
