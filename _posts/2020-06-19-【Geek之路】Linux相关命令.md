@@ -112,6 +112,15 @@ p列出当前的分区
 > sudo mkfs -t ext4 /dev/sdx1
 
 
+### 查看磁盘块ID
+
+> blkid
+
+
+### 编辑/etc/fstab
+
+> sudo vim /etc/fstab
+
 ### 修改文件夹权限给用户
 
 > sudo chown -R 你的用户名 /media/datadisk
