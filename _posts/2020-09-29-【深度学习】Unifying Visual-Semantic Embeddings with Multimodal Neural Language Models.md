@@ -62,7 +62,28 @@ tags:
 
 
 
+# An encoder-decoder model for ranking and generation
 
+在本节中，我们将描述我们的图像描述生成流程。我们首先回顾了用于句子编码的LSTM RNN，然后介绍了如何学习多模态分布式表示。然后我们回顾了log-bilinear neural language models\[29\]和multiplicative neaural language\[30\]，然后介绍了我们的structure-content neural language model。
+
+##  Long short-term memory RNNs
+
+长期短期记忆\[1\]是一个循环神经网络, 它包含一个内置的记忆神经元来存储信息和利用长期的上下文。LSTM的记忆神经元由门控单元包围着， 他们用来读、写和重置信息。LSTMs已被用于在一些任务中实现最先进的性能，如手写识别\[31\]，序列生成\[32\]语音识别\[33\]和机器翻译\[11\]等。为了防止深LSTMs的过拟合，也提出了Dropout\[34\]策略。\[35\]
+
+
+用$X_t$表示在时间$t$的一个训练实例的矩阵。 在我们的例子中， $X_t$被用来表示 在训练批次中每个句子的第t个单词表示为一个词表示的矩阵。用$(I_t, F_t, C_t, O_t, M_t)$表示在时间$t$的输入， 遗忘， 神经元， 输出 和 LSTM的隐藏状态。 在本文中LSTM结构使用如下等式：
+
+$$I_t = \sigma(X_t · W_{xi} + M_{t-1}·W_{hi} + C_{t-1}·W_{ci} + b_i) \tag{1}$$
+
+$$F_t = \sigma(X_t · W_{xf} + M_{t-1}·W_{hf} + C_{t-1}·W_{cf} + b_f) \tag{2}$$
+
+$$C_t = F_t \bullet C_{t-1} + I_t \bullet tanh(X_t · W_{xc} + M_{t-1}·W_{hc} + b_c) \tag{3}$$
+
+$$O_t = \sigma(X_t·W_{xo} + M_{t-1}·W_{ho} + C_t · W_{co} + b_o) \tag{4}$$
+
+$$M_t = O_t \bullet tanh(C_t) \tag{5}$$
+
+其中$(\sigma)$表示sigmoid激活函数， $(·)$表示矩阵乘法， $(\bullet)$表示按元素乘。
 
 
 
