@@ -180,6 +180,13 @@ tags:
 
 ## 替换域名
 
+在github中的settings中的custom domain设置成自己的域名。
+
+在dnspod中添加域名解析。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1601712475761.png)
+
+成功。
 
 
 
