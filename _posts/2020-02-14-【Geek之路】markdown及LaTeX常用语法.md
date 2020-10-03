@@ -51,6 +51,7 @@ tags:
 - $\check{a}$： \check{a}
 - $\tilde{a}$： \tilde{a}
 - $\perp$： \perp
+- $\bullet$： \bullet
 
 
 # LaTex
