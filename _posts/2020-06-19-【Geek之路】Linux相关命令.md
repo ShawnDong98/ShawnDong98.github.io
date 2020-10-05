@@ -340,6 +340,10 @@ known_hosts在.ssh文件夹下。
 
 在终端输入：ubuntu-drivers devices，可以看到自己的显卡型号以及推荐的驱动版本。
 
+如果没有推荐版本， 添加ppa源
+
+> sudo add-apt-repository ppa:graphics-drivers/ppa
+
 - 如果同意安装推荐版本，那我们只需要终端输入：sudo ubuntu-drivers autoinstall 就可以自动安装了。
 - 当然我们也可以使用 apt 命令安装自己想要安装的版本，比如我想安装 340 这个版本号的版本，终端输入：sudo apt install nvidia-340 就自动安装了。
 - 安装过程中按照提示操作，除非你知道每个提示的真实含义，否则所有的提示都选择默认就可以了，安装完成后重启系统，NVIDIA 显卡就可以正常工作了。安装完成后你可以参照[https://linuxconfig.org/benchmark-your-graphics-card-on-linux](https://linuxconfig.org/benchmark-your-graphics-card-on-linux) 上的介绍测试你的显卡。
