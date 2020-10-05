@@ -135,6 +135,18 @@ UUID=0fa95857-d952-41c8-838a-ca3dea2d57ad /home/ShawnD/4t1     ext4    errors=re
 
 
 
+某次挂载一直失败， 寻找原因
+
+1. 打开系统自带的“Disks”软件
+2. 点击你想自动挂载的硬盘
+3. 点击Additional Partition Options图标
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1601886173192.png)
+
+4. 选择Edit Mount Options,把User Session Defaults设成Off，并确定Mount at system startup已经选中即可。
+
+就是这里出的问题， 它设计到fstab是否有效。
+
 
 # GPU
 
