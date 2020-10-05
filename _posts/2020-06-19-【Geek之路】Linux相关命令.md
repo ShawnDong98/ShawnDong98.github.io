@@ -357,3 +357,4 @@ known_hosts在.ssh文件夹下。
 8. [我的主板是华硕老主板，请问我u盘装系统怎么设置？](https://zhidao.baidu.com/question/1756148692115529908.html)
 9. [Ubuntu环境下SSH服务安装、SSH远程登录以及SSH数据传输](https://www.cnblogs.com/asyang1/p/9467646.html)
 10. [Ubuntu 18.04 安装 NVIDIA 显卡驱动](https://zhuanlan.zhihu.com/p/59618999)
+11. [vscode配置远程连接失败：过程试图写入的管道不存在（已解决）](https://www.jianshu.com/p/7c59ea90693b)
