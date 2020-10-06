@@ -104,7 +104,7 @@ $$\min_\theta \sum_x \sum_k max\{0, \alpha - s(x, v) + s(x, v_k)\} + \sum_v \sum
 
 ## Log-bilinear neural language models
 
-log-bilinear language model (LBL) 是一种确定性模型，可以将其视为具有单个线性隐藏层的前馈神经网络。与编码器一样，词汇表中的每个单词$w$都表示为$K$维实值向量$w \in R^K$。让$R$表示一个$V \times K$的词表示向量的矩阵， 其中$V$是词汇表的大小。让$(w_1, ..., w_{n-1})$是$n-1$个单词的tuple， 其中$n - 1$是文本大小。 LBL模型使下一个词的线性预测表示为：
+log-bilinear language model (LBL) 是一种确定性模型，可以将其视为具有单个线性隐藏层的前馈神经网络。词汇表中的每个单词$w$都被表示为$K$维实值向量$W \in R^K$（编码器中提到过）。让$R$表示一个$V \times K$的词表示向量的矩阵， 其中$V$是词汇表的大小。让$(w_1, ..., w_{n-1})$是$n-1$个单词的tuple， 其中$n - 1$是文本大小。 LBL模型使下一个词的线性预测表示为：
 
 $$\hat r = \sum_{i=1}^{n-1} C^{(i)}w_i \tag{7}$$
 
