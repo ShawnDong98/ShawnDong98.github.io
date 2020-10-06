@@ -420,6 +420,17 @@ width 和 height 可以结合 \textwidth 来使用， 比如width = 0.5 \textwid
 引入图片路径
 
 
+使用\caption后，图片下方会出现figure。
+
+> \usepackage{caption}
+> \caption*{...}
+
+这样会不显示figure。
+
+在figure环境里使用\label\{\}可以引用该图片。
+
+
+
 ## 插入表格
 
 > \begin{tabular}{\|l\|c\|c\|c\|p{1.5cm}\|}
