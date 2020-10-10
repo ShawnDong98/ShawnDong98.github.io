@@ -328,6 +328,8 @@ callable() 函数用于检查一个对象是否是可调用的。如果返回 Tr
 
 ## time
 
+### time.strftime()
+
 > time.strftime(format\[, t\])
 
 - format -- 格式字符串。
@@ -364,6 +366,17 @@ python中时间日期格式化符号：
 - %Z 当前时区的名称
 - %% %号本身
 
+
+### time.localtime()
+
+
+time.localtime(\[ sec \])
+
+返回：
+
+```
+time.struct_time(tm_year=2020, tm_mon=10, tm_mday=10, tm_hour=19, tm_min=17, tm_sec=55, tm_wday=5, tm_yday=284, tm_isdst=0)
+```
 
 ## 装饰器 
 
