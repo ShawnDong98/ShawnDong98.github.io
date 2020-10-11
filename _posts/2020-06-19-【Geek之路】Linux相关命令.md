@@ -214,6 +214,8 @@ ps: 暂时断开（detach）screen会话
 
 ## 解压.gz
 
+> sudo gunzip filename.gz
+
 # iptables 开启指定端口
 
 iptables其实不是真正的防火墙，我们可以把它理解成一个客户端代理，用户通过iptables这个代理，将用户的安全设定执行到对应的"安全框架"中，这个"安全框架"才是真正的防火墙，这个框架的名字叫netfilter
