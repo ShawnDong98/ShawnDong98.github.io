@@ -216,7 +216,22 @@ ps: 暂时断开（detach）screen会话
 
 > sudo gunzip filename.gz
 
-# iptables 开启指定端口
+
+# 端口
+
+## 查看端口
+
+
+> netstat -a
+
+
+## 查看占用端口的进程
+
+> sudo lsof -i :1087
+
+
+
+##  iptables 开启指定端口
 
 iptables其实不是真正的防火墙，我们可以把它理解成一个客户端代理，用户通过iptables这个代理，将用户的安全设定执行到对应的"安全框架"中，这个"安全框架"才是真正的防火墙，这个框架的名字叫netfilter
 
@@ -410,3 +425,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 11. [vscode配置远程连接失败：过程试图写入的管道不存在（已解决）](https://www.jianshu.com/p/7c59ea90693b)
 12. [Ubuntu18.04 自动挂载硬盘](https://www.cnblogs.com/jiahangok/p/12015441.html)
 13. [dpkg安装以及卸载软件](https://blog.csdn.net/u012300744/article/details/80267225)
+14. [http error - listen tcp 127.0.0.1:1087: bind: address already in use - Mac](https://blog.csdn.net/weixin_42108437/article/details/106072810)
