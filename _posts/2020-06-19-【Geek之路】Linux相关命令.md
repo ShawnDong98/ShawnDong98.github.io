@@ -197,7 +197,22 @@ screen -S 23536 -X quit
 
 ps: 暂时断开（detach）screen会话
 
+
+# dpkg安装卸载软件
+
+## 安装
+
+> sudo dpkg -i 软件名
+
+
+## 卸载
+
+> sudo dpkg -r 软件名
+
+
 # 压缩与解压
+
+## 解压.gz
 
 # iptables 开启指定端口
 
@@ -392,3 +407,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 10. [Ubuntu 18.04 安装 NVIDIA 显卡驱动](https://zhuanlan.zhihu.com/p/59618999)
 11. [vscode配置远程连接失败：过程试图写入的管道不存在（已解决）](https://www.jianshu.com/p/7c59ea90693b)
 12. [Ubuntu18.04 自动挂载硬盘](https://www.cnblogs.com/jiahangok/p/12015441.html)
+13. [dpkg安装以及卸载软件](https://blog.csdn.net/u012300744/article/details/80267225)
