@@ -1585,9 +1585,9 @@ int main()
 其实，它还能提高程序的可靠性，已定义成const的成员函数，一旦企图修改数据成员的值，则编译器按错误处理。
 
 
-## 多线程
+# 多线程
 
-### OpenMP
+## OpenMP
 
 编译报错
 
@@ -1601,6 +1601,43 @@ OpenMP_1.cpp:(.text+0x24): undefined reference to `omp_get_thread_num'
 > g++ -program.c -o obj -fopenmp
 
 With gcc, you need to compile and link with -fopenmp to enable OpenMP. Other compilers have different options; with intel it's -openmp, with pgi it's -mp, etc.
+
+### OpenMP计时函数
+
+1. clock()函数
+
+原型：clock_t clock();
+
+MSDN中的定义：Returns the processor time consumed by the program，返回的是处理器执行的时间，也就是说，只要内核中有程序在cpu中运行，时间就会增加，使用多核并行化技术并不能并行地计算使用的时间，仍然是进行叠加
+
+返回值：返回时钟周期，要转化成时间需要除以常量宏CLOCKS_PER_SEC
+
+
+```c++
+clock_t time_start = clock();
+
+clock_t time_end = clock();
+
+cout << "OMP time use: " << 1000 * (time_end - time_start) / (double)CLOCKS_PER_SEC << "ms" << endl;
+```
+
+2. omp_get_wtime()函数
+
+原型：double omp_get_wtime();
+
+MSDN中的定义：Returns a value in seconds of the time elapsed from some point，返回的是一个观察点的时间值，这个时间将一直在程序运行时持续，也就是说，在程序运行前使用和程序运行结束使用，这个时间差是整个程序运行的时间，而不是clock得到的cpu运行的时间
+
+返回值：返回一个绝对时间值，单位是秒
+
+
+```c++
+double time_start = omp_get_wtime();
+
+double time_end = omp_get_wtime();
+
+cout << "OMP time use: " << (time_end - time_start) << " s" << endl;
+```
+
 
 # C/C++ Trick
 
