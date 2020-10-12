@@ -446,3 +446,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 12. [Ubuntu18.04 自动挂载硬盘](https://www.cnblogs.com/jiahangok/p/12015441.html)
 13. [dpkg安装以及卸载软件](https://blog.csdn.net/u012300744/article/details/80267225)
 14. [http error - listen tcp 127.0.0.1:1087: bind: address already in use - Mac](https://blog.csdn.net/weixin_42108437/article/details/106072810)
+15. [Linux 让终端走代理的几种方法](https://zhuanlan.zhihu.com/p/46973701)
