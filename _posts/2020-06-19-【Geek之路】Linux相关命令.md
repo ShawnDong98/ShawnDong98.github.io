@@ -312,6 +312,21 @@ export http_proxy=http://127.0.0.1:12333
 export https_proxy=http://127.0.0.1:12333
 ```
 
+## terminal 默认代理
+
+编辑~/.bashrc， 在末尾添加
+
+```
+export http_proxy="http://127.0.0.1:7890"
+export https_proxy="http://127.0.0.1:7890"
+```
+
+如果在conda环境， 切换到默认环境
+
+```
+source ~/.bashrc
+```
+
 # 装系统
 
 ## 华硕主板相关
