@@ -1800,6 +1800,63 @@ ix可以同时按标签和位置进行提取。
 > df_inner.ix[:'2013-01-03',:4] #2013-01-03号之前，前四列数据
 
 
+## apply
+
+apply() 函数， 函数作为一个对象，能作为参数传递给其它参数，并且能作为函数的返回值。
+
+函数作为对象能带来代码风格巨大的改变。举一个例子，有一个包含 1 到 10 的 list，从其中找出能被 3 整除的数字。用传统的方法：
+
+```python
+def can_divide_by_three(number):
+    if number % 3 == 0:
+        return True
+    else:
+        return False
+
+selected_numbers = []
+for number in range(1, 11):
+    if can_divide_by_three(number):
+        selected_numbers.append(number)
+
+```
+
+循环是不可少的，因为 can_divide_by_three() 函数只用一次，可以用 lambda 表达式简化：
+
+```python
+divide_by_three = lambda x : True if x % 3 == 0 else False
+
+selected_numbers = []
+for number in range(1, 11):
+    if divide_by_three(item):
+        selected_numbers.append(item)
+```
+
+Python 语言提供 filter() 函数，语法如下：
+
+```
+filter(function, sequence)
+```
+
+filter() 函数的功能：对 sequence 中的 item 依次执行 function(item)，将结果为 True 的 item 组成一个 List/String/Tuple（取决于 sequence 的类型）并返回。有了这个函数，上面的代码可以简化为：
+
+```python
+divide_by_three = lambda x : True if x % 3 == 0 else False
+selected_numbers = filter(divide_by_three, range(1, 11))
+```
+
+将 lambda 表达式放在语句中，代码简化到只需要一句话就够了：
+
+```python
+selected_numbers = filter(lambda x: x % 3 == 0, range(1, 11))
+```
+
+
+回到主题， pandas 的 apply() 函数可以作用于 Series 或者整个 DataFrame，功能也是自动遍历整个 Series 或者 DataFrame, 对每一个元素运行指定的函数。
+
+
+
+
+
 # scipy语法
 
 ## import scipy.stats as st
@@ -2457,3 +2514,4 @@ pip install -r requirements.txt
 56. [Linux服务器没有GUI的情况下使用matplotlib绘图](https://www.cnblogs.com/devilmaycry812839668/p/10201971.html)
 57. [np.random.multivariate_normal方法浅析](https://blog.csdn.net/zch1990s/article/details/80005940)
 58. [Matplotlib入门-4-plt.legend( )创建图例](https://zhuanlan.zhihu.com/p/111108841)
+59. [pandas apply() 函数用法](https://blog.csdn.net/stone0823/article/details/100008619)
