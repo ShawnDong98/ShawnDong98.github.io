@@ -52,6 +52,7 @@ tags:
 - $\tilde{a}$： \tilde{a}
 - $\perp$： \perp
 - $\bullet$： \bullet
+- 正比于$\propto$： \propto
 
 
 # LaTex
