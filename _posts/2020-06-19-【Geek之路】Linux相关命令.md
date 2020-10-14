@@ -210,6 +210,14 @@ ps: 暂时断开（detach）screen会话
 > sudo dpkg -r 软件名
 
 
+## dpkg 安装缺少依赖的方法
+
+
+```
+ sudo apt-get -f -y install
+```
+
+
 # 压缩与解压
 
 ## 解压.gz
