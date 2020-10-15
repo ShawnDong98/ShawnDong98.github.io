@@ -12,6 +12,18 @@ tags:
     - CV
 ---
 
+# 安装
+
+## python安装
+
+```
+pip install opencv-contrib-python
+```
+
+
+## 编译安装
+
+
 # API
 
 ## cv2.imread
