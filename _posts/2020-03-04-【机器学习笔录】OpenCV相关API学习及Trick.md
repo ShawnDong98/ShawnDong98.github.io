@@ -291,9 +291,21 @@ $$dst = 0.5 * 251 + 0.5 * 155$$
 $$dst = src1 * alpha + src2 * beta + gamma;$$
 
 
+## cv2.canny
 
+- T1， T2为阈值， 凡是高于T2的都保留， 凡是小于T1都丢弃， 从高于T2的像素出发， 凡是大于T1而且相互连接的，都保留。最终得到一个输出二值图像。
+- 推荐的高低阈值比值为T2：T1 = (3：1 ) / (2：1)其中T2为高阈值， T1为低阈值。
 
-
+```
+  Canny(
+    inputArray src, //8-bit的输入图像
+    OutputArray edges, //输出边缘图像， 一般都是二值图像
+    double threshold1, //低阈值， 常取高阈值的1/2， 或者1/3
+    double threshold2, //高阈值
+    int aptertureSize, //Sobel算子的size， 通常3x3， 取值3
+    boot L2gradient //选择true表示是L2来归一化， 否则用L1归一化
+    ）
+```
 
 
 
