@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 机器学习
     - 深度学习
-    - CV
+    - OpenCV
 ---
 
 # 安装
