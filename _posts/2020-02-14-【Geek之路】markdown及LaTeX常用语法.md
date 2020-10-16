@@ -405,7 +405,7 @@ latex中有格式与内容分离的思想，应该使用newcomand设置自己的
 
 > \graphicspath{}
 
-> \includegraphics[width/height/scale/angle]{\<文件名\>}
+> \includegraphics\[width/height/scale/angle]{\<文件名\>}
 
 
 ```
@@ -423,7 +423,7 @@ width 和 height 可以结合 \textwidth 来使用， 比如width = 0.5 \textwid
 
 使用\caption后，图片下方会出现figure。
 
-> \usepackage{caption}
+> \usepackage{caption} \\
 > \caption*{...}
 
 这样会不显示figure。
