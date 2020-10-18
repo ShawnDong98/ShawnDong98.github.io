@@ -1814,21 +1814,21 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 
 iloc按位置进行提取, 按索引提取区域行数值
 
-> df_inner.iloc[0:5]
+> df_inner.iloc\[0:5\]
 
 
 ## loc 
 
 loc函数按标签值进行提取, 按索引提取单行的数值
 
-> df_inner.loc[3]
+> df_inner.loc\[3\]
 
 ## ix
 
 
 ix可以同时按标签和位置进行提取。
 
-> df_inner.ix[:'2013-01-03',:4] #2013-01-03号之前，前四列数据
+> df_inner.ix\[:'2013-01-03',:4] \#2013-01-03号之前，前四列数据
 
 
 ## apply
