@@ -1181,6 +1181,9 @@ D:\desktop>python argparseLearn.py  --version
 PROG 2.0
 ```
 
+## xrange
+
+xrange() 函数用法与 range 完全相同，所不同的是生成的不是一个数组，而是一个生成器。
 
 # os和sys
 
@@ -1737,6 +1740,34 @@ res = np.meshgrid(a,b)
 -   tol：检查协方差矩阵奇异值时的公差，float类型。
 
 np.random.multivariate_normal方法用于根据实际情况生成一个多元正态分布矩阵
+
+
+## np.poly1d
+
+
+ 1） 参数1：为一个数组，若没有参数2，则生成一个多项式，例如：
+
+```python
+p = np.poly1d([2,3,5,7])   
+print(p)    
+==>>2x^3 + 3x^2 + 5x + 7  
+```
+
+2） 参数2：若参数2为True，则表示把数组中的值作为根，然后反推多项式，例如：
+
+```python
+q = np.poly1d([2,3,5],True)
+print(q)   
+===>>(x - 2)*(x - 3)*(x - 5)  = x^3 - 10x^2 + 31x -30
+```
+
+3）variable='z'表示改变未知数的字母， 例如：
+
+```python
+q = np.poly1d([2,3,5],True,varibale = 'z')
+print(q)   
+===>>(z - 2)*(z - 3)*(z - 5)  = z3 - 10z2 + 31z -30
+```
 
 ## 完整打印矩阵
 
@@ -2515,3 +2546,4 @@ pip install -r requirements.txt
 57. [np.random.multivariate_normal方法浅析](https://blog.csdn.net/zch1990s/article/details/80005940)
 58. [Matplotlib入门-4-plt.legend( )创建图例](https://zhuanlan.zhihu.com/p/111108841)
 59. [pandas apply() 函数用法](https://blog.csdn.net/stone0823/article/details/100008619)
+60. [深度学习之numpy.poly1d()函数](https://www.cnblogs.com/zhouzhe-blog/p/9621679.html)
