@@ -54,6 +54,7 @@ tags:
 - $\bullet$： \bullet
 - 正比于$\propto$： \propto
 - $\varphi$： \varphi
+- $\triangleq$： \triangleq
 
 # LaTex
 
