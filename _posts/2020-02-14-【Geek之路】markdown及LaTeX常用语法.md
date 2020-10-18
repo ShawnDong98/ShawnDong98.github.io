@@ -55,6 +55,7 @@ tags:
 - 正比于$\propto$： \propto
 - $\varphi$： \varphi
 - $\triangleq$： \triangleq
+- 恒等于$\equiv$： \equiv
 
 # LaTex
 
