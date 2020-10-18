@@ -56,6 +56,8 @@ tags:
 - $\varphi$： \varphi
 - $\triangleq$： \triangleq
 - 恒等于$\equiv$： \equiv
+- 因为$\because$： \because
+- 所以$\therefore$： \therefore
 
 # LaTex
 
