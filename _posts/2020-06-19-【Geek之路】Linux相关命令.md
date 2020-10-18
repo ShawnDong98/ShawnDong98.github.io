@@ -202,12 +202,23 @@ ps: 暂时断开（detach）screen会话
 
 ## 安装
 
-> sudo dpkg -i 软件名
+```
+sudo dpkg -i 软件名
+```
 
 
 ## 卸载
 
-> sudo dpkg -r 软件名
+```
+sudo dpkg -r 软件名
+```
+
+
+## 查询已安装的软件
+
+```
+dpkg --get-selections
+```
 
 
 ## dpkg 安装缺少依赖的方法
