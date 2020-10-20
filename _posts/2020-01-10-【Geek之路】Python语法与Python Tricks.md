@@ -1917,12 +1917,18 @@ for i in pbar:
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585587226945.png)
 
 
+# EasyDict
+
+easydict的作用：可以使得以属性的方式去访问字典的值！
+
+
 
 # Bugs
 
 ## NameError:name ‘xrange’ is not defined
 
 在Python 3中，range()与xrange()合并为range( )。
+
 我的python版本为python3.5。
 
 将xrange( )函数全部换为range( )。
