@@ -1919,8 +1919,76 @@ for i in pbar:
 
 # EasyDict
 
+```python
+from easydict import EasyDict
+```
+
+
 easydict的作用：可以使得以属性的方式去访问字典的值！
 
+```python
+>>> from easydict import EasyDict as edict
+>>> d = edict({'foo':3, 'bar':{'x':1, 'y':2}})
+>>> d.foo
+3
+>>> d.bar.x
+1
+ 
+>>> d = edict(foo=3)
+>>> d.foo
+3
+```
+
+
+解析json目录时很有用
+
+
+```python
+>>> from easydict import EasyDict as edict
+>>> from simplejson import loads
+>>> j = """{
+"Buffer": 12,
+"List1": [
+    {"type" : "point", "coordinates" : [100.1,54.9] },
+    {"type" : "point", "coordinates" : [109.4,65.1] },
+    {"type" : "point", "coordinates" : [115.2,80.2] },
+    {"type" : "point", "coordinates" : [150.9,97.8] }
+]
+}"""
+>>> d = edict(loads(j))
+>>> d.Buffer
+12
+>>> d.List1[0].coordinates[1]
+54.9
+```
+
+也可以这样用
+
+```python
+>>> d = EasyDict()
+>>> d.foo = 3
+>>> d.foo
+3
+```
+
+```python
+>>> d = EasyDict(log=False)
+>>> d.debug = True
+>>> d.items()
+[('debug', True), ('log', False)]
+```
+
+
+```python
+>>> class Flower(EasyDict):
+...     power = 1
+...
+>>> f = Flower({'height': 12})
+>>> f.power
+1
+>>> f['power']
+1
+```
 
 
 # Bugs
@@ -2139,3 +2207,4 @@ pip install -r requirements.txt
 58. [Matplotlib入门-4-plt.legend( )创建图例](https://zhuanlan.zhihu.com/p/111108841)
 59. [pandas apply() 函数用法](https://blog.csdn.net/stone0823/article/details/100008619)
 60. [深度学习之numpy.poly1d()函数](https://www.cnblogs.com/zhouzhe-blog/p/9621679.html)
+61. [python 中easydict的简单使用](https://blog.csdn.net/m0_38082419/article/details/79079516)
