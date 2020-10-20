@@ -1133,53 +1133,6 @@ list 的 sort 方法返回的是对已经存在的列表进行操作，而内建
 
 > sorted(iterable, key=None, reverse=False)  
 
-## argparse
-
-创建解析器对象
-
-> class argparse.ArgumentParser(prog=None, usage=None, description=None, epilog=None, parents=[], formatter_class=argparse.HelpFormatter, prefix_chars='-', fromfile_prefix_chars=None, argument_default=None, conflict_handler='error', add_help=True, allow_abbrev=True)
-
-添加参数
-
-> ArgumentParser.add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])
-
-- name or flags - 一个命名或者一个选项字符串的列表，例如 foo 或 -f, --foo
-- choices - 可用的参数的容器， 参数值只能从几个选项里面选择, 如choices=['alexnet', 'vgg']。
-- required - 此命令行选项是否可省略 （仅选项可用）。
-- metavar - 在使用方法消息中使用的参数值示例。
-- dest - 设置参数在代码中的变量名。
-- action - add_argument中默认action=’store‘，直接保存从运行终端或程序中传入的变量。如果想修改为常量，需要修改action='store_const'，然后指定const。
-
-```python
-parser.add_argument('--foo', action='store_const', const=42)
-```
-
-store_true/false - 如果需要存储True或者False，只要指定action='store_true/false'
-
-```python
-parser.add_argument('--foo', action='store_true')
-parser.add_argument('--foo', action='store_false')
-```
-
-需要注意的是，如果指定action为store_const或者store_true，则参数不可再进行赋值
-
-append - 同一参数，需要多个值时候，需要指定action='append'
-
-```python
-parser.add_argument('--foo', action='append')
-
-D:\desktop>python argparseLearn.py  --foo 1 --foo 2
-Namespace(foo=['1', '2'])
-```
-
-version - 需要指定action='version'，打印version后会自动退出
-
-```python
-parser.add_argument('--version',action='version',version='PROG 2.0')
-
-D:\desktop>python argparseLearn.py  --version
-PROG 2.0
-```
 
 ## xrange
 
@@ -2295,6 +2248,55 @@ if __name__ == "__main__":
  inte-1rval: 滚动周期，单位有when指定，比如：when=’D’,interval=1，表示每天产生一个日志文件
 
  backupCount: 表示日志文件的保留个数
+
+# argparse
+
+创建解析器对象
+
+> class argparse.ArgumentParser(prog=None, usage=None, description=None, epilog=None, parents=[], formatter_class=argparse.HelpFormatter, prefix_chars='-', fromfile_prefix_chars=None, argument_default=None, conflict_handler='error', add_help=True, allow_abbrev=True)
+
+添加参数
+
+> ArgumentParser.add_argument(name or flags...\[, action\]\[, nargs\]\[, const\]\[, default\]\[, type\]\[, choices\]\[, required\]\[, help\]\[, metavar\]\[, dest\])
+
+- name or flags - 一个命名或者一个选项字符串的列表，例如 foo 或 -f, --foo
+- choices - 可用的参数的容器， 参数值只能从几个选项里面选择, 如choices=['alexnet', 'vgg']。
+- required - 此命令行选项是否可省略 （仅选项可用）。
+- metavar - 在使用方法消息中使用的参数值示例。
+- dest - 设置参数在代码中的变量名。
+- action - add_argument中默认action=’store‘，直接保存从运行终端或程序中传入的变量。如果想修改为常量，需要修改action='store_const'，然后指定const。
+
+```python
+parser.add_argument('--foo', action='store_const', const=42)
+```
+
+store_true/false - 如果需要存储True或者False，只要指定action='store_true/false'
+
+```python
+parser.add_argument('--foo', action='store_true')
+parser.add_argument('--foo', action='store_false')
+```
+
+需要注意的是，如果指定action为store_const或者store_true，则参数不可再进行赋值
+
+append - 同一参数，需要多个值时候，需要指定action='append'
+
+```python
+parser.add_argument('--foo', action='append')
+
+D:\desktop>python argparseLearn.py  --foo 1 --foo 2
+Namespace(foo=['1', '2'])
+```
+
+version - 需要指定action='version'，打印version后会自动退出
+
+```python
+parser.add_argument('--version',action='version',version='PROG 2.0')
+
+D:\desktop>python argparseLearn.py  --version
+PROG 2.0
+```
+
 
 # Bugs
 
