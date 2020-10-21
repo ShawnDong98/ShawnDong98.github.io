@@ -436,6 +436,30 @@ vscode配置远程连接失败：过程试图写入的管道不存在
 
 known_hosts在.ssh文件夹下。
 
+
+## sftp
+
+一、适用场景
+
+　　我们平时习惯了使用 ftp 来上传下载文件，尤其是很多 Linux 环境下，我们一般都会通过第三方的SSH 工具连接到 Linux，但是当我们需要传输文件到 Linux 服务器当中，很多人习惯用 ftp 来传输，其实 Linux 默认是不提供 ftp 的，需要你额外安装 FTP 服务器。而且 ftp 服务器端会占用一定的 VPS 服务器资源。尤其笔者更建议使用 sftp 代替 ftp.
+
+　　主要原因：① 可以不用额外安装任何服务器端程序；② 会更省系统资源；③ SFTP 使用加密传输认证信息和传输数据，相对来说会更安全；④ 也不需要单独配置，对新手来说比较简单（开启 SSH 默认就开启了 STFP）。
+
+二、主要区别
+
+　　FTP 是一种文件传输协议，一般是为了方便数据共享的。包括一个 FTP 服务器和多个 FTP 客户端。FTP 客户端通过 FTP 协议在服务器上下载资源。而 SFTP 协议是在 FTP 的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说 SFTP 的传输效率比 FTP 要低（不过现实使用当中，没有发现多大差别）。
+  
+  
+ 安装filezilla
+
+```
+sudo apt-get install filezilla
+```
+
+
+sftp默认的连接端口号是22
+
+
 ## 安装Nvidia驱动
 
 更换阿里源， 用默认源安装很慢
@@ -481,3 +505,5 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 13. [dpkg安装以及卸载软件](https://blog.csdn.net/u012300744/article/details/80267225)
 14. [http error - listen tcp 127.0.0.1:1087: bind: address already in use - Mac](https://blog.csdn.net/weixin_42108437/article/details/106072810)
 15. [Linux 让终端走代理的几种方法](https://zhuanlan.zhihu.com/p/46973701)
+16. [SFTP和FTP的区别](https://www.cnblogs.com/maigy/p/11641616.html)
+17. [Ubuntu下FTP工具推荐](https://blog.csdn.net/michaelpp/article/details/5966611)
