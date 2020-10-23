@@ -71,13 +71,46 @@ l a l a l a
 ```
 
 
+## set
+
+```python
+class set([iterable])
+```
+
+set() 函数创建一个无序不重复元素集，可进行关系测试，删除重复数据，还可以计算交集、差集、并集等。
+
+
+```python
+>>>x = set('runoob')
+>>> y = set('google')
+>>> x, y
+(set(['b', 'r', 'u', 'o', 'n']), set(['e', 'o', 'g', 'l']))   # 重复的被删除
+>>> x & y         # 交集
+set(['o'])
+>>> x | y         # 并集
+set(['b', 'e', 'g', 'l', 'o', 'n', 'r', 'u'])
+>>> x - y         # 差集
+set(['r', 'b', 'u', 'n'])
+>>>
+```
 
 
 ## str
 
 ### join
 
+```
+str.join(sequence)
+```
+
 join()：连接字符串数组。将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串
+
+
+```python
+str = "-";
+seq = ("a", "b", "c"); # 字符串序列
+print str.join( seq );
+```
 
 ### startswith
 
