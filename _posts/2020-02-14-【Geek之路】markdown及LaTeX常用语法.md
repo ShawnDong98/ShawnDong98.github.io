@@ -58,6 +58,7 @@ tags:
 - 恒等于$\equiv$： \equiv
 - 因为$\because$： \because
 - 所以$\therefore$： \therefore
+- 存在$\exists$： \exists
 
 # LaTex
 
