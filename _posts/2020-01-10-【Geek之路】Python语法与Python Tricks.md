@@ -1204,6 +1204,9 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 将path分割成目录和文件名二元组返回。
 
+> os.path.exists(filename)
+
+路径是否存在
 
 
 ## sys.path
