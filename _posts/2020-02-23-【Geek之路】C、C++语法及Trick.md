@@ -1701,6 +1701,63 @@ extern int pthread_join __P (pthread_t __th, void **__thread_return);
 这个函数是一个线程阻塞的函数，调用它的函数将一直等待到被等待的线程结束为止，当函数返回时，被等待线程的资源被收回。如果执行成功，将返回0，如果失败则返回一个错误号。
 
 
+## MPI
+
+### ubuntu安装mpi
+
+```
+sudo apt-get intall mpich
+```
+
+### MPI_Init
+
+使用 MPI_Init 函数初始化并行计算环境;
+
+
+### MPI_Comm_size
+
+使用 MPI_Comm_size 函数返回指定通信器中进程的数目;
+
+### MPI_Comm_rank
+
+使用 MPI_Comm_rank 函数返回指定通信器中本进程的进程号;
+
+### MPI_Finalize
+
+使用 MPI_Finalize 退出并行计算环境,并行程序结束;
+
+### 点对点通信(point to point communication)
+
+ **阻塞型: MPI_Send 和 MPI_Recv。**
+
+MPI_Send 函数返回时表明数据已经发出或已被MPI系统复制,随后对发送缓冲区的修改不会影响所发送的数据。而MPI_Recv 返回时,则表明数据已经接收到并且可以立即使用。阻塞型函数的操作是非局部的,它的完成可能需要与其他进程进行通信。
+
+
+
+ **非阻塞型: MPI_Isend 和 MPI_Irecv。**
+ 
+非阻塞型函数调用总是立即返回,而实际操作则由MPI 系统在后台进行。在调用了 一 个 非 阻 塞 型 通 信 函 数 后 , 用 户 必 须 随 后 调 用 其 他 函 数 , 如 MPI_Wait 或MPI_Test 等,来等待操作完成或查询操作的完成情况。
+
+### 聚合通信(collective communication)
+
+- 一对多通信: 广播 MPI_Bcast
+- 多对一通信:数据收集 MPI_Gather
+- 多对多通信:全交换 MPI_Alltoall
+
+
+### 编译
+
+```
+mpicc cpi.c -o cpi
+```
+
+### 运行
+
+```
+mpirun -np 2 ./cpi
+```
+
+
 ## 计时函数
 
 ### chrono
