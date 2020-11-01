@@ -293,6 +293,27 @@ plt.plot(x,y)
 
 ```
 
+## 共享x轴，使用不同y轴坐标尺度
+
+
+```python
+x= np.arange(10)
+y1 = x**2
+y2 = x**4
+_,ax=plt.subplots()
+ax.plot(x,y1,'b')
+ax.set_xlabel('x')
+ax.set_ylabel('y1',color='b')
+ax2 = ax.twinx()
+ax2.plot(x,y2,'r')
+ax2.set_ylabel('y2',color='r')
+```
+
+
+
+
+
+
 ## mpl_toolkits.mplot3d
 
 mpl_toolkits.mplot3d是Matplotlib里面专门用来画三维图的工具包，官方指南请点击此处[《mplot3d tutorial》](https://matplotlib.org/tutorials/toolkits/mplot3d.html)
@@ -398,3 +419,6 @@ numpy转Image：
 > img = Image.fromarray(img.astype('uint8')).convert('RGB')
 
 
+
+# References
+1. [python：matplotlib 绘制两条y轴](https://blog.csdn.net/kaever/article/details/107063358)
