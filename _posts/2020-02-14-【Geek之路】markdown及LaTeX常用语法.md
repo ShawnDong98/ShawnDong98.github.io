@@ -59,6 +59,7 @@ tags:
 - 因为$\because$： \because
 - 所以$\therefore$： \therefore
 - 存在$\exists$： \exists
+- $\overline{test}$：\overline{test}
 
 # LaTex
 
