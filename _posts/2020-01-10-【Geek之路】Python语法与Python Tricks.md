@@ -2578,3 +2578,4 @@ pip install -r requirements.txt
 60. [深度学习之numpy.poly1d()函数](https://www.cnblogs.com/zhouzhe-blog/p/9621679.html)
 61. [python 中easydict的简单使用](https://blog.csdn.net/m0_38082419/article/details/79079516)
 62. [python中logging日志模块详解](https://www.cnblogs.com/xianyulouie/p/11041777.html)
+63. [numpy求解方程组](https://blog.csdn.net/ScapeD/article/details/85374240)
