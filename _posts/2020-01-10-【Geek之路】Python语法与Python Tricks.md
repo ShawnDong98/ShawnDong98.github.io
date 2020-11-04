@@ -1781,6 +1781,32 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 在后面加上\[()\]
 
 
+## 求解方程组
+
+
+### 用 np.linalg.solve(A,b) 直接求解 
+
+首先构建A和b的数组。
+
+```python
+A = np.array([[2,1,-2],[3,0,1],[1,1,-1]])
+b = np.transpose(np.array([[-3,5,-2]])
+```
+
+求解这个系统：
+
+```python
+x = np.linalg.solve(A,b)
+```
+
+### 通过求逆矩阵求解
+
+```python
+A_inv=np.linalg.inv(A)
+x=np.dot(A_inv,b)
+```
+
+
 # pandas语法
 
 ## 读取csv文件
