@@ -403,7 +403,12 @@ plot_surface参数:
 > plt.show()
 
 
-> Image.show()
+```python
+from PIL import Image
+ 
+image = Image.open('path/to/image')
+image.show()
+```
 
 ## transpose方法
 
