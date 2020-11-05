@@ -402,6 +402,9 @@ plot_surface参数:
 > plt.imshow(img)
 > plt.show()
 
+
+> Image.show()
+
 ## transpose方法
 
 >   im.transpose(method)⇒ image
@@ -421,4 +424,5 @@ numpy转Image：
 
 
 # References
+
 1. [python：matplotlib 绘制两条y轴](https://blog.csdn.net/kaever/article/details/107063358)
