@@ -431,3 +431,4 @@ numpy转Image：
 # References
 
 1. [python：matplotlib 绘制两条y轴](https://blog.csdn.net/kaever/article/details/107063358)
+2. [PIL/Image的show()函数](https://blog.csdn.net/bcfd_yundou/article/details/89146169)
