@@ -410,6 +410,11 @@ image = Image.open('path/to/image')
 image.show()
 ```
 
+
+## 缩放
+
+> img = img.resize((width, height))
+
 ## transpose方法
 
 >   im.transpose(method)⇒ image
