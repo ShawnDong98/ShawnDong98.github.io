@@ -1585,6 +1585,9 @@ int main()
 其实，它还能提高程序的可靠性，已定义成const的成员函数，一旦企图修改数据成员的值，则编译器按错误处理。
 
 
+## new
+
+
 # 多线程
 
 ## OpenMP
@@ -1773,6 +1776,19 @@ mpicxx cpi.cpp -o cpi
 
 ```
 mpirun -np 2 ./cpi
+```
+
+
+## cuda 编程
+
+
+将cuda程序命名为 "xxx.cu"
+
+
+编译：
+
+```
+nvcc -o helloworld helloworld.cu
 ```
 
 
