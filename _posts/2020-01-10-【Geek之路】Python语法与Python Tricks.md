@@ -1201,17 +1201,34 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 ## os.path常用方法：
 
-> os.path.join(path1[, path2[, ...]])
+
+### join
+
+> os.path.join(path1\[, path2\[, ..\]\])
 
 将多个路径组合后返回，第一个绝对路径之前的参数将被忽略
+
+### split
 
 > os.path.split(path)
 
 将path分割成目录和文件名二元组返回。
 
+### exists
+
 > os.path.exists(filename)
 
 路径是否存在
+
+### basename
+
+> os.path.basename(path)
+
+返回path最后的文件名。如果path以／或\结尾，那么就会返回空值。即os.path.split(path)的第二个元素。
+
+
+
+
 
 
 ## sys.path
