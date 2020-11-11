@@ -15,7 +15,7 @@ tags:
 
 ## list
 
-\*list[:2]和list[:2]区别
+\*list\[:2\]和list\[:2\]区别
 
 - list[:2]：返回的还是一个list
 - \*list[:2]：返回的是内容
@@ -29,7 +29,7 @@ print(*ll[0:2])
 ```
 
 输出：\\
-['lalala', 'test'] \\
+\['lalala', 'test'\] \\
 lalala test
 
 拓展来讲，一个迭代器使用\*返回的一串迭代结果。
@@ -45,6 +45,11 @@ print(*ll[0])
 输出：\\
 lalala \\
 l a l a l a
+
+
+### extend
+
+extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。
 
 ## dict
 
