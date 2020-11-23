@@ -1978,7 +1978,7 @@ cudaError_t cudaMallicHost(void **devPtr, size_t size)
 内存释放：
 
 ```c++
-cudaError_t cudaFreeHost()
+cudaError_t cudaFreeHost(void *devPtr)
 ```
 
 统一（Unified）内存分配释放
