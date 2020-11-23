@@ -2009,6 +2009,40 @@ cudaError_t cudaMemcpy(void *dst, const void *src, size_t count, cudaMemcpyKind 
 kind： cudaMemcpyHostToHost， cudaMemcpyHostToDevice， cudaMemcpyDeviceToHost, cudaMemcpyDeviceToDevice, or cudaMemcpyDefault
 
 
+共享内存
+
+```c++
+// Size Known at compile time
+__global__ void kernel(...){
+	...
+	__shared__float sData[256]
+	...
+}
+
+int main(void){
+	...
+	kernel<<<nBlocks.blockSize>>>(...);
+	...
+}
+```
+
+
+```c++
+// Size known at kernel launch
+__global__ void kernel(...){
+	...
+	extern __shared__float sData[];
+	...
+}
+
+int main(void){
+	...
+	smBytes = blockSize * sizeof(float);
+	kernel<<<nBlocks, blockSize, smBytes>>>(...);
+	...
+}
+```
+
 ## 计时函数
 
 ### chrono
