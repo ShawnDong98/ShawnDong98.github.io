@@ -1958,7 +1958,7 @@ L1 cache, L2 cache
 void __syncthreads();
 ```
 
-但是，频繁使用__syncthreads会影响内核执行效率.
+但是，频繁使用\_\_syncthreads会影响内核执行效率.
 
 
 ## 计时函数
