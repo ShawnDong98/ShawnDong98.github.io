@@ -2000,6 +2000,14 @@ cudaError_t cudaFree(void *devPtr)
 ```
 
 
+CPU与GPU内存同步拷贝
+
+```c++
+cudaError_t cudaMemcpy(void *dst, const void *src, size_t count, cudaMemcpyKind kind)
+```
+
+kind： cudaMemcpyHostToHost， cudaMemcpyHostToDevice， cudaMemcpyDeviceToHost, cudaMemcpyDeviceToDevice, or cudaMemcpyDefault
+
 
 ## 计时函数
 
