@@ -1887,9 +1887,20 @@ CUDA是一种典型的SIMT架构（单指令多线程架构），SIMT和SIMD（S
 
 同一个warp中的thread可以以任意顺序执行，active warps被sm资源限制。当一个warp空闲时，SM就可以调度驻留在该SM中另一个可用warp。在并发的warp之间切换是没什么消耗的，因为硬件资源早就被分配到所有thread和block，所以该新调度的warp的状态已经存储在SM中了。不同于CPU，CPU切换线程需要保存/读取线程上下文（register内容），这是非常耗时的，而GPU为每个threads提供物理register，无需保存/读取上下文。
 
-### \_\_global\_\_ 
+### 函数修饰符 和 变量修饰符
+
+函数修饰符：
+
+\_\_global\_\_，只能在GPU上运行，可以从CPU或者GPU调用
+
+\_\_device\_\_，只能在GPU上运行，只能从GPU调用
 
 
+变量修饰符：
+
+\_\_device\_\_，存放在GPU的全局存储器，同一个grid里面的所有线程都可以直接访问，CPU端需要调用库函数来访问
+
+\_\_managed\_\_，可以从CPU、GPU访问
 
 ## 计时函数
 
