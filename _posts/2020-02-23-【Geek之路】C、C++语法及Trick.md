@@ -1952,6 +1952,14 @@ blockIdx同样包含三个值： blockIdx, blockIdx.y, blockIdx.z
 L1 cache, L2 cache
 
 
+共享内存是块内线程可见的，所以有竞争问题的存在， 可以使用同步语句：
+
+```c++
+void __syncthreads();
+```
+
+但是，频繁使用__syncthreads会影响内核执行效率.
+
 
 ## 计时函数
 
