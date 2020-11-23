@@ -1902,6 +1902,57 @@ CUDA是一种典型的SIMT架构（单指令多线程架构），SIMT和SIMD（S
 
 \_\_managed\_\_，可以从CPU、GPU访问
 
+### cuda程序层次结构
+
+grid 和 block 都是定义为dim3类型的变量。
+
+dim3可以看成是包含三个无符号整数$(x, y, z)$成员的结构体变量， 在定义时，缺省值初始化为1。
+
+grid和block可以灵活地定义为1-dim, 2-dim以及3-dim结构。
+
+kernel在调用时也必须通过执行配置<<<grid, block>>>来指定kernel所使用的线程数及结构。
+
+不同的GPU架构，grid和block的维度有限制。
+
+
+cuda程序调用:
+
+```c++
+dim3 grid(3, 2);
+dim3 block(5, 3);
+kernel_fun<<<grid, block>>>(prams...);
+
+dim3 grid(128);
+dim3 block(256);
+kernel_fun<<<grid, block>>>(prams...);
+
+dim3 grid(100, 120， 32);
+dim3 block(16, 16， 4);
+kernel_fun<<<grid, block>>>(prams...);
+```
+
+一个线程需要两个内置的坐标变量(blockIdx, threadIdx) 来唯一标识， 它们都是dim3类型变量， 其中blockIdx指明线程所在grid中的位置， 而threadIdx指明线程所在block中的位置
+
+threadIdx包含三个值： threadIdx.x, threadIdx.y, trheadIdx.z
+
+blockIdx同样包含三个值： blockIdx, blockIdx.y, blockIdx.z
+
+逻辑顺序： x>y>z
+
+### GPU内存
+
+每个线程都有自己的私有本地内存(Local Memory)。
+
+每个线程块有包含共享内存(Shared Memory)， 可以被线程块中所有线程共享， 其生命周期与线程块一致。
+
+所有的线程都可以访问全局内存(Global Memory)
+
+访问一些只读内存块：常量内存(Constant Memory)和纹理内存(Texture Memory)
+
+L1 cache, L2 cache
+
+
+
 ## 计时函数
 
 ### chrono
