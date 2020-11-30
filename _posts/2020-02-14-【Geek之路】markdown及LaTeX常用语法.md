@@ -822,6 +822,10 @@ $$
 
 > \pagenumbering{roman}
 
+另一种重新从1开始计数的方法
+
+> \setcounter{page}{1}
+
 latex提供了多种预定义的页面风格(page style)， 它们控制页眉页脚的整体风格设置：
 - empty: 没有页眉页脚
 - plain： 没有页眉， 页脚时居中的页码
