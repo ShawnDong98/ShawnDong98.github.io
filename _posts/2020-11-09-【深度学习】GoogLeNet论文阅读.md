@@ -7,7 +7,7 @@ author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
-    - 机器学习
+    - 深度学习
     - 
 ---
 
