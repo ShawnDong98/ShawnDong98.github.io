@@ -197,6 +197,15 @@ screen -S 23536 -X quit
 
 ps: 暂时断开（detach）screen会话
 
+# apt安装卸载软件
+
+## 查看已安装的软件
+
+```
+apt list --installed
+```
+
+
 
 # dpkg安装卸载软件
 
@@ -507,3 +516,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 15. [Linux 让终端走代理的几种方法](https://zhuanlan.zhihu.com/p/46973701)
 16. [SFTP和FTP的区别](https://www.cnblogs.com/maigy/p/11641616.html)
 17. [Ubuntu下FTP工具推荐](https://blog.csdn.net/michaelpp/article/details/5966611)
+18. [apt如何列出所有已经安装的软件包](https://www.cnblogs.com/it-tsz/p/11107510.html)
