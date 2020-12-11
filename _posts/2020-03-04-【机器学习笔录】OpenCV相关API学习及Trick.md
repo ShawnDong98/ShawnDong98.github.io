@@ -269,7 +269,18 @@ $$dst = 0.5 * 251 + 0.5 * 155$$
 
 给图片做填充（paddinng）
 
-> cv2.copyMakeBorder(img,120,120,0,0,cv2.BORDER_CONSTANT,value=[0, 0, 0])
+> cv2.copyMakeBorder(img,120,120,0,0,cv2.BORDER_CONSTANT,value=\[0, 0, 0\])
+
+
+- src ： 输入的图片
+- top, bottom, left, right ：相应方向上的边框宽度
+- borderType：定义要添加边框的类型，它可以是以下的一种：
+- - cv2.BORDER_CONSTANT：添加的边界框像素值为常数（需要额外再给定一个参数）
+- - cv2.BORDER_REFLECT：添加的边框像素将是边界元素的镜面反射，类似于gfedcb  \|  abcdefgh  \|  gfedcba
+- - cv2.BORDER_REFLECT_101 or cv2.BORDER_DEFAULT：和上面类似，但是有一些细微的不同，类似于gfedcb  \|  abcdefgh \| gfedcba
+- - cv2.BORDER_REPLICATE：使用最边界的像素值代替，类似于aaaaaa \| abcdefgh \| hhhhhhh
+- - cv2.BORDER_WRAP：不知道怎么解释，直接看吧，cdefgh \| abcdefgh \| abcdefg
+- value：如果borderType为cv2.BORDER_CONSTANT时需要填充的常数值。
 
 
 
