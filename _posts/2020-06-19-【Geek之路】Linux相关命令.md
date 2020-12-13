@@ -61,6 +61,12 @@ cat /proc/cpuinfo | grep "model name" | uniq
 
 > free -m
 
+训练时我们经常需要检测内存的占用情况,使用free命令即可,具体用法如下
+
+> watch free -h
+
+-h指的是human,该选项会将内存用量转换为以GB为单位,方便直观.
+
 # 硬盘
 
  lsblk：blk是block的缩写。列出块设备
@@ -490,7 +496,11 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 
 如果没有推荐版本， 添加ppa源
 
-> sudo add-apt-repository ppa:graphics-drivers/ppa
+```
+sudo add-apt-repository ppa:graphics-drivers/ppa
+```
+
+
 
 - 如果同意安装推荐版本，那我们只需要终端输入：sudo ubuntu-drivers autoinstall 就可以自动安装了。
 - 当然我们也可以使用 apt 命令安装自己想要安装的版本，比如我想安装 340 这个版本号的版本，终端输入：sudo apt install nvidia-340 就自动安装了。
@@ -517,3 +527,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 16. [SFTP和FTP的区别](https://www.cnblogs.com/maigy/p/11641616.html)
 17. [Ubuntu下FTP工具推荐](https://blog.csdn.net/michaelpp/article/details/5966611)
 18. [apt如何列出所有已经安装的软件包](https://www.cnblogs.com/it-tsz/p/11107510.html)
+19. [Ubuntu下查看内存使用情况](https://zhuanlan.zhihu.com/p/47687203)
