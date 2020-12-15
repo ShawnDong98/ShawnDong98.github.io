@@ -60,6 +60,8 @@ tags:
 - 所以$\therefore$： \therefore
 - 存在$\exists$： \exists
 - $\overline{test}$：\overline{test}
+- $\lor$： \lor
+- $\land$： \land 
 
 # LaTex
 
