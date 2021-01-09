@@ -1219,6 +1219,16 @@ file 对象方法:
   - 起始位置: 0 - 文件头, 默认值; 1 - 当前位置; 2 - 文件尾
 - f.close() 关闭文件
 
+
+## read、readline和readlines
+
+read        读取整个文件
+
+readline    读取下一行
+
+readlines   读取整个文件到一个迭代器以供我们遍历（读取到一个list中，以供使用，比较方便）
+
+
 # os和sys
 
 
@@ -2644,3 +2654,4 @@ pip install -r requirements.txt
 61. [python 中easydict的简单使用](https://blog.csdn.net/m0_38082419/article/details/79079516)
 62. [python中logging日志模块详解](https://www.cnblogs.com/xianyulouie/p/11041777.html)
 63. [numpy求解方程组](https://blog.csdn.net/ScapeD/article/details/85374240)
+64. [python中read、readline和readlines的区别](https://www.cnblogs.com/hanggegege/p/5926549.html)
