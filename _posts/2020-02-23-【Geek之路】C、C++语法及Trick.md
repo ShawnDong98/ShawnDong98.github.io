@@ -614,7 +614,72 @@ int pos3 = str.find_last_not_of("aeiou", 20, 2);       // 20
 int pos4 = str.find_last_not_of('r', 30);              // 29
 ```
 
+### string大小写转换
 
+将一个string转换成大写或者小写，是项目中经常需要做的事情，但string类里并 没有提供这个方法。自己写个函数来实现，说起来挺简单，但做起来总让人觉得不方便。
+
+STL的algorithm库确实给我们提供了这样的便利，使用模板函数transform可以轻松解决这个问题，开发人员只需要提供一个函数对象，例如将char转成大写的toupper函数或者小写的函数tolower函数。
+
+transform原型：
+
+```c++
+template < class InputIterator, class OutputIterator,
+ class UnaryOperator >  
+      OutputIterator transform ( InputIterator first1, InputIterator last1,  
+                                 OutputIterator result, UnaryOperator op );  
+      
+    template < class InputIterator1, class InputIterator2,  
+               class OutputIterator, class BinaryOperator >  
+      OutputIterator transform ( InputIterator1 first1, InputIterator1 last1,  
+                                 InputIterator2 first2, OutputIterator result,  
+                                 BinaryOperator binary_op );
+```
+
+
+测试代码：
+
+```c++
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+        string strA = "yasaken@126.com";
+        string strB = "LURY@LENOVO.com";
+        printf("Before transform:\n");
+        printf("strA:%s \n", strA.c_str());
+        printf("strB:%s \n\n", strB.c_str());
+
+        transform(strA.begin(), strA.end(), strA.begin(), ::toupper);
+        transform(strB.begin(), strB.end(), strB.begin(), ::toupper);
+        printf("After transform to toupper:\n");
+        printf("strA:%s \n", strA.c_str());
+        printf("strB:%s \n\n", strB.c_str());
+
+        transform(strA.begin(), strA.end(), strA.begin(), ::tolower);
+        transform(strB.begin(), strB.end(), strB.begin(), ::tolower);
+        printf("After transform to lower:\n");
+        printf("strA:%s \n", strA.c_str());
+        printf("strB:%s \n\n", strB.c_str());
+        return 0;
+}
+```
+
+运行结果：
+
+```c++
+strA:yasaken@126.com
+strB:LURY@LENOVO.com
+
+After transform to toupper:
+strA:YASAKEN@126.COM
+strB:LURY@LENOVO.COM
+
+After transform to lower:
+strA:yasaken@126.com
+strB:lury@lenovo.com
+```
 
 ## map
 
