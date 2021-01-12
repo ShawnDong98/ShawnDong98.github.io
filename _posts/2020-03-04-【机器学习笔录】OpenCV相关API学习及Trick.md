@@ -318,6 +318,43 @@ $$dst = src1 * alpha + src2 * beta + gamma;$$
     ）
 ```
 
+## cv2.VideoWriter_fourcc
+
+VideoWriter_fourcc为视频编解码器, fourcc意为四字符代码（Four-Character Codes），顾名思义，该编码由四个字符组成,下面是VideoWriter_fourcc对象一些常用的参数，注意：字符顺序不能弄混
+
+- cv2.VideoWriter_fourcc('I', '4', '2', '0'),该参数是YUV编码类型，文件名后缀为.avi
+- cv2.VideoWriter_fourcc('P', 'I', 'M', 'I'),该参数是MPEG-1编码类型，文件名后缀为.avi
+- cv2.VideoWriter_fourcc('X', 'V', 'I', 'D'),该参数是MPEG-4编码类型，文件名后缀为.avi
+- cv2.VideoWriter_fourcc('T', 'H', 'E', 'O'),该参数是Ogg Vorbis,文件名后缀为.ogv
+- cv2.VideoWriter_fourcc('F', 'L', 'V', '1'),该参数是Flash视频，文件名后缀为.flv
+
+fourcc为 四个字符用来表示压缩帧的codec 例如：
+
+- CV_FOURCC('P','I','M','1') = MPEG-1 codec
+- CV_FOURCC('M','J','P','G') = motion-jpeg codec
+- CV_FOURCC('M', 'P', '4', '2') = MPEG-4.2 codec
+- CV_FOURCC('D', 'I', 'V', '3') = MPEG-4.3 codec
+- CV_FOURCC('D', 'I', 'V', 'X') = MPEG-4 codec
+- CV_FOURCC('U', '2', '6', '3') = H263 codec
+- CV_FOURCC('I', '2', '6', '3') = H263I codec
+- CV_FOURCC('F', 'L', 'V', '1') = FLV1 codec
+- 若编码器代号为 -1，则运行时会弹出一个编码器选择框.
+
+
+
+## videowriter
+
+
+```
+VideoWriter(filename, fourcc, fps, frameSize[, isColor]) -> <VideoWriter object>
+```
+
+- 第一个参数是要保存的文件的路径
+- fourcc 指定编码器
+- fps 要保存的视频的帧率
+- frameSize 要保存的文件的画面尺寸
+- isColor 指示是黑白画面还是彩色的画面
+
 
 
 # CV概念知识
