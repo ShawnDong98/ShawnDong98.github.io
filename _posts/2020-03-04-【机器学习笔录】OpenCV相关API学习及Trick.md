@@ -153,7 +153,7 @@ cv.destroyAllWindows()
 img_test2 = cv.resize(img, (0, 0), fx=0.25, fy=0.25, interpolation=cv.INTER_NEAREST)
 ```
 
-- (0, 0)： 输出图片尺寸， 如果为0收到fx和fy的控制
+- (0, 0)： 输出图片尺寸， 如果为0受到fx和fy的控制
 - fx, fy: x轴和y轴的缩放因子
 - interpolation： 插值方式
 
