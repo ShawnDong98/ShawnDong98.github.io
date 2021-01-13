@@ -146,6 +146,17 @@ cv.destroyAllWindows()
 > cv2.putText(img, 'lena', (50,150), cv2.FONT_HERSHEY_COMPLEX, 5, (0, 255, 0), 12)
 
 
+## cv2.resize
+
+
+```
+img_test2 = cv.resize(img, (0, 0), fx=0.25, fy=0.25, interpolation=cv.INTER_NEAREST)
+```
+
+- (0, 0)： 位目标尺寸， 如果为0收到fx和fy的控制
+- fx, fy: x轴和y轴的缩放因子
+- interpolation： 插值方式
+
 ## 画点和圆
 
 > cv2.circle(img, center, radius, color[, thickness[, lineType[, shift]]])
@@ -342,7 +353,7 @@ fourcc为 四个字符用来表示压缩帧的codec 例如：
 
 
 
-## videowriter
+## cv2.videowriter
 
 
 ```
