@@ -539,3 +539,4 @@ guvcview -d /dev/video
 17. [Ubuntu下FTP工具推荐](https://blog.csdn.net/michaelpp/article/details/5966611)
 18. [apt如何列出所有已经安装的软件包](https://www.cnblogs.com/it-tsz/p/11107510.html)
 19. [Ubuntu下查看内存使用情况](https://zhuanlan.zhihu.com/p/47687203)
+20. [Ubuntu 打开摄像头](https://blog.csdn.net/tajon1226/article/details/99854348)
