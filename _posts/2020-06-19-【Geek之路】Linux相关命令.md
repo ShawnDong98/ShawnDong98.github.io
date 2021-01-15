@@ -508,6 +508,17 @@ sudo add-apt-repository ppa:graphics-drivers/ppa
 
 
 
+# 打开摄像头
+
+```
+sudo apt-get install guvcview
+```
+
+```
+guvcview -d /dev/video
+```
+
+
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
 2. [linux screen 命令小结](https://zhuanlan.zhihu.com/p/42551093)
