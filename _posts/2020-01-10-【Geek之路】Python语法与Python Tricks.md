@@ -1244,6 +1244,26 @@ readline    读取下一行
 readlines   读取整个文件到一个迭代器以供我们遍历（读取到一个list中，以供使用，比较方便）
 
 
+## ->
+
+-\>常常出现在python函数定义的函数名后面，为函数添加元数据,描述函数的返回类型，从而方便开发人员使用。比如：
+
+```python
+def attrs(self) -> _Attrs:
+    pass
+```
+
+```python
+def add(x, y) -> int:
+  return x+y
+```
+
+这里面，元数据表明了函数的返回值为int类型。
+
+-\> \_Attr则表明函数返回的是一个外部可访问的类的私有变量。
+
+
+
 # os和sys
 
 
@@ -2670,3 +2690,4 @@ pip install -r requirements.txt
 62. [python中logging日志模块详解](https://www.cnblogs.com/xianyulouie/p/11041777.html)
 63. [numpy求解方程组](https://blog.csdn.net/ScapeD/article/details/85374240)
 64. [python中read、readline和readlines的区别](https://www.cnblogs.com/hanggegege/p/5926549.html)
+65. [python中，@和-> 代表什么?](https://blog.csdn.net/orangefly0214/article/details/91583506)
