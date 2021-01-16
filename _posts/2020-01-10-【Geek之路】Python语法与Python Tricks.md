@@ -1373,6 +1373,21 @@ print(os.path.dirname(os.getcwd()))
 
 > os.environ\['CUDA_VISIBLE_DEVICES'\] = '0, 2, 3, 4'
 
+
+## 相对路径和绝对路径
+
+在console的路径下执行程序，如果使用相对路径， 将根据当前路径选择相对路径，而不是根据代码所在的文件位置执行相对路径(此时的情况指读取某个图片或文件， 或导入某个模型)。
+
+在console的路径下执行程序，如果导入某个路径下的包， 这个包有导入了同路径下的其他包， 那么此时会报错， 原因同上， 但是此时可以通过将子路径导入环境变量解决， 使用如下代码：
+
+```python
+import sys
+import os
+path = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(path)
+sys.path.append(os.getcwd())
+```
+
 # numpy语法
 
 ## numpy 模块的 size,shape, len的用法
