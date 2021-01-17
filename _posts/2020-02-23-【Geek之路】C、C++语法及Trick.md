@@ -1966,6 +1966,27 @@ int main()
 
 上述方式是只读，如果需要修改arr里边的值，可以使用for(auto& n:arr)，for循环的这种使用方式的内在实现实际上还是借助迭代器的，所以如果在循环的过程中对arr进行了增加和删除操作，那么程序将对出现意想不到的错误。
 
+
+## swap
+
+C++提供了一个swap函数用于交换
+
+swap 包含在命名空间std 里面
+
+```c++
+#include<iostream>
+ using namespace std;
+ int main()
+{
+     float a = 3.123456,b = 1234567.000000;
+     swap(a,b);
+     cout<<fixed;
+     cout<<a<<"->"<<b<<endl;
+    return 0;
+}
+```
+
+
 # 多线程
 
 ## OpenMP
