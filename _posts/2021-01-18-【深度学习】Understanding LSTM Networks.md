@@ -76,8 +76,54 @@ LSTM也有这样的链式结构， 但是重复模块有一种不同的结构。
 
 
 
+# The Core Idea Behind LSTMs
+
+LSTMs 的关键是细胞状态， 水平线贯穿图的上方。
+
+细胞状态用一些小的线性变换贯穿整条链。 信息不改变流过它是非常容易的。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611030362945.png)
+
+LSTM有能力移除或增加信息到细胞状态， 通过叫做门的结构调节。
+
+门是选择性地让信息通过。 它们是由一个simoid神经网络层和一个按元素级别的乘法操作组成。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611030604193.png)
 
 
+sigmoid层输出介于0到1之间， 描述每个部分多少信息能够通过。值为0表示不让任何信息通过， 值为1表示让所有信息通过。
+
+一个LSTM有三个门， 来保护和控制细胞状态。
+
+# Step-by-Step LSTM Walk Through
+
+LSTM的第一步是决定什么信息将会从细胞状态中丢掉。 这个决定由一个叫做“遗忘门”的sigmoid层实现。 它的输入是$h_{t-1}$和$x_t$， 它的输出是0到1。 1表示“完全保持它”， 0表示“完全忘记它”。
+
+让我们来回顾我们的语言模型的例子， 它想要基于之前所有的词来预测下一个词。 在这样一个问题中，细胞状态可能包括当前目标的词性， 这样可以使用正确的名词。当我们看到一个新的名词， 我们想要忘词之前的词的词性。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611031685483.png)
+
+
+下一步是决定什么样的新信息将会存储到细胞状态中。这有两个部分。 首先， 一个叫做“输入门”的simoid层决定哪些值我们将会更新。 接下来， 一个tanh层创建新的候选值向量$\tilde C_t$， 它可以被添加到状态。 在下一步， 我们将会结合它们两个创建一个新的状态。
+
+以我们的语言模型为例， 我们想要添加新的词的词性到细胞状态中， 取替换到我们要遗忘的老的词。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611031985356.png)
+
+现在去更新来的细胞状态$C_{t-1}$到新的细胞状态$C_t$。 之前的步骤已经决定了要做什么，我们仅仅去实现它。
+
+我们将老的状态乘以$f_t$， 遗忘掉我们决定遗忘的更早的事情。 然后加上$i_t * \tilde C_t$。 这是一个新的候选值， 由我们决定更新的每个状态值放缩。
+
+在语言模型的例子中， 这是我们实际丢弃的关于旧的词的词性的信息 以及 添加的新信息， 按我们之前步骤决定的那样。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611032390516.png)
+
+
+最后， 我们需要决定哪些信息我们将要输出。 这个输出将会基于我们的细胞状态， 但会是一个过滤后的版本。 首先， 我们执行一个simoid层决定那一部分的细胞状态我们将会输出。 然后， 我们让细胞状态穿过tanh(使值在-1到1之间)并且乘以它通过simoid门的输出， 因此我们仅输出我们决定的部分。
+
+以语言模型为例， 当它看到一个主语， 它可能想要输出和一个动词相关的信息。例如，它可能输出是否为单数或者复数， 这样我们才能知道接下来的动词应采用哪种形式。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611033379300.png)
 
 # Reference
 1. [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
