@@ -125,5 +125,28 @@ LSTM的第一步是决定什么信息将会从细胞状态中丢掉。 这个决
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611033379300.png)
 
+
+# Variants on Long Short Term Memory
+
+到目前为止我们所讲的LSTM是常规的LSTM。 但是不是所有的LSTM都和上面一样。 事实上， 每篇文章都是用一些不同的版本提升LSTM。 差别很小， 但是有一些改变需要我们注意。
+
+一个流行的LSTM的变体， 由[Gers & Schmidhuber (2000)](ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf)引进， 添加"peephole connection"。 这意味着我们可以让门层增加一个细胞状态这个输入。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611108209167.png)
+
+上面的图在所有的门增加了"peepholes", 但是文章都给出了一些peepholes。
+
+另外的变体是使用两个遗忘门和输入门。不是分别考虑遗忘什么和什么新信息应该添加， 我们一起做出这些决策。 我们仅遗忘我们将在在这里输入的一些事情。只有当我们遗忘老的事情的时候， 我们输入新的值。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611108943958.png)
+
+另一个在LSTM的变体是GRU。 它将遗忘门和输入门结合成单个的"更新门"。它融合了细胞状态和隐藏状态。 这个模型比标准的LSTM更简单， 而且越来越流行。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611124958868.png)
+
+这些只是LSTM变体中的一小部分。 还有像 Depth Gated RNNs之类的其他变体。还有一些完全不同的方式解决长期依赖的方法， 比如Clockwork RNNs。
+
+哪一种变体是最好的？ 这些差异重要吗？ Greff, et al. (2015) (http://arxiv.org/pdf/1503.04069.pdf)作了热门变体的比较， 发现它们差不多。 Jozefowicz, et al. (2015) (http://jmlr.org/proceedings/papers/v37/jozefowicz15.pdf) 测试了上万种RNN结构， 发现它们在特定任务上工作地更好。
+
 # Reference
 1. [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
