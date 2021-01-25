@@ -2033,6 +2033,20 @@ int main()
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1611571278060.png)
 
+## min, max
+
+c++ 使用 algorithm 提供的 max/min
+
+```
+#include <algorithm>
+ 
+ 
+std::max(2, 3);
+ 
+std::min(2, 3);
+```
+
+
 
 
 # 多线程
