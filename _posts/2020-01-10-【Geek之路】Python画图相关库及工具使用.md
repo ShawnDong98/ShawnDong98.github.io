@@ -293,27 +293,6 @@ plt.plot(x,y)
 
 ```
 
-## 共享x轴，使用不同y轴坐标尺度
-
-
-```python
-x= np.arange(10)
-y1 = x**2
-y2 = x**4
-_,ax=plt.subplots()
-ax.plot(x,y1,'b')
-ax.set_xlabel('x')
-ax.set_ylabel('y1',color='b')
-ax2 = ax.twinx()
-ax2.plot(x,y2,'r')
-ax2.set_ylabel('y2',color='r')
-```
-
-
-
-
-
-
 ## mpl_toolkits.mplot3d
 
 mpl_toolkits.mplot3d是Matplotlib里面专门用来画三维图的工具包，官方指南请点击此处[《mplot3d tutorial》](https://matplotlib.org/tutorials/toolkits/mplot3d.html)
@@ -397,23 +376,35 @@ plot_surface参数:
 
 # PIL(Image)用法
 
-## 显示Image类型图像
-
-> plt.imshow(img)
-> plt.show()
+## open
 
 
 ```python
-from PIL import Image
- 
-image = Image.open('path/to/image')
-image.show()
+>>> from PIL import Image
+>>> im = Image.open("hopper.ppm")
+```
+
+```python
+>>> print(im.format, im.size, im.mode)
+PPM (512, 512) RGB
 ```
 
 
-## 缩放
 
-> img = img.resize((width, height))
+## 显示Image类型图像
+
+方法1：
+
+```python
+img.show()
+```
+
+方法2：
+
+```python
+plt.imshow(img)
+plt.show()
+```
 
 ## transpose方法
 
@@ -432,8 +423,3 @@ numpy转Image：
 > img = Image.fromarray(img.astype('uint8')).convert('RGB')
 
 
-
-# References
-
-1. [python：matplotlib 绘制两条y轴](https://blog.csdn.net/kaever/article/details/107063358)
-2. [PIL/Image的show()函数](https://blog.csdn.net/bcfd_yundou/article/details/89146169)
