@@ -134,7 +134,35 @@ plt.hlines(y, xmin, xmax, colors='k', label='')
 - label(字符串, 默认为空): 标签
 - lw: 线宽
 
+## plt.xticks
 
+xticks其实就是想把坐标轴变成自己想要的样子
+
+```python
+import matplotlib.pyplot as plt
+
+
+x = [1, 2, 3, 4]
+y = [1, 4, 9, 6]
+labels = ['Frogs', 'Hogs', 'Bogs', 'Slogs']
+
+plt.plot(x, y)
+# You can specify a rotation for the tick labels in degrees or with keywords.
+plt.xticks(x, labels, rotation='vertical')
+# Pad margins so that markers don't get clipped by the axes
+plt.margins(0.2)
+# Tweak spacing to prevent clipping of tick-labels
+plt.subplots_adjust(bottom=0.15)
+plt.show()
+
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1612716817675.png)
+
+
+先画图，然后改变坐标轴名字
+
+其实xticks就类似覆盖，而且覆盖的数组长度要和原来横轴的坐标长度一致
 
  
 ## plot
