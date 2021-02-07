@@ -101,6 +101,28 @@ plt.show()
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1596941522632.png)
  
+ ## plt.bar
+ 
+ ```python
+ bar(x, height, width=0.8, bottom=None, ***, align='center', data=None, **kwargs)
+ ```
+ 
+ - x: 	x坐标	int,float
+ - height	条形的高度	int,float
+ - width	宽度	0~1，默认0.8
+ - botton	条形的起始位置	也是y轴的起始坐标
+ - align	条形的中心位置	“center”,"lege"边缘
+ - color	条形的颜色	“r","b","g","#123465"，默认“b"
+ - edgecolor	边框的颜色	同上
+ - linewidth	边框的宽度	像素，默认无，int
+ - tick_label	下标的标签	可以是元组类型的字符组合
+ - log	y轴使用科学计算法表示	bool
+ - orientation	是竖直条还是水平条	竖直："vertical"，水平条："horizontal"
+
+
+## 
+
+ 
 ## plot
 
 > Axes.plot(self, *args, scalex=True, scaley=True, data=None, \*\*kwargs)
@@ -293,6 +315,27 @@ plt.plot(x,y)
 
 ```
 
+## 共享x轴，使用不同y轴坐标尺度
+
+
+```python
+x= np.arange(10)
+y1 = x**2
+y2 = x**4
+_,ax=plt.subplots()
+ax.plot(x,y1,'b')
+ax.set_xlabel('x')
+ax.set_ylabel('y1',color='b')
+ax2 = ax.twinx()
+ax2.plot(x,y2,'r')
+ax2.set_ylabel('y2',color='r')
+```
+
+
+
+
+
+
 ## mpl_toolkits.mplot3d
 
 mpl_toolkits.mplot3d是Matplotlib里面专门用来画三维图的工具包，官方指南请点击此处[《mplot3d tutorial》](https://matplotlib.org/tutorials/toolkits/mplot3d.html)
@@ -374,3 +417,45 @@ plot_surface参数:
 - data：整齐（“长格式”）数据帧，其中每一列都是变量，每一行都是观察值。
 
 
+# PIL(Image)用法
+
+## 显示Image类型图像
+
+> plt.imshow(img)
+> plt.show()
+
+
+```python
+from PIL import Image
+ 
+image = Image.open('path/to/image')
+image.show()
+```
+
+
+## 缩放
+
+> img = img.resize((width, height))
+
+## transpose方法
+
+>   im.transpose(method)⇒ image
+
+返回当前图像的翻转或者旋转的拷贝。变量方法的取值为：FLIP_LEFT_RIGHT，FLIP_TOP_BOTTOM，ROTATE_90，ROTATE_180，或ROTATE_270。
+
+## Image、numpy转化
+
+Image转numpy：
+
+> img = numpy.array(im)
+
+numpy转Image：
+
+> img = Image.fromarray(img.astype('uint8')).convert('RGB')
+
+
+
+# References
+
+1. [python：matplotlib 绘制两条y轴](https://blog.csdn.net/kaever/article/details/107063358)
+2. [PIL/Image的show()函数](https://blog.csdn.net/bcfd_yundou/article/details/89146169)
