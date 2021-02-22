@@ -1574,7 +1574,7 @@ res = np.meshgrid(a,b)
 
 同理还可以生成更高维度的坐标矩阵
 
-# np.random.multivariate_normal
+## np.random.multivariate_normal
 
 > def multivariate_normal(mean, cov, size=None, check_valid=None, tol=None) 
 
