@@ -29,7 +29,7 @@ print(*ll[0:2])
 ```
 
 输出：\\
-['lalala', 'test'] \\
+\['lalala', 'test'\] \\
 lalala test
 
 拓展来讲，一个迭代器使用\*返回的一串迭代结果。
