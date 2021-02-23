@@ -992,7 +992,7 @@ list 的 sort 方法返回的是对已经存在的列表进行操作，而内建
 
 添加参数
 
-> ArgumentParser.add_argument(name or flags...\[, action\]\[, nargs]\\[, const\]\[, default\]\[, type\]\[, choices\]\[, required\]\[, help\]\[, metavar\]\[, dest\])
+> ArgumentParser.add_argument(name or flags...\[, action\]\[, nargs\]\[, const\]\[, default\]\[, type\]\[, choices\]\[, required\]\[, help\]\[, metavar\]\[, dest\])
 
 - name or flags - 一个命名或者一个选项字符串的列表，例如 foo 或 -f, --foo
 - choices - 可用的参数的容器， 参数值只能从几个选项里面选择, 如choices=\['alexnet', 'vgg'\]。
