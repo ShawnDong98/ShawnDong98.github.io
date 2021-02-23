@@ -1589,6 +1589,34 @@ res = np.meshgrid(a,b)
 
 np.random.multivariate_normal方法用于根据实际情况生成一个多元正态分布矩阵
 
+
+## np.unique()
+
+
+对于一维数组或列表，unique()返回的是一个无元素重复的数组或列表。
+
+```python
+>>> a=np.random.randint(0,5,8) 
+>>> a 
+array([2, 3, 3, 0, 1, 4, 2, 4])
+>>> np.unique(a) 
+array([0, 1, 2, 3, 4]) 
+```
+
+
+c,s=np.unique(b,return_index=True)
+
+return_index=True表示返回新列表元素在旧列表中的位置，并以列表形式储存在s中
+
+
+```python
+>>> c,s=np.unique(b,return_index=True) 
+>>> c 
+array([0, 1, 2, 3, 4]) 
+>>> s 
+array([3, 4, 0, 1, 5])
+```
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
