@@ -992,10 +992,10 @@ list 的 sort 方法返回的是对已经存在的列表进行操作，而内建
 
 添加参数
 
-> ArgumentParser.add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])
+> ArgumentParser.add_argument(name or flags...\[, action\]\[, nargs]\\[, const\]\[, default\]\[, type\]\[, choices\]\[, required\]\[, help\]\[, metavar\]\[, dest\])
 
 - name or flags - 一个命名或者一个选项字符串的列表，例如 foo 或 -f, --foo
-- choices - 可用的参数的容器， 参数值只能从几个选项里面选择, 如choices=['alexnet', 'vgg']。
+- choices - 可用的参数的容器， 参数值只能从几个选项里面选择, 如choices=\['alexnet', 'vgg'\]。
 - required - 此命令行选项是否可省略 （仅选项可用）。
 - metavar - 在使用方法消息中使用的参数值示例。
 - dest - 设置参数在代码中的变量名。
