@@ -544,6 +544,10 @@ xrandr --addmode HDMI-0 "1920x1080_60.00"#将分辨率 1980 X1080添加值分辨
 
 注意:此处HDMI-0应于前面xrandr处的输出一致,并不一定是HDMI-0
 
+## 删除已有分辨率模式
+
+
+
 ## 更改分辨率
 ```
  xrandr -s 1920x1080_60.00    #更改分辨率模式 
@@ -571,3 +575,4 @@ xrandr --addmode HDMI-0 "1920x1080_60.00"#将分辨率 1980 X1080添加值分辨
 18. [apt如何列出所有已经安装的软件包](https://www.cnblogs.com/it-tsz/p/11107510.html)
 19. [Ubuntu下查看内存使用情况](https://zhuanlan.zhihu.com/p/47687203)
 20. [Ubuntu 打开摄像头](https://blog.csdn.net/tajon1226/article/details/99854348)
+21. [ubuntu18.04 修改屏幕分辨率](https://blog.csdn.net/recher_He1107/article/details/107226192)
