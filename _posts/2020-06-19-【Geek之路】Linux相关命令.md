@@ -546,7 +546,17 @@ xrandr --addmode HDMI-0 "1920x1080_60.00"#将分辨率 1980 X1080添加值分辨
 
 ## 删除已有分辨率模式
 
+删除已有模式
 
+```
+xrandr --rmmode name
+```
+
+给输出设备删除已有模式
+
+```
+xrandr --delmode output name
+```
 
 ## 更改分辨率
 ```
