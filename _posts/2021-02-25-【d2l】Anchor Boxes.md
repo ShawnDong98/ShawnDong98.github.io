@@ -128,3 +128,35 @@ boxes[250, 250, 0, :]
 tensor([0.06, 0.07, 0.63, 0.82])
 ```
 
+为了描述图像中以一个像素为中心的所有Anchor框，我们首先定义 show_bboxes 函数来在图像上绘制多个边界框。
+
+
+```python
+#@save
+def show_bboxes(axes, bboxes, labels=None, colors=None):
+    """Show bounding boxes."""
+    def _make_list(obj, default_values=None):
+        if obj is None:
+            obj = default_values
+        elif not isinstance(obj, (list, tuple)):
+            obj = [obj]
+        return obj
+
+    labels = _make_list(labels)
+    colors = _make_list(colors, ['b', 'g', 'r', 'm', 'c'])
+    for i, bbox in enumerate(bboxes):
+        color = colors[i % len(colors)]
+        rect = d2l.bbox_to_rect(bbox.detach().numpy(), color)
+        axes.add_patch(rect)
+        if labels and len(labels) > i:
+            text_color = 'k' if color == 'w' else 'w'
+            axes.text(rect.xy[0],
+                      rect.xy[1],
+                      labels[i],
+                      va='center',
+                      ha='center',
+                      fontsize=9,
+                      color=text_color,
+                      bbox=dict(facecolor=color, lw=0))
+```
+
