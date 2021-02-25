@@ -9,6 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - CV
+    - d2l
 ---
 
 
