@@ -88,3 +88,15 @@ box_center_to_corner(box_corner_to_center(boxes)) - boxes
 我们可以在图像中绘制边界框以检查其是否正确。 在绘制 box 之前，我们将定义一个辅助函数bbox_to_rect。 它以matplotlib的边界框格式表示边界框。
 
 
+```python
+#@tab all
+#@save
+def bbox_to_rect(bbox, color):
+    """Convert bounding box to matplotlib format."""
+    # Convert the bounding box (top-left x, top-left y, bottom-right x,
+    # bottom-right y) format to matplotlib format: ((upper-left x,
+    # upper-left y), width, height)
+    return d2l.plt.Rectangle(
+        xy=(bbox[0], bbox[1]), width=bbox[2]-bbox[0], height=bbox[3]-bbox[1],
+        fill=False, edgecolor=color, linewidth=2)
+```
