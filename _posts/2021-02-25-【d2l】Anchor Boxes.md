@@ -160,3 +160,48 @@ def show_bboxes(axes, bboxes, labels=None, colors=None):
                       bbox=dict(facecolor=color, lw=0))
 ```
 
+正如我们刚才看到的，变量框中的 $x$ 轴和 $y$ 轴的坐标值分别除以图像的宽度和高度。在绘制图像时，我们需要恢复Anchor框的原始坐标值，因此定义变量 bbox_scale。现在，我们可以在图像中以(250,250)为中心绘制所有Anchor框。如你所见，大小为0.75、宽高比为1的蓝色Anchor框很好地覆盖了图像中的狗。
+
+
+```python
+d2l.set_figsize()
+bbox_scale = torch.tensor((w, h, w, h))
+fig = d2l.plt.imshow(img)
+show_bboxes(fig.axes, boxes[250, 250, :, :] * bbox_scale,
+            ['s=0.75, r=1', 's=0.5, r=1', 's=0.25, r=1', 's=0.75, r=2',
+             's=0.75, r=0.5'])
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1614252778578.png)
+
+
+
+# Intersection over Union
+
+我们刚刚提到，Anchor框很好地覆盖了图像中的狗。如果目标的真实边界框是已知的，怎么能很好地在这里量化？一种直观的方法是测量Anchor框与真实边界框之间的相似性。我们知道，Jaccard指标可以度量两个集合之间的相似性。给定集合 $A$ 和 $B$，它们的Jaccard索引是它们交集的大小除以它们并集的大小。
+
+$$J(A, B) = \frac{\mid A \cap B \mid}{\mid A \cup B \mid} \tag{2}$$
+
+事实上，我们可以把边界框的像素区域看作是像素的集合。这样，我们就可以通过两个边界框的像素集的Jaccard索引来度量这两个边界框的相似性。当我们测量两个边界框的相似性时，我们通常将Jaccard指标称为交并比(intersection over union, IoU)，它是两个边界框相交面积与并集面积的比值，如图所示。IoU的取值范围为 $0 \thicksim 1$, 0表示两个边界框之间没有重叠像素，1表示两个边界框相等。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1614254977866.png)
+
+在本节的其余部分中，我们将使用IoU来度量Anchor框和ground-truth边界框以及不同Anchor框之间的相似性。
+
+
+```
+#@save
+def box_iou(boxes1, boxes2):
+    """Compute IOU between two sets of boxes of shape (N,4) and (M,4)."""
+    # Compute box areas
+    box_area = lambda boxes: ((boxes[:, 2] - boxes[:, 0]) *
+                              (boxes[:, 3] - boxes[:, 1]))
+    area1 = box_area(boxes1)
+    area2 = box_area(boxes2)
+    lt = torch.max(boxes1[:, None, :2], boxes2[:, :2])  # [N,M,2]
+    rb = torch.min(boxes1[:, None, 2:], boxes2[:, 2:])  # [N,M,2]
+    wh = (rb - lt).clamp(min=0)  # [N,M,2]
+    inter = wh[:, :, 0] * wh[:, :, 1]  # [N,M]
+    unioun = area1[:, None] + area2 - inter
+    return inter / unioun
+```
