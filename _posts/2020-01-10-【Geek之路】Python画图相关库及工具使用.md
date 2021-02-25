@@ -483,7 +483,7 @@ Axes.text(self, x, y, s, fontdict=None, **kwargs)[source]
 - family设置字体, 自带的可选项有{‘serif’, ‘sans-serif’, ‘cursive’, ‘fantasy’, ‘monospace’}
 - fontsize字体大小
 - style设置字体样式，可选项{‘normal’, ‘italic’(斜体), ‘oblique’(也是斜体)}
-- bbox: patches的属性，它是个字典
+- bbox: 你可以使用关键字bbox在文本实例周围放置一个矩形框(例如，设置背景颜色)。bbox是矩形属性的字典。例如: bbox=dict(facecolor='red', alpha=0.5)。 
 - horizontalalignment or ha： {'center', 'right', 'left'}
 - multialignment or ma： {'left', 'right', 'center'}
 - verticalalignment or va： {'center', 'top', 'bottom', 'baseline', 'center_baseline'}
