@@ -100,3 +100,5 @@ def bbox_to_rect(bbox, color):
         xy=(bbox[0], bbox[1]), width=bbox[2]-bbox[0], height=bbox[3]-bbox[1],
         fill=False, edgecolor=color, linewidth=2)
 ```
+
+将边界框加载到图像上后，我们可以看到目标的主要轮廓基本上在该框内。
