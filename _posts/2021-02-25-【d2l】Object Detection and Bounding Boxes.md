@@ -18,3 +18,22 @@ tags:
 目标检测广泛应用于许多领域。 例如，在自动驾驶技术中，我们需要通过在捕获的视频图像中识别车辆，行人，道路和障碍物的位置来规划路线。机器人通常执行此类任务以检测感兴趣的目标。 安全领域的系统需要检测异常目标，例如入侵者或炸弹。
 
 在接下来的几节中，我们将介绍用于物体检测的多个深度学习模型。 在此之前，我们应该讨论目标位置的概念。 首先，导入实验所需的包和模块。
+
+
+```python
+#@tab pytorch
+%matplotlib inline
+from d2l import torch as d2l
+import torch
+```
+
+接下来，我们将加载将在本节中使用的示例图像。 我们可以看到图像左侧有一只狗，右侧有一只猫。 它们是该图中的两个主要目标。
+
+```python
+#@tab pytorch, tensorflow
+d2l.set_figsize()
+img = d2l.plt.imread('../img/catdog.jpg')
+d2l.plt.imshow(img);
+```
+
+
