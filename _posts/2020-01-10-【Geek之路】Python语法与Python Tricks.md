@@ -2813,3 +2813,4 @@ pip install -r requirements.txt
 63. [numpy求解方程组](https://blog.csdn.net/ScapeD/article/details/85374240)
 64. [python中read、readline和readlines的区别](https://www.cnblogs.com/hanggegege/p/5926549.html)
 65. [python中，@和-> 代表什么?](https://blog.csdn.net/orangefly0214/article/details/91583506)
+66. [使用 sys.modules](http://shouce.jb51.net/python/file_handling/more_on_modules.html)
