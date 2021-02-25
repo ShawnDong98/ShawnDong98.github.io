@@ -427,6 +427,47 @@ plot_surface参数:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1599376104600.png)
 
+
+## matplotlib.axes.Axes.add_patch
+
+```python
+Axes.add_patch(self, p)
+```
+
+參數：
+
+- p: 此參數是軸補丁的補丁。
+
+
+返回值：此方法返回Patch。
+
+以下示例說明了matplotlib.axes中的matplotlib.axes.Axes.add_patch()函數：
+
+```python
+# Implementation of matplotlib function 
+import numpy as np 
+import matplotlib.pyplot as plt 
+  
+y, x = np.mgrid[:5, 1:6] 
+poly_coords = [ 
+    (0.25, 2.75), (3.25, 2.75), 
+    (2.25, 0.75), (0.25, 0.75) 
+] 
+fig, ax = plt.subplots() 
+  
+cells = ax.plot(x, y, x + y, color ='green') 
+ax.add_patch( 
+    plt.Polygon(poly_coords, color ='forestgreen', 
+                alpha = 0.5) 
+    ) 
+ax.margins(x = 0.1, y = 0.05) 
+ax.set_aspect('equal') 
+  
+fig.suptitle('matplotlib.axes.Axes.add_patch() \ 
+function Example\n\n', fontweight ="bold") 
+plt.show()
+```
+
 # seaborn语法
 
 ## seaborn.set()
