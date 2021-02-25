@@ -468,10 +468,10 @@ function Example\n\n', fontweight ="bold")
 plt.show()
 ```
 
-## plt.text
+## matplotlib.axes.Axes.text
 
 ```python
-plt.text(x,y,s,family,fontsize,style,color)
+Axes.text(self, x, y, s, fontdict=None, **kwargs)
 ```
 
 - x,y代表注释内容位置
