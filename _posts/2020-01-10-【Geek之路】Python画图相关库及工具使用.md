@@ -479,6 +479,10 @@ plt.text(x,y,s,family,fontsize,style,color)
 - family设置字体, 自带的可选项有{‘serif’, ‘sans-serif’, ‘cursive’, ‘fantasy’, ‘monospace’}
 - fontsize字体大小
 - style设置字体样式，可选项{‘normal’, ‘italic’(斜体), ‘oblique’(也是斜体)}
+- bbox: patches的属性，它是个字典
+- horizontalalignment or ha： {'center', 'right', 'left'}
+- multialignment or ma： {'left', 'right', 'center'}
+- verticalalignment or va： {'center', 'top', 'bottom', 'baseline', 'center_baseline'}
 
 # seaborn语法
 
