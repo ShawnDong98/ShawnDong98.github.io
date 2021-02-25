@@ -17,8 +17,8 @@ tags:
 
 \*list\[:2\]和list\[:2\]区别
 
-- list\[:2\]：返回的还是一个list
-- \*list\[:2\]：返回的是内容
+- list[:2]：返回的还是一个list
+- \*list[:2]：返回的是内容
 
 例子：
 
@@ -46,9 +46,15 @@ print(*ll[0])
 lalala \\
 l a l a l a
 
+
+### extend
+
+extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。
+
 ## dict
 
 ### get
+
 通过dict提供的get方法，如果key不存在，可以返回None，或者自己指定的value：
 
 ```python
@@ -71,13 +77,46 @@ l a l a l a
 ```
 
 
+## set
+
+```python
+class set([iterable])
+```
+
+set() 函数创建一个无序不重复元素集，可进行关系测试，删除重复数据，还可以计算交集、差集、并集等。
+
+
+```python
+>>>x = set('runoob')
+>>> y = set('google')
+>>> x, y
+(set(['b', 'r', 'u', 'o', 'n']), set(['e', 'o', 'g', 'l']))   # 重复的被删除
+>>> x & y         # 交集
+set(['o'])
+>>> x | y         # 并集
+set(['b', 'e', 'g', 'l', 'o', 'n', 'r', 'u'])
+>>> x - y         # 差集
+set(['r', 'b', 'u', 'n'])
+>>>
+```
 
 
 ## str
 
 ### join
 
+```
+str.join(sequence)
+```
+
 join()：连接字符串数组。将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串
+
+
+```python
+str = "-";
+seq = ("a", "b", "c"); # 字符串序列
+print str.join( seq );
+```
 
 ### startswith
 
@@ -104,6 +143,17 @@ Python startswith() 方法用于检查字符串是否是以指定子字符串开
 
 - str -- 分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等。
 - num -- 分割次数。默认为 -1, 即分隔所有。
+
+
+### strip
+
+用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。
+
+```python
+str.strip([chars]);
+```
+
+- chars -- 移除字符串头尾指定的字符序列。
 
 ## map
 
@@ -325,6 +375,59 @@ callable() 函数用于检查一个对象是否是可调用的。如果返回 Tr
 
 > callable(object)
 
+
+## time
+
+### time.strftime()
+
+> time.strftime(format\[, t\])
+
+- format -- 格式字符串。
+- t -- 可选的参数t是一个struct_time对象
+
+返回值：
+
+返回以可读字符串表示的当地时间。
+
+说明：
+
+python中时间日期格式化符号：
+
+- %y 两位数的年份表示（00-99）
+- %Y 四位数的年份表示（000-9999）
+- %m 月份（01-12）
+- %d 月内中的一天（0-31）
+- %H 24小时制小时数（0-23）
+- %I 12小时制小时数（01-12）
+- %M 分钟数（00=59）
+- %S 秒（00-59）
+- %a 本地简化星期名称
+- %A 本地完整星期名称
+- %b 本地简化的月份名称
+- %B 本地完整的月份名称
+- %c 本地相应的日期表示和时间表示
+- %j 年内的一天（001-366）
+- %p 本地A.M.或P.M.的等价符
+- %U 一年中的星期数（00-53）星期天为星期的开始
+- %w 星期（0-6），星期天为星期的开始
+- %W 一年中的星期数（00-53）星期一为星期的开始
+- %x 本地相应的日期表示
+- %X 本地相应的时间表示
+- %Z 当前时区的名称
+- %% %号本身
+
+
+### time.localtime()
+
+
+time.localtime(\[ sec \])
+
+返回：
+
+```
+time.struct_time(tm_year=2020, tm_mon=10, tm_mday=10, tm_hour=19, tm_min=17, tm_sec=55, tm_wday=5, tm_yday=284, tm_isdst=0)
+```
+
 ## 装饰器 
 
 ### @staticmethod@classmethod
@@ -370,6 +473,102 @@ output:
 i am a class method
 i am a class method   
 ```
+
+### @property
+
+在绑定属性时，如果我们直接把属性暴露出去，虽然写起来很简单，但是，没办法检查参数，导致可以把成绩随便改：
+
+```python
+s = Student()
+s.score = 9999
+```
+
+这显然不合逻辑。为了限制score的范围，可以通过一个set_score()方法来设置成绩，再通过一个get_score()来获取成绩，这样，在set_score()方法里，就可以检查参数：
+
+```python
+class Student(object):
+
+    def get_score(self):
+         return self._score
+
+    def set_score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+```
+
+
+现在，对任意的Student实例进行操作，就不能随心所欲地设置score了：
+
+
+```python
+>>> s = Student()
+>>> s.set_score(60) # ok!
+>>> s.get_score()
+60
+>>> s.set_score(9999)
+Traceback (most recent call last):
+  ...
+ValueError: score must between 0 ~ 100!
+```
+
+有没有既能检查参数，又可以用类似属性这样简单的方式来访问类的变量呢？
+
+Python内置的@property装饰器就是负责把一个方法变成属性调用的：
+
+```python
+class Student(object):
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+```
+
+把一个getter方法变成属性，只需要加上@property就可以了，此时，@property本身又创建了另一个装饰器@score.setter，负责把一个setter方法变成属性赋值，于是，我们就拥有一个可控的属性操作：
+
+```python
+>>> s = Student()
+>>> s.score = 60 # OK，实际转化为s.set_score(60)
+>>> s.score # OK，实际转化为s.get_score()
+60
+>>> s.score = 9999
+Traceback (most recent call last):
+  ...
+ValueError: score must between 0 ~ 100!
+```
+
+注意到这个神奇的@property，我们在对实例属性操作的时候，就知道该属性很可能不是直接暴露的，而是通过getter和setter方法来实现的。
+
+还可以定义只读属性，只定义getter方法，不定义setter方法就是一个只读属性：
+
+```python
+class Student(object):
+
+    @property
+    def birth(self):
+        return self._birth
+
+    @birth.setter
+    def birth(self, value):
+        self._birth = value
+
+    @property
+    def age(self):
+        return 2015 - self._birth
+```
+
+
+上面的birth是可读写属性，而age就是一个只读属性，因为age可以根据birth和当前时间计算出来。
 
 
 ## nonlocal
@@ -717,6 +916,7 @@ dir/file2.txt
 
 
 ## setattr()、getattr()、hasattr() 
+
 在动态检查对象是否包含某些属性（包括方法〉相关的函数有如下几个：
 
 - hasattr(object,name)：检查 object 对象是否包含名为 name 的属性或方法。
@@ -984,54 +1184,125 @@ list 的 sort 方法返回的是对已经存在的列表进行操作，而内建
 
 > sorted(iterable, key=None, reverse=False)  
 
-## argparse
+- iterable -- 可迭代对象。
+- key -- 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。
+- reverse -- 排序规则，reverse = True 降序 ， reverse = False 升序（默认）
 
-创建解析器对象
+## xrange
 
-> class argparse.ArgumentParser(prog=None, usage=None, description=None, epilog=None, parents=[], formatter_class=argparse.HelpFormatter, prefix_chars='-', fromfile_prefix_chars=None, argument_default=None, conflict_handler='error', add_help=True, allow_abbrev=True)
+xrange() 函数用法与 range 完全相同，所不同的是生成的不是一个数组，而是一个生成器。
 
-添加参数
+## open
 
-> ArgumentParser.add_argument(name or flags...\[, action\]\[, nargs\]\[, const\]\[, default\]\[, type\]\[, choices\]\[, required\]\[, help\]\[, metavar\]\[, dest\])
-
-- name or flags - 一个命名或者一个选项字符串的列表，例如 foo 或 -f, --foo
-- choices - 可用的参数的容器， 参数值只能从几个选项里面选择, 如choices=\['alexnet', 'vgg'\]。
-- required - 此命令行选项是否可省略 （仅选项可用）。
-- metavar - 在使用方法消息中使用的参数值示例。
-- dest - 设置参数在代码中的变量名。
-- action - add_argument中默认action=’store‘，直接保存从运行终端或程序中传入的变量。如果想修改为常量，需要修改action='store_const'，然后指定const。
+python open() 函数用于打开一个文件，创建一个 file 对象，相关的方法才可以调用它进行读写。
 
 ```python
-parser.add_argument('--foo', action='store_const', const=42)
+open(name[, mode[, buffering]])
 ```
 
-store_true/false - 如果需要存储True或者False，只要指定action='store_true/false'
+- name : 一个包含了你要访问的文件名称的字符串值。
+- mode : mode 决定了打开文件的模式：只读，写入，追加等。所有可取值见如下的完全列表。这个参数是非强制的，默认文件访问模式为只读(r)。
+- buffering : 如果 buffering 的值被设为 0，就不会有寄存。如果 buffering 的值取 1，访问文件时会寄存行。如果将 buffering 的值设为大于 1 的整数，表明了这就是的寄存区的缓冲大小。如果取负值，寄存区的缓冲大小则为系统默认。
+
+不同模式打开文件的完全列表：
+
+|模式|描述|
+|:-:|:-:|
+|r|以只读方式打开文件。文件的指针将会放在文件的开头。 这是默认模式|
+|rb|以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。|
+|r+|打开一个文件用于读写。文件指针将会放在文件的开头。|
+|rb+|以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。|
+|w|打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。|
+|wb|以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。|
+|w+|打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。|
+|wb+|以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。|
+|a|打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。|
+|ab|以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。|
+|a+|打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。|
+|ab+|以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。|
+
+
+file 对象方法:
+
+- file.read(\[size])：size 未指定则返回整个文件，如果文件大小 >2 倍内存则有问题，f.read()读到文件尾时返回""(空字串)。
+- file.readline()：返回一行。
+- file.readlines(\[size]) ：返回包含size行的列表, size 未指定则返回全部行。
+- for line in f: print line ：通过迭代器访问。
+- f.write("hello\n")：如果要写入字符串以外的数据,先将他转换为字符串。
+- f.tell()：返回一个整数,表示当前文件指针的位置(就是到文件头的字节数)。
+- f.seek(偏移量,\[起始位置])：用来移动文件指针。
+  - 偏移量: 单位为字节，可正可负
+  - 起始位置: 0 - 文件头, 默认值; 1 - 当前位置; 2 - 文件尾
+- f.close() 关闭文件
+
+
+## read、readline和readlines
+
+read        读取整个文件
+
+readline    读取下一行
+
+readlines   读取整个文件到一个迭代器以供我们遍历（读取到一个list中，以供使用，比较方便）
+
+
+## ->
+
+-\>常常出现在python函数定义的函数名后面，为函数添加元数据,描述函数的返回类型，从而方便开发人员使用。比如：
 
 ```python
-parser.add_argument('--foo', action='store_true')
-parser.add_argument('--foo', action='store_false')
+def attrs(self) -> _Attrs:
+    pass
 ```
-
-需要注意的是，如果指定action为store_const或者store_true，则参数不可再进行赋值
-
-append - 同一参数，需要多个值时候，需要指定action='append'
 
 ```python
-parser.add_argument('--foo', action='append')
-
-D:\desktop>python argparseLearn.py  --foo 1 --foo 2
-Namespace(foo=['1', '2'])
+def add(x, y) -> int:
+  return x+y
 ```
 
-version - 需要指定action='version'，打印version后会自动退出
+这里面，元数据表明了函数的返回值为int类型。
+
+-\> \_Attr则表明函数返回的是一个外部可访问的类的私有变量。
+
+
+# importlib
+
+一个函数运行需要根据不同项目的配置，动态导入对应的配置文件运行。
+
+```
+a #文件夹
+	│a.py
+	│__init__.py
+b #文件夹
+	│b.py
+	│__init__.py
+	├─c#文件夹
+		│c.py
+		│__init__.py
+
+# c.py 中内容
+args = {'a':1}
+
+class C:
+    
+    def c(self):
+        pass
+
+```
+
+向a模块中导入c.py中的对象
 
 ```python
-parser.add_argument('--version',action='version',version='PROG 2.0')
+import importlib
 
-D:\desktop>python argparseLearn.py  --version
-PROG 2.0
+params = importlib.import_module('b.c.c') #绝对导入
+params_ = importlib.import_module('.c.c',package='b') #相对导入
+
+# 对象中取出需要的对象
+params.args #取出变量
+params.C  #取出class C
+params.C.c  #取出class C 中的c 方法
+
 ```
-
 
 # os和sys
 
@@ -1058,13 +1329,33 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 ## os.path常用方法：
 
-> os.path.join(path1[, path2[, ...]])
+
+### join
+
+> os.path.join(path1\[, path2\[, ..\]\])
 
 将多个路径组合后返回，第一个绝对路径之前的参数将被忽略
+
+### split
 
 > os.path.split(path)
 
 将path分割成目录和文件名二元组返回。
+
+### exists
+
+> os.path.exists(filename)
+
+路径是否存在
+
+### basename
+
+> os.path.basename(path)
+
+返回path最后的文件名。如果path以／或\结尾，那么就会返回空值。即os.path.split(path)的第二个元素。
+
+
+
 
 
 
@@ -1120,7 +1411,89 @@ print(os.path.dirname(os.getcwd()))
 
 可用于设置可用GPU
 
-> os.environ['CUDA_VISIBLE_DEVICES'] = '0, 2, 3, 4'
+> os.environ\['CUDA_VISIBLE_DEVICES'\] = '0, 2, 3, 4'
+
+
+## 相对路径和绝对路径
+
+在console的路径下执行程序，如果使用相对路径， 将根据当前路径选择相对路径，而不是根据代码所在的文件位置执行相对路径(此时的情况指读取某个图片或文件， 或导入某个模型)。
+
+在console的路径下执行程序，如果导入某个路径下的包， 这个包有导入了同路径下的其他包， 那么此时会报错， 原因同上， 但是此时可以通过将子路径导入环境变量解决， 使用如下代码：
+
+```python
+import sys
+import os
+path = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(path)
+sys.path.append(os.getcwd())
+```
+
+
+## sys.modeles
+
+与其它任何 Python 的东西一样, 模块也是对象。 一旦导入，总可以用全局 dictionary sys.modules 来得到一个模块的引用。
+
+
+sys.modules 介绍
+
+```python
+>>> import sys                          
+>>> print('\n'.join(sys.modules.keys()) )
+```
+
+```
+win32api
+os.path
+os
+exceptions
+__main__
+ntpath
+nt
+sys
+__builtin__
+site
+signal
+UserDict
+stat
+```
+
+- 这个 sys 模块包含了系统级的信息，象正在运行的 Python 的版本 （sys.version 或 sys.version_info），和系统级选项，象最大允许递归的深度 （sys.getrecursionlimit() 和 sys.setrecursionlimit())。
+- sys.modules 是一个字典，它包含了从 Python 开始运行起，被导入的所有模块。键字就是模块名，键值就是模块对象。请注意除了你的程序导入的模块外还有其它模块。Python 在启动时预先装入了一些模块，如果你在一个 Python IDE 环境下，sys.modules 包含了你在 IDE 中运行的所有程序所导入的所有模块。
+
+
+下面的例子展示了如何使用 sys.modules。
+
+```python
+>>> import fileinfo         
+>>> print('\n'.join(sys.modules.keys()))
+```
+
+```
+win32api
+os.path
+os
+fileinfo
+exceptions
+__main__
+ntpath
+nt
+sys
+__builtin__
+site
+signal
+UserDict
+stat
+```
+
+```python
+>>> fileinfo
+<module 'fileinfo' from 'fileinfo.pyc'>
+>>> sys.modules["fileinfo"] 
+<module 'fileinfo' from 'fileinfo.pyc'>
+```
+
+- 当导入新的模块，它们加入到 sys.modules 中。这就解释了为什么第二次导入相同的模块时非常的快：Python 已经在 sys.modules 中装入和缓冲了，所以第二次导入仅仅对字典做了一个查询。
+- 一旦给出任何以前导入过的模块名（以字符串方式），通过 sys.modules 字典，你可以得到对模块本身的一个引用。
 
 # numpy语法
 
@@ -1590,31 +1963,31 @@ res = np.meshgrid(a,b)
 np.random.multivariate_normal方法用于根据实际情况生成一个多元正态分布矩阵
 
 
-## np.unique()
+## np.poly1d
 
 
-对于一维数组或列表，unique()返回的是一个无元素重复的数组或列表。
+ 1） 参数1：为一个数组，若没有参数2，则生成一个多项式，例如：
 
 ```python
->>> a=np.random.randint(0,5,8) 
->>> a 
-array([2, 3, 3, 0, 1, 4, 2, 4])
->>> np.unique(a) 
-array([0, 1, 2, 3, 4]) 
+p = np.poly1d([2,3,5,7])   
+print(p)    
+==>>2x^3 + 3x^2 + 5x + 7  
 ```
 
-
-c,s=np.unique(b,return_index=True)
-
-return_index=True表示返回新列表元素在旧列表中的位置，并以列表形式储存在s中
-
+2） 参数2：若参数2为True，则表示把数组中的值作为根，然后反推多项式，例如：
 
 ```python
->>> c,s=np.unique(b,return_index=True) 
->>> c 
-array([0, 1, 2, 3, 4]) 
->>> s 
-array([3, 4, 0, 1, 5])
+q = np.poly1d([2,3,5],True)
+print(q)   
+===>>(x - 2)*(x - 3)*(x - 5)  = x^3 - 10x^2 + 31x -30
+```
+
+3）variable='z'表示改变未知数的字母， 例如：
+
+```python
+q = np.poly1d([2,3,5],True,varibale = 'z')
+print(q)   
+===>>(z - 2)*(z - 3)*(z - 5)  = z3 - 10z2 + 31z -30
 ```
 
 ## 完整打印矩阵
@@ -1640,6 +2013,32 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 在后面加上\[()\]
 
 
+## 求解方程组
+
+
+### 用 np.linalg.solve(A,b) 直接求解 
+
+首先构建A和b的数组。
+
+```python
+A = np.array([[2,1,-2],[3,0,1],[1,1,-1]])
+b = np.transpose(np.array([[-3,5,-2]])
+```
+
+求解这个系统：
+
+```python
+x = np.linalg.solve(A,b)
+```
+
+### 通过求逆矩阵求解
+
+```python
+A_inv=np.linalg.inv(A)
+x=np.dot(A_inv,b)
+```
+
+
 # pandas语法
 
 ## 读取csv文件
@@ -1662,23 +2061,75 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 
 iloc按位置进行提取, 按索引提取区域行数值
 
-> df_inner.iloc[0:5]
+> df_inner.iloc\[0:5\]
 
 
 ## loc 
 
 loc函数按标签值进行提取, 按索引提取单行的数值
 
-> df_inner.loc[3]
+> df_inner.loc\[3\]
 
 ## ix
 
 
 ix可以同时按标签和位置进行提取。
 
-> df_inner.ix[:'2013-01-03',:4] #2013-01-03号之前，前四列数据
+> df_inner.ix\[:'2013-01-03',:4] \#2013-01-03号之前，前四列数据
 
 
+## apply
+
+apply() 函数， 函数作为一个对象，能作为参数传递给其它参数，并且能作为函数的返回值。
+
+函数作为对象能带来代码风格巨大的改变。举一个例子，有一个包含 1 到 10 的 list，从其中找出能被 3 整除的数字。用传统的方法：
+
+```python
+def can_divide_by_three(number):
+    if number % 3 == 0:
+        return True
+    else:
+        return False
+
+selected_numbers = []
+for number in range(1, 11):
+    if can_divide_by_three(number):
+        selected_numbers.append(number)
+
+```
+
+循环是不可少的，因为 can_divide_by_three() 函数只用一次，可以用 lambda 表达式简化：
+
+```python
+divide_by_three = lambda x : True if x % 3 == 0 else False
+
+selected_numbers = []
+for number in range(1, 11):
+    if divide_by_three(item):
+        selected_numbers.append(item)
+```
+
+Python 语言提供 filter() 函数，语法如下：
+
+```
+filter(function, sequence)
+```
+
+filter() 函数的功能：对 sequence 中的 item 依次执行 function(item)，将结果为 True 的 item 组成一个 List/String/Tuple（取决于 sequence 的类型）并返回。有了这个函数，上面的代码可以简化为：
+
+```python
+divide_by_three = lambda x : True if x % 3 == 0 else False
+selected_numbers = filter(divide_by_three, range(1, 11))
+```
+
+将 lambda 表达式放在语句中，代码简化到只需要一句话就够了：
+
+```python
+selected_numbers = filter(lambda x: x % 3 == 0, range(1, 11))
+```
+
+
+回到主题， pandas 的 apply() 函数可以作用于 Series 或者整个 DataFrame，功能也是自动遍历整个 Series 或者 DataFrame, 对每一个元素运行指定的函数。
 
 
 # tqdm
@@ -1713,12 +2164,440 @@ for i in pbar:
 ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1585587226945.png)
 
 
+# EasyDict
+
+```python
+from easydict import EasyDict
+```
+
+
+easydict的作用：可以使得以属性的方式去访问字典的值！
+
+```python
+>>> from easydict import EasyDict as edict
+>>> d = edict({'foo':3, 'bar':{'x':1, 'y':2}})
+>>> d.foo
+3
+>>> d.bar.x
+1
+ 
+>>> d = edict(foo=3)
+>>> d.foo
+3
+```
+
+
+解析json目录时很有用
+
+
+```python
+>>> from easydict import EasyDict as edict
+>>> from simplejson import loads
+>>> j = """{
+"Buffer": 12,
+"List1": [
+    {"type" : "point", "coordinates" : [100.1,54.9] },
+    {"type" : "point", "coordinates" : [109.4,65.1] },
+    {"type" : "point", "coordinates" : [115.2,80.2] },
+    {"type" : "point", "coordinates" : [150.9,97.8] }
+]
+}"""
+>>> d = edict(loads(j))
+>>> d.Buffer
+12
+>>> d.List1[0].coordinates[1]
+54.9
+```
+
+也可以这样用
+
+```python
+>>> d = EasyDict()
+>>> d.foo = 3
+>>> d.foo
+3
+```
+
+```python
+>>> d = EasyDict(log=False)
+>>> d.debug = True
+>>> d.items()
+[('debug', True), ('log', False)]
+```
+
+
+```python
+>>> class Flower(EasyDict):
+...     power = 1
+...
+>>> f = Flower({'height': 12})
+>>> f.power
+1
+>>> f['power']
+1
+```
+
+
+# logging
+
+## 日志级别
+
+用Python写代码的时候，在想看的地方写个print xx 就能在控制台上显示打印信息，这样子就能知道它是什么了，但是当我需要看大量的地方或者在一个文件中查看的时候，这时候print就不大方便了，所以Python引入了logging模块来记录我想要的信息。
+
+print也可以输入日志，logging相对print来说更好控制输出在哪个地方，怎么输出及控制消息级别来过滤掉那些不需要的信息。
+
+```python
+import logging  # 引入logging模块
+# 将信息打印到控制台上
+logging.debug(u"苍井空")
+logging.info(u"麻生希")
+logging.warning(u"小泽玛利亚")
+logging.error(u"桃谷绘里香")
+logging.critical(u"泷泽萝拉")
+```
+
+回显：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1603166108807.png)
+
+上面可以看到只有后面三个能打印出来
+
+默认生成的root logger的level是logging.WARNING,低于该级别的就不输出了
+
+
+级别排序:CRITICAL > ERROR > WARNING > INFO > DEBUG
+
+debug : 打印全部的日志,详细的信息,通常只出现在诊断问题上
+
+info : 打印info,warning,error,critical级别的日志,确认一切按预期运行
+
+warning : 打印warning,error,critical级别的日志,一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”),这个软件还能按预期工作
+
+error : 打印error,critical级别的日志,更严重的问题,软件没能执行一些功能
+
+critical : 打印critical级别,一个严重的错误,这表明程序本身可能无法继续运行
+
+这时候，如果需要显示低于WARNING级别的内容，可以引入NOTSET级别来显示：
+
+
+```python
+import logging  # 引入logging模块
+logging.basicConfig(level=logging.NOTSET)  # 设置日志级别
+logging.debug(u"如果设置了日志级别为NOTSET,那么这里可以采取debug、info的级别的内容也可以显示在控制台上了")
+```
+
+回显：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1603166235576.png)
+
+
+## 部分名词解释
+
+Logging.Formatter：这个类配置了日志的格式，在里面自定义设置日期和时间，输出日志的时候将会按照设置的格式显示内容。
+
+Logging.Logger：Logger是Logging模块的主体，进行以下三项工作：
+
+- 为程序提供记录日志的接口
+- 判断日志所处级别，并判断是否要过滤
+- 根据其日志级别将该条日志分发给不同handler
+
+
+常用函数有：
+
+- Logger.setLevel() 设置日志级别
+- Logger.addHandler() 和 Logger.removeHandler() 添加和删除一个Handler
+- Logger.addFilter() 添加一个Filter,过滤作用
+- Logging.Handler：Handler基于日志级别对日志进行分发，如设置为WARNING级别的Handler只会处理WARNING及以上级别的日志。
+
+
+
+常用函数有：
+- setLevel() 设置级别
+- setFormatter() 设置Formatter
+
+
+## 日志输出-控制台
+
+```python
+import logging  # 引入logging模块
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')  # logging.basicConfig函数对日志的输出格式及方式做相关配置
+# 由于日志基本配置中级别设置为DEBUG，所以一下打印信息将会全部显示在控制台上
+logging.info('this is a loggging info message')
+logging.debug('this is a loggging debug message')
+logging.warning('this is loggging a warning message')
+logging.error('this is an loggging error message')
+logging.critical('this is a loggging critical message')
+
+```
+
+
+上面代码通过logging.basicConfig函数进行配置了日志级别和日志内容输出格式；因为级别为DEBUG，所以会将DEBUG级别以上的信息都输出显示再控制台上。
+
+问题： 后面的s是什么作用？
+
+回显：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1603166593028.png)
+
+
+## 日志输出-文件
+
+
+```python
+import logging  # 引入logging模块
+import os.path
+import time
+# 第一步，创建一个logger
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)  # Log等级总开关
+# 第二步，创建一个handler，用于写入日志文件
+rq = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
+log_path = os.path.dirname(os.getcwd()) + '/Logs/'
+log_name = log_path + rq + '.log'
+logfile = log_name
+fh = logging.FileHandler(logfile, mode='w')
+fh.setLevel(logging.DEBUG)  # 输出到file的log等级的开关
+# 第三步，定义handler的输出格式
+formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
+fh.setFormatter(formatter)
+# 第四步，将logger添加到handler里面
+logger.addHandler(fh)
+# 日志
+logger.debug('this is a logger debug message')
+logger.info('this is a logger info message')
+logger.warning('this is a logger warning message')
+logger.error('this is a logger error message')
+logger.critical('this is a logger critical message')
+```
+
+
+回显(打开同一目录下生成的文件)：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1603166737974.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1603166808355.png)
+
+
+## 日志输出-控制台和文件
+
+
+只要在输入到日志中的第二步和第三步插入一个handler输出到控制台：
+
+创建一个handler，用于输出到控制台
+
+
+```python
+ch = logging.StreamHandler()
+ch.setLevel(logging.WARNING)  # 输出到console的log等级的开关
+第四步和第五步分别加入以下代码即可
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+```
+
+## format常用格式说明
+
+- %(levelno)s: 打印日志级别的数值
+- %(levelname)s: 打印日志级别名称
+- %(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]
+- %(filename)s: 打印当前执行程序名
+- %(funcName)s: 打印日志的当前函数
+- %(lineno)d: 打印日志的当前行号
+- %(asctime)s: 打印日志的时间
+- %(thread)d: 打印线程ID
+- %(threadName)s: 打印线程名称
+- %(process)d: 打印进程ID
+- %(message)s: 打印日志信息
+
+
+## 捕捉异常,用traceback记录
+
+
+```python
+import os.path
+import time
+import logging
+# 创建一个logger
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)  # Log等级总开关
+
+# 创建一个handler，用于写入日志文件
+rq = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
+log_path = os.path.dirname(os.getcwd()) + '/Logs/'
+log_name = log_path + rq + '.log'
+logfile = log_name
+fh = logging.FileHandler(logfile, mode='w')
+fh.setLevel(logging.DEBUG)  # 输出到file的log等级的开关
+
+# 定义handler的输出格式
+formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+# 使用logger.XX来记录错误,这里的"error"可以根据所需要的级别进行修改
+try:
+    open('/path/to/does/not/exist', 'rb')
+except (SystemExit, KeyboardInterrupt):
+    raise
+except Exception, e:
+    logger.error('Failed to open file', exc_info=True)
+```
+
+
+ps: 这里有问题。
+
+## 多模块调用logging,日志输出顺序
+
+
+warning_output.py
+
+```python
+import logging
+
+
+def write_warning():
+    logging.warning(u"记录文件warning_output.py的日志")
+```
+
+error_output.py
+
+```python
+import logging
+
+
+def write_error():
+    logging.error(u"记录文件error_output.py的日志")
+```
+
+main.py
+
+
+```python
+import logging
+import warning_output
+import error_output
+
+
+def write_critical():
+    logging.critical(u"记录文件main.py的日志")
+
+
+warning_output.write_warning()  # 调用warning_output文件中write_warning方法
+write_critical()
+error_output.write_error()  # 调用error_output文件中write_error方法
+```
+
+回显：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1603167932616.png)
+
+从上面来看，日志的输出顺序和模块执行顺序是一致的。
+
+
+## 日志滚动和过期删除(按时间)
+
+```python
+import logging
+import time
+import re
+from logging.handlers import TimedRotatingFileHandler
+from logging.handlers import RotatingFileHandler
+
+
+def backroll():
+    #日志打印格式
+    log_fmt = '%(asctime)s\tFile \"%(filename)s\",line %(lineno)s\t%(levelname)s: %(message)s'
+    formatter = logging.Formatter(log_fmt)
+    #创建TimedRotatingFileHandler对象
+    log_file_handler = TimedRotatingFileHandler(filename="ds_update", when="M", interval=2, backupCount=2)
+    #log_file_handler.suffix = "%Y-%m-%d_%H-%M.log"
+    #log_file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}.log$")
+    log_file_handler.setFormatter(formatter)
+    logging.basicConfig(level=logging.INFO)
+    log = logging.getLogger()
+    log.addHandler(log_file_handler)
+    #循环打印日志
+    log_content = "test log"
+    count = 0
+    while count < 30:
+        log.error(log_content)
+        time.sleep(20)
+        count = count + 1
+    log.removeHandler(log_file_handler)
+
+
+if __name__ == "__main__":
+    backroll()
+```
+
+ filename：日志文件名的prefix；
+
+ when：是一个字符串，用于描述滚动周期的基本单位，字符串的值及意义如下： 
+- “S”: Seconds 
+- “M”: Minutes 
+- “H”: Hours 
+- “D”: Days 
+- “W”: Week day (0=Monday) 
+- “midnight”: Roll over at midnight
+
+ inte-1rval: 滚动周期，单位有when指定，比如：when=’D’,interval=1，表示每天产生一个日志文件
+
+ backupCount: 表示日志文件的保留个数
+
+# argparse
+
+创建解析器对象
+
+> class argparse.ArgumentParser(prog=None, usage=None, description=None, epilog=None, parents=[], formatter_class=argparse.HelpFormatter, prefix_chars='-', fromfile_prefix_chars=None, argument_default=None, conflict_handler='error', add_help=True, allow_abbrev=True)
+
+添加参数
+
+> ArgumentParser.add_argument(name or flags...\[, action\]\[, nargs\]\[, const\]\[, default\]\[, type\]\[, choices\]\[, required\]\[, help\]\[, metavar\]\[, dest\])
+
+- name or flags - 一个命名或者一个选项字符串的列表，例如 foo 或 -f, --foo
+- choices - 可用的参数的容器， 参数值只能从几个选项里面选择, 如choices=['alexnet', 'vgg']。
+- required - 此命令行选项是否可省略 （仅选项可用）。
+- metavar - 在使用方法消息中使用的参数值示例。
+- dest - 设置参数在代码中的变量名。
+- action - add_argument中默认action=’store‘，直接保存从运行终端或程序中传入的变量。如果想修改为常量，需要修改action='store_const'，然后指定const。
+
+```python
+parser.add_argument('--foo', action='store_const', const=42)
+```
+
+store_true/false - 如果需要存储True或者False，只要指定action='store_true/false'
+
+```python
+parser.add_argument('--foo', action='store_true')
+parser.add_argument('--foo', action='store_false')
+```
+
+需要注意的是，如果指定action为store_const或者store_true，则参数不可再进行赋值
+
+append - 同一参数，需要多个值时候，需要指定action='append'
+
+```python
+parser.add_argument('--foo', action='append')
+
+D:\desktop>python argparseLearn.py  --foo 1 --foo 2
+Namespace(foo=['1', '2'])
+```
+
+version - 需要指定action='version'，打印version后会自动退出
+
+```python
+parser.add_argument('--version',action='version',version='PROG 2.0')
+
+D:\desktop>python argparseLearn.py  --version
+PROG 2.0
+```
+
 
 # Bugs
 
 ## NameError:name ‘xrange’ is not defined
 
 在Python 3中，range()与xrange()合并为range( )。
+
 我的python版本为python3.5。
 
 将xrange( )函数全部换为range( )。
@@ -1927,3 +2806,10 @@ pip install -r requirements.txt
 56. [Linux服务器没有GUI的情况下使用matplotlib绘图](https://www.cnblogs.com/devilmaycry812839668/p/10201971.html)
 57. [np.random.multivariate_normal方法浅析](https://blog.csdn.net/zch1990s/article/details/80005940)
 58. [Matplotlib入门-4-plt.legend( )创建图例](https://zhuanlan.zhihu.com/p/111108841)
+59. [pandas apply() 函数用法](https://blog.csdn.net/stone0823/article/details/100008619)
+60. [深度学习之numpy.poly1d()函数](https://www.cnblogs.com/zhouzhe-blog/p/9621679.html)
+61. [python 中easydict的简单使用](https://blog.csdn.net/m0_38082419/article/details/79079516)
+62. [python中logging日志模块详解](https://www.cnblogs.com/xianyulouie/p/11041777.html)
+63. [numpy求解方程组](https://blog.csdn.net/ScapeD/article/details/85374240)
+64. [python中read、readline和readlines的区别](https://www.cnblogs.com/hanggegege/p/5926549.html)
+65. [python中，@和-> 代表什么?](https://blog.csdn.net/orangefly0214/article/details/91583506)
