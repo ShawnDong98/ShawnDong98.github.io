@@ -70,3 +70,21 @@ def box_center_to_corner(boxes):
 
 我们将基于坐标信息在图像中定义狗和猫的边界框。 图像中坐标的原点是图像的左上角，而右侧和下方分别是 $x$ 轴和 $y$ 轴的正方向。
 
+```python
+#@tab all
+# bbox is the abbreviation for bounding box
+dog_bbox, cat_bbox = [60.0, 45.0, 378.0, 516.0], [400.0, 112.0, 655.0, 493.0]
+```
+
+我们可以通过两次转换来验证 box 转换函数的正确性。
+
+```python
+#@tab all
+boxes = d2l.tensor((dog_bbox, cat_bbox))
+box_center_to_corner(box_corner_to_center(boxes)) - boxes
+```
+
+
+我们可以在图像中绘制边界框以检查其是否正确。 在绘制 box 之前，我们将定义一个辅助函数bbox_to_rect。 它以matplotlib的边界框格式表示边界框。
+
+
