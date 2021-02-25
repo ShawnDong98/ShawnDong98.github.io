@@ -1264,7 +1264,7 @@ def add(x, y) -> int:
 -\> \_Attr则表明函数返回的是一个外部可访问的类的私有变量。
 
 
-# importlib
+## importlib
 
 一个函数运行需要根据不同项目的配置，动态导入对应的配置文件运行。
 
@@ -1303,6 +1303,26 @@ params.C  #取出class C
 params.C.c  #取出class C 中的c 方法
 
 ```
+
+## isinstance
+
+
+isinstance() 函数来判断一个对象是否是一个已知的类型，类似 type()。
+
+isinstance() 与 type() 区别：
+- type() 不会认为子类是一种父类类型，不考虑继承关系。
+- isinstance() 会认为子类是一种父类类型，考虑继承关系。
+
+```python
+>>>a = 2
+>>> isinstance (a,int)
+True
+>>> isinstance (a,str)
+False
+>>> isinstance (a,(str,int,list))    # 是元组中的一个返回 True
+True
+```
+
 
 # os和sys
 
