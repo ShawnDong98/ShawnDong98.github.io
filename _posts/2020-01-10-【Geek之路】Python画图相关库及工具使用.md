@@ -468,6 +468,18 @@ function Example\n\n', fontweight ="bold")
 plt.show()
 ```
 
+## plt.text
+
+```python
+plt.text(x,y,s,family,fontsize,style,color)
+```
+
+- x,y代表注释内容位置
+- s代表注释文本内容
+- family设置字体, 自带的可选项有{‘serif’, ‘sans-serif’, ‘cursive’, ‘fantasy’, ‘monospace’}
+- fontsize字体大小
+- style设置字体样式，可选项{‘normal’, ‘italic’(斜体), ‘oblique’(也是斜体)}
+
 # seaborn语法
 
 ## seaborn.set()
