@@ -26,3 +26,14 @@ import torch
 torch.set_printoptions(2)
 ```
 
+
+# Generating Multiple Anchor Boxes
+
+假设输入图像的高度为 $h$，宽度为 $w$。我们生成以图像每个像素为中心的不同形状的Anchor。假设尺寸 $s \in (0, 1]$， 长宽比 $r > 0$， Anchor框的宽度和高度分别是 $ws\sqrt{r}$ 和 $hs / \sqrt{r}$。 当给定中心位置时，确定一个已知宽度和高度的Anchor框。
+
+下面我们设置一组尺寸$s_1, ..., s_n$ 和 一组长宽比 $r_1, ..., r_m$。 如果我们使用所有大小和长宽比的组合，以每个像素为中心，输入图像将有 $whnm$ 个 Anchor 框。尽管这些 Anchor 框可以覆盖所有的ground-truth边界框，但计算复杂度往往过高。因此，我们通常只对包含 $s1$ 或 $r1$ 大小和纵横比的组合感兴趣，也就是说：
+
+$$(s_1, r_1), (s_1, r_2), ..., (s_1, r_m), (s_2, r_1), (s_3, r_1), ..., (s_n, r_1) \tag{1}$$
+
+
+
