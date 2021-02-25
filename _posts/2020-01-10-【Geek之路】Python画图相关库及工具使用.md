@@ -471,7 +471,11 @@ plt.show()
 ## matplotlib.axes.Axes.text
 
 ```python
-Axes.text(self, x, y, s, fontdict=None, **kwargs)
+plt.text(x,y,s,family,fontsize,style,color)
+```
+
+```python
+Axes.text(self, x, y, s, fontdict=None, **kwargs)[source]
 ```
 
 - x,y代表注释内容位置
