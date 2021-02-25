@@ -93,3 +93,38 @@ w = torch.cat((size_tensor * torch.sqrt(ratio_tensor[0]),
 
 A： 由于ssd最初是为方形图像（300x300）开发的，因此 in_height / in_width 用于处理矩形输入。
 
+
+可以看出，返回的 Anchor 框变量y的形状为 (batch size，number of anchor boxes，4)。
+
+
+```python
+img = d2l.plt.imread('../img/catdog.jpg')
+h, w = img.shape[0:2]
+
+print(h, w)
+X = torch.rand(size=(1, 3, h, w))  # Construct input data
+Y = multibox_prior(X, sizes=[0.75, 0.5, 0.25], ratios=[1, 2, 0.5])
+Y.shape
+```
+
+```
+561 728
+```
+
+```
+torch.Size([1, 2042040, 4])
+```
+
+
+将Anchor框的形状变量 y 改变为(图像高度，图像宽度，以同一像素为中心的Anchor框数量，4)后，我们可以得到以指定像素为中心的所有Anchor框。在下面的例子中，我们访问第一个以(250,250)为中心的Anchor框。它有四个元素:位于Anchor框左上角的x、y轴坐标和位于Anchor框右下角的x、y轴坐标。x 轴和 y 轴的坐标值分别除以图像的宽度和高度，取值范围为 $0 \thicksim 1$。
+
+
+```python
+boxes = Y.reshape(h, w, 5, 4)
+boxes[250, 250, 0, :]
+```
+
+```
+tensor([0.06, 0.07, 0.63, 0.82])
+```
+
