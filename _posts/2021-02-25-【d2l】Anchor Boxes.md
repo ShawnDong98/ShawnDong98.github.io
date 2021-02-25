@@ -81,3 +81,15 @@ def multibox_prior(data, sizes, ratios):
     return output.unsqueeze(0)
 ```
 
+Q: 
+
+```python
+w = torch.cat((size_tensor * torch.sqrt(ratio_tensor[0]),
+                   sizes[0] * torch.sqrt(ratio_tensor[1:])))\
+                   * in_height / in_width
+```
+
+为什么这里要乘以 in_height / in_width ?
+
+A： 由于ssd最初是为方形图像（300x300）开发的，因此 in_height / in_width 用于处理矩形输入。
+
