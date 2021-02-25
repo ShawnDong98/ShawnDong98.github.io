@@ -39,6 +39,32 @@ d2l.plt.imshow(img);
 
 # Bounding Box
 
-在物体检测中，我们通常使用边界框来描述目标位置。边界框是一个矩形框，可以由矩形左上角的 $x$ 和 $y$ 轴坐标以及矩形右下角的 $x$ 和 $y$ 轴坐标确定。另一个常用的边界框表示形式是边界框中心的 $x$ 和 $y$ 轴坐标及其宽度和高度。在这里，我们定义了在这两种表示形式之间进行转换的函数，box_corner_to_center从两角表示转换为中心宽度-高度表示，box_center_to_corner则相反。
+在物体检测中，我们通常使用边界框来描述目标位置。边界框是一个矩形框，可以由矩形左上角的 $x$ 和 $y$ 轴坐标以及矩形右下角的 $x$ 和 $y$ 轴坐标确定。另一个常用的边界框表示形式是边界框中心的 $x$ 和 $y$ 轴坐标及其宽度和高度。在这里，我们定义了在这两种表示形式之间进行转换的函数，box_corner_to_center从两角表示转换为中心宽度-高度表示，box_center_to_corner则相反。输入参数 boxes 可以是长度 $4$ 张量，也可以是 $(N，4)$ 二维张量。
+
+
+```python
+#@tab all
+#@save
+def box_corner_to_center(boxes):
+    """Convert from (upper_left, bottom_right) to (center, width, height)"""
+    x1, y1, x2, y2 = boxes[:, 0], boxes[:, 1], boxes[:, 2], boxes[:, 3]
+    cx = (x1 + x2) / 2
+    cy = (y1 + y2) / 2
+    w = x2 - x1
+    h = y2 - y1
+    boxes = d2l.stack((cx, cy, w, h), axis=-1)
+    return boxes
+
+#@save
+def box_center_to_corner(boxes):
+    """Convert from (center, width, height) to (upper_left, bottom_right)"""
+    cx, cy, w, h = boxes[:, 0], boxes[:, 1], boxes[:, 2], boxes[:, 3]
+    x1 = cx - 0.5 * w
+    y1 = cy - 0.5 * h
+    x2 = cx + 0.5 * w
+    y2 = cy + 0.5 * h
+    boxes = d2l.stack((x1, y1, x2, y2), axis=-1)
+    return boxes
+```
 
 
