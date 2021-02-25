@@ -102,3 +102,21 @@ def bbox_to_rect(bbox, color):
 ```
 
 将边界框加载到图像上后，我们可以看到目标的主要轮廓基本上在该框内。
+
+```python
+#@tab all
+fig = d2l.plt.imshow(img)
+fig.axes.add_patch(bbox_to_rect(dog_bbox, 'blue'))
+fig.axes.add_patch(bbox_to_rect(cat_bbox, 'red'));
+```
+
+
+# Summary
+
+在目标检测中，我们不仅要确定图像中所有感兴趣的目标，还要确定它们的位置。位置通常用一个矩形边框来表示。
+
+
+# Exercises
+
+找到一些图像，并尝试标记包含目标的边界框。比较标记边界框和标记类别所花费的时间的差异。
+
