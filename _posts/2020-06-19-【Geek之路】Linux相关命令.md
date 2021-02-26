@@ -203,6 +203,28 @@ screen -S 23536 -X quit
 
 ps: 暂时断开（detach）screen会话
 
+# 添加和删除 ppa 源
+
+## 添加 ppa 源
+
+**添加PPA源：**
+
+```
+sudo add-apt-repository ppa:app-name/ppa-name
+```
+
+**更新：**
+
+
+```
+sudo apt update
+```
+
+
+## 删除 ppa 源
+
+
+
 # apt安装卸载软件
 
 ## 查看已安装的软件
