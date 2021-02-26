@@ -220,7 +220,7 @@ def box_iou(boxes1, boxes2):
 
 如图13.4.2(左)所示，假设矩阵 $X$ 的最大值为 $x_{23}$，则我们将 ground-truth 边界框 $B_3$ 赋值给Anchor框 $A_2$。然后，我们丢弃矩阵第2行和第3列的所有元素，找到剩余阴影区域中最大的元素 $x_{71}$，并将ground-truth边界框 $B_1$ 赋值给Anchor框 $A_7$。然后，如图13.4.2(中)所示，去掉矩阵第7行、第1列的所有元素，找到剩余阴影区域最大的元素 $x_{54}$ ，将ground-truth边界框 $B_4$ 赋值给Anchor框 $A_5$。最后，如图13.4.2(右)所示，去掉矩阵第5行、第4列的所有元素，找到剩余阴影区域最大的元素 $x_{92}$，将 ground-truth 边界框 $B_2$ 赋值给Anchor框 $A_9$。然后，我们只需要遍历剩下的Anchor框 $A_1$, $A_3$, $A_4$, $A_6$, $A_8$，并根据阈值决定是否为剩下的Anchor框分配ground-truth边界框。
 
-
+![Fig. 13.4.2 将ground-truth边界框分配给Anchor框。](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1614333784553.png)
 
 
 
