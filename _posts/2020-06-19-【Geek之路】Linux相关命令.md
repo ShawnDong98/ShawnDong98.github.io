@@ -223,7 +223,17 @@ sudo apt update
 
 ## 删除 ppa 源
 
+**删除PPA源：**
 
+```
+sudo add-apt-repository -r ppa:app-name/ppa-name
+```
+
+**更新：**
+
+```
+sudo apt update
+```
 
 # apt安装卸载软件
 
