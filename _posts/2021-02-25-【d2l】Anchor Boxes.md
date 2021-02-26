@@ -205,3 +205,16 @@ def box_iou(boxes1, boxes2):
     unioun = area1[:, None] + area2 - inter
     return inter / unioun
 ```
+
+
+# Labeling Training Set Anchor Boxes
+
+在训练集中，我们将每个Anchor框作为一个训练示例。为了训练目标检测模型，我们需要为每个Anchir框标记两种类型的标签:一是Anchor框中包含的目标类别(category)，二是ground-truth边界框相对于Anchor框的偏移量(offset)。在目标检测中,我们首先生成多个Anchor框, 预测每个Anchor框的category和offset,根据预测的offset调整Anchor框位置得到用于预测的边界框,最后过滤需要输出的预测边界框。
+
+我们知道，在目标检测训练集中，每一幅图像都标记有ground-truth边界框的位置和包含的目标类别。Anchor框生成后，我们主要根据与Anchor框相似的ground-truth边界框的位置和category信息对Anchor框进行标签。那么我们如何分配ground-truth边界框到类似的Anchor框呢？
+
+假设在图像中的Anchor框是$A_1, A_2, ..., A_{n_a}$以及ground-truth框是$B_1, B_2, ..., B_{n_b}$， 并且$n_a > n_b$。 定义矩阵 $X \in R^{n_a \times n_b}$, 其中第 $i$ 行和第 $j$ 列的$x_{ij}$是Anchor框 $A_i$ 和 ground-truth 边界框 $B_j$的交并比。首先，我们找到矩阵 $X$ 中最大的元素，并记录该元素的行索引和列索引为 $i_1$, $j_1$。我们将ground-truth边界框 $B_{j_1}$分配给Anchor框$A_{i_1}$。显然，Anchor框 $A_{i_1}$ 与 ground-truth 边界框 $B_{j_1}$ 在 所有Anchor框 和 ground-truth 边界框对 中相似性最高。接下来，丢弃矩阵 $X$ 中第$i_1$ 行和第 $j_1$ 列中的所有元素。找到矩阵 $X$ 中剩余的最大元素，并记录该元素的行索引和列索引为 $i_2$,  $j_2$。我们将ground-truth边界框 $B_{j_2}$ 分配给 Anchor框 $A_{i_2}$ ，然后丢弃矩阵 $X$ 中第 $i_2$ 行和 $j_2$ 列中的所有元素。此时，矩阵 $X$ 中的两行和两列中的元素已经被丢弃。
+
+我们继续，直到丢弃矩阵 $X$ 中 $n_b$ 列中的所有元素。此时，我们已经为 $n_b$ 个Anchor框中的每个Anchor框分配了一个ground-truth边界框。接下来，我们只遍历剩下的 $n_a - n_b$ Anchor框。给定Anchor框 $A_i$，根据矩阵 $X$ 的第 $i$ 行，找到 $Ai$ 交并比最大的边界框 $B_j$，当交并比大于预定阈值时，才将 ground-truth 边界框 $B_j$ 赋给Anchor框 $A_i$。
+
+
