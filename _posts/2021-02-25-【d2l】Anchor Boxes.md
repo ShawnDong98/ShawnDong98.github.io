@@ -182,9 +182,9 @@ show_bboxes(fig.axes, boxes[250, 250, :, :] * bbox_scale,
 
 $$J(A, B) = \frac{\mid A \cap B \mid}{\mid A \cup B \mid} \tag{2}$$
 
-事实上，我们可以把边界框的像素区域看作是像素的集合。这样，我们就可以通过两个边界框的像素集的Jaccard索引来度量这两个边界框的相似性。当我们测量两个边界框的相似性时，我们通常将Jaccard指标称为交并比(intersection over union, IoU)，它是两个边界框相交面积与并集面积的比值，如图所示。IoU的取值范围为 $0 \thicksim 1$, 0表示两个边界框之间没有重叠像素，1表示两个边界框相等。
+事实上，我们可以把边界框的像素区域看作是像素的集合。这样，我们就可以通过两个边界框的像素集的Jaccard索引来度量这两个边界框的相似性。当我们测量两个边界框的相似性时，我们通常将Jaccard指标称为交并比(intersection over union, IoU)，它是两个边界框相交面积与并集面积的比值，如图13.4.1所示。IoU的取值范围为 $0 \thicksim 1$, 0表示两个边界框之间没有重叠像素，1表示两个边界框相等。
 
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1614254977866.png)
+![Fig. 13.4.1 IoU是两个边界框的相交面积与合并面积的比值。](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1614254977866.png)
 
 在本节的其余部分中，我们将使用IoU来度量Anchor框和ground-truth边界框以及不同Anchor框之间的相似性。
 
@@ -216,5 +216,7 @@ def box_iou(boxes1, boxes2):
 假设在图像中的Anchor框是$A_1, A_2, ..., A_{n_a}$以及ground-truth框是$B_1, B_2, ..., B_{n_b}$， 并且$n_a > n_b$。 定义矩阵 $X \in R^{n_a \times n_b}$, 其中第 $i$ 行和第 $j$ 列的$x_{ij}$是Anchor框 $A_i$ 和 ground-truth 边界框 $B_j$的交并比。首先，我们找到矩阵 $X$ 中最大的元素，并记录该元素的行索引和列索引为 $i_1$, $j_1$。我们将ground-truth边界框 $B_{j_1}$分配给Anchor框$A_{i_1}$。显然，Anchor框 $A_{i_1}$ 与 ground-truth 边界框 $B_{j_1}$ 在 所有Anchor框 和 ground-truth 边界框对 中相似性最高。接下来，丢弃矩阵 $X$ 中第$i_1$ 行和第 $j_1$ 列中的所有元素。找到矩阵 $X$ 中剩余的最大元素，并记录该元素的行索引和列索引为 $i_2$,  $j_2$。我们将ground-truth边界框 $B_{j_2}$ 分配给 Anchor框 $A_{i_2}$ ，然后丢弃矩阵 $X$ 中第 $i_2$ 行和 $j_2$ 列中的所有元素。此时，矩阵 $X$ 中的两行和两列中的元素已经被丢弃。
 
 我们继续，直到丢弃矩阵 $X$ 中 $n_b$ 列中的所有元素。此时，我们已经为 $n_b$ 个Anchor框中的每个Anchor框分配了一个ground-truth边界框。接下来，我们只遍历剩下的 $n_a - n_b$ Anchor框。给定Anchor框 $A_i$，根据矩阵 $X$ 的第 $i$ 行，找到 $Ai$ 交并比最大的边界框 $B_j$，当交并比大于预定阈值时，才将 ground-truth 边界框 $B_j$ 赋给Anchor框 $A_i$。
+
+
 
 
