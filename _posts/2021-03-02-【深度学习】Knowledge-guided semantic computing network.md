@@ -97,6 +97,11 @@ $$R = (R^{int}, R^{dis}, R^{ang}, R^{loc}) \tag{1}$$
 $$\text{Upper semantic} = \{\text{primitive 1, primitive 2, ..., primitive n}\}$$
 
 
-最后，我们获得基元集（Eq（2））和不同基元的语义关系（Eq（1））的上层语义。
+最后，我们获得基元集 (Eq(2)) 和不同基元的语义关系 (Eq(1)) 的上层语义。
 
+
+## Semantic relation template: the definition of semantic tree
+
+
+在构建语义树的过程中，语义关系模板是极其重要的部分。
 
