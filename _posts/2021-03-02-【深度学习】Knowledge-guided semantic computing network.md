@@ -103,5 +103,14 @@ $$\text{Upper semantic} = \{\text{primitive 1, primitive 2, ..., primitive n}\}$
 ## Semantic relation template: the definition of semantic tree
 
 
-在构建语义树的过程中，语义关系模板是极其重要的部分。
+在构建语义树的过程中，语义关系模板是极其重要的部分。它描述了特定类的上层语义的标准关系。我们使用统计方法来构建特定类的语义关系模板。这种方法可以表示为：
+
+$$
+\begin{aligned}
+T &= (\sum_{k=1}^K r_1(k), \sum_{k=1}^K r_2(k), ..., \sum_{k=1}^K r_\alpha(k))\alpha \\
+&= \alpha_{int} + \alpha_{dis} + \alpha_{ang} + \alpha_{loc} 
+\end{aligned} \tag{3}
+$$
+
+其中 $k$ 表示第 $k$ 个 训练样本 $(k = 1, 2, ..., K)$。 
 
