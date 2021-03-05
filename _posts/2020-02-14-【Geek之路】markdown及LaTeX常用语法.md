@@ -824,11 +824,22 @@ $$
 
 \pagenumbering\{(格式)\}来设置页码的编号方式， 这个命令会令页码重新从1开始按（格式）参数进行计数， 例如：
 
-> \pagenumbering{roman}
+
+```
+\pagenumbering{roman}
+```
 
 另一种重新从1开始计数的方法
 
-> \setcounter{page}{1}
+```
+\setcounter{page}{1}
+```
+
+去掉页码：
+
+```
+\thispagestyle{empty}
+```
 
 
 页码的风格：
