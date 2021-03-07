@@ -2023,6 +2023,12 @@ int main()
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1615085117729.png)
 
+
+## 位运算
+
+x & ~x 表示 二进制 x 最靠近右边的第一个 1。
+
+
 # 多线程
 
 ## OpenMP
