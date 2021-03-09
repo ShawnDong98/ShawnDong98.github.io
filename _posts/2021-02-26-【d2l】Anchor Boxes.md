@@ -230,15 +230,15 @@ def box_iou(boxes1, boxes2):
 def match_anchor_to_bbox(ground_truth, anchors, device, iou_threshold=0.5):
     """Assign ground-truth bounding boxes to anchor boxes similar to them."""
     num_anchors, num_gt_boxes = anchors.shape[0], ground_truth.shape[0]
-    # Element `x_ij` in the `i^th` row and `j^th` column is the IoU
-    # of the anchor box `anc_i` to the ground-truth bounding box `box_j`
-    jaccard = box_iou(anchors, ground_truth)
-    # Initialize the tensor to hold assigned ground truth bbox for each anchor
-    anchors_bbox_map = torch.full((num_anchors,), -1, dtype=torch.long,
-                                  device=device)
+    jaccard = box_iou(anchors, ground_truth) # (num_anchors, num_gt_boxes), (N, M)
+    # hash_map, key: anc_i, value: box_j
+    anchors_bbox_map = torch.full((num_anchors,), -1, dtype=torch.long, device=device)
     # Assign ground truth bounding box according to the threshold
     max_ious, indices = torch.max(jaccard, dim=1)
+    print(max_ious.shape)
+    print(torch.nonzero(max_ious >= 0.5).shape)
     anc_i = torch.nonzero(max_ious >= 0.5).reshape(-1)
+    # print(anc_i.shape)
     box_j = indices[max_ious >= 0.5]
     anchors_bbox_map[anc_i] = box_j
     # Find the largest iou for each bbox
@@ -249,6 +249,7 @@ def match_anchor_to_bbox(ground_truth, anchors, device, iou_threshold=0.5):
         box_idx = (max_idx % num_gt_boxes).long()
         anc_idx = (max_idx / num_gt_boxes).long()
         anchors_bbox_map[anc_idx] = box_idx
+        # 用 -1 表示丢弃 box
         jaccard[:, box_idx] = col_discard
         jaccard[anc_idx, :] = row_discard
     return anchors_bbox_map
