@@ -287,5 +287,5 @@ show_bboxes(fig.axes, anchors * bbox_scale, ['0', '1', '2', '3', '4'])
 
 
 
-我们可以使用 multibox_target 函数为 Anchor框标记类别和偏移量。
+我们可以使用 multibox_target 函数为 Anchor框标记类别和偏移量。这个函数将背景类别设置为0，并将目标类别的整数索引从加1(1代表狗，2代表猫)。
 
