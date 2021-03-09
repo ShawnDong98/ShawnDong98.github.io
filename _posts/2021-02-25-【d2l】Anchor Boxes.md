@@ -2,7 +2,7 @@
 layout:     post
 title:      "【d2l】Anchor Boxes"
 subtitle:   ""
-date:       2021-02-25
+date:       2021-02-26
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
