@@ -206,7 +206,7 @@ def box_iou(boxes1, boxes2):
     return inter / unioun
 ```
 
-它的输出为 (N, M)， N为Anchor Box 个数， M 为 Ground-Truth Box 个数。 
+它的输出为 (N, M)， N为Anchor Box 个数， M 为 Ground-truth Box 个数。 
 
 # Labeling Training Set Anchor Boxes
 
