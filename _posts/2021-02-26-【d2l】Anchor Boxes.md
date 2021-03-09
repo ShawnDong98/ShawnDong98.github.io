@@ -256,4 +256,36 @@ def match_anchor_to_bbox(ground_truth, anchors, device, iou_threshold=0.5):
 ```
 
 
-现在我们可以标记 Anchor 框的类别和偏移量。如果 Anchor框  A 被指定为 ground-truth bbox 框 B，则Anchor框A的类别为B的类别。根据 B和 A 中心坐标的相对位置以及两个框的相对大小设置Anchor框A的偏移量。由于数据集中不同框的位置和大小可能不同，这些相对位置和相对大小通常需要一些特殊的转换，以使偏移量分布更均匀，更容易拟合。设Anchor框 A 及其指定的ground-truth bbox框B的中心坐标为 $(xa_, y_a)$，$(x_b, y_b)$， A 和 B 的宽度分别为 $w_a, w_b$，高度分别为 $h_a, h_b$。
+现在我们可以标记 Anchor 框的类别和偏移量。如果 Anchor框  A 被指定为 ground-truth bbox 框 B，则Anchor框A的类别为B的类别。根据 B和 A 中心坐标的相对位置以及两个框的相对大小设置Anchor框A的偏移量。由于数据集中不同框的位置和大小可能不同，这些相对位置和相对大小通常需要一些特殊的变换，以使偏移量分布更均匀，更容易拟合。设Anchor框 A 及其指定的ground-truth bbox框B的中心坐标为 $(xa_, y_a)$，$(x_b, y_b)$， A 和 B 的宽度分别为 $w_a, w_b$，高度分别为 $h_a, h_b$。在这种情况下，一种常见的技术是将$A$ 的偏移量标记为
+
+$$(\frac{\frac{x_b - x_a}{w_a} - \mu_x}{\sigma_x}, \frac{\frac{y_b - y_a}{h_a} - \mu_y}{\sigma_y},  \frac{log \frac{w_b}{w_a} - \mu_w}{\sigma_w}, \frac{log\frac{h_b}{h_a} - \mu_h}{\sigma_h})$$
+
+这些常量的默认值为 $\mu_x = \mu_y = \mu_w = \mu_h = 0, \sigma_x = \sigma_y = 0.1, \sigma_w = \sigma_h = 0.2$。  这个变换在下面的 offset_boxes 函数中实现。如果Anchor框没有被指定为ground-truth边界框，我们只需要将Anchor框的类别设置为background。分类为背景的Anchor 框通常被称为负Anchor框，其余的被称为正Anchor框。
+
+
+```python
+
+```
+
+下面我们将演示一个详细的示例。我们为读取的图片中的猫和狗定义 ground-truth bbox， 第一个要素是类别(猫为1， 狗为0)和剩下的四个要素是 $x, y$ 轴的左上角坐标 和 $x, y$ 轴的右下角坐标(0和1之间的值范围)。这里，我们构造了5个Anchor框，分别用左上角和右下角的坐标进行标记，分别记录为 $A_0、、A_4$ (程序中的索引从0开始)。首先，在图像中绘制这些Anchor框和ground-truth边界框的位置。
+
+
+```python
+ground_truth = torch.tensor([[0, 0.1, 0.08, 0.52, 0.92],
+                         [1, 0.55, 0.2, 0.9, 0.88]])
+anchors = torch.tensor([[0, 0.1, 0.2, 0.3], [0.15, 0.2, 0.4, 0.4],
+                    [0.63, 0.05, 0.88, 0.98], [0.66, 0.45, 0.8, 0.8],
+                    [0.57, 0.3, 0.92, 0.9]])
+
+fig = d2l.plt.imshow(img)
+show_bboxes(fig.axes, ground_truth[:, 1:] * bbox_scale, ['dog', 'cat'], 'k')
+show_bboxes(fig.axes, anchors * bbox_scale, ['0', '1', '2', '3', '4'])
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1615284237993.png)
+
+
+
+我们可以使用 multibox_target 函数为 Anchor框标记类别和偏移量。
+
