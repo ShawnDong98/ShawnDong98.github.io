@@ -386,3 +386,65 @@ tensor([[-0.00e+00, -0.00e+00, -0.00e+00, -0.00e+00,  1.40e+00,  1.00e+01,
 
 # Bounding Boxes for Prediction
 
+在模型预测阶段，我们首先为图像生成多个Anchor框，然后对这些Anchor框逐个预测类别和偏移量。然后，根据Anchor框及其预测偏移量得到预测边界框。
+
+下面我们实现函数 offset_inverse，它接受 anchors 和offset predictions作为输入，并应用逆偏移量变换来返回预测的边框坐标。
+
+```python
+#@save
+def offset_inverse(anchors, offset_preds):
+    c_anc = d2l.box_corner_to_center(anchors)
+    c_pred_bb_xy = (offset_preds[:, :2] * c_anc[:, 2:] / 10) + c_anc[:, :2]
+    c_pred_bb_wh = torch.exp(offset_preds[:, 2:] / 5) * c_anc[:, 2:]
+    c_pred_bb = torch.cat((c_pred_bb_xy, c_pred_bb_wh), axis=1)
+    predicted_bb = d2l.box_center_to_corner(c_pred_bb)
+    return predicted_bb
+```
+
+当有许多Anchor框时，同一个目标可能会输出许多类似的预测边界框。为了简化结果，我们可以删除类似的预测框。一种常用的方法称为非极大抑制(NMS)。
+
+让我们来看看NMS是如何工作的。对于一个预测的边界框 $B$， 模型计算每个类别的预测概率。假设最大的预测概率是 $p$，这个概率对应的类别就是 $B$ 的预测类别。 在同一幅图像上，根据置信度从高到低对除背景外以外预测类别的预测边框进行排序，得到列表 $L$。从 $L$ 中选择置信度最高的预测边界框 $B_1$ 作为基线，计算$B_1$与其它边界框的交并比， 从 $L$ 中删除所有与 $B_1$ 交并比小于某一阈值非基准预测边界框。这里的阈值是一个预置的超参数。此时，$L$ 保留了置信度最高的预测边界框，并删除了其他类似的预测边界框。接下来，选择 $L$ 中置信度第二高的预测边界框 $B_2$ 作为基线，计算$B_2$与其它边界框的交并比， 删除 $L$ 中 所有与 $B_2$ 交并比小于某一阈值的所有非基准预测边界框。重复这个过程，直到 $L$ 中的所有预测框都被用作基线。此时，$L$ 中任何一对预测框的IoU都大于阈值。最后，将所有预测框输出到列表 $L$ 中。
+
+
+```python
+
+```
+
+接下来，我们将看一个详细的示例。首先，构建四个Anchor框。为了简单起见，我们假设预测偏移量都为0。这意味着预测框就是Anchor框。最后，我们为每个类别构造一个预测概率。
+
+
+```python
+
+```
+
+在图像上打印预测边框及其置信度。
+
+
+```python
+fig = d2l.plt.imshow(img)
+show_bboxes(fig.axes, anchors * bbox_scale,
+            ['dog=0.9', 'dog=0.8', 'dog=0.7', 'cat=0.9'])
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1615296901642.png)
+
+
+我们使用 multibox_detection 函数进行 NMS，将阈值设置为0.5。这样就给张量输入增加了一个维数。可以看到，返回结果的形状为 (batch size, number of anchor boxes, 6)。 每行的6个元素表示同一个预测框的输出信息。第一个元素是预测的类别索引，它从0开始(0是dog, 1是cat)。-1 表示背景或者用NMS删除。第二个元素是预测边界框的置信度。其余四个元素是预测框左上角的 $x、y$ 轴坐标和右下角的 $x、y$轴坐标(取值范围在0到1之间)。
+
+
+```python
+
+```
+
+我们去掉类别-1的预测框，并将NMS保留的结果可视化。
+
+```python
+
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1615297314167.png)
+
+
+在实践中，我们可以在执行NMS之前删除具有较低置信度的预测框，从而减少NMS的计算量。我们还可以过滤NMS的输出，例如,  只保留具有较高置信度的结果作为最终输出。
