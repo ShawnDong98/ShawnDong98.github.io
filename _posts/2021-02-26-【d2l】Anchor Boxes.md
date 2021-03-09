@@ -264,7 +264,58 @@ $$(\frac{\frac{x_b - x_a}{w_a} - \mu_x}{\sigma_x}, \frac{\frac{y_b - y_a}{h_a} -
 
 
 ```python
+#@save
+def offset_boxes(anchors, assigned_bb, eps=1e-6):
+    c_anc = d2l.box_corner_to_center(anchors)
+    c_assigned_bb = d2l.box_corner_to_center(assigned_bb)
+    # 变换
+    offset_xy = 10 * (c_assigned_bb[:, :2] - c_anc[:, :2]) / c_anc[:, 2:]
+    offset_wh = 5 * torch.log(eps + c_assigned_bb[:, 2:] / c_anc[:, 2:])
+    # offset.shape: (num of anchor, 4)
+    offset = torch.cat([offset_xy, offset_wh], axis=1)
+    return offset
 
+#@save
+def multibox_target(anchors, labels):
+    batch_size, anchors = labels.shape[0], anchors.squeeze(0)
+    batch_offset, batch_mask, batch_class_labels = [], [], []
+    device, num_anchors = anchors.device, anchors.shape[0]
+    for i in range(batch_size):
+        # labels: (batch, num_gt_box, 5)
+        label = labels[i, :, :]
+        # anchors_bbox_map.shape: (M,), M为Anchor的数量
+        anchors_bbox_map = match_anchor_to_bbox(label[:, 1:], anchors, device)
+        # anchors_bbox_map >= 0 返回一个 bool Tensor
+        # ((anchors_bbox_map >= 0).float() bool Tensor 变成 float Tensor
+        # ((anchors_bbox_map >= 0).float().unsqueeze(-1)) 行变成列
+        # repeat(1, 4) 把第一列重复四次
+        bbox_mask = ((anchors_bbox_map >= 0).float().unsqueeze(-1)).repeat(1, 4)
+        # Initialize class_labels and assigned bbox coordinates with zeros
+        class_labels = torch.zeros(num_anchors, dtype=torch.long,
+                                   device=device)
+        assigned_bb = torch.zeros((num_anchors, 4), dtype=torch.float32,
+                                  device=device)
+        # Assign class labels to the anchor boxes using matched gt bbox labels
+        # If no gt bbox is assigned to an anchor box, then let the
+        # class_labels and assigned_bb remain zero, i.e the background class
+
+        # 返回bool为True的索引
+        indices_true = torch.nonzero(anchors_bbox_map >= 0)
+        bb_idx = anchors_bbox_map[indices_true]
+
+        # 真实标签种类 + 1， 多出一类背景
+        class_labels[indices_true] = label[bb_idx, 0].long() + 1
+        assigned_bb[indices_true] = label[bb_idx, 1:]
+        # offset transformations
+        offset = offset_boxes(anchors, assigned_bb) * bbox_mask
+        # 
+        batch_offset.append(offset.reshape(-1))
+        batch_mask.append(bbox_mask.reshape(-1))
+        batch_class_labels.append(class_labels)
+    bbox_offset = torch.stack(batch_offset)
+    bbox_mask = torch.stack(batch_mask)
+    class_labels = torch.stack(batch_class_labels)
+    return (bbox_offset, bbox_mask, class_labels)
 ```
 
 下面我们将演示一个详细的示例。我们为读取的图片中的猫和狗定义 ground-truth bbox， 第一个要素是类别(猫为1， 狗为0)和剩下的四个要素是 $x, y$ 轴的左上角坐标 和 $x, y$ 轴的右下角坐标(0和1之间的值范围)。这里，我们构造了5个Anchor框，分别用左上角和右下角的坐标进行标记，分别记录为 $A_0、、A_4$ (程序中的索引从0开始)。首先，在图像中绘制这些Anchor框和ground-truth边界框的位置。
@@ -288,4 +339,50 @@ show_bboxes(fig.axes, anchors * bbox_scale, ['0', '1', '2', '3', '4'])
 
 
 我们可以使用 multibox_target 函数为 Anchor框标记类别和偏移量。这个函数将背景类别设置为0，并将目标类别的整数索引从加1(1代表狗，2代表猫)。
+
+
+
+我们使用 unsqueeze 函数 给 anchor框 和 ground-truth bbox 增加维度， 并且构造一个随机预测结果， 它形状为 (batch\_size, number of categories including background, number of anchor boxes) 。
+
+```python
+labels = multibox_target(anchors.unsqueeze(dim=0),
+                         ground_truth.unsqueeze(dim=0))
+```
+
+
+返回的结果中有三项，它们都是张量格式。第三项表示标记为Anchor框的类别。
+
+```python
+labels[2]
+
+
+tensor([[0, 1, 2, 0, 2]])
+```
+
+
+我们根据图像中Anchor框和ground-truth bbox的位置来分析这些已标记的类别。首先，在所有Anchor和ground-truth bbox对中，Anchor框 $A_4$ 对猫的ground-truth 边界框的IoU最大，因此Anchor $A_4$ 的类别被标记为猫。不考虑猫的真实边界框和Anchor边界框 $A_4$， 在剩余的Anchor和ground-truth边界框对， 狗的真实边界框和Anchor框 $A_1$具有最大交并比， 所以Anchor框 $A_1$ 的类别是 狗。接下来，遍历其余三个未标记的Anchor框。Anchor框 $A_0$ 具有最大交并比的真实边界框的种类是狗， 但是交并比小于阈值(默认为0.5)， 因此种类被标记为背景； Anchor框 $A_2$  具有最大交并比的真实边界框的种类是猫， 并且交并比大于阈值， 因此种类被标记为猫； Anchor框 $A_3$ 具有最大交并比的真实边界框的种类是猫， 但是交并比小于阈值(默认为0.5)， 因此种类被标记为背景；
+
+返回值的第二项是一个mask变量， 它的形状是 (batch size, four times the number of anchor boxes)。 mask变量中的元素与每个Anchor框的四个偏移值一一对应。因为我们不关心背景检测，负类的偏移量不应该影响目标函数。通过乘以元素，mask变量中的0可以在计算目标函数之前过滤掉负的类偏移量。
+
+```python
+labels[1]
+
+
+tensor([[0., 0., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0., 0., 0., 1., 1.,
+         1., 1.]])
+```
+
+返回的第一项是为每个Anchor框标记的四个偏移值，负类Anchor框的偏移值标记为0。
+
+```python
+labels[0]
+
+tensor([[-0.00e+00, -0.00e+00, -0.00e+00, -0.00e+00,  1.40e+00,  1.00e+01,
+          2.59e+00,  7.18e+00, -1.20e+00,  2.69e-01,  1.68e+00, -1.57e+00,
+         -0.00e+00, -0.00e+00, -0.00e+00, -0.00e+00, -5.71e-01, -1.00e+00,
+          4.17e-06,  6.26e-01]])
+```
+
+
+# Bounding Boxes for Prediction
 
