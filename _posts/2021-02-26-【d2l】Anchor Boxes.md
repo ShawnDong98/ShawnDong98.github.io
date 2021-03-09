@@ -256,4 +256,4 @@ def match_anchor_to_bbox(ground_truth, anchors, device, iou_threshold=0.5):
 ```
 
 
-现在我们可以标记 Anchor 框的类别和偏移量。如果 Anchor框  A 被指定为 ground-truth bbox 框 B，则Anchor框A的类别为B的类别。根据 B和 A 中心坐标的相对位置以及两个框的相对大小设置Anchor框A的偏移量。由于数据集中不同框的位置和大小可能不同，这些相对位置和相对大小通常需要一些特殊的转换，以使偏移量分布更均匀，更容易拟合。设Anchor框 A 的中心坐标及其指定的ground-truth bbox框B为 $(xa_, y_a)$，$(x_b, y_b)$， A 和 B 的宽度分别为 $w_a, w_b$，高度分别为 $h_a, h_b$。
+现在我们可以标记 Anchor 框的类别和偏移量。如果 Anchor框  A 被指定为 ground-truth bbox 框 B，则Anchor框A的类别为B的类别。根据 B和 A 中心坐标的相对位置以及两个框的相对大小设置Anchor框A的偏移量。由于数据集中不同框的位置和大小可能不同，这些相对位置和相对大小通常需要一些特殊的转换，以使偏移量分布更均匀，更容易拟合。设Anchor框 A 及其指定的ground-truth bbox框B为 $(xa_, y_a)$，$(x_b, y_b)$， A 和 B 的宽度分别为 $w_a, w_b$，高度分别为 $h_a, h_b$。
