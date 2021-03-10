@@ -50,24 +50,16 @@ You should keep the room clean and tidy.
 
 We made him our monitor.
 
-## 句子的成分
 
-1. 谓语的成分
+### 例子
 
-有时态态的实义动词或系动词
+> 我爱你， 你爱我。
 
+I loving you, you love me.
 
-2. 一句话中动词能不能多？
+独立主格结构， 就是非谓语动词的一种。
 
-绝对不能， 一句话当中只能有一个动词存在并且充当谓语， 多余的动词全部都要变成非 谓语动词。
+> 冬天来了， 春天就不远了。
 
-- 谓语只能是动词
-- 动词只能做谓语
-
-
-所以我们要把一句话中所有不做谓语的动词 全部变成 不是动词(非 谓语动词)。
-
-- Ving ： 主动
-- Ved ： 被动
-- to do ： 目的
+Winter approaching, spring will be around the corner.
 
