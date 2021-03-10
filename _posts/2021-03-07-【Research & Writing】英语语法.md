@@ -107,4 +107,9 @@ I being a teacher, I have passion in singing songs.
 绝对不能， 当一句话需要动词而又没有动词的时候，永远都加be动词，并且be动词没有意思。
 
 
+为什么 be angry with 有be动词， 而agree with sb 没有be动词？
+
+因为angry是形容词， 而agree是实义动词， 因此angry需要谓语。
+
+
 
