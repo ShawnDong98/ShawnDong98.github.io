@@ -113,3 +113,4 @@ I being a teacher, I have passion in singing songs.
 
 
 
+**谓语的总结**：一句话当中，有且只能有一个 **有时态的**、 **实义动词或系动词**存在。
