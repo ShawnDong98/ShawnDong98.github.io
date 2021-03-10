@@ -53,6 +53,10 @@ We made him our monitor.
 
 ### 例子
 
+> 他穿上外衣， 锁上门， 离开了家
+
+He putting on his jacket, locking the door, left home.
+
 > 我爱你， 你爱我。
 
 I loving you, you love me.
@@ -62,4 +66,7 @@ I loving you, you love me.
 > 冬天来了， 春天就不远了。
 
 Winter approaching, spring will be around the corner.
+
+
+
 
