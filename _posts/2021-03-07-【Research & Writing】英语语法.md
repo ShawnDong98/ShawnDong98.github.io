@@ -93,5 +93,15 @@ I loving you, you love me.
 Winter approaching, spring will be around the corner.
 
 
+> 我是一个老师， 我喜欢唱歌。
+
+I being a teacher, I have passion in singing songs. 
+
+\-\> Being a teacher, I have passion in singing songs.
+
+分词作状语。
+
+
+
 
 
