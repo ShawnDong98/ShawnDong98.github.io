@@ -99,9 +99,12 @@ I being a teacher, I have passion in singing songs.
 
 \-\> Being a teacher, I have passion in singing songs.
 
-分词作状语。
+主语相同省略吗， 非谓语动词\-\>分词作状语。
 
 
+3. 一句话当中动词能不能少？
+
+绝对不能， 当一句话需要动词而又没有动词的时候，永远都加be动词，并且be动词没有意思。
 
 
 
