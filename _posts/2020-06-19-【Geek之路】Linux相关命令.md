@@ -278,6 +278,37 @@ dpkg --get-selections
 
 # 压缩与解压
 
+## tar
+
+tar是把文件打成一个包，并不压缩;
+
+gz是用gzip把打成包的.tar文件压缩;
+
+所以成了一个.tar.gz的文件
+
+## 压缩
+
+```
+# tar cvfz backup.tar.gz /xxx/
+```
+
+- c, --create, create a new archive
+- v, --verbose, verbosely list files processed
+- f, --file \[HOSTNAME:\]F, use archive file or device F (default /dev/rmt0)
+- z, --gzip, --ungzip, filter the archive through gzip
+
+
+## 解压
+
+```
+tar -zxvf xxx.tar.gz
+```
+
+- z, --gzip, --ungzip, filter the archive through gzip
+- x, --extract, --get,  extract files from an archive
+- v, --verbose,  verbosely list files processed
+- f, --file \[HOSTNAME:\]F, use archive file or device F (default /dev/rmt0)
+
 ## 解压.gz
 
 > sudo gunzip filename.gz
