@@ -1434,6 +1434,13 @@ print(os.path.dirname(os.getcwd()))
 > os.environ\['CUDA_VISIBLE_DEVICES'\] = '0, 2, 3, 4'
 
 
+## 创建目录
+
+- os.path.exists(path) 判断一个目录是否存在
+- os.makedirs(path) 多层创建目录
+- os.mkdir(path) 创建目录
+
+
 ## 相对路径和绝对路径
 
 在console的路径下执行程序，如果使用相对路径， 将根据当前路径选择相对路径，而不是根据代码所在的文件位置执行相对路径(此时的情况指读取某个图片或文件， 或导入某个模型)。
