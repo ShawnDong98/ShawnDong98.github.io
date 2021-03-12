@@ -220,7 +220,7 @@ show_bboxes(fig.axes, boxes[250, 250, :, :] * bbox_scale,
 
 # Intersection over Union
 
-我们刚刚提到，Anchor框很好地覆盖了图像中的狗。如果目标的真实边界框是已知的，怎么能很好地在这里量化？一种直观的方法是测量Anchor框与真实边界框之间的相似性。我们知道，Jaccard指标可以度量两个集合之间的相似性。给定集合 $A$ 和 $B$，它们的Jaccard索引是它们交集的大小除以它们并集的大小。
+我们刚刚提到，Anchor框很好地覆盖了图像中的狗。如果目标的真实边界框是已知的，怎么能很好地在这里量化？一种直观的方法是测量Anchor框与真实边界框之间的相似性。我们知道，Jaccard指标可以度量两个集合之间的相似性。给定集合 $A$ 和 $B$，它们的Jaccard指标是它们交集的大小除以它们并集的大小。
 
 $$J(A, B) = \frac{\mid A \cap B \mid}{\mid A \cup B \mid} \tag{2}$$
 
