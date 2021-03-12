@@ -260,7 +260,7 @@ def box_iou(boxes1, boxes2):
 
 # Labeling Training Set Anchor Boxes
 
-在训练集中，我们将每个Anchor框作为一个训练示例。为了训练目标检测模型，我们需要为每个Anchir框标记两种类型的标签:一是Anchor框中包含的目标类别(category)，二是ground-truth边界框相对于Anchor框的偏移量(offset)。在目标检测中,我们首先生成多个Anchor框, 预测每个Anchor框的category和offset,根据预测的offset调整Anchor框位置得到用于预测的边界框,最后过滤需要输出的预测边界框。
+在训练集中，我们将每个Anchor框作为一个训练示例。为了训练目标检测模型，我们需要为每个Anchir框标记两种类型的标签:一是Anchor框中包含的目标类别(category)，二是ground-truth边界框相对于Anchor框的偏移量(offset)。在目标检测中,我们首先生成多个Anchor框, 预测每个Anchor框的category和offset,根据预测的offset调整Anchor框位置得到用于预测的边界框,最后过滤预测边界框, 输出需要的边界框。
 
 我们知道，在目标检测训练集中，每一幅图像都标记有ground-truth边界框的位置和包含的目标类别。Anchor框生成后，我们主要根据与Anchor框相似的ground-truth边界框的位置和category信息对Anchor框进行标签。那么我们如何分配ground-truth边界框到类似的Anchor框呢？
 
