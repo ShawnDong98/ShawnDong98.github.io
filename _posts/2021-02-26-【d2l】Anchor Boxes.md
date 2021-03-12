@@ -420,7 +420,7 @@ tensor([[0, 1, 2, 0, 2]])
 
 我们根据图像中Anchor框和ground-truth bbox的位置来分析这些已标记的类别。首先，在所有Anchor和ground-truth bbox对中，Anchor框 $A_4$ 对猫的ground-truth 边界框的IoU最大，因此Anchor $A_4$ 的类别被标记为猫。不考虑猫的真实边界框和Anchor边界框 $A_4$， 在剩余的Anchor和ground-truth边界框对， 狗的真实边界框和Anchor框 $A_1$具有最大交并比， 所以Anchor框 $A_1$ 的类别是 狗。接下来，遍历其余三个未标记的Anchor框。Anchor框 $A_0$ 具有最大交并比的真实边界框的种类是狗， 但是交并比小于阈值(默认为0.5)， 因此种类被标记为背景； Anchor框 $A_2$  具有最大交并比的真实边界框的种类是猫， 并且交并比大于阈值， 因此种类被标记为猫； Anchor框 $A_3$ 具有最大交并比的真实边界框的种类是猫， 但是交并比小于阈值(默认为0.5)， 因此种类被标记为背景；
 
-返回值的第二项是一个mask变量， 它的形状是 (batch size, four times the number of anchor boxes)。 mask变量中的元素与每个Anchor框的四个偏移值一一对应。因为我们不关心背景检测，负类的偏移量不应该影响目标函数。通过乘以元素，mask变量中的0可以在计算目标函数之前过滤掉负的类偏移量。
+返回值的第二项是一个mask变量， 它的形状是 (batch size, four times the number of anchor boxes)。 mask变量中的元素与每个Anchor框的四个偏移值一一对应。因为我们不关心背景检测，负类的偏移量不应该影响目标函数。通过乘以元素，mask变量中的0可以在计算目标函数之前过滤掉负类的偏移量。
 
 ```python
 labels[1]
