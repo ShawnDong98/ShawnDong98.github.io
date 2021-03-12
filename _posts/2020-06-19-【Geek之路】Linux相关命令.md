@@ -309,6 +309,88 @@ tar -zxvf xxx.tar.gz
 - v, --verbose,  verbosely list files processed
 - f, --file \[HOSTNAME:\]F, use archive file or device F (default /dev/rmt0)
 
+
+## Read more: tar，gzip的使用方法
+
+1. 压缩一组文件为tar.gz后缀。
+
+```
+tar cvf backup.tar /etc
+
+gzip -q backup.tar
+```
+
+或 
+
+```
+tar cvfz backup.tar.gz /etc/
+```
+
+2. 释放一个后缀为tar.gz的文件。
+
+```
+gunzip backup.tar.gz #tar xvf backup.tar
+```
+
+或
+
+```
+tar xvfz backup.tar.gz
+```
+
+3. 用一个命令完成压缩
+
+```
+tar cvf - /etc/ | gzip -qc > backup.tar.gz
+```
+
+4. 用一个命令完成释放
+
+```
+gunzip -c backup.tar.gz | tar xvf -
+```
+
+5. 如何解开tar.Z的文件？
+   
+```
+tar xvfz backup.tar.Z
+```
+
+或
+
+```
+uncompress backup.tar.Z #tar xvf backup.tar
+```
+
+6. 如何解开.tgz文件？
+
+```
+gunzip backup.tgz
+```
+
+7. 如何压缩和解压缩.bz2的包？
+
+```
+bzip2 /etc/smb.conf
+```
+
+这将压缩文件smb.conf成smb.conf.bz2
+
+```
+bunzip2 /etc/smb.conf.bz2
+```
+
+这将在当前目录下还原smb.conf.bz2为smb.conf
+
+注:.bz2压缩格式不是很常用，可以man bzip2
+
+8. 如何解压tar.bz2的包？
+
+
+```
+tar   jxf   linux-2.8.18.8.tar.bz2
+```
+
 ## 解压.gz
 
 > sudo gunzip filename.gz
@@ -649,3 +731,4 @@ xrandr --delmode output name
 19. [Ubuntu下查看内存使用情况](https://zhuanlan.zhihu.com/p/47687203)
 20. [Ubuntu 打开摄像头](https://blog.csdn.net/tajon1226/article/details/99854348)
 21. [ubuntu18.04 修改屏幕分辨率](https://blog.csdn.net/recher_He1107/article/details/107226192)
+22. [tar.gz文件命名及压缩解压方法](https://blog.csdn.net/maray/article/details/4312768)
