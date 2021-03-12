@@ -150,3 +150,18 @@ If there exists a dream, glories are supposed to be achieved.
 ## 宾语
 
 名词、代词、 非 谓语动词、 从句充当宾语。
+
+
+## 表语
+
+名词、代词、非 谓语动词、从句充当表语。
+
+
+形容词也可以作表语。
+
+I am beautiful.
+
+
+介词短语也可以作表语。
+
+I am in Chongqing.
