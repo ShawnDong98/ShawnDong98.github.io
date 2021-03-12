@@ -234,17 +234,25 @@ $$J(A, B) = \frac{\mid A \cap B \mid}{\mid A \cup B \mid} \tag{2}$$
 ```
 #@save
 def box_iou(boxes1, boxes2):
-    """Compute IOU between two sets of boxes of shape (N,4) and (M,4)."""
-    # Compute box areas
-    box_area = lambda boxes: ((boxes[:, 2] - boxes[:, 0]) *
-                              (boxes[:, 3] - boxes[:, 1]))
+    #--- 计算形状为(N, 4) 和 (M, 4)的boxes的交并比 ---
+    #--- 计算面积 ---
+    box_area = lambda boxes: ((boxes[:, 2] - boxes[:, 0]) * boxes[:, 3] - boxes[:, 1])
+
     area1 = box_area(boxes1)
     area2 = box_area(boxes2)
-    lt = torch.max(boxes1[:, None, :2], boxes2[:, :2])  # [N,M,2]
-    rb = torch.min(boxes1[:, None, 2:], boxes2[:, 2:])  # [N,M,2]
-    wh = (rb - lt).clamp(min=0)  # [N,M,2]
-    inter = wh[:, :, 0] * wh[:, :, 1]  # [N,M]
+
+    #--- None用于增加维度， boxes1中的每个元素都要和boxes2中的元素进行运算 ---
+    #--- 比如 [[1] ---
+    #---      [2]] ---
+    #--- 和 [3, 4] 进行加法运算 ---
+    #--- 得到 [[4], [5]  ---
+    #---      [5], [6]] ---
+    lt = torch.max(boxes1[:, None, :2], boxes2[:, :2]) # [N, M, 2]
+    rb = torch.min(boxes1[:, None, 2:], boxes2[:, 2:]) # [N, M, 2]
+    wh = (rb - lt).clamp(min=0) #[N, M, 2]
+    inter = wh[:, :, 0] * wh[:, :, 1] #[N, M]
     unioun = area1[:, None] + area2 - inter
+    
     return inter / unioun
 ```
 
