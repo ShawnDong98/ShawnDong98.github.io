@@ -314,7 +314,7 @@ def match_anchor_to_bbox(ground_truth, anchors, device, iou_threshold=0.5):
 ```
 
 
-接下来我们标记 Anchor 框的类别和偏移量。如果 Anchor框  A 被指定为 ground-truth bbox 框 B，则Anchor框A的类别为B的类别。根据 B和 A 中心坐标的相对位置以及两个框的相对大小 设置Anchor框A的偏移量。由于数据集中不同框的位置和大小可能不同，这些相对位置和相对大小通常需要一些特殊的变换，以使偏移量分布更均匀，更容易拟合。设Anchor框 A 及其指定的ground-truth bbox框B的中心坐标为 $(xa_, y_a)$，$(x_b, y_b)$， A 和 B 的宽度分别为 $w_a, w_b$，高度分别为 $h_a, h_b$。在这种情况下，一种常见的技术是将$A$ 的偏移量标记为
+接下来我们标记 Anchor 框的类别和偏移量。如果 Anchor框  A 被指定为 ground-truth bbox 框 B，则Anchor框A的类别为B的类别。根据 B和 A 中心坐标的相对位置以及两个框的相对大小 设置Anchor框A的偏移量。由于数据集中不同框的位置和大小可能不同，这些相对位置和相对大小通常需要一些特殊的变换，以使偏移量分布更均匀，更容易拟合。设Anchor框 A 及其指定的ground-truth bbox框B的中心坐标为 $(x_a, y_a)$，$(x_b, y_b)$， A 和 B 的宽度分别为 $w_a, w_b$，高度分别为 $h_a, h_b$。在这种情况下，一种常见的技术是将$A$ 的偏移量标记为
 
 $$(\frac{\frac{x_b - x_a}{w_a} - \mu_x}{\sigma_x}, \frac{\frac{y_b - y_a}{h_a} - \mu_y}{\sigma_y},  \frac{log \frac{w_b}{w_a} - \mu_w}{\sigma_w}, \frac{log\frac{h_b}{h_a} - \mu_h}{\sigma_h})$$
 
