@@ -130,4 +130,6 @@ I being a teacher, I have passion in singing songs.
 - - It feels exeedingly hot in the cabin.
 - there be(exist/seem/remain) 句型， 听到 “有” 的时候使用。
 - - There exist a host of undergraduates be fascinated with me.
-- 
+- 被动： 当听到一句话没有主语或者人称代词作主语时， 都可以考虑写成被动
+- - Persistence must be pointed out outstandingly crutial.
+- - Overfishing is claimed more than(非常) fearful by an increasing amount of professors.
