@@ -709,6 +709,10 @@ xrandr --delmode output name
 ```
 
 
+# 快捷键
+
+- Ctrl+Alt+T 启动终端
+
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
 2. [linux screen 命令小结](https://zhuanlan.zhihu.com/p/42551093)
