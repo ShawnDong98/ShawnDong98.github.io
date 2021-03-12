@@ -133,3 +133,20 @@ I being a teacher, I have passion in singing songs.
 - 被动： 当听到一句话没有主语或者人称代词作主语时， 都可以考虑写成被动
 - - Persistence must be pointed out outstandingly crutial.
 - - Overfishing is claimed more than(非常) fearful by an increasing amount of professors.
+- 人称代词作主语： 不到万不得已， 最好不要使用
+
+三种情况无被动：
+- 动词后面有介词时， 该动词无被动(不及物动词)
+- 系动词没有被动
+- have表达 “有” 的意思时， 无被动
+
+例子：
+
+如果有梦想， 就应该会成功。
+
+If there exists a dream, glories are supposed to be achieved. 
+
+
+## 宾语
+
+名词、代词、 非 谓语动词、 从句充当宾语。
