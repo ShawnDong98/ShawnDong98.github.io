@@ -128,3 +128,5 @@ I being a teacher, I have passion in singing songs.
 
 - 加 it 作主语， 必须和天气、温度、时间有关系。
 - - It feels exeedingly hot in the cabin.
+- there be(exist/seem/remain) 句型， 听到 “有” 的时候使用。
+- - There exist a host of undergraduates be fascinated with me.
