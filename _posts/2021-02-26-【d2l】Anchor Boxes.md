@@ -50,7 +50,7 @@ def multibox_prior(data, sizes, ratios):
         ratios : 宽高比集
      
     return: 
-        code : 
+        output(tensor) : 用在dataloader中可将anchor组成batch 
     """
 
     #--- tensor的后两维就是图像的高和宽 ---
