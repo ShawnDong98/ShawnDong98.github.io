@@ -266,7 +266,7 @@ def box_iou(boxes1, boxes2):
 
 假设在图像中的Anchor框是$A_1, A_2, ..., A_{n_a}$以及ground-truth框是$B_1, B_2, ..., B_{n_b}$， 并且$n_a > n_b$。 定义矩阵 $X \in R^{n_a \times n_b}$, 其中第 $i$ 行和第 $j$ 列的$x_{ij}$是Anchor框 $A_i$ 和 ground-truth 边界框 $B_j$的交并比。首先，我们找到矩阵 $X$ 中最大的元素，并记录该元素的行索引和列索引为 $i_1$, $j_1$。我们将ground-truth边界框 $B_{j_1}$分配给Anchor框$A_{i_1}$。显然，Anchor框 $A_{i_1}$ 与 ground-truth 边界框 $B_{j_1}$ 在 所有Anchor框 和 ground-truth 边界框对 中相似性最高。接下来，丢弃矩阵 $X$ 中第$i_1$ 行和第 $j_1$ 列中的所有元素。找到矩阵 $X$ 中剩余的最大元素，并记录该元素的行索引和列索引为 $i_2$,  $j_2$。我们将ground-truth边界框 $B_{j_2}$ 分配给 Anchor框 $A_{i_2}$ ，然后丢弃矩阵 $X$ 中第 $i_2$ 行和 $j_2$ 列中的所有元素。此时，矩阵 $X$ 中有两行和两列的元素已经被丢弃。
 
-我们继续，直到丢弃矩阵 $X$ 中 $n_b$ 列中的所有元素。此时，我们已经为 $n_b$ 个Anchor框中的每个Anchor框分配了一个ground-truth边界框。接下来，我们只遍历剩下的 $n_a - n_b$ Anchor框。给定Anchor框 $A_i$，根据矩阵 $X$ 的第 $i$ 行，找到 $Ai$ 交并比最大的边界框 $B_j$，当交并比大于预定阈值时，才将 ground-truth 边界框 $B_j$ 赋给Anchor框 $A_i$。
+我们继续，直到丢弃矩阵 $X$ 中 $n_b$ 列中的所有元素。此时，我们已经为 $n_b$ 个Anchor框中的每个Anchor框分配了一个ground-truth边界框。接下来，我们遍历剩下的 $n_a - n_b$ Anchor框。给定Anchor框 $A_i$，根据矩阵 $X$ 的第 $i$ 行，找到 $Ai$ 交并比最大的边界框 $B_j$，当交并比大于预定阈值时，才将 ground-truth 边界框 $B_j$ 赋给Anchor框 $A_i$。
 
 
 如图13.4.2(左)所示，假设矩阵 $X$ 的最大值为 $x_{23}$，则我们将 ground-truth 边界框 $B_3$ 赋值给Anchor框 $A_2$。然后，我们丢弃矩阵第2行和第3列的所有元素，找到剩余阴影区域中最大的元素 $x_{71}$，并将ground-truth边界框 $B_1$ 赋值给Anchor框 $A_7$。然后，如图13.4.2(中)所示，去掉矩阵第7行、第1列的所有元素，找到剩余阴影区域最大的元素 $x_{54}$ ，将ground-truth边界框 $B_4$ 赋值给Anchor框 $A_5$。最后，如图13.4.2(右)所示，去掉矩阵第5行、第4列的所有元素，找到剩余阴影区域最大的元素 $x_{92}$，将 ground-truth 边界框 $B_2$ 赋值给Anchor框 $A_9$。然后，我们只需要遍历剩下的Anchor框 $A_1$, $A_3$, $A_4$, $A_6$, $A_8$，并根据阈值决定是否为剩下的Anchor框分配ground-truth边界框。
