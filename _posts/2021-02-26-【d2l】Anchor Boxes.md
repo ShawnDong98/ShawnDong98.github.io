@@ -278,30 +278,38 @@ def box_iou(boxes1, boxes2):
 ```python
 #@save
 def match_anchor_to_bbox(ground_truth, anchors, device, iou_threshold=0.5):
-    """Assign ground-truth bounding boxes to anchor boxes similar to them."""
+    #--- num_anchors: n_{a} ---
+    #--- num_gt_boxes: n_{b} ---
     num_anchors, num_gt_boxes = anchors.shape[0], ground_truth.shape[0]
-    jaccard = box_iou(anchors, ground_truth) # (num_anchors, num_gt_boxes), (N, M)
-    # hash_map, key: anc_i, value: box_j
-    anchors_bbox_map = torch.full((num_anchors,), -1, dtype=torch.long, device=device)
-    # Assign ground truth bounding box according to the threshold
-    max_ious, indices = torch.max(jaccard, dim=1)
-    print(max_ious.shape)
-    print(torch.nonzero(max_ious >= 0.5).shape)
-    anc_i = torch.nonzero(max_ious >= 0.5).reshape(-1)
-    # print(anc_i.shape)
-    box_j = indices[max_ious >= 0.5]
-    anchors_bbox_map[anc_i] = box_j
-    # Find the largest iou for each bbox
-    col_discard = torch.full((num_anchors,), -1)
-    row_discard = torch.full((num_gt_boxes,), -1)
+
+    #--- 输出为 (N, M), N = n_a, M = n_b ---
+    jaccard = box_iou(anchors, ground_truth)
+
+    #--- 制造一张哈希表， 用于映射anchor和bbox的关系 ---
+    #--- key: anc_i, value: box_j ---
+    anchors_bbox_map = torch.full((num_anchors, ), -1, dtype=torch.long, device=device)
+
+    #--- box_iou 返回的就是我用用于筛选 anchor 和 gt_box 的表 ---
+    #--- 找到每一行中最大交并比最大的 gt_box 和 anchor， 返回它们的索引(列号) ---
+    max_iou, indices = torch.max(jaccard, dim=1)
+
+    #--- 找到交并比大于阈值的anchor索引 ---
+    anc_i  = torch.nonzero(max_iou >= 0.5).reshape(-1)
+    #--- 找到交并比大于阈值的box索引 ---
+    box_j = indices[max_iou >= 0.5]
+
+    #--- 删去这些anchor和box所在的行和列 ---
+    col_discard = torch.full((num_anchors, ), -1)
+    row_discard = torch.full((num_gt_boxes, ), -1)
+
     for _ in range(num_gt_boxes):
         max_idx = torch.argmax(jaccard)
         box_idx = (max_idx % num_gt_boxes).long()
         anc_idx = (max_idx / num_gt_boxes).long()
         anchors_bbox_map[anc_idx] = box_idx
-        # 用 -1 表示丢弃 box
         jaccard[:, box_idx] = col_discard
         jaccard[anc_idx, :] = row_discard
+
     return anchors_bbox_map
 ```
 
