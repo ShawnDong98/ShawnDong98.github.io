@@ -43,41 +43,79 @@ $$(s_1, r_1), (s_1, r_2), ..., (s_1, r_m), (s_2, r_1), (s_3, r_1), ..., (s_n, r_
 ```python
 #@save
 def multibox_prior(data, sizes, ratios):
+    """
+    args: 
+        data : 图像
+        sizes : 尺寸集
+        ratios : 宽高比集
+     
+    return: 
+        code : 
+    """
+
+    #--- tensor的后两维就是图像的高和宽 ---
     in_height, in_width = data.shape[-2:]
+
+    #--- device: cpu or cuda ---
+    #--- num_sizes: 就是尺寸的个数 n ---
+    #--- num_ratios: 就是宽高比的个数 m---
     device, num_sizes, num_ratios = data.device, len(sizes), len(ratios)
+
+    #--- 每个像素有 (n + m - 1) 个anchor框 ---
     boxes_per_pixel = (num_sizes + num_ratios - 1)
+
     size_tensor = torch.tensor(sizes, device=device)
     ratio_tensor = torch.tensor(ratios, device=device)
-    # Offsets are required to move the anchor to center of a pixel
-    # Since pixel (height=1, width=1), we choose to offset our centers by 0.5
-    offset_h, offset_w = 0.5, 0.5
-    steps_h = 1.0 / in_height  # Scaled steps in y axis
-    steps_w = 1.0 / in_width  # Scaled steps in x axis
 
-    # Generate all center points for the anchor boxes
+    #--- offset 用于将anchor移动到每个像素的中心 ---
+    #--- steps_h, steps_w 是归一化的系数，用于将图像的宽高归一化到0到1之间---
+    offset_h, offset_w = 0.5, 0.5
+    steps_h = 1.0 / in_height
+    steps_w = 1.0 / in_width
+
+    #--- 假设图像为 256 x 512 ---
+    #--- 首先将 x 轴 和 y 轴都加0.5， 使得anchor位于每个像素的中心 --- 
+    #--- 再将宽高进行归一化 --- 
     center_h = (torch.arange(in_height, device=device) + offset_h) * steps_h
-    center_w = (torch.arange(in_width, device=device) + offset_w) * steps_w
+    center_w = (torch.arange(in_width, device=device) + offset_w)  * steps_w
+
+    #--- h:(0.5, 1.5, ..., 255.5) -> 归一化 ---
+    #--- w:(0.5, 1.5, ..., 511.5) -> 归一化 ---
+    #--- meshgrid的返回值： ---
+    #--- shift_y:  (0.5, 0.5, ..., 0.5) ---
+    #---           (1.5, 1.5, ..., 1.5) ---
+    #---                      ...         ---
+    #---           (255.5, 255.5, ..., 255.5) ---
+    #--- 共256行， 共512列， 数值为未归一化时的数值 ---
+    #--- shift_x:  (0.5, 1.5, ..., 511.5) ---
+    #---           (0.5, 1.5, ..., 511.5) ---
+    #---                      ...         ---
+    #---           (0.5, 1.5, ..., 511.5) ---
+    #--- 共256行， 共512列, 数值为未归一化时的数值 ---
     shift_y, shift_x = torch.meshgrid(center_h, center_w)
+    #--- shift_y, shift_x shape: (256 x 512) ---
     shift_y, shift_x = shift_y.reshape(-1), shift_x.reshape(-1)
 
-    # Generate boxes_per_pixel number of heights and widths which are later
-    # used to create anchor box corner coordinates (xmin, xmax, ymin, ymax)
-    # cat (various sizes, first ratio) and (first size, various ratios)
-    w = torch.cat((size_tensor * torch.sqrt(ratio_tensor[0]),
-                   sizes[0] * torch.sqrt(ratio_tensor[1:])))\
-                   * in_height / in_width  # handle rectangular inputs
-    h = torch.cat((size_tensor / torch.sqrt(ratio_tensor[0]),
-                   sizes[0] / torch.sqrt(ratio_tensor[1:])))
-    # Divide by 2 to get half height and half width
-    anchor_manipulations = torch.stack((-w, -h, w, h)).T.repeat(
-                                        in_height * in_width, 1) / 2
 
-    # Each center point will have boxes_per_pixel number of anchor boxes, so
-    # generate grid of all anchor box centers with boxes_per_pixel repeats
-    out_grid = torch.stack([shift_x, shift_y, shift_x, shift_y],
-                dim=1).repeat_interleave(boxes_per_pixel, dim=0)
+    #--- w_anchor = w * s * sqrt{r} ---
+    #--- 因为已经做过归一化了， 所以这里 w 就是 1 ---
+    #--- 由于ssd最初是为方形图像（300x300）开发的，因此 in_height / in_width 用于处理矩形输入---
+    w = torch.cat((size_tensor * torch.sqrt(ratio_tensor[0]), sizes[0] * torch.sqrt(ratio_tensor[1:]))) * in_height / in_width
+    h = torch.cat((size_tensor / torch.sqrt(ratio_tensor[0]), sizes[0] / torch.sqrt(ratio_tensor[1:])))
+
+    
+    #--- w_anchor = w * s * sqrt{r} 和 h_anchor = h * s / sqrt{r} 都是正数 ---
+    #--- 为了让anchor可以上下左右移动， 需要对 w_anchor 和 h_anchor 除以2再取正负 ---
+    anchor_manipulations = torch.stack((-w, -h, w, h)).T.repeat(in_height * in_width, 1) / 2
+
+    #--- 四个轴分别对应每个 anchor 的 left, bottom, right, top ---
+    #--- 形状： (h * w * (n + m - 1), 4) ---
+    out_grid = torch.stack([shift_x, shift_y, shift_x, shift_y], dim=1).repeat_interleave(boxes_per_pixel, dim = 0)
+
 
     output = out_grid + anchor_manipulations
+
+    #--- 将 anchors组成batch  ---
     return output.unsqueeze(0)
 ```
 
