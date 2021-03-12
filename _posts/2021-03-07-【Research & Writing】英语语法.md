@@ -118,11 +118,11 @@ I being a teacher, I have passion in singing songs.
 
 ### 主语
 
-1. 主语的成分
+1、主语的成分
 
 名词、代词、非 谓语动词、从句(引导词 + 句子) 可以 作主语。
 
-2. 一句话当中主语能不能少？
+2、 一句话当中主语能不能少？
 
 绝对不能， 那一句话没有主语的时候怎么办呢？
 
@@ -130,3 +130,4 @@ I being a teacher, I have passion in singing songs.
 - - It feels exeedingly hot in the cabin.
 - there be(exist/seem/remain) 句型， 听到 “有” 的时候使用。
 - - There exist a host of undergraduates be fascinated with me.
+- 
