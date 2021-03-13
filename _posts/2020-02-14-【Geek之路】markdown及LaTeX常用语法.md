@@ -997,6 +997,26 @@ word中的四号字体对应于14pt
 使用**amsmath宏包**提供的cases环境
 
 
+或者
+
+
+```
+\begin{equation}
+    \left\{
+    \begin{aligned}
+        I &= A · P · e^{- \beta z} + A · (1 - e^{-\beta G^z}) \\
+        I_G &= A_G · P · e^{-\beta G^z} + A_G · (1 - e^{-\beta G^z})
+    \end{aligned}
+    \right.
+\end{equation}
+```
+
+
+效果：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1615615897545.png)
+
+
 
 ## latex中同一处引用多篇文献
 
