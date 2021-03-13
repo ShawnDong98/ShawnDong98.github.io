@@ -1032,6 +1032,26 @@ word中的四号字体对应于14pt
 
 不但可以压缩参考文献标号，还可以进行排序，即无论正文里面的顺序怎样，显示出来都是先后顺序。
 
+
+## latex 特殊字体字
+
+> mathbb：blackboard bold，黑板粗体
+mathcal：calligraphy（美术字）
+mathrm：math roman
+mathbf：math boldface
+
+
+- 花体 \mathcal： \mathcal{L,F,D,N}
+- - $\mathcal{L}$ (\mathcal L)常用来表示损失函数
+- - $\mathcal{D}$(\mathcal D)表示样本集
+- - $\mathcal{N}$ (\mathcal N)常用来表示高斯分布；
+- 空心 \mathbb：$\mathbb{R,N}$
+- \mathsf: $\mathsf{f(x,y) = 3(x+y)y / (2xy-7)}$
+- \mathtt: $\mathtt{f(x,y) = 3(x+y)y / (2xy-7)}$
+- \mathit:  $\mathit{f(x,y) = 3(x+y)y / (2xy-7)}$
+
+
+
 # slides制作
 
 ## 小书匠PPT常用语法
