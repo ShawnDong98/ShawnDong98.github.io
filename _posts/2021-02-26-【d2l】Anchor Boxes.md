@@ -322,57 +322,60 @@ $$(\frac{\frac{x_b - x_a}{w_a} - \mu_x}{\sigma_x}, \frac{\frac{y_b - y_a}{h_a} -
 
 
 ```python
-#@save
 def offset_boxes(anchors, assigned_bb, eps=1e-6):
     c_anc = d2l.box_corner_to_center(anchors)
     c_assigned_bb = d2l.box_corner_to_center(assigned_bb)
-    # 变换
+
+    #--- 对 anchor 和 box 进行变换， 除以0.1等于乘以10 ---
     offset_xy = 10 * (c_assigned_bb[:, :2] - c_anc[:, :2]) / c_anc[:, 2:]
-    offset_wh = 5 * torch.log(eps + c_assigned_bb[:, 2:] / c_anc[:, 2:])
-    # offset.shape: (num of anchor, 4)
+    offset_wh = 5 * torch.log(eps + c_assigned_bb[:, 2:] / c_anc[:, 2:] )
+
+    #--- offset.shape: (num of anchors, 4) ---
     offset = torch.cat([offset_xy, offset_wh], axis=1)
     return offset
 
-#@save
+
+
 def multibox_target(anchors, labels):
     batch_size, anchors = labels.shape[0], anchors.squeeze(0)
     batch_offset, batch_mask, batch_class_labels = [], [], []
     device, num_anchors = anchors.device, anchors.shape[0]
     for i in range(batch_size):
-        # labels: (batch, num_gt_box, 5)
-        label = labels[i, :, :]
-        # anchors_bbox_map.shape: (M,), M为Anchor的数量
-        anchors_bbox_map = match_anchor_to_bbox(label[:, 1:], anchors, device)
-        # anchors_bbox_map >= 0 返回一个 bool Tensor
-        # ((anchors_bbox_map >= 0).float() bool Tensor 变成 float Tensor
-        # ((anchors_bbox_map >= 0).float().unsqueeze(-1)) 行变成列
-        # repeat(1, 4) 把第一列重复四次
-        bbox_mask = ((anchors_bbox_map >= 0).float().unsqueeze(-1)).repeat(1, 4)
-        # Initialize class_labels and assigned bbox coordinates with zeros
-        class_labels = torch.zeros(num_anchors, dtype=torch.long,
-                                   device=device)
-        assigned_bb = torch.zeros((num_anchors, 4), dtype=torch.float32,
-                                  device=device)
-        # Assign class labels to the anchor boxes using matched gt bbox labels
-        # If no gt bbox is assigned to an anchor box, then let the
-        # class_labels and assigned_bb remain zero, i.e the background class
 
-        # 返回bool为True的索引
-        indices_true = torch.nonzero(anchors_bbox_map >= 0)
+        #--- labels: (batch, num_gt_box, 5) ---
+        label = labels[i, :, :]
+
+        
+        #--- 这里已经将anchor筛选过一轮了 ---
+        anchors_bbox_map = match_anchor_to_bbox(label[:, 1:], anchors, device=device)
+
+        #--- mask变量中的元素与每个Anchor框的四个偏移值一一对应 ---
+        #--- 通过乘以元素，mask变量中的0可以在计算目标函数之前过滤掉负的类偏移量 ---
+        bbox_mask = ((anchors_bbox_map >= 0).float().unsqueeze(-1)).repeat(1, 4)
+        class_labels = torch.zeros(num_anchors, dtype=torch.long, device=device)
+        assigned_bb = torch.zeros((num_anchors, 4), dtype=torch.float32, device=device)
+
+        indices_true = torch.nonzero(anchors_bbox_map >= 0).reshape(-1)
         bb_idx = anchors_bbox_map[indices_true]
 
-        # 真实标签种类 + 1， 多出一类背景
+        #--- 标签种类 + 1， 0为背景 ---
         class_labels[indices_true] = label[bb_idx, 0].long() + 1
         assigned_bb[indices_true] = label[bb_idx, 1:]
-        # offset transformations
+
         offset = offset_boxes(anchors, assigned_bb) * bbox_mask
-        # 
+
+        #--- offset.reshape(-1): num of anchors x 4 ---
         batch_offset.append(offset.reshape(-1))
+        #--- bbox_mask.reshape(-1): numof anchors x 4 ---
         batch_mask.append(bbox_mask.reshape(-1))
+        #--- class_labels: num of anchors ---
         batch_class_labels.append(class_labels)
+
+
     bbox_offset = torch.stack(batch_offset)
     bbox_mask = torch.stack(batch_mask)
     class_labels = torch.stack(batch_class_labels)
+
     return (bbox_offset, bbox_mask, class_labels)
 ```
 
