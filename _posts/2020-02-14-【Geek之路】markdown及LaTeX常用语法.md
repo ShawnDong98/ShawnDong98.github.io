@@ -1085,6 +1085,18 @@ mathbf：math boldface
 
 figure 后面加 *
 
+
+## 让希腊字母变粗体
+
+
+```
+\usepackage{bm}
+
+$\bm{\sigma}$
+```
+
+
+
 # slides制作
 
 ## 小书匠PPT常用语法
