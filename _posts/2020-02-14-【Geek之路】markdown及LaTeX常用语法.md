@@ -1071,7 +1071,19 @@ mathbf：math boldface
 - \mathtt: $\mathtt{f(x,y) = 3(x+y)y / (2xy-7)}$
 - \mathit:  $\mathit{f(x,y) = 3(x+y)y / (2xy-7)}$
 
+## 双栏格式放置大图
 
+
+```
+\begin{figure*}
+    \centering
+    \includegraphics[scale=0.37]{figure/fig6.png}
+    \caption{Example results using Dehazenet \cite{28}, AODnet \cite{29}, DCPDN \cite{30}, EPDN \cite{32}, GCANet \cite{33}, and, proposed USTM respectively.}
+    \label{fig6}
+\end{figure*}
+```
+
+figure 后面加 *
 
 # slides制作
 
