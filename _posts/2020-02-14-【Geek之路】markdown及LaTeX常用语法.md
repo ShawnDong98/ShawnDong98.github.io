@@ -1096,6 +1096,17 @@ $\bm{\sigma}$
 ```
 
 
+## 修改线条粗细hline
+
+可以使用booktabs宏包
+
+```
+\usepackage{booktabs}
+```
+
+
+然后使用\toprule, \midrule and \bottomrule
+
 
 # slides制作
 
