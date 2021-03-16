@@ -468,7 +468,65 @@ def offset_inverse(anchors, offset_preds):
 
 
 ```python
+#@save
+def nms(boxes, scores, iou_threshold):
+    # sorting scores by the descending order and return their indices
+    B = torch.argsort(scores, dim=-1, descending=True)
+    keep = []  # boxes indices that will be kept
+    while B.numel() > 0:
+        i = B[0]
+        keep.append(i)
+        if B.numel() == 1: break
+        # 计算置信度最高的box 和 其余box 的 IoU
+        # shape: (M, N) -> M * N
+        iou = box_iou(boxes[i, :].reshape(-1, 4),
+                      boxes[B[1:], :].reshape(-1, 4)).reshape(-1)
 
+        print(iou.shape)
+
+        inds = torch.nonzero(iou <= iou_threshold).reshape(-1)
+        print(inds)
+        B = B[inds + 1]
+    return torch.tensor(keep, device=boxes.device)
+
+#@save
+def multibox_detection(cls_probs, offset_preds, anchors, nms_threshold=0.5,
+                       pos_threshold=0.00999999978):
+    device, batch_size = cls_probs.device, cls_probs.shape[0]
+    print("batch_size: ", batch_size)
+    # 每次只能输入batch 1
+    anchors = anchors.squeeze(0)
+    num_classes, num_anchors = cls_probs.shape[1], cls_probs.shape[2]
+    out = []
+    for i in range(batch_size):
+        # 挨个把类的概率 和 预测的偏移量 拿出来
+        cls_prob, offset_pred = cls_probs[i], offset_preds[i].reshape(-1, 4)
+        # 求anchor框是猫还是狗， 返回元组([value1, valu2, ...]， [index1, index2, ...])
+        conf, class_id = torch.max(cls_prob[1:], 0)
+        # 根据anchor框和预测的偏移量 得到 预测的边界框
+        predicted_bb = offset_inverse(anchors, offset_pred)
+        # NMS之后保留下的预测框， 它是一个索引组成的列表
+        keep = nms(predicted_bb, conf, 0.5)
+
+        # Find all non_keep indices and set the class_id to background
+        all_idx = torch.arange(num_anchors, dtype=torch.long, device=device)
+        combined = torch.cat((keep, all_idx))
+        uniques, counts = combined.unique(return_counts=True)
+        non_keep = uniques[counts == 1]
+        all_id_sorted = torch.cat((keep, non_keep))
+        class_id[non_keep] = -1
+        # 将class_id 调整为keep在前，non_keep在后的顺序
+        class_id = class_id[all_id_sorted]
+        conf, predicted_bb = conf[all_id_sorted], predicted_bb[all_id_sorted]
+        # threshold to be a positive prediction
+        below_min_idx = (conf < pos_threshold)
+        class_id[below_min_idx] = -1
+        conf[below_min_idx] = 1 - conf[below_min_idx]
+        pred_info = torch.cat((class_id.unsqueeze(1),
+                               conf.unsqueeze(1),
+                               predicted_bb), dim=1)
+        out.append(pred_info)
+    return torch.stack(out)
 ```
 
 接下来，我们将看一个详细的示例。首先，构建四个Anchor框。为了简单起见，我们假设预测偏移量都为0。这意味着预测框就是Anchor框。最后，我们为每个类别构造一个预测概率。
