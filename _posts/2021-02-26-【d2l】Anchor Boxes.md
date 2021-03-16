@@ -533,7 +533,14 @@ def multibox_detection(cls_probs, offset_preds, anchors, nms_threshold=0.5,
 
 
 ```python
-
+anchors = torch.tensor([[0.1, 0.08, 0.52, 0.92], [0.08, 0.2, 0.56, 0.95],
+                        [0.15, 0.3, 0.62, 0.91], [0.55, 0.2, 0.9, 0.88]])
+offset_preds = torch.tensor([0] * anchors.numel())
+cls_probs = torch.tensor([
+    [0] * 4,  # Predicted probability for background
+    [0.9, 0.8, 0.7, 0.1],  # Predicted probability for dog
+    [0.1, 0.2, 0.3, 0.9]
+])  # Predicted probability for cat
 ```
 
 在图像上打印预测边框及其置信度。
