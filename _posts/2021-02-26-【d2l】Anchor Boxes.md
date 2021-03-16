@@ -575,7 +575,12 @@ output
 我们去掉类别-1的预测框，并将NMS保留的结果可视化。
 
 ```python
-
+fig = d2l.plt.imshow(img)
+for i in output[0].detach().numpy():
+    if i[0] == -1:
+        continue
+    label = ('dog=', 'cat=')[int(i[0])] + str(i[1])
+    show_bboxes(fig.axes, [torch.tensor(i[2:]) * bbox_scale], label)
 ```
 
 
