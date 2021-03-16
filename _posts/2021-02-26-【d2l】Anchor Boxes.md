@@ -588,3 +588,21 @@ for i in output[0].detach().numpy():
 
 
 在实践中，我们可以在执行NMS之前删除具有较低置信度的预测框，从而减少NMS的计算量。我们还可以过滤NMS的输出，例如,  只保留具有较高置信度的结果作为最终输出。
+
+
+# Summary
+
+
+- 我们生成了多个以每个像素为中心的大小和宽高比不同的Anchor框。
+- IoU，也称为Jaccard指数，衡量两个边界框的相似性。它是两个边界框的相交面积与联合面积之比。
+- 在训练集中，我们为每个 Anchor 框标记两种类型的标签:一种是 Anchor 框中包含的目标类别，另一种是ground-truth边界框相对于Anchor框的偏移量。
+- 在进行预测时，我们可以使用非极大值抑制(non-maximum suppression, NMS)去除相似的预测框，从而简化结果。
+
+
+
+# Exercises
+
+- 改变 multibox_prior 函数中的 sizes 和 ratios，并观察生成的Anchor框的变化。
+- 构建两个IoU为0.5的边界框，并观察它们的重合情况。
+- 通过标记本节定义的Anchor框偏移量来验证offset label\[0\]的输出(常量是默认值)
+- 修改 “Labeling Training Set Anchor Boxes” 和 “Output Bounding Boxes for Prediction” 部分中的 Anchor变量。结果如何变化？
