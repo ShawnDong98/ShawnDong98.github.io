@@ -560,8 +560,17 @@ show_bboxes(fig.axes, anchors * bbox_scale,
 
 
 ```python
-
+output = multibox_detection(cls_probs.unsqueeze(dim=0),
+                            offset_preds.unsqueeze(dim=0),
+                            anchors.unsqueeze(dim=0),
+                            nms_threshold=0.5)
+output
 ```
+
+> tensor(\[\[\[ 0.00,  0.90,  0.10,  0.08,  0.52,  0.92\],
+         \[ 1.00,  0.90,  0.55,  0.20,  0.90,  0.88\],
+         \[-1.00,  0.80,  0.08,  0.20,  0.56,  0.95\],
+         \[-1.00,  0.70,  0.15,  0.30,  0.62,  0.91\]\]\])
 
 我们去掉类别-1的预测框，并将NMS保留的结果可视化。
 
