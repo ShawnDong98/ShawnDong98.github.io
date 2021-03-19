@@ -1,0 +1,106 @@
+---
+layout:     post
+title:      "【d2l】The Dataset for Pretraining Word Embedding"
+subtitle:   ""
+date:       2021-03-20
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - 深度学习
+    - d2l
+    - NLP
+---
+
+
+# The Dataset for Pretraining Word Embedding
+
+
+在本节中，我们将介绍如何使用负采样预处理数据集，并将其加载到小批量中用于word2vec训练。我们使用的数据集是[Penn Tree Bank (PTB)](https://catalog.ldc.upenn.edu/LDC99T42)，这是一个小型但常用的语料库。它从《华尔街日报》的文章中提取样本，包括训练集、验证集和测试集。
+
+首先，导入实验所需的包和模块。
+
+```
+from d2l import torch as d2l
+import math
+import torch
+import os
+import random
+```
+
+# Reading and Preprocessing the Dataset
+
+这个数据集已经被预处理了。数据集的每一行都充当一个句子。一个句子中所有的词都用空格隔开。在词嵌入任务中，每个单词都是一个token。
+
+```python
+d2l.DATA_HUB['ptb'] = (d2l.DATA_URL + 'ptb.zip',
+                       '319d85e578af0cdc590547f26231e4e31cdf1e42')
+
+#@save
+def read_ptb():
+    data_dir = d2l.download_extract('ptb')
+    with open(os.path.join(data_dir, 'ptb.train.txt')) as f:
+        raw_text = f.read()
+    return [line.split() for line in raw_text.split('\n')]
+
+sentences = read_ptb()
+f'# sentences: {len(sentences)}'
+```
+
+
+> Downloading ../data/ptb.zip from http://d2l-data.s3-accelerate.amazonaws.com/ptb.zip...
+
+
+> '# sentences: 42069'
+
+接下来，我们构建一个词汇表，将出现次数不超过10次的单词映射到\<unk\> token 中。注意，预处理的PTB数据也包含 \<unk\> token 表示很少出现单词。
+
+
+```python
+vocab = d2l.Vocab(sentences, min_freq=10)
+f'vocab size: {len(vocab)}'
+```
+
+> 'vocab size: 6719'
+
+
+# Subsampling
+
+在文本数据中，通常有一些单词出现的频率很高，如英语中的 "the", "a" 和 "in"。通常来讲， 在一个上下文窗口， 最好当一个词(比如 "chip")和一个低频词(比如 "microprocessor")同时出现的时候训练词嵌入模型， 而不是一个词和一个高频词(比如 "the")同时出现时训练词嵌入模型。因此，在训练词嵌入模型时，我们可以对词进行二次采样[ Mikolov et al., 2013b](https://d2l.ai/chapter_references/zreferences.html#mikolov-sutskever-chen-ea-2013)。具体来说， 每个在数据集中索引词 $w_i$ 将会以一定概率丢弃。 丢弃的概率如下：
+
+$$P(w_i) = max (1 - \frac{1}{f(w_i)}, 0)$$
+
+这里， $f(w_i)$ 是 词 $w_i$ 出现的次数 对数据集中所有词的数量的比值， 常数 $t$ 是一个超参数(在实验中设置为$10^{-4}$)。我们可以看到， 当 $f(w_i) > t$的时候， 有概率丢弃单词 $w_i$ 。词的频率越高，其被丢弃概率越高。
+
+
+```python
+def subsampling(sentences, vocab):
+    """
+    args: 
+        sentence(list) : 输入的一组句子 
+        vocab(Vocab类) : 词典
+     
+    return: 
+        code : 
+    """
+    #--- 将低频次设置为 <unk> ---
+    sentences = [[vocab.idx_to_token[vocab[tk]]for tk in line]  for line in sentences]
+
+    #--- 计算每个词的频率 ---
+    counter = d2l.count_corpus(sentences)
+    num_tokens = sum(counter.values())
+
+    #--- 如果在二次采样时要保留下该token返回True ---
+    def keep(token):
+        return (random.uniform(0, 1) < math.sqrt(1e-4 / counter[token] * num_tokens))
+
+    
+    #--- 进行二次采样 ---
+    return [[tk for tk in line if keep(tk)] for line in sentences]
+	
+	
+subsampled = subsampling(sentences, vocab)
+```
+
+对比采样前后的序列长度，可以看出二次采样大大降低了序列长度。
+
