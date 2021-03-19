@@ -207,3 +207,13 @@ center 6 has contexts \[5\] \\
 center 7 has contexts \[8\] \\
 center 8 has contexts \[7, 9\] \\
 center 9 has contexts \[7, 8\] \\
+
+我们将上下文窗口的最大大小设置为5。下面提取数据集中的所有中心目标词及其上下文词。
+
+
+```python
+all_centers, all_contexts = get_centers_and_contexts(corpus, 5)
+f'# center-context pairs: {len(all_centers)}'
+```
+
+> '# center-context pairs: 353035'
