@@ -187,3 +187,23 @@ def get_centers_and_contexts(corpus, max_window_size):
     return centers, contexts
 ```
 
+接下来，我们创建一个人工数据集，其中包含两个句子，分别为7和3个单词。假设最大上下文窗口为2，并打印所有中心目标单词及其上下文单词。
+
+```python
+tiny_dataset = [list(range(7)), list(range(7, 10))]
+print('dataset', tiny_dataset)
+for center, context in zip(*get_centers_and_contexts(tiny_dataset, 2)):
+    print('center', center, 'has contexts', context)
+```
+
+> dataset \[\[0, 1, 2, 3, 4, 5, 6\], \[7, 8, 9\]\] \\
+center 0 has contexts \[1, 2\] \\
+center 1 has contexts \[0, 2\] \\
+center 2 has contexts \[1, 3\] \\
+center 3 has contexts \[1, 2, 4, 5\] \\
+center 4 has contexts \[2, 3, 5, 6\] \\
+center 5 has contexts \[3, 4, 6\] \\
+center 6 has contexts \[5\] \\
+center 7 has contexts \[8\] \\
+center 8 has contexts \[7, 9\] \\
+center 9 has contexts \[7, 8\] \\
