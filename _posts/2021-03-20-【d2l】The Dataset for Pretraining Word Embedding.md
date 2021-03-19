@@ -146,3 +146,44 @@ corpus[0:3]
 ```
 
 > \[\[\], \[71, 2115, 145, 274\], \[140, 5277, 3054, 1580, 95\]\]
+
+
+#  Loading the Dataset
+
+接下来，我们将带有token索引的语料库读入 data batches 中进行训练。
+
+
+## Extracting Central Target Words and Context Words
+
+我们使用与中心目标词的距离不超过上下文窗口大小的词作为给定中心目标词的上下文词。下面的定义函数提取了所有中心目标词及其上下文词。它在整数1到最大窗口大小(最大上下文窗口)之间统一随机抽样一个整数作为上下文窗口大小。
+
+
+```
+def get_centers_and_contexts(corpus, max_window_size):
+    """
+    args: 
+        corpus(二重list) :  第一重list的元素是每个句子， 第二重list是每个句子里的单词。
+     
+    return: 
+        centers(list) : 每个元素是语料库中每个词， 每个词都会做中心词
+        contexts(二重list): 每个中心词对应的上下文词
+    """
+    centers, contexts = [], []
+    for line in corpus:
+        #--- 每个句子需要有至少两个词形成 “中心目标词 - 上下文词” 对 ---
+        if len(line) < 2:
+            continue
+        #--- 一次性将所有中心词都加入了 ---
+        centers += line
+        for i in range(len(line)):
+            #--- 上下文窗口的中心为i ---
+            window_size = random.randint(1, max_window_size)
+            indices = list(range(max(0, i - window_size), min(len(line), i + 1 + window_size)))
+
+            #--- 将中心词从上下文词中排除掉 ---
+            indices.remove(i)
+            contexts.append([line[idx] for idx in indices])
+
+    return centers, contexts
+```
+
