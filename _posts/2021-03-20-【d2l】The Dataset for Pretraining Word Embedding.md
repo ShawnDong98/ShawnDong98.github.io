@@ -217,3 +217,8 @@ f'# center-context pairs: {len(all_centers)}'
 ```
 
 > '# center-context pairs: 353035'
+
+
+# Negative Sampling
+
+我们使用负采样进行近似训练。对于一个中心和上下文 词对， 我们随机采样 $K$ 个噪声词 (在实验中$K = 5$)。 如Word2vec论文中所说， 噪声词采样的概率 $P(w)$ 为 $w$的词频和所有词的频率的比值的 0.75 次方 [Mikolov et al., 2013b](https://d2l.ai/chapter_references/zreferences.html#mikolov-sutskever-chen-ea-2013)。 
