@@ -104,3 +104,45 @@ subsampled = subsampling(sentences, vocab)
 
 对比采样前后的序列长度，可以看出二次采样大大降低了序列长度。
 
+```python
+d2l.set_figsize()
+d2l.plt.hist([[len(line) for line in sentences], [len(line) for line in subsampled]])
+
+d2l.plt.xlabel('# tokens per sentence')
+d2l.plt.ylabel('count')
+d2l.plt.legend(['origin', 'subsampled'])
+
+d2l.plt.show()
+```
+
+对于每个单独的tokens， 高频词的采样率 "the" 少于 1/20。 
+
+
+```python
+def compare_counts(token):
+    return (f'# of "{token}": '
+            f'before={sum([line.count(token) for line in sentences])}, '
+            f'after={sum([line.count(token) for line in subsampled])}')
+
+compare_counts('the')
+```
+
+> '# of "the": before=50770, after=1999'
+
+但是低频词 “join” 被完全保留了下来。
+
+```python
+compare_counts('join')
+```
+
+> '# of "join": before=45, after=45'
+
+
+最后，我们将每个token映射到一个索引来构建语料库。
+
+```python
+corpus = [vocab[line] for line in subsampled]
+corpus[0:3]
+```
+
+> \[\[\], \[71, 2115, 145, 274\], \[140, 5277, 3054, 1580, 95\]\]
