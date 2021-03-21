@@ -196,6 +196,8 @@ for center, context in zip(*get_centers_and_contexts(tiny_dataset, 2)):
     print('center', center, 'has contexts', context)
 ```
 
+输出
+
 > dataset \[\[0, 1, 2, 3, 4, 5, 6\], \[7, 8, 9\]\] \\
 center 0 has contexts \[1, 2\] \\
 center 1 has contexts \[0, 2\] \\
@@ -258,6 +260,7 @@ generator = RandomGenerator([2, 3, 4])
 
 
 
+
 ```python
 def get_negatives(all_contexts, corpus, K):
     """
@@ -300,6 +303,55 @@ all_negatives = get_negatives(all_contexts, corpus, 5)
 接下来， 我们将会实现 minibatch 读取函数 batchify。 它的 minibatch 输入数据 是一个长度为batch size的列表， 它们每个元素包含着中心目标词 center, 上下文词 context， 以及噪声词 negative. 这个函数返回我们所需要的格式的 minibatch 数据， 比如说， 它包含了掩膜变量。
 
 
+```python
+def batchify(data):
+    """
+    args: 
+        data :  中心词 centers， 上下文词 contexts， 噪声词 negative_contexts
+     
+    return: 
+        centers(tensor) : shape (batch, 1)
+        context_negatives(tensor) : 上下文词和噪声词拼接起来
+        masks(tensor)： 区别padding和context_negatives
+        labels(tensor)： 区别上下文词 和 噪声词 以及 padding 
+    """
+    max_len = max(len(c) + len(n) for _, c, n in data)
+    centers, contexts_negatives, masks, labels = [], [], [], []
+    for center, context, negative in data:
+        cur_len = len(context) + len(negative)
+        centers += [center]
+        contexts_negatives += [context + negative + [0] * (max_len - cur_len)]
+        masks += [[1] * cur_len + [0] * (max_len - cur_len)]
+        labels += [[1] * len(context) + [0] * (max_len - len(context))]
+    return (torch.tensor(centers).reshape(-1, 1), torch.tensor(contexts_negatives), torch.tensor(masks), torch.tensor(labels))
+```
+
+
+构造两个简单样本：
+
+```python
+x_1 = (1, [2, 2], [3, 3, 3, 3])
+x_2 = (1, [2, 2, 2], [3, 3])
+batch = batchify((x_1, x_2))
+
+names = ['centers', 'contexts_negatives', 'masks', 'labels']
+for name, data in zip(names, batch):
+    print(name, '=', data)
+```
+
+输出
+
+
+```python
+centers = tensor([[1],
+        [1]])
+contexts_negatives = tensor([[2, 2, 3, 3, 3, 3],
+        [2, 2, 2, 3, 3, 0]])
+masks = tensor([[1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0]])
+labels = tensor([[1, 1, 0, 0, 0, 0],
+        [1, 1, 1, 0, 0, 0]])
+```
 
 
 
