@@ -80,8 +80,8 @@ def subsampling(sentences, vocab):
         sentence(list) : 输入的一组句子 
         vocab(Vocab类) : 词典
      
-    return: 
-        code : 
+    return -> list:  
+        返回二次采样后的一组句子 
     """
     #--- 将低频次设置为 <unk> ---
     sentences = [[vocab.idx_to_token[vocab[tk]]for tk in line]  for line in sentences]
@@ -355,5 +355,13 @@ labels = tensor([[1, 1, 0, 0, 0, 0],
 
 
 我们使用刚才定义的 batchify 函数来指定 DataLoader 实例中的 minibatch 读取方法。
+
+
+# utting All Things Together
+
+最后， 我们定义 load_data_ptb 函数读取 PTB 数据集 并且 返回数据迭代器。
+
+
+
 
 
