@@ -253,6 +253,30 @@ generator = RandomGenerator([2, 3, 4])
 输出：
 
 
+
+> \[0, 2, 1, 2, 0, 2, 2, 0, 1, 2\]
+
+
+
+```python
+def get_negatives(all_contexts, corpus, K):
+    counter = d2l.count_corpus(corpus)
+    #--- 噪声次采样的概率P(w) 为 w 的词频 与 所有词的频率的比值的0.75词方 ---
+    sampling_weights = [counter[i]**0.75 for i in range(len(counter))]
+    all_negatives, generator = [], RandomGenerator(sampling_weights)
+    for contexts in all_contexts:
+        negatives = []
+        while len(negatives) < len(contexts) * K:
+            neg = generator.draw()
+            
+            #--- 噪声词不可以是上下文词 ---
+            if neg not in contexts:
+                negatives.append(neg)
+        all_negatives.append(negatives)
+    return all_negatives
+	
+	
+all_negatives = get_negatives(all_contexts, corpus, 5)
 ```
-[0, 2, 1, 2, 0, 2, 2, 0, 1, 2]
-```
+
+
