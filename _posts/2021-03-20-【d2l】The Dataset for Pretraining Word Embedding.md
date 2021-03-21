@@ -219,7 +219,7 @@ f'# center-context pairs: {len(all_centers)}'
 > '# center-context pairs: 353035'
 
 
-# Negative Sampling
+## Negative Sampling
 
 我们使用负采样进行近似训练。对于一个中心和上下文 词对， 我们随机采样 $K$ 个噪声词 (在实验中$K = 5$)。 如Word2vec论文中所说， 噪声词采样的概率 $P(w)$ 为 $w$的词频和所有词的频率的比值的 0.75 次方 [Mikolov et al., 2013b](https://d2l.ai/chapter_references/zreferences.html#mikolov-sutskever-chen-ea-2013)。 
 
@@ -260,6 +260,15 @@ generator = RandomGenerator([2, 3, 4])
 
 ```python
 def get_negatives(all_contexts, corpus, K):
+    """
+    args: 
+        all_contexts(二重list) :  所有中心词对应的上下文词
+        corpus : 语料库
+        K ： 采样 K 倍上下文词数量的噪声词
+     
+    return: 
+        all_negatives(二重list) : 每个中心词和上下文词对 的 噪声词
+    """
     counter = d2l.count_corpus(corpus)
     #--- 噪声次采样的概率P(w) 为 w 的词频 与 所有词的频率的比值的0.75词方 ---
     sampling_weights = [counter[i]**0.75 for i in range(len(counter))]
@@ -274,9 +283,18 @@ def get_negatives(all_contexts, corpus, K):
                 negatives.append(neg)
         all_negatives.append(negatives)
     return all_negatives
+
 	
 	
 all_negatives = get_negatives(all_contexts, corpus, 5)
 ```
+
+
+## Reading into Batches
+
+我们从数据集中提取所有中心目标词 all_centers, 以及每个中心目标词的上下文词 all_contexts 和 噪声词 all_negatives 。 我们将会读取它们到随机的 minibatches。 
+
+
+在数据的一个 minibatch， 第 $i^{th}$ 个样本包括一个中心词和它相关的 $n_i$ 个上下文词 以及 $m_i$ 个噪声词。
 
 
