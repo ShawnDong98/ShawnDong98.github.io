@@ -295,6 +295,6 @@ all_negatives = get_negatives(all_contexts, corpus, 5)
 我们从数据集中提取所有中心目标词 all_centers, 以及每个中心目标词的上下文词 all_contexts 和 噪声词 all_negatives 。 我们将会读取它们到随机的 minibatches。 
 
 
-在数据的一个 minibatch， 第 $i^{th}$ 个样本包括一个中心词和它相关的 $n_i$ 个上下文词 以及 $m_i$ 个噪声词。
+在数据的一个 minibatch， 第 $i^{th}$ 个样本包括一个中心词和它相关的 $n_i$ 个上下文词 以及 $m_i$ 个噪声词。因为每个样本的上下文窗口可能会不相同， 上下文词和噪声词的数量和 $n_i + m_i$ 将会不相同。 当我们构造一个minibatch时， 我们拼接每个样本的上下文词和噪声次， 并且补0直到拼接的长度相同， 也就是说， 所有拼接的长度是 $max_i$ $n_i + m_i(max\_len)$。 为了避免补0填充对损失函数计算带来的影响， 我们构造掩膜变量 masks， 其中每个元素都对应于上下文词和噪声词拼接起来后的每个元素， contexts_negatives. 当 context_negatives 变量中的一个元素被填充，  掩膜变量 masks 在相同位置的元素将会是0。 否则， 它的值是1。为了区分正样本和负样本， 我们也需要在 contexts_negatives 变量中区分上下文词和噪声词。 基于掩膜变量的构造， 我们仅需要创建一个与 contexts_negatives 变量形状相同的 标签变量 labels， 并且将和上下文词(正样本)相关的元素设置为1， 剩下的设置为0.
 
 
