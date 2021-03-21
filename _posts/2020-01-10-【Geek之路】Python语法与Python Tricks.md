@@ -271,7 +271,61 @@ print(t)
 输出：\\
 \[2, 1\]
 
-## 
+### random.choinces
+
+
+```
+random.choinces(random.choices(population,weights=None, *,cum_weights=None,k=1))
+```
+
+- population：集群。
+- weights：相对权重。
+- cum_weights：累加权重。
+- k：选取次数。
+
+
+作用：从集群中随机 **选取k次** 数据，返回一个**列表**，可以设置**权重**。
+
+**注意每次选取都不会影响原序列，每一次选取都是基于原序列**。
+
+
+例子：
+
+```python
+import random
+a = [1,2,3,4,5]
+#1
+print(random.choices(a,k=5))
+#2
+print(random.choices(a,weights=[0,0,1,0,0],k=5))
+#3
+print(random.choices(a,weights=[1,1,1,1,1],k=5))
+#4
+print(random.choices(a,cum_weights=[1,1,1,1,1],k=5))
+
+```
+
+结果：
+
+```
+#1 ： 重复输出10次列表a中的各个成员出现概率基本持平。
+#2 ： 重复输出10次每次输出均得到[3,3,3,3,3]结果。
+#3 ： 重复输出10次列表a中的各个成员出现概率基本持平。
+#4 ： 重复输出10次每次输出均得到[1,1,1,1,1]结果。
+```
+
+结论：
+
+```
+参数weights设置相对权重，它的值是一个列表，设置之后，每一个成员被抽取到的概率就被确定了。
+比如weights=[1,2,3,4,5],那么第一个成员的概率就是P=1/(1+2+3+4+5)=1/15。
+
+cum_weights设置累加权重，Python会自动把相对权重转换为累加权重，即如果你直接给出累加权重，那么就不需要
+给出相对权重，且Python省略了一步执行。
+比如weights=[1,2,3,4],那么cum_weights=[1,3,6,10]
+这也就不难理解为什么cum_weights=[1,1,1,1,1]输出全是第一个成员1了。
+
+```
 
 
 
