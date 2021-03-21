@@ -354,4 +354,6 @@ labels = tensor([[1, 1, 0, 0, 0, 0],
 ```
 
 
+我们使用刚才定义的 batchify 函数来指定 DataLoader 实例中的 minibatch 读取方法。
+
 
