@@ -77,13 +77,14 @@ $$P(w_i) = max (1 - \frac{1}{f(w_i)}, 0)$$
 def subsampling(sentences, vocab):
     """
     args: 
-        sentence(list) : 输入的一组句子 
+        sentence(二重list) : 第一重list的元素是每个句子， 第二重list是每个句子里的单词。 
         vocab(Vocab类) : 词典
      
-    return -> list:  
-        返回二次采样后的一组句子 
+    return: 
+        sentence(二重list) : 二次采样后的句子
     """
-    #--- 将低频次设置为 <unk> ---
+    #--- vocab[tk]返回的是索引 token 在语料库中的索引 ---
+    #--- vocab.idx_to_token 再按照索引变成 token ---
     sentences = [[vocab.idx_to_token[vocab[tk]]for tk in line]  for line in sentences]
 
     #--- 计算每个词的频率 ---
