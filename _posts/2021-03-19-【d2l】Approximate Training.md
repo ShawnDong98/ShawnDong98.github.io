@@ -13,7 +13,7 @@ tags:
 ---
 
 
-回顾上一节的内容。skip-gram模型的核心特征是使用softmax操作来计算基于给定中心目标词 $w_c$ 生成上下文词$w_o$的条件概率。
+回顾上一节的内容。skip-gram模型的核心特征是使用softmax操作来计算 给定中心目标词 $w_c$， 生成上下文词$w_o$的条件概率。
 
 
 $$P(w_o \mid w_c) = \frac{exp(u_p^T v_c)}{\sum_{i \in V} exp(u^T_i v_c)}$$
