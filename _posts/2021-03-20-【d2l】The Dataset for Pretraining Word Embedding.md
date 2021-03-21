@@ -222,3 +222,37 @@ f'# center-context pairs: {len(all_centers)}'
 # Negative Sampling
 
 我们使用负采样进行近似训练。对于一个中心和上下文 词对， 我们随机采样 $K$ 个噪声词 (在实验中$K = 5$)。 如Word2vec论文中所说， 噪声词采样的概率 $P(w)$ 为 $w$的词频和所有词的频率的比值的 0.75 次方 [Mikolov et al., 2013b](https://d2l.ai/chapter_references/zreferences.html#mikolov-sutskever-chen-ea-2013)。 
+
+
+我们首先定义一个类根据采样权重采样候选值。 它缓存一个10000大小的随机数库， 而不是每次调用 random.choices。 
+
+
+```python
+class RandomGenerator:
+    #--- 根据 n个 采样权重 采样 一个 [0, n] 的随机整数 ---
+    def __init__(self, sampling_weights):
+        self.population = list(range(len(sampling_weights)))
+        self.sampling_weights = sampling_weights
+        #--- candidates 用于存储每次采样的结果 ---
+        self.candidates = []
+        self.i = 0
+
+    def draw(self):
+        #--- 一次性就已经随机选了10000个数据，每次采样从这些数据中取 ---
+        if self.i == len(self.candidates):
+            #--- 权重决定population中各数据采样的频率 ---
+            self.candidates = random.choices(self.population, self.sampling_weights, k=10000)
+            self.i = 0
+        self.i += 1
+        return self.candidates[self.i - 1]
+		
+generator = RandomGenerator([2, 3, 4])
+[generator.draw() for _ in range(10)]
+```
+
+输出：
+
+
+```
+[0, 2, 1, 2, 0, 2, 2, 0, 1, 2]
+```
