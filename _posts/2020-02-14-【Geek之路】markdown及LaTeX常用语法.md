@@ -514,7 +514,14 @@ emph强调某些内容。
 
 引入包
 
-> \usepackage{hyperref}
+> \usepackage\[colorlinks\]{hyperref}
+
+- colorlinks: 超链接是否带颜色；
+- linkcolor： 目录，公式，图表等内部链接的颜色；
+- filecolor： 文件型链接的颜色；
+- urlcolor： 网页链接的颜色；
+- citecolor： 参考文献连接的颜色；
+
 
 
 >\url{网址}：生成网址链接，以等宽字体排版； \\
