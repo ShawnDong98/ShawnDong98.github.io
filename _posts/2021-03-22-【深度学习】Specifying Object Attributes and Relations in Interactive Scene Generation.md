@@ -34,3 +34,9 @@ Figure 4. 当将位置属性 $l_i$ 固定为零并采样不同的外观原型时
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616419239871.png)
 
 Figure 5. 在保持外观向量固定和从位置分布采样时获得的多样性。(a) 场景图，(b) 从中提取布局的地面真实图像，(c–g) 生成的图像。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616419451743.png)
+
+Figure 6. 在生成的图像中复制对象的外观。图像是基于场景图创建的，外观是从五个不相关的图像中的一个中获取的。在本例中，天空的外观是从参照图像生成的，而其他所有对象都使用相同的随机外观原型。
+
+
