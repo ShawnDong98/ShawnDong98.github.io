@@ -28,4 +28,9 @@ Figure 3. 基于给定场景图的图像生成。 每行是一个不同的示例
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616419104092.png)
 
-Figure 4. 当将位置属性 $l_i$ 固定为零并采样不同的外观原型时获得的多样性。(a) 场景图，(b) 从中提取布局的地面真实图像，(c–g)生成图像。
+Figure 4. 当将位置属性 $l_i$ 固定为零并采样不同的外观原型时获得的多样性。(a) 场景图，(b) 从中提取布局的真实图像，(c–g)生成图像。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616419239871.png)
+
+Figure 5. 在保持外观向量固定和从位置分布采样时获得的多样性。(a) 场景图，(b) 从中提取布局的地面真实图像，(c–g) 生成的图像。
