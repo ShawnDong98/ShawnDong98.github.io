@@ -2939,3 +2939,4 @@ pip install -r requirements.txt
 66. [使用 sys.modules](http://shouce.jb51.net/python/file_handling/more_on_modules.html)
 67. [Numpy数组索引为-1和None](https://www.cnblogs.com/sgdd123/p/7603004.html)
 68. [Python中sys.stdout.flush() 的作用](https://blog.csdn.net/zh54b5n64vn64654/article/details/89079164)
+69. [Python choices()函数详解、random模块下的常用函数](https://blog.csdn.net/ckk727/article/details/99548223)
