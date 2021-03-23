@@ -66,7 +66,7 @@ f'vocab size: {len(vocab)}'
 
 # Subsampling
 
-在文本数据中，通常有一些单词出现的频率很高，如英语中的 "the", "a" 和 "in"。通常来讲， 在一个上下文窗口， 最好当一个词(比如 "chip")和一个低频词(比如 "microprocessor")同时出现的时候训练词嵌入模型， 而不是一个词和一个高频词(比如 "the")同时出现时训练词嵌入模型。因此，在训练词嵌入模型时，我们可以对词进行二次采样[ Mikolov et al., 2013b](https://d2l.ai/chapter_references/zreferences.html#mikolov-sutskever-chen-ea-2013)。具体来说， 每个在数据集中索引词 $w_i$ 将会以一定概率丢弃。 丢弃的概率如下：
+在文本数据中，通常有一些单词出现的频率很高，如英语中的 "the", "a" 和 "in"。通常来讲， 在一个上下文窗口， 最好当一个词(比如 "chip")和一个低频词(比如 "microprocessor")同时出现的时候训练词嵌入模型， 而不是一个词和一个高频词(比如 "the")同时出现时训练词嵌入模型。因此，在训练词嵌入模型时，我们可以对词进行二次采样[ Mikolov et al., 2013b](https://d2l.ai/chapter_references/zreferences.html#mikolov-sutskever-chen-ea-2013)。具体来说， 每个在数据集中的索引词 $w_i$ 将会以一定概率丢弃。 丢弃的概率如下：
 
 $$P(w_i) = max (1 - \frac{1}{f(w_i)}, 0)$$
 
