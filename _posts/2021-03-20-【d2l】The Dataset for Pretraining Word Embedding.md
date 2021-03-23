@@ -53,7 +53,7 @@ f'# sentences: {len(sentences)}'
 
 > '# sentences: 42069'
 
-接下来，我们构建一个词汇表，将出现次数不超过10次的单词映射到\<unk\> token 中。注意，预处理的PTB数据也包含 \<unk\> token 表示很少出现单词。
+接下来，我们构建一个词典，将出现次数不超过10次的单词映射到\<unk\> token 中。注意，预处理的PTB数据也包含 \<unk\> token 表示很少出现单词。
 
 
 ```python
