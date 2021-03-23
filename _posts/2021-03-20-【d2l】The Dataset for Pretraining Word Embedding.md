@@ -116,6 +116,8 @@ d2l.plt.legend(['origin', 'subsampled'])
 d2l.plt.show()
 ```
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616499503676.png)
+
 对于每个单独的tokens， 高频词的采样率 "the" 少于 1/20。 
 
 
