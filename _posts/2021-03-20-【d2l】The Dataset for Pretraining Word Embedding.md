@@ -363,6 +363,86 @@ labels = tensor([[1, 1, 0, 0, 0, 0],
 最后， 我们定义 load_data_ptb 函数读取 PTB 数据集 并且 返回数据迭代器。
 
 
+```python
+def load_data_ptb(batch_size, max_window_size, num_noise_words):
+    """
+    args: 
+        batch_size : 批大小
+        max_window_size : 最大窗大小
+        num_noise_words : 噪声词数量 
+     
+    return: 
+        data_iter : 数据迭代器
+        vocab ： 词典
+
+    sentence -> vocab -> subsampled -> corpus
+    """
+    num_workers = d2l.get_dataloader_workers()
+    sentences = read_ptb()
+    #--- 构造语料库 ---
+    vocab = d2l.Vocab(sentences, min_freq=10)
+    #--- 二次采样 ---
+    subsampled = subsampling(sentences, vocab)
+    #--- 将词变成索引 ---
+    corpus = [vocab[line] for line in subsampled]
+    all_centers, all_contexts = get_centers_and_contexts(corpus, max_window_size)
+    all_negatives = get_negatives(all_contexts, corpus, num_noise_words)
+
+    #--- 构造数据集 ---
+    class PTBDataset(torch.utils.data.Dataset):
+        def __init__(self, centers, contexts, negatives):
+            assert len(centers) ==  len(contexts) == len(negatives)
+            self.centers = centers
+            self.contexts = contexts
+            self.negatives = negatives
+
+        def __getitem__(self, index):
+            return (self.centers[index], self.contexts[index], self.negatives[index])
+
+        
+        def __len__(self):
+            return len(self.centers)
+
+    dataset = PTBDataset(all_centers, all_contexts, all_negatives)
+    
+    data_iter = torch.utils.data.DataLoader(dataset, batch_size, shuffle=True, collate_fn=batchify, num_workers=num_workers)
+
+    return data_iter, vocab
+
+```
+
+让我们打印数据迭代器的第一个minibatch。
+
+```python
+data_iter, vocab = load_data_ptb(512, 5, 5)
+for batch in data_iter:
+    for name, data in zip(names, batch):
+        print(name, 'shape:', data.shape)
+    break
+```
+
+输出：
+
+```
+centers shape: torch.Size([512, 1])
+contexts_negatives shape: torch.Size([512, 60])
+masks shape: torch.Size([512, 60])
+labels shape: torch.Size([512, 60])
+```
+
+
+# Summary
+
+- 二次采样的目的是尽量减少高频词对词嵌入模型训练的影响。
+- 我们可以填充不同长度的样本，用相同长度的样本创建 minibatch，并使用mask变量来区分填充元素和非填充元素，这样只有非填充元素参与损失函数的计算。
+
+
+# Exercises
+
+1. 我们使用batchify函数在DataLoader实例中指定minibatch读取方法，并在第一批读取时打印每个变量的形状。如何计算这些形状呢？
+
+
+
 
 
 
