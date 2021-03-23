@@ -93,12 +93,12 @@ def subsampling(sentences, vocab):
 
     #--- 如果在二次采样时要保留下该token返回True ---
     def keep(token):
+        #--- f(w_i) 等于 语料库中所有词的频数之和 / w_i这个词的出现频数 ---
         return (random.uniform(0, 1) < math.sqrt(1e-4 / counter[token] * num_tokens))
 
     
     #--- 进行二次采样 ---
     return [[tk for tk in line if keep(tk)] for line in sentences]
-	
 	
 subsampled = subsampling(sentences, vocab)
 ```
