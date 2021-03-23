@@ -163,11 +163,11 @@ corpus[0:3]
 def get_centers_and_contexts(corpus, max_window_size):
     """
     args: 
-        corpus(二重list) :  第一重list的元素是每个句子， 第二重list是每个句子里的单词。
+        corpus(二重list) :  第一重list的元素是每个句子， 第二重list是每个句子里的单词对应的索引。
      
     return: 
-        centers(list) : 每个元素是语料库中每个词， 每个词都会做中心词
-        contexts(二重list): 每个中心词对应的上下文词
+        centers(list) : 每个元素是语料库中每个词对应的索引， 每个词都会做中心词
+        contexts(二重list): 每个中心词对应的上下文词的索引
     """
     centers, contexts = [], []
     for line in corpus:
