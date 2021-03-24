@@ -131,5 +131,129 @@ class SigmoidBCELoss(nn.Module):
 loss = SigmoidBCELoss()
 ```
 
+值得注意的是,我们可以使用 mask变量 来指定部分预测值和标签参与minibatch损失函数计算: 当mask是1, 对应位置的预测值和标签将参与损失函数的计算； 当mask值为0， 它们不参与损失函数的计算。 正如我们前面提到的，mask变量可以用来避免填充对损失函数计算的影响。给定两个相同的例子，不同的mask导致不同的损失值。
 
 
+给定两个相同的例子，不同的 mask 导致不同的损失值。
+
+
+```python
+pred = torch.tensor([[.5] * 4] * 2)
+label = torch.tensor([[1., 0., 1., 0.]] * 2)
+mask = torch.tensor([[1, 1, 1, 1], [1, 1, 0, 0]])
+loss(pred, label, mask)
+```
+
+我们可以将每个样本中的损失规范化，因为每个样本中的长度不同。
+
+```python
+loss(pred, label, mask) / mask.sum(axis=1) * mask.shape[1]
+```
+
+输出：
+
+```
+tensor([0.7241, 0.7241])
+```
+
+## Initializing Model Parameters
+
+
+我们分别构造中心词和上下文词的embedding层， 设定超参数 词向量维度 embed_size 为 100。
+
+```python
+embed_size = 100
+net = nn.Sequential(
+    nn.Embedding(num_embeddings=len(vocab), embedding_dim=embed_size),
+    nn.Embedding(num_embeddings=len(vocab), embedding_dim=embed_size))
+```
+
+
+## Training
+
+训练函数的定义如下。由于填充的存在，损失函数的计算与之前的训练函数略有不同。
+
+```python
+def train(net, data_iter, lr, num_epochs, device=d2l.try_gpu()):
+    def init_weight(m):
+        if type(m) == nn.Embedding:
+            nn.init.xavier_uniform_(m.weight)
+    
+    net.apply(init_weight)
+    net = net.to(device)
+    optimizer = torch.optim.Adam(net.parameters(), lr=lr)
+    animator = d2l.Animator(xlabel='epoch', ylabel='loss', xlim=[1, num_epochs])
+    metric = d2l.Accumulator(2)
+
+    for epoch in range(num_epochs):
+        timer, num_batches = d2l.Timer(), len(data_iter)
+        for i, batch in enumerate(data_iter):
+            optimizer.zero_grad()
+            center, context_negative, mask, label = [data.to(device) for data in batch]
+
+            pred = skip_gram(center, context_negative, net[0], net[1])
+            l = (loss(pred.reshape(label.shape).float(), label.float(), mask) / mask.sum(axis=1) * mask.shape[1])
+            l.sum().backward()
+            optimizer.step()
+            metric.add(l.sum(), l.numel())
+            if (i + 1) % (num_batches // 5) == 0 or i == num_batches - 1:
+                animator.add(epoch + (i + 1) / num_batches, (metric[0] / metric[1], ))
+    print(f'loss {metric[0] / metric[1]:.3f}, '
+          f'{metric[1] / timer.stop():.1f} tokens / sec on {str(device)}')
+    d2l.plt.show()
+```
+
+现在， 我们可以使用负采样来训练 skip-gram 模型。
+
+```python
+lr, num_epochs = 0.01, 5
+train(net, data_iter, lr, num_epochs)
+```
+
+输出
+
+```
+loss 0.373, 400873.1 tokens/sec on cuda:0
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616601470687.png)
+
+
+# Applying the Word Embedding Model
+
+训练词嵌入模型后，可以根据两个词向量的余弦相似度来表示词与词之间的意义相似度。我们可以看到，在使用训练过的词嵌入模型时，与词chip的意思最接近的词大多与chips有关。
+
+
+```python
+def get_similar_tokens(query_token, k, embed):
+    W = embed.weight.data
+    x = W[vocab[query_token]]
+    #--- 对input矩阵和vec向量执行矩阵-向量的乘法 ---
+    cos = torch.mv(W, x) / torch.sqrt(torch.sum(W * W, dim=1) * torch.sum(x * x) + 1e-9)
+    topk = torch.topk(cos, k=k+1)[1].cpu().numpy().astype('int32')
+    for i in topk[1:]:
+        print(f"cosine sim={float(cos[i]):.3f} : {vocab.idx_to_token[i]}")
+
+```
+
+输出：
+
+```
+cosine sim=0.525: intel
+cosine sim=0.498: computers
+cosine sim=0.489: user
+```
+
+
+
+# Summary
+
+- 我们可以通过负采样训练一个 skip-gram 模型
+
+
+# Exercises
+
+1. 当创建nn.Embedding的实例时，设置sparse grad=True。它能加速训练吗？请查阅MXNet文档，了解这个参数的含义。
+2. 试着找出其他单词的同义词。
+3. 调整超参数，观察和分析实验结果。
+4. 当数据集很大的时候， 仅当更新模型参数时， 我们通常在当前的minibatch中为中心目标词采样上下文词和噪声词。 换句话说，同一中心目标词在不同epoch可能有不同的上下文词或噪声词。这种训练的好处是什么?试着实现这个训练方法。
