@@ -106,3 +106,30 @@ skip_gram(torch.ones((2, 1), dtype=torch.long),
 torch.Size([2, 1, 4])
 ```
 
+
+# Training
+
+在训练词嵌入模型之前，我们需要定义模型的损失函数。
+
+## Binary Cross Entropy Loss Function
+
+根据负采样损失函数的定义，我们可以直接使用高阶API中的二分类交叉熵损失函数。
+
+```python
+class SigmoidBCELoss(nn.Module):
+    "BCEWithLogitLoss with masking on call."
+
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, inputs, target, mask=None):
+        #--- 该损失函数最后结合了一个sigmoid层 ---
+        out = nn.functional.binary_cross_entropy_with_logits(
+            inputs, target, weight=mask, reduction="none")
+        return out.mean(dim=1)
+		
+loss = SigmoidBCELoss()
+```
+
+
+
