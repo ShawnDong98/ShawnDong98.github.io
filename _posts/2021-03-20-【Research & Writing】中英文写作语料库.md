@@ -29,10 +29,6 @@ tags:
 
 # Introduction
 
-## In-Domain GAN Inversion for Real Image Editing
-
-
-## Navigating the GAN Parameter Space for Semantic Image Editing
 
 ## SEAN: Image Synthesis with Semantic Region-Adaptive Normalization
 
