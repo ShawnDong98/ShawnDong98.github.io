@@ -36,6 +36,7 @@ tags:
 
 > First, X, which is X. For example, X. In this case, X. Further, X. Our first main idea is X,  our proposed X. 
 
+> Second, we believe that X . Recent architectures have demonstrated that X. However, X. To alleviate this shortcoming, our second main idea is X. An important aspect of this work is that X.
 
 # Related Works
 
