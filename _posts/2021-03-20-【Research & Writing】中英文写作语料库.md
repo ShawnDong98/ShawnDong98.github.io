@@ -48,4 +48,9 @@ tags:
 
 # Experiments
 
-# Conclusion
+# Conclusion、
+
+## SEAN: Image Synthesis with Semantic Region-Adaptive Normalization
+
+> We propose X. Our main idea is X. We introduce a X. We evaluate X. While X , we also X.  In summary, X.  X also
+pushes the frontier of X. In future work, we plan to X. 
