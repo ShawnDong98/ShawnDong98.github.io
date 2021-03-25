@@ -29,6 +29,17 @@ tags:
 
 # Introduction
 
+## In-Domain GAN Inversion for Real Image Editing
+
+
+## Navigating the GAN Parameter Space for Semantic Image Editing
+
+## SEAN: Image Synthesis with Semantic Region-Adaptive Normalization
+
+> In this paper we tackle the problem of X. Specifically, X.  For example, X. While X, Therefore, X.
+
+> First, X, which is X. For example, X. In this case, X. Further, X. Our first main idea is X,  our proposed X. 
+
 
 # Related Works
 
