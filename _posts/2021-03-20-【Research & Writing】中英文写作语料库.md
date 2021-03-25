@@ -38,6 +38,8 @@ tags:
 
 > Second, we believe that X . Recent architectures have demonstrated that X. However, X. To alleviate this shortcoming, our second main idea is X. An important aspect of this work is that X.
 
+> Empirically, we provide an extensive evaluation of our method on several challenging datasets: X. Quantitatively, we evaluate our work on a wide range of metrics including X; qualitatively, X. Our experimental results demonstrate a large improvement over the current state-of-the-art methods. In summary, we introduce a new architecture X that has the following advantages: 
+
 # Related Works
 
 
