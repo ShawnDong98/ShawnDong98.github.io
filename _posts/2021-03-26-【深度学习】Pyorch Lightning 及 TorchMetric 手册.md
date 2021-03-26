@@ -1,0 +1,12 @@
+---
+layout:     post
+title:      "【深度学习】Pyorch Lightning 及 TorchMetric 手册"
+subtitle:   ""
+date:       2021-03-26
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - 深度学习
+    - 
+---
