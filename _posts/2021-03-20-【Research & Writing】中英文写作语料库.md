@@ -26,6 +26,10 @@ tags:
 > In this paper, we significantly X.  In contrast to existing works, which X, we discover X. By several simple methods, we explore X that X, which are X. The discovered X cannot X and can X. We release our code and models and hope they will serve as a handy tool for further efforts on X.
 
 
+## Semantically Multi-modal Image Synthesis
+
+> In this paper, we focus on X. Previous work X. We instead propose a novel X that X. Consequently,, X. Experiments on several challenging datasets demonstrate the superiority of X . We also show that X. 
+
 
 # Introduction
 
