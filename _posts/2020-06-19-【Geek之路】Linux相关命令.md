@@ -716,61 +716,9 @@ xrandr --delmode output name
 
 # 显示网速
 
+打开Ubuntu软件中心，搜索netspeed，安装立即生效。
 
-添加indicator-sysmonitor的下载源，右键打开终端，复制后在终端按shift+ctrl+V粘贴下面的命令
-
-```
-sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor
-```
-
-更新apt-get
-
-```
-sudo apt-get update
-```
-
-安装indicator-sysmonitor
-
-```
-sudo apt-get install indicator-sysmonitor
-```
-
-启动
-
-```
-indicator-sysmonitor 
-```
-
-
-这个时候通知栏就会出现cpu占用率和内存占用率，然后现在我们来设置显示网速与开机自启。 注意，现在不要关闭终端，一关上面的显示就没了。
-
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616841105886.png)
-
-点击显示的文字，选择preferences
-
-
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616841117456.png)
-
-勾选开机自启
-
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616841130797.png)
-
-
-然后切换到advanced，修改编辑框为这样，在文字后面加入net:{net}
-
-
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616841148203.png)
-
-点击Test，然后网速就出来了。
- 
- 
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616841210415.png)
-
-
-然后关闭终端，它会不见了，但是下次开机，它就会一直显示了。但是记住要点保存。
-
-
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616841228423.png)
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1616844566167]]]" )
 
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
