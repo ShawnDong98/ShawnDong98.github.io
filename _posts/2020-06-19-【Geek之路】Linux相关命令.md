@@ -718,7 +718,7 @@ xrandr --delmode output name
 
 打开Ubuntu软件中心，搜索netspeed，安装立即生效。
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1616844566167]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616844566166.png)
 
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
@@ -743,4 +743,4 @@ xrandr --delmode output name
 20. [Ubuntu 打开摄像头](https://blog.csdn.net/tajon1226/article/details/99854348)
 21. [ubuntu18.04 修改屏幕分辨率](https://blog.csdn.net/recher_He1107/article/details/107226192)
 22. [tar.gz文件命名及压缩解压方法](https://blog.csdn.net/maray/article/details/4312768)
-23. [ubuntu实时显示网速cpu占用和内存占用率](https://www.cnblogs.com/hjw1/p/7901048.html)
+23. [Ubuntu18显示实时网速](https://blog.csdn.net/bornfree5511/article/details/110292459)
