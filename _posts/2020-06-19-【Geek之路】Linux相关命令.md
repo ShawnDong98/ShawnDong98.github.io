@@ -770,7 +770,7 @@ indicator-sysmonitor
 然后关闭终端，它会不见了，但是下次开机，它就会一直显示了。但是记住要点保存。
 
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1616841228424]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616841228423.png)
 
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
@@ -795,3 +795,4 @@ indicator-sysmonitor
 20. [Ubuntu 打开摄像头](https://blog.csdn.net/tajon1226/article/details/99854348)
 21. [ubuntu18.04 修改屏幕分辨率](https://blog.csdn.net/recher_He1107/article/details/107226192)
 22. [tar.gz文件命名及压缩解压方法](https://blog.csdn.net/maray/article/details/4312768)
+23. [ubuntu实时显示网速cpu占用和内存占用率](https://www.cnblogs.com/hjw1/p/7901048.html)
