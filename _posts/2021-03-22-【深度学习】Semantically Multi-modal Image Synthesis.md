@@ -123,6 +123,11 @@ Networks (MulNet)。另一种类似的方法是在整个网络中使用组卷积
 **GPU memory.** 为了保证MulNet的每个网络或GroupNet中每个类的分组参数都有足够的容量，总的通道数将随着类数的增加而显著增加。在某种程度上，图形卡的最大GPU内存将不再能够容纳一个样本。正如我们在ADE20K数据集\[53\]上粗略估计的那样，即使批量大小设置为1，一个Tesla V100图形卡也无法容纳足够容量的模型。然而，GroupDNet中的问题不那么严重，因为不同的类共享参数，因此不需要为每个类设置那么多通道。
 
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616848869395.png)
+
+Figure 3： MulNet(a)， GroupNet (b) 和 GroupDNet(c)。 注意 MulNet 和 GroupNet 的最后一层的融合模块， 它由几个常规卷积层组成， 用于融合不同的类。
+
+
 ## Loss function
 
 我们采用了SPADE的损失函数：
