@@ -47,7 +47,9 @@ tags:
 
 ## Semantically Multi-modal Image Synthesis
 
-> X, has many real-world applications and draws much attention from the community.
+> X, has many real-world applications and draws much attention from the community. Previous works utilized different strategies for the task: X. While these methods made exceptional achievements in improving image quality and extending more applications, we take a step further to particularly focus on a specific X that X.
+
+> 
 
 # Related Works
 
