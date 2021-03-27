@@ -44,6 +44,11 @@ tags:
 
 > Empirically, we provide an extensive evaluation of our method on several challenging datasets: X. Quantitatively, we evaluate our work on a wide range of metrics including X; qualitatively, X. Our experimental results demonstrate a large improvement over the current state-of-the-art methods. In summary, we introduce a new architecture X that has the following advantages: 
 
+
+## Semantically Multi-modal Image Synthesis
+
+> X, has many real-world applications and draws much attention from the community.
+
 # Related Works
 
 
