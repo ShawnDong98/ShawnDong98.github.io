@@ -22,6 +22,11 @@ $$q_{ij} = \frac{exp(u_j^T v_i)}{\sum_{k \in V} exp(u_k^T v_i)}$$
 
 $$- \sum_{i \in V} \sum_{j \in V} x_{ij} \log q_{ij}$$
 
+
+Note： 原始的损失函数：
+
+$$-\sum_{t=1}^T \sum_{-m \leq j \leq m, j \neq 0} \log P(w^{(t + j)} \mid w^{(t)})$$
+
 我们把中心目标词 $w_i$ 的所有上下文词的数量加起来 得到 $x_i$， 并且 将基于中心目标词 $w_i$ 生成上下文词 $w_j$ 的 条件概率 $x_{ij} / x_i$ 记录 为 $p_{ij}$。 我们可以重写 skip-gram 模型的损失函数为：
 
 $$- \sum_{i \in V} x_i \sum_{j \in V} p_{ij} \log q_{ij}$$
