@@ -49,3 +49,5 @@ $$- \sum_{i \in V} x_i \sum_{j \in V} p_{ij} \log q_{ij}$$
 $$\sum_{i \in V} \sum_{j \in V} h(x_{ij}) (u_j^T v_i + b_i + c_j - \log x_{ij})^2$$
 
 
+这里， 我们有一个权重函数 $h(x)$ 选择的建议： 当 $x < c (\text{e.g  c = 100})$，使得 $h(x) = (x / c)^\alpha (\text{e.g } \alpha = 0.75)$， 否则使 $h(x) = 1$。 因为 $h(0) = 0$， 平方损失项对于 $x_{ij} = 0$ 可以简单地忽略。 当我们使用 minibatch SGD 训练时， 我们执行随机采样以 从每个时间步 得到一个非零的 minibatch $x_{ij}$ 并且 计算梯度更新模型参数。 这些非0 $x_{ij}$ 基于整个数据集预先计算 并且 它们 包含数据集的全局数据。 因此， GloVe的名字来自于 "Global Vectors"。
+
