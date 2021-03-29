@@ -43,7 +43,9 @@ tags:
 
 用$m \in L^{H \times W}$一个语义分割掩膜，其中$L$是一个整数的集合表示语义的标签， $H$和$W$是图像的高和宽。我们的目的是学习一个映射函数，可以将输入分割掩膜m转换为具有真实感的图像。
 
-![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1586096085316.png)
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617018135227.png)
+
+Figure 2： 在SPADE中， mask首先被投影到一个 embedding 空间中， 然后卷积产生参数 $\gamma$ 和 $\beta$。 和先前的条件规范化方式不同，$\gamma$ 和 $\beta$ 不是向量， 而是有空间维度的tensor。 $\gamma$ 和 $\beta$ 按元素乘和加到规范化后的激活上。 
 
 **空间自适应反规范化**。 用$h^i$表示一批N个样本的深度卷积网络的第i层的激活。 用$C^i$表示第i层中通道的数量。用$H^i$和$W^i$表示第i层激活映射的高和宽。 我们提出一种新的条件规范化方式叫做空间自适应反规范化（SPADE）。与BatchNorm相似， 激活进行通道级别的规范化，然后使用学习到的放缩和偏置因子调整。图2展示了SPADE的设计。激活在某一节点使用SPADE规范化计算公式为$(n \in N, c \in C^i, y \in H^i, x \in W^i)$：
 
