@@ -66,7 +66,9 @@ $$\sigma_c^i = \sqrt{\frac{1}{NH^iW^i}\sum_{n, y, x}((h_{n, c, y, x}^i)^2 - (\mu
  
  图4展示了我们生成器的结构， 它在上采样层中使用了几个ResNet块。使用SPADE学习所有规范化层的参数。因为每个残差块操作在不同的尺度， 我们下采样语义掩膜去匹配空间分辨率。
  
- ![](https://raw.githubusercontent.com/ShawnDong98/ShawnDong98.github.io/master/小书匠/1586139709075.png)
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617019008625.png)
+
+Figure 4： 
  
 我们用pix2pixHD中使用的相同的多尺度判决器和损失函数来训练生成器，但我们用hinge loss代替最小平方损失。 我们测试了最近在无条件GAN中使用的几个基于ResNet的判决器，但观察到相似的结果，代价是更高的GPU内存需求。 在判决器中添加SPADE也会产生相似的表现。 对于损失函数，我们观察到删除pix2pixHD损失函数中的任何损失项都会导致损害生成的结果。、
 
