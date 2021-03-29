@@ -134,7 +134,7 @@ Figure 3： MulNet(a)， GroupNet (b) 和 GroupDNet(c)。 注意 MulNet 和 Grou
 
 $$L_{full} = arg \min_G \max_D L_{GAN} + \lambda_1 L_{FM} + \lambda_2 L_P + \lambda_3 L_{KL}$$
 
-$L_{GAN}$ 是 GAN 损失的hinge版本， $L_{FM}$是真实图像和生成图像的特征匹配损失。 具体来说，我们使用多层判别器从真实和合成图像中提取特征。然后我们计算这些配对特征的 $L_1$ 距离。 相似地， $L_p$ 是用于风格迁移提出的感知损失。 使用预训练的VGG网络得到配对的中间特征图， 我们我们计算配对特征图的 $L_1$ 距离。 $L_{KL}是 KL散度， 我们设置 $\lambda_1 = 10, \lambda_2 = 10, \lambda_3=0.05$， 和SPADE相同。
+$L_{GAN}$ 是 GAN 损失的hinge版本， $L_{FM}$是真实图像和生成图像的特征匹配损失。 具体来说，我们使用多层判别器从真实和合成图像中提取特征。然后我们计算这些配对特征的 $L_1$ 距离。 相似地， $L_p$ 是用于风格迁移提出的感知损失。 使用预训练的VGG网络得到配对的中间特征图， 我们我们计算配对特征图的 $L_1$ 距离。 $L_{KL}是 KL散度， 我们设置 $\lambda_1 = 10, \lambda_2 = 10, \lambda_3=0.05$ ， 和SPADE相同。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616424144322.png)
 
