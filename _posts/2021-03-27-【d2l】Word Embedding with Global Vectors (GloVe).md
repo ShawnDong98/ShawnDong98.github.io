@@ -39,6 +39,13 @@ $$- \sum_{i \in V} x_i \sum_{j \in V} p_{ij} \log q_{ij}$$
 
 为了解决这个问题，word2vec之后的词嵌入模型GloVe \[Pennington et al.， 2014\]采用了平方损失，并在此损失的基础上对skip-gram模型进行了三处修改。
 
-- 这里， 我们使用非概率分布变量 $p_{ij}' = x_{ij}$ 以及 $q_{ij}' = exp(u_j^T v_i)$ 并 取它们的对数。因此， 我们到平方损失 $(\log p_{ij}' - \log q_{ij}')^2 = (u_j^T v_i - \log x_{ij})^2$
+- 这里， 我们使用非概率分布变量 $p_{ij}' = x_{ij}$ 以及 $q_{ij}' = exp(u_j^T v_i)$ 并 取它们的对数。因此， 我们得到平方损失 $(\log p_{ij}' - \log q_{ij}')^2 = (u_j^T v_i - \log x_{ij})^2$
 - 我们为每个词 $w_i$ 增加了两个标量： bias项 $b_i$ (对中心目标词) 和 $c_i$ (对上下文词)。
 - 用函数 $h(x_{ij})$ 替代每个 loss的权重。 权重函数 $h(x)$ 是一个区间为 $[0, 1]$ 的单调递增函数。
+
+
+因此， GloVe的目标是最小化损失函数：
+
+$$\sum_{i \in V} \sum_{j \in V} h(x_{ij}) (u_j^T v_i + b_i + c_j - \log x_{ij})^2$$
+
+
