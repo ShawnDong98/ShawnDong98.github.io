@@ -174,3 +174,74 @@ cosine sim=0.921: lovely
 cosine sim=0.893: gorgeous
 cosine sim=0.830: wonderful
 ```
+
+# Finding Analogies
+
+除了寻找同义词外，我们还可以使用预先训练的词向量来寻找词之间的类比。例如， "man" : "woman":: "son":"daughter"是一个类比的例子， "man"对应 "woman" 就像 "son" 对应 "daughter"。 寻找类比的问题可以这样定义：在类比关系中的四个词 a : b :: c : d， 给定前三个词 a, b 和 c， 我们想要找到 d。 假设对于词 $w$ 的词向量 是 $vec(w)$。 为了解决类比问题，我们需要找到与 $vec(c) + vec(b) - vec(a)$ 的结果向量最相似的词向量。
+
+```python
+def get_analogy(token_a, token_b, token_c, embed):
+    vecs = embed[[token_a, token_b, token_c]]
+    x = vecs[1] - vecs[0] + vecs[2]
+    topk, cos = knn(embed.idx_to_vec, x, 1)
+    return embed.idx_to_token[int(topk[0])]  # Remove unknown words
+```
+
+验证 “male-female” 的类比。
+
+```python
+get_analogy('man', 'woman', 'son', glove_6b50d)
+```
+
+输出：
+
+```
+'daughter'
+```
+
+"Capital-country" 类比： "beijing" 对 “china”， "tokyo" 对 什么？ 答案应该是 “japan”。
+
+```python
+get_analogy('beijing', 'china', 'tokyo', glove_6b50d)
+```
+
+输出：
+
+```
+'japan'
+```
+
+"Adjective-superlative adjective" 类比： “bad” 对应 “worst”， “big” 对应 什么？ 答案应该是 "biggest"。
+
+```python
+get_analogy('bad', 'worst', 'big', glove_6b50d)
+```
+
+输出：
+
+```
+'biggest'
+```
+
+"Present tense verb-past tense verb" 类比： “do” 对应 “did”， “go” 对应 什么？ 答案应该是 "went"。
+
+```python
+get_analogy('do', 'did', 'go', glove_6b50d)
+```
+
+输出：
+
+```
+'went'
+```
+
+# Summary
+
+- 在大规模语料库上预先训练的词向量通常可以用于下游的自然语言处理任务。
+- 我们可以使用预先训练的词向量来寻找同义词和类比。
+
+# Exercises
+
+1. 使用 TokenEmbedding('wiki.en') 测试 fastText 的结果。
+2. 如果词典非常大，我们怎么能加速查找同义词和类比？
+
