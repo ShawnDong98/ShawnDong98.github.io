@@ -138,4 +138,55 @@ print(symbols)
 ```
 
 
+对于同样的数据集 在词典 raw_token_freqs 中的 指定键值， 每个在数据集中的词被分割成 子词 "fast_"， "fast"， "er_", "tall_"， 和 "tall" ， 作为字节对编码算法的结果。 例如， 词 "faster_" 和 "taller_" 分别被分割成 "fast er_" 和 "tall er_"。
 
+
+```python
+print(list(token_freqs.keys()))
+```
+
+输出：
+
+```
+['fast_', 'fast er_', 'tall_', 'tall er_']
+```
+
+注意，字节对编码的结果取决于所使用的数据集。我们也可以使用从一个数据集学习到的子词来分割另一个数据集的词。作为一种贪婪的方法，下面的 segment_BPE 函数试图将单词从输入参数 symbols 中分割成可能最长的子单词。
+
+```python
+def segment_BPE(tokens, symbols):
+    outputs = []
+    for token in tokens:
+        start, end = 0, len(token)
+        cur_output = []
+
+        while start < len(token) and start < end:
+            #--- 如果从start到end都在symbols中。 那么将它加入output ---
+            #--- 如果不在symbols中， end指针往前走， 一旦符合start到end都在symbols， 那么start指针指向end， end指针指向最后 ---
+            if token[start:end] in symbols:
+                cur_output.append(token[start:end])
+                start = end
+                end = len(token)
+            else:
+                end -= 1
+        #--- 如果end一直走到了start前面， 在输出里面加入 UNK ---
+        if start < len(token):
+            cur_output.append('[UNK]')
+        outputs.append(' '.join(cur_output))
+    return outputs
+```
+
+
+接下来， 我们使用从先前的数据集中学习到的列表 symbols 中的子词， 对表示另一个数据集的 tokens 进行分割。
+
+
+```python
+tokens = ['tallest_', 'fatter_']
+print(segment_BPE(tokens, symbols))
+```
+
+输出：
+
+```
+['tall e s t _', 'fa t t er_']
+```
