@@ -18,7 +18,7 @@ tags:
 
 # fastText
 
-在word2vec中，我们没有直接使用形态学信息。在skip-gram模型和 continuous bag-of-words 模型中，我们都使用不同的向量来表示不同形式的词。例如，"dog" 和 "dogs" 用两个不同的向量来表示，而这两个向量之间的关系在模型中并没有直接表示。有鉴于此，fastText [[Bojanowski et al.， 2017]](http://d2l.ai/chapter_references/zreferences.html#bojanowski-grave-joulin-ea-2017)提出了subword embedding 的方法，试图在word2vec的skip-gram模型中引入形态学信息。
+在word2vec中，我们没有直接使用词法信息。在skip-gram模型和 continuous bag-of-words 模型中，我们都使用不同的向量来表示不同形式的词。例如，"dog" 和 "dogs" 用两个不同的向量来表示，而这两个向量之间的关系在模型中并没有直接表示。有鉴于此，fastText [[Bojanowski et al.， 2017]](http://d2l.ai/chapter_references/zreferences.html#bojanowski-grave-joulin-ea-2017)提出了subword embedding 的方法，试图在word2vec的skip-gram模型中引入词法信息。
 
 在fastText中，每个中心词都表示为子词的集合。下面我们以 "where" 为例来理解子词是如何构成的。首先，我们在单词的开头和结尾添加特殊字符 "<" 和 ">" ，以区分作为前缀和后缀的子词。然然后，我们将该单词视为一个字符序列以提取 𝑛-grams。。 例如， 当 $n = 3$， 我们能够得到所有长度为3的子词：
 
@@ -190,3 +190,18 @@ print(segment_BPE(tokens, symbols))
 ```
 ['tall e s t _', 'fa t t er_']
 ```
+
+
+# Summary
+
+- FastText提出一种子词嵌入的方法。 基于在word2vec中的skip-gram模型， 它表示 中心词向量 为 词的子词向量的和。
+- 子词的嵌入利用了词法的原理，通常可以提高不常见词的表征质量。
+- 字节对编码对训练数据集进行统计分析，以发现单词内的公共符号。作为一种贪婪的方法，字节对编码迭代地合并最频繁的连续符号对。
+
+
+# Exercises
+
+1. 当有很多子词(例如， 6个词 在英语中 可以有 $3 \times 10^8$ 种组合)， 会出现什么问题？ 你能想到什么方法解决他们吗？提示:请参考fastText论文3.2节的结尾部分 [[Bojanowski et al., 2017]](http://d2l.ai/chapter_references/zreferences.html#bojanowski-grave-joulin-ea-2017)。
+2. 如何基于 continuous bag-of-words 模型 设计一个 子词嵌入 模型？
+3. 为了得到大小为 $m$ 的词典， 当初始 symbol 词典大小为 $n$  我们需要多少合并操作？
+4. 如何拓展字节对编码的思想到提取阶段？
