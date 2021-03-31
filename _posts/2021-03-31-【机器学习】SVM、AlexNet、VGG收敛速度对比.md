@@ -28,7 +28,43 @@ mnist
 
 把下载好的mnist-original.mat放在datasets\mldata下
 
-## 损失函数
+
+拆分数据集
+
+```python
+x,test_x,y,test_y = train_test_split(mnist['data'],mnist['target'],test_size=1/7,random_state=40)
+x.shape
+```
+
+## 模型
+
+```python
+model = svm.LinearSVC()
+```
+
+训练：
+
+```python
+model.fit(x, y)
+```
+
+
+预测：
+
+```python
+z = model.predict(test_x)
+```
+
+准确率：
+
+```python
+print('准确率:',np.sum(z==test_y)/z.size)
+```
+
+
+## 损失
+
+
 
 
 # AlexNet
