@@ -3058,3 +3058,4 @@ pip install -r requirements.txt
 68. [Python中sys.stdout.flush() 的作用](https://blog.csdn.net/zh54b5n64vn64654/article/details/89079164)
 69. [Python choices()函数详解、random模块下的常用函数](https://blog.csdn.net/ckk727/article/details/99548223)
 70. [Python系列之 - Collections系列](https://blog.csdn.net/songfreeman/article/details/50502194)
+71. [Python——详解collections工具库](https://www.zhihu.com/people/su-xiao-bai-3/posts)
