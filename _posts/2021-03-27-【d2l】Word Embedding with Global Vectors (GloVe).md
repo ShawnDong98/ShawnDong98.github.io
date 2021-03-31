@@ -56,7 +56,7 @@ $$\sum_{i \in V} \sum_{j \in V} h(x_{ij}) (u_j^T v_i + b_i + c_j - \log x_{ij})^
 
 # Understanding GloVe from Conditional Probability Ratios
 
-我们也可以从另一个角度尝试理解 GloVe 词嵌入。我们将会继续沿用前面部分的符号， $P(w_j \mid w_i)$ 表示在数据集中 中心目标词 $w_i$ 生成 上下文词 $w_j$ 的条件概率， 并且它被记录为 $p_{ij}$。来自大语料库的一个真实样本， 这里我们有以下两组条件概率，以ice和steam为中心目标词以及它们之间的比率：
+我们也可以从另一个角度尝试理解 GloVe 词嵌入。我们将会继续沿用前面部分的符号， $P(w_j \mid w_i)$ 表示在数据集中 中心目标词 $w_i$ 生成 上下文词 $w_j$ 的条件概率， 并且它被记录为 $p_{ij}$。这里是来自语料库的一个真实样本， 我们有以下两组条件概率，以ice和steam为中心目标词以及它们之间的比率：
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617033740245.png)
 
