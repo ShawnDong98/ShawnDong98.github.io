@@ -100,4 +100,27 @@ glove_6b50d.token_to_idx['beautiful'], glove_6b50d.idx_to_token[3367]
 
 这里，我们重新实现了第14.1节中介绍的通过余弦相似度搜索同义词的算法。
 
-当寻找近义词时 为了复用 k近邻 算法的逻辑， 我们将这部分逻辑单独封装在 knn( k - nearest neighbors ) 函数中
+当寻找近义词时 为了复用 k近邻 算法的逻辑， 我们将这部分逻辑单独封装在 knn( k - nearest neighbors ) 函数中。
+
+```python
+def knn(W, x, k):
+    # The added 1e-9 is for numerical stability
+    cos = torch.mv(W, x.reshape(
+        -1,)) / (torch.sqrt(torch.sum(W * W, axis=1) + 1e-9) * torch.sqrt(
+            (x * x).sum()))
+    _, topk = torch.topk(cos, k=k)
+    return topk, [cos[int(i)] for i in topk]
+```
+
+
+$$\frac{Wx}{\sqrt{\sum\limits_{row} W^2} + 10^{-9}} $$
+
+然后，我们通过预训练词向量实例 embed 来搜索同义词。
+
+
+```python
+def get_similar_tokens(query_token, k, embed):
+    topk, cos = knn(embed.idx_to_vec, embed[[query_token]], k + 1)
+    for i, c in zip(topk[1:], cos[1:]):  # Remove input words
+        print(f'cosine sim={float(c):.3f}: {embed.idx_to_token[int(i)]}')
+```
