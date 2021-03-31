@@ -37,3 +37,46 @@ fastText过程的其余部分与skip-gram模型一致，因此这里不再重复
 # Byte Pair Encoding
 
 在fastText中，所有提取的子词都必须是指定的长度，比如 3到 6，因此词典大小不能预定义。为了在固定大小的词汇表中允许可变长度的子词，我们可以使用字节对编码(byte pair encoding, BPE)压缩算法来提取子词[[Sennrich et al.， 2015]](http://d2l.ai/chapter_references/zreferences.html#sennrich-haddow-birch-2015)。
+
+
+字节对编码对训练数据集执行统计分析，以发现单词内的公共符号，例如任意长度的连续字符。从长度为 1 的符号开始，字节对编码迭代地合并最常见的连续符号对，以产生新的更长的符号。注意，为了提高效率，不考虑跨越单词边界的配对。最后，我们可以使用这些符号作为子词来分割单词。字节对编码及其变体已被用于流行的自然语言处理预训练模型的输入表示，如GPT-2 [[Radford et .， 2019]](http://d2l.ai/chapter_references/zreferences.html#radford-wu-child-ea-2019)和RoBERTa [[Liu et .， 2019]](http://d2l.ai/chapter_references/zreferences.html#liu-ott-goyal-ea-2019)。下面，我们将说明字节对编码的工作原理。
+
+```python
+import collections
+
+symbols = [
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '_', '[UNK]']
+```
+
+由于我们不考虑跨越单词边界的符号对，我们只需要一个词典 raw_token_freqs， 它在一个数据集中将词与频率(出现的次数)映射起来。 注意特殊符号 '\_' 倍添加到每个词后 以便 我们可以轻易地从一个但词序列 (例如，"a_tall er_man")恢复一个词序列 (例如， "a taller man")。 因为我们从只有单个字符和特殊字符的词典中开始合并过程， 在每个词的每对连续字符之间插入空格 (词典的键值 token_freqs)。 换句话说，空格是单词中符号之间的分隔符。
+
+```python
+raw_token_freqs = {'fast_': 4, 'faster_': 3, 'tall_': 5, 'taller_': 4}
+token_freqs = {}
+for token, freq in raw_token_freqs.items():
+    token_freqs[' '.join(list(token))] = raw_token_freqs[token]
+token_freqs
+```
+
+输出 
+
+```
+{'f a s t _': 4, 'f a s t e r _': 3, 't a l l _': 5, 't a l l e r _': 4}
+```
+
+我们定义以下 get_max_frequency_pair 函数，它返回一个单词中最频繁的连续符号对，其中单词来自输入字典 token_freqs 的键值。
+
+```python
+def get_max_freq_pair(token_freqs):
+    pairs = collections.defaultdict(int)
+    for token, freq in token_freqs.items():
+        #--- 将每个token拆成一个list ---
+        symbols = token.split()
+        for i in range(len(symbols) - 1):
+            #--- key 为 symbols[i], symbols[i + 1] ---
+            #--- value 为 symbols[i], symbols[i + 1] 组合 出现的频率 ---
+            pairs[symbols[i], symbols[i + 1]] += freq
+    return max(pairs, key=pairs.get)
+```
+
