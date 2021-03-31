@@ -155,6 +155,10 @@ str.strip([chars]);
 
 - chars -- 移除字符串头尾指定的字符序列。
 
+### rstrip
+
+Python rstrip() 删除 string 字符串末尾的指定字符（默认为空格）
+
 ## map
 
 > map（func, *iterables）:第一个是函数，第二个是可迭代序列
