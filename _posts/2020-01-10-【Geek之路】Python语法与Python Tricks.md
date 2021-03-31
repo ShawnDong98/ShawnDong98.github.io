@@ -707,48 +707,95 @@ t1()
 ```
 
 
-## Python中collections模块
+## collections
 
-这个模块实现了特定目标的容器，以提供Python标准内建容器 dict、list、set、tuple 的替代选择。
+collections的常用类型有：
 
-- Counter：字典的子类，提供了可哈希对象的计数功能
-- defaultdict：字典的子类，提供了一个工厂函数，为字典查询提供了默认值
-- OrderedDict：字典的子类，保留了他们被添加的顺序
-- namedtuple：创建命名元组子类的工厂函数
-- deque：类似列表容器，实现了在两端快速添加(append)和弹出(pop)
-- ChainMap：类似字典的容器类，将多个映射集合到一个视图里面
+- 计数器(Counter)
+- 双向队列(deque)
+- 默认字典(defaultdict)
+- 有序字典(OrderedDict)
+- 可命名元组(namedtuple)
 
-**defaultdict**
+### Counter
 
-defaultdict的一个典型用法是使用其中一种内置类型(如str、int、list或dict)作为默认工厂，因为这些内置类型在没有参数调用时返回空类型。
-
-使用int作为default_factory的例子：
+Counter 作为字典(dict)的一个子类用来进行hashtable计数，将元素进行数量统计、计数后返回一个字典,键值为元素：值为元素个数
 
 ```python
->>> from collections import defaultdict
->>> fruit = defaultdict(int)
->>> fruit['apple'] += 2 
->>> fruit
-defaultdict(<class 'int'>, {'apple': 2})
->>> fruit
-defaultdict(<class 'int'>, {'apple': 2})
->>> fruit['banana']  # 没有对象时，返回0
-0
->>> fruit
-defaultdict(<class 'int'>, {'apple': 2, 'banana': 0})
+s = 'abcbcaccbbad'
+l = ['a','b','c','c','a','b','b']
+d = {'2': 3, '3': 2, '17': 2}
+# Counter 获取各元素的个数,返回字典
+print(Counter(s))   # Counter({'c': 4, 'b': 4, 'a': 3})
+print(Counter(l))   # Counter({'b': 3, 'a': 2, 'c': 2})
+print(Counter(d))   # Counter({3: 3, 2: 2, 17: 1})
 ```
-使用list作为default_factory的例子：
+
+**most_common**
+
+most_common(int) 按照元素出现的次数进行从高到低的排序,返回前int个元素的字典
 
 ```python
->>> s = [('NC', 'Raleigh'), ('VA', 'Richmond'), ('WA', 'Seattle'), ('NC', 'Asheville')]
->>> d = collections.defaultdict(list)
->>> for k,v in s:
-...      d[k].append(v)
-... 
->>> d
-defaultdict(<class 'list'>, {'NC': ['Raleigh', 'Asheville'], 'VA': ['Richmond'], 'WA': ['Seattle']})
-
+# most_common(int) 按照元素出现的次数进行从高到低的排序,返回前int个元素的字典
+m1 = Counter(s)
+print(m1)                 # Counter({'c': 4, 'b': 4, 'a': 3, 'd': 1})
+print(m1.most_common(3))  # [('c', 4), ('b', 4), ('a', 3)]
 ```
+
+**elements**
+
+elements 返回经过计数器Counter后的元素,返回的是一个迭代器
+
+```python
+# elements 返回经过计数器Counter后的元素,返回的是一个迭代器
+e1 = Counter(s)
+print(''.join(sorted(e1.elements())))  # aaabbbbcccc
+e2 = Counter(d)
+print(sorted(e2.elements()))  # ['17', '17', '2', '2', '2', '3', '3'] 字典返回value个key
+```
+
+**update**
+
+update 和set集合的update一样,对集合进行并集更新
+
+```python
+# update 和set集合的update一样,对集合进行并集更新
+u1 = Counter(s)
+u1.update('123a')
+print(u1)  # Counter({'a': 4, 'c': 4, 'b': 4, '1': 1, '3': 1, '2': 1})
+```
+
+
+**substract**
+
+substract 和update类似，只是update是做加法，substract做减法,从另一个集合中减去本集合的元素
+
+```python
+# substract 和update类似，只是update是做加法，substract做减法,从另一个集合中减去本集合的元素，
+sub1 = 'which'
+sub2 = 'whatw'
+subset = Counter(sub1)
+print(subset)   # Counter({'h': 2, 'i': 1, 'c': 1, 'w': 1})
+subset.subtract(Counter(sub2))
+print(subset)   # Counter({'c': 1, 'i': 1, 'h': 1, 'a': -1, 't': -1, 'w': -1}) sub1中的h变为2，sub2中h为1,减完以后为1
+```
+
+**iteritems**
+
+与字典dict的items类似，返回由Counter生成的字典的所有item,只是在Counter中此方法返回的是一个迭代器,而不是列表
+
+**iterkeys**
+
+与字典dict的keys方法类似，返回由Counter生成的字典的所有key,只是在Counter中此方法返回的是一个迭代器,而不是列表
+
+**itervalues**
+
+与字典dict的values方法类似，返回由Counter生成的字典的所有value,只是在Counter中此方法返回的是一个迭代器,而不是列表
+
+
+### deque
+
+### defaultdict
 
 ### OrderedDict
 
@@ -790,6 +837,12 @@ c C
 ```
 
 可以看到，同样是保存了ABC等几个元素，但是使用OrderedDict会根据放入元素的先后顺序进行排序。所以输出的值是排好序的。
+
+### nametuple
+
+标准的tuple类型使用数字索引来访问元素,
+
+
 
 ## 介绍python函数传参
 
@@ -2940,3 +2993,4 @@ pip install -r requirements.txt
 67. [Numpy数组索引为-1和None](https://www.cnblogs.com/sgdd123/p/7603004.html)
 68. [Python中sys.stdout.flush() 的作用](https://blog.csdn.net/zh54b5n64vn64654/article/details/89079164)
 69. [Python choices()函数详解、random模块下的常用函数](https://blog.csdn.net/ckk727/article/details/99548223)
+70. [Python系列之 - Collections系列](https://blog.csdn.net/songfreeman/article/details/50502194)
