@@ -132,3 +132,45 @@ def get_similar_tokens(query_token, k, embed):
     for i, c in zip(topk[1:], cos[1:]):  # Remove input words
         print(f'cosine sim={float(c):.3f}: {embed.idx_to_token[int(i)]}')
 ```
+
+预训练词向量实例 glove_6b50d 的词典 已经创建了包含 40 0000 个词 和 一个特殊的位置 token。 排除输入的单词和未知的单词，我们搜索三个单词在意义上与chip最相似的单词。
+
+
+```python
+get_similar_tokens('chip', 3, glove_6b50d)
+```
+
+输出：
+
+```
+cosine sim=0.856: chips
+cosine sim=0.749: intel
+cosine sim=0.749: electronics
+```
+
+接下来，我们寻找baby和beautiful的同义词。
+
+```python
+get_similar_tokens('baby', 3, glove_6b50d)
+```
+
+输出：
+
+```
+cosine sim=0.839: babies
+cosine sim=0.800: boy
+cosine sim=0.792: girl
+```
+
+
+```python
+get_similar_tokens('beautiful', 3, glove_6b50d)
+```
+
+输出：
+
+```
+cosine sim=0.921: lovely
+cosine sim=0.893: gorgeous
+cosine sim=0.830: wonderful
+```
