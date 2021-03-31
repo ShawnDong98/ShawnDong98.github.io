@@ -105,6 +105,10 @@ glove_6b50d.token_to_idx['beautiful'], glove_6b50d.idx_to_token[3367]
 ```python
 def knn(W, x, k):
     # The added 1e-9 is for numerical stability
+    #--- x.reshape(-1, ) 等于将x转置， 行向量变列向量---
+    #--- torch.sqrt(torch.sum(W * W, axis=1) + 1e-9) 为 词典向量的模 ---
+    #--- torch.sqrt((x * x).sum()) 为 query 向量的模 ---
+    #--- torch.sum(W * W, axis=1)： 在列维度求和， 也就是对行求和 ---
     cos = torch.mv(W, x.reshape(
         -1,)) / (torch.sqrt(torch.sum(W * W, axis=1) + 1e-9) * torch.sqrt(
             (x * x).sum()))
