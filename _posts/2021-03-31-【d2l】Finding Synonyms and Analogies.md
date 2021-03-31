@@ -24,4 +24,70 @@ from d2l import torch as d2l
 
 # Using Pretrained Word Vectors
 
-下面列出了 预训练的维度为 50, 100 和 300 的 GloVe  embeddings， 它可以从 [GloVe website](https://nlp.stanford.edu/projects/glove/) 下载。 预先训练的fastText embeddings可以在多种语言中使用。这里我们使用一个英语版本(300维的 "wiki.en") ， 它可以从 [fastText website](https://fasttext.cc/)下载。 
+下面列出了 预训练的维度为 50, 100 和 300 的 GloVe  embeddings， 它可以从 [GloVe website](https://nlp.stanford.edu/projects/glove/) 下载。 预先训练的fastText embeddings可以在多种语言中使用。这里我们使用一个英语版本(300维的 "wiki.en") ， 它可以从 [fastText website](https://fasttext.cc/)下载。
+
+
+```python
+#@save
+d2l.DATA_HUB['glove.6b.50d'] = (d2l.DATA_URL + 'glove.6B.50d.zip',
+                                '0b8703943ccdb6eb788e6f091b8946e82231bc4d')
+
+#@save
+d2l.DATA_HUB['glove.6b.100d'] = (d2l.DATA_URL + 'glove.6B.100d.zip',
+                                 'cd43bfb07e44e6f27cbcc7bc9ae3d80284fdaf5a')
+
+#@save
+d2l.DATA_HUB['glove.42b.300d'] = (d2l.DATA_URL + 'glove.42B.300d.zip',
+                                  'b5116e234e9eb9076672cfeabf5469f3eec904fa')
+
+#@save
+d2l.DATA_HUB['wiki.en'] = (d2l.DATA_URL + 'wiki.en.zip',
+                           'c1816da3821ae9f43899be655002f6c723e91b88')
+```
+
+我们定义了下面的 TokenEmbedding 类 来加载 预训练 的  Glove 和 fastText embeddings。 
+
+
+```python
+
+```
+
+
+接下来，我们在维基百科的一个子集上使用预训练的50维 Glove embeddings。当我们第一次创建一个预先训练的词嵌入实例时，相应的词嵌入会自动下载。
+
+```python
+glove_6b50d = TokenEmbedding('glove.6b.50d')
+```
+
+输出：
+
+```
+Downloading ../data/glove.6B.50d.zip from http://d2l-data.s3-accelerate.amazonaws.com/glove.6B.50d.zip...
+```
+
+输出词典大小。 词典包含 40 0000 个词 以及 一个特殊的 未知 token。 
+
+```
+len(glove_6b50d)
+```
+
+输出：
+
+```
+400001
+```
+
+我们可以用一个词在字典中得到它的索引，也可以从它的索引中得到这个词。
+
+
+```python
+glove_6b50d.token_to_idx['beautiful'], glove_6b50d.idx_to_token[3367]
+```
+
+输出：
+
+```
+(3367, 'beautiful')
+```
+
+
