@@ -96,7 +96,45 @@ def merge_symbols(max_freq_pair, token_freqs, symbols):
         new_token_freqs[new_token] = token_freqs[token]
 
     return new_token_freqs
+```
 
+
+现在我们在字典 token_freqs 的 key 上迭代地执行字节对编码算法。 在第一次迭代中，最常见的连续符号对是't'和'a'，因此字节对编码将它们合并产生一个新的符号'ta'。在第一次迭代中，最常见的连续符号对是't'和'a'，因此字节对编码将它们合并产生一个新的符号'ta'。在第二次迭代中，字节对编码继续合并'ta'和'l'以产生另一个新符号'tal'。
+
+
+```python
+num_merges = 10
+for i in range(num_merges):
+    max_freq_pair = get_max_freq_pair(token_freqs)
+    token_freqs = merge_symbols(max_freq_pair, token_freqs, symbols)
+    print(f'merge #{i + 1}:', max_freq_pair)
+```
+
+输出：
+
+```
+merge #1: ('t', 'a')
+merge #2: ('ta', 'l')
+merge #3: ('tal', 'l')
+merge #4: ('f', 'a')
+merge #5: ('fa', 's')
+merge #6: ('fas', 't')
+merge #7: ('e', 'r')
+merge #8: ('er', '_')
+merge #9: ('tall', '_')
+merge #10: ('fast', '_')
+```
+
+经过10次字节对编码的迭代，我们可以看到列表符号现在包含了10多个从其他符号迭代合并而来的符号。
+
+```python
+print(symbols)
+```
+
+输出：
+
+```
+['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '_', '[UNK]', 'ta', 'tal', 'tall', 'fa', 'fas', 'fast', 'er', 'er_', 'tall_', 'fast_']
 ```
 
 
