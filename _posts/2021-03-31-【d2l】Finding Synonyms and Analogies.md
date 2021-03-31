@@ -91,3 +91,13 @@ glove_6b50d.token_to_idx['beautiful'], glove_6b50d.idx_to_token[3367]
 ```
 
 
+# Applying Pretrained Word Vectors
+
+下面，我们以GloVe为例，演示预训练词向量的应用。
+
+
+## Finding Synonyms
+
+这里，我们重新实现了第14.1节中介绍的通过余弦相似度搜索同义词的算法。
+
+当寻找近义词时 为了复用 k近邻 算法的逻辑， 我们将这部分逻辑单独封装在 knn( k -nearest neighbors ) 函数中
