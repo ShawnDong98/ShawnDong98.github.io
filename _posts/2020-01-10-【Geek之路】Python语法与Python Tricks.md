@@ -813,6 +813,54 @@ print(subset)   # Counter({'c': 1, 'i': 1, 'h': 1, 'a': -1, 't': -1, 'w': -1}) s
 
 除了在Key不存在时返回默认值，defaultdict的其他行为跟dict是完全一样的。
 
+
+dict当中为我们提供了带默认值的get方法。比如，我们可以写成：
+
+```python
+return dict.get(key, None)
+```
+
+当key不在dict当中存在的时候，会自动返回我们设置的默认值。这个省去了很多麻烦的判断，但是在一些特殊情况下仍然存在一点问题。举个例子，比如当key存在重复，我们希望将key相同的value存进一个list当中，而不是只保留一个。这种情况下写成代码就会比较复杂：
+
+```python
+data = [(1, 3), (2, 1), (1, 4), (2, 5), (3, 7)]
+d = {}
+for k, v in data:
+    if k in d:
+        d[k].append(v)
+    else:
+        d[k] = [v]
+```
+
+由于dict的value是一个list，所以我们还是需要判断是否为空，不能直接使用默认值，间接操作当然可以，但是还是不够简单：
+
+
+```python
+for k, v in data:
+    cur = d.get(k, [])
+    cur.append(v)
+    d[k] = cur
+```
+
+这和使用if区别并不大，为了完美解决这个问题，我们可以使用collections当中的defaultdict：
+
+```python
+from collections import defaultdict
+d = defaultdict(list)
+
+for k, v in data:
+    d[k].append(v)
+```
+
+使用defaultdict之后，如果key不存在，容器会自动返回我们预先设置的默认值。需要注意的是defaultdict传入的默认值可以是一个类型也可以是一个方法。如果我们传入int，那么默认值会被设置成int()的结果，也就是0，如果我们想要自定义或者修改，我们可以传入一个方法，比如：
+
+```python
+d = defaultdict(lambda: 3)
+
+for k, v in data:
+    d[k] += v
+```
+
 ### OrderedDict
 
 python中的字典是无序的，因为它是按照hash来存储的。
