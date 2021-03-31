@@ -80,3 +80,24 @@ def get_max_freq_pair(token_freqs):
     return max(pairs, key=pairs.get)
 ```
 
+作为一种基于连续符号频率的贪婪方法，字节对编码将使用下面的 merge_symbols 函数将最频繁的一对连续符号合并生成新的符号。
+
+```python
+def merge_symbols(max_freq_pair, token_freqs, symbols):
+    #--- 将两个字符的tuple转成字符串 ---
+    #--- 在函数改变list， 会改变原始list ---
+    symbols.append(''.join(max_freq_pair))
+    new_token_freqs = dict()
+    for token, freq in token_freqs.items():
+        #--- 将 max_freq_pair 的两个符号合并成一个符号 ---
+        new_token = token.replace(' '.join(max_freq_pair),
+                                  ''.join(max_freq_pair))
+        #--- 将 原两个符号的频率 赋值给 新的 max_freq_pair 的两个符号合并成一个符号---
+        new_token_freqs[new_token] = token_freqs[token]
+
+    return new_token_freqs
+
+```
+
+
+
