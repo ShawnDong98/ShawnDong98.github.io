@@ -18,7 +18,7 @@ $$q_{ij} = \frac{exp(u_j^T v_i)}{\sum_{k \in V} exp(u_k^T v_i)}$$
 
 其中 $v_i$ 和 $u_i$ 分别是词  索引为 $i$ 的中心词 $w_i$ 和 上下文词 的向量表示， 并且 $V = \{0, 1, ..., \mid V \mid - 1\}$是词典的索引集合。 
 
-对于词$w_i$， 它可能在数据集中出现多次。我们收集 当 $w_i$ 为中心词时 的 所有上下文词， 表示为 multiset $C_i$。 在一个multiset中，一个元素的数目称为该元素的multiplicity。比如， 假设词 $w_i$ 在数据集中出现两次： 当这两个 $w_i$ 变成中心词时， 上下文窗口包含上下文词的索引为 2, 1, 5, 2 和 2, 3, 2 , 1。那么， numtiset $C_i = \{1, 1, 2, 2, 2, 2, 3, 5\}$， 其中元素 1 的 multiplicity 为 2, 元素 2 的 multiplicity 为 4， 元素 3 和 元素 5 的multiplicity都为1。 将 multiset $C_i$ 中的 元素$j$ 的multiplicity 表示为 $x_{ij}$： 在整个数据集中 对于 中心词 $w_i$ 的 所有上下文词， 词 $w_j$ 的数量。 最后， skip-gram 模型的损失函数可以被表示为一种不同的方式：
+对于词$w_i$， 它可能在数据集中出现多次。我们收集 当 $w_i$ 为中心词时 的 所有上下文词， 表示为 multiset $C_i$。 在一个multiset中，一个元素出现的数目称为该元素的multiplicity。比如， 假设词 $w_i$ 在数据集中出现两次： 当这两个 $w_i$ 变成中心词时， 上下文窗口包含上下文词的索引为 2, 1, 5, 2 和 2, 3, 2 , 1。那么， numtiset $C_i = \{1, 1, 2, 2, 2, 2, 3, 5\}$， 其中元素 1 的 multiplicity 为 2, 元素 2 的 multiplicity 为 4， 元素 3 和 元素 5 的multiplicity都为1。 将 multiset $C_i$ 中的 元素$j$ 的multiplicity 表示为 $x_{ij}$： 在整个数据集中 对于 中心词 $w_i$ 的 所有上下文词， 词 $w_j$ 的数量。 最后， skip-gram 模型的损失函数可以被表示为一种不同的方式：
 
 $$- \sum_{i \in V} \sum_{j \in V} x_{ij} \log q_{ij}$$
 
