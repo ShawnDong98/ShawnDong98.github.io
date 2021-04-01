@@ -12,7 +12,7 @@ tags:
     - NLP
 ---
 
-在第14.4节中，我们在小规模数据集上训练了word2vec词嵌入模型，并使用词向量的余弦相似度搜索同义词。在实践中，在大规模语料库上预训练的词向量通常可以应用于下游的自然语言处理任务。本节将演示如何使用这些预先训练的词向量来查找同义词和类比词。我们将在后续章节中继续应用预先训练好的词向量。
+在第14.4节中，我们在小规模数据集上训练了word2vec词嵌入模型，并使用词向量的余弦相似度搜索同义词。在实践中，在大规模语料库上预训练的词向量通常可以应用于下游的自然语言处理任务。本节将演示如何使用这些预训练的词向量来查找同义词和类比词。我们将在后续章节中继续应用预训练好的词向量。
 
 
 ```python
@@ -24,7 +24,7 @@ from d2l import torch as d2l
 
 # Using Pretrained Word Vectors
 
-下面列出了 预训练的维度为 50, 100 和 300 的 GloVe  embeddings， 它可以从 [GloVe website](https://nlp.stanford.edu/projects/glove/) 下载。 预先训练的fastText embeddings可以在多种语言中使用。这里我们使用一个英语版本(300维的 "wiki.en") ， 它可以从 [fastText website](https://fasttext.cc/)下载。
+下面列出了 预训练的维度为 50, 100 和 300 的 GloVe  embeddings， 它可以从 [GloVe website](https://nlp.stanford.edu/projects/glove/) 下载。 预训练的fastText embeddings可以在多种语言中使用。这里我们使用一个英语版本(300维的 "wiki.en") ， 它可以从 [fastText website](https://fasttext.cc/)下载。
 
 
 ```python
@@ -53,7 +53,7 @@ d2l.DATA_HUB['wiki.en'] = (d2l.DATA_URL + 'wiki.en.zip',
 ```
 
 
-接下来，我们在维基百科的一个子集上使用预训练的50维 Glove embeddings。当我们第一次创建一个预先训练的词嵌入实例时，相应的词嵌入会自动下载。
+接下来，我们在维基百科的一个子集上使用预训练的50维 Glove embeddings。当我们第一次创建一个预训练的词嵌入实例时，相应的词嵌入会自动下载。
 
 ```python
 glove_6b50d = TokenEmbedding('glove.6b.50d')
@@ -177,7 +177,7 @@ cosine sim=0.830: wonderful
 
 # Finding Analogies
 
-除了寻找同义词外，我们还可以使用预先训练的词向量来寻找词之间的类比。例如， "man" : "woman":: "son":"daughter"是一个类比的例子， "man"对应 "woman" 就像 "son" 对应 "daughter"。 寻找类比的问题可以这样定义：在类比关系中的四个词 a : b :: c : d， 给定前三个词 a, b 和 c， 我们想要找到 d。 假设对于词 $w$ 的词向量 是 $vec(w)$。 为了解决类比问题，我们需要找到与 $vec(c) + vec(b) - vec(a)$ 的结果向量最相似的词向量。
+除了寻找同义词外，我们还可以使用预训练的词向量来寻找词之间的类比。例如， "man" : "woman":: "son":"daughter"是一个类比的例子， "man"对应 "woman" 就像 "son" 对应 "daughter"。 寻找类比的问题可以这样定义：在类比关系中的四个词 a : b :: c : d， 给定前三个词 a, b 和 c， 我们想要找到 d。 假设对于词 $w$ 的词向量 是 $vec(w)$。 为了解决类比问题，我们需要找到与 $vec(c) + vec(b) - vec(a)$ 的结果向量最相似的词向量。
 
 ```python
 def get_analogy(token_a, token_b, token_c, embed):
@@ -237,8 +237,8 @@ get_analogy('do', 'did', 'go', glove_6b50d)
 
 # Summary
 
-- 在大规模语料库上预先训练的词向量通常可以用于下游的自然语言处理任务。
-- 我们可以使用预先训练的词向量来寻找同义词和类比。
+- 在大规模语料库上预训练的词向量通常可以用于下游的自然语言处理任务。
+- 我们可以使用预训练的词向量来寻找同义词和类比。
 
 # Exercises
 
