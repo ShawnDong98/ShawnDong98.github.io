@@ -384,7 +384,7 @@ class LitMNIST(LightningModule):
 
 同样，这是相同的PyTorch代码，只是它是由LightningModule组织的。
 
-#### Logging
+##### Logging
 
 使用我们最喜欢的logger Tensorboard 记录， 使用 log() 方法， 它可以在 LightningModule 的任意方法中调用。 
 
@@ -429,7 +429,7 @@ tensorboard --logdir ./lightning_logs
 
 但您也可以使用我们支持的任何其他记录器。
 
-#### Train on CPU
+##### Train on CPU
 
 ```python
 from pytorch_lightning import Trainer
@@ -443,7 +443,7 @@ trainer.fit(model, train_loader)
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617439271617.png)
 
-#### Train on GPU
+##### Train on GPU
 
 
 但美妙之处在于你用trainer flag 所能做到的所有神奇之处。例如，在GPU上运行这个模型
@@ -457,7 +457,7 @@ trainer.fit(model, train_loader)
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617439341921.png)
 
 
-#### Train on Multi-GPU
+##### Train on Multi-GPU
 
 
 或者你也可以在多个gpu上训练。
@@ -480,6 +480,268 @@ trainer.fit(model, train_loader)
 
 详情参见： [分布式计算手册](https://pytorch-lightning.readthedocs.io/en/latest/advanced/multi_gpu.html)
 
+#### Hyperparameters
+
+Lightning拥有与命令行ArgumentParser无缝交互的程序，并与您选择的超参数优化框架配合得很好。
+
+##### ArgumentParser
+
+Lightning的设计是为了增强Python内置ArgumentParser的很多功能
+
+```python
+from argparse import ArgumentParser
+parser = ArgumentParser()
+parser.add_argument('--layer_1_dim', type=int, default=128)
+args = parser.parse_args()
+```
+
+
+这允许你像这样调用你的程序
+
+```python
+python trainer.py --layer_1_dim 64
+```
+
+
+##### Argparser Best Practices
+
+最好的做法是把你的 arguments 分为三个部分。
+
+- Trainer args (gpus, num_nodes, etc…)
+- Model specific arguments (layer_dim, num_layers, learning_rate, etc…)
+- Program arguments (data_path, cluster_email, etc…)
+
+我们可以这样做。首先，在LightningModule中，定义特定于该模块的参数。请记住，数据分割或数据路径也可能特定于某个模块(例如:如果你的项目有一个在Imagenet上训练的模型，另一个在CIFAR-10上训练)
+
+
+```python
+class LitModel(LightningModule):
+
+    @staticmethod
+    def add_model_specific_args(parent_parser):
+        parser = parent_parser.add_argument_group("LitModel")
+        parser.add_argument('--encoder_layers', type=int, default=12)
+        parser.add_argument('--data_path', type=str, default='/some/path')
+        return parent_parser
+```
+
+现在在你的 main trainer 文件, 添加 Trainer 参数， program 参数， 和 model 参数
+
+```python
+# ----------------
+# trainer_main.py
+# ----------------
+from argparse import ArgumentParser
+parser = ArgumentParser()
+
+# add PROGRAM level args
+parser.add_argument('--conda_env', type=str, default='some_name')
+parser.add_argument('--notification_email', type=str, default='will@email.com')
+
+# add model specific args
+parser = LitModel.add_model_specific_args(parser)
+
+# add all the available trainer options to argparse
+# ie: now --gpus --num_nodes ... --fast_dev_run all work in the cli
+parser = Trainer.add_argparse_args(parser)
+
+args = parser.parse_args()
+```
+
+现在你可以调用你的程序像这样运行:
+
+```
+python trainer_main.py --gpus 2 --num_nodes 2 --conda_env 'my_env' --encoder_layers 12
+```
+
+最后，确保像这样开始训练：
+
+```python
+# init the trainer like this
+trainer = Trainer.from_argparse_args(args, early_stopping_callback=...)
+
+# NOT like this
+trainer = Trainer(gpus=hparams.gpus, ...)
+
+# init the model with Namespace directly
+model = LitModel(args)
+
+# or init the model with all the key-value pairs
+dict_args = vars(args)
+model = LitModel(**dict_args)
+```
+
+
+##### LightningModule hyperparameters
+
+我们经常训练一个模型的多个版本。您可能会分享这个模型，或者几个月后再回到这个模型，这时了解这个模型是如何训练的就非常有用了(即:什么学习速率，神经网络等)。
+
+
+Lightning有几种方法可以将这些信息保存在检查点和yaml文件中。这里的目标是提高可读性和再现性。
+
+1> 第一种方法是要求lightning为您将 \_\_init\_\_ 中的所有值保存到 checkpoint。 这也使得这些值可以通过self.hparams获得。
+
+```python
+class LitMNIST(LightningModule):
+
+    def __init__(self, layer_1_dim=128, learning_rate=1e-2, **kwargs):
+        super().__init__()
+        # call this to save (layer_1_dim=128, learning_rate=1e-4) to the checkpoint
+        self.save_hyperparameters()
+
+        # equivalent
+        self.save_hyperparameters('layer_1_dim', 'learning_rate')
+
+        # Now possible to access layer_1_dim from hparams
+        self.hparams.layer_1_dim
+```
+
+2> 有时候你的init可能有你不想保存的对象或其他参数。那样的话，就选几个吧
+
+```python
+class LitMNIST(LightningModule):
+
+    def __init__(self, loss_fx, generator_network, layer_1_dim=128 **kwargs):
+        super().__init__()
+        self.layer_1_dim = layer_1_dim
+        self.loss_fx = loss_fx
+
+        # call this to save (layer_1_dim=128) to the checkpoint
+        self.save_hyperparameters('layer_1_dim')
+
+# to load specify the other args
+model = LitMNIST.load_from_checkpoint(PATH, loss_fx=torch.nn.SomeOtherLoss, generator_network=MyGenerator())
+```
+
+3> 赋值给 self.hparams. 所有赋值给 self.hparams 将会自动保存
+
+```python
+# using a argparse.Namespace
+class LitMNIST(LightningModule):
+    def __init__(self, hparams, *args, **kwargs):
+        super().__init__()
+        self.hparams = hparams
+        self.layer_1 = nn.Linear(28 * 28, self.hparams.layer_1_dim)
+        self.layer_2 = nn.Linear(self.hparams.layer_1_dim, self.hparams.layer_2_dim)
+        self.layer_3 = nn.Linear(self.hparams.layer_2_dim, 10)
+    def train_dataloader(self):
+        return DataLoader(mnist_train, batch_size=self.hparams.batch_size)
+```
+
+4> 还可以将dict或Namespace等完整对象保存到 checkpoint。
+
+```python
+# using a argparse.Namespace
+class LitMNIST(LightningModule):
+
+    def __init__(self, conf, *args, **kwargs):
+        super().__init__()
+        self.save_hyperparameters(conf)
+
+        self.layer_1 = nn.Linear(28 * 28, self.hparams.layer_1_dim)
+        self.layer_2 = nn.Linear(self.hparams.layer_1_dim, self.hparams.layer_2_dim)
+        self.layer_3 = nn.Linear(self.hparams.layer_2_dim, 10)
+
+conf = OmegaConf.create(...)
+model = LitMNIST(conf)
+
+# Now possible to access any stored variables from hparams
+model.hparams.anything
+```
+
+##### Trainer args
+
+回顾一下，将所有可能的训练器标记添加到argparser中，并以这种方式初始化 Trainer
+
+```python
+parser = ArgumentParser()
+parser = Trainer.add_argparse_args(parser)
+hparams = parser.parse_args()
+
+trainer = Trainer.from_argparse_args(hparams)
+
+# or if you need to pass in callbacks
+trainer = Trainer.from_argparse_args(hparams, checkpoint_callback=..., callbacks=[...])
+```
+
+
+##### Multiple Lightning Modules
+
+我们经常有多个 Lightning 模块，每个模块都有不同的参数。LightningModule让您为每个定义参数，而不是污染main.py文件。
+
+```python
+class LitMNIST(LightningModule):
+
+    def __init__(self, layer_1_dim, **kwargs):
+        super().__init__()
+        self.layer_1 = nn.Linear(28 * 28, layer_1_dim)
+
+    @staticmethod
+    def add_model_specific_args(parent_parser):
+        parser = parent_parser.add_argument_group("LitMNIST")
+        parser.add_argument('--layer_1_dim', type=int, default=128)
+        return parent_parser
+```
+
+```python
+class GoodGAN(LightningModule):
+
+    def __init__(self, encoder_layers, **kwargs):
+        super().__init__()
+        self.encoder = Encoder(layers=encoder_layers)
+
+    @staticmethod
+    def add_model_specific_args(parent_parser):
+        parser = parent_parser.add_argument_group("GoodGAN")
+        parser.add_argument('--encoder_layers', type=int, default=12)
+        return parent_parser
+```
+
+
+现在，我们在 main.py 里可以允许每个模型注入它需要的参数 
+
+```python
+def main(args):
+    dict_args = vars(args)
+
+    # pick model
+    if args.model_name == 'gan':
+        model = GoodGAN(**dict_args)
+    elif args.model_name == 'mnist':
+        model = LitMNIST(**dict_args)
+
+    trainer = Trainer.from_argparse_args(args)
+    trainer.fit(model)
+
+if __name__ == '__main__':
+    parser = ArgumentParser()
+    parser = Trainer.add_argparse_args(parser)
+
+    # figure out which model to use
+    parser.add_argument('--model_name', type=str, default='gan', help='gan or mnist')
+
+    # THIS LINE IS KEY TO PULL THE MODEL NAME
+    temp_args, _ = parser.parse_known_args()
+
+    # let the model add what it wants
+    if temp_args.model_name == 'gan':
+        parser = GoodGAN.add_model_specific_args(parser)
+    elif temp_args.model_name == 'mnist':
+        parser = LitMNIST.add_model_specific_args(parser)
+
+    args = parser.parse_args()
+
+    # train
+    main(args)
+```
+
+
+现在我们可以使用命令行接口训练MNIST或GAN
+
+```
+$ python main.py --model_name gan --encoder_layers 24
+$ python main.py --model_name mnist --layer_1_dim 128
+```
 
 # TorchMetric
 
