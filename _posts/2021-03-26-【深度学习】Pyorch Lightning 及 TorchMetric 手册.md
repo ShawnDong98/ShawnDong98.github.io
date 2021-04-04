@@ -2304,6 +2304,128 @@ class MyEarlyStopping(EarlyStopping):
 
 > Note： EarlyStopping callback 在每个验证epoch的末尾运行，在默认配置下，它在每个训练epoch之后发生。但是，可以通过在Trainer中设置各种参数（例如check_val_every_n_epoch和val_check_interval）来修改验证频率。必须注意的是，patience参数对没有改进的验证epochs数进行计数，而不是对训练epochs数进行计数。因此，在参数check_val_every_n_epoch = 10且 patience = 3的情况下，Trainer 将在停止之前执行至少40个训练 epochs。
 
+## Learning Rate Finder
+
+对于训练深度神经网络，选择良好的学习率对于更好的性能和更快的收敛都是必不可少的。 甚至可以自动调整学习速度的优化器（例如Adam）也可以从更多的最佳选择中受益。
+
+为了减少与选择良好的初始学习率有关的猜测量，可以使用学习率查找器。 如本文所述，学习速率查找器进行一个小的运行，在每次处理batch后，学习速率都会提高，并记录相应的loss。 这样的结果是一个lr与loss的关系图，可用作选择最佳初始lr的指南。
+
+> Warning： 目前，此功能仅适用于具有单个优化器的模型。 LR Finder对DDP的支持尚未实现，即将推出。
+
+
+### Using Lightning’s built-in LR finder
+
+要启用学习速率查找器，您的 learning 模块需要具有learning_rate或lr属性。 然后，在训练器构建过程中设置Trainer(auto_lr_find = True)，然后调用trainer.tune(model)运行LR查找器。建议的learning_rate将被写入控制台，并将自动设置为您的lightning模块，可以通过self.learning_rate或self.lr对其进行访问。
+
+```python
+class LitModel(LightningModule):
+
+    def __init__(self, learning_rate):
+        self.learning_rate = learning_rate
+
+    def configure_optimizers(self):
+        return Adam(self.parameters(), lr=(self.lr or self.learning_rate))
+
+model = LitModel()
+
+# finds learning rate automatically
+# sets hparams.lr or hparams.learning_rate to that learning rate
+trainer = Trainer(auto_lr_find=True)
+
+trainer.tune(model)
+```
+
+如果您的模型使用的是任意值而不是self.lr或self.learning_rate，则将该值设置为auto_lr_find：
+
+```python
+model = LitModel()
+
+# to set to your own hparams.my_value
+trainer = Trainer(auto_lr_find='my_value')
+
+trainer.tune(model)
+```
+
+如果要检查学习率查找器的结果，或者只是尝试使用算法的参数，则可以通过调用Trainer的lr_find方法来完成。 一个典型的例子：
+
+```python
+model = MyModelClass(hparams)
+trainer = Trainer()
+
+# Run learning rate finder
+lr_finder = trainer.tuner.lr_find(model)
+
+# Results can be found in
+lr_finder.results
+
+# Plot with
+fig = lr_finder.plot(suggest=True)
+fig.show()
+
+# Pick point based on plot, or get suggestion
+new_lr = lr_finder.suggestion()
+
+# update hparams of the model
+model.hparams.lr = new_lr
+
+# Fit model
+trainer.fit(model)
+```
+
+
+lr_finder.plot() 生成的图应类似于下图。 建议不要选择获得最低损失的学习率，而应选择最陡峭的向下斜率(红点)中间的值。 这是由 lr_finder.suggestion() 返回的点。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617557105697.png)
+
+该算法的参数如下所示。
+
+
+```python
+pytorch_lightning.tuner.lr_finder.lr_find(trainer, model, train_dataloader=None, val_dataloaders=None, min_lr=1e-08, max_lr=1, num_training=100, mode='exponential', early_stop_threshold=4.0, datamodule=None, update_attr=False)
+```
+
+lr_find 使用户能够进行良好初始学习率的范围测试，以减少在选择良好初始学习率时的猜测量。
+
+参数：
+
+- model (LightningModule) – 测试范围的模型
+- train_dataloader (Optional\[DataLoader\]) –  一个有训练样本的 Pytorch DataLoader。 如果模型具有预定义的train_dataloader方法，则将跳过此方法。
+- min_lr (float) – 调查的最小学习率
+- max_lr (float) – 调查的最大学习率
+- num_training (int) – 测试的学习率数量
+- mode (str) – 每个 batch 后更新学习率的搜索策略
+- - 'exponential' (default): 会指数地提高学习速度。
+- - 'linear': 将线性地提高学习速度。
+- early_stop_threshold (float) – 停止搜索的阈值。如果在任何时候的损失大于 early_stop_threshold * best_loss，则停止搜索。 要禁用，请设置为“None”。
+- datamodule (Optional\[LightningDataModule\]) – 可选的LightningDataModule，用于保存训练和验证数据加载器。请注意，train_dataloader和val_dataloaders参数不能与此参数同时使用，否则将引发MisconfigurationException。
+- update_attr (bool) –  是否更新学习速率属性。
+
+Raises：
+
+- MisconfigurationException – 如果auto_lr_find = True时没有覆盖model或model.hparams中的 learning rate/ lr，或者您使用了多个优化器。
+
+例子：
+
+```python
+# Setup model and trainer
+model = MyModelClass(hparams)
+trainer = pl.Trainer()
+
+# Run lr finder
+lr_finder = trainer.tuner.lr_find(model, ...)
+
+# Inspect results
+fig = lr_finder.plot(); fig.show()
+suggested_lr = lr_finder.suggestion()
+
+# Overwrite lr and create new model
+hparams.lr = suggested_lr
+model = MyModelClass(hparams)
+
+# Ready to train with new learning rate
+trainer.fit(model)
+```
+
 
 # TorchMetric
 
