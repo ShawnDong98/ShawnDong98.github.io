@@ -19,36 +19,36 @@
 
 ## 科研 / 项目经历
 
-1. 基于声波的语义视频生成系统 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp; &emsp;&emsp;&emsp;&emsp;&emsp;2021 年 1 月 - 至今
+1. 基于声波的语义视频生成系统 &emsp;&emsp;&emsp;&emsp;&emsp; 2021 年 1 月 - 至今
     * 发送端对源场景使用人体关键点检测模型生成语义信息,利用声波以低带宽形式将语义信息传输至接收端,使用图像到图像翻译的模型实现对源场景的高质量还原 
 
 
-2. 影视视频中人脸替换技术的研究与实现  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;2019 年 12 月 - 2020 年 6 月
+2. 影视视频中人脸替换技术的研究与实现  &emsp;&emsp;&emsp;&emsp;&emsp; 2019 年 12 月 - 2020 年 6 月
     * 本科毕业设计 
     * 使用自编码器、生成对抗网络(GAN)等生成模型实现影视视频中人脸的替换
     * [https://www.bilibili.com/video/BV1Ci4y1x79A](https://www.bilibili.com/video/BV1Ci4y1x79A)
       
-3. 革兰氏染色细菌显微图像深度学习分类与计数 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;2019 年 5 月
+3. 革兰氏染色细菌显微图像深度学习分类与计数 &emsp;&emsp;&emsp;&emsp; 2019 年 5 月
     * 《中国医学物理学杂志》 
     * 使用 U-Net 对革兰氏染色细菌图像进行分割,使用 ResNet 和 VGG 对分割得到的细菌图像进行识别计数
     * 董宇波,王蕊,赵慧娟,张书景.革兰氏染色细菌显微图像深度学习分类与计数[J].中国医学物理学杂志,2021,38(01):127-132.
 
-4. 用于大型超市的云端识别智能称量平台 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;2018 年 7 月
+4. 用于大型超市的云端识别智能称量平台 &emsp;&emsp;&emsp;&emsp; 2018 年 7 月
     * 国家实用新型专利
     * 个人负责部分:称量平台上商品的识别(图像识别)
     * 李富,孙汉辉,董宇波,刘凯峰,林鲁豫,田凯祥,任泉臣. 用于大型超市的云端识别智能称量平台[P]. 山东省：CN209131815U,2019-07-19.
 
-5. 基于 AI 图像识别实现垃圾分类  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;2018 年 5 月 - 2018 年 11 月
+5. 基于 AI 图像识别实现垃圾分类  &emsp;&emsp;&emsp;&emsp; 2018 年 5 月 - 2018 年 11 月
     * 使用图片识别对垃圾的种类进行识别分类,树莓派做主控制作了一个自动分类的垃圾桶
 
-6. 2018 年 TI 杯大学生电子设计竞赛:灭火飞行器 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp; 2018 年 7 月
+6. 2018 年 TI 杯大学生电子设计竞赛:灭火飞行器 &emsp;&emsp;&emsp;&emsp; 2018 年 7 月
     * 使用 OpenMV 使四旋翼定点、寻迹等
 
 ## 获奖经历
-* 2018 年 TI 杯全国大学生电子设计大赛 (省级二等奖) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2018 年 7 月
-* 第十二届 ICAN 国际创新创业大赛中国总决赛 (国家二等奖) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2018 年 10 月
-* 授权国家实用新型专利 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  2019 年 7 月
-* 第六届山东省物联网创造力大赛 (省级一等奖)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp; 2019 年 7 月
+* 2018 年 TI 杯全国大学生电子设计大赛 (省级二等奖) &emsp;&emsp;&emsp;&emsp; 2018 年 7 月
+* 第十二届 ICAN 国际创新创业大赛中国总决赛 (国家二等奖) &emsp;&emsp;&emsp;&emsp; 2018 年 10 月
+* 授权国家实用新型专利 &emsp;&emsp;&emsp;&emsp;&emsp;  2019 年 7 月
+* 第六届山东省物联网创造力大赛 (省级一等奖)&emsp;&emsp;&emsp;&emsp; 2019 年 7 月
 
 ## 个人账号 
 * 个人主页: http://shawndong98.ml
