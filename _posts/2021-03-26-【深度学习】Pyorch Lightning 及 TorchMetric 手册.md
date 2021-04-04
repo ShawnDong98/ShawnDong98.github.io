@@ -146,6 +146,81 @@ class MNISTDataModule(pl.LightningDataModule):
 
 > Note: setup 需要一个参数 stage。 它用于分离 trainer.fit 和 trainer.test 的 setup 逻辑。 
 
+
+## LightningDataModule API
+
+定义一个 DataModule 定义 5 个 方法：
+- prepare_data (how to download(), tokenize, etc…)
+- setup (how to split, etc…)
+- train_dataloader
+- val_dataloader(s)
+- test_dataloader(s)
+
+### prepare_data
+
+使用此方法可以执行可能写入磁盘的操作，或者在分布式设置中只需要从单个进程完成的操作。
+
+- download
+- tokenize
+- etc…
+
+
+```python
+class MNISTDataModule(pl.LightningDataModule):
+    def prepare_data(self):
+        # download
+        MNIST(os.getcwd(), train=True, download=True, transform=transforms.ToTensor())
+        MNIST(os.getcwd(), train=False, download=True, transform=transforms.ToTensor())
+```
+
+> Warning： prepare_data 从一个单线程调用 (比如 GPU 0)。 不要用它取设置状态 (self.x = y)。 
+
+
+### setup
+
+还有一些你可能想要在每个GPU上执行的数据操作。使用 setup 来做这样的事情：
+
+- count number of classes
+- build vocabulary
+- perform train/val/test splits
+- apply transforms (defined explicitly in your datamodule or assigned in init)
+- etc...
+
+```python
+import pytorch_lightning as pl
+
+
+class MNISTDataModule(pl.LightningDataModule):
+
+    def setup(self, stage: Optional[str] = None):
+
+        # Assign Train/val split(s) for use in Dataloaders
+        if stage == 'fit' or stage is None:
+            mnist_full = MNIST(
+                self.data_dir,
+                train=True,
+                download=True,
+                transform=self.transform
+            )
+            self.mnist_train, self.mnist_val = random_split(mnist_full, [55000, 5000])
+            self.dims = self.mnist_train[0][0].shape
+
+        # Assign Test split(s) for use in Dataloaders
+        if stage == 'test' or stage is None:
+            self.mnist_test = MNIST(
+                self.data_dir,
+                train=False,
+                download=True,
+                transform=self.transform
+            )
+            self.dims = getattr(self, 'dims', self.mnist_test[0][0].shape)
+```
+
+
+> setup 在每个进程上调用。 在这里设置状态是ok的。
+
+> Note： teardown 可以用来清理状态。它也会从每个进程中调用。
+
 # Tutorials
 
 
