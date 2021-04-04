@@ -97,6 +97,516 @@ class LitAutoEncoder(pl.LightningModule):
 
 您可以通过重写 [Available Callback hooks](https://pytorch-lightning.readthedocs.io/en/latest/extensions/callbacks.html#hooks) 其中的20多个hooks来定制训练的任何部分(例如反向传播)
 
+```python
+class LitAutoEncoder(LightningModule):
+
+    def backward(self, loss, optimizer, optimizer_idx):
+        loss.backward()
+```
+
+
+**FORWARD vs TRAINING_STEP**
+
+在 Lightning 中，我们把训练与推理分开。训练步骤定义了完整的训练循环。我们鼓励用户使用forward来定义推理操作。
+
+例如，在这种情况下，我们可以定义自编码器作为 embedding 提取器：
+
+```python
+def forward(self, x):
+    embeddings = self.encoder(x)
+    return embeddings
+```
+
+当然，没有什么可以阻止你在 training_step 中使用forward。
+
+```python
+def training_step(self, batch, batch_idx):
+    ...
+    z = self(x)
+```
+
+这取决于你的应用。但是，我们建议您将这两种意图分开。
+
+- 使用 forward 用于推理 (预测)
+- 使用 training_step 训练
+
+### Step 2: Fit with Lightning Trainer
+
+
+首先，按照您想要的方式定义数据。Lightning 需要一个 DataLoader 用于划分 train/val/test。
+
+```python
+dataset = MNIST(os.getcwd(), download=True, transform=transforms.ToTensor())
+train_loader = DataLoader(dataset)
+```
+
+接下来， 初始化 lightning module 以及  PyTorch Lightning  Trainer， 然后用 data 和 model 调用 fit。 
+
+```python
+# init model
+autoencoder = LitAutoEncoder()
+
+# most basic trainer, uses good defaults (auto-tensorboard, checkpoints, logs, and more)
+# trainer = pl.Trainer(gpus=8) (if you have GPUs)
+trainer = pl.Trainer()
+trainer.fit(autoencoder, train_loader)
+```
+
+Trainer 自动化：
+
+- Epoch and batch iteration
+- Calling of optimizer.step(), backward, zero_grad()
+- Calling of .eval(), enabling/disabling grads
+- weights loading
+- Tensorboard (see loggers options)
+- Multi-GPU support
+- TPU
+- AMP support
+
+> TIP： 如果您喜欢手动管理优化器，您可以使用 Manual optimization 模式（比如： RL, GANs， etc...）
+
+
+### Basic features
+
+#### Manual vs automatic optimization
+
+##### Automatic optimization
+
+使用Lightning，您不必担心何时启用/禁用grads、执行反向传播或更新优化器只要您从 training_step 返回一个带有graph的loss，Lightning就会自动进行优化。
+
+
+```python
+def training_step(self, batch, batch_idx):
+    loss = self.encoder(batch)
+    return loss
+```
+
+##### Manual optimization
+
+然而，对于某些研究，如GANs，强化学习，或有多个优化器或内部循环的东西，你可以关闭自动优化，完全控制自己的训练循环。
+
+关闭自动优化，你就可以控制train loop ！
+
+```python
+def __init__(self):
+    self.automatic_optimization = False
+
+def training_step(self, batch, batch_idx):
+    # access your optimizers with use_pl_optimizer=False. Default is True
+    opt_a, opt_b = self.optimizers(use_pl_optimizer=True)
+
+    loss_a = self.generator(batch)
+    opt_a.zero_grad()
+    # use `manual_backward()` instead of `loss.backward` to automate half precision, etc...
+    self.manual_backward(loss_a)
+    opt_a.step()
+
+    loss_b = self.discriminator(batch)
+    opt_b.zero_grad()
+    self.manual_backward(loss_b)
+    opt_b.step()
+```
+
+#### Predict or Deploy
+
+当你完成训练，你有3个选择使用你的 LightningModule 预测。
+
+##### Option 1: Sub-models
+
+取出系统内的任何模型进行预测。
+
+```python
+# ----------------------------------
+# to use as embedding extractor
+# ----------------------------------
+autoencoder = LitAutoEncoder.load_from_checkpoint('path/to/checkpoint_file.ckpt')
+encoder_model = autoencoder.encoder
+encoder_model.eval()
+
+# ----------------------------------
+# to use as image generator
+# ----------------------------------
+decoder_model = autoencoder.decoder
+decoder_model.eval()
+```
+
+##### Option 2: Forward
+
+您还可以添加一个forward方法来进行预测。
+
+```python
+# ----------------------------------
+# using the AE to extract embeddings
+# ----------------------------------
+class LitAutoEncoder(LightningModule):
+    def __init__(self):
+        super().__init__()
+        self.encoder = nn.Sequential()
+
+    def forward(self, x):
+        embedding = self.encoder(x)
+        return embedding
+
+autoencoder = LitAutoEncoder()
+autoencoder = autoencoder(torch.rand(1, 28 * 28))
+```
+
+```python
+# ----------------------------------
+# or using the AE to generate images
+# ----------------------------------
+class LitAutoEncoder(LightningModule):
+    def __init__(self):
+        super().__init__()
+        self.decoder = nn.Sequential()
+
+    def forward(self):
+        z = torch.rand(1, 3)
+        image = self.decoder(z)
+        image = image.view(1, 1, 28, 28)
+        return image
+
+autoencoder = LitAutoEncoder()
+image_sample = autoencoder()
+```
+
+##### Option 3: Production
+
+对于生产系统，onnx或torchscript要快得多。确保您已经添加了一个 forward 方法，或者只跟踪您需要的子模型。
+
+```python
+# ----------------------------------
+# torchscript
+# ----------------------------------
+autoencoder = LitAutoEncoder()
+torch.jit.save(autoencoder.to_torchscript(), "model.pt")
+os.path.isfile("model.pt")
+```
+
+```python
+# ----------------------------------
+# onnx
+# ----------------------------------
+with tempfile.NamedTemporaryFile(suffix='.onnx', delete=False) as tmpfile:
+     autoencoder = LitAutoEncoder()
+     input_sample = torch.randn((1, 28 * 28))
+     autoencoder.to_onnx(tmpfile.name, input_sample, export_params=True)
+     os.path.isfile(tmpfile.name)
+```
+
+
+#### Using CPUs/GPUs/TPUs
+
+在 Lightning 中使用cpu、gpu或tpu是很简单的。不需要改变你的代码，只需要改变 Trainer 选项。
+
+```python
+# train on CPU
+trainer = Trainer()
+```
+
+```python
+# train on 8 CPUs
+trainer = Trainer(num_processes=8)
+```
+
+```python
+# train on 1024 CPUs across 128 machines
+trainer = pl.Trainer(
+    num_processes=8,
+    num_nodes=128
+)
+```
+
+
+```python
+# train on 1 GPU
+trainer = pl.Trainer(gpus=1)
+```
+
+```python
+# train on multiple GPUs across nodes (32 gpus here)
+trainer = pl.Trainer(
+    gpus=4,
+    num_nodes=8
+)
+```
+
+```python
+# train on gpu 1, 3, 5 (3 gpus total)
+trainer = pl.Trainer(gpus=[1, 3, 5])
+```
+
+```python
+# Multi GPU with mixed precision
+trainer = pl.Trainer(gpus=2, precision=16)
+```
+
+```python
+# Train on TPUs
+trainer = pl.Trainer(tpu_cores=8)
+```
+
+不需要修改代码中的任何一行，您现在就可以使用上面的代码执行以下操作
+
+```python
+# train on TPUs using 16 bit precision
+# using only half the training data and checking validation every quarter of a training epoch
+trainer = pl.Trainer(
+    tpu_cores=8,
+    precision=16,
+    limit_train_batches=0.5,
+    val_check_interval=0.25
+)
+```
+
+
+#### Checkpoints
+
+Lightning 会自动保存你的模型。一旦您完成了训练，您就可以按照以下方式加载 checkpoints：
+
+```python
+model = LitModel.load_from_checkpoint(path)
+```
+
+上面的 checkpoints 包含了初始化模型和设置 state dict 所需的所有参数。 如果您更喜欢手动操作，以下是等效的方法
+
+```python
+# load the ckpt
+ckpt = torch.load('path/to/checkpoint.ckpt')
+
+# equivalent to the above
+model = LitModel()
+model.load_state_dict(ckpt['state_dict'])
+```
+
+
+#### Data flow
+
+每个循环(训练、验证、测试)都有三个可以实现的 hooks：
+
+- x_step
+- x_step_end
+- x_epoch_end
+
+为了说明数据是如何流动的，我们将使用training loop(即x=training)
+
+```python
+outs = []
+for batch in data:
+    out = training_step(batch)
+    outs.append(out)
+training_epoch_end(outs)
+```
+
+Lightning中的等价是：
+
+```python
+def training_step(self, batch, batch_idx):
+    prediction = ...
+    return prediction
+
+def training_epoch_end(self, training_step_outputs):
+    for prediction in predictions:
+        # do something with these
+```
+
+如果你使用DP或DDP2分布式模式(例如:在gpu上 split a batch)，使用 x_step_end 手动聚合(或者不要实现它 让lightning自动聚合)。
+
+```python
+for batch in data:
+    model_copies = copy_model_per_gpu(model, num_gpus)
+    batch_split = split_batch_per_gpu(batch, num_gpus)
+
+    gpu_outs = []
+    for model, batch_part in zip(model_copies, batch_split):
+        # LightningModule hook
+        gpu_out = model.training_step(batch_part)
+        gpu_outs.append(gpu_out)
+
+    # LightningModule hook
+    out = training_step_end(gpu_outs)
+```
+
+在 lightning 中 等价 是：
+
+```python
+def training_step(self, batch, batch_idx):
+    loss = ...
+    return loss
+
+def training_step_end(self, losses):
+    gpu_0_loss = losses[0]
+    gpu_1_loss = losses[1]
+    return (gpu_0_loss + gpu_1_loss) * 1/2
+```
+
+
+> TIP： validation 和 test loops 具有相同的结构。
+
+
+#### Logging
+
+要记录到tensorboard，您最喜欢的记录器和/或进度条，请使用log()方法，该方法可以从LightningModule中的任何方法调用。
+
+```python
+def training_step(self, batch, batch_idx):
+    self.log('my_metric', x)
+```
+
+log() 方法有一些设置：
+
+- on_step (记录训练中该step的指标)
+- on_epoch(在时间结束时自动累积并记录)
+- prog_bar(记录到进度栏)
+- logger(记录到像Tensorboard一样的logger)
+
+根据从何处调用log，Lightning会自动为您确定正确的模式。 但是当然，您可以通过手动设置标志来覆盖默认行为
+
+> Note： 设置on_epoch = True将在整个训练epoch内累积您的记录值。
+
+```python
+def training_step(self, batch, batch_idx):
+    self.log('my_loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)
+```
+
+> Note： 进度条中显示的损失值在最后一个值上进行了平滑（平均），因此它不同于训练/验证步骤中返回的实际损失。
+
+您还可以直接使用logger的任何方法：
+
+```python
+def training_step(self, batch, batch_idx):
+    tensorboard = self.logger.experiment
+    tensorboard.any_summary_writer_method_you_want())
+```
+
+训练开始后，您可以使用您喜欢的logger或启动Tensorboard日志来查看日志：
+
+```
+tensorboard --logdir ./lightning_logs
+```
+
+> Note： Lightning会自动在进度栏中显示从training_step返回的损失值。 因此，无需显式记录此类self.log（'loss'，loss，prog_bar = True）。
+
+
+#### Optional extensions
+
+##### Callbacks
+
+callback是一个任意的独立程序，可以在训练循环的任意部分执行。
+
+这是添加不太理想的学习率衰减规则的示例：
+
+```python
+from pytorch_lightning.callbacks import Callback
+
+class DecayLearningRate(Callback):
+
+    def __init__(self):
+        self.old_lrs = []
+
+    def on_train_start(self, trainer, pl_module):
+        # track the initial learning rates
+        for opt_idx, optimizer in enumerate(trainer.optimizers):
+            group = [param_group['lr'] for param_group in optimizer.param_groups]
+            self.old_lrs.append(group)
+
+    def on_train_epoch_end(self, trainer, pl_module, outputs):
+        for opt_idx, optimizer in enumerate(trainer.optimizers):
+            old_lr_group = self.old_lrs[opt_idx]
+            new_lr_group = []
+            for p_idx, param_group in enumerate(optimizer.param_groups):
+                old_lr = old_lr_group[p_idx]
+                new_lr = old_lr * 0.98
+                new_lr_group.append(new_lr)
+                param_group['lr'] = new_lr
+            self.old_lrs[opt_idx] = new_lr_group
+
+# And pass the callback to the Trainer
+decay_callback = DecayLearningRate()
+trainer = Trainer(callbacks=[decay_callback])
+```
+
+
+以下的事情你可以通过 callback 做到：
+
+- Send emails at some point in training
+- Grow the model
+- Update learning rates
+- Visualize gradients
+- ...
+- You are only limited by your imagination
+
+[Learn more about custom callbacks.](https://pytorch-lightning.readthedocs.io/en/latest/extensions/callbacks.html)
+
+##### LightningDataModules
+
+DataLoader和数据处理代码往往最终散落在各处。 通过将其组织到LightningDataModule中，使数据代码可重用。
+
+```python
+class MNISTDataModule(LightningDataModule):
+
+      def __init__(self, batch_size=32):
+          super().__init__()
+          self.batch_size = batch_size
+
+      # When doing distributed training, Datamodules have two optional arguments for
+      # granular control over download/prepare/splitting data:
+
+      # OPTIONAL, called only on 1 GPU/machine
+      def prepare_data(self):
+          MNIST(os.getcwd(), train=True, download=True)
+          MNIST(os.getcwd(), train=False, download=True)
+
+      # OPTIONAL, called for every GPU/machine (assigning state is OK)
+      def setup(self, stage: Optional[str] = None):
+          # transforms
+          transform=transforms.Compose([
+              transforms.ToTensor(),
+              transforms.Normalize((0.1307,), (0.3081,))
+          ])
+          # split dataset
+          if stage == 'fit':
+              mnist_train = MNIST(os.getcwd(), train=True, transform=transform)
+              self.mnist_train, self.mnist_val = random_split(mnist_train, [55000, 5000])
+          if stage == 'test':
+              self.mnist_test = MNIST(os.getcwd(), train=False, transform=transform)
+
+      # return the dataloader for each split
+      def train_dataloader(self):
+          mnist_train = DataLoader(self.mnist_train, batch_size=self.batch_size)
+          return mnist_train
+
+      def val_dataloader(self):
+          mnist_val = DataLoader(self.mnist_val, batch_size=self.batch_size)
+          return mnist_val
+
+      def test_dataloader(self):
+          mnist_test = DataLoader(self.mnist_test, batch_size=self.batch_size)
+          return mnist_test
+```
+
+
+LightningDataModule旨在支持在不同项目之间共享和重用数据 splits 和 transforms。 它封装了处理数据所需的所有步骤： downloading, tokenizing, processing etc。
+
+你可以将 LightningDataModule 送入 Trainer：
+
+```python
+# init model
+model = LitModel()
+
+# init data
+dm = MNISTDataModule()
+
+# train
+trainer = pl.Trainer()
+trainer.fit(model, dm)
+
+# test
+trainer.test(datamodule=dm)
+```
+
+DataModules对于基于数据构建模型特别有用。 阅读有关 [datamodules](https://pytorch-lightning.readthedocs.io/en/latest/extensions/datamodules.html) 的更多信息。
+
 # Best practices
 
 # Lightning API
