@@ -13,7 +13,138 @@ tags:
 
 
 
+# Optional extensions
 
+## LightningDataModule
+
+### Why do I need a DataModule?
+
+在一般的 PyTorch 代码中， 数据 清洗/预处理 通常分散在许多文件中。这使得在项目之间共享和重用精确的分割和转换是不可能的。
+
+如果你曾经问过这些问题，Datamodules是为你准备的：
+
+- 你曾用过什么splits？
+- 你曾用过什么 transforms？
+- 你曾用过什么 normalization？
+- 你是如何  prepare/tokenize 这些数据的？
+
+### What is a DataModule
+
+DataModule只是train_dataloader，val_dataloader，test_dataloader以及所需的matching transforms和数据 processing/downloads 步骤的集合。
+
+这里是一个 PyTorch 的例子：
+
+```python
+# regular PyTorch
+test_data = MNIST(my_path, train=False, download=True)
+train_data = MNIST(my_path, train=True, download=True)
+train_data, val_data = random_split(train_data, [55000, 5000])
+
+train_loader = DataLoader(train_data, batch_size=32)
+val_loader = DataLoader(val_data, batch_size=32)
+test_loader = DataLoader(test_data, batch_size=32)
+```
+
+等效的DataModule只是组织完全相同的代码，但使其可跨项目重用。
+
+```python
+class MNISTDataModule(pl.LightningDataModule):
+
+    def __init__(self, data_dir: str = "path/to/dir", batch_size: int = 32):
+        super().__init__()
+        self.data_dir = data_dir
+        self.batch_size = batch_size
+
+    def setup(self, stage: Optional[str] = None):
+        self.mnist_test = MNIST(self.data_dir, train=False)
+        mnist_full = MNIST(self.data_dir, train=True)
+        self.mnist_train, self.mnist_val = random_split(mnist_full, [55000, 5000])
+
+    def train_dataloader(self):
+        return DataLoader(self.mnist_train, batch_size=self.batch_size)
+
+    def val_dataloader(self):
+        return DataLoader(self.mnist_val, batch_size=self.batch_size)
+
+    def test_dataloader(self):
+        return DataLoader(self.mnist_test, batch_size=self.batch_size)
+
+    def teardown(self, stage: Optional[str] = None):
+        # Used to clean-up when the run is finished
+        ...
+```
+
+但是现在，随着你的处理复杂性的增长(transforms，多gpu训练)，你可以让Lightning处理这些细节，同时使这个数据集可重用，这样你就可以与同事分享或在不同的项目中使用。
+
+```python
+mnist = MNISTDataModule(my_path)
+model = LitClassifier()
+
+trainer = Trainer()
+trainer.fit(model, mnist)
+```
+
+
+下面是一个更现实、更复杂的数据模块，它显示了该数据模块的可重用性。
+
+
+```python
+import pytorch_lightning as pl
+from torch.utils.data import random_split, DataLoader
+
+# Note - you must have torchvision installed for this example
+from torchvision.datasets import MNIST
+from torchvision import transforms
+
+
+class MNISTDataModule(pl.LightningDataModule):
+
+    def __init__(self, data_dir: str = './'):
+        super().__init__()
+        self.data_dir = data_dir
+        self.transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,))
+        ])
+
+        # self.dims is returned when you call dm.size()
+        # Setting default dims here because we know them.
+        # Could optionally be assigned dynamically in dm.setup()
+        self.dims = (1, 28, 28)
+
+    def prepare_data(self):
+        # download
+        MNIST(self.data_dir, train=True, download=True)
+        MNIST(self.data_dir, train=False, download=True)
+
+    def setup(self, stage: Optional[str] = None):
+
+        # Assign train/val datasets for use in dataloaders
+        if stage == 'fit' or stage is None:
+            mnist_full = MNIST(self.data_dir, train=True, transform=self.transform)
+            self.mnist_train, self.mnist_val = random_split(mnist_full, [55000, 5000])
+
+            # Optionally...
+            # self.dims = tuple(self.mnist_train[0][0].shape)
+
+        # Assign test dataset for use in dataloader(s)
+        if stage == 'test' or stage is None:
+            self.mnist_test = MNIST(self.data_dir, train=False, transform=self.transform)
+
+            # Optionally...
+            # self.dims = tuple(self.mnist_test[0][0].shape)
+
+    def train_dataloader(self):
+        return DataLoader(self.mnist_train, batch_size=32)
+
+    def val_dataloader(self):
+        return DataLoader(self.mnist_val, batch_size=32)
+
+    def test_dataloader(self):
+        return DataLoader(self.mnist_test, batch_size=32)
+```
+
+> Note: setup 需要一个参数 stage。 它用于分离 trainer.fit 和 trainer.test 的 setup 逻辑。 
 
 # Tutorials
 
@@ -1105,15 +1236,120 @@ representations = autoencoder(some_images)
 ```
 
 
-### Transfer Learning
+#### Transfer Learning
 
-#### Using Pretrained Models
+##### Using Pretrained Models
 
 有时我们想使用一个LightningModule作为一个预训练的模型。这是很容易实现的，因为LightningModule只是一个torch.nn.Module。
 
 > Note： 记住，LightningModule就是一个 torch.nn.Module，但有更多的功能。
 
 让我们在一个单独的模型中使用自动编码器作为特征提取器。
+
+```python
+class Encoder(torch.nn.Module):
+    ...
+
+class AutoEncoder(LightningModule):
+    def __init__(self):
+        self.encoder = Encoder()
+        self.decoder = Decoder()
+
+class CIFAR10Classifier(LightningModule):
+    def __init__(self):
+        # init the pretrained LightningModule
+        self.feature_extractor = AutoEncoder.load_from_checkpoint(PATH)
+        self.feature_extractor.freeze()
+
+        # the autoencoder outputs a 100-dim representation and CIFAR-10 has 10 classes
+        self.classifier = nn.Linear(100, 10)
+
+    def forward(self, x):
+        representations = self.feature_extractor(x)
+        x = self.classifier(representations)
+        ...
+```
+
+我们使用预训练好的自动编码器(LightningModule)进行迁移学习
+
+##### Example: Imagenet (computer Vision)
+
+```python
+import torchvision.models as models
+
+class ImagenetTransferLearning(LightningModule):
+    def __init__(self):
+        super().__init__()
+
+        # init a pretrained resnet
+        backbone = models.resnet50(pretrained=True)
+        num_filters = backbone.fc.in_features
+        layers = list(backbone.children())[:-1]
+        self.feature_extractor = nn.Sequential(*layers)
+
+        # use the pretrained model to classify cifar-10 (10 image classes)
+        num_target_classes = 10
+        self.classifier = nn.Linear(num_filters, num_target_classes)
+
+    def forward(self, x):
+        self.feature_extractor.eval()
+        with torch.no_grad():
+            representations = self.feature_extractor(x).flatten(1)
+        x = self.classifier(representations)
+        ...
+```
+
+微调：
+
+```python
+model = ImagenetTransferLearning()
+trainer = Trainer()
+trainer.fit(model)
+```
+
+然后用它来预测你感兴趣的数据
+
+
+```python
+model = ImagenetTransferLearning.load_from_checkpoint(PATH)
+model.freeze()
+
+x = some_images_from_cifar10()
+predictions = model(x)
+```
+
+我们在imagenet上使用预训练的模型，并在CIFAR-10上进行微调，以在CIFAR-10上进行预测。在非学术领域，我们会根据你的微小数据集进行微调，并根据你的数据集进行预测。
+
+
+#### Example: BERT (NLP)
+
+Lightning 是完全不关心用于迁移学习的是什么，只要它是一个 torch.nn.Module 子类。
+
+这里是一个使用 [Huggingface transformers](https://github.com/huggingface/transformers) 的模型。
+
+```python
+class BertMNLIFinetuner(LightningModule):
+
+    def __init__(self):
+        super().__init__()
+
+        self.bert = BertModel.from_pretrained('bert-base-cased', output_attentions=True)
+        self.W = nn.Linear(bert.config.hidden_size, 3)
+        self.num_classes = 3
+
+
+    def forward(self, input_ids, attention_mask, token_type_ids):
+
+        h, _, attn = self.bert(input_ids=input_ids,
+                         attention_mask=attention_mask,
+                         token_type_ids=token_type_ids)
+
+        h_cls = h[:, 0]
+        logits = self.W(h_cls)
+        return logits, attn
+```
+
+### 
 
 # TorchMetric
 
