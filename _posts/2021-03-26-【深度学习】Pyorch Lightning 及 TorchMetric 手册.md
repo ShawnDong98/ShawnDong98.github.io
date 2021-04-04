@@ -147,6 +147,7 @@ class MNISTDataModule(pl.LightningDataModule):
 > Note: setup 需要一个参数 stage。 它用于分离 trainer.fit 和 trainer.test 的 setup 逻辑。 
 
 
+
 ## LightningDataModule API
 
 定义一个 DataModule 定义 5 个 方法：
@@ -220,6 +221,168 @@ class MNISTDataModule(pl.LightningDataModule):
 > setup 在每个进程上调用。 在这里设置状态是ok的。
 
 > Note： teardown 可以用来清理状态。它也会从每个进程中调用。
+
+
+### train_dataloader
+
+使用此方法生成train dataloader。通常你在 setup 中包装你定义的数据集
+
+```python
+import pytorch_lightning as pl
+
+
+class MNISTDataModule(pl.LightningDataModule):
+    def train_dataloader(self):
+        return DataLoader(self.mnist_train, batch_size=64)
+		
+```
+
+
+### val_dataloader
+
+使用此方法生成val dataloader。通常你在 setup 中包装你定义的数据集
+
+```python
+import pytorch_lightning as pl
+
+
+class MNISTDataModule(pl.LightningDataModule):
+    def val_dataloader(self):
+        return DataLoader(self.mnist_val, batch_size=64)
+```
+
+
+### test_dataloader
+
+使用此方法生成test dataloader。通常你在 setup 中包装你定义的数据集
+
+```python
+import pytorch_lightning as pl
+
+
+class MNISTDataModule(pl.LightningDataModule):
+    def test_dataloader(self):
+        return DataLoader(self.mnist_test, batch_size=64)
+```
+
+### transfer_batch_to_device
+
+重写以定义如何将 任意batch 移动到 device。
+
+```python
+class MNISTDataModule(LightningDataModule):
+    def transfer_batch_to_device(self, batch, device):
+        x = batch['x']
+        x = CustomDataWrapper(x)
+        batch['x'] = x.to(device)
+        return batch
+```
+
+> Note:  这个 hook 只在单个GPU训练和DDP上运行(no data-parallel)
+
+
+### on_before_batch_transfer
+
+在将 batch 转移到 device 之前，重写可对其更改或应用数据增强。
+
+```python
+class MNISTDataModule(LightningDataModule):
+    def on_before_batch_transfer(self, batch, dataloader_idx):
+        batch['x'] = transforms(batch['x'])
+        return batch
+```
+
+
+> Warning: 目前dataloader idx总是返回0，将来会更新以支持真实的 idx。
+
+> Note： 这个 hook 只在单个GPU训练和DDP上运行(no data-parallel)
+
+
+### on_after_batch_transfer
+
+在batch 被转移到 device 后，重写可对其更改或应用数据增强。
+
+```python
+class MNISTDataModule(LightningDataModule):
+    def on_after_batch_transfer(self, batch, dataloader_idx):
+        batch['x'] = gpu_transforms(batch['x'])
+        return batch
+```
+
+> Warning： 目前dataloader idx总是返回0，将来会更新以支持真实的 idx。
+
+> Note： 这个 hook 只在单个GPU训练和DDP上运行(no data-parallel)。 这个 hook 在使用CPU设备的时候也会被调用，所以在这里增加数据增强 和 在 on_before_batch_transfer 里 意味着做同样的事情 
+
+
+> Note： 为了将数据与 transforms 分离，您可以通过 \_\_init\_\_ 参数化它们。
+
+```python
+class MNISTDataModule(pl.LightningDataModule):
+    def __init__(self, train_transforms, val_transforms, test_transforms):
+        super().__init__()
+        self.train_transforms = train_transforms
+        self.val_transforms = val_transforms
+        self.test_transforms = test_transforms
+```
+
+## Using a DataModule
+
+
+推荐使用 DataModule 的方式是：
+
+```python
+dm = MNISTDataModule()
+model = Model()
+trainer.fit(model, dm)
+
+trainer.test(datamodule=dm)
+```
+
+如果需要来自数据集的信息来构建模型，则手动运行prepare data和setup (Lightning仍然确保该方法在正确的设备上运行)。
+
+```python
+dm = MNISTDataModule()
+dm.prepare_data()
+dm.setup(stage='fit')
+
+model = Model(num_classes=dm.num_classes, width=dm.width, vocab=dm.vocab)
+trainer.fit(model, dm)
+
+dm.setup(stage='test')
+trainer.test(datamodule=dm)
+```
+
+## Datamodules without Lightning
+
+当然，你也可以在普通的 PyTorch 代码中使用 DataModules。
+
+```python
+# download, etc...
+dm = MNISTDataModule()
+dm.prepare_data()
+
+# splits/transforms
+dm.setup(stage='fit')
+
+# use data
+for batch in dm.train_dataloader():
+    ...
+for batch in dm.val_dataloader():
+    ...
+
+dm.teardown(stage='fit')
+
+# lazy load test data
+dm.setup(stage='test')
+for batch in dm.test_dataloader():
+    ...
+
+dm.teardown(stage='test')
+```
+
+
+但是总的来说，DataModules 通过允许在统一的结构中指定数据集的所有细节来鼓励可重复性
+
 
 # Tutorials
 
