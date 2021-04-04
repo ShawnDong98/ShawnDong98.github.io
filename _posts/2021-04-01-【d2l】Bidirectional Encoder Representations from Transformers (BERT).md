@@ -34,4 +34,49 @@ tags:
 # BERT: Combining the Best of Both Worlds
 
 
-如我们所见， ELMo 双向编码上下文， 但是用于特征任务结构； 尽管GPT是 task-agnostic 的， 但是编码是从左到右的。BERT(来自transformer的双向编码器表征)结合了这两个领域的优点，对上下文进行双向编码，对于各种各样的自然语言处理任务，只需要最小的结构更改[ [Devlin et al., 2018]](http://d2l.ai/chapter_references/zreferences.html#devlin-chang-lee-ea-2018)。
+如我们所见， ELMo 双向编码上下文， 但是用于特征任务结构； 尽管GPT是 task-agnostic 的， 但是编码是从左到右的。BERT(来自transformer的双向编码器表征)结合了这两个领域的优点，对上下文进行双向编码，对于各种各样的自然语言处理任务，只需要最小的结构更改[ [Devlin et al., 2018]](http://d2l.ai/chapter_references/zreferences.html#devlin-chang-lee-ea-2018)。使用预先训练的transformer decoder，BERT能够基于双向上下文表示任何token。在下游任务的监督学习中，BERT与GPT有两个相似之处。首先，BERT表征将被输入到一个额外的输出层中，根据任务的性质对模型结构进行最小的更改，例如预测每个token vs 预测整个序列。其次，对预先训练好的transformer decoder的所有参数进行微调，同时对额外的输出层从头训练。如图描述了ELMo, GPT 和 BERT的差异。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617268267764.png)
+
+BERT进一步提高了11个自然语言处理任务的技术水平 i) 单文本分类(如情感分析), ii) 文本对分类(例如，自然语言推理), iii) 问答系统, iv) 文本标记(例如，命名实体识别)。从上下文敏感的ELMo到 task-agnostic 的GPT和BERT，所有这些在2018年提出的概念简单 但在 实际应用中强大的自然语言深层预训练表征，都彻底改变了各种自然语言处理任务的解决方案。
+
+在本章的其余部分，我们将深入了解BERT的预训练。在第15节中介绍自然语言处理应用程序时，我们将演示针对下游应用程序的BERT微调。
+
+```python
+import torch
+from torch import nn
+from d2l import torch as d2l
+```
+
+
+# Input Representation
+
+在自然语言处理中，有些任务(如情感分析)以单个文本作为输入，而在其他一些任务(如自然语言推理)中，输入是一对文本序列。BERT输入序列同时明确表示单个文本和文本对。前者BERT输入序列是将特殊的分类 token \<cls\>、文本序列的token 和特殊的分离token \<sep\> 拼接而成。在后者中，BERT输入序列是\<cls\>，第一个文本序列的token，\<sep\>，第二个文本序列的token，和\<sep\>的拼接。我们一致地将 "BERT input sequence" 和 其他类型的 "sequence" 区分开。 例如，一个BERT输入序列可以包括一个文本序列或两个文本序列。
+
+为了区分文本对，分别将学习到的 segment embeddings $e_A$ 和 $e_B$ 添加到 第一个序列的 token embeddings 和 第二个序列的 token embeddings。 对于单个文本输入， 仅用到 $e_A$。
+
+下面的 get_tokens_and_segments 取 一个句子 或 两个句子 作为输入， 然后返回 BERT 输入序列的 tokens 以及 它们对应的segment IDs。 
+
+
+```python
+def get_tokens_and_segments(tokens_a, tokens_b=None):
+    tokens = ['<cls>'] + tokens_a + ['<sep>']
+
+    #--- 0和1分别用来标记 segment A 和 segment B ---
+    segments = [0] * (len(tokens_a) + 2)
+    if tokens_b is not None:
+        tokens += tokens_b + ['<sep>']
+        segments += [1] * (len(tokens_b) + 1)
+    
+    return tokens, segments
+```
+
+BERT 选择 transformer encoder 作为它的双向结构。 通常在 transformer encoder中， positional embeddings被加在BERT输入序列的每个位置。 然而， 不同于原始的 transformer encoder， BERT 使用可学习的 positional embeddings。总之， 下图展示了 BERT输入序列的 embeddings 是 token embeddings， segment embeddings 和 positional embeddings的和。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617280172677.png)
+
+下面的 BERTEncoder 类 和 10.7 节 实现的 TransformerEncoder 类 相似。和 TransformerEncoder 不同的是， BERTEncoder 使用 segment embeddings 以及 可学习的 positional embeddings。
+
+
+```python
+```
