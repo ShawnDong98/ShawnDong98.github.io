@@ -2486,6 +2486,63 @@ model = MyModelClass(hparams)
 trainer.fit(model)
 ```
 
+## Saving and loading weights
+
+Lightning 自动保存和加载 checkpoints。Checkpoints 捕获模型使用的所有参数。
+
+Checkpointing 训练允许您在训练过程中断时恢复训练过程，对模型进行微调，或者使用预训练过的模型进行推理，而不必重新训练模型。
+
+### Checkpoint saving
+
+Lightning checkpoint 拥有恢复 training session 所需的一切：
+
+- 16-bit scaling factor (apex)
+- Current epoch
+- Global step
+- Model state_dict
+- State of all optimizers
+- State of all learningRate schedulers
+- State of all callbacks
+- The hyperparameters used for that model if passed in as hparams (Argparse.Namespace)
+
+#### Automatic saving
+
+Lightning会自动将 checkpoint 保存在您当前的工作目录中，并带有您的上一个训练epoch的状态。 这样可以确保您可以在中断训练的情况下继续训练。
+
+更改 checkpoint 路径：
+
+```python
+# saves checkpoints to '/your/path/to/save/checkpoints' at every epoch end
+trainer = Trainer(default_root_dir='/your/path/to/save/checkpoints')
+```
+
+您可以自定义 checkpointing 行为，以监视所有 training 或 validation steps 的质量。 例如，如果您要基于验证损失来更新 checkpoints，请执行以下操作：
+
+1. 计算您希望监视的任何 metric 或其他 quantity ，例如 validation loss。
+2. 使用 log() 方法记录 quantity ，并带有val_loss之类的key。
+3. 初始化 ModelCheckpoint callback，并将Monitor设置为quantity的key。
+4. 将callback传递给回调Trainer标志。
+
+```python
+from pytorch_lightning.callbacks import ModelCheckpoint
+
+class LitAutoEncoder(LightningModule):
+    def validation_step(self, batch, batch_idx):
+        x, y = batch
+        y_hat = self.backbone(x)
+
+        # 1. calculate loss
+        loss = F.cross_entropy(y_hat, y)
+
+        # 2. log `val_loss`
+        self.log('val_loss', loss)
+
+# 3. Init ModelCheckpoint callback, monitoring 'val_loss'
+checkpoint_callback = ModelCheckpoint(monitor='val_loss')
+
+# 4. Add your callback to the callbacks list
+trainer = Trainer(callbacks=[checkpoint_callback])
+```
 
 # TorchMetric
 
