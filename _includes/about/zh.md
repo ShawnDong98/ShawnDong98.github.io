@@ -4,7 +4,6 @@
 
 ## 个人信息 
 
-* 性 别：男&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;年 龄：23  
 * 教育背景：西安电子科技大学 &emsp; 计算机科学与技术 &emsp;&emsp;&emsp;&emsp;    2020 年 9 月 - 目前
 
 * 西安电子科技大学 人工智能学院  &emsp;&emsp; 智能成像与语义通信实验室(IISC)
