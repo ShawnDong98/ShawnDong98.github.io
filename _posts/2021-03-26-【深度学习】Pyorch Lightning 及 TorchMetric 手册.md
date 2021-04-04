@@ -660,9 +660,7 @@ Trainer(profiler="simple")
 
 Grid AI是我们的本地解决方案，可在您选择的云提供商上进行大规模训练和调整。
 
-# Best practices
 
-# Lightning API
 
 
 # Optional extensions
@@ -2241,7 +2239,71 @@ class BertMNLIFinetuner(LightningModule):
         return logits, attn
 ```
 
-### 
+
+
+# Common Use Cases
+
+
+## Early stopping
+
+### Stopping an epoch early
+
+您可以通过重写 on_train_batch_start() 以在满足某些条件时返回-1来提前停止一个epoch。
+
+如果您重复执行此操作，则对于您最初请求的每个epoch，都将停止整个运行。
+
+
+
+### Early stopping based on metric using the EarlyStopping Callback
+
+EarlyStopping callback 可用于监视验证指标，并在未观察到任何改进时停止训练。
+
+要使用它：
+
+- Import EarlyStopping callback. 
+- Log the metric you want to monitor using log() method.
+- Init the callback, and set monitor to the logged metric of your choice.
+- Pass the EarlyStopping callback to the Trainer callbacks flag.
+
+
+```python
+from pytorch_lightning.callbacks.early_stopping import EarlyStopping
+
+def validation_step(...):
+    self.log('val_loss', loss)
+
+trainer = Trainer(callbacks=[EarlyStopping(monitor='val_loss')])
+```
+
+- 你可以通过改变它的参数来自定义回调行为。
+
+```python
+early_stop_callback = EarlyStopping(
+   monitor='val_accuracy',
+   min_delta=0.00,
+   patience=3,
+   verbose=False,
+   mode='max'
+)
+trainer = Trainer(callbacks=[early_stop_callback])
+```
+
+如果您需要在训练的不同部分中early stopping，子类EarlyStopping并更改其调用位置：
+
+```python
+class MyEarlyStopping(EarlyStopping):
+
+    def on_validation_end(self, trainer, pl_module):
+        # override this to disable early stopping at the end of val loop
+        pass
+
+    def on_train_end(self, trainer, pl_module):
+        # instead, do it at the end of training loop
+        self._run_early_stopping_check(trainer, pl_module)
+```
+
+> Note： EarlyStopping callback 在每个验证epoch的末尾运行，在默认配置下，它在每个训练epoch之后发生。但是，可以通过在Trainer中设置各种参数（例如check_val_every_n_epoch和val_check_interval）来修改验证频率。必须注意的是，patience参数对没有改进的验证epochs数进行计数，而不是对训练epochs数进行计数。因此，在参数check_val_every_n_epoch = 10且 patience = 3的情况下，Trainer 将在停止之前执行至少40个训练 epochs。
+
 
 # TorchMetric
 
