@@ -12,6 +12,95 @@ tags:
 ---
 
 
+# Getting started
+
+## LIGHTNING IN 2 STEPS
+
+导入下面的包：
+
+```python
+import os
+import torch
+from torch import nn
+import torch.nn.functional as F
+from torchvision import transforms
+from torchvision.datasets import MNIST
+from torch.utils.data import DataLoader, random_split
+import pytorch_lightning as pl
+```
+
+### Step 1: Define LightningModule
+
+
+```python
+class LitAutoEncoder(pl.LightningModule):
+
+    def __init__(self):
+        super().__init__()
+        self.encoder = nn.Sequential(
+            nn.Linear(28*28, 64),
+            nn.ReLU(),
+            nn.Linear(64, 3)
+        )
+        self.decoder = nn.Sequential(
+            nn.Linear(3, 64),
+            nn.ReLU(),
+            nn.Linear(64, 28*28)
+        )
+
+    def forward(self, x):
+        # in lightning, forward defines the prediction/inference actions
+        embedding = self.encoder(x)
+        return embedding
+
+    def training_step(self, batch, batch_idx):
+        # training_step defined the train loop.
+        # It is independent of forward
+        x, y = batch
+        x = x.view(x.size(0), -1)
+        z = self.encoder(x)
+        x_hat = self.decoder(z)
+        loss = F.mse_loss(x_hat, x)
+        # Logging to TensorBoard by default
+        self.log('train_loss', loss)
+        return loss
+
+    def configure_optimizers(self):
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)
+        return optimizer
+```
+
+**SYSTEM VS MODEL**
+
+一个 lightning module 定义一个系统 而不是 一个 模型。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617551418544.png)
+
+系统的例子有：
+
+- Autoencoder、
+- BERT
+- DQN
+- GAN
+- Image classifier
+- Seq2seq
+- SimCLR
+- VAE
+
+在  hood下 LightningModule 仍然仅仅是一个 torch.nn.Module 。 将所有研究代码分组到单个文件中，使其包含：
+
+- The Train loop
+- The Validation loop
+- The Test loop
+- The Model or system of Models
+- The Optimizer
+
+您可以通过重写 [Available Callback hooks](https://pytorch-lightning.readthedocs.io/en/latest/extensions/callbacks.html#hooks) 其中的20多个hooks来定制训练的任何部分(例如反向传播)
+
+# Best practices
+
+# Lightning API
+
 
 # Optional extensions
 
@@ -325,7 +414,7 @@ class MNISTDataModule(pl.LightningDataModule):
         self.test_transforms = test_transforms
 ```
 
-## Using a DataModule
+### Using a DataModule
 
 
 推荐使用 DataModule 的方式是：
@@ -352,7 +441,7 @@ dm.setup(stage='test')
 trainer.test(datamodule=dm)
 ```
 
-## Datamodules without Lightning
+### Datamodules without Lightning
 
 当然，你也可以在普通的 PyTorch 代码中使用 DataModules。
 
@@ -382,6 +471,8 @@ dm.teardown(stage='test')
 
 
 但是总的来说，DataModules 通过允许在统一的结构中指定数据集的所有细节来鼓励可重复性
+
+
 
 
 # Tutorials
