@@ -2243,6 +2243,66 @@ class BertMNLIFinetuner(LightningModule):
 
 # Common Use Cases
 
+## 16-BIT TRAINING
+
+### GPU 16-bit
+
+16位精度可以将您的内存占用空间减少一半。 如果使用volta架构GPU，它也可以显着提高培训速度。
+
+> Note： 建议将PyTorch 1.6+用于16位
+
+
+#### Native torch
+
+使用PyTorch 1.6+时，Lightning使用native amp实现来支持16位。
+
+```python
+# turn on 16-bit
+trainer = Trainer(precision=16, gpus=1)
+```
+
+
+#### Apex 16-bit
+
+如果您使用的是PyTorch的早期版本，则Lightning将使用Apex支持16位。
+
+请按照以下说明安装Apex。 要使用16位精度，请执行以下两项操作：
+
+1. Install Apex
+2. Set the “precision” trainer flag.
+
+```python
+$ git clone https://github.com/NVIDIA/apex
+$ cd apex
+
+# ------------------------
+# OPTIONAL: on your cluster you might need to load CUDA 10 or 9
+# depending on how you installed PyTorch
+
+# see available modules
+module avail
+
+# load correct CUDA before install
+module load cuda-10.0
+# ------------------------
+
+# make sure you've loaded a cuda version > 4.0 and < 7.0
+module load gcc-6.1.0
+
+$ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+```
+
+> Warning： NVIDIA Apex和DDP存在不稳定问题。 我们建议在PyTorch 1.6+中使用native 16位
+
+
+#### Enable 16-bit
+
+```python
+# turn on 16-bit
+trainer = Trainer(amp_level='O2', precision=16)
+```
+
+如果您需要为您的特定用例配置apex init，或者希望使用不同的方式进行16位训练， 覆盖 pytorch_lightning.core.LightningModule.configure_apex()。 
 
 ## Early stopping
 
