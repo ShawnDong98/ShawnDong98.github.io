@@ -148,7 +148,7 @@ class MNISTDataModule(pl.LightningDataModule):
 
 
 
-## LightningDataModule API
+### LightningDataModule API
 
 定义一个 DataModule 定义 5 个 方法：
 - prepare_data (how to download(), tokenize, etc…)
@@ -157,7 +157,7 @@ class MNISTDataModule(pl.LightningDataModule):
 - val_dataloader(s)
 - test_dataloader(s)
 
-### prepare_data
+#### prepare_data
 
 使用此方法可以执行可能写入磁盘的操作，或者在分布式设置中只需要从单个进程完成的操作。
 
@@ -177,7 +177,7 @@ class MNISTDataModule(pl.LightningDataModule):
 > Warning： prepare_data 从一个单线程调用 (比如 GPU 0)。 不要用它取设置状态 (self.x = y)。 
 
 
-### setup
+#### setup
 
 还有一些你可能想要在每个GPU上执行的数据操作。使用 setup 来做这样的事情：
 
@@ -223,7 +223,7 @@ class MNISTDataModule(pl.LightningDataModule):
 > Note： teardown 可以用来清理状态。它也会从每个进程中调用。
 
 
-### train_dataloader
+#### train_dataloader
 
 使用此方法生成train dataloader。通常你在 setup 中包装你定义的数据集
 
@@ -238,7 +238,7 @@ class MNISTDataModule(pl.LightningDataModule):
 ```
 
 
-### val_dataloader
+#### val_dataloader
 
 使用此方法生成val dataloader。通常你在 setup 中包装你定义的数据集
 
@@ -252,7 +252,7 @@ class MNISTDataModule(pl.LightningDataModule):
 ```
 
 
-### test_dataloader
+#### test_dataloader
 
 使用此方法生成test dataloader。通常你在 setup 中包装你定义的数据集
 
@@ -265,7 +265,7 @@ class MNISTDataModule(pl.LightningDataModule):
         return DataLoader(self.mnist_test, batch_size=64)
 ```
 
-### transfer_batch_to_device
+#### transfer_batch_to_device
 
 重写以定义如何将 任意batch 移动到 device。
 
@@ -281,7 +281,7 @@ class MNISTDataModule(LightningDataModule):
 > Note:  这个 hook 只在单个GPU训练和DDP上运行(no data-parallel)
 
 
-### on_before_batch_transfer
+#### on_before_batch_transfer
 
 在将 batch 转移到 device 之前，重写可对其更改或应用数据增强。
 
@@ -298,7 +298,7 @@ class MNISTDataModule(LightningDataModule):
 > Note： 这个 hook 只在单个GPU训练和DDP上运行(no data-parallel)
 
 
-### on_after_batch_transfer
+#### on_after_batch_transfer
 
 在batch 被转移到 device 后，重写可对其更改或应用数据增强。
 
