@@ -223,9 +223,9 @@ trainer.fit(model, imagenet_dm)
 ```
 
 
-Note: prepare_data() 在分布式训练中(自动)只调用一个GPU。 
+> Note: prepare_data() 在分布式训练中(自动)只调用一个GPU。 
 
-Note：setup()在每个GPU上调用(自动)
+> Note：setup()在每个GPU上调用(自动)
 
 
 #### Models defined by data
@@ -283,7 +283,7 @@ class LitMNIST(LightningModule):
 ```
 
 
-Note: LightningModule本身有参数，所以传入self.parameters()
+> Note: LightningModule本身有参数，所以传入self.parameters()
 
 但是，如果有多个优化器，请使用对应的参数
 
@@ -401,7 +401,7 @@ log() 有以下几个设置：
 
 根据日志的调用位置，Lightning会自动为您确定正确的模式。当然，您可以通过手动设置 flags 来覆盖默认行为。
 
-Note：设置为epoch=True将在整个培训时间内累积您的日志值。
+> Note：设置为epoch=True将在整个培训时间内累积您的日志值。
 
 ```python
 def training_step(self, batch, batch_idx):
@@ -769,7 +769,7 @@ trainer.fit(model, train_loader, val_loader)
 你可能已经注意到 Validation sanity check 被记录。 这是因为 Lightning 在开始训练之前运行两个batch的 validation。 这是一种单元测试，以确保如果在验证循环中出现错误，您不需要等待完整的epoch来发现。
 
 
-Note: Lightning 禁用梯度， 将模型置成eval模式， 并且做任何用于validation的事情。
+> Note: Lightning 禁用梯度， 将模型置成eval模式， 并且做任何用于validation的事情。
 
 ##### Val loop under the hood
 
@@ -861,7 +861,7 @@ trainer = Trainer(tpu_cores=8)
 trainer.test(model)
 ```
 
-Note: Lightning 禁用梯度， 将模型置于eval模式， 并且做任何用于训练的事情。
+> Note: Lightning 禁用梯度， 将模型置于eval模式， 并且做任何用于训练的事情。
 
 Warning： .test() 在 TPUs 上还不稳定。 
 
@@ -1038,6 +1038,82 @@ trainer = Trainer(callbacks=[MyPrintingCallback()])
 ```
 
 参见 [callbacks](https://pytorch-lightning.readthedocs.io/en/latest/extensions/callbacks.html) 的 12+ hooks 的完整列表。
+
+
+#### Child Modules
+
+研究项目倾向于对同一数据集测试不同的方法。这在Lightning中 使用 继承 是很容易做到的。
+
+例如，假设我们现在想训练一个自动编码器来作为MNIST图像的特征提取器。我们正在从 LitMNIST-module 扩展我们的自动编码器，该模块已经定义了所有的数据加载。在自动编码器模型中唯一改变的是init、forward、training、validation和test步骤。
+
+
+```python
+class Encoder(torch.nn.Module):
+    pass
+
+class Decoder(torch.nn.Module):
+    pass
+
+class AutoEncoder(LitMNIST):
+
+    def __init__(self):
+        super().__init__()
+        self.encoder = Encoder()
+        self.decoder = Decoder()
+        self.metric = MSE()
+
+    def forward(self, x):
+        return self.encoder(x)
+
+    def training_step(self, batch, batch_idx):
+        x, _ = batch
+
+        representation = self.encoder(x)
+        x_hat = self.decoder(representation)
+
+        loss = self.metric(x, x_hat)
+        return loss
+
+    def validation_step(self, batch, batch_idx):
+        self._shared_eval(batch, batch_idx, 'val')
+
+    def test_step(self, batch, batch_idx):
+        self._shared_eval(batch, batch_idx, 'test')
+
+    def _shared_eval(self, batch, batch_idx, prefix):
+        x, _ = batch
+        representation = self.encoder(x)
+        x_hat = self.decoder(representation)
+
+        loss = self.metric(x, x_hat)
+        self.log(f'{prefix}_loss', loss)
+```
+
+我们可以用同样的训练器来训练它
+
+```python
+autoencoder = AutoEncoder()
+trainer = Trainer()
+trainer.fit(autoencoder)
+```
+
+请记住，forward方法应该定义LightningModule的实际使用。在这种情况下，我们希望使用自动编码器来提取图像表示
+
+```python
+some_images = torch.Tensor(32, 1, 28, 28)
+representations = autoencoder(some_images)
+```
+
+
+### Transfer Learning
+
+#### Using Pretrained Models
+
+有时我们想使用一个LightningModule作为一个预训练的模型。这是很容易实现的，因为LightningModule只是一个torch.nn.Module。
+
+> Note： 记住，LightningModule就是一个 torch.nn.Module，但有更多的功能。
+
+让我们在一个单独的模型中使用自动编码器作为特征提取器。
 
 # TorchMetric
 
