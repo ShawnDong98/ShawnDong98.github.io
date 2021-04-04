@@ -607,6 +607,59 @@ trainer.test(datamodule=dm)
 
 DataModules对于基于数据构建模型特别有用。 阅读有关 [datamodules](https://pytorch-lightning.readthedocs.io/en/latest/extensions/datamodules.html) 的更多信息。
 
+#### Debugging
+
+Lightning有许多调试工具。 以下是其中一些示例：
+
+```python
+# use only 10 train batches and 3 val batches
+trainer = Trainer(limit_train_batches=10, limit_val_batches=3)
+```
+
+```python
+# Automatically overfit the sane batch of your model for a sanity test
+trainer = Trainer(overfit_batches=1)
+```
+
+```python
+# unit test all the code- hits every line of your code once to see if you have bugs,
+# instead of waiting hours to crash on validation
+trainer = Trainer(fast_dev_run=True)
+```
+
+```python
+# train only 20% of an epoch
+trainer = Trainer(limit_train_batches=0.2)
+```
+
+```python
+# run validation every 25% of a training epoch
+trainer = Trainer(val_check_interval=0.25)
+```
+
+```python
+# Profile your code to find speed/memory bottlenecks
+Trainer(profiler="simple")
+```
+
+
+### Other coool features
+
+定义并训练了第一个Lightning模型后，您可能想尝试其他一些很棒的功能，例如：
+
+- Automatic early stopping
+- Automatic truncated-back-propagation-through-time
+- Automatically scale your batch size
+- Automatically find a good learning rate
+- Load checkpoints directly from S3
+- Scale to massive compute clusters
+- Use multiple dataloaders per train/val/test loop
+- Use multiple optimizers to do reinforcement learning or even GANs
+
+####  Grid AI
+
+Grid AI是我们的本地解决方案，可在您选择的云提供商上进行大规模训练和调整。
+
 # Best practices
 
 # Lightning API
