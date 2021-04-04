@@ -743,6 +743,302 @@ $ python main.py --model_name gan --encoder_layers 24
 $ python main.py --model_name mnist --layer_1_dim 128
 ```
 
+
+#### Validating
+
+在大多数情况下，当数据验证分割的性能达到最小值时，我们停止训练模型。
+
+就像 training_step, 我们可以定义一个 validation_step 来检查我们关心的任何指标，生成样本，或者向我们的日志中添加更多的内容。
+
+```python
+def validation_step(self, batch, batch_idx):
+    loss = MSE_loss(...)
+    self.log('val_loss', loss)
+```
+
+现在我们也可以带验证循环训练。
+
+```python
+from pytorch_lightning import Trainer
+
+model = LitMNIST()
+trainer = Trainer(tpu_cores=8)
+trainer.fit(model, train_loader, val_loader)
+```
+
+你可能已经注意到 Validation sanity check 被记录。 这是因为 Lightning 在开始训练之前运行两个batch的 validation。 这是一种单元测试，以确保如果在验证循环中出现错误，您不需要等待完整的epoch来发现。
+
+
+Note: Lightning 禁用梯度， 将模型置成eval模式， 并且做任何用于validation的事情。
+
+##### Val loop under the hood
+
+在 hood 下， Lightning 作了如下事情：
+
+```python
+model = Model()
+model.train()
+torch.set_grad_enabled(True)
+
+for epoch in epochs:
+    for batch in data:
+        # ...
+        # train
+
+    # validate
+    model.eval()
+    torch.set_grad_enabled(False)
+
+    outputs = []
+    for batch in val_data:
+        x, y = batch                        # validation_step
+        y_hat = model(x)                    # validation_step
+        loss = loss(y_hat, x)               # validation_step
+        outputs.append({'val_loss': loss})  # validation_step
+
+    total_loss = outputs.mean()             # validation_epoch_end
+```
+
+##### Optional methods
+
+如果您仍然需要精细的控制，那么为循环定义其他的方法。
+
+```python
+def validation_step(self, batch, batch_idx):
+    preds = ...
+    return preds
+
+def validation_epoch_end(self, val_step_outputs):
+    for pred in val_step_outputs:
+        # do something with all the predictions from each validation_step
+```
+
+
+#### Testing
+
+一旦我们的研究完成，我们即将发布或部署一个模型，我们通常想弄清楚它如何在现实世界中推广。为此，我们使用了一个数据分割来进行测试。
+
+就像 validation loop 一样，我们定义了一个 test loop
+
+```python
+class LitMNIST(LightningModule):
+    def test_step(self, batch, batch_idx):
+        x, y = batch
+        logits = self(x)
+        loss = F.nll_loss(logits, y)
+        self.log('test_loss', loss)
+```
+
+为了确保测试集不会被无意中使用，Lightning有一个单独的API来运行测试。当你在训练你的模型时调用 .test() 。
+
+
+```python
+from pytorch_lightning import Trainer
+
+model = LitMNIST()
+trainer = Trainer(tpu_cores=8)
+trainer.fit(model)
+
+# run test set
+result = trainer.test()
+print(result)
+```
+
+输出：
+
+```
+--------------------------------------------------------------
+TEST RESULTS
+{'test_loss': 1.1703}
+--------------------------------------------------------------
+```
+
+您还可以从保存的lightning模型运行测试
+
+```python
+model = LitMNIST.load_from_checkpoint(PATH)
+trainer = Trainer(tpu_cores=8)
+trainer.test(model)
+```
+
+Note: Lightning 禁用梯度， 将模型置于eval模式， 并且做任何用于训练的事情。
+
+Warning： .test() 在 TPUs 上还不稳定。 
+
+
+#### Predicting
+
+同样，LightningModule与PyTorch模块完全相同。这意味着您可以加载它并使用它进行预测。
+
+```python
+model = LitMNIST.load_from_checkpoint(PATH)
+x = torch.randn(1, 1, 28, 28)
+out = model(x)
+```
+
+从表面上看，forward 和 training_step 是相似的。一般来说，我们要确保我们想让模型做的是在forward 中发生的事。 而 training_step 则从内部调用  forward。
+
+```python
+class MNISTClassifier(LightningModule):
+
+    def forward(self, x):
+        batch_size, channels, width, height = x.size()
+        x = x.view(batch_size, -1)
+        x = self.layer_1(x)
+        x = F.relu(x)
+        x = self.layer_2(x)
+        x = F.relu(x)
+        x = self.layer_3(x)
+        x = F.log_softmax(x, dim=1)
+        return x
+
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+        logits = self(x)
+        loss = F.nll_loss(logits, y)
+        return loss
+```
+
+```python
+model = MNISTClassifier()
+x = mnist_image()
+logits = model(x)
+```
+
+
+在这种情况下，我们设置了这个 LightningModel 来预测logits。但我们也可以用它来预测特征图：
+
+```python
+class MNISTRepresentator(LightningModule):
+
+    def forward(self, x):
+        batch_size, channels, width, height = x.size()
+        x = x.view(batch_size, -1)
+        x = self.layer_1(x)
+        x1 = F.relu(x)
+        x = self.layer_2(x1)
+        x2 = F.relu(x)
+        x3 = self.layer_3(x2)
+        return [x, x1, x2, x3]
+
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+        out, l1_feats, l2_feats, l3_feats = self(x)
+        logits = F.log_softmax(out, dim=1)
+        ce_loss = F.nll_loss(logits, y)
+        loss = perceptual_loss(l1_feats, l2_feats, l3_feats) + ce_loss
+        return loss
+```
+
+```python
+model = MNISTRepresentator.load_from_checkpoint(PATH)
+x = mnist_image()
+feature_maps = model(x)
+```
+
+
+
+或者我们有一个模型，我们用它来做生成
+
+```python
+class LitMNISTDreamer(LightningModule):
+
+    def forward(self, z):
+        imgs = self.decoder(z)
+        return imgs
+
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+        representation = self.encoder(x)
+        imgs = self(representation)
+
+        loss = perceptual_loss(imgs, x)
+        return loss
+```
+
+```python
+model = LitMNISTDreamer.load_from_checkpoint(PATH)
+z = sample_noise()
+generated_imgs = model(z)
+```
+
+
+为了进行大规模推理，可以使用 trainer.predict， 它使用 LightningModule 中的 predict_step 函数 。默认情况下，LightningModule predict_step 调用 forward，但它可以被重写以添加任何处理逻辑。
+
+```python
+class LitMNISTDreamer(LightningModule):
+
+    def forward(self, z):
+        imgs = self.decoder(z)
+        return imgs
+
+    def predict_step(self, batch, batch_idx: int , dataloader_idx: int = None):
+        return self(batch)
+
+
+model = LitMNISTDreamer()
+trainer.predict(model, datamodule)
+```
+
+你如何划分 forward ，training_step 和 predict 取决于你想如何使用这个模型进行预测。但是，我们建议 forward 仅包含你的模型的tensor操作， training_step 使用 logging, metrics 和 loss计算 封装 forward 逻辑， 并且 predict 使用 preprocess， postprocess 函数 封装 forward。
+
+
+### The nonessentials
+
+#### Extensibility
+
+虽然 lightning 让一切都变得超级简单，但它并不牺牲任何灵活性或控制。 lightning 提供多种管理训练状态的方法。
+
+##### Training overrides
+
+training、validation和testing循环的任何部分都可以修改。 例如，如果您想执行自己的反向传播，则可以重写默认实现。
+
+```python
+def backward(self, use_amp, loss, optimizer):
+    loss.backward()
+```
+
+使用你自己的
+
+```python
+class LitMNIST(LightningModule):
+
+    def backward(self, use_amp, loss, optimizer, optimizer_idx):
+        # do a custom way of backward
+        loss.backward(retain_graph=True)
+```
+
+training的每个部分都可以通过这种方式进行配置。参见 [LightningModule](https://pytorch-lightning.readthedocs.io/en/latest/common/lightning_module.html) 的完整列表。
+
+
+#### Callbacks
+
+添加任意功能的另一种方法是为您可能关心的 hooks 添加自定义回调：
+
+```python
+from pytorch_lightning.callbacks import Callback
+
+class MyPrintingCallback(Callback):
+
+    def on_init_start(self, trainer):
+        print('Starting to init trainer!')
+
+    def on_init_end(self, trainer):
+        print('Trainer is init now')
+
+    def on_train_end(self, trainer, pl_module):
+        print('do something when training ends')
+```
+
+
+然后将 callbacks 传给 trainer
+
+```python
+trainer = Trainer(callbacks=[MyPrintingCallback()])
+```
+
+参见 [callbacks](https://pytorch-lightning.readthedocs.io/en/latest/extensions/callbacks.html) 的 12+ hooks 的完整列表。
+
 # TorchMetric
 
 ## torchmetrics.Accuracy()
