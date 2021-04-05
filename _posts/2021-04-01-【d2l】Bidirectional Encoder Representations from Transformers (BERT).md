@@ -149,3 +149,58 @@ BERTEncoder的>正向推理给出输入文本的每个 token 的BERT表示，以
 
 ## Next Sentence Prediction
 
+尽管 masked language modeling 能够为 表示单词的双向上下文 编码，但它并没有明确地建模文本对之间的逻辑关系。为了帮助理解两个文本序列之间的关系，BERT在其预训练中考虑了一个二元分类任务，即next sentence prediction。当为预训练生成句子对时，有一半的时间它们确实是标签为真的连续句子； 而在另一半时间里，第二句话从标注为“False”的语料库中随机抽取。
+
+
+下面的NextSentencePred类使用一个单隐层MLP来预测第二个句子是否是BERT输入序列中第一个句子的下一个句子。由于transformer encoder的self-attention，特殊 token "\<cls\>"的BERT表示对输入的两个句子都进行了编码。因此，MLP分类器的输出层(self.output)将X作为输入，其中X是MLP隐藏层的输出，其输入是被编码的 token “\<cls\>”。
+
+```python
+
+```
+
+
+我们可以看到，NextSentencePred实例的正向推理返回每个BERT输入序列的二分类预测。
+
+
+```python
+```
+
+输出
+
+```
+```
+
+也可以计算两种二元分类的交叉熵损失。
+
+```python
+```
+
+输出：
+
+```
+```
+
+值得注意的是，上述两个预训练任务中的所有标签都可以从预训练语料库中轻松获得，无需手工标注。原始的BERT在BookCorpus [[Zhu et al., 2015]](http://d2l.ai/chapter_references/zreferences.html#zhu-kiros-zemel-ea-2015) and English Wikipedia 数据上进行了预训练。 这两个文本语料库非常庞大，分别有8亿和25亿字。
+
+
+## Putting All Things Together
+
+在对BERT进行预训练时，最终的损失函数是用于masked language modeling的损失函数和next sentence prediction的损失函数的线性组合。现在，我们可以通过实例化三个类BERTEncoder、MaskLM和NextSentencePred来定义BERTModel类。正向推理返回 encoded_X 的BERT表示，masked language modeling 的预测 mlm_Y_hat，以及 next sentence predictions nsp_Y_hat。
+
+```
+```
+
+# Summary
+
+- word2vec和GloVe等词嵌入模型是与上下文无关的。它们将相同的预训练向量赋值给相同的单词，而不考虑单词的上下文(如果有的话)。它们很难很好地处理自然语言中的一词多义或复杂语义。
+- 对于上下文敏感的单词表示，如ELMo和GPT，单词的表示 依赖于它们的上下文。
+- ELMo对上下文进行双向编码，但使用特定于任务的架构(然而，为每个自然语言处理任务创建特定的架构实际上并不简单);而GPT是任务无关的，但从左到右编码上下文。
+- BERT结合了这两方面的优点:它双向编码上下文，并且对于广泛的自然语言处理任务需要最小的架构更改。
+- BERT输入序列的 embeddings 是 token embeddings、segment embeddings和positional embeddings的和。
+- BERT的预训练包括两个任务: masked language modeling 和 next sentence prediction。 前者能够编码 表示单词的双向上下文，而后者明确地建模文本对之间的逻辑关系。
+
+# Exercises
+
+1. 为什么BERT成功了？
+2. 在所有其他条件相同的情况下，与从左到右的语言模型相比，masked language model 需要更多或更少的预训练步骤来收敛吗?为什么？
+3. 在BERT的原始实现中，BERTEncoder中的positionwise feed-forward network(通过d2l.EncoderBlock)和MaskLM中的全连接层均使用高斯误差线性单元(GELU)[[Hendrycks & Gimpel, 2016]](http://d2l.ai/chapter_references/zreferences.html#hendrycks-gimpel-2016) 作为激活函数。
