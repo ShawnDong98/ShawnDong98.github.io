@@ -661,6 +661,198 @@ Trainer(profiler="simple")
 Grid AI是我们的本地解决方案，可在您选择的云提供商上进行大规模训练和调整。
 
 
+# Best practices
+
+## Style guide
+
+Lightning 的一个主要目标是提高可读性和再现性。 想象一下查看任何GitHub repo，找到一个 lightning 模块，并知道在哪里查找您关心的事情。
+
+本 Style guide 的目标是鼓励Lightning代码采用类似的结构。
+
+
+### LightningModule
+
+这些是构建LightningModule的最佳实践。
+
+#### Systems vs models
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617601168342.png)
+
+LightningModule 背后的主要原理是一个完整的系统应该是独立的。在 Lightning 中，我们区分了系统和模型。
+
+模型类似于resnet18、RNN等。
+
+系统定义了一组模型如何相互交互。例如：
+
+- GANs
+- Seq2Seq
+- BERT
+- etc
+
+一个 LightningModule 可以定义一个系统和一个模型。
+
+下面是定义了一个模型的 LightningModule：
+
+```python
+class LitModel(LightningModule):
+    def __init__(self, num_layers: int = 3):
+        super().__init__()
+        self.layer_1 = nn.Linear()
+        self.layer_2 = nn.Linear()
+        self.layer_3 = nn.Linear()
+```
+
+这是定义了一个系统的 LightningModule：
+
+```python
+class LitModel(LightningModule):
+    def __init__(self, encoder: nn.Module = None, decoder: nn.Module = None):
+        super().__init__()
+        self.encoder = encoder
+        self.decoder = decoder
+```
+
+为了快速创建原型，在LightningModule中定义所有的计算通常是有用的。为了可重用性和可伸缩性，最好是传入相关的 backbones。
+
+#### Self-contained
+
+Lightning module 应该是独立的。要了解模型的 self-contained 程度，一个很好的测试方法是 问自己这个问题：
+
+"有人可以在不知道任何内部信息的情况下把这个文件放到 Trainer 那里吗? "
+
+例如，我们将优化器与模型结合在一起，因为大多数模型需要一个特定的优化器和一个特定的学习率调度器来正常工作。
+
+
+#### Init
+
+LightningModules可能停止自 self-contained 的第一个地方是init。尝试在init中定义所有相关的合理默认值，这样用户就不必猜测了。
+
+下面是一个例子，用户将不得不遍历文件来找出如何初始化这个LightningModule。
+
+```python
+class LitModel(LightningModule):
+    def __init__(self, params):
+        self.lr = params.lr
+        self.coef_x = params.coef_x
+```
+
+这样定义的模型给您留下了许多问题；  coef_x 是多少? 它是一个字符串吗? 一个浮点数? 范围是什么? 等...
+
+相反，在init中要显式
+
+```python
+class LitModel(LightningModule):
+    def __init__(self, encoder: nn.Module, coeff_x: float = 0.2, lr: float = 1e-3):
+        ...
+```
+
+现在用户不需要猜了。进而，它们知道值的类型，并且模型有一个合理的默认值，用户可以立即看到值。
+
+
+#### Method order
+
+LightningModule中唯一需要的方法是：
+
+- init
+- training_step
+- configure_optimizers
+
+但是，如果您决定实现其余的可选方法，那么推荐的顺序是
+
+- model/system definition (init)
+- if doing inference, define forward
+- training hooks
+- validation hooks
+- test hooks
+- configure_optimizers
+- any other hooks
+
+
+在实践中，这段代码如下：
+
+```python
+class LitModel(pl.LightningModule):
+
+    def __init__(...):
+
+    def forward(...):
+
+    def training_step(...)
+
+    def training_step_end(...)
+
+    def training_epoch_end(...)
+
+    def validation_step(...)
+
+    def validation_step_end(...)
+
+    def validation_epoch_end(...)
+
+    def test_step(...)
+
+    def test_step_end(...)
+
+    def test_epoch_end(...)
+
+    def configure_optimizers(...)
+
+    def any_extra_hook(...)
+```
+
+
+#### Forward vs training_step
+
+我们建议使用 forward 进行 inference/predictions 并保持 training_step 独立
+
+```python
+def forward(...):
+    embeddings = self.encoder(x)
+
+def training_step(...):
+    x, y = ...
+    z = self.encoder(x)
+    pred = self.decoder(z)
+    ...
+```
+
+然而，当使用DataParallel时，您将需要手动调用forward
+
+```python
+def training_step(...):
+    x, y = ...
+    z = self(x)  # < ---------- instead of self.encoder(x)
+    pred = self.decoder(z)
+    ...
+```
+
+
+### Data
+
+
+这些是处理数据的最佳实践。
+
+#### Dataloaders
+
+Lightning使用 dataloaders 来处理通过系统的所有数据流。在构建 dataloaders 时，请确保调整 number of workers  的数量以获得最大效率。
+
+> Warning： 确保不要使用ddp spawn与num workers > 0一起使用，否则你的代码会出现瓶颈。
+
+#### DataModules
+ 
+Lightning 引入了 datamodules。dataloaders 的问题是，共享完整的数据集通常仍然具有挑战性，因为所有这些问题都需要回答：
+
+- What splits were used?
+- How many samples does this dataset have?
+- What transforms were used?
+- etc…
+
+正是因为这个原因，我们建议您使用datamomodules。这在协作时特别重要，因为它也会为您的团队节省大量时间。
+
+他们所需要做的就是将一个 datamodule 放入 lightning trainer 中，而不必担心对数据做了什么。
+
+在学术和公司环境中都是如此，data cleaning 和 ad-hoc instructions 会减慢迭代想法的进度。
+
 
 
 # Optional extensions
