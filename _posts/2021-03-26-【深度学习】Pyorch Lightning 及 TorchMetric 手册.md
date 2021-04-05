@@ -2544,6 +2544,202 @@ checkpoint_callback = ModelCheckpoint(monitor='val_loss')
 trainer = Trainer(callbacks=[checkpoint_callback])
 ```
 
+您还可以控制更高级的选项，例如save_top_k，以保存最佳的k个模型，以及受监视 quantity 的模式（最小/最大值），save_weights_only或period来设置 checkpoints 之间的时间间隔，以免降低速度。
+
+```python
+from pytorch_lightning.callbacks import ModelCheckpoint
+
+class LitAutoEncoder(LightningModule):
+    def validation_step(self, batch, batch_idx):
+        x, y = batch
+        y_hat = self.backbone(x)
+        loss = F.cross_entropy(y_hat, y)
+        self.log('val_loss', loss)
+
+# saves a file like: my/path/sample-mnist-epoch=02-val_loss=0.32.ckpt
+checkpoint_callback = ModelCheckpoint(
+    monitor='val_loss',
+    dirpath='my/path/',
+    filename='sample-mnist-{epoch:02d}-{val_loss:.2f}',
+    save_top_k=3,
+    mode='min',
+)
+
+trainer = Trainer(callbacks=[checkpoint_callback])
+```
+
+您可以在训练后通过调用来检索 checkpoint
+
+```python
+checkpoint_callback = ModelCheckpoint(dirpath='my/path/')
+trainer = Trainer(callbacks=[checkpoint_callback])
+trainer.fit(model)
+checkpoint_callback.best_model_path
+```
+
+##### Disabling checkpoints
+
+您可以通过传递来禁用 checkpointing
+
+```python
+trainer = Trainer(checkpoint_callback=False)
+```
+
+Lightning checkpoint 还保存传入 LightningModule 初始化的参数 在 checkpoint 的 hyper_parameters 键下。
+
+```python
+class MyLightningModule(LightningModule):
+
+   def __init__(self, learning_rate, *args, **kwargs):
+        super().__init__()
+        self.save_hyperparameters()
+
+# all init args were saved to the checkpoint
+checkpoint = torch.load(CKPT_PATH)
+print(checkpoint['hyper_parameters'])
+# {'learning_rate': the_value}
+```
+
+
+#### Manual saving
+
+您可以手动保存 checkpoints ，并从 checkpoints 状态恢复您的模型。
+
+```python
+model = MyLightningModule(hparams)
+trainer.fit(model)
+trainer.save_checkpoint("example.ckpt")
+new_model = MyModel.load_from_checkpoint(checkpoint_path="example.ckpt")
+```
+
+#### Manual saving with accelerators
+
+Lightning还可以处理多个进程同时运行的加速器，比如DDP。例如，当使用DDP加速器时，我们的训练脚本同时在多个设备上运行。Lightning会自动确保模型只保存在主进程上，而其他进程不会干扰保存 checkpoints。如下所示， 这并不需要更改代码。
+
+```python
+trainer = Trainer(accelerator="ddp")
+model = MyLightningModule(hparams)
+trainer.fit(model)
+# Saves only on the main process
+trainer.save_checkpoint("example.ckpt")
+```
+
+不使用 trainer.save_checkpo 可能会导致意外行为和潜在的死锁。使用其他保存函数 将导致所有设备试图保存 checkpoint。因此，我们强烈建议使用 trainer 的保存功能。如果无法避免使用自定义保存函数，我们建议使用rank_zero_only() 来确保只在主进程上进行保存。
+
+### Checkpoint loading
+
+使用以下方法加载模型及其权重、偏差和超参数：
+
+```python
+model = MyLightingModule.load_from_checkpoint(PATH)
+
+print(model.learning_rate)
+# prints the learning_rate you used in this checkpoint
+
+model.eval()
+y_hat = model(x)
+```
+
+但是，如果您不想使用保存在 checkpoint 中的值，则在这里传入您自己的值
+
+```python
+class LitModel(LightningModule):
+
+    def __init__(self, in_dim, out_dim):
+        super().__init__()
+        self.save_hyperparameters()
+        self.
+		
+		l1 = nn.Linear(self.hparams.in_dim, self.hparams.out_dim)
+```
+
+您可以像这样恢复模型
+
+```python
+# if you train and save the model like this it will use these values when loading
+# the weights. But you can overwrite this
+LitModel(in_dim=32, out_dim=10)
+
+# uses in_dim=32, out_dim=10
+model = LitModel.load_from_checkpoint(PATH)
+
+# uses in_dim=128, out_dim=10
+model = LitModel.load_from_checkpoint(PATH, in_dim=128, out_dim=10)
+```
+
+
+```
+LightningModule.load_from_checkpoint(checkpoint_path, map_location=None, hparams_file=None, strict=True, **kwargs)
+```
+
+从 checkpoint 加载模型的主要方法。当Lightning保存 checkpoint 时，它将 传递给 \_\_init\_\_ 的参数 存储在 checkpoint 的 hyper_parameters 下。
+
+任何通过 \*args 和 \*\*kwargs指定的参数都将覆盖存储在 hyper_parameters 中的参数。
+
+参数：
+
+- checkpoint_path (Union\[str, IO\]) – checkpoint 的 路径。这也可以是一个URL，或类似文件的对象
+- map_location (Union\[Dict\[str, str\], str, device, int, Callable, None\]) – 如果你的 checkpoint 保存了一个GPU模型，你现在加载到cpu或不同数量的GPU，使用这个来映射到新的设置。它的行为和 torch.load() 一样。
+- hparams_file (Optional\[str\]) – 一个.yaml文件的可选路径，该文件具有本例中所示的层次结构。 你很可能不需要这个，因为 lightning 总是会把 hyperparameters 保存到 checkpoint。但是，如果您的 checkpoint 权重没有保存hyperparameters，可以使用这个方法传入一个带有您想要使用的hparams的.yaml文件。这些将被转换成一个字典，并传递到您的LightningModule中使用。如果您的模型的hparams参数是名称空间，并且.yaml文件具有层次结构，那么您需要重构您的模型，将hparams视为dict。
+```
+drop_prob: 0.2
+dataloader:
+    batch_size: 32
+```
+
+
+- strict (bool) – 是否严格强制 checkpoint_path 中的 keys 与 module 的 state dict 返回的key匹配。默认为True。
+- kwargs – 初始化模型所需的任何额外关键字参数。也可以用来覆盖保存的超参数值。
+
+
+返回：
+
+- 加载了权重和超参数的LightningModule(如果可用)。
+
+例子：
+
+```python
+# load weights without mapping ...
+MyLightningModule.load_from_checkpoint('path/to/checkpoint.ckpt')
+
+# or load weights mapping all weights from GPU 1 to GPU 0 ...
+map_location = {'cuda:1':'cuda:0'}
+MyLightningModule.load_from_checkpoint(
+    'path/to/checkpoint.ckpt',
+    map_location=map_location
+)
+
+# or load weights and hyperparameters from separate files.
+MyLightningModule.load_from_checkpoint(
+    'path/to/checkpoint.ckpt',
+    hparams_file='/path/to/hparams_file.yaml'
+)
+
+# override some of the params with new values
+MyLightningModule.load_from_checkpoint(
+    PATH,
+    num_layers=128,
+    pretrained_ckpt_path: NEW_PATH,
+)
+
+# predict
+pretrained_model.eval()
+pretrained_model.freeze()
+y_hat = pretrained_model(x)
+```
+
+#### Restoring Training State
+
+如果你不只是想进行加载权重训练，而是要恢复全部训练，那么就做下面的步骤
+
+```python
+model = LitModel()
+trainer = Trainer(resume_from_checkpoint='some/path/to/my_checkpoint.ckpt')
+
+# automatically restores model, epoch, step, LR schedulers, apex, etc...
+trainer.fit(model)
+```
+
 # TorchMetric
 
 ## torchmetrics.Accuracy()
