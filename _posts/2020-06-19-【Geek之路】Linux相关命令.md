@@ -720,6 +720,19 @@ xrandr --delmode output name
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1616844566166.png)
 
+
+# 调整字体大小
+
+单击Ubuntu桌面的top-right角處的向下箭頭，然後從以下視圖中單擊設置圖標：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617598983754.png)
+
+默認情況下，“設置”實用程序在Wi-Fi選項卡中打開。您需要單擊通用訪問選項卡以配置文本大小。
+
+通用訪問視圖如下所示：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617599008504.png)
+
 # Reference
 1. [Linux下查看系统配置](https://www.cnblogs.com/fengff/p/11776284.html)
 2. [linux screen 命令小结](https://zhuanlan.zhihu.com/p/42551093)
@@ -744,3 +757,4 @@ xrandr --delmode output name
 21. [ubuntu18.04 修改屏幕分辨率](https://blog.csdn.net/recher_He1107/article/details/107226192)
 22. [tar.gz文件命名及压缩解压方法](https://blog.csdn.net/maray/article/details/4312768)
 23. [Ubuntu18显示实时网速](https://blog.csdn.net/bornfree5511/article/details/110292459)
+24. [如何在Ubuntu 18.04 LTS中更改文本大小](https://ubuntuqa.com/zh-tw/article/8457.html#:~:text=%E6%96%B9%E6%B3%951%EF%BC%9A%E9%80%9A%E9%81%8EUbuntu%E8%A8%AD%E7%BD%AE%E5%AF%A6%E7%94%A8%E7%A8%8B%E5%BA%8F&text=%E6%82%A8%E9%9C%80%E8%A6%81%E5%96%AE%E6%93%8A%E9%80%9A%E7%94%A8%E8%A8%AA%E5%95%8F%E9%81%B8%E9%A0%85%E5%8D%A1%E4%BB%A5%E9%85%8D%E7%BD%AE%E6%96%87%E6%9C%AC%E5%A4%A7%E5%B0%8F%E3%80%82&text=%E6%88%96%E8%80%85%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%9C%A8Dash,%E5%AD%97%E9%AB%94%E8%A8%AD%E7%BD%AE%E5%8D%B3%E6%9C%83%E7%94%9F%E6%95%88%E3%80%82)
