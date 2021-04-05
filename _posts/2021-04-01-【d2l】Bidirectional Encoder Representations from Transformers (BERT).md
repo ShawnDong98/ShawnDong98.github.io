@@ -80,3 +80,29 @@ BERT 选择 transformer encoder 作为它的双向结构。 通常在 transforme
 
 ```python
 ```
+
+假设 词典大小为  10,000。 为了展示BERTEncoder的前向推理， 让我们创建它的实例并初始化它的参数。
+
+
+```python
+```
+
+我们将 tokens 定义为2个长度为8的BERT输入序列，其中每个 token 都是词典的索引。带有输入标记的BERTEncoder的前向推断将返回编码后的结果，其中每个 token 都由一个向量表示，该向量的长度由超参数num hidden预定义。这个超参数通常被称为transformer encoder的 hidden size (hidden units的数量)。
+
+
+```python
+```
+
+输出：
+
+```
+```
+
+
+# Pretraining Tasks
+
+BERTEncoder的前向推理给出输入文本的每个 token 的BERT表示，以及插入的特殊标记 “\<cls\>”和 “\<seq\>”。接下来，我们将使用这些表示来计算用于预训练BERT的损失函数。预训练包括以下两个任务: masked language modeling 和 next sentence prediction。
+
+
+在这个预训练任务中， 随机选取15%的 tokens 作为 masked tokens 进行预测。要在不使用标签作弊的情况下预测 masked token ，一种简单的方法是始终用BERT输入序列中的特殊 "\<mask\>" token 替换它。然而，人工特殊 token "\<mask\>" 在微调中永远不会出现。为了避免预训练和微调之间的这种不匹配，如果一个 token 被 masked 以进行预测(例如，在 "this movie is great" 中 选择 masked 掉 "great" 并预测 "great" )，则在输入中它将替换为：
+
