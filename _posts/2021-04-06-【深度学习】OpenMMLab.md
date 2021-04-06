@@ -119,7 +119,35 @@ python demo/bottom_up_video_demo.py \
 
 ## 安装
 
+版本对应关系：
 
+| MMDetection version |    MMCV version     |
+|:-------------------:|:-------------------:|
+| master              | mmcv-full>=1.2.4, <1.4.0 |
+| 2.11.0              | mmcv-full>=1.2.4, <1.4.0 |
+| 2.10.0              | mmcv-full>=1.2.4, <1.4.0 |
+| 2.9.0               | mmcv-full>=1.2.4, <1.4.0 |
+| 2.8.0               | mmcv-full>=1.2.4, <1.4.0 |
+| 2.7.0               | mmcv-full>=1.1.5, <1.4.0 |
+| 2.6.0               | mmcv-full>=1.1.5, <1.4.0 |
+| 2.5.0               | mmcv-full>=1.1.5, <1.4.0 |
+| 2.4.0               | mmcv-full>=1.1.1, <1.4.0 |
+| 2.3.0               | mmcv-full == 1.0.5    |
+| 2.3.0rc0            | mmcv-full>=1.0.2    |
+| 2.2.1               | mmcv == 0.6.2         |
+| 2.2.0               | mmcv == 0.6.2         |
+| 2.1.0               | mmcv>=0.5.9, <=0.6.1|
+| 2.0.0               | mmcv>=0.5.1, <=0.5.8|
+
+先安装MMCV， 然后再进行下面的安装
+
+```
+# install mmdetection
+git clone https://github.com/open-mmlab/mmdetection.git
+cd mmdetection
+pip install -r requirements/build.txt
+pip install -v -e .
+```
 
 # MMTracking
 
