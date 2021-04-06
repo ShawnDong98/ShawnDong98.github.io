@@ -97,8 +97,28 @@ python demo/bottom_up_video_demo.py \
     --out-video-root vis_results
 ```
 
+## Speed Up Inference
+
+对于自顶向下的模型，尝试编辑配置文件。例如：
+
+- set flip_test=False in topdown-res50.
+- set post_process='default' in topdown-res50.
+- use faster human bounding box detector, see MMDetection.
+
+对于自底向上的模型，尝试编辑配置文件。例如：
+
+- set flip_test=False in bottomup-res50.
+- set adjust=False in bottomup-res50.
+- set refine=False in bottomup-res50.
+- use smaller input image size in bottomup-res50.
+
+
 
 # MMDetection
 
 
 ## 安装
+
+
+
+# MMTracking
