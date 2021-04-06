@@ -122,3 +122,20 @@ python demo/bottom_up_video_demo.py \
 
 
 # MMTracking
+
+
+## 安装
+
+先安装MMCV和MMDetection，然后执行：
+
+```
+git clone https://github.com/open-mmlab/mmtracking.git
+cd mmtracking
+```
+
+安装：
+
+```
+pip install -r requirements/build.txt
+pip install -v -e .  # or "python setup.py develop"
+```
