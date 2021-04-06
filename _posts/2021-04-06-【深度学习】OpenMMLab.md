@@ -87,7 +87,15 @@ python demo/bottom_up_img_demo.py \
     --out-img-root vis_results
 ```
 
+### 2D Human Pose Bottom-Up Video Demo
 
+```
+python demo/bottom_up_video_demo.py \
+    configs/bottom_up/hrnet/coco/hrnet_w32_coco_512x512.py \
+    https://download.openmmlab.com/mmpose/bottom_up/hrnet_w32_coco_512x512-bcb8c247_20200816.pth \
+    --video-path demo/demo_video.mp4 \
+    --out-video-root vis_results
+```
 
 
 # MMDetection
