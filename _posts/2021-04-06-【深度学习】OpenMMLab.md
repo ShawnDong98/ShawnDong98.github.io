@@ -23,4 +23,19 @@ pip install mmcv-full==1.2.2 -f https://download.openmmlab.com/mmcv/dist/cu110/t
 
 # MMPose
 
+## 安装
+
+先安装MMCV， 然后再进行下面的安装
+
+```
+# install mmpose
+git clone git@github.com:open-mmlab/mmpose.git
+cd mmpose
+pip install -r requirements.txt
+python setup.py develop
+```
+
+要求numpy版本 1.20.0
+
+
 
