@@ -14,6 +14,70 @@ tags:
 
 # matplotlib语法
 
+## 基本逻辑
+
+使用一个工具，首先要理解其本后设计的逻辑，然后我们才知道如何下手，顺着工具的理念去用。不然就会显得非常奇怪。
+
+Matplotlib涉及的逻辑基本上跟我们自己绘画的流程是一样的。
+
+- 找一张纸或者一块画布；
+- 调色等一系列前戏；
+- 作画。
+
+由于模拟了类似的过程，所以Matplotlib一共有三个基本的模块。
+
+- FigureCanvas
+- Renderer
+- Artist
+
+
+前两个模块把一些如何跟计算机底层交互的事情处理了，而我们绝大部分的工作，都是在利用Artist的接口。
+
+
+Artist接口中包含了两类元素或者说是对象。一类是类似 **曲线Line2D，文字text，图像image** 这样一些最基本的元素。还有一类被称作容器的对象，比方 **坐标系Axes，坐标轴Axis** 等等。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617960625929.png)
+
+Artist中，我们经常使用或在无意识下经常使用的就是Axes这个对象。它可以生成一个坐标系。该坐标系是一种容器，我们可以画各种我们想画的图形，做各种标记，修改各种属性。可以说，在pyplot这个接口中，绝大部分的函数都来自于axes，或是axes某种属性的重新定义，比方plot，legend等函数。
+
+
+所以只要我们弄清了Axes和Axis，基本上如何作图，如何修改就搞清楚了。
+
+Python是一种高级编程语言，在Python中，一切皆为对象。因此Matplotlib继承了这一特点。画图的过程，提倡使用面向对象的写法。但是为了简单和可交互性，Matplotlib也提供了过程式或者命令式编程。这主要在Pylab中。
+
+pylab和pyplot是Matplotlib中两个不同的部分。
+
+pyplot是Matplotlib下的一个模块，它提供了画图所需的基本接口，提倡用面向对象的方式编程。比方说，一般我们画图的时候应该是这么一个流程
+
+第一步，产生一幅图
+
+```python
+fig=figure()
+```
+
+
+第二步，建立坐标系
+
+```python
+x=fig.add_axes()
+```
+
+第三步，画图
+
+```python
+ax.plot()
+```
+
+第四步，显示
+
+```python
+show()
+```
+
+pylab是和Matplotlib并行存在的一个包。它实际上导入了numpy和Matplotlib中相应的功能，大包提供一个可交互的画图环境。pylab主要在终端或者以过程式编程的方式使用，这也是我们大部分时候使用的方式。毕竟，我们需要一幅一幅图画，修改。其实每一次调用一个函数，就是要设定某个属性，类似于一个指令，因此不需要用面向对象的方式来考虑。
+
+
+
 ## subplot
 
 > matplotlib.pyplot.subplots(nrows=1, ncols=1, sharex=False, sharey=False, squeeze=True, subplot_kw=None, gridspec_kw=None, \*\*fig_kw)
