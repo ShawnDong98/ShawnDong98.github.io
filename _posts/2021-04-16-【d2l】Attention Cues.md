@@ -103,3 +103,25 @@ def show_heatmaps(matrices, xlabel, ylabel, titles=None, figsize=(2.5, 2.5),cmap
 
 
 为了演示，我们考虑一个简单的例子，只有当 query 和 key 相同时，注意力权重才为1; 否则就是0。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618584216611.png)
+
+
+在后面的小节中，我们将经常调用这个函数来可视化注意力权重。
+
+
+## Summary
+
+
+- 人类的注意力是一种有限的、有价值的、稀缺的资源。
+- 主体使用 nonvolitiona 线索和 volitional 线索选择性地引导注意力。前者是基于saliency，后者是 task-dependent。
+- 注意力机制由于包含了 volitional 线索而不同于全连接层或池化层。
+- 注意力机制通过注意力池化(包括queries(volitional cues)和keys(nonvolitional cues))对values(sensory inputs) 进行 bias selection 。Keys 和 values 是配对的。
+- 我们可以可视化 queries 和 keys 之间的注意力权重。
+
+
+## Exercises
+
+
+1. 在机器翻译中，一个符号一个符号地解码序列时，什么是volitional cue？什么是 nonvolitional cues 和 sensory inputs?
+2. 随机生成一个 $10 \times 10$ 矩阵，使用softmax操作确保每一行是一个有效的概率分布。可视化输出的注意力权重。
