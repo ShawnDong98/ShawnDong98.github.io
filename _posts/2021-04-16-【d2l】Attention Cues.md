@@ -100,3 +100,6 @@ def show_heatmaps(matrices, xlabel, ylabel, titles=None, figsize=(2.5, 2.5),cmap
                 ax.set_title(titles[j])
     fig.colorbar(pcm, ax=axes, shrink=0.6)
 ```
+
+
+为了演示，我们考虑一个简单的例子，只有当 query 和 key 相同时，注意力权重才为1; 否则就是0。
