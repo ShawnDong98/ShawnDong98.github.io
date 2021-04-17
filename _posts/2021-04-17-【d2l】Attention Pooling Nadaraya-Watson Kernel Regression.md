@@ -92,7 +92,7 @@ $$f(x) = \sum_{i=1}^n \alpha(x, x_i)y_i \tag{10.2.4}$$
 
 为了获得注意力池化的直观认识，我们可以考虑定义高斯核为：
 
-$$K(\mu) = \frac{1}{\sqrt{2 \pi}} exp(- \frac{u^2}{2}) \tag{10.2.5}$$
+$$K(\mu) = \frac{1}{\sqrt{2 \pi}} \exp(- \frac{u^2}{2}) \tag{10.2.5}$$
 
 
 将高斯核代入 (10.2.4) 和 (10.2.3)：
@@ -100,7 +100,7 @@ $$K(\mu) = \frac{1}{\sqrt{2 \pi}} exp(- \frac{u^2}{2}) \tag{10.2.5}$$
 $$
 \begin{aligned}
 f(x) &= \sum_{i=1}^n \alpha(x, x_i) y_i \\
-&= \sum_{i=1}^n \frac{exp(-\frac{1}{2}(x - x_i)^2)}{\sum_{j=1}^n exp(-\frac{1}{2}(x - x_j)^2)} y_i \\
+&= \sum_{i=1}^n \frac{\exp(-\frac{1}{2}(x - x_i)^2)}{\sum_{j=1}^n \exp(-\frac{1}{2}(x - x_j)^2)} y_i \\
 &= \sum_{i=1}^n softmax (-\frac{1}{2}(x - x_i)^2)y_i
 \end{aligned}
 \tag{10.2.6}
@@ -148,3 +148,80 @@ d2l.show_heatmaps(
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618647543520.png)
+
+
+## Parametric Attention Pooling
+
+非参数Nadaraya-Watson核回归具有 consistency 的好处： 只要有足够的数据，这个模型就会收敛到最优解。尽管如此，我们可以很容易地将可学习的参数整合到注意力池化中。
+
+例如，与(10.2.6)稍有不同的是，下面的 query $x$ 与 key $x_i$ 之间的距离 乘以一个可学习的参数 $w$：
+
+$$
+\begin{aligned}
+f(x) &= \sum_{i=1}^n \alpha (x, x_i) y_i \\
+&= \sum_{i=1}^n \frac{\exp(-\frac{1}{2}((x - x_i)w)^2)}{\sum_{j=1}^n \exp(-\frac{1}{2}((x - x_i)w)^2)}y_i \\
+&= \sum_{i=1}^n softmax(-\frac{1}{2} ((x - x_i)w)^2)y_i
+\end{aligned}
+$$
+
+
+在本节的其余部分，我们将通过学习(10.2.7)中的注意力池化参数来训练这个模型。
+
+
+### Batch Matrix Multiplication
+
+为了更有效地计算minibatch的attention，我们可以利用深度学习框架提供的批矩阵乘法工具。
+
+假设第一个 minibatch 包含 $n$ 个形状为 $a \times b$ 的矩阵 $X_1, ..., X_n$ ， 第二个 minibatch 包含 $n$ 个形状为 $b \times c$ 的矩阵 $Y_1, ..., Y_n$。 它们的批矩阵乘法结果是 $n$ 个 形状为 $a \times c$ 的矩阵 $X_1Y_1, ..., X_nY_n$。 因此， 给定两个形状为 $(n, a, b)$ 和 $(n, b, c)$ 的tensor， 它们的批矩阵乘法输出为 $(n, a, c)$。
+
+
+```python
+X = torch.ones((2, 1, 4))
+Y = torch.ones((2, 4, 6))
+torch.bmm(X, Y).shape
+```
+
+```
+torch.Size([2, 1, 6])
+```
+
+在注意机制的背景下，我们可以使用minibatch矩阵乘法来计算minibatch中值的加权平均值。
+
+
+```python
+weights = torch.ones((2, 10)) * 0.1
+values = torch.arange(20.0).reshape((2, 10))
+torch.bmm(weights.unsqueeze(1), values.unsqueeze(-1))
+```
+
+### Defining the Model
+
+下面我们利用minibatch矩阵乘法，基于(10.2.7)中的参数化注意力池化，定义了Nadaraya-Watson核回归的参数化版本。
+
+```python
+class NWKernelRegression(nn.Module):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.w = nn.Parameter(torch.rand((1,), requires_grad=True))
+
+    def forward(self, queries, keys, values):
+        # Shape of the output `queries` and `attention_weights`:
+        # (no. of queries, no. of key-value pairs)
+        #--- dim_0是batch， dim_1是n_train ---
+        queries = queries.repeat_interleave(keys.shape[1]).reshape(
+            (-1, keys.shape[1]))
+        self.attention_weights = nn.functional.softmax(
+            -((queries - keys) * self.w)**2 / 2, dim=1)
+        # Shape of `values`: (no. of queries, no. of key-value pairs)
+        return torch.bmm(self.attention_weights.unsqueeze(1),
+                         values.unsqueeze(-1)).reshape(-1)
+```
+
+
+### Training
+
+接下来，我们将训练数据集转换为 key 和 value 来训练注意力模型。在参数化注意力池化中，任何训练输入都要从所有训练样本中取key-value对(除了它自己)，以预测它的输出。
+
+
+怎么训练这个参数呢？就是用一个训练样本去和其他训练样本作attention， 然后算出结果的loss， 反向传播更新参数。
+
