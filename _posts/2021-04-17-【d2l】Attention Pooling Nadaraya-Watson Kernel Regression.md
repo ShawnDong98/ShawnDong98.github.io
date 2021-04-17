@@ -222,6 +222,83 @@ class NWKernelRegression(nn.Module):
 
 接下来，我们将训练数据集转换为 key 和 value 来训练注意力模型。在参数化注意力池化中，任何训练输入都要从所有训练样本中取key-value对(除了它自己)，以预测它的输出。
 
-
 怎么训练这个参数呢？就是用一个训练样本去和其他训练样本作attention， 然后算出结果的loss， 反向传播更新参数。
 
+```python
+# Shape of `X_tile`: (`n_train`, `n_train`), where each column contains the
+# same training inputs
+#--- 用于提取 keys ---
+X_tile = x_train.repeat((n_train, 1))
+# Shape of `Y_tile`: (`n_train`, `n_train`), where each column contains the
+# same training outputs
+#--- 用于提取 values ---
+Y_tile = y_train.repeat((n_train, 1))
+# Shape of `keys`: ('n_train', 'n_train' - 1)
+keys = X_tile[(1 - torch.eye(n_train)).type(torch.bool)].reshape(
+    (n_train, -1))
+# Shape of `values`: ('n_train', 'n_train' - 1)
+values = Y_tile[(1 - torch.eye(n_train)).type(torch.bool)].reshape(
+    (n_train, -1))
+```
+
+
+利用平方损失和随机梯度下降对参数化注意力模型进行训练。
+
+
+```python
+net = NWKernelRegression()
+loss = nn.MSELoss(reduction='none')
+trainer = torch.optim.SGD(net.parameters(), lr=0.5)
+animator = d2l.Animator(xlabel='epoch', ylabel='loss', xlim=[1, 5])
+
+for epoch in range(5):
+    trainer.zero_grad()
+    # Note: L2 Loss = 1/2 * MSE Loss. PyTorch has MSE Loss which is slightly
+    # different from MXNet's L2Loss by a factor of 2. Hence we halve the loss
+    l = loss(net(x_train, keys, values), y_train) / 2
+    l.sum().backward()
+    trainer.step()
+    print(f'epoch {epoch + 1}, loss {float(l.sum()):.6f}')
+    animator.add(epoch + 1, float(l.sum()))
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618653218035.png)
+
+
+训练参数化注意力模型后，我们可以绘制其预测图。试图用噪声来拟合训练数据集，预测的直线要比先前绘制的非参数数据集平滑得多。
+
+
+```python
+# Shape of `keys`: (`n_test`, `n_train`), where each column contains the same
+# training inputs (i.e., same keys)
+keys = x_train.repeat((n_test, 1))
+# Shape of `value`: (`n_test`, `n_train`)
+values = y_train.repeat((n_test, 1))
+y_hat = net(x_test, keys, values).unsqueeze(1).detach()
+plot_kernel_reg(y_hat)
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618653161802.png)
+
+
+与非参数的注意力池化相比，在可学习和参数化设置中，具有较大注意力权值的区域变得更清晰。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618653270149.png)
+
+
+## Summary
+
+- Nadaraya-Watson核回归是一个带有注意力机制的机器学习的例子。
+- Nadaraya-Watson核回归的注意力池化是训练输出的加权平均值。从注意的角度来看，注意力权重是根据 query 和 与 value 匹配的 key 分配给值的。
+- 注意力池化可以是非参数的，也可以是参数的。
+
+
+## Exercises
+
+
+1. 增加训练样本的数量。你能更好地学习非参数Nadaraya-Watson核回归吗？
+2. 我们在参数化注意池化实验中 学习到的 $w$ 的价值是什么? 为什么在可视化注意力权重时，它会使权重区域更清晰？
+3. 我们如何将超参数添加到非参数的Nadaraya-Watson核回归来更好地预测？
+4. 为本节的核回归设计另一个参数化注意力池化。训练这个新模型，并把它的注意力权重可视化。
