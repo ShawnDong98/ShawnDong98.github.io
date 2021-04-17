@@ -144,3 +144,7 @@ d2l.show_heatmaps(
     attention_weights.unsqueeze(0).unsqueeze(0),
     xlabel='Sorted training inputs', ylabel='Sorted testing inputs')
 ```
+
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618647543520.png)
