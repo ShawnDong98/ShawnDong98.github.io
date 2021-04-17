@@ -57,3 +57,90 @@ n_test
 
 下面的函数绘制了所有训练样本(用圆表示)、生成函数 $f$ 生成的 不含噪声项的ground-truth数据(用Truth标记)和学习到的预测函数(用Pred标记)。
 
+## Average Pooling
+
+对于这个回归问题， 我们从 "dumbest" 的estimator开始： 用平均池化对所有训练输出进行平均：
+
+$$f(x) = \frac{1}{n} \sum_{i=1}^n y_i$$
+
+绘制如下。 如我们所看到的，这个estimator确实没有那么聪明。
+
+```python
+y_hat = torch.repeat_interleave(y_train.mean(), n_test)
+plot_kernel_reg(y_hat)
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618642600358.png)
+
+
+
+## Nonparametric Attention Pooling
+
+
+显然，平均池、池化忽略了输入 $x_i$。 Nadaraya [[Nadaraya, 1964]](http://d2l.ai/chapter_references/zreferences.html#nadaraya-1964) 和 Waston [[Watson, 1964]](http://d2l.ai/chapter_references/zreferences.html#watson-1964)提出了一个更好的想法，根据输入位置对输出 $y_i$ 进行加权：
+
+$$f(x) = \sum_{i=1}^n \frac{K(x - x_i)}{\sum_{j=1}^n K (x - x_j)} y_i \tag{10.2.3}$$
+
+其中 $K$ 是 一个 kernel。 (10.2.3) 中的 estimator 叫做 Nadaraya-Watson kernel regression。 这里我们不深入 kernels 的细节。 回想一下图10.1.3中的注意力机制框架。从注意力的角度来看，我们可以将(10.2.3)改写为一种更广义的注意力池化形式：
+
+$$f(x) = \sum_{i=1}^n \alpha(x, x_i)y_i \tag{10.2.4}$$
+
+
+其中 $x$ 是 query 以及 $(x_i, y_i)$ 是 key-value 对。 比较 (10.2.4) 和 (10.2.2)， 这里的注意力池化是 values $y_i$ 的 加权平均。 (10.2.4) 中的 注意力权重 $\alpha(x, x_i)$ 根据 $\alpha$ 所建模的 query $x$ 和 key $x_i$ 之间的交互， 赋值给对应的 value $y_i$。 对于任何query，它在所有 key-value 对上的注意力权值都是一个有效的概率分布: 它们是非负的，总和为1。
+
+
+为了获得注意力池化的直观认识，我们可以考虑定义高斯核为：
+
+$$K(\mu) = \frac{1}{\sqrt{2 \pi}} exp(- \frac{u^2}{2}) \tag{10.2.5}$$
+
+
+将高斯核代入 (10.2.4) 和 (10.2.3)：
+
+$$
+\begin{aligned}
+f(x) &= \sum_{i=1}^n \alpha(x, x_i) y_i \\
+&= \sum_{i=1}^n \frac{exp(-\frac{1}{2}(x - x_i)^2)}{\sum_{j=1}^n exp(-\frac{1}{2}(x - x_j)^2)} y_i \\
+&= \sum_{i=1}^n softmax (-\frac{1}{2}(x - x_i)^2)y_i
+\end{aligned}
+\tag{10.2.6}
+$$
+
+在10.2.6中，给定query $x$ 的 key $x_i$ 将通过赋值给 key 对应的 value $y_i$ 更大的权重 而 获得更多的attention。
+
+
+值得注意的是，Nadaraya-Watson核回归是一个非参数模型。因此(10.2.6)是非参数注意力池化的一个例子。预测的线是平滑的，比平均池化产生的线更接近 ground-truth。
+
+
+```python
+# Shape of `X_repeat`: (`n_test`, `n_train`), where each row contains the
+# same testing inputs (i.e., same queries)
+X_repeat = x_test.repeat_interleave(n_train).reshape((-1, n_train))
+# Note that `x_train` contains the keys. Shape of `attention_weights`:
+# (`n_test`, `n_train`), where each row contains attention weights to be
+# assigned among the values (`y_train`) given each query
+attention_weights = nn.functional.softmax(-(X_repeat - x_train)**2 / 2, dim=1)
+# Each element of `y_hat` is weighted average of values, where weights are
+# attention weights
+y_hat = torch.matmul(attention_weights, y_train)
+plot_kernel_reg(y_hat)
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618646421121.png)
+
+
+解释一下这里的代码， 假设 x_test 为 {0， 1， 2，3， 4}， n_train为 3, 那么 x_test.repeat_interleave(n_train)的结果如下图：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618646802664.png)
+
+行对应 train， 列对应 test。
+
+现在让我们来看看注意力权重。在这里 testing inputs 入是 queries，而 training inputs 是 keys。由于两个输入都是排序的，我们可以看到 query-key 对越接近，注意力池化中的注意力权重就越高。
+
+
+```python
+d2l.show_heatmaps(
+    attention_weights.unsqueeze(0).unsqueeze(0),
+    xlabel='Sorted training inputs', ylabel='Sorted testing inputs')
+```
