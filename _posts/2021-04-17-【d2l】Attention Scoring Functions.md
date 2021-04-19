@@ -53,7 +53,7 @@ def masked_softmax(X, valid_lens):
         X : (batch, rows, columns)
         valid_lens :  batch中各个样本要mask的长度  
     return: 
-        code : 
+        mask 之后的输入 的 softmax 结果 
     """
     """Perform softmax operation by masking elements on the last axis."""
     # `X`: 3D tensor, `valid_lens`: 1D or 2D tensor
@@ -94,3 +94,26 @@ array([[[0.488994  , 0.511006  , 0.        , 0.        ],
 
 类似地，我们也可以使用一个二维张量来指定每个矩阵示例中每一行的有效长度。
 
+```python
+masked_softmax(torch.rand(2, 2, 4), torch.tensor([[1, 3], [2, 4]]))
+```
+
+输出：
+
+```
+tensor([[[1.0000, 0.0000, 0.0000, 0.0000],
+         [0.3174, 0.3988, 0.2837, 0.0000]],
+
+        [[0.4621, 0.5379, 0.0000, 0.0000],
+         [0.2578, 0.2652, 0.2603, 0.2167]]])
+```
+
+
+## Additive Attention
+
+一般来说，当queries和键keys是不同长度的向量时，我们可以使用加性注意力作为评分函数。给定一个 query $q \in \mathbb{R}^q$ 以及 一个 key $k \in \mathbb{R}^k$，  additive attention scoring function：
+
+$$a(q, k) = w_v^T \tanh(W_q q + W_k k) \in \mathbb{R} \tag{10.3.3}$$
+
+
+其中可学习参数 $W_q \in \mathbb{R}^{h \times q}$， $W_k \in \mathbb{R}^{h \times k}$， 以及 $w_v \in \mathbb{R}^h$。等价于 (10.3.3)，  query 和 key 被 concatenated 并输入到具有单个隐藏层的MLP中，该隐藏层的隐藏单元数为 $h$ ，这是一个超参数。通过使用 tanh 作为激活函数 并且 不使用 bias 项，我们在下面实现加性注意力。
