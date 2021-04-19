@@ -53,7 +53,7 @@ def masked_softmax(X, valid_lens):
         X : (batch, rows, columns)
         valid_lens :  batch中各个样本要mask的长度  
     return: 
-        mask 之后的输入 的 softmax 结果 
+        mask 之后的X 的 softmax 结果 
     """
     """Perform softmax operation by masking elements on the last axis."""
     # `X`: 3D tensor, `valid_lens`: 1D or 2D tensor
