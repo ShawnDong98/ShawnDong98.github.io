@@ -111,7 +111,7 @@ tensor([[[1.0000, 0.0000, 0.0000, 0.0000],
 
 ## Additive Attention
 
-一般来说，当queries和键keys是不同长度的向量时，我们可以使用加性注意力作为评分函数。给定一个 query $q \in \mathbb{R}^q$ 以及 一个 key $k \in \mathbb{R}^k$，  additive attention scoring function：
+一般来说，当queries和键keys是不同长度的向量时，我们可以使用加性注意力作为评分函数。给定一个 query $q \in \mathbb{R}^q$ 以及 一个 key $k \in \mathbb{R}^k$，  加性注意力评分函数如下：
 
 $$a(q, k) = w_v^T \tanh(W_q q + W_k k) \in \mathbb{R} \tag{10.3.3}$$
 
