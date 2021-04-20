@@ -28,7 +28,7 @@ tags:
 
 尽管ELMo已经显著改进了一组不同的自然语言处理任务的解决方案，但每个解决方案仍然依赖于特定于任务的结构。然而，为每个自然语言处理任务创建特定的结构实际上并不简单。GPT(Generative Pre-Training) 模型为 上下文敏感表征 设计了一个 通用的 task-agnostic 模型 [[Radford et al., 2018]](http://d2l.ai/chapter_references/zreferences.html#radford-narasimhan-salimans-ea-2018)。 基于 transformer decoder， GPT预训练一种语言模型，该模型将用于表示文本序列。当将GPT应用到下游任务时，语言模型的输出将被送入一个额外的线性输出层来预测任务的标签。与ELMo冻结预训练模型的参数形成鲜明对比的是，GPT在下游任务的监督学习过程中对预训练transformer decoder中的所有参数进行微调。GPT在自然语言推理、问题回答、句子相似度和分类的12个任务上进行了评估，并在其中的9个任务中  以对模型架构的最小更改 改进了技术水平。
 
-然而，由于语言模型的自回归特性，GPT只向前看(从左到右)。在上下文 "i went to the bank to deposit cash" 和 "i went to the bank to sit down"， 因为 GPT 只对 "bank" 左侧的上下文敏感， GPT将返回 “bank” 的相同表征， 尽管它有着不同的含义。
+然而，由于语言模型的自回归特性，GPT只向前看(从左到右)。在上下文 "i went to the bank to deposit cash" 和 "i went to the bank to sit down"，尽管 "bank" 有着不同的含义，  因为 GPT 只对 "bank" 左侧的上下文敏感， GPT将返回 “bank” 的相同表征 。
 
 
 # BERT: Combining the Best of Both Worlds
