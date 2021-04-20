@@ -34,7 +34,7 @@ tags:
 # BERT: Combining the Best of Both Worlds
 
 
-如我们所见， ELMo 双向编码上下文， 但是用于特征任务结构； 尽管GPT是 task-agnostic 的， 但是编码是从左到右的。BERT(来自transformer的双向编码器表征)结合了这两个领域的优点，对上下文进行双向编码，对于各种各样的自然语言处理任务，只需要最小的结构更改[ [Devlin et al., 2018]](http://d2l.ai/chapter_references/zreferences.html#devlin-chang-lee-ea-2018)。使用预先训练的transformer decoder，BERT能够基于双向上下文表示任何token。在下游任务的监督学习中，BERT与GPT有两个相似之处。首先，BERT表征将被输入到一个额外的输出层中，根据任务的性质对模型结构进行最小的更改，例如预测每个token vs 预测整个序列。其次，对预先训练好的transformer decoder的所有参数进行微调，同时对额外的输出层从头训练。如图描述了ELMo, GPT 和 BERT的差异。
+如我们所见， ELMo 双向编码上下文， 但是用于特征任务结构； 尽管GPT是 task-agnostic 的， 但是编码是从左到右的。BERT(来自transformer的双向编码器表征)结合了这两个领域的优点，对上下文进行双向编码，对于各种各样的自然语言处理任务，只需要最小的结构更改[ [Devlin et al., 2018]](http://d2l.ai/chapter_references/zreferences.html#devlin-chang-lee-ea-2018)。使用预训练的transformer decoder，BERT能够基于双向上下文表示任何token。在下游任务的监督学习中，BERT与GPT有两个相似之处。首先，BERT表征将被输入到一个额外的输出层中，根据任务的性质对模型结构进行最小的更改，例如预测每个token vs 预测整个序列。其次，对预先训练好的transformer decoder的所有参数进行微调，同时对额外的输出层从头训练。如图描述了ELMo, GPT 和 BERT的差异。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617268267764.png)
 
