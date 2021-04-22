@@ -2,7 +2,7 @@
 layout:     post
 title:      "【d2l】Attention Scoring Functions"
 subtitle:   ""
-date:       2021-04-17
+date:       2021-04-18
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
