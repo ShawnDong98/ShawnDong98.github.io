@@ -1739,13 +1739,99 @@ ZeroDivisionError: division by zero
 
 logging允许你指定记录信息的级别，有debug，info，warning，error等几个级别，当我们指定level=INFO时，logging.debug就不起作用了。同理，指定level=WARNING后，debug和info就不起作用了。这样一来，你可以放心地输出不同级别的信息，也不用删除，最后统一控制输出哪个级别的信息。
 
+
 logging的另一个好处是通过简单的配置，一条语句可以同时输出到不同的地方，比如console和文件。
 
 
 
 # cProfile
 
+## run(command, filename=None, sort=-1)
 
+第一种情况：
+
+```
+import cProfile
+import re
+cProfile.run('re.compile("aaa")')
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1619095070180.png)
+
+- 第一行：189个函数调用被监控，其中184个是原生调用（不涉及递归）
+- ncalls：函数被调用的次数。如果这一列有两个值，就表示有递归调用，第二个值是原生调用次数，第一个值是总调用次数。
+- tottime：函数内部消耗的总时间。（可以帮助优化）
+- percall：是tottime除以ncalls，一个函数每次调用平均消耗时间。
+- cumtime：之前所有子函数消费时间的累计和。
+- filename:lineno(function)：被分析函数所在文件名、行号、函数名。
+
+第二种情况：
+
+```python
+import cProfile
+import re
+cProfile.run('re.compile("aaa|bbb")', 'stats', 'cumtime')
+```
+
+如果你去运行该代码，你会发现没有结果输出，但是生成了一个stats文件，里面是二进制数据。想读取文件，请见后面内容。
+
+## runctx(command, globals, locals, filename=None）
+
+run和runtx之间的区别：globals和locals是两个字典参数。
+
+```python
+import cProfile
+
+def runRe():
+    import re
+    cProfile.run('re.compile("aaa|bbb")')
+runRe()
+```
+
+运行结果：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1619095241570.png)
+
+```
+import cProfile
+# 这样才对
+def runRe():
+    import re
+    cProfile.runctx('re.compile("aaa|bbb")', None, locals())
+runRe()
+```
+
+## Profile(custom_timer=None, time_unit=0.0, subcalls=True, builtins=True)
+
+- custom_timer：是一个自定义参数，可以通过与默认函数不同的方式测量时间。
+- 如果custom_timer返回的是一个整数，time_unit是单位时间换成秒数。
+
+
+返回方法：
+
+- enable()：开始收集性能分析数据。
+- disable()：停止收集性能分析数据。
+- create_stats()：停止收集数据，并为已经收集数据创建stats对象。
+- print_stats(sort=-1)：创建一个stats对象，打印结果。
+- dump_stats(filename)：把当前性能分析的内容写入一个文件。
+- run(command)：和之前的一样。
+- runctx(command, golabls, locals)：和以前一样。
+- runcall(func, \*args, \*\*kwargs)：收集被调用函数func的性能分析信息。
+
+
+```python
+from cProfile import Profile
+
+def runRe():
+    import re
+    re.compile("aaa|bbb")
+
+prof = Profile()
+prof.enable()
+runRe()
+prof.create_stats()
+prof.print_stats()
+```
 
 # Bugs
 
