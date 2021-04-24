@@ -48,3 +48,4 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 ## 语音生成
 
 备选1： 百度PaddleHub语音生成
+备选2： [zhrtvc](https://github.com/KuangDD/zhrtvc/blob/master/zhrtvc/README.md)
