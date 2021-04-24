@@ -34,7 +34,7 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 ## 语音识别
 
 备选1： [https://github.com/binzhouchn/masr](https://github.com/binzhouchn/masr)
-备选2： []()
+备选2： 科大讯飞语音识别
 
 
 ## 文本生成
