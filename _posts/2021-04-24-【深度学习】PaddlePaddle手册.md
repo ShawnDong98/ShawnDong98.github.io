@@ -11,8 +11,9 @@ tags:
     - 
 ---
 
+# PaddlePaddle
 
-# 安装
+## 安装
 
 
 cuda 11.0 paddlepaddle 2.0.2 稳定版本
@@ -21,3 +22,6 @@ cuda 11.0 paddlepaddle 2.0.2 稳定版本
 ```
 python -m pip install paddlepaddle-gpu==2.0.2.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
 ```
+
+
+# PaddleHub
