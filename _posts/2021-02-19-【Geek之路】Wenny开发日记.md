@@ -41,8 +41,9 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 
 
 备选1： 百度PaddleHub开源文本生成模型
-备选2：[https://github.com/yangjianxin1/GPT2-chitchat](https://github.com/yangjianxin1/GPT2-chitchat)
-备选3： [https://github.com/Morizeyao/GPT2-Chinese](https://github.com/Morizeyao/GPT2-Chinese)
+备选2：[chitchat](https://github.com/yangjianxin1/GPT2-chitchat)（可用、易用）
+备选3： [GPT2-Chinese](https://github.com/Morizeyao/GPT2-Chinese)
+备选4：[CDial-GPT](https://github.com/thu-coai/CDial-GPT)
 
 ## 语音生成
 
