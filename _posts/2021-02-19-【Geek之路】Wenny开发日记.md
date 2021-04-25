@@ -66,7 +66,30 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 
 ## 播放声音
 
-pydub
+### pydub
+
+和pyaudio一起会有bug, 播放是杂音
+
+```
+from pydub import AudioSegment
+from pydub.playback import play
+
+sound = AudioSegment.from_wav('myfile.wav')
+play(sound)
+```
+
+### sounddevice
+
+```python
+import sounddevice as sd
+import soundfile as sf
+
+filename = 'myfile.wav'
+# Extract data and sampling rate from file
+data, fs = sf.read(filename, dtype='float32')  
+sd.play(data, fs)
+status = sd.wait()  # Wait until file is done playing
+```
 
 
 ### 问题
