@@ -29,14 +29,15 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 
 ## 唤醒词
 
-备选1：基于科大讯飞唤醒词SDK
-备选2： Snowboy
-备选3： Mycroft Precise
+备选1：基于科大讯飞唤醒词SDK \\
+备选2： Snowboy \\
+备选3： Mycroft Precise \\
+备选4： 
 
 ## 语音识别
 
-备选1： [masr](https://github.com/binzhouchn/masr)（可用、易用）
-备选2： 科大讯飞语音识别
+备选1： [masr](https://github.com/binzhouchn/masr)（可用、易用）\\
+备选2： 科大讯飞语音识别 \\
 
 目前选用 masr
 
@@ -44,17 +45,17 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 ## 文本生成
 
 
-备选1： 百度PaddleHub开源文本生成模型
-备选2：[GPT2-chitchat](https://github.com/yangjianxin1/GPT2-chitchat)（可用、易用）
-备选3： [GPT2-Chinese](https://github.com/Morizeyao/GPT2-Chinese)
-备选4：[CDial-GPT](https://github.com/thu-coai/CDial-GPT)(可用、易用)
+备选1： 百度PaddleHub开源文本生成模型 \\
+备选2：[GPT2-chitchat](https://github.com/yangjianxin1/GPT2-chitchat)（可用、易用）\\
+备选3： [GPT2-Chinese](https://github.com/Morizeyao/GPT2-Chinese) \\
+备选4：[CDial-GPT](https://github.com/thu-coai/CDial-GPT)(可用、易用) 
 
 目前选用 GPT2-chitchat
 
 ## 语音生成
 
-备选1： 百度PaddleHub语音生成
-备选2： [zhrtvc](https://github.com/KuangDD/zhrtvc/blob/master/zhrtvc/README.md)
+备选1： 百度PaddleHub语音生成 \\
+备选2： [zhrtvc](https://github.com/KuangDD/zhrtvc/blob/master/zhrtvc/README.md) \\
 备选3： [zhtts](https://github.com/Jackiexiao/zhtts)（可用、易用）
 
 目前选用 zhtts
