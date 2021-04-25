@@ -67,3 +67,7 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 
 需要将生成的东西保存成文件再读取文件播放出来，这样是低效的。
 
+
+
+# Reference
+1. [一个轻量级的RNN语音唤醒引擎](http://fancyerii.github.io/books/mycroft-precise/)
