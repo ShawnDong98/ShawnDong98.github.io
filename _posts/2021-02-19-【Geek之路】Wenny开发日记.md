@@ -32,7 +32,7 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 备选1：基于科大讯飞唤醒词SDK \\
 备选2： Snowboy \\
 备选3： Mycroft Precise \\
-备选4： 
+备选4： [Porcupine](https://github.com/Picovoice/Porcupine)
 
 ## 语音识别
 
@@ -65,6 +65,8 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 第一个词大部分时候发音不清楚
 
 ## 播放声音
+
+pydub
 
 
 ### 问题
