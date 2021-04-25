@@ -101,3 +101,4 @@ status = sd.wait()  # Wait until file is done playing
 
 # Reference
 1. [一个轻量级的RNN语音唤醒引擎](http://fancyerii.github.io/books/mycroft-precise/)
+2. [Playing and Recording Sound in Python](https://realpython.com/playing-and-recording-sound-python/)
