@@ -51,6 +51,9 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 备选2： [zhrtvc](https://github.com/KuangDD/zhrtvc/blob/master/zhrtvc/README.md)
 备选3： [zhtts](https://github.com/Jackiexiao/zhtts)（可用、易用）
 
+### 问题
+
+第一个词大部分时候发音不清楚
 
 ## 播放声音
 
