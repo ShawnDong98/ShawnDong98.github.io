@@ -94,9 +94,7 @@ status = sd.wait()  # Wait until file is done playing
 
 ### 问题
 
-
 需要将生成的东西保存成文件再读取文件播放出来，这样是低效的。
-
 
 
 # Reference
