@@ -116,7 +116,44 @@ class MultiHeadAttention(nn.Module):
 为了实现 multiple head 的并行计算， 上述 MultiHeadAttention 类使用如下定义的两个转置函数。 transpose_output 函数 是 transpose_qkv 函数的逆操作。
 
 ```python
+def transpose_qkv(X, num_heads):
+    """
+    args: 
+        X : shape (2, 4, 100)
+        num_heads: 5
+    return: 
+        X : shape (2 * 5, 4, 20)
+    """
+    # Shape of input `X`: (`batch_size`, no. of queries or key-value pairs, `num_hiddens`).
+    # Shape of output `X`: (`batch_size`, no. of queries or key-value pairs, `num_heads`, `num_hiddens` / `num_heads`)
+    # X.shape: (2, 4, 100) -> (2, 4, 5, 20)
+    X = X.reshape(X.shape[0], X.shape[1], num_heads, -1)
 
+    # Shape of output `X`:
+    # (`batch_size`, `num_heads`, no. of queries or key-value pairs, `num_hiddens` / `num_heads`)
+    X = X.permute(0, 2, 1, 3)
+
+    # Shape of `output`:
+    # (`batch_size` * `num_heads`, no. of queries or key-value pairs, `num_hiddens` / `num_heads`)
+    return X.reshape(-1, X.shape[2], X.shape[3])
+
+
+def transpose_output(X, num_heads):
+    """
+    args: 
+        X : shape(10, 4, 20)
+        num_heads : 5 
+     
+    return: 
+        X : shape(2, 4, 100) 
+    """
+    """Reverse the operation of `transpose_qkv`"""
+    # X.shape: (10 ,4, 20) -> (2, 5, 4, 20)
+    X = X.reshape(-1, num_heads, X.shape[1], X.shape[2])
+    # X.shape: (2, 5, 4, 20) -> (2, 4, 5, 20)
+    X = X.permute(0, 2, 1, 3)
+    # X.shape: (2, 4, 5, 20) -> (2, 4, 100)
+    return X.reshape(X.shape[0], X.shape[1], -1)
 ```
 
 让我们使用一个keys 和 values 都相同的简单样本实现 MultiHeadAttention。 multi-head attention 的输出的形状是 (batch_size, num_queries, num_hiddens)。
