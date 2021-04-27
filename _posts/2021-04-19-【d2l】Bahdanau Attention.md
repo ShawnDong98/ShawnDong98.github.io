@@ -134,9 +134,16 @@ decoder = Seq2SeqAttentionDecoder(vocab_size=10, embed_size=8, num_hiddens=16, n
 decoder.eval()
 X = torch.zeros((4, 7), dtype=torch.long)  # (`batch_size`, `num_steps`)
 # state: (outputs, hidden_state, valid_len)
+# outputs.shape: (4, 7, 16)
+# hidden_state.shape: (2, 4, 16)
 state = decoder.init_state(encoder(X), None)
+# output.shape: (4, 7, 10)
+# enc_outputs
+# hidden_state(dec): (2, 4, 16)
+# valid_len 
 output, state = decoder(X, state)
 print(output.shape, len(state), state[0].shape, len(state[1]), state[1][0].shape)
+
 ```
 
 输出：
