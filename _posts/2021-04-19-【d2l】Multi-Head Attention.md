@@ -86,3 +86,13 @@ from d2l import torch as d2l
 ```
 
 # Summary
+
+- Multi-head attention 通过queries， keys和values的子空间的不同表征 组合了 相同注意力池化 的知识。
+- 为了并行计算 multi-head attention 的 multiple heads， 需要合适的 tensor 操作。
+
+
+# Exercises
+
+1. 可视化实验中 multiple heads 的 注意力权重。
+2. 假设我们有一个基于multi-head attention的训练模型，我们想要修剪最不重要的attention head 来提高预测速度。我们如何设计实验来衡量attention head的重要性呢？
+
