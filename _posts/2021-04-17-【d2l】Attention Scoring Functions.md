@@ -158,11 +158,24 @@ class AdditiveAttention(nn.Module):
 
 
 ```python
+queries, keys = torch.normal(0, 1, (2, 1, 20)), torch.ones((2, 10, 2))
+# The two value matrices in the `values` minibatch are identical
+values = torch.arange(40, dtype=torch.float32).reshape(1, 10,
+                                                       4).repeat(2, 1, 1)
+valid_lens = torch.tensor([2, 6])
+
+attention = AdditiveAttention(key_size=2, query_size=20, num_hiddens=8,
+                              dropout=0.1)
+attention.eval()
+attention(queries, keys, values, valid_lens)
 ```
 
-结果：
+输出：
 
 ```
+tensor([[[ 2.0000,  3.0000,  4.0000,  5.0000]],
+
+        [[10.0000, 11.0000, 12.0000, 13.0000]]], grad_fn=<BmmBackward0>)
 ```
 
 尽管加性注意力包含了可学习的参数，但由于本例中的每个 key 都是相同的，因此注意权重是统一的，由指定的有效长度决定。
