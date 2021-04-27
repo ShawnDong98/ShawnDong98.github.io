@@ -62,3 +62,20 @@ attention(X, X, X, valid_lens).shape
 ```
 torch.Size([2, 4, 100])
 ```
+
+
+# Comparing CNNs, RNNs, and Self-Attention
+
+让我们比较将一个 $n$ token 序列映射到另一个等长序列的结构，其中每个输入或输出 token 都由一个 $d$ 维向量表示。我们将比较 CNNs, RNNs和self-attention。 我们将比较它们的计算复杂度、序列操作和最大路径长度。请注意，序列操作阻止并行计算，而所有序列位置组合之间的更短的路径使学习序列中的长期依赖关系更容易\[Hochreiter et al., 2001\]。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1619534235261.png)
+
+
+图 10.6.1 比较CNN(忽略paddding的tokens)、RNN和self-attention 结构。考虑一个卷积层，其卷积核大小为 $k$。 我们将在后面的章节中提供更多关于使用CNNs进行序列处理的细节。现在，我们只需要知道，因为序列长度是 $n$， 输入通道和输出通道的数量都是 $d$， 卷积层的计算复杂度为 $O(knd^2)$。如图10.6.1所示， CNNs是层级结构， 因此它的序列操作是 $O(1)$, 最大路径长度是 $O(n / k )$。 例如， 在图10.6.1中， $x_1$ 和 $x_5$在两层卷积核为3的CNN的感受野内。
+
+当RNNs更新hidden state时， 多个 $d \times d$ 权重矩阵 和 $d$ 维 hidden state 的计算复杂度维 $O(d^2)$。
+因为序列长度是 $n$， 循环层计算复杂度为 $O(nd^2)$。 根据图 10.6.1， $O(n)$的序列操作不能并行化， 并且最大路径长度也是 $O(n)$。
+
+在 self-attention 中， queries，keys 和  values 都是 $n \times d$ 的矩阵。 考虑 10.3.5 中的 scaled dot-product attention， $n \times d$ 的矩阵 乘以 一个 $d \times n$ 的矩阵， 然后 输出 $n \times n$ 的矩阵， 它再乘以 一个 $n \times d$ 的矩阵。 因此， self-attention的计算复杂度为 $O(n^2d)$。如图 10.6.1, 每个token通过self-attention直接连接到其他的token。 因此计算可以 以$O(1)$序列操作并行化 并且 最大路径长度也是 $O(1)$。
+
+总而言之，CNNs和self-attention都可以并行计算，且self-attention的最大路径长度最短。然而，关于序列长度的平方计算 的复杂度 使得self-attention对于非常长的序列非常慢。
