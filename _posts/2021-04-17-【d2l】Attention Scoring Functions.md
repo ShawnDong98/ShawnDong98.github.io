@@ -120,6 +120,38 @@ $$a(q, k) = w_v^T \tanh(W_q q + W_k k) \in \mathbb{R} \tag{10.3.3}$$
 
 
 ```python
+class AdditiveAttention(nn.Module):
+    def __init__(self, key_size, query_size, num_hiddens, dropout, **kwargs):
+        super(AdditiveAttention, self).__init__(**kwargs)
+        self.W_k = nn.Linear(key_size, num_hiddens, bias=False)
+        self.W_q = nn.Linear(query_size, num_hiddens, bias=False)
+        self.w_v = nn.Linear(num_hiddens, 1, bias=False)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, queries, keys, values, valid_lens):
+        """
+        args: 
+            queries : shape(batch_size, no. of queries, features)
+            keys: shape(batch_size, no. of key-value pairs, features)
+         
+        return: 
+            code : 
+        """
+        queries, keys = self.W_q(queries), self.W_k(keys)
+        # After dimension expansion, shape of `queries`: (`batch_size`, no. of
+        # queries, 1, `num_hiddens`) and shape of `keys`: (`batch_size`, 1,
+        # no. of key-value pairs, `num_hiddens`). Sum them up with
+        # broadcasting
+        features = queries.unsqueeze(2) + keys.unsqueeze(1)
+        features = torch.tanh(features)
+        # There is only one output of `self.w_v`, so we remove the last
+        # one-dimensional entry from the shape. Shape of `scores`:
+        # (`batch_size`, no. of queries, no. of key-value pairs)
+        scores = self.w_v(features).squeeze(-1)
+        self.attention_weights = masked_softmax(scores, valid_lens)
+        # Shape of `values`: (`batch_size`, no. of key-value pairs, value
+        # dimension)
+        return torch.bmm(self.dropout(self.attention_weights), values)
 ```
 
 让我们使用一个简单的样本演示一下上面的 AdditiveAttention 类， 其中 queries, keys, 和 values 的形状 (batch size, number of stepsor sequence length in tokens, feature size) 分别为 (2, 1, 20), (2, 10, 2) 和 (2, 10, 4)。attention pooling 输出的形状为 ((batch size, number of steps for queries, feature size for values))
