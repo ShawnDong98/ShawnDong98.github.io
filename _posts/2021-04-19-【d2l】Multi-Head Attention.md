@@ -2,7 +2,7 @@
 layout:     post
 title:      "【d2l】Multi-Head Attention"
 subtitle:   ""
-date:       2021-04-19
+date:       2021-04-20
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
@@ -41,3 +41,48 @@ W_o
 \end{matrix}
 \in \mathbb{R}^{p_o} \tag{10.5.2}
 $$
+
+基于这个设计， 每个 head 可以处理输入的不同部分。 可以表达比简单加权平均更复杂的函数。
+
+
+```python
+import math
+import torch
+from torch import nn
+from d2l import torch as d2l
+```
+
+# Implementation
+
+在我们的实现中，我们为multi-head attention的每个 head 选择 scaled dot-product attention。避免了计算代价和参数代价的显著增长， 我们令 $p_q = p_k = p_v = p_o / h$。 注意 $h$ heads 可以并行计算 如果我们将query、key和value的线性变换的输出数量设置为 $p_qh = p_kh = p_vh = p_o$。 在接下来的实现中， $p_o$ 通过参数 num_hiddens 决定。
+
+```python
+
+```
+
+为了实现 multiple head 的并行计算， 上述 MultiHeadAttention 类使用如下定义的两个转置函数。 transpose_output 函数 是 transpose_qkv 函数的逆操作。
+
+```python
+```
+
+让我们使用一个keys 和 values 都相同的简单样本实现 MultiHeadAttention。 multi-head attention 的输出的形状是 (batch_size, num_queries, num_hiddens)。
+
+```python
+
+```
+
+输出：
+
+```
+```
+
+
+```python
+```
+
+输出
+
+```
+```
+
+# Summary
