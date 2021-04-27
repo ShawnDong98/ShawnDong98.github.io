@@ -143,12 +143,12 @@ state = decoder.init_state(encoder(X), None)
 # valid_len 
 output, state = decoder(X, state)
 print(output.shape, len(state), state[0].shape, len(state[1]), state[1][0].shape)
-
 ```
 
 输出：
 
 ```
+(torch.Size([4, 7, 10]), 3, torch.Size([4, 7, 16]), 2, torch.Size([4, 16]))
 ```
 
 
