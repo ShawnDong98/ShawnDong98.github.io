@@ -39,5 +39,5 @@ W_o
 		h_h
 	\end{array}\right]
 \end{matrix}
-\in \mathbb{R}^{p_o}
+\in \mathbb{R}^{p_o} \tag{10.5.2}
 $$
