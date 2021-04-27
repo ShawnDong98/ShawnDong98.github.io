@@ -58,6 +58,71 @@ class AttentionDecoder(d2l.Decoder):
 现在让我们在下面的Seq2SeqAttentionDecoder类中实现带有badanau注意力的RNN解码器。解码器的状态初始化使用 i) 编码器最后一层 所有时间步的隐藏状态(作为注意力的 key 和 value) ii) 编码器在最后一个时间步 的所有层的隐藏状态(初始化解码器的隐藏状态) iii) 编码器的有效长度(在注意力池化中， 用于排除填充标记)。在每一个解码时间步，使用前一个时间步解码器的最后一层隐藏状态作为注意力的query。结果，注意力输出和输入embeddings  concatenateq起来 作为RNN解码器的输入。
 
 ```python
+class Seq2SeqAttentionDecoder(AttentionDecoder):
+    def __init__(self, vocab_size, embed_size, num_hiddens, num_layers, dropout=0, **kwargs):
+        super(Seq2SeqAttentionDecoder, self).__init__(**kwargs)
+        self.attention = d2l.AdditiveAttention(num_hiddens, num_hiddens, num_hiddens, dropout)
+        self.embedding = nn.Embedding(vocab_size, embed_size)
+        self.rnn = nn.GRU(embed_size + num_hiddens, num_hiddens, num_layers, dropout=dropout)
+        self.dense = nn.Linear(num_hiddens, vocab_size)
+
+    def init_state(self, enc_outputs, enc_valid_lens, *args):
+        """
+        args: 
+            outputs : shape(num_steps, batch_size, num_hiddens), enc 最后一层所有时间步的输出
+            hidden_state ： enc 每层最后一个时间步的输出
+        return: 
+            outputs : shape(batch_size, num_steps, num_hiddens)
+            hidden_state ： enc 每层最后一个时间步的输出
+            enc_valid_lens ： enc 的有效长度
+        """
+        # Shape of `outputs`: (`num_steps`, `batch_size`, `num_hiddens`).
+        # Shape of `hidden_state[0]`: (`num_layers`, `batch_size`, `num_hiddens`)
+        outputs, hidden_state = enc_outputs
+        return (outputs.permute(1, 0, 2), hidden_state, enc_valid_lens)
+
+    def forward(self, X, state):
+        """
+        args: 
+            X： shape(batch, steps) 
+            state： (outputs, hidden_state, enc_valid_lens)
+        return: 
+            outputs : shape(batch_size, num_steps, vocab_size)
+            enc_outputs : enc的输出
+            hidden_state : dec 每层最后一个时间步的输出
+            enc_valid_lens : enc 有效长度
+
+        """
+        # Shape of `enc_outputs`: (`batch_size`, `num_steps`, `num_hiddens`).
+        # Shape of `hidden_state[0]`: (`num_layers`, `batch_size`, `num_hiddens`)
+        enc_outputs, hidden_state, enc_valid_lens = state
+        # Shape of the output `X`: (`num_steps`, `batch_size`, `embed_size`)
+        # X.shape: (steps, batch, embedding)
+        X = self.embedding(X).permute(1, 0, 2)
+        outputs, self._attention_weights = [], []
+        # 每个时间步
+        for x in X:
+            # Shape of `query`: (`batch_size`, 1, `num_hiddens`)
+            # 最后一层最后一个时间步的输出作为query
+            query = torch.unsqueeze(hidden_state[-1], dim=1)
+            # Shape of `context`: (`batch_size`, 1, `num_hiddens`)
+            context = self.attention(query, enc_outputs, enc_outputs, enc_valid_lens)
+            # Concatenate on the feature dimension
+            # 每个时间步的输入 和 Attention 池化后的 enc 输出拼接
+            x = torch.cat((context, torch.unsqueeze(x, dim=1)), dim=-1)
+            # Reshape `x` as (1, `batch_size`, `embed_size` + `num_hiddens`)
+            out, hidden_state = self.rnn(x.permute(1, 0, 2), hidden_state)
+            outputs.append(out)
+            self._attention_weights.append(self.attention.attention_weights)
+        # After fully-connected layer transformation, shape of `outputs`: (`num_steps`, `batch_size`, `vocab_size`)
+        # 在 时间步维 拼接起来outputs
+        # 全连接层输出每个词的概率
+        outputs = self.dense(torch.cat(outputs, dim=0))
+        return outputs.permute(1, 0, 2), [enc_outputs, hidden_state, enc_valid_lens]
+
+    @property
+    def attention_weights(self):
+        return self._attention_weights
 ```
 
 接下来，我们使用一个包含 4个序列输入， 7个时间步长的 minibatch 测试 实现的具有badanau注意力的解码器。
