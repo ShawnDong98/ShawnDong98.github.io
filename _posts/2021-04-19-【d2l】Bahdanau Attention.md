@@ -44,10 +44,18 @@ from d2l import torch as d2l
 为了实现具有badanau注意力的RNN编码器-解码器，我们只需要重新定义解码器。为了更方便地可视化学习到的注意力权重，下面的AttentionDecoder类定义了具有注意力机制的解码器的基本接口。
 
 ```python
+class AttentionDecoder(d2l.Decoder):
+    """The base attention-based decoder interface."""
+    def __init__(self, **kwargs):
+        super(AttentionDecoder, self).__init__(**kwargs)
+
+    @property
+    def attention_weights(self):
+        raise NotImplementedError
 ```
 
 
-现在让我们在下面的Seq2SeqAttentionDecoder类中实现带有badanau注意力的RNN解码器。解码器的状态初始化使用 i) 编码器最后一层 所有时间步的隐藏状态(作为注意力的 key 和 value) ii) 编码器在最后一个时间步 的所有层的隐藏状态(去初始化解码器的隐藏状态) iii) 编码器的有效长度(在注意力池化中， 用于排除填充标记)。在每一个解码时间步，使用前一个时间步解码器的最后一层隐藏状态作为注意力的query。结果，注意力 输出和输入 嵌入都被 concatenated 作为RNN解码器的输入。
+现在让我们在下面的Seq2SeqAttentionDecoder类中实现带有badanau注意力的RNN解码器。解码器的状态初始化使用 i) 编码器最后一层 所有时间步的隐藏状态(作为注意力的 key 和 value) ii) 编码器在最后一个时间步 的所有层的隐藏状态(初始化解码器的隐藏状态) iii) 编码器的有效长度(在注意力池化中， 用于排除填充标记)。在每一个解码时间步，使用前一个时间步解码器的最后一层隐藏状态作为注意力的query。结果，注意力 输出和输入 嵌入都被 concatenated 作为RNN解码器的输入。
 
 ```python
 ```
