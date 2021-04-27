@@ -157,11 +157,23 @@ print(output.shape, len(state), state[0].shape, len(state[1]), state[1][0].shape
 与9.7.4节类似，这里我们指定了超参数，实例化一个编码器和一个解码器，并训练这个模型进行机器翻译。由于新增加了注意力机制，这次的训练比9.7.4章节中没有注意力机制的训练要慢得多。
 
 ```python
+embed_size, num_hiddens, num_layers, dropout = 32, 32, 2, 0.1
+batch_size, num_steps = 64, 10
+lr, num_epochs, device = 0.005, 250, d2l.try_gpu()
+
+train_iter, src_vocab, tgt_vocab = d2l.load_data_nmt(batch_size, num_steps)
+encoder = d2l.Seq2SeqEncoder(len(src_vocab), embed_size, num_hiddens,
+                             num_layers, dropout)
+decoder = Seq2SeqAttentionDecoder(len(tgt_vocab), embed_size, num_hiddens,
+                                  num_layers, dropout)
+net = d2l.EncoderDecoder(encoder, decoder)
+d2l.train_seq2seq(net, train_iter, lr, num_epochs, tgt_vocab, device)
 ```
 
 输出
 
 ```
+loss 0.019, 4516.7 tokens/sec on cuda:0
 ```
 
 
@@ -171,22 +183,39 @@ print(output.shape, len(state), state[0].shape, len(state[1]), state[1][0].shape
 
 
 ```python
+engs = ['go .', "i lost .", 'he\'s calm .', 'i\'m home .']
+fras = ['va !', 'j\'ai perdu .', 'il est calme .', 'je suis chez moi .']
+for eng, fra in zip(engs, fras):
+    translation, dec_attention_weight_seq = d2l.predict_seq2seq(
+        net, eng, src_vocab, tgt_vocab, num_steps, device, True)
+    print(f'{eng} => {translation}, ',
+          f'bleu {d2l.bleu(translation, fra, k=2):.3f}')
 ```
 
 输出：
 
 ```
+go . => va !,  bleu 1.000
+i lost . => j'ai perdu .,  bleu 1.000
+he's calm . => il est riche .,  bleu 0.658
+i'm home . => je suis chez moi .,  bleu 1.000
 ```
 
 
 ```python
-
+attention_weights = torch.cat(
+    [step[0][0][0] for step in dec_attention_weight_seq], 0).reshape(
+        (1, 1, -1, num_steps))
 ```
 
 通过可视化翻译最后一个英语句子时的注意力权重，我们可以看到每个 query 在 key-value 对上分配了非均匀的权重。结果表明，在每个解码步骤中，输入序列的不同部分被选择性地聚集在注意力池化中。
 
 
 ```python
+# Plus one to include the end-of-sequence token
+d2l.show_heatmaps(
+    attention_weights[:, :, :, :len(engs[-1].split()) + 1].cpu(),
+    xlabel='Key positions', ylabel='Query positions')
 ```
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618814945564.png)
