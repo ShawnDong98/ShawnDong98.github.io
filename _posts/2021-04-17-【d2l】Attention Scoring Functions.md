@@ -180,6 +180,12 @@ tensor([[[ 2.0000,  3.0000,  4.0000,  5.0000]],
 
 尽管加性注意力包含了可学习的参数，但由于本例中的每个 key 都是相同的，因此注意权重是均匀的，由指定的有效长度决定。
 
+```python
+d2l.show_heatmaps(attention.attention_weights.reshape((1, 1, 2, 10)), xlabel='Keys', ylabel='Queries')
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1619510309406.png)
+
 
 ## Scaled Dot-Product Attention
 
