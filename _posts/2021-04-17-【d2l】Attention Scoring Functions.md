@@ -12,7 +12,7 @@ tags:
 ---
 
 
-在10.2节中，我们使用高斯内核来建模 queries 和 keys 之间的交互。将(10.2.6)中高斯核的指数作为 attention scoring function (或简称 scoring function)，该函数的结果基本上被送入 softmax 操作。结果，我们获得了对value和keys配对的概率分布(注意力权重)。最后，注意力池化的输出是基于这些注意力权重的值的加权和。
+在10.2节中，我们使用高斯核来建模 queries 和 keys 之间的交互。将(10.2.6)中高斯核的指数作为 attention scoring function (或简称 scoring function)，该函数的结果基本上被送入 softmax 操作。结果，我们获得了对value和keys配对的概率分布(注意力权重)。最后，注意力池化的输出是基于这些注意力权重的值的加权和。
 
 
 在高层次上，我们可以使用上述算法实例化图10.1.3所示的注意力机制框架。图10.3.1用 $a$ 表示 attention scoring function，说明了如何将注意力池化的输出计算为各值的加权和。因为注意力的权重是一个概率分布，加权和本质上是一个加权平均。
