@@ -128,6 +128,15 @@ class Seq2SeqAttentionDecoder(AttentionDecoder):
 接下来，我们使用一个包含 4个序列输入， 7个时间步长的 minibatch 测试 实现的具有badanau注意力的解码器。
 
 ```python
+encoder = d2l.Seq2SeqEncoder(vocab_size=10, embed_size=8, num_hiddens=16, num_layers=2)
+encoder.eval()
+decoder = Seq2SeqAttentionDecoder(vocab_size=10, embed_size=8, num_hiddens=16, num_layers=2)
+decoder.eval()
+X = torch.zeros((4, 7), dtype=torch.long)  # (`batch_size`, `num_steps`)
+# state: (outputs, hidden_state, valid_len)
+state = decoder.init_state(encoder(X), None)
+output, state = decoder(X, state)
+print(output.shape, len(state), state[0].shape, len(state[1]), state[1][0].shape)
 ```
 
 输出：
