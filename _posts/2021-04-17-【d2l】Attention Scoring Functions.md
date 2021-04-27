@@ -200,25 +200,54 @@ $$softmax (\frac{QK^T}{\sqrt{d}})V \in \mathbb{R}^{n \times v} \tag{10.3.5}$$
 
 在下面的 scaled dot product attention 的实现中， 我们使用 dropout 进行模型正则化。
 
-```
+```python
+#@save
+class DotProductAttention(nn.Module):
+    """Scaled dot product attention."""
+    def __init__(self, dropout, **kwargs):
+        super(DotProductAttention, self).__init__(**kwargs)
+        self.dropout = nn.Dropout(dropout)
+
+    # Shape of `queries`: (`batch_size`, no. of queries, `d`)
+    # Shape of `keys`: (`batch_size`, no. of key-value pairs, `d`)
+    # Shape of `values`: (`batch_size`, no. of key-value pairs, value
+    # dimension)
+    # Shape of `valid_lens`: (`batch_size`,) or (`batch_size`, no. of queries)
+    def forward(self, queries, keys, values, valid_lens=None):
+        d = queries.shape[-1]
+        # Set `transpose_b=True` to swap the last two dimensions of `keys`
+        scores = torch.bmm(queries, keys.transpose(1, 2)) / math.sqrt(d)
+        self.attention_weights = masked_softmax(scores, valid_lens)
+        return torch.bmm(self.dropout(self.attention_weights), values)
 ```
 
 
 为了演示上面的DotProductAttention类，我们使用与前面加性注意力的简单示例相同的key、value和valid lengths。
 
-```
+```python
+queries = torch.normal(0, 1, (2, 1, 2))
+attention = DotProductAttention(dropout=0.5)
+attention.eval()
+attention(queries, keys, values, valid_lens)
 ```
 
-结果
+输出：
 
 ```
+tensor([[[ 2.0000,  3.0000,  4.0000,  5.0000]],
+
+        [[10.0000, 11.0000, 12.0000, 13.0000]]])
 ```
 
 与加性注意力演示一样，由于 key 中包含的元素相同，不能通过任何 query 加以区分，因此获得了统一的注意力权重。
 
 
 ```python
+d2l.show_heatmaps(attention.attention_weights.reshape((1, 1, 2, 10)),
+                  xlabel='Keys', ylabel='Queries')
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1619511030676.png)
 
 ## Summary
 
