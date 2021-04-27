@@ -51,7 +51,9 @@ attention.eval()
 
 ```python
 batch_size, num_queries, valid_lens = 2, 4, torch.tensor([3, 2])
+# X.shape: (2, 4, 100)
 X = torch.ones((batch_size, num_queries, num_hiddens))
+# (2, 4, 100) -> (10, 4, 20) -> (10, 4, 4) -> (2, 4, 100)
 attention(X, X, X, valid_lens).shape
 ```
 
