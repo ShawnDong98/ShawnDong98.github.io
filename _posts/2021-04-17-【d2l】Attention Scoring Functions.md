@@ -176,7 +176,7 @@ tensor([[[ 2.0000,  3.0000,  4.0000,  5.0000]],
         [[10.0000, 11.0000, 12.0000, 13.0000]]], grad_fn=<BmmBackward0>)
 ```
 
-尽管加性注意力包含了可学习的参数，但由于本例中的每个 key 都是相同的，因此注意权重是均匀的，由指定的有效长度决定。
+尽管加性注意力包含了可学习的参数，但由于本例中的每个 key 都是相同的，因此注意力权重是均匀的，由valid_lens决定。
 
 ```python
 d2l.show_heatmaps(attention.attention_weights.reshape((1, 1, 2, 10)), xlabel='Keys', ylabel='Queries')
