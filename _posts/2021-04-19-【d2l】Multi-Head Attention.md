@@ -181,11 +181,17 @@ MultiHeadAttention(
 
 
 ```python
+batch_size, num_queries, num_kvpairs, valid_lens = 2, 4, 6, torch.tensor([
+    3, 2])
+X = torch.ones((batch_size, num_queries, num_hiddens))
+Y = torch.ones((batch_size, num_kvpairs, num_hiddens))
+attention(X, Y, Y, valid_lens).shape
 ```
 
 输出
 
 ```
+torch.Size([2, 4, 100])
 ```
 
 # Summary
