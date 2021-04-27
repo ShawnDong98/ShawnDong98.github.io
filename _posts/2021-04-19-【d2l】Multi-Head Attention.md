@@ -57,23 +57,89 @@ from d2l import torch as d2l
 在我们的实现中，我们为multi-head attention的每个 head 选择 scaled dot-product attention。避免了计算代价和参数代价的显著增长， 我们令 $p_q = p_k = p_v = p_o / h$。 注意 $h$ heads 可以并行计算 如果我们将query、key和value的线性变换的输出数量设置为 $p_qh = p_kh = p_vh = p_o$。 在接下来的实现中， $p_o$ 通过参数 num_hiddens 决定。
 
 ```python
+class MultiHeadAttention(nn.Module):
+    def __init__(self, key_size, query_size, value_size, num_hiddens,
+                 num_heads, dropout, bias=False, **kwargs):
+        super(MultiHeadAttention, self).__init__(**kwargs)
+        self.num_heads = num_heads
+        self.attention = d2l.DotProductAttention(dropout)
+        self.W_q = nn.Linear(query_size, num_hiddens, bias=bias)
+        self.W_k = nn.Linear(key_size, num_hiddens, bias=bias)
+        self.W_v = nn.Linear(value_size, num_hiddens, bias=bias)
+        self.W_o = nn.Linear(num_hiddens, num_hiddens, bias=bias)
 
+    def forward(self, queries, keys, values, valid_lens):
+        """
+        args: 
+            queries : shape(2, 4, 100)
+            keys : shape(2, 6, 100)
+            values : shape(2, 6, 100)
+            valid_lens : torch.tensor([3, 2])
+        return: 
+            output_concat : shape(2, 4, 100)
+        """
+        # Shape of `queries`, `keys`, or `values`:
+        # (`batch_size`, no. of queries or key-value pairs, `num_hiddens`)
+        # Shape of `valid_lens`:
+        # (`batch_size`,) or (`batch_size`, no. of queries)
+        # After transposing, shape of output `queries`, `keys`, or `values`:
+        # (`batch_size` * `num_heads`, no. of queries or key-value pairs, `num_hiddens` / `num_heads`)
+
+        # queries.shape: (2, 4, 100) -> (2*5, 4, 20)
+        queries = transpose_qkv(self.W_q(queries), self.num_heads)
+        # keys.shape: (2, 6, 100) -> (2*5, 6, 20)
+        keys = transpose_qkv(self.W_k(keys), self.num_heads)
+        # values.shape: (2, 6, 100) -> (2*5, 6, 20)
+        values = transpose_qkv(self.W_v(values), self.num_heads)
+
+        if valid_lens is not None:
+            # On axis 0, copy the first item (scalar or vector) for
+            # `num_heads` times, then copy the next item, and so on
+            # [3, 2] -> [3, 3, 3, 3, 3, 2, 2, 2, 2, 2]
+            valid_lens = torch.repeat_interleave(valid_lens,
+                                                 repeats=self.num_heads,
+                                                 dim=0)
+
+        # Shape of `output`: (`batch_size` * `num_heads`, no. of queries, `num_hiddens` / `num_heads`)
+        # queries.shape: (10, 4, 20)
+        # keys.shape: (10, 6, 20)
+        # values.shape: (10, 6, 20)
+        # output: (10, 4, 20)
+        output = self.attention(queries, keys, values, valid_lens)
+
+        # Shape of `output_concat`:
+        # (`batch_size`, no. of queries, `num_hiddens`)
+        output_concat = transpose_output(output, self.num_heads)
+        return self.W_o(output_concat)
 ```
 
 为了实现 multiple head 的并行计算， 上述 MultiHeadAttention 类使用如下定义的两个转置函数。 transpose_output 函数 是 transpose_qkv 函数的逆操作。
 
 ```python
+
 ```
 
 让我们使用一个keys 和 values 都相同的简单样本实现 MultiHeadAttention。 multi-head attention 的输出的形状是 (batch_size, num_queries, num_hiddens)。
 
 ```python
-
+num_hiddens, num_heads = 100, 5
+attention = MultiHeadAttention(num_hiddens, num_hiddens, num_hiddens,
+                               num_hiddens, num_heads, 0.5)
+attention.eval()
 ```
 
 输出：
 
 ```
+MultiHeadAttention(
+  (attention): DotProductAttention(
+    (dropout): Dropout(p=0.5, inplace=False)
+  )
+  (W_q): Linear(in_features=100, out_features=100, bias=False)
+  (W_k): Linear(in_features=100, out_features=100, bias=False)
+  (W_v): Linear(in_features=100, out_features=100, bias=False)
+  (W_o): Linear(in_features=100, out_features=100, bias=False)
+)
 ```
 
 
