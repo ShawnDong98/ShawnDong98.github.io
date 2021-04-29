@@ -323,6 +323,14 @@ class TransformerDecoder(d2l.AttentionDecoder):
         self.dense = nn.Linear(num_hiddens, vocab_size)
 
     def init_state(self, enc_outputs, enc_valid_lens, *args):
+        """
+        args: 
+            enc_outputs : 编码器的输出
+            enc_valid_lens : 编码器的输入 
+         
+        return: 
+            state :  enc_outputs, enc_valid_lens, [None] * self.num_layers]
+        """
         return [enc_outputs, enc_valid_lens, [None] * self.num_layers]
 
     def forward(self, X, state):
