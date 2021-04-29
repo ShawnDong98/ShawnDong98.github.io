@@ -254,7 +254,8 @@ class DecoderBlock(nn.Module):
             state : (enc_outputs, enc_valid_lens, representations of the decoded output up to the current time step)
          
         return: 
-            (output, state)
+            output ： decoder block 的输出
+            state ： enc_outputs, enc_valid_lens, 
         """
         enc_outputs, enc_valid_lens = state[0], state[1]
         # During training, all the tokens of any output sequence are processed at the same time, so `state[2][self.i]` is `None` as initialized.
@@ -268,8 +269,7 @@ class DecoderBlock(nn.Module):
             batch_size, num_steps, _ = X.shape
             # Shape of `dec_valid_lens`: (`batch_size`, `num_steps`), where every row is [1, 2, ..., `num_steps`]
             dec_valid_lens = torch.arange(1, num_steps + 1,
-                                          device=X.device).repeat(
-                                              batch_size, 1)
+                                          device=X.device).repeat(batch_size, 1)
         else:
             dec_valid_lens = None
 
