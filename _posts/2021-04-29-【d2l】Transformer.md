@@ -455,3 +455,22 @@ d2l.show_heatmaps(dec_inter_attention_weights, xlabel='Key positions',
 ```
 
 虽然 transformer 结构最初是为序列到序列学习而提出的，但正如我们将在本书后面发现的那样，transformer encoder 或 transformer decoder通常分别用于不同的深度学习任务。
+
+
+# Summary
+
+- transformer 是 encoder-decoder 结构的一个实例，但实际上 encoder 或 decoder 都可以单独使用。
+- 在transformer中，尽管 decoder 必须通过一个 masked version 来保持自回归属性， 但输入序列和输出序列均采用 multi-head self-attention 表示。
+- transformer的残差连接和层规范化对于训练一个非常深入的模型是很重要的。
+- transforms 模型中的 positionwise feed-forward network 使用相同的MLP变换所有序列位置的表示。
+
+
+# Exercises
+
+
+1. 在实验中训练一个更深层的 transformer。它是如何影响训练速度和翻译性能的？
+2. 在 transformer 中用 additive attention 来代替 scaled dot-product attention 是一个好主意吗?为什么？
+3. 对于语言建模，我们应该使用transformer encoder、decoder，还是两者都使用? 如何设计这种方法？
+4. 如果输入序列很长，transformers 会面临什么挑战?为什么？
+5. 如何提高 transformers 的计算和存储效率？ 提示： 你可以参考Tay等人的综述论文\[Tay等人，2020]。
+6. 我们如何在不使用CNNs的情况下为图像分类任务设计基于transformer的模型？ 提示： 你可以参考vision transformer\[Dosovitskiy等人，2021\]。
