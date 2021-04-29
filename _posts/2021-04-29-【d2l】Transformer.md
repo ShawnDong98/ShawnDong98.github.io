@@ -19,17 +19,17 @@ tags:
 
 # Model
 
-作为encoder-decoder结构的实例，transformer的整体架构如图10.7.1所示。如我们所见，transformer由编码器和解码器组成。与图10.4.1中的Bahdanau attention对序列到序列学习不同的是，输入(源)和输出(目标)序列 embeddings 在被输入到基于 self-attention 堆叠模块的编码器和解码器之前，先进行位置编码。
+作为encoder-decoder结构的实例，transformer的整体架构如图10.7.1所示。如我们所见，transformer由encoder和decoder组成。与图10.4.1中的Bahdanau attention对序列到序列学习不同的是，输入(源)和输出(目标)序列 embeddings 在被输入到基于 self-attention 堆叠模块的encoder和decoder之前，先进行位置编码。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1619689413069.png)
 
 
 图10.7.1 transformer 的结构。
 
-现在我们提供图10.7.1中transformer结构的概述。在较高的级别上，transformer 编码器是由多个相同层堆叠而成，其中每个层都有两个子层(表示为sublayer)。第一个是multi-head self-attention pooling，第二个是positionwise feed-forward network。具体来说，在编码器 self-attention 中，queries, keys, 和 values都来自前一个编码器层的输出。受第7.6节ResNet设计的启发， 在两个子层周围都采用了残差连接。在 transformer 中， 对于序列在任意位置的任意输入 $x \in \mathbb{R}^d$， 我们需要 $sublayer(x) \in \mathbb{R}^d$ 使得残差连接 $x + sublayer(x) \in \mathbb{R}^d$ 可行。 残差连接的添加在层归一化\[Ba等人，2016\]后。因此，transformer 编码器为输入序列的每个位置输出 $d$ 维的向量表示。
+现在我们提供图10.7.1中transformer结构的概述。在较高的级别上，transformer encoder是由多个相同层堆叠而成，其中每个层都有两个子层(表示为sublayer)。第一个是multi-head self-attention pooling，第二个是positionwise feed-forward network。具体来说，在encoder self-attention 中，queries, keys, 和 values都来自前一个encoder层的输出。受第7.6节ResNet设计的启发， 在两个子层周围都采用了残差连接。在 transformer 中， 对于序列在任意位置的任意输入 $x \in \mathbb{R}^d$， 我们需要 $sublayer(x) \in \mathbb{R}^d$ 使得残差连接 $x + sublayer(x) \in \mathbb{R}^d$ 可行。 残差连接的添加在层归一化\[Ba等人，2016\]后。因此，transformer encoder为输入序列的每个位置输出 $d$ 维的向量表示。
 
 
-transformer 解码器也是具有残差连接和层归一化的多个相同层的堆叠。除编码器中所述的两个子层外，解码器在这两个子层之间插入第三个子层，称为编码器-解码器注意力层。在encoder-decoder attention中，queries来自前一个解码器层的输出，而keys和values来自transformer编码器的输出。在decoder self-attention中，queries、keys和values都来自前一个解码器层的输出。然而，解码器中的每个位置被允许只关注解码器中直至该位置的所有位置。这种masked attention保留了自回归属性，确保预测只依赖于已经生成的输出tokens。
+transformer decoder也是具有残差连接和层归一化的多个相同层的堆叠。除encoder中所述的两个子层外，decoder在这两个子层之间插入第三个子层，称为encoder-decoder注意力层。在encoder-decoder attention中，queries来自前一个decoder层的输出，而keys和values来自transformerencoder的输出。在decoder self-attention中，queries、keys和values都来自前一个decoder层的输出。然而，decoder中的每个位置被允许只关注decoder中直至该位置的所有位置。这种masked attention保留了自回归属性，确保预测只依赖于已经生成的输出tokens。
 
 我们已经在第10.5节和第10.6.3节描述并实现了基于scaled dot-products的multi-head attention和positional encoding。下面，我们将实现transformer模型的其余部分。
 
@@ -136,7 +136,7 @@ torch.Size([2, 3, 4])
 
 # Encoder
 
-有了 transformer 编码器的所有基本组件后，让我们先在编码器内实现一个单层。下面的EncoderBlock类包含两个子层：multi-head self-attention 和 positionwise feed-forward networks， 其中两个sublayer使用一个残差连接跟在layer normalization之后。
+有了 transformer encoder的所有基本组件后，让我们先在encoder内实现一个单层。下面的EncoderBlock类包含两个子层：multi-head self-attention 和 positionwise feed-forward networks， 其中两个sublayer使用一个残差连接跟在layer normalization之后。
 
 ```python
 class EncoderBlock(nn.Module):
@@ -157,7 +157,7 @@ class EncoderBlock(nn.Module):
         return self.addnorm2(Y, self.ffn(Y))
 ```
 
-正如我们所看到的，transformer编码器中的所有层都不会改变其输入的形状。
+正如我们所看到的，transformerencoder中的所有层都不会改变其输入的形状。
 
 ```python
 X = torch.ones((2, 100, 24))
@@ -174,7 +174,7 @@ torch.Size([2, 100, 24])
 ```
 
 
-在下面的 transformer 编码器实现中，我们堆叠 num_layers 个上述EncoderBlock类的实例。由于我们使用固定位置编码，其值总是在-1和1之间，因此在将输入embedding和位置编码相加之前， 我们将可学习的输入embeddings乘以embedding维数的平方根来重新缩放。
+在下面的 transformer encoder实现中，我们堆叠 num_layers 个上述EncoderBlock类的实例。由于我们使用固定位置编码，其值总是在-1和1之间，因此在将输入embedding和位置编码相加之前， 我们将可学习的输入embeddings乘以embedding维数的平方根来重新缩放。
 
 ```python
 class TransformerEncoder(d2l.Encoder):
@@ -207,7 +207,7 @@ class TransformerEncoder(d2l.Encoder):
 ```
 
 
-下面我们指定超参数来创建一个两层 transformer 编码器。transformer编码器输出的形状为 (batch size, number of time steps, num_hiddens)。
+下面我们指定超参数来创建一个两层 transformer encoder。transformerencoder输出的形状为 (batch size, number of time steps, num_hiddens)。
 
 ```
 encoder = TransformerEncoder(200, 24, 24, 24, 24, [100, 24], 24, 48, 8, 2, 0.5)
@@ -222,9 +222,9 @@ torch.Size([2, 100, 24])
 
 # Decoder
 
-如图10.7.1所示，transformer解码器由多个identical层组成。 每一层都在以下DecoderBlock类中实现，它包含三个子层:decoder self-attention、encoder-decoder attention和positionwise feed-forward networks。这些子层使用其附近的残差连接，然后进行层规范化。
+如图10.7.1所示，transformerdecoder由多个identical层组成。 每一层都在以下DecoderBlock类中实现，它包含三个子层:decoder self-attention、encoder-decoder attention和positionwise feed-forward networks。这些子层使用其附近的残差连接，然后进行层规范化。
 
-正如我们在本节前面描述的，在masked multi-head decoder 的自注意力(第一子层)中，queries、keys和values都来自前一个解码器层的输出。当训练序列到序列模型时，输出序列的所有位置(时间步)上的 tokens 都是已知的。然而，在预测过程中，输出序列是逐个token生成的； 因此，在任何解码器的时间步中，只有生成的tokens可以用于解码器的自注意力。为了在解码器中保留自回归，其掩masked self-attention 指定了dec_valid_lens，以便任何 query 只关注解码器中直到 query位置 的所有位置。
+正如我们在本节前面描述的，在masked multi-head decoder 的自注意力(第一子层)中，queries、keys和values都来自前一个decoder层的输出。当训练序列到序列模型时，输出序列的所有位置(时间步)上的 tokens 都是已知的。然而，在预测过程中，输出序列是逐个token生成的； 因此，在任何decoder的时间步中，只有生成的tokens可以用于decoder的自注意力。为了在decoder中保留自回归，其掩masked self-attention 指定了dec_valid_lens，以便任何 query 只关注decoder中直到 query位置 的所有位置。
 
 
 ```python
@@ -283,7 +283,7 @@ class DecoderBlock(nn.Module):
         return self.addnorm3(Z, self.ffn(Z)), state
 ```
 
-为了便于在编码器-解码器注意中进行scaled dot-product 操作，在残差连接中进行加法操作，解码器的特征维数(num_hiddens)与编码器相同。
+为了便于在encoder-decoder注意中进行scaled dot-product 操作，在残差连接中进行加法操作，decoder的特征维数(num_hiddens)与encoder相同。
 
 
 ```python
@@ -300,7 +300,7 @@ decoder_blk(X, state)[0].shape
 torch.Size([2, 100, 24])
 ```
 
-现在我们构造由 num_layers 层 DecoderBlock 类的实例组成的整个 transformer 解码器。最后，一个全连接的层计算所有可能输出 tokens 的词汇表大小的预测。解码器的 self-attention 权值和encoder-decoder attention 权值都被存储起来以供以后的可视化使用。
+现在我们构造由 num_layers 层 DecoderBlock 类的实例组成的整个 transformer decoder。最后，一个全连接的层计算所有可能输出 tokens 的词汇表大小的预测。decoder的 self-attention 权值和encoder-decoder attention 权值都被存储起来以供以后的可视化使用。
 
 
 ```python
@@ -346,7 +346,7 @@ class TransformerDecoder(d2l.AttentionDecoder):
 
 # Training
 
-让我们通过 transformer 结构来实例化一个编码器-解码器模型。这里我们指定 transformer 编码器和transformer 解码器 有 2 层使用 4-head 注意力。与第9.7.4节相似，我们在 English-French 机器翻译数据集上训练 transformer 模型进行序列到序列学习。
+让我们通过 transformer 结构来实例化一个encoder-decoder模型。这里我们指定 transformer encoder 和 transformer decoder 有 2 层使用 4-head 注意力。与第9.7.4节相似，我们在 English-French 机器翻译数据集上训练 transformer 模型进行序列到序列学习。
 
 ```python
 
@@ -383,7 +383,7 @@ i'm home . => je suis chez moi .,  bleu 1.000
 ```
 
 
-让我们把最后一个英语句子翻译成法语时的 transformer 注意力权重可视化。编码器self-attention 权重的形状为 (number of encoder layers, number of attention heads, num_steps or number of queries, num_steps or number of key-value pairs)。
+让我们把最后一个英语句子翻译成法语时的 transformer 注意力权重可视化。encoderself-attention 权重的形状为 (number of encoder layers, number of attention heads, num_steps or number of queries, num_steps or number of key-value pairs)。
 
 ```python
 enc_attention_weights = torch.cat(net.encoder.attention_weights, 0).reshape((num_layers, num_heads, -1, num_steps))
@@ -396,7 +396,7 @@ enc_attention_weights.shape
 torch.Size([2, 4, 10, 10])
 ```
 
-在编码器的self-attention中，queries 和 keys 都来自相同的输入序列。由于填充 tokens 不携带意义，在指定输入序列的有效长度时，没有 query 涉及填充 tokens 的位置。接下来， multi-head attention 权重逐行呈现。每个head根据queries、keys和values的单独表示子空间 独立参与。
+在encoder的self-attention中，queries 和 keys 都来自相同的输入序列。由于填充 tokens 不携带意义，在指定输入序列的有效长度时，没有 query 涉及填充 tokens 的位置。接下来， multi-head attention 权重逐行呈现。每个head根据queries、keys和values的单独表示子空间 独立参与。
 
 
 ```python
@@ -410,7 +410,7 @@ d2l.show_heatmaps(enc_attention_weights.cpu(), xlabel='Key positions',
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1619705377720.png)
 
 
-为了将解码器的 self-attention 权重 和 encoder-decoder 的注意力权重可视化，我们需要更多的数据操作。例如，我们用零填充masked注意力权重。注意，decoder self-attention 和encoder-decoder attention 权重都具有相同的queries : the beginning-of-sequence token followed by the output tokens。
+为了将decoder的 self-attention 权重 和 encoder-decoder 的注意力权重可视化，我们需要更多的数据操作。例如，我们用零填充masked注意力权重。注意，decoder self-attention 和encoder-decoder attention 权重都具有相同的queries : the beginning-of-sequence token followed by the output tokens。
 
 
 ```python
