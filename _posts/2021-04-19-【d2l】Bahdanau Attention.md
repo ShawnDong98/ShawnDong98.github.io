@@ -41,7 +41,7 @@ from d2l import torch as d2l
 
 ## Defining the Decoder with Attention
 
-为了实现具有badanau注意力的RNN encoder-decoder，我们只需要重新定义encoder。为了更方便地可视化学习到的注意力权重，下面的AttentionDecoder类定义了具有注意力机制的 encoder 的基本接口。
+为了实现具有badanau注意力的RNN encoder-decoder，我们只需要重新定义 decoder。为了更方便地可视化学习到的注意力权重，下面的AttentionDecoder类定义了具有注意力机制的 encoder 的基本接口。
 
 ```python
 class AttentionDecoder(d2l.Decoder):
