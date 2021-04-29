@@ -154,7 +154,7 @@ print(output.shape, len(state), state[0].shape, len(state[1]), state[1][0].shape
 
 ## Training
 
-与9.7.4节类似，这里我们指定了超参数，实例化一个encoder和一个encoder，并训练这个模型进行机器翻译。由于新增加了注意力机制，这次的训练比9.7.4章节中没有注意力机制的训练要慢得多。
+与9.7.4节类似，这里我们指定了超参数，实例化一个encoder和一个decoder，并训练这个模型进行机器翻译。由于新增加了注意力机制，这次的训练比9.7.4章节中没有注意力机制的训练要慢得多。
 
 ```python
 embed_size, num_hiddens, num_layers, dropout = 32, 32, 2, 0.1
