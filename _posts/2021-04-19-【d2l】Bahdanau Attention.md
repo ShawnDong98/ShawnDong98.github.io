@@ -25,7 +25,7 @@ $$c_{t'} = \sum_{t=1}^T \alpha(s_{t' - 1}, h_t) h_t \tag{10.4.1}$$
 其中decoder在时间步 $t' - 1$ 的隐藏状态 $s_{t' -1}$ 是 query，encoder隐藏状态 $h_t$ 同时是 key 和 value, 以及(10.3.2)中的注意力权重 $\alpha$ 是 使用 (10.3.3)的additive attention scoring function。
 
 
-与图9.7.2中的普通 RNN encoder-decoder 架构稍有不同的是，图10.4.1所示的架构具有Bahdanau attention。
+与图9.7.2中的普通 RNN encoder-decoder 结构稍有不同的是，图10.4.1所示的架构具有Bahdanau attention。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1618813360158.png)
 
