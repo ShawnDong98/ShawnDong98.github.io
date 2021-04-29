@@ -125,7 +125,7 @@ class Seq2SeqAttentionDecoder(AttentionDecoder):
         return self._attention_weights
 ```
 
-接下来，我们使用一个包含 4个序列输入， 7个时间步长的 minibatch 测试 实现的具有badanau注意力的encoder。
+接下来，我们使用一个包含 4个序列输入， 7个时间步长的 minibatch 测试 实现的具有badanau注意力的decoder。
 
 ```python
 encoder = d2l.Seq2SeqEncoder(vocab_size=10, embed_size=8, num_hiddens=16, num_layers=2)
