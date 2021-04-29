@@ -224,7 +224,7 @@ d2l.show_heatmaps(
 
 
 - 当预测一个 token 时，如果不是所有的输入 token 都是相关的，具有badanau注意力的RNN encoder-decoder会选择性地聚合输入序列的不同部分。这是通过将加性注意力池化的输出作为上下文变量来实现的。
-- 在RNN编encoder中，badanau attention将上一个时间步的encoder隐藏状态作为query，将所有时间步的encoder隐藏状态同时作为 key 和 value。
+- 在RNN encoder-decoder中，badanau attention将上一个时间步的decoder隐藏状态作为query，将所有时间步的encoder隐藏状态同时作为 key 和 value。
 
 
 ## Exercises
