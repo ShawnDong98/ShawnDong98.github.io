@@ -55,7 +55,7 @@ class AttentionDecoder(d2l.Decoder):
 ```
 
 
-现在让我们在下面的Seq2SeqAttentionDecoder类中实现带有 badanau注意力 的RNN encoder。 encoder 的状态初始化使用 i) encoder最后一层 所有时间步的隐藏状态(作为注意力的 key 和 value) ii)  encoder 在最后一个时间步 的所有层的隐藏状态(初始化encoder的隐藏状态) iii) encoder 的有效长度(在注意力池化中， 用于排除填充标记)。在每一个解码时间步，使用前一个时间步 encoder 的最后一层隐藏状态作为注意力的query。结果，注意力输出和输入embeddings  concatenate起来 作为RNN encoder 的输入。
+现在让我们在下面的Seq2SeqAttentionDecoder类中实现带有 badanau注意力 的RNN decoder。 decoder 的状态初始化使用 i) encoder最后一层 所有时间步的隐藏状态(作为注意力的 key 和 value) ii)  encoder 在最后一个时间步 的所有层的隐藏状态(初始化decoder的隐藏状态) iii) encoder 的有效长度(在注意力池化中， 用于排除填充标记)。在每一个解码时间步，使用前一个时间步 deocder 的最后一层隐藏状态作为注意力的query。结果，注意力输出和输入embeddings  concatenate起来 作为RNN decoder 的输入。
 
 ```python
 class Seq2SeqAttentionDecoder(AttentionDecoder):
