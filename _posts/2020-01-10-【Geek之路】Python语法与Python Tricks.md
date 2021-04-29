@@ -1033,7 +1033,7 @@ PROG 2.0
 ```
 
 
-# os和sys
+# os
 
 
 ## os.listdir
@@ -1068,22 +1068,7 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 
 
-## sys.path
 
-返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
-
-比如就是我们在python源文件中import引入模块的时候就会在sys.path的目录中查找相应的模块，如果在这里面的目录中没有找到你要倒入的模块则会报错。
-
-返回值是一个list则我们如果想导入一个自定义模块下面的的包或者是模块则可以使用list的append方法在PYTHONPATH环境变量中增加相应的路径。
-
-```python
-import os
-import sys
-path=os.path.dirname(__file__)    #os.path.dirname通俗的讲是返回上一级文件夹绝对路径的意思，多套一层就多返回一层
-sys.path.append(path)    #将路径添加到python的搜索路径中
-#import 你想导入的文件
-
-```
 
 ## os.getcwd
 
@@ -1121,6 +1106,52 @@ print(os.path.dirname(os.getcwd()))
 可用于设置可用GPU
 
 > os.environ['CUDA_VISIBLE_DEVICES'] = '0, 2, 3, 4'
+
+
+# sys
+
+## sys.path
+
+返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
+
+比如就是我们在python源文件中import引入模块的时候就会在sys.path的目录中查找相应的模块，如果在这里面的目录中没有找到你要倒入的模块则会报错。
+
+返回值是一个list则我们如果想导入一个自定义模块下面的的包或者是模块则可以使用list的append方法在PYTHONPATH环境变量中增加相应的路径。
+
+```python
+import os
+import sys
+path=os.path.dirname(__file__)    #os.path.dirname通俗的讲是返回上一级文件夹绝对路径的意思，多套一层就多返回一层
+sys.path.append(path)    #将路径添加到python的搜索路径中
+#import 你想导入的文件
+
+```
+
+## sys.modules
+
+```python
+import sys
+
+module = sys.modules[__name__]
+```
+
+getattr(sys.modules\[\_\_name\_\_\], func_name)的含义是找到当前文件下名称为func_name的对象（类对象或者函数对象）。
+
+有时我们需要将一个文件的信息（类、函数及变量）保存到文件，我们不能直接保存函数对象，而是将其转化为fn.\_\_name\_\_，问题来了，当我们想通过读取文件的形式重新配置这些类、函数时，该如何把这些字符串转换为对应的函数对象呢？
+
+```python
+# test.py
+def fn():
+    print('hello world')
+func_name = fn.__name__   ####这个可能是从url中获取的字符串
+fn_obj = getattr(sys.modules[__name__], func_name)
+ # 根据函数名（func_name），获得函数对象
+fn_obj()
+# hello world
+print(sys.modules[__name__])
+# <module '__main__' from '**/test.py'>
+```
+
 
 # numpy语法
 
