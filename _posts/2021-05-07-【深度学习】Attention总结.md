@@ -157,6 +157,20 @@ Attention Weight: （2， 1，10， 8）-> (2, 1, 10, 1) -> (2, 1, 10)
 
 ## Scaled Dot-Product Attention
 
+queries = torch.normal(0, 1, (2, 1, 2))
+
+keys = torch.ones((2, 10, 2))
+
+values = torch.arange(40, dtype=torch.float32).reshape(1, 10, 4).repeat(2, 1, 1)
+
+Q: queries: (2, 1, 2) 
+
+K: keys: (2, 10, 2) -> (2, 2, 10)
+
+V: values: (2, 10, 4)
+
+Attention Weight: （2， 1，10)
+
 
 ## Self-Attention(Bahdanau Attention)
 
