@@ -9,6 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - d2l
+    - NLP
 ---
 
 
@@ -35,8 +36,9 @@ $$y_i = 2\sin(x_i) + x_i^{0.8} + \epsilon \tag{10.2.1}$$
 
 
 ```python
-n_train = 50  # No. of training examples
-x_train, _ = torch.sort(torch.rand(n_train) * 5)  # Training inputs
+n_train = 50
+# 采样50个点， 从小到大排列
+x_train, _ = torch.sort(torch.rand(n_train) * 5)
 
 def f(x):
     return 2 * torch.sin(x) + x**0.8
