@@ -172,6 +172,28 @@ V: values: (2, 10, 4)
 Attention Weight: （2， 1，10)
 
 
-## Self-Attention(Bahdanau Attention)
 
 ## Multi-Head Attention
+
+multi-head attention 的每个 head 选择 scaled dot-product attention。令  $p_q = p_k = p_v = p_o/h$。 
+
+
+num_hiddens, num_heads = 100, 5
+
+batch_size, num_queries, num_kvpairs, valid_lens = 2, 4, 6, torch.tensor(\[3, 2\])
+	
+X = torch.ones((batch_size, num_queries, num_hiddens))
+
+Y = torch.ones((batch_size, num_kvpairs, num_hiddens))
+
+
+Q：X：(2, 4, 100) -> (2, 4, 100) -> (2\*5, 4, 20)
+
+K：Y：(2, 6, 100) -> (2, 4, 100) -> (2\*5, 6, 20)
+
+V：Y：(2, 6, 100) -> (2, 4, 100) -> (2\*5, 6, 20)
+
+Attention Weight: (2\*5, 4, 6)
+
+
+## Self-Attention
