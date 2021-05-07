@@ -37,7 +37,7 @@ x_repeat = x_test.repeat_interleave(n_train).reshape((-1, n_train))
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1620363514569.png)
 
-每一个test样本按行广播为train的形状，作为query。
+每一个x_test样本按行广播为x_train的形状，作为query。
 
 Q：x_repeat: (n_test, n_train)
 
@@ -73,15 +73,66 @@ x_repeat = x_test.repeat_interleave(n_train).reshape((-1, n_train))
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1620363514569.png)
 
-每一个x_test样本按行广播为x_train的形状，作为query。
 
-Q：x_repeat: (n_test, n_train)
+```python
+class NWKernelRegression(nn.Module):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.w = nn.Parameter(torch.rand((1,), requires_grad=True))
 
-K：x_train: (n_train)
+    def forward(self, queries, keys, values):
+        # Shape of the output `queries` and `attention_weights`:
+        # (no. of queries, no. of key-value pairs)
+        #--- dim_0是batch， dim_1是n_train ---
+        queries = queries.repeat_interleave(keys.shape[1]).reshape(
+            (-1, keys.shape[1]))
+        self.attention_weights = nn.functional.softmax(
+            -((queries - keys) * self.w)**2 / 2, dim=1)
+        # Shape of `values`: (no. of queries, no. of key-value pairs)
+        return torch.bmm(self.attention_weights.unsqueeze(1),
+                         values.unsqueeze(-1)).reshape(-1)
+```
 
-V： y_train: (n_train)
+X_tile = x_train.repeat((n_train, 1))
 
-Attention Weight: (n_train, n_train)
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1620365112338.png)
+
+Y_tile = y_train.repeat((n_train, 1))
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1620365129214.png)
+
+
+按列广播。
+
+
+keys = X_tile\[(1 - torch.eye(n_train)).type(torch.bool)\].reshape((n_train, -1))
+	
+values = Y_tile\[(1 - torch.eye(n_train)).type(torch.bool)\].reshape((n_train, -1))
+
+**训练**： 
+
+Q：x_train -> queries : (n_train) -> (n_train, n_train - 1)
+
+K：keys: (n_train, n_train - 1)
+
+V：values: (n_train, n_train - 1)
+
+Attention Weight: (n_train,  n_train - 1)
+
+
+**测试：**
+
+keys = x_train.repeat((n_test, 1))
+
+values = y_train.repeat((n_test, 1))
+
+Q：x_test -> queries : (n_test) -> (n_test, n_train)
+
+K：keys: (n_test, n_train)
+
+V：values: (n_test, n_train)
+
+Attention Weight: (n_test,  n_train)
 
 
 ## Additive Attention
