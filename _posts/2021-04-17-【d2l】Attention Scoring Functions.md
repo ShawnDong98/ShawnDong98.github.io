@@ -152,7 +152,7 @@ class AdditiveAttention(nn.Module):
         # There is only one output of `self.w_v`, so we remove the last
         # one-dimensional entry from the shape. Shape of `scores`:
         # (`batch_size`, no. of queries, no. of key-value pairs)
-        # scores.shape: (2, 10, 8)
+        # scores.shape: (2, 1, 10)
         scores = self.w_v(features).squeeze(-1)
         # self.attention_weights.shape: (2, 1, 10)
         self.attention_weights = masked_softmax(scores, valid_lens)
