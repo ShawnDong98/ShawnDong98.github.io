@@ -161,7 +161,7 @@ d2l.show_heatmaps(
 $$
 \begin{aligned}
 f(x) &= \sum_{i=1}^n \alpha (x, x_i) y_i \\
-&= \sum_{i=1}^n \frac{\exp(-\frac{1}{2}((x - x_i)w)^2)}{\sum_{j=1}^n \exp(-\frac{1}{2}((x - x_i)w)^2)}y_i \\
+&= \sum_{i=1}^n \frac{\exp(-\frac{1}{2}((x - x_i)w)^2)}{\sum_{j=1}^n \exp(-\frac{1}{2}((x - x_j)w)^2)}y_i \\
 &= \sum_{i=1}^n softmax(-\frac{1}{2} ((x - x_i)w)^2))y_i
 \end{aligned}
 \tag{10.2.7}
