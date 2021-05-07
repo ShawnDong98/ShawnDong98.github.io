@@ -137,6 +137,23 @@ Attention Weight: (n_test,  n_train)
 
 ## Additive Attention
 
+queries, keys = torch.normal(0, 1, (2, 1, 20)), torch.ones((2, 10, 2))
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1620365995111.png)
+
+values = torch.arange(40, dtype=torch.float32).reshape(1, 10, 4).repeat(2, 1, 1)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1620366138893.png)
+
+
+Q: queries: (2, 1, 20) -> (2, 1, num_hidden) -> (2, 1, 1, num_hidden)
+
+K: keys: (2, 10, 2) -> (2, 10, num_hidden) -> (2, 1, 10, num_hidden)
+
+V: values: (2, 10, 4)
+
+Attention Weight: （2， 1，10， 8）-> (2, 1, 10, 1) -> (2, 1, 10)
+
 
 ## Scaled Dot-Product Attention
 
