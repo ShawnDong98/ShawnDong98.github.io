@@ -124,6 +124,7 @@ X_repeat = x_test.repeat_interleave(n_train).reshape((-1, n_train))
 attention_weights = nn.functional.softmax(-(X_repeat - x_train)**2 / 2, dim=1)
 # Each element of `y_hat` is weighted average of values, where weights are
 # attention weights
+# 每个 Q 对 50 个 K 求权值， 所以乘出来对50个y加权
 y_hat = torch.matmul(attention_weights, y_train)
 plot_kernel_reg(y_hat)
 ```
