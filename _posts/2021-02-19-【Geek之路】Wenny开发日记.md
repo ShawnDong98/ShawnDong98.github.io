@@ -60,6 +60,15 @@ Wenny是一款**基于传感器的**、**易于唤醒的**、**主动式的**、
 目前选用 masr
 
 
+### 安装 pyaudio
+
+```
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0 portaudio19-dev python-all-dev python3-all-dev
+pip install pyaudio
+
+```
+
+
 ## 文本生成
 
 
