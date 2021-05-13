@@ -66,8 +66,47 @@ P(u) &= softmax(h_nW_e^T) \\
 \tag{2}
 $$
 
+其中 $U = \{u_{-k}, ..., u_{-1}\}$ 是 tokens的上下文向量， $n$ 是层数， $W_e$ 是 token embedding 矩阵， $W_p$是 position embedding 矩阵。
+
 ##  Supervised fine-tuning
+
+在使用公式(1)中的目标训练模型之后， 我们参数调整为监督的目标任务。 我们假设一个有标注的数据集 $\mathcal{C}$， 其中每个实例由输入 tokens 的一个序列组成， $x^1, ..., x^m$， 标签为y。输入送入我们的预训练模型得到最终的 transformer block 的激活 $h_l^m$, 它然后被送入一个额外的参数为 $W_y$ 的线性层输出层预测 $y$：
+
+$$
+P(y \mid x^1, ..., x^m) = \text{softmax} (h_l^mW_y) \tag{3}
+$$
+
+这给了我们以下最大化的目标：
+
+$$
+L_2(\mathcal{C}) = \sum_{(x, y)} \log P(y \mid x^1, ..., x^m) \tag{4}
+$$
+
+我们还发现，将语言建模作为微调的辅助目标帮助学习 (a) 提高监督模型的泛化能力 (b) 加速收敛。 这与先前的工作一致，后者也观察到使用这种辅助目标可以改善性能。特别地， 我们用以下目标优化(以权重 $\lambda$)
+
+$$
+L_3(\mathcal{C}) = L_2(\mathcal{C}) + \lambda * L_1(\mathcal{C}) \tag{5}
+$$
+
+总体而言，在微调期间我们唯一需要的额外参数是$W_y$, 和定界符 tokens 的 embeddings(如Section 3.3所述)。 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1620911747026.png)
+
+Figure 1： (left) 本工作的 Transfomer 结构 以及 训练目标。 (right) 用于在不同任务上的 微调 输入 transformations。 我们将所有结构化输入转换成token序列，由预训练的模型进行处理，然后是linear+softmax层。
+
 
 ##  Task-specific input transformations
 
+对于一些任务，比如文本分类，我们可以直接按照上面的描述微调模型。某些其他任务，如问答或文本蕴涵，具有结构化输入，如有序句子对，或文档、问题和答案的三元组。因为我们预先训练的模型是在连续的文本序列上训练的，所以我们需要一些修改才能将它应用到这些任务中。先前的工作提出了在迁移表征之上的学习任务特定的体系结构。这种方法重新引入了大量的特定于任务的定制，并且没有对这些额外的体系结构组件使用迁移学习。进而，我们使用 traversal-style 的方法，将结构化输入转换为我们预训练的模型可以处理的有序序列。这些输入转换允许我们避免跨任务对体系结构进行大量更改。我们在下面简要描述了这些输入转换，图1提供了一个直观的说明。所有转换都包括添加随机初始化的开始和结束标记 ($<s>, <e>$)。
+
+**Textual entailment** 对于文本蕴含任务， 我们拼接premise $p$ 和 hypothesis $h$ token 序列， 之间有分割符。
+
+
+**Similarity** 对于相似性任务，被比较的两个句子没有固有的顺序。为了反映这一点，我们修改了输入序列以包含两种可能的句子顺序（中间有一个分隔符），并独立地处理每种顺序以生成两种序列表示 $h_l^m$，这两种序列表示 $h_l^m$ 在输入线性输出层之前按元素相加。
+
+**Question Answering and Commonsense Reasoning** 对于这些任务， 我们给定一个上下文文档 $z$， 一个问题 $q$， 以及一组可能的答案 $\{a_k\}$。 我们拼接文档上下文和每个可能答案的问题， 在它们之间增加分隔符得到
+
+$$
+[z; q; \$; a_k]
+$$
 
