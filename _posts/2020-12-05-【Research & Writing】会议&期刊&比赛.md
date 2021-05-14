@@ -172,6 +172,22 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://ai.ppdai.com/mirror/show](https://ai.ppdai.com/mirror/show)
 
+
+## 赛氪
+
+[https://www.saikr.com/vs/computer/0/0](https://www.saikr.com/vs/computer/0/0)
+
+
+## 数愿
+
+[http://www.datadreams.org/#/raceList](http://www.datadreams.org/#/raceList)
+
+
+## 中兴捧月
+
+[https://www.nowcoder.com/activity/challenge2021/algorithm/index](https://www.nowcoder.com/activity/challenge2021/algorithm/index)
+
+
 # 各种名词解释
 
 
