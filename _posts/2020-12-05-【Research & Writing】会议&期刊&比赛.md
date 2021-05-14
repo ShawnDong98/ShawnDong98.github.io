@@ -106,6 +106,68 @@ PubMed Central (PMC)链接：PubMed Central
 本刊为“中国科技核心期刊”、“中国科技论文统计源期刊”、“《中国科学引文数据库》（CSCD）来源期刊”、“中文科技期刊数据库收录期刊”、“中国学术期刊综合评价数据库来源期刊”、“中文生物医学期刊文献数据库—CMCC收录”、“《中国期刊网》、《中国学术期刊(光盘版)》全文收录”、“中国生物学文摘和中国生物学文献数据库收录”。
 
 
+# 比赛
+
+## Biendata
+
+[https://www.biendata.com/](https://www.biendata.com/)
+
+## DataFountain
+
+[https://www.datafountain.cn/](https://www.datafountain.cn/)
+
+## DC竞赛
+
+[https://www.dcjingsai.com/](https://www.dcjingsai.com/)
+
+## Flyai
+
+[https://www.flyai.com/](https://www.flyai.com/)
+
+## 百度
+
+[https://aistudio.baidu.com/aistudio/competition/4/1](https://aistudio.baidu.com/aistudio/competition/4/1)
+
+## 和鲸社区
+
+[https://www.heywhale.com/home/competition](https://www.heywhale.com/home/competition)
+
+## 阿里天池
+
+[https://blog.csdn.net/tMb8Z9Vdm66wH68VX1/article/details/106345506](https://blog.csdn.net/tMb8Z9Vdm66wH68VX1/article/details/106345506)
+
+
+## 爱奇艺AI竞赛平台
+
+[http://challenge.ai.iqiyi.com/](http://challenge.ai.iqiyi.com/)
+
+
+## 百度大脑AI Studio
+
+[https://aistudio.baidu.com/aistudio/index](https://aistudio.baidu.com/aistudio/index)
+
+## 华为云大赛平台
+
+[https://competition.huaweicloud.com/home](https://competition.huaweicloud.com/home)
+
+## 京东智汇JDATA
+
+[https://jdata.jd.com/](https://jdata.jd.com/)
+
+## 讯飞AI开发者大赛
+
+[http://challenge.xfyun.cn/](http://challenge.xfyun.cn/)
+
+
+## 法研杯
+
+[http://cail.cipsc.org.cn/](http://cail.cipsc.org.cn/)
+
+## 泰迪杯
+
+[泰迪杯](https://www.tipdm.org:10010/#/competitionList)
+
+
 # 各种名词解释
 
 
