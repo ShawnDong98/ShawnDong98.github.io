@@ -168,6 +168,10 @@ PubMed Central (PMC)链接：PubMed Central
 [泰迪杯](https://www.tipdm.org:10010/#/competitionList)
 
 
+## 信也杯&魔镜杯
+
+[https://ai.ppdai.com/mirror/show](https://ai.ppdai.com/mirror/show)
+
 # 各种名词解释
 
 
