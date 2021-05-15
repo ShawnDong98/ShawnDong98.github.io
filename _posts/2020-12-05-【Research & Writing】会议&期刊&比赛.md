@@ -188,6 +188,12 @@ PubMed Central (PMC)链接：PubMed Central
 [https://www.nowcoder.com/activity/challenge2021/algorithm/index](https://www.nowcoder.com/activity/challenge2021/algorithm/index)
 
 
+## 先导杯
+
+
+[https://cas-pra.sugon.com/](https://cas-pra.sugon.com/)
+
+
 # 各种名词解释
 
 
