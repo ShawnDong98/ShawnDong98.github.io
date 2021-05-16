@@ -26,8 +26,9 @@ python -m pip install paddlepaddle-gpu==2.0.2.post110 -f https://paddlepaddle.or
 
 # PaddleHub
 
+# PaddleDetection
 
-# VisualDL可视化
+## VisualDL可视化
 
 
 ```
@@ -36,4 +37,16 @@ python -u tools/train.py -c configs/yolov3_mobilenet_v1_fruit.yml --use_vdl=True
 
 - 启动命令添加--use_vdl=True
 - 通过 --vdl_log_dir 设置日志保存路径
+
+## 一键式训练、评估、预测
+
+```
+python slim/prune/prune.py -c ./configs/yolov3_mobilenet_v1_voc.yml --pruned_params "yolo_block.0.0.0conv.weights" --pruned_ratios="0.2"
+```
+
+## 导出模型
+
+```
+python slim/prune/export_model.py -c ./configs/yolov3_mobilenet_v1_voc.yml --pruned_params "yolo_block.0.0.0conv.weights" --pruned_ratios="0.2" -o weights=output/yolov3_mobilenet_v1_voc/model_final
+```
 
