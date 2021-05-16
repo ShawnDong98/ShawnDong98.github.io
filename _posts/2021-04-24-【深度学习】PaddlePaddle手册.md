@@ -25,3 +25,11 @@ python -m pip install paddlepaddle-gpu==2.0.2.post110 -f https://paddlepaddle.or
 
 
 # PaddleHub
+
+
+# VisualDL可视化
+
+
+```
+python -u tools/train.py -c configs/yolov3_mobilenet_v1_fruit.yml --use_vdl=True -- vdl_log_dir=vdl_fruit_dir/scalar --eval
+```
