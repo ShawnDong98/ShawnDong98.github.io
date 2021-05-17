@@ -57,3 +57,11 @@ python slim/prune/prune.py -c ./configs/yolov3_mobilenet_v1_voc.yml --pruned_par
 python slim/prune/export_model.py -c ./configs/yolov3_mobilenet_v1_voc.yml --pruned_params "yolo_block.0.0.0conv.weights" --pruned_ratios="0.2" -o weights=output/yolov3_mobilenet_v1_voc/model_final
 ```
 
+
+# PaddleX
+
+
+
+# Reference
+1. [PaddlePaddle/PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
+2. [PaddlePaddle/PaddleX](https://github.com/PaddlePaddle/PaddleX)
