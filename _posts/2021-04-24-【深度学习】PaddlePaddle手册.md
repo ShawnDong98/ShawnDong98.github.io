@@ -38,6 +38,13 @@ python -u tools/train.py -c configs/yolov3_mobilenet_v1_fruit.yml --use_vdl=True
 - 启动命令添加--use_vdl=True
 - 通过 --vdl_log_dir 设置日志保存路径
 
+
+过visualdl命令实时查看变化曲线：
+
+```
+visualdl --logdir vdl_dir/scalar/ --host 127.0.0.1 --port 6006
+```
+
 ## 一键式训练、评估、预测
 
 ```
