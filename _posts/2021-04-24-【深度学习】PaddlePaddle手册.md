@@ -131,7 +131,7 @@ from .darknet import *
 **几点说明：**
 
 - 为了在yaml配置文件中灵活配置网络，所有Backbone、模型组件与architecture类需要利用`ppdet.core.workspace` 里的 `register` 进行注册，形式请参考如上示例；
-- 
+- 在Backbone中都需定义__init__函数与__call__函数，\_\_init\_\_函数负责初始化参数，在调用此Backbone时会执行__call__函数；
 
 # PaddleX
 
