@@ -415,6 +415,27 @@ YOLOv3:
 之后 `backbone` 、`yolo_head` 的配置步骤在上面已经介绍，完成如上配置就完成了物体检测模型组网的工作。
 
 
+#### 模型输入设置
+
+在architecture定义的类里必须含有 `build_inputs` 函数，这个函数的作用是生成`feed_vars` 和 `loader`。
+
+1） `feed_vars` 是由 `key：fluid.data` 构成的字典，key是由如下yaml文件中 `fields` 字段构成，在不同数据集、训练、评估和测试中字段不尽相同， 在使用中需要合理组合。
+
+```
+TrainReader:
+  inputs_def:
+    fields: ['image', 'gt_bbox', 'gt_class', 'gt_score']
+
+EvalReader:
+  inputs_def:
+    fields: ['image', 'im_size', 'im_id']
+...
+```
+
+在[数据源解析](https://paddledetection.readthedocs.io/advanced_tutorials/READER.md#%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90)中已经提到，数据源roidbs会解析为字典的形式，Reader会根据feed_vars所含字段进行解析适配。
+
+2） `loader` 是调用 [fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/io_cn/DataLoader_cn.html#dataloader) 根据 `feed_vars`来完成DataLoader的组建。
+
 # PaddleX
 
 安装
