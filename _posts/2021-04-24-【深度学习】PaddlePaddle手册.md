@@ -149,9 +149,44 @@ DarkNet:
 
 1） 代码编写：编写好Backbone后，我们开始编写生成anchor的检测头部分，anchor的检测头代码都在 `ppdet/modeling/anchor_heads` 目录下，所以我们在其中新建`yolo_head.py` 如下：
 
+```python
+from ppdet.core.workspace import register
+
+@register
+class YOLOv3Head(object):
+
+    __inject__ = ['yolo_loss', 'nms']
+    __shared__ = ['num_classes', 'weight_prefix_name']
+
+    def __init__(self,
+                 num_classes=80,
+                 anchors=[[10, 13], [16, 30], [33, 23], [30, 61], [62, 45],
+                          [59, 119], [116, 90], [156, 198], [373, 326]],
+                 yolo_loss="YOLOv3Loss",
+                 nms=MultiClassNMS(
+                     score_threshold=0.01,
+                     nms_top_k=1000,
+                     keep_top_k=100,
+                     nms_threshold=0.45,
+                     background_label=-1).__dict__):
+        # 省略部分内容
+        pass
 ```
 
+然后在 `anchor_heads/__init__.py` 中加入引用：
+
+```python
+from . import yolo_head
+from .yolo_head import *
 ```
+
+**几点说明：**
+
+- `__inject__` 表示引入封装好了的检测组件/算子列表，此处 `yolo_loss` 与 `nms` 变量指向外部定义好的检测组件/算子；
+- anchor 的检测头实现中类函数需有输出loss接口 `get_loss` 与预测框或建议框输出接口 `get_prediction`；
+- 两阶段检测器在anchor的检测头里定义的是候选框输出接口 `get_proposals`，之后还会在 `roi_extractors` 与 `roi_heads` 中进行后续计算，定义方法与如下一致。
+- YOLOv3算法的loss函数比较复杂，所以我们将loss函数进行拆分，具体实现在`losses/yolo_loss.py` 中，也需要注册；
+- nms算法是封装paddlepaddle中现有检测组件/算子，如何定义与注册详见[定义公共检测组件/算子](https://paddledetection.readthedocs.io/advanced_tutorials/MODEL_TECHNICAL.html#%E5%AE%9A%E4%B9%89%E5%85%AC%E5%85%B1%E6%A3%80%E6%B5%8B%E7%BB%84%E4%BB%B6/%E7%AE%97%E5%AD%90)部分。
 
 # PaddleX
 
