@@ -188,6 +188,45 @@ from .yolo_head import *
 - YOLOv3算法的loss函数比较复杂，所以我们将loss函数进行拆分，具体实现在`losses/yolo_loss.py` 中，也需要注册；
 - nms算法是封装paddlepaddle中现有检测组件/算子，如何定义与注册详见[定义公共检测组件/算子](https://paddledetection.readthedocs.io/advanced_tutorials/MODEL_TECHNICAL.html#%E5%AE%9A%E4%B9%89%E5%85%AC%E5%85%B1%E6%A3%80%E6%B5%8B%E7%BB%84%E4%BB%B6/%E7%AE%97%E5%AD%90)部分。
 
+#### 模型组网
+
+本步骤中，我们需要将编写好的Backbone、各个检测组件进行整合拼接，搭建一个完整的物体检测网络能够提供给训练、评估和测试程序去运行。 1.组建 `architecture`： 所有architecture网络代码都放置在 `ppdet/modeling/architectures` 目录下，所以我们在其中新建 `yolov3.py` 如下：
+
+```python
+from ppdet.core.workspace import register
+
+@register
+class YOLOv3(object):
+
+    __category__ = 'architecture'
+    __inject__ = ['backbone', 'yolo_head']
+    __shared__ = ['use_fine_grained_loss']
+
+    def __init__(self,
+                 backbone,
+                 yolo_head='YOLOv3Head',
+                 use_fine_grained_loss=False):
+        super(YOLOv3, self).__init__()
+        # 省略内容
+
+    def build(self, feed_vars, mode='train'):
+        # 省略内容
+        pass
+
+    def build_inputs(self, ):
+        # 详解见【模型输入设置】章节
+        pass
+
+    def train(self, feed_vars):
+        return self.build(feed_vars, mode='train')
+
+    def eval(self, feed_vars):
+        return self.build(feed_vars, mode='test')
+
+    def test(self, feed_vars):
+        return self.build(feed_vars, mode='test')
+```
+
 # PaddleX
 
 安装
