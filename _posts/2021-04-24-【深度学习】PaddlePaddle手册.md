@@ -395,6 +395,26 @@ class YOLOv3(object):
 - 在architecture类里必须定义 `build_inputs` 函数，为了适配检测网络的输入与Reader模块，具体见[模型输入设置](https://paddledetection.readthedocs.io/advanced_tutorials/MODEL_TECHNICAL.html#%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%85%A5%E8%AE%BE%E7%BD%AE)模块；
 - 在architecture类里必须定义`train`、`eval`和 `test` 函数，在训练、评估和测试程序中会分别调用这三个函数来在不同场景中加载网络模型。
 
+
+2） 配置编写：
+
+首先定义网络模型名称：
+
+```
+architecture: YOLOv3
+```
+
+接下来根据网络模型名称 `YOLOv3` 来初始化网络组件名称：
+
+```
+YOLOv3:
+  backbone: DarkNet
+  yolo_head: YOLOv3Head
+```
+
+之后 `backbone` 、`yolo_head` 的配置步骤在上面已经介绍，完成如上配置就完成了物体检测模型组网的工作。
+
+
 # PaddleX
 
 安装
