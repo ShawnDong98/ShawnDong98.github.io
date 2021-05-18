@@ -73,6 +73,82 @@ python slim/prune/export_model.py -c ./configs/yolov3_mobilenet_v1_voc.yml --pru
 - - `__inject__`: 如果模块由多个子模块组成，可以这些子模块实例作为构造函数的参数注入。对应的默认值及配置项可以是类名字符串，yaml序列化的对象，指向序列化对象的配置键值或者Python dict（构造函数需要对其作出处理，参见下面的例子）。
 - - `__op__`: 配合 `__append_doc__` （抽取目标OP的 注释）使用，可以方便快速的封装PaddlePaddle底层OP。
 - `serializable`: 装饰器，利用 [pyyaml](https://pyyaml.org/wiki/PyYAMLDocumentation) 的序列化机制，可以直接将一个类实例序列化及反序列化。
+- `create`: 根据全局配置构造一个模块实例。
+- `load_config` and `merge_config`: 加载yaml文件，合并命令行提供的配置项。
+
+
+#### 示例
+
+以 `RPNHead` 模块为例，该模块包含多个PaddlePaddle OP，先将这些OP封装成类，并将其实例在构造 `RPNHead` 时注入。
+
+```python
+# excerpt from `ppdet/modeling/ops.py`
+from ppdet.core.workspace import register, serializable
+
+# ... more operators
+
+@register
+@serializable
+class GenerateProposals(object):
+    # NOTE this class simply wraps a PaddlePaddle operator
+    __op__ = fluid.layers.generate_proposals
+    # NOTE docstring for args are extracted from PaddlePaddle OP
+    __append_doc__ = True
+
+    def __init__(self,
+                 pre_nms_top_n=6000,
+                 post_nms_top_n=1000,
+                 nms_thresh=.5,
+                 min_size=.1,
+                 eta=1.):
+        super(GenerateProposals, self).__init__()
+        self.pre_nms_top_n = pre_nms_top_n
+        self.post_nms_top_n = post_nms_top_n
+        self.nms_thresh = nms_thresh
+        self.min_size = min_size
+        self.eta = eta
+
+# ... more operators
+
+# excerpt from `ppdet/modeling/anchor_heads/rpn_head.py`
+from ppdet.core.workspace import register
+from ppdet.modeling.ops import AnchorGenerator, RPNTargetAssign, GenerateProposals
+
+@register
+class RPNHead(object):
+    """
+    RPN Head
+
+    Args:
+        anchor_generator (object): `AnchorGenerator` instance
+        rpn_target_assign (object): `RPNTargetAssign` instance
+        train_proposal (object): `GenerateProposals` instance for training
+        test_proposal (object): `GenerateProposals` instance for testing
+    """
+    __inject__ = [
+        'anchor_generator', 'rpn_target_assign', 'train_proposal',
+        'test_proposal'
+    ]
+
+    def __init__(self,
+                 anchor_generator=AnchorGenerator().__dict__,
+                 rpn_target_assign=RPNTargetAssign().__dict__,
+                 train_proposal=GenerateProposals(12000, 2000).__dict__,
+                 test_proposal=GenerateProposals().__dict__):
+        super(RPNHead, self).__init__()
+        self.anchor_generator = anchor_generator
+        self.rpn_target_assign = rpn_target_assign
+        self.train_proposal = train_proposal
+        self.test_proposal = test_proposal
+        if isinstance(anchor_generator, dict):
+            self.anchor_generator = AnchorGenerator(**anchor_generator)
+        if isinstance(rpn_target_assign, dict):
+            self.rpn_target_assign = RPNTargetAssign(**rpn_target_assign)
+        if isinstance(train_proposal, dict):
+            self.train_proposal = GenerateProposals(**train_proposal)
+        if isinstance(test_proposal, dict):
+            self.test_proposal = GenerateProposals(**test_proposal)
+```
 
 ## 新增模型算法
 
