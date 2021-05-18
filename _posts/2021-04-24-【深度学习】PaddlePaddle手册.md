@@ -97,7 +97,7 @@ ppdet/modeling/
 
 #### Backbone编写
 
-1） 代码编写： PaddleDetection中现有所有Backbone网络代码都放置在ppdet/modeling/backbones目录下，所以我们在其中新建res2net.py如下：
+1） 代码编写： PaddleDetection中现有所有Backbone网络代码都放置在ppdet/modeling/backbones目录下，所以我们在其中新建darknet.py如下：
 
 ```python
 from ppdet.core.workspace import register
@@ -142,6 +142,15 @@ DarkNet:
   norm_type: sync_bn
   norm_decay: 0.
   depth: 53
+```
+
+
+#### 检测组件编写
+
+1） 代码编写：编写好Backbone后，我们开始编写生成anchor的检测头部分，anchor的检测头代码都在 `ppdet/modeling/anchor_heads` 目录下，所以我们在其中新建`yolo_head.py` 如下：
+
+```
+
 ```
 
 # PaddleX
