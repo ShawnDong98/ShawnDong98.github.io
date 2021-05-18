@@ -458,6 +458,36 @@ LearningRate:
 
 **几点说明：**
 
+- `PiecewiseDecay` 与 `LinearWarmup` 策略在 `ppdet/optimizer.py` 中都已注册。
+- 除了这两个优化器之外，您还可以使用paddlepaddle中所有的优化器[paddlepaddle官网文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_guides/low_level/optimizer.html)。
+- Optimizer优化器配置：
+
+```
+OptimizerBuilder:
+  optimizer:
+    momentum: 0.9
+    type: Momentum
+  regularizer:
+    factor: 0.0005
+    type: L2
+```
+
+- 其他配置：在训练、评估与测试阶段，定义了一些所需参数如下：
+
+```
+use_gpu: true         # 是否使用GPU运行程序
+max_iters: 500200     # 最大迭代轮数
+log_iter: 20          # 日志打印队列长度, 训练时日志每迭代x轮打印一次
+save_dir: output      # 模型保存路径
+snapshot_iter: 2000   # 训练时第x轮保存/评估
+metric: COCO          # 数据集名称
+pretrain_weights: xxx # 预训练模型地址（网址/路径）
+weights: xxx/model_final # 评估或测试时模型权重的路径
+num_classes: 80       # 类别数
+```
+
+
+
 # PaddleX
 
 安装
