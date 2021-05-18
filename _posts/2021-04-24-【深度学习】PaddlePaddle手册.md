@@ -58,6 +58,81 @@ python slim/prune/export_model.py -c ./configs/yolov3_mobilenet_v1_voc.yml --pru
 ```
 
 
+## 新增模型算法
+
+PaddleDetection的网络模型模块所有代码逻辑在ppdet/modeling/中，所有网络模型是以组件的形式进行定义与组合，网络模型模块的主要构成如下架构所示：
+
+```
+ppdet/modeling/
+  ├── architectures      #
+  │   ├── faster_rcnn.py # Faster Rcnn模型
+  │   ├── ssd.py         # SSD模型
+  │   ├── yolov3.py      # YOLOv3模型
+  │   │   ...
+  ├── anchor_heads       # anchor生成检测头模块
+  │   ├── xxx_head.py    # 定义各类anchor生成检测头
+  ├── backbones          # 基干网络模块
+  │   ├── resnet.py      # ResNet网络
+  │   ├── mobilenet.py   # MobileNet网络
+  │   │   ...
+  ├── losses             # 损失函数模块
+  │   ├── xxx_loss.py    # 定义注册各类loss函数
+  ├── roi_extractors     # 检测感兴趣区域提取
+  │   ├── roi_extractor.py  # FPNRoIAlign等实现
+  ├── roi_heads          # 两阶段检测器检测头
+  │   ├── bbox_head.py   # Faster-Rcnn系列检测头
+  │   ├── cascade_head.py # cascade-Rcnn系列检测头
+  │   ├── mask_head.py   # Mask-Rcnn系列检测头
+  ├── tests  # 单元测试模块
+  │   ├── test_architectures.py  # 对网络结构进行单元测试
+  ├── ops.py  # 封装及注册各类PaddlePaddle物体检测相关公共检测组件/算子
+  ├── target_assigners.py # 封装bbox/mask等最终结果的公共检测组件
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621360356334.png)
+
+### 新增模型
+
+搭建新模型的一般步骤是：Backbone编写、检测组件编写与模型组网这三个步骤
+
+#### Backbone编写
+
+1） 代码编写： PaddleDetection中现有所有Backbone网络代码都放置在ppdet/modeling/backbones目录下，所以我们在其中新建res2net.py如下：
+
+```python
+from ppdet.core.workspace import register
+
+@register
+class DarkNet(object):
+
+    __shared__ = ['norm_type', 'weight_prefix_name']
+
+    def __init__(self,
+                 depth=53,
+                 norm_type='bn',
+                 norm_decay=0.,
+                 weight_prefix_name=''):
+        # 省略内容
+        pass
+
+    def __call__(self, input):
+        # 省略处理逻辑
+        pass
+```
+
+
+然后在backbones/\_\_init\_\_.py中加入引用：
+
+```
+from . import darknet
+from .darknet import *
+```
+
+**几点说明：**
+
+- 为了在yaml配置文件中灵活配置网络，所有Backbone、模型组件与architecture类需要利用`ppdet.core.workspace` 里的 `register` 进行注册，形式请参考如上示例；
+- 
+
 # PaddleX
 
 安装
