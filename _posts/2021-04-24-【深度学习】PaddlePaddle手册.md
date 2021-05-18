@@ -150,6 +150,74 @@ class RPNHead(object):
             self.test_proposal = GenerateProposals(**test_proposal)
 ```
 
+对应的yaml配置如下，请注意这里给出的是 **完整** 配置，其中所有默认值配置项都可以省略。上面的例子中的模块所有的构造函数参数都提供了默认值，因此配置文件中可以完全略过其配置。
+
+```
+RPNHead:
+  test_proposal:
+    eta: 1.0
+    min_size: 0.1
+    nms_thresh: 0.5
+    post_nms_top_n: 1000
+    pre_nms_top_n: 6000
+  train_proposal:
+    eta: 1.0
+    min_size: 0.1
+    nms_thresh: 0.5
+    post_nms_top_n: 2000
+    pre_nms_top_n: 12000
+  anchor_generator:
+    # ...
+  rpn_target_assign:
+    # ...
+```
+
+`RPNHead` 模块实际使用代码示例。
+
+```python
+from ppdet.core.workspace import load_config, merge_config, create
+
+load_config('some_config_file.yml')
+merge_config(more_config_options_from_command_line)
+
+rpn_head = create('RPNHead')
+# ... code that use the created module!
+```
+
+
+配置文件用可以直接序列化模块实例，用 `!` 标示，如
+
+```
+LearningRate:
+  base_lr: 0.01
+  schedulers:
+  - !PiecewiseDecay
+    gamma: 0.1
+    milestones: [60000, 80000]
+  - !LinearWarmup
+    start_factor: 0.3333333333333333
+    steps: 500
+```
+
+### 相关工具
+
+为了方便用户配置，PaddleDection提供了一个工具 (tools/configure.py)， 共支持四个子命令：
+
+- `list`： 列出当前已注册的模块，如需列出具体类别的模块，可以使用 `--category` 指定。
+- `help`： 显示指定模块的帮助信息，如描述，配置项，配置文件模板及命令行示例。
+- `analyze` ：检查配置文件中的缺少或者多余的配置项以及依赖缺失，如果给出type hint， 还可以检查配置项中错误的数据类型。非默认配置也会高亮显示。
+- `generate` ： 根据给出的模块列表生成配置文件，默认生成完整配置，如果指定 `--minimal` ，生成最小配置，即省略所有默认配置项。例如，执行下列命令可以生成Faster R-CNN (`ResNet` backbone + `FPN`) 架构的配置文件:
+
+```
+ython tools/configure.py generate FasterRCNN ResNet RPNHead RoIAlign BBoxAssigner BBoxHead LearningRate OptimizerBuilder
+```
+
+如需最小配置，运行：
+
+```
+python tools/configure.py generate --minimal FasterRCNN BBoxHead
+```
+
 ## 新增模型算法
 
 PaddleDetection的网络模型模块所有代码逻辑在ppdet/modeling/中，所有网络模型是以组件的形式进行定义与组合，网络模型模块的主要构成如下架构所示：
