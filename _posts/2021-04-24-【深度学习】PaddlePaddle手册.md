@@ -137,6 +137,13 @@ from .darknet import *
 
 2） 配置编写： 在yaml文件中以注册好了的 `DarkNet` 类名为标题，可选择性的对 `__init__` 函数中的参数进行更新，不在配置文件中配置的参数会保持__init__函数中的初始化值：
 
+```
+DarkNet:
+  norm_type: sync_bn
+  norm_decay: 0.
+  depth: 53
+```
+
 # PaddleX
 
 安装
