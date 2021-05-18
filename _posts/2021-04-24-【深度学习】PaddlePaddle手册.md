@@ -58,6 +58,22 @@ python slim/prune/export_model.py -c ./configs/yolov3_mobilenet_v1_voc.yml --pru
 ```
 
 
+## 模型参数配置
+
+### 基本设计
+
+利用Python的反射机制，PaddleDection的配置系统从Python类的构造函数抽取多种信息 - 如参数名、初始值、参数注释、数据类型（如果给出type hint）- 来作为配置规则。 这种设计便于设计的模块化，提升可测试性及扩展性。
+
+#### API
+
+配置系统的大多数功能由 `ppdet.core.workspace` 模块提供
+
+- `register`: 装饰器，将类注册为可配置模块；能够识别类定义中的一些特殊标注。
+- - `__category__`: 为便于组织，模块可以分为不同类别。
+- - `__inject__`: 如果模块由多个子模块组成，可以这些子模块实例作为构造函数的参数注入。对应的默认值及配置项可以是类名字符串，yaml序列化的对象，指向序列化对象的配置键值或者Python dict（构造函数需要对其作出处理，参见下面的例子）。
+- - `__op__`: 配合 `__append_doc__` （抽取目标OP的 注释）使用，可以方便快速的封装PaddlePaddle底层OP。
+- `serializable`: 装饰器，利用 [pyyaml](https://pyyaml.org/wiki/PyYAMLDocumentation) 的序列化机制，可以直接将一个类实例序列化及反序列化。
+
 ## 新增模型算法
 
 PaddleDetection的网络模型模块所有代码逻辑在ppdet/modeling/中，所有网络模型是以组件的形式进行定义与组合，网络模型模块的主要构成如下架构所示：
@@ -190,7 +206,7 @@ from .yolo_head import *
 
 #### 模型组网
 
-本步骤中，我们需要将编写好的Backbone、各个检测组件进行整合拼接，搭建一个完整的物体检测网络能够提供给训练、评估和测试程序去运行。 1.组建 `architecture`： 所有architecture网络代码都放置在 `ppdet/modeling/architectures` 目录下，所以我们在其中新建 `yolov3.py` 如下：
+1）代码编写： 本步骤中，我们需要将编写好的Backbone、各个检测组件进行整合拼接，搭建一个完整的物体检测网络能够提供给训练、评估和测试程序去运行。 1.组建 `architecture`： 所有architecture网络代码都放置在 `ppdet/modeling/architectures` 目录下，所以我们在其中新建 `yolov3.py` 如下：
 
 ```python
 from ppdet.core.workspace import register
@@ -226,6 +242,14 @@ class YOLOv3(object):
     def test(self, feed_vars):
         return self.build(feed_vars, mode='test')
 ```
+
+
+**几点说明**：
+
+- 在组建一个完整的网络时必须要设定 `__category__ = 'architecture'` 来表示一个完整的物体检测模型；
+- 在 `__init__` 函数中传入我们上面定义好的 `backbone` 与 `yolo_head` 的名称即可，根据yaml配置文件里这些组件的参数初始化，`ppdet.core.workspace` 会自动解析加载；
+- 在architecture类里必须定义 `build_inputs` 函数，为了适配检测网络的输入与Reader模块，具体见[模型输入设置](https://paddledetection.readthedocs.io/advanced_tutorials/MODEL_TECHNICAL.html#%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%85%A5%E8%AE%BE%E7%BD%AE)模块；
+- 在architecture类里必须定义`train`、`eval`和 `test` 函数，在训练、评估和测试程序中会分别调用这三个函数来在不同场景中加载网络模型。
 
 # PaddleX
 
