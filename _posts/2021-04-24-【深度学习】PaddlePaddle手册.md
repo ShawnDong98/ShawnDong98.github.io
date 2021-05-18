@@ -434,7 +434,29 @@ EvalReader:
 
 在[数据源解析](https://paddledetection.readthedocs.io/advanced_tutorials/READER.md#%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90)中已经提到，数据源roidbs会解析为字典的形式，Reader会根据feed_vars所含字段进行解析适配。
 
-2） `loader` 是调用 [fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/io_cn/DataLoader_cn.html#dataloader) 根据 `feed_vars`来完成DataLoader的组建。
+2） `loader` 是调用 [fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/io_cn/DataLoader_cn.html#dataloader) 根据 `feed_vars` 来完成DataLoader的组建。
+
+### 配置及运行
+
+PaddleDetection在 `ppdet/optimizer.py` 中注册实现了学习率配置接口类`LearningRate`、优化器接口类 `OptimizerBuilder`。
+
+- 学习率配置 在yaml文件中可便捷配置学习率各个参数：
+
+```
+LearningRate:
+  base_lr: 0.001
+  schedulers:
+  - !PiecewiseDecay
+    gamma: 0.1
+    milestones:
+    - 400000
+    - 450000
+  - !LinearWarmup
+    start_factor: 0.
+    steps: 4000
+```
+
+**几点说明：**
 
 # PaddleX
 
