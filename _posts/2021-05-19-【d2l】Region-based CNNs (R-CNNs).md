@@ -112,9 +112,17 @@ tensor([[[[ 5.,  6.],
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621509967456.png)
 
-warp -> RoI Pooling
+1）warp -> RoI Pooling
 
 每个区域内均匀分成若干小块， 每个小块得到该区域内的最大值。
+
+
+2） svm + regressor -> softmax + regressor
+
+
+
+
+
 # Faster R-CNN
 
 为了获得精确的目标检测结果，Fast R-CNN通常要求在 selective search 中生成许多提议区域。Faster R-CNN用区域提议网络(RPN)取代 selective search。
