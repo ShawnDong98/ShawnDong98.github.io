@@ -158,7 +158,7 @@ Anchor： 特征图上的每个点作为中心点， 生成多个大小比例不
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621510787353.png)
 
-分类分支中 $18$ 是 $2 * 9$， 回归分支中 $36$ 是 $4 \times 9$ 
+分类分支中 $18$ 是 $2 * 9$， 回归分支中 $36$ 是 $4 \times 9$ 。 
 
 
 
