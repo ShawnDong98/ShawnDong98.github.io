@@ -121,8 +121,6 @@ tensor([[[[ 5.,  6.],
 
 
 
-
-
 # Faster R-CNN
 
 为了获得精确的目标检测结果，Fast R-CNN通常要求在 selective search 中生成许多提议区域。Faster R-CNN用区域提议网络(RPN)取代 selective search。
@@ -141,6 +139,16 @@ tensor([[[[ 5.,  6.],
 
 值得注意的是，作为Faster R-CNN模型的一部分，区域提议网络是与模型的其余部分一起训练的。此外，Faster R-CNN的目标函数包括了目标检测中的类别和bbox预测，以及区域提议网络中anchor boxes的二值类别和bbox预测。最后，区域提议网络可以学习如何生成高质量的提议区域，从而在保持目标检测精度的同时减少提议区域的数量。
 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621510201156.png)
+
+
+**第一阶段： 产生候选区域**
+
+- 使用 Anchor 替代 Selective Search， 选取候选区域
+- 选出包含物体的Anchor进入RoI Pooling提取特征
+
+**第二阶段： 对候选区域进行分类并预测目标物体位置**
 # Mask R-CNN
 
 如果用图像中每个目标的像素级位置来标记训练数据，Mask R-CNN模型可以有效地利用这些详细的标签来进一步提高目标检测的精度。
