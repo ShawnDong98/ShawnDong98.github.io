@@ -190,6 +190,9 @@ t^*_x = (x^* - x_a) / w_a \qquad_y^* = (y^* - y_a) / h_a \\
 t_w^* = \log(w^* / w_a) \qquad _h^* = \log(h^* / h_a)
 $$
 
+- $x_a, y_a, w_a, h_a$ - anchor
+- $x^*, y^*, w^*, h^*$ - 真实框
+
 # Mask R-CNN
 
 如果用图像中每个目标的像素级位置来标记训练数据，Mask R-CNN模型可以有效地利用这些详细的标签来进一步提高目标检测的精度。
