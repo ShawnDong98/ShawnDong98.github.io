@@ -380,7 +380,9 @@ $$
 
 输入为骨干网络每一层的输出； 将特征进行上采样， 再与上一层特征相加得到FPN结构每一层的输出， FPN结构和骨干网络是相互独立的。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621515528759.png
 
+在骨干网络之后增加FPN网络 ，此时**输出的是多个特征图**， RPN模块和RoI Align模块会受到影响， 第二阶段 BBox head 不变。 
 # Cascade R-CNN
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621508411203.png)
