@@ -383,6 +383,22 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621515528759.png
 
 在骨干网络之后增加FPN网络 ，此时**输出的是多个特征图**， RPN模块和RoI Align模块会受到影响， 第二阶段 BBox head 不变。 
+
+### FPN结构下的RPN网络
+
+
+ (1) Anchor： $\{32^2, 64^2, 128^2, 256^2, 512^2\} \rightarrow \{P_2, P_3, P_4, P_5, P_6\}$
+ 
+ (2) RPN网络分为多个head预测不同尺度上的候选框
+ 
+ (3) RPN网络的预测结果和anchor解码得到的RoI会进行合并
+ 
+ ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621515801734.png)
+ 
+ 圈中卷积的权重是共享的。
+ 
+
+
 # Cascade R-CNN
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621508411203.png)
