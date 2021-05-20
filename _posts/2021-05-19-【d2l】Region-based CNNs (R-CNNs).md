@@ -193,6 +193,59 @@ $$
 - $x_a, y_a, w_a, h_a$ - anchor
 - $x^*, y^*, w^*, h^*$ - 真实框
 
+## RPN网络Loss
+
+RPN网络 Loss 计算公式：
+
+$$
+\begin{aligned}
+L(\{p_i\}, \{t_i\}) &= \frac{1}{N_{cls}} \sum_i L_{cls}(p_i, p_i^*) \\
+&+ \lambda \frac{1}{N_{reg}} \sum_i p_i^* L_{reg}(t_i, t_i^*)
+\end{aligned}
+$$
+
+RPN 网络的Loss是 分类 和 回归 两个Loss 相加得到的。
+
+- p：分类分支的预测值
+- t：回归分支的预测值
+- p^\*： 表示分类监督信息， 取值为0 或 1
+- - 1：表示Anchor为正样本
+- - 0： 表示Anchor为负样本
+- t^\*：表示回归分支的监督信息
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621512057754.png)
+
+回归分支 Loss 计算公式
+
+$$
+\frac{1}{N_{reg}} \sum_i p_i^* L_{reg}(t_i, t_i^*)
+$$
+
+$$
+L_{\log}(t^u, v) = \sum_{i \in \{x, y, w, h\}} \text{smooth}_{L_1}(t_i^u - v_i)
+$$
+
+其中:
+
+$$
+\text{smooth}_{L_1}(x) =
+\begin{cases}
+0.5 x^2 & \text{if} \quad \mid x \mid < 1 \\
+\mid x \mid - 0.5 & \text{otherwise}
+\end{cases}
+$$
+
+
+$$
+\frac{d \text{ smooth}_{L_1}}{dx} = 
+\begin{cases}
+x & \mid x \mid < 1 \\
+\pm 1 & \mid x \mid > 1
+\end{cases}
+$$
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621512121520.png)
+
 # Mask R-CNN
 
 如果用图像中每个目标的像素级位置来标记训练数据，Mask R-CNN模型可以有效地利用这些详细的标签来进一步提高目标检测的精度。
