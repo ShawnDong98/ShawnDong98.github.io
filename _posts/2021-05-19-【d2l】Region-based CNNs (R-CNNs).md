@@ -125,5 +125,13 @@ tensor([[[[ 5.,  6.],
 
 图13.8.5 Mask R-CNN model.
 
-如图13.8.5所示， Mask R-CNN是对Faster R-CNN模型的修改。mask R-CNN模型将RoI池化层替换为RoI Align层。
+如图13.8.5所示， Mask R-CNN是对Faster R-CNN模型的修改。mask R-CNN模型将RoI池化层替换为RoI Align层。这允许使用双线性插值来保留feature map上的空间信息，使得Mask R-CNN更适合像素级的预测。RoI alignment层对所有 RoI 输出相同形状的特征图。它不仅预测了RoIs 的类别和边界框，而且允许我们使用一个额外的全卷积网络来预测目标的像素级位置。
+
+
+# Summary
+
+- 一个R-CNN模型选择几个提议区域，使用一个CNN执行前向计算，并提取每个提议的区域的特征。然后利用这些特征来预测所提议区域的类别和边界框。
+- Fast R-CNN通过只对图像整体进行CNN前向计算来改进R-CNN。引入RoI池化层，从不同形状的RoI中提取相同形状的特征。
+- Faster R-CNN用区域建议网络代替了Fast R-CNN中使用的选择性搜索。这减少了生成的提议区域的数量，同时确保了精确的目标检测。
+- Mask R-CNN使用了与Faster R-CNN相同的基本结构，但是增加了一个全卷积层，帮助在像素级定位目标，进一步提高了目标检测的精度。
 
