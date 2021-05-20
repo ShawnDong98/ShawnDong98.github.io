@@ -372,6 +372,13 @@ $$
 **(d) Feature Pyramid Network(FPN)：** 将不同层的特征进行融合再分级预测
 
 
+## FPN 网络结构
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621515381826.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621515410603.png)
+
+输入为骨干网络每一层的输出； 将特征进行上采样， 再与上一层特征相加得到FPN结构每一层的输出， FPN结构和骨干网络是相互独立的。
 
 
 # Cascade R-CNN
