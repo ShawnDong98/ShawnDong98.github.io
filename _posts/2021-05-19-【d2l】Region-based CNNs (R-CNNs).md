@@ -101,6 +101,23 @@ tensor([[[[ 5.,  6.],
 
 # Faster R-CNN
 
+为了获得精确的目标检测结果，Fast R-CNN通常要求在 selective search 中生成许多提议区域。Faster R-CNN用区域提议网络(RPN)取代 selective search。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621502071307.png)
+
+图 13.8.4 Faster R-CNN 模型
+
+
+图 13.8.4 展示了一个 Faster R-CNN 模型。 相较于 Fast R-CNN, Faster R-CNN 仅将生成提议区域的方法从selective search 改为区域提议网络(RPN)。模型的其他部分保持不变。详细的区域提议网络计算过程如下所示：
+
+- 我们使用一个 padding 为1 的 $3 \times 3$ 卷积层 变换 CNN的输出， 并且将输出通道的数量设置为 $c$。 这样，CNN从图像中提取的feature map中的每个元素都是一个长度为 $c$ 的新feature。
+- 我们使用 feature map 中的每一个元素 作为 生成多个 不同尺寸 和 长宽比的 anchor boxes 的中心，然后标记它们。
+- 我们使用在 anchor boxes的中心 的 长度 $c$ 的元素的特征 预测 二分类(物体或背景)并且 对预测每个 anchor boxes 的边界框。
+-  然后，我们使用非极大值抑制去除对应预测目标类别的相似的边界框。最后，我们将预测的边界框作为RoI池化层所要求的区域输出。
+
+值得注意的是，作为Faster R-CNN模型的一部分，区域提议网络是与模型的其余部分一起训练的。此外，Faster R-CNN的目标函数包括了目标检测中的类别和bbox预测，以及区域提议网络中anchor boxes的二值类别和bbox预测。最后，区域提议网络可以学习如何生成高质量的提议区域，从而在保持目标检测精度的同时减少提议区域的数量。
+
+
 
 
 
