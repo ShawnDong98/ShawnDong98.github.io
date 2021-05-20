@@ -147,3 +147,4 @@ tensor([[[[ 5.,  6.],
 
 # Reference
 1. [ROI Pooling和ROI Align](https://zhuanlan.zhihu.com/p/73138740)
+2. [Region of interest pooling explained](https://deepsense.ai/region-of-interest-pooling-explained/)
