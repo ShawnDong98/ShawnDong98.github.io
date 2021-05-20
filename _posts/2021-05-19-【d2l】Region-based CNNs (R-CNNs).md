@@ -155,6 +155,13 @@ tensor([[[[ 5.,  6.],
 Anchor： 特征图上的每个点作为中心点， 生成多个大小比例不同的边界框， 这些框称为 Anchor。
 
 图中红色、蓝色和绿色代表三种Anchor， 它们的大小不同。 每种 Anchor又分成了长宽比为1：2， 1：1， 2：1的三个Anchor， 因此特征图每个位置生成9个Anchor。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621510787353.png)
+
+分类分支中 $18$ 是 $2 * 9$， 回归分支中 $36$ 是 $4 \times 9$ 
+
+
+
 # Mask R-CNN
 
 如果用图像中每个目标的像素级位置来标记训练数据，Mask R-CNN模型可以有效地利用这些详细的标签来进一步提高目标检测的精度。
