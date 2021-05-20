@@ -117,8 +117,13 @@ tensor([[[[ 5.,  6.],
 
 值得注意的是，作为Faster R-CNN模型的一部分，区域提议网络是与模型的其余部分一起训练的。此外，Faster R-CNN的目标函数包括了目标检测中的类别和bbox预测，以及区域提议网络中anchor boxes的二值类别和bbox预测。最后，区域提议网络可以学习如何生成高质量的提议区域，从而在保持目标检测精度的同时减少提议区域的数量。
 
+# Mask R-CNN
 
+如果用图像中每个目标的像素级位置来标记训练数据，Mask R-CNN模型可以有效地利用这些详细的标签来进一步提高目标检测的精度。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621503278685.png)
 
+图13.8.5 Mask R-CNN model.
 
+如图13.8.5所示， Mask R-CNN是对Faster R-CNN模型的修改。mask R-CNN模型将RoI池化层替换为RoI Align层。
 
