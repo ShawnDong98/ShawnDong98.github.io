@@ -357,7 +357,20 @@ $$
 
 
 
-# RoI Pooling 和 RoI Aligned
+# FPN
+
+**构造多尺度金字塔**， 期望模型能够具备检测不同大小尺度物体的能力
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621514948948.png)
+
+**(a) Featurized image pyramid：**  将输入图像缩放到不同尺度， 使用多个模型进行预测
+
+**(b) Single feature map：** 仅使用最后一层的特征作为检测模型后续部分的输入
+
+**(c) Pyramidal feature hierarchy：** 每个层级分别预测
+
+**(d) Feature Pyramid Network(FPN)：** 将不同层的特征进行融合再分级预测
+
 
 
 
