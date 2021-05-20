@@ -301,7 +301,7 @@ RoI Feature 经过 Pooling 将特征图从 14 x 14 压缩到 1 x 1; 然后这个
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621514015826.png)
 
 
-BBox Head 训练阶段：
+### BBox Head 训练阶段
 
 1） 判断RPN网络产生的候选框是否包含物体
 
@@ -313,6 +313,16 @@ BBox Head 训练阶段：
 - 共采样512个样本
 - 从正样本中随机采样， 采样个数不超过128个
 - 从负样本中随机采样， 补齐512个样本
+
+### BBox Head 中的监督信息
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621514356616.png)
+
+上面是分类监督信息，向量长度为4， 表示4类。
+
+下面是回归监督信息， 向量长度为16， 4类的四个回归信息。
+
+
 # Mask R-CNN
 
 如果用图像中每个目标的像素级位置来标记训练数据，Mask R-CNN模型可以有效地利用这些详细的标签来进一步提高目标检测的精度。
