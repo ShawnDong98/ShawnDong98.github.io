@@ -397,6 +397,25 @@ $$
  
  圈中卷积的权重是共享的。
  
+ 
+### FPN下的RoI Align
+ 
+ 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621516014069.png)
+ 
+如何将 RoI 分配到不同层级？
+
+- 将FPN的特征金字塔类比为图像金字塔
+- 根据面积来对候选框进行分配
+
+$$
+k = \lfloor k_0 + \log_2 (\sqrt{wh} / 224) \rfloor
+$$
+
+- $k$： 分配的层级
+- $k_0$： 基准层
+- $wh$： RoI的尺寸
+ 
 
 
 # Cascade R-CNN
