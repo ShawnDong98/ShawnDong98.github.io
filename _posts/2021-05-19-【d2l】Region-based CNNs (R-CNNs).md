@@ -417,10 +417,23 @@ $$
 - $wh$： RoI的尺寸
  
 
-
 # Cascade R-CNN
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621508411203.png)
+
+Cascade-RCNN 首先对Faster R-CNN的 IoU 进行了分析。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621579604522.png)
+
+- 横轴： RPN生成的RoI和真实框的IoU；
+- 纵轴： 经过第二阶段BBox head得到的新的bbox和真实框的IoU；
+- 线条：使用不同IoU阈值筛选出候选框训练出来的模型
+
+
+RoI 自身的 IoU 和 训练器训练用的 IoU 阈值较为接近时， 训练器的性能最优。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621580114433.png)
+
 
 # Reference
 1. [ROI Pooling和ROI Align](https://zhuanlan.zhihu.com/p/73138740)
