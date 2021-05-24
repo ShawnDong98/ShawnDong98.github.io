@@ -355,8 +355,6 @@ $$
 - Faster R-CNN用区域建议网络代替了Fast R-CNN中使用的选择性搜索。这减少了生成的提议区域的数量，同时确保了精确的目标检测。
 - Mask R-CNN使用了与Faster R-CNN相同的基本结构，但是增加了一个全卷积层，帮助在像素级定位目标，进一步提高了目标检测的精度。
 
-
-
 # FPN
 
 **构造多尺度金字塔**， 期望模型能够具备检测不同大小尺度物体的能力
@@ -530,3 +528,5 @@ Baseline： ResNet50-vd + FPN + Cascade RCNN
 # Reference
 1. [ROI Pooling和ROI Align](https://zhuanlan.zhihu.com/p/73138740)
 2. [Region of interest pooling explained](https://deepsense.ai/region-of-interest-pooling-explained/)
+3. [https://aistudio.baidu.com/aistudio/education/group/info/16617](https://aistudio.baidu.com/aistudio/education/group/info/16617)
+4. [Region-based CNNs (R-CNNs)](Region-based CNNs (R-CNNs))
