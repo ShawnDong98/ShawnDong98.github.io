@@ -326,8 +326,8 @@ RoI Feature 经过 Pooling 将特征图从 14 x 14 压缩到 1 x 1; 然后这个
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621514587343.png)
 
-- p： 分类分支的预测值
-- t：回归分支的预测值
+- $p$： 分类分支的预测值
+- $t$：回归分支的预测值
 - $p^*$： 表示真实框的分数， 取值为0或1
 - - 1：表示RoI为正样本
 - - 0： 表示RoI为负样本
