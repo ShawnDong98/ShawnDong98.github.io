@@ -529,4 +529,4 @@ Baseline： ResNet50-vd + FPN + Cascade RCNN
 1. [ROI Pooling和ROI Align](https://zhuanlan.zhihu.com/p/73138740)
 2. [Region of interest pooling explained](https://deepsense.ai/region-of-interest-pooling-explained/)
 3. [https://aistudio.baidu.com/aistudio/education/group/info/16617](https://aistudio.baidu.com/aistudio/education/group/info/16617)
-4. [Region-based CNNs (R-CNNs)](Region-based CNNs (R-CNNs))
+4. [Region-based CNNs (R-CNNs)](http://d2l.ai/chapter_computer-vision/rcnn.html)
