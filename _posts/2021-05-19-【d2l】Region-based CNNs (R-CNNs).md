@@ -518,6 +518,24 @@ $$
  
  
 # IoU loss
+
+**优点**：
+
+IoU就是我们所说的交并比，是目标检测中最常用的指标，在 anchor-based 的方法中，他的作用不仅用来确定正样本和负样本，还可以用来评价输出框（predict box）和ground-truth的距离
+
+- 可以说**它可以反映预测检测框与真实检测框的检测效果**。
+- 还有一个很好的特性就是**尺度不变性**，也就是对尺度不敏感（scale invariant）， 在regression任务中，判断predict box和gt的距离最直接的指标就是IoU。(**满足非负性；同一性；对称性；三角不等性**)
+
+**缺点**：
+
+- 如果两个框没有相交，根据定义，IoU=0，不能反映两者的距离大小（重合度）。同时因为loss=0，没有梯度回传，无法进行学习训练。
+- IoU无法精确的反映两者的重合度大小。如下图所示，三种情况IoU都相等，但看得出来他们的重合度是不一样的，左边的图回归的效果最好，右边的最差。
+
+## CIoU loss
+
+## DIoU loss
+
+## 
  
  
  
@@ -535,3 +553,4 @@ Baseline： ResNet50-vd + FPN + Cascade RCNN
 2. [Region of interest pooling explained](https://deepsense.ai/region-of-interest-pooling-explained/)
 3. [https://aistudio.baidu.com/aistudio/education/group/info/16617](https://aistudio.baidu.com/aistudio/education/group/info/16617)
 4. [Region-based CNNs (R-CNNs)](http://d2l.ai/chapter_computer-vision/rcnn.html)
+5. [Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression](https://arxiv.org/pdf/1902.09630.pdf)
