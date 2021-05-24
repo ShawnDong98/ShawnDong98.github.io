@@ -516,6 +516,11 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621587849659.png)
  
+ 
+# IoU loss
+ 
+ 
+ 
 # 两阶段检测模型优化策略
 
 ## 服务器短模型优化策略
