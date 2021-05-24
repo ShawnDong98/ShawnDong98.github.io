@@ -191,7 +191,7 @@ t_w^* = \log(w^* / w_a) \qquad _h^* = \log(h^* / h_a)
 $$
 
 - $x_a, y_a, w_a, h_a$ - anchor
-- $x^*, y^*, w^*, h^*$ - 真实框
+- $x^{\*}, y^{\*}, w^{\*}, h^{\*}$  - 真实框
 
 ## RPN网络Loss
 
