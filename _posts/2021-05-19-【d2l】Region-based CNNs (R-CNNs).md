@@ -531,11 +531,74 @@ IoU就是我们所说的交并比，是目标检测中最常用的指标，在 a
 - 如果两个框没有相交，根据定义，IoU=0，不能反映两者的距离大小（重合度）。同时因为loss=0，没有梯度回传，无法进行学习训练。
 - IoU无法精确的反映两者的重合度大小。如下图所示，三种情况IoU都相等，但看得出来他们的重合度是不一样的，左边的图回归的效果最好，右边的最差。
 
-## CIoU loss
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621867382634.png)
+
+## GIoU(Generalized Intersection over Union)
+
+由于IoU是比值的概念，对目标物体的scale是不敏感的。然而检测任务中的BBox的回归损失(MSE loss, l1-smooth loss等）优化和IoU优化不是完全等价的，而且 Ln 范数对物体的scale也比较敏感，IoU无法直接优化没有重叠的部分。
+
+这篇论文提出可以直接把IoU设为回归的loss。
+
+$$
+GIoU = IoU - \frac{\mid A_c - U \mid}{\mid A_c \mid}
+$$
+
+上面公式的意思是：先计算两个框的最小闭包区域面积 $A_c$(通俗理解：同时包含了预测框和真实框的最小框的面积)，再计算出IoU，再计算闭包区域中不属于两个框的区域占闭包区域的比重，最后用IoU减去这个比重得到GIoU。
+
+- 与IoU相似，GIoU也是一种距离度量，作为损失函数的话，$G_{\text{GIoU}} = 1 - \text{GIoU}$,满足损失函数的基本要求
+- GIoU对scale不敏感
+- GIoU是IoU的下界，在两个框无限重合的情况下，IoU=GIoU=1
+- IoU取值`[0,1]`，但GIoU有对称区间，取值范围`[-1,1]`。在两者重合的时候取最大值1，在两者无交集且无限远的时候取最小值-1，因此GIoU是一个非常好的距离度量指标。
+- 与IoU只关注重叠区域不同，**GIoU不仅关注重叠区域，还关注其他的非重合区域**，能更好的反映两者的重合度。
 
 ## DIoU loss
 
-## 
+
+DIoU要比GIou更加符合目标框回归的机制，**将目标与anchor之间的距离，重叠率以及尺度都考虑进去**，使得目标框回归变得更加稳定，不会像IoU和GIoU一样出现训练过程中发散等问题。
+
+> 基于IoU和GIoU存在的问题，作者提出了两个问题：
+> 1. 直接最小化anchor框与目标框之间的归一化距离是否可行，以达到更快的收敛速度？
+> 2. 如何使回归在与目标框有重叠甚至包含时更准确、更快？
+
+$$
+\text{DIoU} = \text{IoU} - \frac{\rho^2 (b, b^{gt})}{c^2}
+$$
+
+其中，$b, b^{gt}$别代表了预测框和真实框的中心点，且 $\rho$ 代表的是计算两个中心点间的欧式距离。$c$ 代表的是能够同时包含预测框和真实框的**最小闭包区域**的对角线距离。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1621940799814.png)
+
+**优点**
+
+- 与GIoU loss类似，DIoU loss($L_{D_{IoU}} = 1 - DIoU$)在与目标框不重叠时，仍然可以为边界框提供移动方向。
+- DIoU loss可以直接最小化两个目标框的距离，因此比GIoU loss收敛快得多。
+- 对于包含两个框在水平方向和垂直方向上这种情况，DIoU损失可以使回归非常快，而GIoU损失几乎退化为IoU损失。
+- DIoU还可以替换普通的IoU评价策略，应用于NMS中，使得NMS得到的结果更加合理和有效。
+
+
+## CIoU loss(Complete-IoU)
+
+论文考虑到bbox回归三要素中的长宽比还没被考虑到计算中，因此，进一步在DIoU的基础上提出了CIoU。其惩罚项如下面公式：
+
+$$
+R_{CIoU} = \frac{\rho^2(b, b^{gt})}{c^2} + \alpha v
+$$
+
+其中 $\alpha$ 是权重函数
+
+而 $v$ 用来度量长宽比的相似性， 定义为 $v = \frac{4}{\pi^2}(arctan \frac{w^{gt}}{h^{gt}} - arctan \frac{w}{h})^2$
+
+完整的 CIoU 损失函数定义：
+
+$$
+L_{CIoU} = 1 - IoU + \frac{\rho^2(b, b^{gt})}{c^2} + \alpha v
+$$
+
+最后， CIoU loss 的梯度类似于 DIoU loss， 但还要考虑 $v$ 的梯度。 在长宽 `[0, 1]` 的情况下， $w^2 + h^2$ 的值通常很小， 会导致梯度爆炸， 因此在 $\frac{1}{w^2 + h^2}$ 实现时将替换成1.
+
+
+
+
  
  
  
