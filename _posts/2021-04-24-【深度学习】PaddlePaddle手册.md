@@ -522,6 +522,9 @@ paddlex --split_dataset --format VOC --dataset_dir D:\MyDataset --val_value 0.2 
 执行上面命令行，会在D:\MyDataset下生成labels.txt, train_list.txt, val_list.txt和test_list.txt，分别存储类别信息，训练样本列表，验证样本列表，测试样本列表
 
 
+
+
 # Reference
 1. [PaddlePaddle/PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
 2. [PaddlePaddle/PaddleX](https://github.com/PaddlePaddle/PaddleX)
+3. [请问一下这个数据增强的中32指的是什么含义pading=32 or stride=32 #978](https://github.com/PaddlePaddle/PaddleDetection/issues/978)
