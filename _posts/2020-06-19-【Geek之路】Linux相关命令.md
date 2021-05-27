@@ -170,6 +170,12 @@ top   查看内存中进程的动态信息；
 
 kill -9 pid   杀死进程。
 
+## 批量杀死进程
+
+
+```
+ps -ef | grep tools/train.py | grep -v grep | awk '{print $2}' | xargs kill -9 
+```
 
 # screen命令
 
