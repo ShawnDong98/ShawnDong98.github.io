@@ -312,7 +312,7 @@ tar -zxvf xxx.tar.gz
 
 ## Read more: tar，gzip的使用方法
 
-1. 压缩一组文件为tar.gz后缀。
+1） 压缩一组文件为tar.gz后缀。
 
 ```
 tar cvf backup.tar /etc
@@ -326,7 +326,7 @@ gzip -q backup.tar
 tar cvfz backup.tar.gz /etc/
 ```
 
-2. 释放一个后缀为tar.gz的文件。
+2） 释放一个后缀为tar.gz的文件。
 
 ```
 gunzip backup.tar.gz #tar xvf backup.tar
@@ -338,19 +338,19 @@ gunzip backup.tar.gz #tar xvf backup.tar
 tar xvfz backup.tar.gz
 ```
 
-3. 用一个命令完成压缩
+3） 用一个命令完成压缩
 
 ```
 tar cvf - /etc/ | gzip -qc > backup.tar.gz
 ```
 
-4. 用一个命令完成释放
+4） 用一个命令完成释放
 
 ```
 gunzip -c backup.tar.gz | tar xvf -
 ```
 
-5. 如何解开tar.Z的文件？
+5） 如何解开tar.Z的文件？
    
 ```
 tar xvfz backup.tar.Z
@@ -362,13 +362,13 @@ tar xvfz backup.tar.Z
 uncompress backup.tar.Z #tar xvf backup.tar
 ```
 
-6. 如何解开.tgz文件？
+6） 如何解开.tgz文件？
 
 ```
 gunzip backup.tgz
 ```
 
-7. 如何压缩和解压缩.bz2的包？
+7） 如何压缩和解压缩.bz2的包？
 
 ```
 bzip2 /etc/smb.conf
@@ -384,7 +384,7 @@ bunzip2 /etc/smb.conf.bz2
 
 注:.bz2压缩格式不是很常用，可以man bzip2
 
-8. 如何解压tar.bz2的包？
+8） 如何解压tar.bz2的包？
 
 
 ```
