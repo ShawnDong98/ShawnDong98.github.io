@@ -537,7 +537,7 @@ IoU就是我们所说的交并比，是目标检测中最常用的指标，在 a
 
 由于IoU是比值的概念，对目标物体的scale是不敏感的。然而检测任务中的BBox的回归损失(MSE loss, l1-smooth loss等）优化和IoU优化不是完全等价的，而且 Ln 范数对物体的scale也比较敏感，IoU无法直接优化没有重叠的部分。
 
-这篇论文提出可以直接把IoU设为回归的loss。
+这篇论文提出可以直接把IoU设为以下回归的loss：
 
 $$
 GIoU = IoU - \frac{\mid A_c - U \mid}{\mid A_c \mid}
