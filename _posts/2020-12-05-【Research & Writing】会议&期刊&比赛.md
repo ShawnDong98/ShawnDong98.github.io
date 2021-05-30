@@ -183,7 +183,7 @@ PubMed Central (PMC)链接：PubMed Central
 [http://www.datadreams.org/#/raceList](http://www.datadreams.org/#/raceList)
 
 
-## 开发者社区
+## 开发者社区(华录杯)
 
 
 [https://dev.ehualu.com/dev/home/competition/index](https://dev.ehualu.com/dev/home/competition/index)
