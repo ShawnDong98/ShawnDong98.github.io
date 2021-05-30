@@ -134,7 +134,7 @@ PubMed Central (PMC)链接：PubMed Central
 
 ## 阿里天池
 
-[https://blog.csdn.net/tMb8Z9Vdm66wH68VX1/article/details/106345506](https://blog.csdn.net/tMb8Z9Vdm66wH68VX1/article/details/106345506)
+[https://tianchi.aliyun.com/competition/gameList/activeList](https://tianchi.aliyun.com/competition/gameList/activeList)
 
 
 ## 爱奇艺AI竞赛平台
