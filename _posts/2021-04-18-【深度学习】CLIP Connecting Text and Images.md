@@ -368,7 +368,166 @@ def cross_entropy(preds, targets, reduction='none'):
 
 **注： 单位向量的是话成立的，因为点积就是余弦距离，越大夹角越接近于0。否则不成立。亦或，在过完归一化类型的激活函数之后，大体也能成立，因为||vector||不会太大。**
 
-现在我们有图像嵌入矩阵， 形状为(batch_size，256)和文本嵌入矩阵， 形状为(batch_size，256)。这意味着我们有两组向量，而不是两个单独的向量。我们如何度量两组向量(两个矩阵)之间的相似性？使用点积。
+现在我们有图像嵌入矩阵， 形状为(batch_size，256)和文本嵌入矩阵， 形状为(batch_size，256)。这意味着我们有两组向量，而不是两个单独的向量。我们如何度量两组向量(两个矩阵)之间的相似性？使用点积。为了能把这两个矩阵相乘，我们把第二个矩阵转置。我们得到一个形状为(batch_size, batch_size)的矩阵，我们称之为logits。现在我们有了logits，我们需要target。
+
+让我们考虑一下我们希望这个模型能学到什么：我们想让它对给定的图像和描述它的标题学习类似的表征(向量)。也就是说，我们给它一个图像或者描述它的文本，我们想让它们产生相同大小的256维的向量。
+
+所以，在最好的情况下，文本嵌入和图像嵌入矩阵应该是相同的，因为它们描述的是相似的东西。我们现在想想，如果发生这种情况，logits矩阵会是什么样的?我们来看一个简单的例子：
+
+```python
+import torch
+from torch import nn
+import torch.nn.functional as F
+import matplotlib.pyplot as plt
+
+batch_size = 4
+dim = 256
+embeddings = torch.randn(batch_size, dim)
+out = embeddings @ embeddings.T
+print(F.softmax(out, dim=-1))
+
+-----------
+# tensor([[1., 0., 0., 0.],
+#         [0., 1., 0., 0.],
+#         [0., 0., 1., 0.],
+#         [0., 0., 0., 1.]])
+```
+
+因此在这个最好的例子中， 如果我们对它取softmax， 对角线上将会为1.0(一个单位矩阵)。 由于损失函数的工作是使模型预测类似于目标(至少在大多数情况下!)，我们需要这样一个矩阵作为我们的目标。这就是为什么我们在上面的代码块中计算图像相似度和文本相似度矩阵的原因。
+
+
+现在我们已经得到了目标矩阵，我们将使用简单的交叉熵来计算实际损失。我们已经把交叉熵的完整矩阵形式写成了一个函数，可以在代码块的底部看到。
+
+我承认在PyTorch中有一个更简单的方法来计算这个损失; 通过这样做：`nn.CrossEntropyLoss()(logits, torch.arange(batch_size))`。为什么我没有在这里使用它？ 有两个原因：
+
+- 我们使用的数据集对单个图像有多个标题; 因此，在一个batch中有可能存在两个相似标题的相同图像(这是罕见的，但它可能发生)。使用这种简单方式的loss将会忽略这种可能性并且模型学习将两个实际相同的分成两种不同的表征。 显然， 我们不希望这种情况发生， 因此我们以这种方式计算整个 target matrix 来处理这种极少见出现的情况。 
+- 这样做，让我们更好地理解这个损失函数中发生了什么； 
+
+
+## 训练
+
+这里有一个方便的函数来训练我们的模型。这里仅仅是加载batches， 将它们喂给模型， 然后更新优化器，以及 lr_scheduler。
+
+```
+def train_epoch(model, train_loader, optimizer, lr_scheduler, step):
+    loss_meter = AvgMeter()
+    tqdm_object = tqdm(train_loader, total=len(train_loader))
+    for batch in tqdm_object:
+        batch = {k: v.to(CFG.device) for k, v in batch.items() if k != "caption"}
+        loss = model(batch)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        if step == "batch":
+            lr_scheduler.step()
+
+        count = batch["image"].size(0)
+        loss_meter.update(loss.item(), count)
+
+        tqdm_object.set_postfix(train_loss=loss_meter.avg, lr=get_lr(optimizer))
+    return loss_meter
+```
+
+
+我们完成了对模型的训练。现在，我们需要进行推理，在我们的例子中，将给模型一段文本，并希望它从一个没有见过的验证(或测试)集中检索最相关的图像。
+
+## 得到图像嵌入
+
+在这个函数中，我们将加载训练后保存的模型，将图像输入验证集，并返回图像嵌入(valid_set_size， 256)和模型本身。
+
+```python
+def get_image_embeddings(valid_df, model_path):
+    tokenizer = DistilBertTokenizer.from_pretrained(CFG.text_tokenizer)
+    valid_loader = build_loaders(valid_df, tokenizer, mode="valid")
+    
+    model = CLIPModel().to(CFG.device)
+    model.load_state_dict(torch.load(model_path, map_location=CFG.device))
+    model.eval()
+    
+    valid_image_embeddings = []
+    with torch.no_grad():
+        for batch in tqdm(valid_loader):
+            image_features = model.image_encoder(batch["image"].to(CFG.device))
+            image_embeddings = model.image_projection(image_features)
+            valid_image_embeddings.append(image_embeddings)
+    return model, torch.cat(valid_image_embeddings)
+```
+
+
+## Finding Matches
+
+这个函数完成了我们希望模型能够完成的最后一个任务:它获得模型、图像嵌入和文本查询。它将显示验证集中最相关的图像!是不是很神奇?让我们看看它到底表现如何
+
+
+```python
+def find_matches(model, image_embeddings, query, image_filenames, n=9):
+    tokenizer = DistilBertTokenizer.from_pretrained(CFG.text_tokenizer)
+    encoded_query = tokenizer([query])
+    batch = {
+        key: torch.tensor(values).to(CFG.device)
+        for key, values in encoded_query.items()
+    }
+    with torch.no_grad():
+        text_features = model.text_encoder(
+            input_ids=batch["input_ids"], attention_mask=batch["attention_mask"]
+        )
+        text_embeddings = model.text_projection(text_features)
+    
+    image_embeddings_n = F.normalize(image_embeddings, p=2, dim=-1)
+    text_embeddings_n = F.normalize(text_embeddings, p=2, dim=-1)
+    dot_similarity = text_embeddings_n @ image_embeddings_n.T
+    
+    # multiplying by 5 to consider that there are 5 captions for a single image
+    # so in indices, the first 5 indices point to a single image, the second 5 indices
+    # to another one and so on.
+    values, indices = torch.topk(dot_similarity.squeeze(0), n * 5)
+    matches = [image_filenames[idx] for idx in indices[::5]]
+    
+    _, axes = plt.subplots(math.sqrt(n), math.sqrt(n), figsize=(10, 10))
+    for match, ax in zip(matches, axes.flatten()):
+        image = cv2.imread(f"{CFG.image_path}/{match}")
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        ax.imshow(image)
+        ax.axis("off")
+    
+    plt.show()
+```
+
+让我们来看一些例子!这个模型实际上是在学习图像和文本之间的关系， 那种感觉简直不可思议。
+
+```python
+find_matches(model, 
+             image_embeddings,
+             query="one dog sitting on the grass",
+             image_filenames=valid_df['image'].values,
+             n=9)
+```
+
+现在我们调用这个函数， 结果如下：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622454967733.png)
+
+
+当然这不是完美的，因为一些图片中有两只狗，但是考虑到小的训练集和短的训练时间，我认为这很好。
+
+让我们看看其他的输出。查询被写在每个图像的顶部。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622455045585.png)
+
+它还能计算， 把这个和之前的比较一下。该模型知道“2”的含义，与之前的查询对比， 带来了包含两只狗的图像。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622455169647.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622455176773.png)
+
+对于下面的例子，模型犯了一些错误，但总的来说，它显然对文本和图像都有很好的理解。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622455214917.png)
+
+
+
+
 
 # Reference
 1. [CLIP: Connecting Text and Images](https://openai.com/blog/clip/)
