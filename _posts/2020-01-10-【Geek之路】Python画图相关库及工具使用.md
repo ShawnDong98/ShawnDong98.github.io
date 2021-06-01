@@ -644,3 +644,4 @@ numpy转Image：
 1. [python：matplotlib 绘制两条y轴](https://blog.csdn.net/kaever/article/details/107063358)
 2. [PIL/Image的show()函数](https://blog.csdn.net/bcfd_yundou/article/details/89146169)
 3. [Matplotlib设计的基本逻辑](https://zhuanlan.zhihu.com/p/32693665)
+4. [Py-plt: Matplotlib常用柱状图详解](https://blog.csdn.net/MyName_Guan/article/details/110390312)
