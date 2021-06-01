@@ -172,6 +172,23 @@ plt.show()
  - orientation	是竖直条还是水平条	竖直："vertical"，水平条："horizontal"
 
 
+给每个柱子上面添加标注
+
+```
+bars1 = plt.bar(ratio.keys(), ratio.values(), width=0.01)
+#给每个柱子上面添加标注
+for b in bars1: #遍历每个柱子
+  height = b.get_height()
+  plt.annotate('{}'.format(height),
+        #xy控制的是，标注哪个点，x=x坐标+width/2, y=height，即柱子上平面的中间
+        xy=(b.get_x() + b.get_width() / 2, height), 
+        xytext=(0,3), #文本放置的位置，如果有textcoords，则表示是针对xy位置的偏移，否则是图中的固定位置
+        textcoords="offset points", #两个选项 'offset pixels'，'offset pixels'
+        va = 'bottom', ha = 'center' #代表verticalalignment 和horizontalalignment，控制水平对齐和垂直对齐。
+        )
+```
+
+
 ## plt.hlines
 
 ```python
