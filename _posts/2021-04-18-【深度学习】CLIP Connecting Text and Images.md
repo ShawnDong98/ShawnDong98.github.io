@@ -551,8 +551,18 @@ find_matches(model,
 
 接着看下这个分类器， 对SUN397数据集中一张图片的分类结果， 能正确分类出这是电视演播室。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622599485130.png)
 
 这里有很多不同数据集上分类的示例， 这是一张飞机的照片， 对于这些图片的分类结果， 只要第一个预测是绿色的那么就是分类正确。而如果第一个是橙色， 那么就是预测了错误的标签， 其中的绿色标签才是正确的标签。 从这些了例子中可以看到， 有些分类器对其中一些样本的分类精度还是不错的， 有些则不太行。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622599526307.png)
+
+
+不过这些图片都是来自不同的数据集和任务。比如这是一样卫星图片， 而这是一张车的图片。同时这个任务需要分类这是什么品牌的车， 而不仅仅是分类成一辆车。。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622599809912.png)
+
+这里包含了各种各样的任务， 而有趣的是这些分类结果都是来自同一个分类器
 
 
 # Reference
