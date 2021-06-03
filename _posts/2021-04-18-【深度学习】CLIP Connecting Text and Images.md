@@ -545,7 +545,7 @@ find_matches(model,
 
 # Video
 
-## 前沿
+## 前言
 
 左上这张图片是一个分类器， 对Food101数据集中一张图片的预测结果。 其中预测概率最高的标签是 "a photo of guacamole, a type of food"， 它的预测概率比第二个标签 "a photo of ceviche, a type of food" 高很多。
 
