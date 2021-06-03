@@ -648,6 +648,8 @@ RN50x4, RN50x16, 和 RN50x64 是 ResNet-50 使用 EfficientNet-style 的模型 s
 
 所以这看起来是一个挺大的进步， 普通用户可以基于CLIP构建自己的分类器。 现在我基于CLIP可以很方便地构建我想要的分类器。文章中也对CLIP的鲁棒性作了一些实验。 之前的模型都是在imagenet上训练过的。同时大家也发现当把这些在imagenet上预训练的模型直接在其他数据集上测试的时候， 性能就会下降非常多。比如这里的ImagenetV2就是从Imagenet数据集中筛选出新的数据集， 使得新的数据集更接近原来的测试集。 而这些在Imagenet上预训练的模型在这个Imagenet V2上的测试性能都下降了不少。然后作者们还构造了更难的数据集， 比如imagenet sketch的都是素描的图片， 还是 Imagenet-A包含很多对抗样本。 这看起来非常困难， 但是对于人类来说还是能识别的。仔细观察这些数据集图片， 其实其类别和imagenet数据集一样， 所以一个在imagenet上训练的模型，应该是能够分类这些图片的。这里对比的是 resnet101 和 zero-shot CLIP。 顺便说一句， 我觉得这是一个很大的进步， 即使resnet101并不是目前最好的模型，但是也是在imagenet上训练过的， 而CLIP是没有在imagenet上finetune过的， 直接在imagenet上测试的精度就能和resnet101一样。而且从实验结果可以看到， 随着数据集的难度增加， resnet101的分类精度一致在下降。而zero-shot CLIP 并没有随着数据集难度的增大而有性能下降很多的情况， 所以CLIP的鲁棒性更加的好。而这个resnet101训练的目的只是为了区分imagenet中的不同类别。  所以它只需要学会区分不同类的实例就够了， 置于同类别内的差别不需要学习。 这就会导致这个分类器严重退化， 而无法识别一个香蕉的素描图， 它只能识别黄色的香蕉。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622723327278.png)
+
 
 # Reference
 1. [CLIP: Connecting Text and Images](https://openai.com/blog/clip/)
