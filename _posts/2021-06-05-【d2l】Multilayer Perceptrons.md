@@ -120,4 +120,12 @@ d2l.plot(x.detach(), x.grad, 'x', 'grad of relu', figsize=(5, 2.5))
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622902348836.png)
 
-使用ReLU的原因是它的导数表现得特别好:它们要么消失，要么让参数通过。
+使用ReLU的原因是它的导数表现得特别好:它们要么消失，要么让参数通过。这使得优化表现得更好，并缓解了之前版本的神经网络所困扰的梯度消失问题。
+
+
+注意，ReLU函数有很多变体，包括参数化的ReLU (pReLU)函数 `[He et al.， 2015]`。这种变化给ReLU增加了一个线性项，所以即使参数是负的，一些信息仍然可以传递出去。
+
+$$
+\text{pReLU}(x) = \max(0, x) + \alpha \min(0, x) \tag{4.1.5}
+$$
+
