@@ -129,3 +129,33 @@ $$
 \text{pReLU}(x) = \max(0, x) + \alpha \min(0, x) \tag{4.1.5}
 $$
 
+### Sigmoid Function
+
+sigmoid函数转换其输入，其值位于定义域 $\mathbb{R}$ 内， 输出位于 $(0, 1)$内。因此，sigmoid通常被称为压缩函数:它将范围(-inf, inf)内的任何输入压缩为范围(0,1)内的某个值：
+
+$$
+\text{sigmoid}(x) = \frac{1}{1 + \exp(-x)} \tag{4.1.6}
+$$
+
+
+在最早的神经网络中，科学家们对模拟生物神经元感兴趣，这些神经元要么会放电，要么不放电。因此，这个领域的先驱们，可以追溯到人工神经元的发明者McCulloch和Pitts，他们专注于阈值单元。阈值激活在输入低于某个阈值时取值0，在输入超过该阈值时取值1。
+
+
+当注意力转向基于梯度的学习时，sigmoid函数是一个自然的选择，因为它是一个阈值单元的光滑、可微的近似值。当我们希望将输出解释为二进制分类问题的概率时(您可以将sigmoid看作softmax的一种特殊情况)，sigmoid仍然作为输出单元上的激活函数被广泛使用。然而，sigmoid已经被更简单、更容易训练的ReLU所取代，用于隐藏层的大多数使用。在后面关于循环神经网络的章节中，我们将描述利用sigmoid单元来控制跨时间的信息流的架构。
+
+下面，我们绘制 sigmoid 函数。注意，当输入接近于0时，sigmoid函数接近于一个线性变换。
+
+
+```python
+y = torch.sigmoid(x)
+d2l.plot(x.detach(), y.detach(), 'x', 'sigmoid(x)', figsize=(5, 2.5))
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622902877585.png)
+
+sigmoid 函数的导数由如下等式所示：
+
+
+$$
+\frac{d}{dx} \text{sigmoid}(x) = \frac{\exp(-x)}{(1 + \exp(-x))^2} = \text{sigmoid}(x)(1 - \text{sigmoid}(x)) \tag{4.1.7}
+$$
