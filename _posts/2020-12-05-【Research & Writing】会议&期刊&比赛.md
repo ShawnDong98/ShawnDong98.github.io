@@ -207,6 +207,10 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://sutdcv.github.io/multi-modal-video-reasoning/#/](https://sutdcv.github.io/multi-modal-video-reasoning/#/)
 
+## 中国研究生创新实践系列大赛
+
+[https://cpipc.acge.org.cn/#contest-news](https://cpipc.acge.org.cn/#contest-news)
+
 # 各种名词解释
 
 
