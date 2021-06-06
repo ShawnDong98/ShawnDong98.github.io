@@ -207,3 +207,20 @@ d2l.plot(x.detach(), x.grad, 'x', 'grad of tanh', figsize=(5, 2.5))
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622946963734.png)
 
 总之，我们现在知道如何结合非线性来构建表达多层神经网络结构。你的知识已经使你掌握了一个类似于1990年从业人员的工具包。在某些方面，您比任何在90年代工作的人都有优势，因为您可以利用强大的开源深度学习框架，只用几行代码就可以快速构建模型。以前，训练这些网络需要研究人员编写数千行C语言和Fortran语言。
+
+
+### Summary
+
+- MLP在输出层和输入层之间添加一个或多个全连接的隐藏层，并通过激活函数转换隐藏层的输出。
+- 常用的激活函数有ReLU函数、sigmoid函数和tanh函数。
+
+
+### Exercises
+
+1） 计算pReLU激活函数的导数。
+
+2） 说明仅使用ReLU(或pReLU)的MLP构造了一个连续的分段线性函数。
+
+3） 说明 $\text{tanh}(x) + 1 = 2 \text{sigmoid}(2x)$
+
+4） 假设我们有一个适用于一次一个 minibatch 的非线性函数。 您预计这会导致哪些问题？
