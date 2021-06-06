@@ -159,3 +159,51 @@ sigmoid 函数的导数由如下等式所示：
 $$
 \frac{d}{dx} \text{sigmoid}(x) = \frac{\exp(-x)}{(1 + \exp(-x))^2} = \text{sigmoid}(x)(1 - \text{sigmoid}(x)) \tag{4.1.7}
 $$
+
+sigmoid 函数的导数绘制如下。 注意，当输入为0时，sigmoid函数的导数最大为0.25。当输入在任意方向上从0发散时，导数趋于0。
+
+```python
+y = torch.sigmoid(x)
+d2l.plot(x.detach(), y.detach(), 'x', 'sigmoid(x)', figsize=(5, 2.5))
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622944921709.png)
+
+
+### Tanh Function
+
+就像sigmoid函数一样，tanh(双曲正切)函数也压缩了它的输入，将它们转换为-1到1区间上的元素：
+
+$$
+\text{tanh} = \frac{1 - \exp(-2x)}{1+\exp(-2x)} \tag{4.1.8}
+$$
+
+我们把tanh函数画在下面。注意当输入趋于0时，tanh函数趋于一个线性变换。虽然函数的形状类似于sigmoid函数，tanh函数关于坐标系原点对称。
+
+```
+y = torch.tanh(x)
+d2l.plot(x.detach(), y.detach(), 'x', 'tanh(x)', figsize=(5, 2.5))
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622946766252.png)
+
+
+tanh函数的导数是：
+
+
+$$
+\frac{d}{dx}\text{tanh}(x) = 1 - \text{tanh}^2(x) \tag{4.1.9}
+$$
+
+tanh函数的导数画在下面。当输入趋于0时，tanh函数的导数趋于最大值1。就像我们在sigmoid函数中看到的，当输入从0向任意方向移动时，tanh函数的导数趋于0。
+
+```python
+# Clear out previous gradients.
+x.grad.data.zero_()
+y.backward(torch.ones_like(x), retain_graph=True)
+d2l.plot(x.detach(), x.grad, 'x', 'grad of tanh', figsize=(5, 2.5))
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1622946963734.png)
+
+总之，我们现在知道如何结合非线性来构建表达多层神经网络结构。你的知识已经使你掌握了一个类似于1990年从业人员的工具包。在某些方面，您比任何在90年代工作的人都有优势，因为您可以利用强大的开源深度学习框架，只用几行代码就可以快速构建模型。以前，训练这些网络需要研究人员编写数千行C语言和Fortran语言。
