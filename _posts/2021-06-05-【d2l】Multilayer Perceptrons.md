@@ -223,4 +223,4 @@ d2l.plot(x.detach(), x.grad, 'x', 'grad of tanh', figsize=(5, 2.5))
 
 3） 说明 $\text{tanh}(x) + 1 = 2 \text{sigmoid}(2x)$
 
-4） 假设我们有一个适用于一次一个 minibatch 的非线性函数。 您预计这会导致哪些问题？
+4） 假设我们有一个适用于一次一个 minibatch 的非线性函数。 你预计这会导致哪些问题？
