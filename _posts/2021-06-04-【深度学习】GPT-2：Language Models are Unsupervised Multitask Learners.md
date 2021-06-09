@@ -88,7 +88,7 @@ Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word le
 
 ### Language Modeling
 
-作为 zero-shot 任务迁移的第一步，我们感兴趣的是了解WebText LM如何在 zero-shot 域迁移时执行他们训练的主要任务-语言建模。由于我们的模型在 byte level 上运行，不需要lossy pre-processing 或者 tokenization，因此我们可以在任何语言模型基准上对其进行评估。
+作为 zero-shot 任务迁移的第一步，我们感兴趣的是了解WebText LM如何在 zero-shot 域迁移时执行他们训练的主要任务-语言建模。由于我们的模型在 byte level 上运行，不需要lossy pre-processing 或者 tokenization，因此我们可以在任何语言模型基准上对其进行评估。语言建模数据集的结果通常以每个规范预测单元的平均负对数概率的缩放或指数形式报告，通常是一个字符、一个字节或一个字。我们通过根据 WebText LM 计算数据集的对数概率并除以规范单元的数量来评估相同的数量。对于许多这样的数据集， WebText LMs 测试明显超出分布，不得不预测standardized text， tokenization artifacts比如disconnected punctuation and contractions, shuffled sentences, 甚至  string `<UNK>`  ， 这些很少在WebText数据集中出现， 在400亿字节中仅出现26次。
 
 
 
