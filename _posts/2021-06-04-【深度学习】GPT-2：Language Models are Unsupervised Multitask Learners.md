@@ -81,7 +81,7 @@ Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word le
 
 ## Experiments
 
-我们训练并测试了四个具有近似对数大小的LMs。结构的总结如表2所示。 最小模型相当于原始GPT，第二小模型相当于BERT的最大模型（Devlin et al.，2018）。我们最大的模型，我们称之为GPT-2，其参数比GPT多一个数量级。每个模型的学习率都是手动调整的，以在 5% 的 WebText 保留样本上获得最佳的效果。
+我们训练并测试了四个具有近似对数大小的LMs。结构的总结如表2所示。 最小模型相当于原始GPT，第二小模型相当于BERT的最大模型（Devlin et al.，2018）。我们最大的模型，我们称之为GPT-2，其参数比GPT多一个数量级。每个模型的学习率都是手动调整的，以在 5% 的 WebText 保留样本上获得最佳的表现。所有模型仍然没有完全拟合 Web-Text，并且在提供更多训练时间的情况下，表现仍然有所提高。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623230692283.png)
 
