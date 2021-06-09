@@ -86,6 +86,10 @@ Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word le
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623230692283.png)
 
 
+### Language Modeling
+
+作为 zero-shot 任务迁移的第一步，我们感兴趣的是了解WebText LM如何在 zero-shot 域迁移时执行他们训练的主要任务-语言建模。由于我们的模型在 byte level 上运行，不需要lossy pre-processing 或者 tokenization，因此我们可以在任何语言模型基准上对其进行评估。
+
 
 
 # Blog(OpenAI)
