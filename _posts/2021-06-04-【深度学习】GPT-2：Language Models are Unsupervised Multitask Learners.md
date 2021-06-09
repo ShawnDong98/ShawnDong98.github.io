@@ -76,7 +76,7 @@ Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word le
 ### Model
 
 
-我们为 LM 使用基于 Transformer（Vaswani 等，2017）的架构。 该模型在很大程度上遵循 OpenAI GPT 模型（Radford 等人，2018 年）的细节，并进行了一些修改。Layer normalization（Ba et al., 2016）被移到每个子块的输入，类似于pre-activation residual network（He et al., 2016），并在最终的 self-attention block 之后添加了一个额外的 layer normalization。
+我们为 LM 使用基于 Transformer（Vaswani 等，2017）的架构。 该模型在很大程度上遵循 OpenAI GPT 模型（Radford 等人，2018 年）的细节，并进行了一些修改。Layer normalization（Ba et al., 2016）被移到每个子块的输入，类似于pre-activation residual network（He et al., 2016），并在最终的 self-attention block 之后添加了一个额外的 layer normalization。使用了一种改进的初始化方法，该方法考虑了随模型深度的变化 residual path 上的累积。我们在初始化时将residual layers 的权重缩放 $1 / \sqrt{N}$，其中 $N$ 是 residual layers 的数量。
 
 
 
