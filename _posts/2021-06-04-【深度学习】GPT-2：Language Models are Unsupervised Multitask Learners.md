@@ -73,6 +73,12 @@ Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word le
 这种输入表征允许我们将 word-level LMs 的经验优势与  byte-level 方法的通用性结合起来。由于我们的方法可以为任何 Unicode 字符串分配概率，这允许我们在任何数据集上评估我们的 LM，而不管pre-processing、tokenization 或 vocab size。
 
 
+### Model
+
+
+我们为 LM 使用基于 Transformer（Vaswani 等，2017）的架构。 该模型在很大程度上遵循 OpenAI GPT 模型（Radford 等人，2018 年）的细节，并进行了一些修改。Layer normalization（Ba et al., 2016）被移到每个子块的输入，类似于pre-activation residual network（He et al., 2016），并在最终的 self-attention block 之后添加了一个额外的层归一化。
+
+
 
 
 # Blog(OpenAI)
