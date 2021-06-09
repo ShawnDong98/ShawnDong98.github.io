@@ -68,7 +68,7 @@ Weston（2016）认为，从上述良好的设置到 “language in the wild” 
 
 通常， 一个语言模型 (LM) 应该能够计算（并生成）任何字符串的概率。当前的大规模 LM 包括预处理步骤，例如 lower-casing, tokenization 和 out-of-vocabulary，这些标记限制了可建模字符串的空间。如Gillick等人（2015）的工作所示，虽然将Unicode字符串作为UTF-8字节序列进行处理可以很好地满足这一要求，但在10亿字基准测试等大规模数据集上，当前 byte-level LMs 与  word-level LMs没有竞争力（(Al-Rfou等人，2018）。
 
-Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word level 语言建模之间的一个实际中间地带，它有效地在频繁符号序列的字级输入和不频繁符号序列的字符级输入之间进行插值。
+Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word level 语言建模之间的一个实际中间地带，它有效地在频繁符号序列的 character level 输入和不频繁符号序列的 symbol  level 输入之间进行插值。
 
 
 
