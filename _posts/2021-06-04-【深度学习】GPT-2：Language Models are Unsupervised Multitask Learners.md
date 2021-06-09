@@ -64,6 +64,12 @@ Weston（2016）认为，从上述良好的设置到 “language in the wild” 
 
 生成的数据集 WebText 包含这 4500 万个链接的文本子集。为了从 HTML 响应中提取文本，我们结合使用了 Dragnet (Peters & Lecocq, 2013) 和 Newspaper 内容提取器。本文中呈现的所有结果均使用 WebText 的初步版本，其中不包括 2017 年 12 月之后创建的链接，并且在重复数据删除和一些基于启发式的清理之后包含略超过 800 万个文档，总共 40 GB 的文本。我们从 WebText 中删除了所有 Wikipedia 文档，因为它是其他数据集的通用数据源，并且由于训练数据与测试评估任务重叠而可能使分析复杂化。
 
+### Input Representation
+
+通常， 一个语言模型 (LM) 应该能够计算（并生成）任何字符串的概率。当前的大规模 LM 包括预处理步骤，例如 lower-casing, tokenization 和 out-of-vocabulary，这些标记限制了可建模字符串的空间。
+
+
+
 
 # Blog(OpenAI)
 
