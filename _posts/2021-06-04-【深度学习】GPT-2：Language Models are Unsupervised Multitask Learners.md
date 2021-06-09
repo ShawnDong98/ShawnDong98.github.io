@@ -68,7 +68,7 @@ Weston（2016）认为，从上述良好的设置到 “language in the wild” 
 
 通常， 一个语言模型 (LM) 应该能够计算（并生成）任何字符串的概率。当前的大规模 LM 包括预处理步骤，例如 lower-casing, tokenization 和 out-of-vocabulary，这些标记限制了可建模字符串的空间。如Gillick等人（2015）的工作所示，虽然将Unicode字符串作为UTF-8字节序列进行处理可以很好地满足这一要求，但在10亿字基准测试等大规模数据集上，当前 byte-level LMs 与  word-level LMs没有竞争力（(Al-Rfou等人，2018）。
 
-Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word level 语言建模之间的一个实际中间地带，它有效地在频繁符号序列的 character level 输入和不频繁符号序列的 symbol  level 输入之间进行插值。尽管它的名字是这样，相关BPE实现通常在Unicode code points上操作，而不是字节序列。这些实现需要包含Unicode符号的全部空间，以便对所有Unicode字符串进行建模。这将导致在添加任何 multi-symbo tokens 之前，基础词汇表超过130000。与BPE中经常使用的 32000 到 64000 个 tokens 词汇表相比，这是非常大的。
+Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word level 语言建模之间的一个实际中间地带，它有效地在频繁符号序列的 character level 输入和不频繁符号序列的 symbol  level 输入之间进行插值。尽管它的名字是这样，相关BPE实现通常在Unicode code points上操作，而不是字节序列。这些实现需要包含Unicode符号的全部空间，以便对所有Unicode字符串进行建模。这将导致在添加任何 multi-symbo tokens 之前，基础词汇表超过130000。与BPE中经常使用的 32000 到 64000 个 tokens 词汇表相比，这是非常大的。相比之下，BPE 的 byte-level 版本只需要大小为 256 的基本词汇表。然而，由于 BPE 使用基于贪婪频率的启发式来构建 tokens 词汇表，直接将 BPE 应用于 byte 序列会导致次优合并。我们观察到 BPE 包括许多版本的常见词，例如 dog，因为它们出现在许多变体中，例如 dog. dog！ dog？ 。这导致有限词汇槽和模型容量的次优分配。为了避免这种情况，我们阻止BPE跨任何 byte 序列的 character 类别进行合并。
 
 
 
