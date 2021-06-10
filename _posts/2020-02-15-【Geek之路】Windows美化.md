@@ -76,6 +76,11 @@ Microsoft Store 自带。
 美化状态栏， 透明、毛玻璃等， 配合 wallpaper engine 使用。
 
 
+## PowerToys
+
+包含八个小工具， 主要使用第7个小工具， 类似于mac中的SpotLight功能， 保持桌面清爽的同时，快速地搜索到要使用的应用， 十分好用。
+
+
 
 
 # windows 使用技巧
