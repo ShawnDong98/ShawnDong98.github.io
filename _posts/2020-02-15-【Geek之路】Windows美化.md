@@ -65,6 +65,19 @@ W=190
 H=1
 ```
 
+## EarTrumpet
+
+替代原生声音调节软件， 可以切换不同声音输出设备， 调节不同软件声音， 非常好用。
+
+Microsoft Store 自带。
+
+## TranslucentTB
+
+美化状态栏， 透明、毛玻璃等， 配合 wallpaper engine 使用。
+
+
+
+
 # windows 使用技巧
 
 查看端口占用情况
