@@ -92,7 +92,9 @@ Byte Pair Encoding（BPE）（Sennrich et al.，2015）是 character 和 word le
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623231934422.png)
 
-WebText LM 在域和数据集之间迁移良好，在 zero-shot 设置中 8 个数据集中的 7 个改进了最新技术。在 Penn Treebank 和 WikiText-2 等只有 1 到 200 万个训练 tokens 的小型数据集上有很大的改进。
+WebText LM 在域和数据集之间迁移良好，在 zero-shot 设置中 8 个数据集中的 7 个改进了最新技术。在 Penn Treebank 和 WikiText-2 等只有 1 到 200 万个训练 tokens 的小型数据集上有很大的改进。在LAMBADA (Paperno et al., 2016) 和 Children’s Book Test (Hill et al., 2015) 数据集上也有很大提升， 它们是为了测量长程关系建立的数据集。我们的模型仍然比之前在One Billion Word Benchmark （Chelba et al., 2013）上的工作差很多。这可能是由于它既是最大的数据集又具有一些最具破坏性的预处理—— 1BW’s sentence level shuffling 删除了所有的长程结构。
+
+
 
 # Blog(OpenAI)
 
