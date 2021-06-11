@@ -11,7 +11,14 @@ tags:
     - GAN
 ---
 
+# Blog
+
+
+# Paper
+
+
 
 # Reference
 
 1. [Cross-Modal Contrastive Learning for Text-to-Image Generation](https://ai.googleblog.com/2021/05/cross-modal-contrastive-learning-for.html)
+2. 
