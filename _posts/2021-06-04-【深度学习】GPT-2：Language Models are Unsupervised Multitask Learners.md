@@ -105,8 +105,11 @@ Children’s Book Test (CBT) (Hill et al., 2015) 旨在检查 LM 在不同类别
 图2  在 Children’s Book Test 上模型容量的性能。 人类表现来自于 Bajgar et al(2016)， 而不是原始论文中低得多的估计。
 
 
+## Generalization vs Memorization
 
+最近在计算机视觉方面的工作表明，常见的图像数据集包含大量近乎重复的图像。例如，CIFAR-10 在训练图像和测试图像之间有 3.3% 的重叠（Barz & Denzler，2019）。这导致过度报告机器学习系统的泛化性能。随着数据集大小的增加，这个问题变得越来越可能，这表明 WebText 可能会发生类似的现象。因此，重要的是分析训练数据中还出现了多少测试数据。
 
+为了研究这一点， 我们创建了一个叫做 Bloom 过滤器， 它包含 WebText 训练集 tokens 的 8-grams。为了提高召回率，字符串被标准化为仅包含小写字母数字单词，并以单个空格作为分隔符。Bloom过滤器的构造使得FP(False Positive)上限为 $\frac{1}{10^8}$
 
 
 # Blog(OpenAI)
