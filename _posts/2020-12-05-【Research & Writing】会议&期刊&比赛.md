@@ -217,6 +217,22 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://developer.huawei.com/consumer/cn/activity/digixActivity/digixdetail/201621215957378831](https://developer.huawei.com/consumer/cn/activity/digixActivity/digixdetail/201621215957378831)
 
+## 我的比赛
+
+先导杯
+
+- 2021/04/15 - 2021/07/15
+
+
+2021 DIGIX全球校园AI算法精英大赛
+
+- 报名和选拔赛（06/10-07/31）
+- 选拔赛评审（08/01-08/15）
+- 入围队伍公示（08/16-08/20）
+- 精英赛（8月底）
+
+
+
 # 各种名词解释
 
 
