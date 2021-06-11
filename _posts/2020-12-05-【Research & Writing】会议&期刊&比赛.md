@@ -211,6 +211,12 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://cpipc.acge.org.cn/#contest-news](https://cpipc.acge.org.cn/#contest-news)
 
+
+
+## 2021 DIGIX全球校园AI算法精英大赛
+
+[https://developer.huawei.com/consumer/cn/activity/digixActivity/digixdetail/201621215957378831](https://developer.huawei.com/consumer/cn/activity/digixActivity/digixdetail/201621215957378831)
+
 # 各种名词解释
 
 
