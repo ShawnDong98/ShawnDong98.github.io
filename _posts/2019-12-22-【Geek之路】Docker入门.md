@@ -41,6 +41,7 @@ Building dependency tree...
 Reading state information
 
 先进入容器
+
 > docker run -t -i ubuntu
 > apt-get update
 > apt-get upgrade
