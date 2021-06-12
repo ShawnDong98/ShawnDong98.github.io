@@ -48,14 +48,17 @@ Reading state information
 > apt install iputils-ping # ping
 
 **Docker 参数 -i -t 的作用***
+
 通常的解释是: -t让docker分配一个伪终端并绑定到容器的标准输入上, -i则让容器的标准输入保持打开.
 
 **问题**
+
 所以通常都是这样的: sudo docker run -it ubuntu 进入了命令交互界面
 但是如果不加呢? sudo docker run ubuntu 或sudo docker create ubuntu & sudo docker start ubuntu
 这样的话, docker容器无法启动。
 
 **原因**
+
 Docker中系统镜像的缺省命令是 bash，如果不加 -ti bash 命令执行了自动会退出。这是因为如果没有衔接输入流，本身就会马上结束。加-ti 后docker命令会为容器分配一个伪终端，并接管其stdin/stdout支持交互操作，这时候bash命令不会自动退出。
 
 
