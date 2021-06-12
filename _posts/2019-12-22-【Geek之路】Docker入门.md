@@ -157,7 +157,7 @@ xxx是镜像名称
 > docker rmi `$(docker images -q)`
 
 
-## 配置Nvida-Docker
+# 配置Nvida-Docker
 
 Windows上不支持从Docker容器内进行GPU访问.
 
@@ -165,6 +165,9 @@ Windows上不支持从Docker容器内进行GPU访问.
 这里有更多信息：https://devblogs.nvidia.com/nvidia-docker-gpu-server-application-deployment-made-easy/
 
 卒
+
+
+# ubuntu 配置 Nvida-Docker
 
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
