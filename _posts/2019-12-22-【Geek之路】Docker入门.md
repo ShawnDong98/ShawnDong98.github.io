@@ -329,6 +329,14 @@ CMD ["sh", "run.sh"]
 
 推送到镜像仓库  `docker push registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0`
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623590463764.png)
+
+如果这步出错，可能你没有登录，按照仓库里描述操作登录即可。
+
+
+```
+docker login --username=**** registry.cn-shanghai.aliyuncs.com
+```
 
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
