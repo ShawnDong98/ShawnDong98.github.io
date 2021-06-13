@@ -236,6 +236,39 @@ sudo docker pull registry.cn-shanghai.aliyuncs.com/tcc-public/python:3
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623588473136.png)
 
+### 准备所需文件
+
+新建一个文件夹 (例如 `tianchi_submit_demo` ) 用于存放这次任务镜像所需的文件，文件夹中内容示例，其中 `hello_world.py` 中是各位自己的代码部分：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623588563615.png)
+
+
+`Dockerfile` 配置文件参考,  `Dockerfile` 是固定名称，注意首字母大写。 `Dockerfile` 中命令皆大写：
+
+```
+# Base Images
+## 从天池基础镜像构建
+FROM registry.cn-shanghai.aliyuncs.com/tcc-public/python:3
+
+## 把当前文件夹里的文件构建到镜像的根目录下
+ADD . /
+
+## 指定默认工作目录为根目录（需要把run.sh和生成的结果文件都放在该文件夹下，提交后才能运行）
+WORKDIR /
+
+## 镜像启动后统一执行 sh run.sh
+CMD ["sh", "run.sh"]
+```
+
+
+## 构建镜像并推送（2.1与2.2皆可走通）
+
+
+### IDE + Cloud Toolkit
+
+推荐使用 [Alibaba Cloud Toolkit](https://cn.aliyun.com/product/cloudtoolkit?spm=5176.12586973.0.0.281b2232bNFLQ5) 进行操作。
+
+
 
 
 
