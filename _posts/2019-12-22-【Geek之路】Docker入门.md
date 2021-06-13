@@ -338,6 +338,8 @@ CMD ["sh", "run.sh"]
 docker login --username=**** registry.cn-shanghai.aliyuncs.com
 ```
 
+用于登录的用户名为阿里云账号全名，密码为开通服务时设置的密码。
+
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
