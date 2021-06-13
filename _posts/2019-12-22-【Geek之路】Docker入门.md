@@ -215,6 +215,22 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 点击 **管理**，可查看仓库的基本信息，以及 **登录、拉取、推送** 等简单操作的指南。
 
 
+详情页如下，有基本的操作命令，仓库地址一般使用公网地址即可。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623588172801.png)
+
+
+## 构建镜像并推送
+
+在安装好Docker环境的本机/服务器构建并推送容器镜像。过程中可能会使用docker命令，如拉取 `docker pull` ,  推送 `docker push`, 构建 `docker build` 等等。
+
+为简化构建镜像的难度，天池已准备了常用的Python基础镜像，可直接拉取使用，更多基础镜像说明[点击](https://tianchi.aliyun.com/forum/postDetail?spm=5176.12586973.0.0.281b2232bNFLQ5&postId=67720)。
+
+自行构建镜像请确保安装curl.
+
+
+
+
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
