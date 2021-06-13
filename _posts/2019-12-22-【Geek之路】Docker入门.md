@@ -204,6 +204,7 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 
 根据任务/比赛要求选择对应的地域（本次练习选择 **上海**），其他的按照自己需求选择或填写。
 
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1623587989816]]]" )
 
 
 ## Reference
