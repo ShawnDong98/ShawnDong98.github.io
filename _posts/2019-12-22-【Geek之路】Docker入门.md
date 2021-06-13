@@ -190,8 +190,9 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 
 阿里云容器镜像服务 [https://www.aliyun.com/product/acr?](https://www.aliyun.com/product/acr?)
 
-
 免费开通镜像托管。 建议设置私有仓库，并一定牢记 **仓库密码**，后续提交需要使用。
+
+开通后进入镜像仓库 [https://cr.console.aliyun.com](https://cr.console.aliyun.com)
 
 
 
