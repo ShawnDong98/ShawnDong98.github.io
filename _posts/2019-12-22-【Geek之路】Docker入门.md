@@ -172,6 +172,12 @@ Windows上不支持从Docker容器内进行GPU访问.
 
 ## 安装 Docker 环境
 
+各类操作系统下安装命令略有不同，可自行搜索。以 Ubuntu 系统为例：
+
+```
+sudo apt-get update # 可选
+sudo apt install docker.io
+```
 
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
