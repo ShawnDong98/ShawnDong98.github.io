@@ -204,7 +204,15 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 
 根据任务/比赛要求选择对应的地域（本次练习选择 **上海**），其他的按照自己需求选择或填写。
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1623587989816]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623587989815.png)
+
+
+选择代码源为本地仓库，灵活度大，完成创建。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623588140662.png)
+
+
+点击 **管理**，可查看仓库的基本信息，以及 **登录、拉取、推送** 等简单操作的指南。
 
 
 ## Reference
