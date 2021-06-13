@@ -325,6 +325,10 @@ CMD ["sh", "run.sh"]
 
 **GPU**镜像： `nvidia-docker run your_image sh run.sh`
 
+这里的 `your_image` 可以是你镜像的id。 
+
+推送到镜像仓库  `docker push registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0`
+
 
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
