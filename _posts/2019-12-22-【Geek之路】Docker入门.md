@@ -269,7 +269,61 @@ CMD ["sh", "run.sh"]
 推荐使用 [Alibaba Cloud Toolkit](https://cn.aliyun.com/product/cloudtoolkit?spm=5176.12586973.0.0.281b2232bNFLQ5) 进行操作。Cloud Toolkit 与主流 IDE 及阿里云容器镜像服务无缝集成，可以简化操作。 这里以在 IntelliJ IDEA 中使用 Alibaba Cloud Toolkit 为例。只需配置一次，之后都可一键推送～
 
 
+1） 在本地 IDE 中安装 Alibaba Cloud Toolkit 并进行阿里云账户配置。参见：
 
+
+[在 IntelliJ IDEA 中安装和配置 Cloud Toolkit](https://help.aliyun.com/document_detail/98762.html?spm=5176.12586973.0.0.281b2232bNFLQ5)
+
+
+2） 设置用于打包本地镜像的 Docker 环境。
+
+1> 在 IntelliJ IDEA 工具栏单击 Tools > Alibaba Cloud > Preferences… 。
+2> 在 Settings 对话框的左侧导航栏中单击 Docker。
+3>  在 Docker 界面中设置 Cloud Toolkit 需要连接的 Docker 环境。
+
+- 本地为 Mac 或 Linux 操作系统，勾选 Unix Socket，然后单击 Browse，输入unix:///var/run/docker.sock。
+- 本地为 Windows 操作系统，勾选 TCP Connection，然后在 URI 右侧文档框输入本地 Docker 的 URI，如 http://127.0.0.1:2375。
+- 远程 Docker 环境：勾选 Tcp Connection，在 URI 右侧的文本框里输入远端的 Docker 环境的 URI（包括 IP 地址和端口），如 http://x.x.x.x:2375，并确保远程主机的 HTTP 服务开启。
+- 单击 Test Connection 进行连接测试。
+
+**注意：如果出现连接测试报错，可进入 Docker 的 Settings 界面，单击左侧导航栏中的 General，然后选择 Expose daemon on tcp://localhost:2375 without TLS。**
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623589343724.png)
+
+
+3） 构建并上传应用
+
+1> 在 IntelliJ IDEA 的菜单栏中选择 **File > Open…**，选择参赛的工程文件。
+
+2> 在 IntelliJ IDEA 界面左侧的 Project 中右键单击您的 Docker 应用工程名，在弹出的下拉菜单中选择 **Alibaba Cloud > Deploy to ACR/ACK > Deploy to ACR**。
+
+3> 在 Deploy to ACR 对话框中进行以下配置。
+
+在 Image 页签中选择 Context Directory 和 Dockerfile。
+- Context Directory：参赛的工程文件所在的目录，例如上文中的 tianchi_submit_demo 。
+- Dockerfile：选择上文中创建的 Dockerfile。
+- Version：对上传的工程文件做版本标记。例如 1.0
+
+在 Image Repositories 区域选择上文中创建的容器镜像服务的地域、命名空间和镜像仓库。
+
+4> 单击 RUN。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623589470895.png)
+
+
+### 服务器上直接操作
+
+执行 `docker build -t registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0 .`
+
+注意：`registry.~~~` 是上面创建仓库的公网地址，用 **自己仓库地址替换**。地址后面的 `:1.0`为自己指定的版本号，用于区分每次build的镜像。最后的 `.` 是构建镜像的路径，不可以省掉。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623589589357.png)
+
+构建完成后可先验证是否正常运行，正常运行后再进行推送。
+
+**CPU** 镜像： `docker run your_image sh run.sh`
+
+**GPU**镜像： `nvidia-docker run your_image sh run.sh`
 
 
 ## Reference
