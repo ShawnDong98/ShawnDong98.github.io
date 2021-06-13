@@ -186,6 +186,16 @@ Mac：[https://docs.docker.com/docker-for-mac/install/](https://docs.docker.com/
 Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.docker.com/docker-for-windows/install/)
 
 
+## 开通阿里云容器镜像服务
+
+阿里云容器镜像服务 [https://www.aliyun.com/product/acr?](https://www.aliyun.com/product/acr?)
+
+
+免费开通镜像托管。 建议设置私有仓库，并一定牢记 **仓库密码**，后续提交需要使用。
+
+
+
+
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
