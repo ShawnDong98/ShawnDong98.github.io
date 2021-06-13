@@ -194,6 +194,15 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 
 开通后进入镜像仓库 [https://cr.console.aliyun.com](https://cr.console.aliyun.com)
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623587955163.png)
+
+
+切换标签页到命名空间，创建地址唯一的命名空间
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623587971729.png)
+
+
+根据任务/比赛要求选择对应的地域（本次练习选择 **上海**），其他的按照自己需求选择或填写。
 
 
 
