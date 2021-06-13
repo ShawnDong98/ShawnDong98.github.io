@@ -266,7 +266,7 @@ CMD ["sh", "run.sh"]
 
 ### IDE + Cloud Toolkit
 
-推荐使用 [Alibaba Cloud Toolkit](https://cn.aliyun.com/product/cloudtoolkit?spm=5176.12586973.0.0.281b2232bNFLQ5) 进行操作。
+推荐使用 [Alibaba Cloud Toolkit](https://cn.aliyun.com/product/cloudtoolkit?spm=5176.12586973.0.0.281b2232bNFLQ5) 进行操作。Cloud Toolkit 与主流 IDE 及阿里云容器镜像服务无缝集成，可以简化操作。 这里以在 IntelliJ IDEA 中使用 Alibaba Cloud Toolkit 为例。只需配置一次，之后都可一键推送～
 
 
 
