@@ -228,6 +228,14 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 
 自行构建镜像请确保安装curl.
 
+```
+sudo docker pull registry.cn-shanghai.aliyuncs.com/tcc-public/python:3
+```
+
+在用户权限下docker 命令需要 sudo 否则出现以下问题
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623588473136.png)
+
 
 
 
