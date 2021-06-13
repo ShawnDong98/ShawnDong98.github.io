@@ -170,9 +170,13 @@ Windows上不支持从Docker容器内进行GPU访问.
 
 # ubuntu 配置 Nvida-Docker
 
+## 安装 Docker 环境
+
+
 ## Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
+3. [手把手超详细操作说明](https://tianchi.aliyun.com/competition/entrance/231759/tab/174?spm=5176.12281978.0.0.37721a4a3S5tas)
 
 
 
