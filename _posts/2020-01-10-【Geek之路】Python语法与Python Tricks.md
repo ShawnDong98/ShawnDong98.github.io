@@ -1032,6 +1032,39 @@ D:\desktop>python argparseLearn.py  --version
 PROG 2.0
 ```
 
+## 写入和读取 csv 文件
+
+### 写入 
+
+```python
+with open ("test.csv", "w", newline='') as f :       #newline参数控制行之间是否空行
+
+    f_csv = csv.writer(f)
+
+    f_csv.writerow(headers)   # headers为表头属性名组成的数组
+
+    f_csv.writerows(csvlists)   #csvlists为多维数组，每个元素都是对应属性的一行内容
+```
+
+### 读取
+
+#### 获取每一行
+
+读取csv文件，用的是csv.reader()这个方法。返回结果是一个_csv.reader的对象，我们可以对这个对象进行遍历，输出每一行，某一行，或某一列。代码如下：
+
+```python
+import csv
+with open('data.csv', 'r') as f:
+    reader = csv.reader(f)
+    print(type(reader))
+    
+    for row in reader:
+        print(row)
+```
+
+以列表的形式输出每一行，如下：
+
+![enter description here](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1623858642189]]]" )
 
 # os
 
@@ -1710,7 +1743,20 @@ ix可以同时按标签和位置进行提取。
 > df_inner.ix[:'2013-01-03',:4] #2013-01-03号之前，前四列数据
 
 
+## pd.merge
 
+```
+pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,
+         left_index=False, right_index=False, sort=True,
+         suffixes=('_x', '_y'), copy=True, indicator=False,
+         validate=None)
+```
+
+参数：
+
+- left: 拼接的左侧DataFrame对象
+- right: 拼接的右侧DataFrame对象
+- on: 要加入的列或索引级别名称。 必须在左侧和右侧DataFrame对象中找到。 如果未传递且left_index和right_index为False，则DataFrame中的列的交集将被推断为连接键。
 
 # tqdm
 
