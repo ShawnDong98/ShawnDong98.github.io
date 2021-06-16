@@ -170,7 +170,7 @@ Windows上不支持从Docker容器内进行GPU访问.
 
 # ubuntu 配置 Nvida-Docker
 
-## 安装 Docker 环境
+## 安装 Docker 环境（CPU）
 
 各类操作系统下安装命令略有不同，可自行搜索。以 Ubuntu 系统为例：
 
@@ -184,6 +184,15 @@ sudo apt install docker.io
 Mac：[https://docs.docker.com/docker-for-mac/install/](https://docs.docker.com/docker-for-mac/install/)
 
 Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.docker.com/docker-for-windows/install/)
+
+
+## 安装 Docker 环境（GPU）
+
+```
+sudo apt-get remove docker docker-engine docker.io ###清除系统原有docker 如果提示找不到就不用理会
+```
+
+
 
 
 ## 开通阿里云容器镜像服务
