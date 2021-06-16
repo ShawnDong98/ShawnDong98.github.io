@@ -26,6 +26,12 @@ sudo apt-get update # 可选
 sudo apt install docker.io
 ```
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623860212603.png)
+
+如果你本地有gpu，请继续执行如下命令以支持gpu调用：
+
+
+
 面向 Mac OS 和Windows 操作系统还推出了Docker桌面。
 
 Mac：[https://docs.docker.com/docker-for-mac/install/](https://docs.docker.com/docker-for-mac/install/)
