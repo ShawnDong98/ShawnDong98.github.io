@@ -1064,7 +1064,7 @@ with open('data.csv', 'r') as f:
 
 以列表的形式输出每一行，如下：
 
-![enter description here](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1623858642189]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623858642188.png)
 
 # os
 
@@ -2123,4 +2123,5 @@ pip install -r requirements.txt
 56. [Linux服务器没有GUI的情况下使用matplotlib绘图](https://www.cnblogs.com/devilmaycry812839668/p/10201971.html)
 57. [np.random.multivariate_normal方法浅析](https://blog.csdn.net/zch1990s/article/details/80005940)
 58. [Matplotlib入门-4-plt.legend( )创建图例](https://zhuanlan.zhihu.com/p/111108841)
-59. [sys.modules\[\_\_name\_\_\]](https://blog.csdn.net/jingyu7/article/details/83120442)
+59. [`sys.modules[__name__]`](https://blog.csdn.net/jingyu7/article/details/83120442)
+60. [python读取csv文件](https://www.cnblogs.com/liangshian/p/11272155.html)
