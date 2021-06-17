@@ -114,9 +114,13 @@ $$
 \begin{aligned}
 \text{Var} [h_i^t] &= \mathbb{E}[(h_i^t)^2] - \mathbb{E}[h_i^t]^2 = \mathbb{E}[(\sum_j w_{i,j}^t h_j^{t-1})^2] \\
 &= \mathbb{E}[\sum_j (w_{i, j}^t)^2(h_j^{t-1})^2 + \sum_{j \neq k}w_{i, j}^t w_{l, k}^t h_{j}^{t-1}h_{k}^{t-1}] \\
-&= \sum_{j} \mathbb{E}[(w_{i, j}^t)^2]
+&= \sum_{j} \mathbb{E}[(w_{i, j}^t)^2] \mathbb{E}[(h_{j}^{t-1})^2] \\
+&= \sum_j \text{Var}[w_{i, j}^t] \text{Var}[h_{j}^{t-1}] = n_{t-1}\gamma_t \text{Var}[h_j^{t-1}]
 \end{aligned}
 $$
 
-平方展开后为 各项的平方 加上 每项之积。
+平方展开后为 各项的平方 与 每项之积 的和。
+
+我们的要求是输入的方差和输出的方差相同的话， 那么我们的要求就是 $n_{t-1}\gamma_t = 1$
+
 
