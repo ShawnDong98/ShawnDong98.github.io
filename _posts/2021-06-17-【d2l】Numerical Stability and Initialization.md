@@ -180,3 +180,26 @@ $$
 \text{Var} [\frac{\partial l}{\partial h_i^{t-1}}] = \alpha^2 \text{Var} [\frac{\partial l}{\partial h_j'}]  \qquad \Rightarrow \qquad \alpha = 1
 $$
 
+
+这意味着我们激活函数必须是 $f(x) = x$
+
+我们来检查常用的激活函数
+
+使用泰勒展开：
+
+$$
+\text{sigmoid}(x) = \frac{1}{2} + \frac{x}{4} - \frac{x^3}{48} + O(x^5)
+$$
+
+$$
+\text{tanh}(x) = 0 + x - \frac{x^3}{3} + O(x^5)
+$$
+
+
+$$
+\text{relu}(x) = 0 + x  \qquad \text{for} \quad  x \geq 0
+$$
+
+调整 sigmoid：
+
+$$4 \times \text{sigmoid}(x) - 2$$
