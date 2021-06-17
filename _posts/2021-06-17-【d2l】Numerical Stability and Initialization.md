@@ -99,10 +99,24 @@ a 和 b 都是常数。
 假设：
 
 - $w_{i, j}^t$ 是 i.i.d， 那么 $\mathbb{E}[w_{i,j}^t] = 0$, $\text{Var}[w_{i, j}^t] = \gamma_t$
-- h_i^{t-1} 独立于 $w_{i, j}^t$
+- $h_i^{t-1}$ 独立于 $w_{i, j}^t$
 
 假设没有激活函数 $h^t = W^t h^{t-1}$， 这里 $W^t \in \mathbb{R}^{n_t \times n_{t-1}}$
 
 $$
 \mathbb{E}[h_i^t] = \mathbb{E}[\sum_j w_{i, j}^t h_j^{t-1}] = \sum_j \mathbb{E}[w_{i, j}^t] \mathbb{E}[h_j^{t-1}] = 0
 $$
+
+
+正向方差：
+
+$$
+\begin{aligned}
+\text{Var} [h_i^t] &= \mathbb{E}[(h_i^t)^2] - \mathbb{E}[h_i^t]^2 = \mathbb{E}[(\sum_j w_{i,j}^t h_j^{t-1})^2] \\
+&= \mathbb{E}[\sum_j (w_{i, j}^t)^2(h_j^{t-1})^2 + \sum_{j \neq k}w_{i, j}^t w_{l, k}^t h_{j}^{t-1}h_{k}^{t-1}] \\
+&= \sum_{j} \mathbb{E}[(w_{i, j}^t)^2]
+\end{aligned}
+$$
+
+平方展开后为 各项的平方 加上 每项之积。
+
