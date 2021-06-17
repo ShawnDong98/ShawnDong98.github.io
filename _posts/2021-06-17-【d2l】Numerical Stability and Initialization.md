@@ -50,4 +50,36 @@ E[o_i] &= \sum_{j=1}^{n_{in}} E[w_{ij}x_j] \\
 &=  \sum_{j=1}^{n_{in}} E[w_{ij}]E[x_j] \\
 &= 0
 \end{aligned}
+\tag{4.8.4}
 $$
+
+$$
+\begin{aligned}
+Var[o_i] = E[o_i^2] - (E)
+\end{aligned}
+$$
+
+
+**让每层的方差是一个常数**
+
+- 将每层的输出和梯度看做随机变量
+- 让它们的均值和方差都保持一致
+
+
+正向：
+
+$$
+\mathbb{E}[h_i^t] = 0 \\
+\text{Var}[h_i^t] = a
+$$
+
+
+反向：
+
+$$
+\mathbb{E}[\frac{\partial l}{\partial h_i^t}] = 0 \qquad \text{Var}[\frac{\partial l}{\partial h_i^t}] = b \qquad \forall i, t
+$$
+
+
+a 和 b 都是常数。
+
