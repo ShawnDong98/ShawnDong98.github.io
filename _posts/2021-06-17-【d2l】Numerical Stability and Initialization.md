@@ -33,32 +33,6 @@ tags:
 
 在前面的章节中，例如第3.3节，我们使用了一个正态分布来初始化我们的权值。如果我们不指定初始化方法，框架将使用默认的随机初始化方法，这在实践中对于中等规模的问题通常工作得很好。
 
-## Xavier Initialization
-
-让我们看一下对于一些不包含非线性的全连接层输出 $o_i$（例如， 一个隐变量）的分布规模。这层 $n_{in}$ 个输入 $x_j$ 以及它们对应的权重 $w_{ij}$, 它的输出为：
-
-$$
-o_i = \sum_{j=1}^{n_{in}} w_{ij}x_j \tag{4.8.3}
-$$
-
-权重 $w_{ij}$ 全都独立地采样自相同的分布。  此外，我们假设该分布的均值为零， 方差为 $\sigma^2$。 注意，这并不意味着分布必须是高斯分布，只是意味着均值和方差必须存在。现在， 让我们假设对于层 $x_j$ 的输入也有均值为0， 方差为 $\gamma^2$， 以及它们独立于 $w_{ij}$ 且 相互独立。 在这种情况下， 我们可以计算 $o_i$ 的均值和方差如下：
-
-
-$$
-\begin{aligned}
-E[o_i] &= \sum_{j=1}^{n_{in}} E[w_{ij}x_j] \\
-&=  \sum_{j=1}^{n_{in}} E[w_{ij}]E[x_j] \\
-&= 0
-\end{aligned}
-\tag{4.8.4}
-$$
-
-$$
-\begin{aligned}
-Var[o_i] = E[o_i^2] - (E)
-\end{aligned}
-$$
-
 
 
 **让每层的方差是一个常数**
@@ -103,6 +77,8 @@ a 和 b 都是常数。
 
 假设没有激活函数 $h^t = W^t h^{t-1}$， 这里 $W^t \in \mathbb{R}^{n_t \times n_{t-1}}$
 
+正向均值：
+
 $$
 \mathbb{E}[h_i^t] = \mathbb{E}[\sum_j w_{i, j}^t h_j^{t-1}] = \sum_j \mathbb{E}[w_{i, j}^t] \mathbb{E}[h_j^{t-1}] = 0
 $$
@@ -121,6 +97,70 @@ $$
 
 平方展开后为 各项的平方 与 每项之积 的和。
 
-我们的要求是输入的方差和输出的方差相同的话， 那么我们的要求就是 $n_{t-1}\gamma_t = 1$
+我们的要求是输入的方差和输出的方差相同的话， 那么我们的要求就是 $n_{t-1}\gamma_t = 1$。
+
+
+反向均值与方差：
+
+跟正向情况类似
+
+$$
+\frac{\partial l}{\partial h^{t-1}} = \frac{\partial l}{\partial h^t} W^t \Rightarrow (\frac{\partial l}{\partial h^{t-1}})^T = (W^t)^T(\frac{\partial l}{\partial h^t})^T
+$$
+
+$$
+E[\frac{\partial l}{\partial h_i^{t-1}}] = 0
+$$
+
+$$
+\text{Var}[\frac{\partial l}{\partial h_{i}^{t-1}}] = n_t \gamma_t \text{Var} [\frac{\partial l}{\partial h_j^t}] 
+$$
+
+方差要输入和输出相同的情况下需要满足 $n_t \gamma_t = 1$。
+
+这里没有细推， 记住吧。
+
+
+## Xavier Initialization
+
+
+难以需要满足 $n_{t-1}\gamma_t = 1$ 和 $n_t \gamma_t  = 1$ 
+
+Xavier 使得 $\gamma_t (n_{t-1} + n_t) / 2 = 1 \rightarrow \gamma_t = 2/(n_{t-1} + n_{t})$ 
+- 正态分布 $N(0, \sqrt{2/(n_{t-1} + n_t)})$
+- 均匀分布 $U(-\sqrt{6/(n_{t-1} + n_t)}, \sqrt{6/(n_{t-1} + n_t)})$ （分布 $U(-a, a)$ 的方差是 $a^2 / 3$）
+- 适配权重形状变换， 特别是 $n_t$
+
+
+# 激活函数
+
+
+## 假设线性的激活函数 
+
+假设 $\sigma(x) = \alpha x + \beta$
+
+$$
+h' = W^t h^{t-1} \qquad \text{and} \qquad h^t = \sigma(h')
+$$
+
+$$
+\mathbb{E}[h_i^t] = \mathbb{E}[\alpha h_i' + \beta] = \beta \qquad \Rightarrow \qquad \beta = 0 
+$$
+
+要使输入和输出的均值为0， 那么 $\beta = 0$
+
+$$
+\begin{aligned}
+\text{Var}[h_i^t] &= \mathbb{E}[(h_i^t)^2] - \mathbb{E}[h_i^t]^2  \\
+&= \mathbb{E}[(\alpha h_i' + \beta)^2] - \beta^2 \\
+&= \mathbb{E}[\alpha^2 (h_i')^2 + 2\alpha \beta h_i' + \beta^2] - \beta^2 \\
+&= \alpha^2 \text{Var}[h_i']
+\end{aligned}\
+\Rightarrow \alpha = 1
+$$
+
+要使输入和输出的方差相同， 那么 $\alpha = 1$
+
+
 
 
