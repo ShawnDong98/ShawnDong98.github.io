@@ -137,6 +137,8 @@ Xavier 使得 $\gamma_t (n_{t-1} + n_t) / 2 = 1 \rightarrow \gamma_t = 2/(n_{t-1
 
 ## 假设线性的激活函数 
 
+**前向**
+
 假设 $\sigma(x) = \alpha x + \beta$
 
 $$
@@ -162,5 +164,19 @@ $$
 要使输入和输出的方差相同， 那么 $\alpha = 1$
 
 
+**反向**
 
+假设 $\sigma(x) = \alpha x + \beta$
+
+$$
+\frac{\partial l}{\partial h'}= \frac{\partial l}{\partial h^t}(W^t)^T \qquad \text{and} \qquad \frac{\partial l}{\partial h^{t-1}} = \alpha \frac{\partial l}{\partial h'}
+$$
+
+$$
+\mathbb{E} [\frac{\partial l}{\partial h_i^{t-1}}] = 0  \qquad \Rightarrow \qquad \beta = 0
+$$
+
+$$
+\text{Var} [\frac{\partial l}{\partial h_i^{t-1}}] = \alpha^2 \text{Var} [\frac{\partial l}{\partial h_j'}]  \qquad \Rightarrow \qquad \alpha = 1
+$$
 
