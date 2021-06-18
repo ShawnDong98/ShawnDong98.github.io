@@ -109,6 +109,8 @@ PubMed Central (PMC)链接：PubMed Central
 # 中国计算机学会推荐国际学术会议和期刊-2019
 
 
+## 数据库 数据挖掘 内容检索-2019（32-37）
+
 ## 计算机图形学与多媒体-2019（44-50）
 
 
@@ -117,8 +119,6 @@ PubMed Central (PMC)链接：PubMed Central
 
 [http://dblp.uni-trier.de/db/conf/icmcs/](http://dblp.uni-trier.de/db/conf/icmcs/)
 
-
-## 数据库 数据挖掘 内容检索-2019（32-37）
 
 ## 人工智能-2019（51-61）
 
