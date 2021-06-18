@@ -119,6 +119,9 @@ PubMed Central (PMC)链接：PubMed Central
 
 [http://dblp.uni-trier.de/db/conf/icmcs/](http://dblp.uni-trier.de/db/conf/icmcs/)
 
+据说比较水。
+
+[发一篇CCF-B类会议,有多大含金量?](https://www.zhihu.com/question/428346108)
 
 ## 人工智能-2019（51-61）
 
