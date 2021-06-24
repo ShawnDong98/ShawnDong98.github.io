@@ -1704,60 +1704,6 @@ np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 100000
 在后面加上\[()\]
 
 
-# pandas语法
-
-## 读取csv文件
-
-> pandas.read_csv(filepath_or_buffer, sep=’, ‘, delimiter=None, header=’infer’, encoding=None,  ...)
-
-- filepath_or_buffer : 路径 URL 可以是http, ftp, s3, 和 file.
-
-- sep: 指定分割符，默认是’,’C引擎不能自动检测分隔符，但Python解析引擎可以
-
-- delimiter: 同sep
-
-- delimiter_whitespace: True or False 默认False, 用空格作为分隔符等价于spe=’\s+’如果该参数被调用，则delimite不会起作用
-
-- header: 指定第几行作为列名(忽略注解行)，如果没有指定列名，默认header=0; 如果指定了列名header=None
-
-- encoding: 编码方式
-
-## iloc
-
-iloc按位置进行提取, 按索引提取区域行数值
-
-> df_inner.iloc[0:5]
-
-
-## loc 
-
-loc函数按标签值进行提取, 按索引提取单行的数值
-
-> df_inner.loc[3]
-
-## ix
-
-
-ix可以同时按标签和位置进行提取。
-
-> df_inner.ix[:'2013-01-03',:4] #2013-01-03号之前，前四列数据
-
-
-## pd.merge
-
-```
-pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,
-         left_index=False, right_index=False, sort=True,
-         suffixes=('_x', '_y'), copy=True, indicator=False,
-         validate=None)
-```
-
-参数：
-
-- left: 拼接的左侧DataFrame对象
-- right: 拼接的右侧DataFrame对象
-- on: 要加入的列或索引级别名称。 必须在左侧和右侧DataFrame对象中找到。 如果未传递且left_index和right_index为False，则DataFrame中的列的交集将被推断为连接键。
-
 # tqdm
 
 ## 关于tqdm对于range的封装
