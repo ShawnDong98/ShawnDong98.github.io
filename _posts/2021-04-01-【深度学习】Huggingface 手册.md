@@ -232,7 +232,80 @@ model.config.id2label
 {0: 'NEGATIVE', 1: 'POSITIVE'}
 ```
 
+## Models
 
+在本节中，我们将进一步了解模型的创建和使用。我们将使用 **AutoModel** 类，当您想从一个 checkpoint 实例化任何模型时，它很方便。
+
+**AutoModel** 类及其所有相关类实际上是库中各种可用模型的简单封装。它是一个聪明的封装器，因为它可以自动地为您的 checkpoint 猜测适当的模型结构，然后用这个结构实例化一个模型。
+
+但是，如果您知道您想要使用的模型类型，您可以使用直接定义其结构的类。让我们看看BERT模型是如何工作的。
+
+### Creating a Transformer
+
+
+始化BERT模型需要做的第一件事是加载一个 configuration 对象
+
+
+```python
+from transformers import BertConfig, BertModel
+
+# Building the config
+config = BertConfig()
+
+# Building the model from the config
+model = BertModel(config)
+```
+
+configuration 包含许多用于构建模型的属性:
+
+```
+print(config)
+```
+
+
+```
+BertConfig {
+  [...]
+  "hidden_size": 768,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  [...]
+}
+```
+
+
+虽然还没有看到所有这些 attributes 的作用，但是应该认识其中一些： **hidden_size** attribute 定义了 **hidden_states** 向量的大小， **num_hidden_layers** 定义了 Transformer 模型有多少层。
+
+
+### Different loading methods
+
+从默认 configuration 创建模型时，将使用随机值对其进行初始化：
+
+
+```python
+from transformers import BertConfig, BertModel
+
+config = BertConfig()
+model = BertModel(config)
+
+# Model is randomly initialized!
+```
+
+模型可以在这种状态下使用，但它会输出乱码; 首先需要对它进行训练。我们可以从零开始训练模型，但正如你在  Chapter 1 看到的，这将需要很长时间和大量的数据，它将有不可忽视的环境影响。为了避免不必要和重复的工作，能够共享和重用已经训练过的模型是非常必要的。
+
+加载一个已经训练过的Transformer模型很简单，我们可以使用 **from_pretrained** 方法来实现这一点：
+
+```python
+from transformers import BertModel
+
+model = BertModel.from_pretrained("bert-base-cased")
+```
+
+正如您前面看到的，我们可以用等价的 AutoModel 类替换BertModel。我们将从现在开始这样做，因为这会产生 checkpoint-agnostic 的代码;如果您的代码对一个 checkpoint 有效，那么它应该与另一个 checkpoint 无缝地工作。只要 checkpoint 接受过类似任务的训练，即使结构不同，这也适用(for example, a sentiment analysis task)。
+
+在上面的代码示例中，我们没有使用 **BertConfig**，而是通过 **bert-base-cased** 的标识符加载预先训练过的模型。这是BERT作者自己训练的一个模型 checkpoint;你可以在它的 [model card](https://huggingface.co/bert-base-cased)上找到更多的细节
 
 # GET STARTED
 
