@@ -379,6 +379,387 @@ output = model(model_inputs)
 
 虽然模型接受许多不同的参数，但只有输入id是必需的。稍后，我们将解释其他参数的作用以及在什么时候需要它们，但首先，我们需要仔细研究 tokenizers， 它构建Transformer模型可以理解的输入。
 
+
+## Tokenizers
+
+Tokenizers 是NLP pipeline的核心组件之一。它们只有一个目的:将文本转换为模型可以处理的数据。模型只能处理数字，所以 tokenizers 需要将文本输入转换为数字数据。在本节中，我们将探究tokenization pipeline中到底发生了什么。
+
+在NLP任务中，通常处理的数据是原始文本。以下是此类文本的一个例子：
+
+```
+Jim Henson was a puppeteer
+```
+
+但是，模型只能处理数字，所以我们需要找到一种将原始文本转换为数字的方法。这就是 tokenizers 的作用，有很多方法可以做到这一点。目标是找到最有意义的表示，也就是对模型最有意义的表示，如果可能的话，是最小的表示。
+
+
+### Word-based
+
+第一种 tokenize r是 *word-based* 的。 它的设置和使用通常非常简单，只需要一些规则，而且通常会产生不错的结果。例如，在下面的图片中，我们的目标是将原始文本分解成单词，并为每个单词找到数字表示：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1624602267035.png)
+
+有不同的方法来拆分文本。例如，我们可以通过应用Python的split函数，使用空格将文本标记为单词：
+
+```
+tokenized_text = "Jim Henson was a puppeteer".split()
+print(tokenized_text)
+```
+
+```
+['Jim', 'Henson', 'was', 'a', 'puppeteer']
+```
+
+还有一些单词 tokenizers 的变体对标点有额外的规则。有了这种 tokenizer， 我们可以得到一些相当大的词汇表，其中，词汇表由语料库中独立 tokens 的总数来定义。
+
+每个单词都被分配一个ID，从0开始，一直到词汇表的大小。模型使用这些id来标识每个单词。
+
+如果我们希望使用 word-based 的 tokenizer 完全覆盖一种语言，那么我们需要为该语言中的每个单词提供一个标识符，这将生成大量标记。例如，英语中有超过50万个单词，因此要构建从每个单词到输入ID的映射，我们需要跟踪这些ID。此外，像 “dog”  这样的词与像 “dogs” 这样的词的表示方式是不同的，模型最初将无法知道  “dog” 和 “dogs” 是相似的:它将识别出两个词是不相关的。这同样适用于其他类似的词，如 “run” 和 “running”，模型最初不会看到它们是相似的。
+
+最后，我们需要一个自定义 token 来表示不在词汇表中的单词。这被称为 “unknown” token，通常表示为 `[UNK]` 。如果 tokenizer 生成大量这样的标记，这通常是一个不好的迹象，因为它无法检索单词的合理表示，并且在此过程中会丢失信息。设计词汇表时的目标是让 tokenizer 将尽可能少的单词标记到未知标记中。
+
+一种减少未知 tokens 的方法是更进一步， 使用 *character-based tokenizer*。
+
+
+### Character-based
+
+Character-based tokenizers 将文本拆分成 characters， 而不是 words。 它主要由两个好处：
+
+- 词汇表(vocabulary)要小得多。
+- 词汇表外(未知) tokens 要少得多，因为每个 word 都可以由 characters 构建。
+
+但是这里也出现了一些关于空格和标点符号的问题：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1624604020844.png)
+
+这种方法也不完美。因为现在的表现是基于 characters 而不是 words，所以我们可以从直觉上认为这是没有意义的: 每个 characters 本身的含义并不是很多，而 words 则不是。然而，这又因语言而异;例如，在中文中，每个 characters 所携带的信息比拉丁语中的一个 characters 要多。
+
+需要考虑的另一件事是，我们的模型最终将处理大量的 tokens :虽然一个 word 只有一个 word-based  的 tokenizer，但在转换为 characters 时，它可以很容易地转换为10个或更多的 tokens。
+
+为了获得这两种方法的最佳效果，我们可以使用结合这两种方法的第三种技术: *subword tokenization*。
+
+### Subword tokenization
+
+Subword tokenization 算法的基本原则是不将常用词分解为较小的子词，而将生僻词分解为有意义的子词。
+
+例如， “annoyingly” 可能被认为是一个生僻词，可以被分解为 “annoying” 的和 “ly”。这两个词单独出现的频率更高，同时“annoyingly” 的意思由 “annoying” 和 “ly” 的复合意思保留。
+
+下面是一个例子，展示了 subword tokenization 算法如何标记序列“Let’s do tokenization!”：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1624605284925.png)
+
+这些 subwords 最终提供了很多语义含义:例如，在上面的例子中 “tokenization”  被拆分成 “token”  和  “ization”, 两个具有语义含义且具有空间效率的tokens(只需要两个tokens就可以表示一个长单词)。这允许我们用较小的词汇表获得相对较好的覆盖率，并且几乎没有未知的 tokens。
+
+这种方法在黏着性语言(如土耳其语)中特别有用，在这种语言中，可以通过将子词串在一起形成(几乎)任意长的复杂单词。
+
+### And more!
+
+还有很多其他的技术。举几个例子:
+
+- Byte-level BPE, as used in GPT-2
+- WordPiece, as used in BERT
+- SentencePiece or Unigram, as used in several multilingual models
+
+您现在应该对 tokenizers 如何工作有了足够的了解，以便开始使用API。
+
+
+### Loading and saving
+
+加载和保存 tokenizers 和模型一样简单。实际上，它是基于相同的两个方法: **from_pretrained**和 **save_pretrained**。这些方法将加载或保存 tokenizer 使用的算法(有点像模型的结构)及其词汇表(有点像模型的权重)。
+
+加载 BERT tokenizer 与加载模型的方式相同，只是我们使用了BertTokenizer类：
+
+```
+from transformers import BertTokenizer
+
+tokenizer = BertTokenizer.from_pretrained("bert-base-cased")
+```
+
+与 **AutoModel** 类似，**AutoTokenizer** 类将基于 checkpoint 名称获取库中适当的 tokenizer ，并可以直接用于任何checkpoint：
+
+```python
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+```
+
+我们现在可以使用tokenizer，如前一节所示
+
+```
+tokenizer("Using a Transformer network is simple")
+```
+
+```
+{'input_ids': [101, 7993, 170, 11303, 1200, 2443, 1110, 3014, 102],
+ 'token_type_ids': [0, 0, 0, 0, 0, 0, 0, 0, 0],
+ 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1]}
+```
+
+保存 tokenizer 和保存模型一样：
+
+```python
+tokenizer.save_pretrained("directory_on_my_computer")
+```
+
+
+我们将在  Chapter 3 中更多地讨论 **token_type_ids**，稍后我们将解释 **attention_mask**。首先， 我们看一下 **input_ids** 如何生成。 为此，我们需要查看 tokenizer 的中间方法。
+
+
+### Encoding
+
+将文本转换成数字称为编码。编码过程分为两个步骤: tokenization，然后转换为输入id。
+
+正如我们所看到的，第一步是将文本拆分为单词(或部分单词、标点符号等)，通常称为 *tokens*。有多个规则可以管理这个过程，这就是为什么我们需要使用模型的名称来实例化 tokenizer，以确保我们使用了与模型预训练时使用的相同的规则。 
+
+第二步是将这些 tokens 转换为数字，这样我们就可以用它们构建一个张量，并将它们提供给模型。为此，tokenizer 有一个 *vocabulary*，当我们使用 **from_pretrained** 方法实例化它时，就会下载这个词汇表。同样，我们需要使用预训练模型时使用的相同词汇表。
+
+为了更好地理解这两个步骤，我们将分别研究它们。注意，我们将使用一些方法分别执行  tokenization pipeline 的部分内容，以向您显示这些步骤的中间结果，但在实践中，您应该直接在输入上调用 tokenizer (如 section 2 所示)。
+
+
+#### Tokenization
+
+tokenization 过程是通过 tokenizer 的 **tokenize** 方法完成的：
+
+```python
+from transformers import AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+
+sequence = "Using a Transformer network is simple"
+tokens = tokenizer.tokenize(sequence)
+
+print(tokens)
+```
+
+这个方法的输出是字符串或 tokens 的列表:
+
+```
+['Using', 'a', 'transform', '##er', 'network', 'is', 'simple']
+```
+
+这个 tokenizer 是一个 subword tokenizer:  它拆分 words，直到获得可以用词汇表表示的 tokens。以 Transformer 为例， 它被分为两个标记: **transform** 和 **##er**。
+
+
+#### From tokens to input IDs
+
+input IDs 的转换由 tokenizer 的  **convert_tokens_to_ids** 方法处理：
+ 
+```python
+ids = tokenizer.convert_tokens_to_ids(tokens)
+
+print(ids)
+```
+
+```
+[7993, 170, 11303, 1200, 2443, 1110, 3014]
+```
+
+这些输出一旦转换为适当的框架张量，就可以用作本章前面所见的模型的输入。
+
+
+#### Decoding
+
+解码则是反过来的:我们想从词汇表索引中获得一个字符串。这可以通过如下的解码方法来实现：
+
+```python
+decoded_string = tokenizer.decode([7993, 170, 11303, 1200, 2443, 1110, 3014])
+print(decoded_string)
+```
+
+```
+'Using a Transformer network is simple'
+```
+
+注意，**decode** 方法不仅将索引转换回标记，而且还将属于相同单词的标记组合在一起，以生成可读的句子。当我们使用预测新文本的模型时(无论是根据提示生成的文本，还是针对翻译或摘要等序列到序列的问题)，这种行为将非常有用。
+
+
+## Handling multiple sequences
+
+在前一节中，我们探索了最简单的用例:对一个较小长度的序列进行推理。然而，已经出现了一些问题：
+
+- 我们如何处理多个序列？
+- 我们如何处理多个不同长度的序列？
+- 词汇表索引是允许模型良好工作的唯一输入吗？
+- 有过长的序列吗？
+
+让我们看看这些问题会带来什么样的问题，并且使用  Transformers API 如何解决它们。
+
+### Models expect a batch of inputs
+
+在前面的练习中，您看到了如何将序列转换为数字列表。让我们把这些数转换成一个张量并把它发送给模型：
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+checkpoint = "distilbert-base-uncased-finetuned-sst-2-english"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint)
+
+sequence = "I've been waiting for a HuggingFace course my whole life."
+
+tokens = tokenizer.tokenize(sequence)
+ids = tokenizer.convert_tokens_to_ids(tokens)
+input_ids = torch.tensor(ids)
+# This line will fail.
+model(input_ids)
+```
+
+```
+IndexError: Dimension out of range (expected to be in range of [-1, 0], but got 1)
+```
+
+为什么失败了呢?我们遵循了  section 2 中的步骤。
+
+这个问题是因为我们向模型发送了单个序列， 而 Transformers 模型默认情况下使用多个句子。在这里，当我们将 tokenizer 应用到序列时，我们试图完成 tokenizer 在幕后所做的一切， 但是如果你仔细观察，你会发现它不仅仅是把输入id的列表转换成一个张量，它还在上面加了一个维数。
+
+```python
+tokenized_inputs = tokenizer(sequence, return_tensors="pt")
+print(tokenized_inputs["input_ids"])
+```
+
+```
+tensor([[  101,  1045,  1005,  2310,  2042,  3403,  2005,  1037, 17662, 12172,
+          2607,  2026,  2878,  2166,  1012,   102]])
+```
+
+让我们再试一次，添加一个新的维度:
+
+```
+import torch
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+checkpoint = "distilbert-base-uncased-finetuned-sst-2-english"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint)
+
+sequence = "I've been waiting for a HuggingFace course my whole life."
+
+tokens = tokenizer.tokenize(sequence)
+ids = tokenizer.convert_tokens_to_ids(tokens)
+
+input_ids = torch.tensor([ids])
+print("Input IDs:", input_ids)
+
+output = model(input_ids)
+print("Logits:", output.logits)
+```
+
+
+我们打印 输入id 以及 输出结果 logits —— 这里是输出：
+
+```
+Input IDs: [[ 1045,  1005,  2310,  2042,  3403,  2005,  1037, 17662, 12172,  2607, 2026,  2878,  2166,  1012]]
+Logits: [[-2.7276,  2.8789]]
+```
+
+批处理是通过模型同时发送多个句子的行为。如果你只有一个句子，你可以用一个序列来构建一个batch：
+
+```
+batched_ids = [ids, ids]
+```
+
+这是由两个相同序列组成的一批。
+
+批处理允许模型在输入多个句子时工作。使用多个序列就像用单个序列构建一批一样简单。不过还有第二个问题。当你试图将两个(或更多)句子组合在一起时，它们的长度可能不同。如果你以前用过张量，你就知道它们必须是矩形的，所以你不能把输入id的列表直接转换成张量。为了解决这个问题，我们通常 *pad* 输入。
+
+
+### Padding the inputs
+
+以下列表的列表不能转换为张量
+
+```
+batched_ids = [
+  [200, 200, 200],
+  [200, 200]
+]
+```
+
+为了解决这个问题，我们将使用 *padding*  称一个矩形形状制作 tensor。Padding通过向具有较少值的句子添加一个称为Padding标记的特殊单词来确保我们所有的句子具有相同的长度。例如，如果你有10个含有10个单词的句子和1个含有20个单词的句子，填充会确保所有的句子都含有20个单词。在我们的例子中，得到的张量是这样的：
+
+
+```
+padding_id = 100
+
+batched_ids = [
+  [200, 200, 200],
+  [200, 200, padding_id]
+]
+```
+
+
+paddding token ID 可以在 **tokenizer.pad_token_id** 中找到。 让我们使用它，并将我们的两个句子分别和批量一起发送到模型。
+
+```python
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint)
+
+sequence1_ids = [[200, 200, 200]]
+sequence2_ids = [[200, 200]]
+batched_ids = [[200, 200, 200], [200, 200, tokenizer.pad_token_id]]
+
+print(model(torch.tensor(sequence1_ids)).logits)
+print(model(torch.tensor(sequence2_ids)).logits)
+print(model(torch.tensor(batched_ids)).logits)
+```
+
+```
+tensor([[ 1.5694, -1.3895]], grad_fn=<AddmmBackward>)
+tensor([[ 0.5803, -0.4125]], grad_fn=<AddmmBackward>)
+tensor([[ 1.5694, -1.3895],
+        [ 1.3373, -1.2163]], grad_fn=<AddmmBackward>)
+```
+
+在我们的批处理预测中，有一些错误的logit: 第二行应该与第二句的logits相同，但是我们得到了完全不同的值。
+
+这是因为Transformer模型的关键特性是 attention 层， 它将每个token contextualize。这些将考虑padding tokens，因为它们涉及序列的所有 tokens。当通过模型传递不同长度的单个句子时，或者当传递应用了相同句子和填充的批处理时，为了获得相同的结果，我们需要告诉那些 attention 层忽略 padding tokens。这可以通过使用 attention mask 来实现。
+
+
+### Attention masks
+
+*Attention masks* 是有着和输入 IDs tensor 相同形状的 tensor，值为0和1： 1表示应该涉及的tokens， 0表示不应该涉及的tokens(也就是说，它们应该被模型的 attention 层忽略)。
+
+
+让我们用一个  attention mask 来完成前面的示例：
+
+```python
+batched_ids = [
+    [200, 200, 200],
+    [200, 200, tokenizer.pad_token_id]
+]
+
+attention_mask = [
+  [1, 1, 1],
+  [1, 1, 0]
+]
+
+outputs = model(torch.tensor(batched_ids), attention_mask=torch.tensor(attention_mask))
+print(outputs.logits)
+```
+
+
+```
+tensor([[ 1.5694, -1.3895],
+        [ 0.5803, -0.4125]], grad_fn=<AddmmBackward>)
+```
+
+现在我们得到了批处理中第二个句子相同的logit。
+
+请注意第二个序列的最后一个值是一个padding ID，它在 attention mask 中是一个0值。
+
+### Longer sequences
+
+对于Transformer模型，可以传递给模型的序列的长度是有限制的。大多数模型处理最多512或1024个 tokens 的序列，当要求处理更长的序列时将崩溃。这个问题有两种解决方案：
+
+- 使用支持较长的序列长度的模型。
+- 截断你的序列。
+
+模型支持不同的序列长度，有些模型专门处理非常长的序列。Longformer是一个例子，LED是另一个例子。如果你正在处理一个需要很长序列的任务，我们建议你看看这些模型。
+
+否则，我们建议您通过指定 **max_sequence_length** 参数：
+
+```
+sequence = sequence[:max_sequence_length]
+```
+
 # GET STARTED
 
 ## 安装
