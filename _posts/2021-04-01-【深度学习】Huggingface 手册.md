@@ -305,7 +305,13 @@ model = BertModel.from_pretrained("bert-base-cased")
 
 正如您前面看到的，我们可以用等价的 AutoModel 类替换BertModel。我们将从现在开始这样做，因为这会产生 checkpoint-agnostic 的代码;如果您的代码对一个 checkpoint 有效，那么它应该与另一个 checkpoint 无缝地工作。只要 checkpoint 接受过类似任务的训练，即使结构不同，这也适用(for example, a sentiment analysis task)。
 
-在上面的代码示例中，我们没有使用 **BertConfig**，而是通过 **bert-base-cased** 的标识符加载预先训练过的模型。这是BERT作者自己训练的一个模型 checkpoint;你可以在它的 [model card](https://huggingface.co/bert-base-cased)上找到更多的细节
+在上面的代码示例中，我们没有使用 **BertConfig**，而是通过 **bert-base-cased** 的标识符加载预先训练过的模型。这是BERT作者自己训练的一个模型 checkpoint;你可以在它的 [model card](https://huggingface.co/bert-base-cased)上找到更多的细节。
+
+这个模型现在使用 checkpoint 的所有权重进行初始化。它可以直接用于对训练的任务进行推理，也可以对新任务进行微调。通过预训练的权重训练，而不是从零开始，我们可以很快达到良好的效果。
+
+权重已经被下载并缓存到缓存文件夹中(因此以后调用 **from_pretrained** 方法不会重新下载它们)， 它的默认路径是 *~/.cache/huggingface/transformers*。 你可以通过 **HF_HOME** 环境变量自定义缓存文件夹。
+
+用于加载模型的标识符可以是 Model Hub上任何模型的标识符，只要它与BERT结构兼容。可用BERT checkpoints 的完整列表可以在[这里](https://huggingface.co/models?filter=bert)找到。
 
 # GET STARTED
 
