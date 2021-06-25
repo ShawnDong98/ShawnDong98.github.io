@@ -313,6 +313,72 @@ model = BertModel.from_pretrained("bert-base-cased")
 
 用于加载模型的标识符可以是 Model Hub上任何模型的标识符，只要它与BERT结构兼容。可用BERT checkpoints 的完整列表可以在[这里](https://huggingface.co/models?filter=bert)找到。
 
+### Saving methods
+
+保存模型和加载模型一样简单，我们使用 **save_pretrained** 方法，它类似于 **from_pretrained** 方法：
+
+```python
+model.save_pretrained("directory_on_my_computer")
+```
+
+这将在磁盘上保存两个文件:
+
+```
+ls directory_on_my_computer
+
+config.json pytorch_model.bin
+```
+
+如果你看一下 config.json 文件，您将识别构建模型结构所需的属性。这个文件还包含了一些元数据,比如 checkpoint 源自哪里, 你最后一次保存 checkpoint 使用的 Transformers 版本。
+
+*pytorch——model.bin* 文件被称为 *state dictionary*； 它包含所有模型的权重。这两个文件是密切相关的; configuration对于了解您的模型体系结构是必要的，而模型权重是您的模型参数。
+
+
+### Using a Transformer model for inference
+
+现在您已经知道了如何加载和保存模型，让我们尝试使用它来进行一些预测。Transformer 模型只能处理数字 —— 数字由 tokenizer 生成。 但是在讨论 tokenizers 之前，让我们先研究一下模型接受哪些输入。
+
+Tokenizers 可以将输入转换成合适框架的 tensors， 而且可以帮助你理解发生了什么， 我们将快速了解在向模型发送输入之前必须做什么。
+
+假设我们有几个序列：
+
+```
+sequences = [
+  "Hello!",
+  "Cool.",
+  "Nice!"
+]
+```
+
+tokenizer 转换这些词典的索引， 它们被称之为 input IDs. 每个序列现在都是一组数字！得到的输出是：
+
+```
+encoded_sequences = [
+  [ 101, 7592,  999,  102],
+  [ 101, 4658, 1012,  102],
+  [ 101, 3835,  999,  102]
+]
+```
+
+这是一个编码序列的列表:列表的列表。Tensors 仅接受矩形形状。 这个数组已经是矩形了，所以把它转换成张量很容易。
+
+```python
+import torch
+
+model_inputs = torch.tensor(encoded_sequences)
+```
+
+
+### Using the tensors as inputs to the model
+
+利用模型中的张量非常简单我们只需要调用带输入的模型
+
+```python
+output = model(model_inputs)
+```
+
+虽然模型接受许多不同的参数，但只有输入id是必需的。稍后，我们将解释其他参数的作用以及在什么时候需要它们，但首先，我们需要仔细研究 tokenizers， 它构建Transformer模型可以理解的输入。
+
 # GET STARTED
 
 ## 安装
