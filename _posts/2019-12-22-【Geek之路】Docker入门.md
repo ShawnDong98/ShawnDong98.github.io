@@ -55,20 +55,39 @@ docker pull mysql:5.7
 
 ### docker rmi 删除镜像
 
-删除指定的容器
+删除指定的镜像
 
 ```
-docker rmi -f 容器id 
+docker rmi -f 镜像id 
 ```
 
-删除全部容器
+删除全部镜像
 
 ```
 docker -rmi -f $(docker images -aq)
 ```
 
 
+## 容器命令
 
+有了镜像才可以创建容器 ，下载一个 centos 镜像来测试学习
+
+```
+docker pull centos
+```
+
+新建容器并启动
+
+```
+docker run [可选参数] image
+
+# 参数说明
+--name="Name" 		容器名字 tomcat01 tomcat02， 用来区分容器
+-d 					后台方式运行
+-it					使用交互方式运行，进入容器查看内容
+-P					指定容器的端口 -P 8080:8080
+-p					随机指定端口
+```
 
 # ubuntu 配置 Nvida-Docker
 
