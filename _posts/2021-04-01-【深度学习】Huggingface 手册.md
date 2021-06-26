@@ -1131,7 +1131,41 @@ DatasetDict({
 
 ### Dynamic padding
 
-在PyTorch中，负责在批处理中组合样本的函数称为 *collate* 函数。它是构建 **DataLoader** 时可以传递的参数，默认值是将样本转换为PyTorch张量并拼接它们(如果元素是列表、元组或字典，则是递归地拼接)的函数。
+在PyTorch中，负责在批处理中组合样本的函数称为 *collate* 函数。它是构建 **DataLoader** 时可以传递的参数，默认值是将样本转换为PyTorch张量并拼接它们(如果元素是列表、元组或字典，则是递归地拼接)的函数。这在我们的情况下是不可能的，因为我们的输入不会都是相同的大小。我们已经故意推迟了填充，以便只在每个批处理上应用它，避免有太多填充导致过长的输入。这将加快相当多的训练，但请注意，如果你在一个TPU上训练，它会导致问题，TPU喜欢固定的形状，即使这需要额外的填充。
+
+要在实践中做到这一点，我们必须定义一个collate函数，它将对我们想要一起批处理的数据集的项应用正确数量的填充。幸运的是,Transformers 库通过 **DataCollatorWithPadding** 为我们提供了这样的函数。当您实例化它时，它接受一个tokenizer(以知道使用哪个padding token，以及模型期望填充在输入的左边还是右边)，并将完成您需要的一切：
+
+```python
+from transformers import DataCollatorWithPadding
+
+data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+```
+
+为了测试这个新玩具，让我们从我们的训练集中抓取一些样本，我们想一起批量训练。这里，我们删除了列 **idx**、**sentence1** 和 **sentence2**，因为它们不需要并且包含字符串(我们不能用字符串创建张量)，并查看批处理中每个条目的长度。
+
+```python
+samples = tokenized_datasets["train"][:8]
+samples = {
+    k: v for k, v in samples.items() if k not in ["idx", "sentence1", "sentence2"]
+}
+[len(x) for x in samples["input_ids"]]
+```
+
+我们得到的样本长度从32到67不等Dynamic padding 是指这批样本全部填充到长度为67，即这批样本的最大长度。如果没有动态填充，所有的样本都必须填充到整个数据集的最大长度，或者模型可以接受的最大长度。让我们再次检查我们的 **data_collator** 是否正确地动态填充了这批数据：
+
+```python
+batch = data_collator(samples)
+{k: v.shape for k, v in batch.items()}
+```
+
+```
+{'attention_mask': torch.Size([8, 67]),
+ 'input_ids': torch.Size([8, 67]),
+ 'token_type_ids': torch.Size([8, 67]),
+ 'labels': torch.Size([8])}
+```
+
+看上去不错!现在我们已经从原始文本转向模型可以处理的批量文本，我们准备对其进行微调。
 
 # GET STARTED
 
