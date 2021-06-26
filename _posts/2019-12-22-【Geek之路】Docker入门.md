@@ -51,7 +51,7 @@ docker search mysql
 docker pull mysql:5.7
 ```
 
-5.7 是tag， 版本号。
+5.7 是tag， 版本号， 不加的话默认是latest。
 
 ### docker rmi 删除镜像
 
