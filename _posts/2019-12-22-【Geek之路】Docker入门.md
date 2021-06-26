@@ -105,6 +105,15 @@ docker run -it centos /bin/bash
 exit
 ```
 
+列出所有运行中的容器
+
+```
+docker ps 
+				 # 列出当前正在运行的容器
+-a		# 列出当前正运行的容器 + 历史运行过的容器
+-n=?	# 显示最近创建的容器
+```
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
