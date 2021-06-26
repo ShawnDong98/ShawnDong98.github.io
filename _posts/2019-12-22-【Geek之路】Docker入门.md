@@ -140,6 +140,83 @@ docker stop 容器id			# 停止当前正在运行的容器
 docker kill 容器id			# 强制停止当前容器
 ```
 
+## 常用其他命令
+
+### 后台启动容器
+
+命令 docker run -d 镜像名
+
+```
+docker run -d centos
+```
+
+问题 docker ps， 发现 centos 停止了
+
+常见的坑， docker 容器使用后台运行， 就必须要有一个前台进程， docker发现没有应用， 就会自动停止
+
+### 查看日志
+
+```
+docker logs -f -t --tail 容器
+```
+
+自己编写一段shell脚本 
+
+
+```
+docker run -d centos /bin/sh -c "while true; do echo ShawnD; sleep 1; done"
+```
+
+
+```
+docker ps
+```
+
+显示日志
+
+```
+-tf 		# 显示日志
+--tail number	# 要显示日志条数
+```
+
+```
+docker log -tf --tail 10 容器id
+```
+
+
+### 查看容器中进程信息
+
+docker top 容器id
+
+```
+docker top 容器id
+```
+
+
+查看镜像的元数据
+
+
+```
+docker inspect 容器id
+```
+
+
+### 进入当前正在运行的容器
+
+我们通常容器都是使用后台方式运行的，需要进入容器， 修改一些配置
+
+
+```
+docker exec -it 容器id bashShell
+```
+
+```
+
+```
+
+
+
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
