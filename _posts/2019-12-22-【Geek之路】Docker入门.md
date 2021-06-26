@@ -16,8 +16,9 @@ tags:
 
 ## Docker 架构
 
+## 镜像命令
 
-## docker rmi 删除镜像
+### docker rmi 删除镜像
 
 删除指定的容器
 
@@ -30,6 +31,8 @@ docker rmi -f 容器id
 ```
 docker -rmi -f $(docker images -aq)
 ```
+
+
 
 
 # ubuntu 配置 Nvida-Docker
