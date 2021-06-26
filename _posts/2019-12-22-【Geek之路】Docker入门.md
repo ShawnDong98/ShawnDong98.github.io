@@ -99,7 +99,11 @@ docker run [可选参数] image
 docker run -it centos /bin/bash
 ```
 
+从容器中退出
 
+```
+exit
+```
 
 # ubuntu 配置 Nvida-Docker
 
