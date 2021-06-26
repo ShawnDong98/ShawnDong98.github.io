@@ -93,6 +93,14 @@ docker run [可选参数] image
 -P					随机指定端口
 ```
 
+测试， 启动并进入容器
+
+```
+docker run -it centos /bin/bash
+```
+
+
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
