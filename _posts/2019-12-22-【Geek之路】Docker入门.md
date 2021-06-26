@@ -18,6 +18,32 @@ tags:
 
 ## 镜像命令
 
+### docker images
+
+列出全部容器详细信息
+
+```
+docker images -a
+```
+
+仅列出id
+
+```
+docker images -q
+```
+
+### docker search
+
+搜索镜像
+
+```
+docker search mysql
+```
+
+参数：
+
+- filter=STAR=3000： 只列出STAR大于3000的
+
 ### docker rmi 删除镜像
 
 删除指定的容器
