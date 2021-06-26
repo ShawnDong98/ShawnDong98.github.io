@@ -1167,6 +1167,48 @@ batch = data_collator(samples)
 
 看上去不错!现在我们已经从原始文本转向模型可以处理的批量文本，我们准备对其进行微调。
 
+## Fine-tuning a model with the Trainer API
+
+Transformers 提供了一个Trainer类来帮助您调整它在您的数据集上提供的任何预训练模型。完成了上一节中所有的数据预处理工作之后，就只剩下几个步骤来定义Trainer了。最困难的部分可能是为运行Trainer.train准备环境，因为它在CPU上运行得很慢。
+
+下面的代码示例假设您已经执行了上一节中的示例。下面是一个简短的总结，概述你所需要的：
+
+```python
+from datasets import load_dataset
+from transformers import AutoTokenizer, DataCollatorWithPadding
+
+raw_datasets = load_dataset("glue", "mrpc")
+checkpoint = "bert-base-uncased"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+
+def tokenize_function(example):
+    return tokenizer(example["sentence1"], example["sentence2"], truncation=True)
+
+tokenized_datasets = raw_datasets.map(tokenize_function, batched=True)
+data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+```
+
+## Training
+
+在定义 **Trainer** 之前的第一步是定义一个 **TrainingArguments** 类，这个类将包含 **Trainer** 用于训练和评估的所有超参数。您必须提供的唯一参数是保存训练过的模型的目录，以及checkpoints。对于剩下的部分，您可以保留默认值，对于基本的微调应该可以很好地工作。 
+
+```python
+from transformers import TrainingArguments
+
+training_args = TrainingArguments("test-trainer")
+```
+
+第二步是定义我们的模型。和前一章一样，我们将使用带有两个标签的 **AutoModelForSequenceClassification** 类：
+
+```python
+from transformers import AutoModelForSequenceClassification
+
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint, num_labels=2)
+```
+
+您将注意到，与第2章不同的是，在实例化这个预训练模型后，您会得到一个警告。这是因为BERT没有进行过句子对分类的预训练，所以我们放弃了预训练模型的head，而添加了一个新的适合序列分类的head。这些警告表明，一些权重没有被使用(预训练的head的权重被丢弃)，而另一些则被随机初始化(用于新head的权重)。
+
+
 # GET STARTED
 
 ## 安装
