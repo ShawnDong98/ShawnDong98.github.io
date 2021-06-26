@@ -12,7 +12,7 @@ tags:
 ---
 
 
-# Transformers
+#  Using Transformers
 
 Transformer模型通常都很大。 由于有数百万到数百亿的参数，训练和部署这些模型是一项复杂的工作。 此外，由于几乎每天都有新模型发布，而且每个模型都有自己的实现，所以把它们都试出来不是一件容易的事情。
 
@@ -759,6 +759,379 @@ tensor([[ 1.5694, -1.3895],
 ```
 sequence = sequence[:max_sequence_length]
 ```
+
+## Putting it all together
+
+在最后的几个部分中，我们一直在努力手工完成大部分的工作。我们已经探讨了 tokenizers 的工作原理，并研究了tokenization、conversion to input IDs、padding、truncation和attention masks。
+
+然而, 如我们在 section 2 所见, ,我们在这里会深入Transformers API可以处理所有的这些高级函数。当您直接在句子上调用 **tokenizer** 时，您将获得可以通过模型传递的输入：
+
+```python
+from transformers import AutoTokenizer
+
+checkpoint = "distilbert-base-uncased-finetuned-sst-2-english"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+
+sequence = "I've been waiting for a HuggingFace course my whole life."
+
+model_inputs = tokenizer(sequence)
+```
+
+在这里，**model_inputs** 变量包含模型良好运行所必需的一切。对于DistilBERT，它包括  input IDs  和 attention mask。接受其他输入的其他模型也 有由 tokenizer 对象 提供的输出。
+
+正如我们将在下面的一些示例中看到的，这种方法非常强大。首先，它可以标记单个序列：
+
+```python
+sequence = "I've been waiting for a HuggingFace course my whole life."
+
+model_inputs = tokenizer(sequence)
+```
+
+它还一次处理多个序列，API中没有任何更改：
+
+```python
+sequences = [
+  "I've been waiting for a HuggingFace course my whole life.",
+  "So have I!"
+]
+
+model_inputs = tokenizer(sequences)
+```
+
+它可以根据几个目标进行填充
+
+```python
+# Will pad the sequences up to the maximum sequence length
+model_inputs = tokenizer(sequences, padding="longest")
+
+# Will pad the sequences up to the model max length
+# (512 for BERT or DistilBERT)
+model_inputs = tokenizer(sequences, padding="max_length")
+
+# Will pad the sequences up to the specified max length
+model_inputs = tokenizer(sequences, padding="max_length", max_length=8)
+```
+
+它还可以截断序列
+
+```python
+sequences = [
+  "I've been waiting for a HuggingFace course my whole life.",
+  "So have I!"
+]
+
+# Will truncate the sequences that are longer than the model max length
+# (512 for BERT or DistilBERT)
+model_inputs = tokenizer(sequences, truncation=True)
+
+# Will truncate the sequences that are longer than the specified max length
+model_inputs = tokenizer(sequences, max_length=8, truncation=True)
+```
+
+
+**tokenizer** 对象可以处理到特定框架张量的转换，然后可以直接将其发送给模型。例如，在下面的代码示例中，我们将使 tokenizer 返回来自不同框架的张量 —— **"pt"** 返回 PyTorch tensors， **"tf"** 返回 TensorFlow tensors， 以及 **"np"** 返回 NumPy arrays：
+
+```python
+sequences = [
+  "I've been waiting for a HuggingFace course my whole life.",
+  "So have I!"
+]
+
+# Returns PyTorch tensors
+model_inputs = tokenizer(sequences, padding=True, return_tensors="pt")
+
+# Returns TensorFlow tensors
+model_inputs = tokenizer(sequences, padding=True, return_tensors="tf")
+
+# Returns NumPy arrays
+model_inputs = tokenizer(sequences, padding=True, return_tensors="np")
+```
+
+### Special tokens
+
+如果我们看一下由 tokenizer 返回的输入id，就会发现它们与之前的略有不同：
+
+```python
+sequence = "I've been waiting for a HuggingFace course my whole life."
+
+model_inputs = tokenizer(sequence)
+print(model_inputs["input_ids"])
+
+tokens = tokenizer.tokenize(sequence)
+ids = tokenizer.convert_tokens_to_ids(tokens)
+print(ids)
+```
+
+```
+[101, 1045, 1005, 2310, 2042, 3403, 2005, 1037, 17662, 12172, 2607, 2026, 2878, 2166, 1012, 102]
+[1045, 1005, 2310, 2042, 3403, 2005, 1037, 17662, 12172, 2607, 2026, 2878, 2166, 1012]
+```
+
+在开头添加一个token ID，在末尾添加一个token ID。让我们解码上面的两个id序列，看看这是关于什么：
+
+```python
+print(tokenizer.decode(model_inputs["input_ids"]))
+print(tokenizer.decode(ids))
+```
+
+```
+"[CLS] i've been waiting for a huggingface course my whole life. [SEP]"
+"i've been waiting for a huggingface course my whole life."
+```
+
+tokenizer 在开头添加了特殊词 `[CLS]`，在结尾添加了特殊词 `[SEP]`。这是因为模型是用这些进行预训练的，所以为了得到相同的推理结果，我们也需要添加它们。注意，有些模型不添加特殊的单词，或者添加不同的单词;模型也可以只在开头或结尾添加这些特殊的词。在任何情况下，tokenizer 都知道哪些是预期的，并将为您处理这个问题。
+
+
+### Wrapping up: From tokenizer to model
+
+现在我们已经看到了 **tokenizer** 对象在应用于文本时使用的所有单独步骤，让我们最后一次看看它是如何用它的主API处理多个序列(padding!)、非常长的序列(truncation!)和多种类型的张量的：
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+checkpoint = "distilbert-base-uncased-finetuned-sst-2-english"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint)
+sequences = [
+  "I've been waiting for a HuggingFace course my whole life.",
+  "So have I!"
+]
+
+tokens = tokenizer(sequences, padding=True, truncation=True, return_tensors="pt")
+output = model(**tokens)
+```
+
+# Fine-tuning a pretrained model
+
+在  Chapter 2 中，我们探讨了如何使用 tokenizers 和预训练模型来进行预测。但是，如果您想为自己的数据集调整预先训练过的模型，该怎么办呢?这就是这一章的主题!您将学习:
+
+- 如何从Hub准备大型数据集
+- 如何使用 high-level Trainer API 来优化模型
+- 如何使用自定义训练循环
+- 如何利用 Accelerate 轻松地在任何分布式运行自定义训练循环设置
+
+## Processing the data
+
+这里是我们如何在PyTorch中训练一个批次的 sequence classifier
+
+```python
+import torch
+from transformers import AdamW, AutoTokenizer, AutoModelForSequenceClassification
+
+# Same as before
+checkpoint = "bert-base-uncased"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint)
+sequences = [
+    "I've been waiting for a HuggingFace course my whole life.",
+    "This course is amazing!",
+]
+batch = tokenizer(sequences, padding=True, truncation=True, return_tensors="pt")
+
+# This is new
+batch["labels"] = torch.tensor([1, 1])
+
+optimizer = AdamW(model.parameters())
+loss = model(**batch).loss
+loss.backward()
+optimizer.step()
+```
+
+当然，仅仅用两个句子来训练模型不会产生很好的结果。为了获得更好的结果，您需要准备一个更大的数据集。
+
+
+在本节中，我们将使用MRPC(Microsoft Research Paraphrase Corpus)数据集作为示例。 该数据集由5801对句子组成，用一个标签表示它们是否被 paraphrases(即，如果两个句子的意思相同)。我们在本章中选择它是因为它是一个小的数据集，所以很容易实验训练它。
+
+
+### Loading a dataset from the Hub
+
+Hub不只是包含模型;它也有多种不同语言的数据集。您可以在这里浏览数据集，我们建议您在读完这一节之后尝试加载和处理一个新的数据集(参见[这里](https://huggingface.co/docs/datasets/loading_datasets.html#from-the-huggingface-hub)的通用文档)。但是现在，让我们把重点放在MRPC数据集上!这是组成GLUE benchmark的10个数据集之一，GLUE benchmark是一个学术基准，用于衡量跨10个不同文本分类任务的ML模型的性能。
+
+Datasets 库提供了一个非常简单的命令来下载和缓存数据集。我们可以像这样下载MRPC数据集：
+
+```python
+from datasets import load_dataset
+
+raw_datasets = load_dataset("glue", "mrpc")
+raw_datasets
+```
+
+```
+DatasetDict({
+    train: Dataset({
+        features: ['sentence1', 'sentence2', 'label', 'idx'],
+        num_rows: 3668
+    })
+    validation: Dataset({
+        features: ['sentence1', 'sentence2', 'label', 'idx'],
+        num_rows: 408
+    })
+    test: Dataset({
+        features: ['sentence1', 'sentence2', 'label', 'idx'],
+        num_rows: 1725
+    })
+})
+```
+
+如您所见，我们得到一个 **DatasetDict** 对象，它包含训练集、验证集和测试集。每一个都包含几个列(**sentence1**、**sentence2**、**label**和**idx**)和一个行变量，这是每个集合中的元素数量(因此，训练集中有3668对句子，验证集中有408对句子，测试集中有1725对句子)。
+
+这个命令下载和缓存数据集， 默认为 *~/.cache/huggingface/dataset*。
+
+我们可以通过索引来访问 **raw_datasets** 对象中的每一对句子，就像使用字典一样：
+
+```python
+raw_train_dataset = raw_datasets["train"]
+raw_train_dataset[0]
+```
+
+```
+{'idx': 0,
+ 'label': 1,
+ 'sentence1': 'Amrozi accused his brother , whom he called " the witness " , of deliberately distorting his evidence .',
+ 'sentence2': 'Referring to him as only " the witness " , Amrozi accused his brother of deliberately distorting his evidence .'}
+```
+
+我们可以看到 labels 已经是整数了，所以我们不需要在那里做任何预处理。为了知道哪个整数对应于哪个标签，我们可以检查 **raw_train_dataset** 的 **features**。
+
+```python
+raw_train_dataset.features
+```
+
+```
+{'sentence1': Value(dtype='string', id=None),
+ 'sentence2': Value(dtype='string', id=None),
+ 'label': ClassLabel(num_classes=2, names=['not_equivalent', 'equivalent'], names_file=None, id=None),
+ 'idx': Value(dtype='int32', id=None)}
+```
+
+**label** 是 **ClassLabel** 类型， 从整数到标签名字的映射是按文件夹名字排序的。**0** 对应 **not_equivalent**， **1** 对应 **equivalent**。
+
+
+### Preprocessing a dataset
+
+为了预处理数据集，我们需要将文本转换为模型能够理解的数字。
+
+正如您在前一章所看到的，这是通过 tokenizer 完成的。我们可以给 tokenizer 提供一个句子或一个句子列表，这样我们就可以像这样直接标记每对句子的第一个句子和第二个句子：
+
+```python
+from transformers import AutoTokenizer
+
+checkpoint = "bert-base-uncased"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+tokenized_sentences_1 = tokenizer(raw_datasets["train"]["sentence1"])
+tokenized_sentences_2 = tokenizer(raw_datasets["train"]["sentence2"])
+```
+
+然而，我们不能仅仅传递两个序列给模型，就能预测这两个句子是否被paraphrases。我们需要成对处理这两个序列，并应用适当的预处理。幸运的是，tokenizer还可以采用一对序列，并按照BERT模型所期望的方式对其进行处理：
+
+```python
+inputs = tokenizer("This is the first sentence.", "This is the second one.")
+inputs
+```
+
+```
+{ 
+  'input_ids': [101, 2023, 2003, 1996, 2034, 6251, 1012, 102, 2023, 2003, 1996, 2117, 2028, 1012, 102],
+  'token_type_ids': [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
+  'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+}
+```
+
+我们在 Chapter 2 讨论了 **input_ids** 和 **attention_mask** 键值， 但是我们推迟讨论了 **token_type_ids**。 在这个例子中，它告诉模型输入的哪一部分是第一个句子，哪一部分是第二个句子。
+
+如果我们解码 IDs 的 **input_ids** 返回 words：
+
+```python
+tokenizer.convert_ids_to_tokens(inputs["input_ids"])
+```
+
+我们将会得到：
+
+```
+['[CLS]', 'this', 'is', 'the', 'first', 'sentence', '.', '[SEP]', 'this', 'is', 'the', 'second', 'one', '.', '[SEP]']
+```
+
+所以当有两个句子时， 我们看到模型期望输入是这种形式 `[CLS] sentence1 [SEP] sentence2 [SEP]`。 使用 **token_type_ids** 对齐我们得到：
+
+```
+['[CLS]', 'this', 'is', 'the', 'first', 'sentence', '.', '[SEP]', 'this', 'is', 'the', 'second', 'one', '.', '[SEP]']
+[      0,      0,    0,     0,       0,          0,   0,       0,      1,    1,     1,        1,     1,   1,       1]
+```
+
+如您所见，与 `[CLS] sentence1 [SEP]` 对应的输入部分的 token type ID都为0，而与 `sentence2 [SEP]` 对应的其他部分的token type ID都为1。
+
+请注意，如果您选择一个不同的checkpoint，您不一定在您的 tokenized inputs 中有 token_type_ids (例如，如果您使用一个 DistilBERT 模型，它们就不会返回)。只有当模型知道如何处理它们时，它们才会被返回，因为它在训练前已经看到它们了。
+
+在这里，BERT是用 token type IDs进行预训练的，并且在我们在 Chapter 1 中讨论的 masked language modeling objective 之上，它还有一个额外的目标，称为 next sentence prediction。这个任务的目标是建立句子对之间的关系模型。
+
+对于下一个句子预测，该模型被提供成对的句子(with randomly masked tokens)，并被要求预测第二个句子是否在第一个句子之后。为了让这个任务不那么non-trivial，一半的时间里，句子从原始文档中提取出来，另一半时间里，这两个句子来自两个不同的文档。
+
+通常，您不需要担心在您的标记化输入中是否有 **token_type_ids** :只要您为 tokenizer 和 model 使用相同的checkpoint，一切都会很好，因为 tokenizer  知道为它的模型提供什么。
+
+现在我们已经看到了我们的 tokenizer 如何处理一对句子，我们可以使用它来标记整个数据集： 我们可以给标记器提供一个句子对列表，先给它第一个句子的列表，然后给它第二个句子的列表。这也与我们在  Chapter 2 中看到的 padding 和 truncation 选项兼容。所以，预处理训练数据集的一种方法是：
+
+```
+tokenized_dataset = tokenizer(
+    raw_datasets["train"]["sentence1"],
+    raw_datasets["train"]["sentence2"],
+    padding=True,
+    truncation=True,
+)
+```
+
+这可以很好地工作，但是它有返回字典的缺点（我们的 key 为 **input_ids**， **attention_mask** 和 **token_type_ids**， values为列表的列表）。只有当你有足够的RAM在 tokenization 期间存储你的整个数据集时，它才会工作（Datasets 库是Apache Arrow文件存储在磁盘上,所以你只保留你所需要的样本加载在内存中）。
+
+
+要将数据保存为数据集，我们将使用 Dataset.map  的方法。如果我们需要做更多的预处理，而不仅仅是 tokenization ，这也允许我们有一些额外的灵活性。map方法的工作原理是在数据集的每个元素上应用一个函数，所以让我们定义一个函数来 tokenizes 我们的输入：
+
+```python
+def tokenize_function(example):
+    return tokenizer(example["sentence1"], example["sentence2"], truncation=True)
+```
+
+
+这个函数接受一个字典(like the items of our dataset)，并返回一个新的字典，其中包含 key 为 **input_ids**、**attention_mask** 和 **token_type_ids**。请注意，如果 **example** 字典包含几个样本(each key as a list of sentences)，它也可以工作，因为正如前面所见，标记器对句子对列表起作用。这将允许我们在 **map** 调用中使用**batched=True** 选项，这将大大加快tokenization。 **tokenizer** 由一个用Rust语言写的 Tokenizers 库支撑。这个tokenizer 可以非常快，但只有在我们一次给它大量输入的情况下。
+
+注意，我们现在在 tokenization 函数中省略了padding参数。这是因为填充所有的样本到最大长度是没有效率的:当我们构建一个批次时 padding 样本更好，因为这样我们只需要填充到该批次的最大长度，而不是整个数据集的最大长度。
+
+下面是我们如何在所有数据集上一次性应用 tokenization 函数。我们在 **map** 调用中使用了 **batch =True**，因此函数一次应用于数据集的多个元素，而不是单独应用于每个元素。
+
+```python
+tokenized_datasets = raw_datasets.map(tokenize_function, batched=True)
+tokenized_datasets
+```
+
+Datasets 库应用这种处理的方式是通过增加数据集新的字段， 每个键对应由预处理函数返回的字典中的每个键：
+
+```
+DatasetDict({
+    train: Dataset({
+        features: ['attention_mask', 'idx', 'input_ids', 'label', 'sentence1', 'sentence2', 'token_type_ids'],
+        num_rows: 3668
+    })
+    validation: Dataset({
+        features: ['attention_mask', 'idx', 'input_ids', 'label', 'sentence1', 'sentence2', 'token_type_ids'],
+        num_rows: 408
+    })
+    test: Dataset({
+        features: ['attention_mask', 'idx', 'input_ids', 'label', 'sentence1', 'sentence2', 'token_type_ids'],
+        num_rows: 1725
+    })
+})
+```
+
+在对 **Dataset.map** 应用 preprocessing 函数时，甚至可以通过传递 **num_proc** 参数进行映射使用multiprocessing。我们这里没有这样做,因为 Tokenizers 库已经使用多个线程标记样本更快,但是如果你不使用 fast tokenizer 这个库的支持,这可能会加快你的预处理。
+
+我们的 **tokenize_function** 返回键值为 **input_ids**、**attention_mask**和 **token_type_ids** 的字典，因此这三个字段被添加到我们的数据集的所有分割中。注意，如果预处理函数为我们应用映射的数据集中的现有键返回一个新值，那么我们也可以更改现有字段。
+
+
+我们需要做的最后一件事是，当我们对元素进行批处理时，将所有的例子填充到最长元素的长度，我们称之为动态填充。
+
+
+### Dynamic padding
+
+在PyTorch中，负责在批处理中组合样本的函数称为 *collate* 函数。它是构建 **DataLoader** 时可以传递的参数，默认值是将样本转换为PyTorch张量并拼接它们(如果元素是列表、元组或字典，则是递归地拼接)的函数。
 
 # GET STARTED
 
