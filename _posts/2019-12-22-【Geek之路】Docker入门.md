@@ -14,6 +14,23 @@ tags:
 
 # Docker 命令
 
+## Docker 架构
+
+
+## docker rmi 删除镜像
+
+删除指定的容器
+
+```
+docker rmi -f 容器id 
+```
+
+删除全部容器
+
+```
+docker -rmi -f $(docker images -aq)
+```
+
 
 # ubuntu 配置 Nvida-Docker
 
@@ -27,8 +44,6 @@ sudo apt install docker.io
 ```
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623860212603.png)
-
-如果你本地有gpu，请继续执行如下命令以支持gpu调用：
 
 
 
