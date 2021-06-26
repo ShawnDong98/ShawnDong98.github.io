@@ -44,6 +44,15 @@ docker search mysql
 
 - filter=STAR=3000： 只列出STAR大于3000的
 
+
+### docker pull 下载镜像
+
+```
+docker pull mysql:5.7
+```
+
+5.7 是tag， 版本号。
+
 ### docker rmi 删除镜像
 
 删除指定的容器
