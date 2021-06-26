@@ -115,6 +115,31 @@ docker ps
 -q		# 只显示容器的编号
 ```
 
+
+退出容器
+
+```
+exit 		# 停止容器并退出
+ctrl + P + Q 	# 不停止退出
+```
+
+删除容器
+
+```
+docker rm 容器id					   # 删除指定的容器， 不能删除正在运行的容器， 如果要强制删除 -f
+docker rm -f $(docker ps -aq)		# 全部删除容器
+docker ps -a -q|xargs docker rm		# 删除所有容器
+```
+
+启动和停止容器的操作
+
+```
+docker start 容器id			# 启动容器
+docker restart 容器id			# 重启容器
+docker stop 容器id			# 停止当前正在运行的容器
+docker kill 容器id			# 强制停止当前容器
+```
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
