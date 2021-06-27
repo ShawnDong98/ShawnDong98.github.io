@@ -433,6 +433,24 @@ dockerfile 是面向开发的， 我们以后要发布项目， 做镜像， 就
 - Docker容器： 容器就是镜像运行起来提供服务
 
 
+### DockerFile 指令
+
+```
+FROM 			# 基础镜像， 一切从这里开始构建
+MAINTAINER		# 镜像是谁写的， 姓名+邮箱
+RUN				# 镜像构建的时候需要运行的命令
+ADD 			# 步骤， tomcat镜像， tomcat的压缩包就是添加内容
+WORKDIR			# 镜像的工作目录
+VOLUME			# 挂载的目录
+EXPOSE			# 暴露端口配置
+CMD				# 指定容器启动时要运行的命令
+ENTRYPOINT		# 指定这个容器启动的时候要运行的命令，可以追加命令
+ONBUILD			# 当构建一个被集成 Dockerfile 就会运行 ONBUILD 指令， 触发指令
+COPY			# 类似ADD， 将文件拷贝到镜像中
+ENV				# 构建的时候设置环境变量
+```
+
+
 ## Docker 网络
 
 
