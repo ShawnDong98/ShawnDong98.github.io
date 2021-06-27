@@ -553,7 +553,7 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 
 ## 安装 Docker 环境（GPU）
 
-### bug
+### bug1
 
 ```
 E: Sub-process /usr/bin/dpkg returned an error code (1)
@@ -580,10 +580,14 @@ sudo mkdir info
 
 再次安装Docker。成功安装。
 
-### 1
+
+
+### 安装
+
+彻底卸载 
 
 ```
-sudo apt-get remove docker docker-engine docker.io ###清除系统原有docker 如果提示找不到就不用理会
+sudo apt-get autoremove docker docker-ce docker-engine  docker.io  containerd runc
 ```
 
 Ubuntu上的 Docker-CE 使用 Docker的官方脚本设置：
