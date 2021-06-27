@@ -461,9 +461,9 @@ CMD 和 ENTRYPOINT 的区别
 
 ### 实战
 
-准备镜像文件， tomcat压缩包， 
+1） 准备镜像文件， tomcat压缩包， 
 
-创建Dockerfile ， 官方命名
+2）创建Dockerfile ， 官方命名
 
 ```
 FROM centos
@@ -491,6 +491,8 @@ CMD /usr/local/apache-tomcat-9.0.22/bin/startup.sh && tail -F /usr/local/apache-
 ```
 
 ADD 命令会自动解压
+
+3） docker build -t diytomcat
 
 ## Docker 网络
 
