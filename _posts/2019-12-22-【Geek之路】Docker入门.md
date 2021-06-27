@@ -426,9 +426,11 @@ DockerFile 是用来构建 docker 镜像的文件， 命令参数脚本。
 
 dockerfile 是面向开发的， 我们以后要发布项目， 做镜像， 就需要编写dockerfile文件。
 
+步骤：
 
-
-
+- DockerFile： 构建文件， 定义了一切的步骤， 源代码
+- DockerImages： 通过DockerFile构建生成的镜像， 最终发布和运行的产品
+- Docker容器： 容器就是镜像运行起来提供服务
 
 
 ## Docker 网络
