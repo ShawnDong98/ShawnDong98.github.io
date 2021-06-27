@@ -359,7 +359,8 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:ro nginx
 docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx
 ```
 
-## DockerFile
+
+### 数据卷之DockerFile
 
 DockerFile 用来构建 docker 镜像的构建文件， 命令脚本。
 
@@ -378,6 +379,25 @@ CMD /bin/bash
 
 # 这里的每一个命令就是镜像的一层
 ```
+
+
+这种方式未来使用十分多，因为我们通常会构建自己的镜像。
+
+假设构建镜像的时候没有挂在卷， 要手动镜像挂载 -v 卷名: 容器内路径
+
+
+### 数据卷容器
+
+多个 mysql 实现数据共享
+
+```
+docker run -d p 3301:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+
+
+docker run -d p 3301:3306 -e MYSQL_ROOT_PASSWORD=123456 --name mysql02 --volumes-from mysql01 mysql:5.7
+```
+
+## DockerFile
 
 
 
