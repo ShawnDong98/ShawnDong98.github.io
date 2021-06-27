@@ -397,6 +397,8 @@ docker run -d p 3301:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_P
 docker run -d p 3301:3306 -e MYSQL_ROOT_PASSWORD=123456 --name mysql02 --volumes-from mysql01 mysql:5.7
 ```
 
+容器之间配置信息的传递， 数据卷容器的生命周期一致持续到没有容器为止。
+
 ## DockerFile
 
 
