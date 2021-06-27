@@ -553,6 +553,35 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 
 ## 安装 Docker 环境（GPU）
 
+### bug
+
+```
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+```
+
+进入如下目录：
+
+```
+cd /var/lib/dpkg
+```
+
+删除该文件：
+
+```
+sudo mv info info.baksudo
+```
+
+重新创建该文件：
+
+```
+sudo mkdir info
+```
+
+
+再次安装Docker。成功安装。
+
+### 1
+
 ```
 sudo apt-get remove docker docker-engine docker.io ###清除系统原有docker 如果提示找不到就不用理会
 ```
@@ -578,6 +607,7 @@ sudo distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 ```
 sudo apt-get update
 ```
+
 
 ```
 sudo apt-get install -y nvidia-docker2
