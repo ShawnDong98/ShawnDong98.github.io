@@ -515,6 +515,20 @@ ADD 命令会自动解压
 docker push image:tag
 ```
 
+## 发布到阿里云镜像服务器
+
+1） 登录阿里云
+
+2） 找到容器镜像服务
+
+3） 创建命名空间
+
+4）创建容器镜像
+
+
+参考官方地址
+
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
