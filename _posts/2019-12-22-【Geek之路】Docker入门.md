@@ -492,11 +492,28 @@ CMD /usr/local/apache-tomcat-9.0.22/bin/startup.sh && tail -F /usr/local/apache-
 
 ADD 命令会自动解压
 
-3） docker build -t diytomcat
+3） docker build -t diytomcat .
 
-## Docker 网络
+4） 启动镜像
+
+5）访问测试
 
 
+## 发布自己镜像
+
+ 1） [https://hub.docker.com/](https://hub.docker.com/)  注册账号
+ 
+ 2） 登录账号
+ 
+```
+ docker login -u xxx -p xxx
+```
+
+3） 提交镜像
+
+```
+docker push image:tag
+```
 
 # ubuntu 配置 Nvida-Docker
 
