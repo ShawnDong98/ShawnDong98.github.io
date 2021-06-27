@@ -285,6 +285,58 @@ docker commit -m="提交的描述信息" -a="作者" 容器id 目标镜像名：
 
 ## 容器数据卷
 
+### 什么是容器数据卷
+
+如果数据都在容器中，那么我们容器删除， 数据就会丢失！ 需求： 数据可以持久化
+
+容器之间可以有一个数据共享的计数！ Docker容器中产生的数据， 同步到本地。
+
+这就是卷计数， 目录的挂载， 将容器内的目录， 挂载到Linux上面。
+
+### 使用数据卷
+
+> 方式一：直接使用命令来挂载 -v
+
+```
+docker run -it -v 主机目录：容器内目录
+
+# 测试
+docker run -it -v /home/ceshi:/home centos /bin/bash
+```
+
+启动起来的时候我们可以通过 docker inspect 容器id 查看挂载信息
+
+
+### 具名和匿名挂载
+
+匿名挂载
+
+- -v 容器内路径
+
+```
+docker  run -d -P --name nginx01 -v /ect/nginx nginx
+```
+
+查看 volume 的情况
+
+```
+docker volume ls
+```
+
+这种就是匿名挂载， 我们在 -v 只写了容器内的路径， 没有写容器外的路径
+
+
+具名挂载， 通过 -v 卷名：容器内路径
+
+```
+docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx nginx
+```
+
+所有docker容器内的卷， 没有指定目录的情况下都是在： `/var/lib/docker/volumes/xxxx/_data`
+
+我们通过具名挂载可以方便的找到。
+
+
 
 ## DockerFile
 
