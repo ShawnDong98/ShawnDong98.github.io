@@ -345,6 +345,19 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx nginx
 -v ./宿主机路径: 容器内路径		# 指定路径挂载
 ```
 
+拓展：
+
+通过 -v 容器内路径:ro rw 改变读写权限
+ 
+- ro： read only 只读
+- rw： read write 可读可写
+
+一旦设置了容器权限， 容器对挂在出来的内容就有限定了
+
+```
+docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:ro nginx
+docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx
+```
 
 ## DockerFile
 
