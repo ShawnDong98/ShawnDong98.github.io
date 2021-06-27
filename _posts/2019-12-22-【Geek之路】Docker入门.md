@@ -620,7 +620,7 @@ docker --version
 Ubuntu上的 Docker-CE 使用 Docker的官方脚本设置：
 
 ```bash
-curl https://get.docker.com | sh \
+sudo curl https://get.docker.com | sh \
   && sudo systemctl --now enable docker
 ```
 
