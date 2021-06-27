@@ -627,7 +627,7 @@ sudo curl https://get.docker.com | sh \
 设置 `stable` repository 和 GPG key：
 
 ```
-sudo distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
    && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
    && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
 ```
@@ -642,6 +642,42 @@ sudo apt-get update
 
 ```
 sudo apt-get install -y nvidia-docker2
+```
+
+设置默认运行时后，重新启动Docker守护进程以完成安装
+
+```
+sudo systemctl restart docker
+```
+
+现在可以通过运行一个CUDA容器测试：
+
+```
+sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+```
+
+结果如下所示：
+
+```
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 455.32.00    Driver Version: 455.32.00    CUDA Version: 11.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  GeForce RTX 3090    On   | 00000000:65:00.0  On |                  N/A |
+| 82%   67C    P2   323W / 350W |  11646MiB / 24265MiB |    100%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
++-----------------------------------------------------------------------------+
+
 ```
 
 
