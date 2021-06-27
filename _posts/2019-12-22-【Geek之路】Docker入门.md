@@ -557,6 +557,22 @@ Windows：[https://docs.docker.com/docker-for-windows/install/](https://docs.doc
 sudo apt-get remove docker docker-engine docker.io ###清除系统原有docker 如果提示找不到就不用理会
 ```
 
+Ubuntu上的 Docker-CE 使用 Docker的官方脚本设置：
+
+```bash
+curl https://get.docker.com | sh \
+  && sudo systemctl --now enable docker
+```
+
+设置 `stable` repository 和 GPG key：
+
+```
+sudo distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+```
+
+
 
 ## 开通阿里云容器镜像服务
 
