@@ -399,7 +399,32 @@ docker run -d p 3301:3306 -e MYSQL_ROOT_PASSWORD=123456 --name mysql02 --volumes
 
 容器之间配置信息的传递， 数据卷容器的生命周期一致持续到没有容器为止。
 
+
 ## DockerFile
+
+DockerFile 是用来构建 docker 镜像的文件， 命令参数脚本。
+
+
+构建步骤：
+
+- 编写一个 dockerfile 文件
+- docker build 构建成为一个镜像
+- docker run 运行镜像
+- docker push 发布镜像（DockerHub、阿里云镜像仓库）
+
+### DockerFile 构建过程
+
+**基础知识**：
+
+- 每个保留关键字(指令)都是必须是大写字母
+- 执行从上到下顺序执行
+- #表示注释
+- 每一个指令都会创建提交一个镜像层， 并提交
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1624783111892.png)
+
+
+dockerfile 是面向开发的， 我们以后要发布项目， 做镜像， 就需要编写dockerfile文件。
 
 
 
