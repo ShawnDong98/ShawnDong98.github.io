@@ -458,6 +458,25 @@ CMD 和 ENTRYPOINT 的区别
 - CMD： 指定这个容器启动的时候要运行的命令， 只有最后一个会生效， 可被替代
 - ENTRYPOINT： 指定这个容器启动的时候要运行的命令，可以追加命令
 
+
+### 实战
+
+准备镜像文件， tomcat压缩包， 
+
+创建Dockerfile ， 官方命名
+
+```
+FROM centos
+MAINTAINER ShawnD<ShawnDong98@gmail.com>
+
+COPY readme.txt /use/local/readme.txt
+
+ADD jdk-8ull-linux-x64.tar.gz /usr/local/
+ADD apache-tomcat-9.0.22.tar.gz /usr/local/
+```
+
+ADD 命令会自动解压
+
 ## Docker 网络
 
 
