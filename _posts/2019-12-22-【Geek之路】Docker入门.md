@@ -334,8 +334,16 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx nginx
 
 所有docker容器内的卷， 没有指定目录的情况下都是在： `/var/lib/docker/volumes/xxxx/_data`
 
-我们通过具名挂载可以方便的找到。
+我们通过具名挂载可以方便的找到一个卷， 大多数情况使用 `具名挂载`。
 
+
+如何确定具名挂载还是匿名挂载
+
+```
+-v	容器内路径		# 匿名挂载
+-v 卷名：容器内路径		# 具名挂载
+-v ./宿主机路径: 容器内路径		# 指定路径挂载
+```
 
 
 ## DockerFile
