@@ -573,6 +573,16 @@ sudo distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 ```
 
 
+更新包列表之后， 安装 `nvidia-docker2`  包和依赖
+
+```
+sudo apt-get update
+```
+
+```
+sudo apt-get install -y nvidia-docker2
+```
+
 
 ## 开通阿里云容器镜像服务
 
