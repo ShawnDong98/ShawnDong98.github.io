@@ -16,6 +16,28 @@ tags:
 
 ## Docker 架构
 
+### 镜像是什么
+
+镜像包含软件所需的所有内容， 包括代码、库、环境变量和配置文件。
+
+
+所有应用直接打包docker镜像， 就可以直接运行起来。
+
+如何获取镜像
+
+ - 从远程仓库下载
+ - 拷贝
+ - 自己制作一个镜像 DockerFile
+
+### Docker 镜像加载原理
+
+> UnionFS(联合文件系统)
+
+bootfs
+
+
+rootfs
+
 ## 镜像命令
 
 ### docker images
@@ -227,10 +249,48 @@ docker attach 容器id
 ### 从容器内拷贝文件到主机上
 
 ```
-docker cp 容器id:容器内路径 
+docker cp 容器id:容器内路径 主机路径
 ```
 
 拷贝是一个手动过程，未来我们可以使用 -v 卷的计数， 可以实现目录互通。
+
+
+## 可视化
+
+
+### portainer
+
+
+Docker 图形化界面管理工具， 提供一个后台面板供我们操作。
+
+## commit 镜像
+
+docker commit 提交容器称为一个新的副本
+
+命令和git类似
+
+```
+docker commit -m="提交的描述信息" -a="作者" 容器id 目标镜像名：[TAG]
+```
+
+实战测试：
+
+启动一个默认的tomcat
+
+发现这个默认的 tomcat 没有 webapps 应用， 镜像的原因， 官方的镜像默认 webapps 下面是没有文件的！
+
+自己拷进去基本的文件
+
+将我们操作过的容器通过 commit 提交为镜像， 我们以后就使用修改过的镜像即可。
+
+## 容器数据卷
+
+
+## DockerFile
+
+
+## Docker 网络
+
 
 
 # ubuntu 配置 Nvida-Docker
