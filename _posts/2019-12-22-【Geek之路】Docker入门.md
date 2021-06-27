@@ -349,7 +349,7 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx nginx
 
 通过 -v 容器内路径:ro rw 改变读写权限
  
-- ro： read only 只读
+- ro： read only 只读， 只能通过宿主机操作， 容器内部无法操作
 - rw： read write 可读可写
 
 一旦设置了容器权限， 容器对挂在出来的内容就有限定了
@@ -360,6 +360,28 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx
 ```
 
 ## DockerFile
+
+DockerFile 用来构建 docker 镜像的构建文件， 命令脚本。
+
+通过这个脚本可以生成镜像， 镜像是一层一层的， 脚本一个个的命令， 每个命令都是一层。
+
+```
+# 创建一个dockerfile文件， 名字可以随机 建议 Dockerfile
+# 文件中的内容 指令(大写) 参数
+FROM centos
+
+VOLUME ["/volume01", "/volume02"]
+
+CMD echo "----end----"
+
+CMD /bin/bash
+
+# 这里的每一个命令就是镜像的一层
+```
+
+
+
+
 
 
 ## Docker 网络
