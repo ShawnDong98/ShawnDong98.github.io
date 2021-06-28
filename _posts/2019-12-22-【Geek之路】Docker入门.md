@@ -835,7 +835,28 @@ docker login --username=**** registry.cn-shanghai.aliyuncs.com
 
 用于登录的用户名为阿里云账号全名，密码为开通服务时设置的密码。
 
-## Reference
+
+## 阿里云镜像加速器
+
+针对Docker客户端版本大于 1.10.0 的用户
+
+您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器
+
+
+```
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://out9gaoc.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+
+
+# Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
 3. [手把手超详细操作说明](https://tianchi.aliyun.com/competition/entrance/231759/tab/174?spm=5176.12281978.0.0.37721a4a3S5tas)
