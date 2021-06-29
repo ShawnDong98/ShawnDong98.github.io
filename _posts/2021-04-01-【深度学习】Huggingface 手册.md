@@ -1208,6 +1208,35 @@ model = AutoModelForSequenceClassification.from_pretrained(checkpoint, num_label
 
 您将注意到，与第2章不同的是，在实例化这个预训练模型后，您会得到一个警告。这是因为BERT没有进行过句子对分类的预训练，所以我们放弃了预训练模型的head，而添加了一个新的适合序列分类的head。这些警告表明，一些权重没有被使用(预训练的head的权重被丢弃)，而另一些则被随机初始化(用于新head的权重)。
 
+一旦我们有了我们的模型，我们就可以通过传递到目前为止构建的所有目标来定义 **Trainer** —— **model**、**training_args**、**training** 和**validation datasets**、**data_collator** 和 **tokenizer**。
+
+
+```python
+from transformers import Trainer
+
+trainer = Trainer(
+    model,
+    training_args,
+    train_dataset=tokenized_datasets["train"],
+    eval_dataset=tokenized_datasets["validation"],
+    data_collator=data_collator,
+    tokenizer=tokenizer,
+)
+```
+
+请注意，当您像我们在这里所做的那样传递 **tokenizer** 时，**Trainer** 使用的默认 **data_collator** 将是前面定义的**DataCollatorWithPadding**，因此您可以跳过这个调用中的 **data collator=data collator** 这一行。
+
+要微调数据集上的模型，我们只需要调用 **Trainer** 的 **train** 方法：
+
+```python
+trainer.train()
+```
+
+这将开始微调(在GPU上应该需要几分钟)，并每500步报告训练损失。然而，它不会告诉您您的模型运行得有多好(或多差)。这是因为:
+
+- 我们没有告诉 **Trainer** 在训练期间进行评估， 通过将 **evaluation_strategy** 设置为 **“steps”**(每个eval步骤评估)或 **“epoch”** (在每个epoch的末尾评估)来进行评估。
+- 我们没有为 **Trainer** 提供一个 **compute_metrics** 函数来在评估期间计算度量(否则评估就会打印出损失，这不是一个非常直观的数字)。
+
 
 # GET STARTED
 
