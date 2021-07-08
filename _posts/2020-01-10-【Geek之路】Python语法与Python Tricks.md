@@ -1066,6 +1066,16 @@ with open('data.csv', 'r') as f:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1623858642188.png)
 
+## capitalize()
+
+Python capitalize()将字符串的第一个字母变成大写,其他字母变小写。
+
+capitalize()方法语法：
+
+```
+str.capitalize()
+```
+
 # os
 
 
