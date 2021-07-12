@@ -214,7 +214,7 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://developer.huawei.com/consumer/cn/activity/digixActivity/digixdetail/201621215957378831](https://developer.huawei.com/consumer/cn/activity/digixActivity/digixdetail/201621215957378831)
 
-## CAAI 中国人工智能协会
+## CAAI 中国人工智能协会（2021）
 
 [http://2021aichina.caai.cn/](http://2021aichina.caai.cn/)
 
