@@ -218,6 +218,10 @@ PubMed Central (PMC)链接：PubMed Central
 
 [http://2021aichina.caai.cn/](http://2021aichina.caai.cn/)
 
+## 芒果TV
+
+[https://challenge.ai.mgtv.com/home](https://challenge.ai.mgtv.com/home)
+
 ## 我的比赛
 
 **先导杯**
