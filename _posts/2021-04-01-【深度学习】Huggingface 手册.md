@@ -1272,6 +1272,31 @@ trainer = BpeTrainer(special_tokens=["[UNK]", "[CLS]", "[SEP]", "[PAD]", "[MASK]
 
 我们可以现在训练我们的tokenizer， 但这不会是最优的。 如果不是用 pre-tokenizer 将会将我们的输入拆分成词， 我们可能得到几个重叠的词： 比如我们可能得到 `it is` token 因为这两个词通常会相邻出现。使用 pre-tokenizer 将确保没有 token 会比 pre-tokenizer 返回的词更大。这里我们想要训练一个 subword BPE tokenizer， 以及我们将要通过空格分割使用一个尽可能最简单的 pre-tokenizer。
 
+```python
+from tokenizers.pre_tokenizers import Whitespace
+
+tokenizer.pre_tokenizer = Whitespace()
+```
+
+现在， 我们可以使用任意我们想要使用的文件列表调用 `train()` 方法：
+
+```python
+files = [f"data/wikitext-103-raw/wiki.{split}.raw" for split in ["test", "train", "valid"]]
+tokenizer.train(files, trainer)
+```
+
+保存所有的配置和词典到一个文件， 可以使用 `save()` 方法：
+
+```python
+tokenizer.save("data/tokenizer-wiki.json")
+```
+
+也可以使用 `from_file()` 方法从文件加载 tokenizer：
+
+```python
+tokenizer = Tokenizer.from_file("data/tokenizer-wiki.json")
+```
+
 
 
 
