@@ -1238,6 +1238,44 @@ trainer.train()
 - 我们没有为 **Trainer** 提供一个 **compute_metrics** 函数来在评估期间计算度量(否则评估就会打印出损失，这不是一个非常直观的数字)。
 
 
+
+# Tokenizer Doc
+
+## Training the tokenizer
+
+我们使用  Byte-Pair Encoding (BPE) tokenizer。 
+
+- 从训练语料库中出现的所有 characters 作为 tokens 开始。
+- 识别最常见的tokens pair，并将其合并为一个token。
+- 重复， 直到 vocabulary 达到我们想要的大小
+
+主要的API是类 `Tokenizer`, 下面是如何实例化一个BPE模型：
+
+```python
+from tokenizers import Tokenizer
+from tokenizers.models import BPE
+
+tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
+```
+
+为了训练tokenizer， 我们需要实例化一个 `trainer`， 在这里使用 `BpeTrainer`：
+
+```
+from tokenizers.trainers import BpeTrainer
+
+trainer = BpeTrainer(special_tokens=["[UNK]", "[CLS]", "[SEP]", "[PAD]", "[MASK]"])
+```
+
+我们可以设置训练参数 `vocab_size` 或 `min_frequency`（这里它们的默认值是30000和0）。 最重要的部分是我们之后会用到的 `special_tokens`。
+
+**Note： special token的顺序非常重要， 这里 `[UNK]` 将会得到ID 0， `[CLS]` 将会得到ID 1， 以此类推**
+
+我们可以现在训练我们的tokenizer， 但这不会是最优的。 如果不是用 pre-tokenizer 将会将我们的输入拆分成词， 我们可能得到几个重叠的词： 比如我们可能得到 `it is` token 因为这两个词通常会相邻出现。使用 pre-tokenizer 将确保没有 token 会比 pre-tokenizer 返回的词更大。这里我们想要训练一个 subword BPE tokenizer， 以及我们将要通过空格分割使用一个尽可能最简单的 pre-tokenizer。
+
+
+
+
+
 # GET STARTED
 
 ## 安装
