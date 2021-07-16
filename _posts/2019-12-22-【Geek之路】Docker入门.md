@@ -542,14 +542,14 @@ apt-get install gcc
 
 ### 安装JDK：
 
-首先要先下载Oracle的 jdk-8u291-linux-x64.tar.gz 包， 这里需要注册账号， 最好下一次保存好。
+首先要先下载Oracle的 [jdk-8u291-linux-x64.tar.gz]() 包， 这里需要注册账号， 最好下一次保存好。
 
 
 
 解压安装包到指定位置
 
 ```
-tar –xvf jdk-xxx.tar.gz –C /usr/local # 位置看个人习惯
+tar –xvf jdk-8u291-linux-x64.tar.gz –C /usr/local # 位置看个人习惯
 ```
 
 修改配置环境
