@@ -559,7 +559,7 @@ vim /etc/profile
 添加环境变量
 
 ```
-tar –xvf jdk-8u291-linux-x64.tar.gz -C /usr/local # 位置看个人习惯
+tar -xvf jdk-8u291-linux-x64.tar.gz -C /usr/local # 位置看个人习惯
 ```
 
 # ubuntu 配置 Nvida-Docker
