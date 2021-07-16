@@ -544,6 +544,8 @@ apt-get install gcc
 
 首先要先下载Oracle的JDK包， 这里需要注册账号， 最好下一次保存好。
 
+jdk-8u291-linux-x64.tar.gz
+
 解压安装包到指定位置
 
 ```
