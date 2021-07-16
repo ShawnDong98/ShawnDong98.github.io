@@ -529,6 +529,25 @@ docker push image:tag
 参考官方地址
 
 
+
+## docker 安装 GCC 和 Java JRE
+
+安装gcc：
+
+```
+apt-get update 
+
+apt-get install gcc
+```
+
+安装jre：
+
+```
+apt-get update 
+
+apt-get install default-jre
+``
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
