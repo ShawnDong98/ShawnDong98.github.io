@@ -532,7 +532,7 @@ docker push image:tag
 
 ## docker 安装 GCC 和 JDK
 
-安装gcc：
+### 安装gcc：
 
 ```
 apt-get update 
@@ -540,13 +540,27 @@ apt-get update
 apt-get install gcc
 ```
 
-安装jre：
+### 安装JDK：
+
+首先要先下载Oracle的JDK包， 这里需要注册账号， 最好下一次保存好。
+
+解压安装包到指定位置
 
 ```
-apt-get update 
+tar –xvf jdk-xxx.tar.gz –C /usr/local # 位置看个人习惯
+```
 
-apt-get install default-jre
-``
+修改配置环境
+
+```
+vim /etc/profile
+```
+
+添加环境变量
+
+```
+tar –xvf jdk-8u291-linux-x64.tar.gz -C /usr/local # 位置看个人习惯
+```
 
 # ubuntu 配置 Nvida-Docker
 
