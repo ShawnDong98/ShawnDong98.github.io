@@ -561,7 +561,10 @@ vim /etc/profile
 添加环境变量
 
 ```
-tar -xvf jdk-8u291-linux-x64.tar.gz -C /usr/local # 位置看个人习惯
+ JAVA_HOME=/usr/local/jdk1.8.0_291
+ CLASSPATH=.:$JAVA_HOME/lib.tools.jar
+ PATH=$JAVA_HOME/bin:$PATH
+ export JAVA_HOME CLASSPATH PATH
 ```
 
 # ubuntu 配置 Nvida-Docker
