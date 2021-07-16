@@ -530,7 +530,7 @@ docker push image:tag
 
 
 
-## docker 安装 GCC 和 Java JRE
+## docker 安装 GCC 和 JDK
 
 安装gcc：
 
