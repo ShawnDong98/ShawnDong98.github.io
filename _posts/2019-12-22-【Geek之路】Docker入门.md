@@ -567,6 +567,18 @@ vim /etc/profile
  export JAVA_HOME CLASSPATH PATH
 ```
 
+重新加载 `/etc/prifile` 配置文件
+
+```
+source /etc/profile
+```
+
+查看 java 版本
+
+```
+java -version
+```
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
