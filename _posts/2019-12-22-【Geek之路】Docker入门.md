@@ -911,6 +911,7 @@ sudo systemctl restart docker
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
 3. [手把手超详细操作说明](https://tianchi.aliyun.com/competition/entrance/231759/tab/174?spm=5176.12281978.0.0.37721a4a3S5tas)
 4. [重新安装Docker出现E: Sub-process /usr/bin/dpkg returned an error code (1)](https://blog.csdn.net/M82_A1/article/details/92186791)
+5. [Ubuntu安装java](https://www.cnblogs.com/ziyue7575/p/13898610.html)
 
 
 
