@@ -1431,6 +1431,11 @@ tokenizer.post_processor = TemplateProcessing(
 
 与 pre-tokenizer 和 normalizer 不同的是， 你在修改 post-processor 后， 不需要重新训练一个 tokenizer。 
 
+在整个 pipeline 之后， 我们有时在一个 tokenized string 送入模型之前 想要插入 一些特殊的 tokens， 比如 `[CLS] My horse is amazing [SEP]`。 `PostProcessor` 负责完成这件事。
+
+
+`TemplateProcessing` 让你很容易地模板化post processing， 增加 special tokens， 和为每个 sequence/special token 指定 `type_id`。 模板提供了两个字符串，分别代表单个序列和序列对，以及一组要使用的特殊 tokens。
+
 
 ## All together: a BERT tokenizer from scratch
 
