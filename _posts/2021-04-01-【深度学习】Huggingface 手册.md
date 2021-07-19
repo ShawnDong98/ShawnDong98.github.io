@@ -1372,6 +1372,16 @@ pre_tokenizer.pre_tokenize_str("Call 911!")
 # [("Call", (0, 4)), ("9", (5, 6)), ("1", (6, 7)), ("1", (7, 8)), ("!", (8, 9))]
 ```
 
+就像我们在 Quicktour 看到的， 你可以通过改变对应的 attribute 定制化一个 `Tokenizer` 的 pre-tokenizer。 
+
+```python
+tokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizerv
+```
+
+
+
+
+
 
 
 
