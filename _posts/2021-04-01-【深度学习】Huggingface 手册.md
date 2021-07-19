@@ -1335,6 +1335,22 @@ from tokenizers.normalizers import NFD, StripAccents
 normalizer = normalizers.Sequence([NFD(), StripAccents()])
 ```
 
+你可以在任意字符串上测试 normalizer。
+
+当建立一个 `Tokenizer`， 你可以通过改变相应的 attribute 定制化 normalizer。
+
+```python
+tokenizer.normalizer = normalizer
+```
+
+当然， 如果你更换了一个 tokenizer 的 normalization， 你应该从头训练 tokenizer。
+
+### Pre-Tokenization
+
+Pre-tokenization 是将文本拆分成更小的 objects 的方式， 它给出了你的 tokens 在训练时的上界。 一个很好的方式是将你的文本拆分成 "words"， 然后你最终的 tokens 将会是这些 words 中的一部分。
+
+
+
 
 
 
