@@ -1563,6 +1563,8 @@ trainer = trainers.UnigramTrainer(
 )
 ```
 
+这个 tokenizer 基于 `Unigram` 模型。  它使用 NFKC Unicode normalization 方法规范化输入， 并且使用 `ByteLevel` pre-tokenizer 作为相应的解码器。
+
 # GET STARTED
 
 ## 安装
