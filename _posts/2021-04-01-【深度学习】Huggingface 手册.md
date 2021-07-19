@@ -1375,11 +1375,10 @@ pre_tokenizer.pre_tokenize_str("Call 911!")
 就像我们在 Quicktour 看到的， 你可以通过改变对应的 attribute 定制化一个 `Tokenizer` 的 pre-tokenizer。 
 
 ```python
-tokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizertokenizer.pre_tokenizer = pre_tokenizerv
+tokenizer.pre_tokenizer = pre_tokenizer
 ```
 
-
-
+当然， 如果你更换了一个 tokenizer 的 pre-tokenizer,， 你应该从头训练 tokenizer。
 
 
 
