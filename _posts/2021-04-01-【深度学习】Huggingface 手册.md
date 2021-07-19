@@ -1326,7 +1326,14 @@ output = tokenizer.encode("Hello, y'all! How are you 😁 ?")
 
 Normalization 是你应用在原始字符串上的一系列操作， 使得它更少的随机性或者更干净。通常的操作包括 stripping whitespace， removing accented characters 或者 lowercasing all text。 如果你熟悉 Unicode normalization， 它也是应用在大多数tokenizers中的非常常见的规范化操作。
 
+在 Tokenizer 库中每个规范化操作被表示为一个 `Normalizer`， 并且你可以使用一个 `Sequence` 组合它们。 下面是一个使用  NFD Unicode normalization 和  removing accents 的例子：
 
+```
+from tokenizers import normalizers
+from tokenizers.normalizers import NFD, StripAccents
+
+normalizer = normalizers.Sequence([NFD(), StripAccents()])
+```
 
 
 
