@@ -1615,6 +1615,31 @@ def batch_iterator(batch_size=1000):
 tokenizer.train_from_iterator(batch_iterator(), trainer=trainer, length=len(dataset))
 ```
 
+### Using gzip files
+
+因为Python中的gzip文件可以用作迭代器，所以训练这些文件非常简单：
+
+```python
+import gzip
+
+with gzip.open("data/my-file.0.gz", "rt") as f:
+    tokenizer.train_from_iterator(f, trainer=trainer)
+```
+
+如果我们想要训练 gzip 文件， 会稍微复杂一点：
+
+```python
+files = ["data/my-file.0.gz", "data/my-file.1.gz", "data/my-file.2.gz"]
+
+def gzip_iterator():
+    for path in files:
+        with gzip.open(path, "rt") as f:
+            for line in f:
+                yield line
+
+tokenizer.train_from_iterator(gzip_iterator(), trainer=trainer)
+```
+
 
 
 # GET STARTED
