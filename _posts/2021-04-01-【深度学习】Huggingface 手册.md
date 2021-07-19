@@ -1584,6 +1584,31 @@ data = [
 tokenizer.train_from_iterator(data, trainer=trainer)
 ```
 
+也可以使用 `List`、`Tuple` 或者 `np.,array`。
+
+
+### Using the Datasets library
+
+使用 huggingface 的 datasets 库
+
+```python
+import datasets
+
+dataset = datasets.load_dataset(
+    "wikitext", "wikitext-103-raw-v1", split="train+test+validation"
+)
+```
+
+下一步是在此数据集上构造迭代器：
+
+```python
+def batch_iterator(batch_size=1000):
+    for i in range(0, len(dataset), batch_size):
+        yield dataset[i : i + batch_size]["text"]
+```
+
+为了提高效率，我们实际上可以提供一批用于训练的样本，而不是逐个迭代它们。
+
 # GET STARTED
 
 ## 安装
