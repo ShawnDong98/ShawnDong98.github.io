@@ -1380,6 +1380,15 @@ tokenizer.pre_tokenizer = pre_tokenizer
 
 当然， 如果你更换了一个 tokenizer 的 pre-tokenizer， 你应该从头训练 tokenizer。
 
+
+**ByteLevel**
+
+在将所有字节重新映射到一组可见字符，按空格分割。由OpenAI GPT-2引入， 它有以下优势：
+
+- 因为它是在字节上映射的，所以使用它的 tokenizer 只需要256个字符作为初始字母(一个字节可以拥有的值的数量)，而不是13万多个Unicode字符。
+- 没有必要使用 `UNK` token， 因为我们可以用 256 个 tokens 表达任何东西。
+- 对于完全不可读的非 ascii 字符， 它依然可以工作。
+
 ### The Model
 
 一旦输入文本完成了 normalize 和 pre-tokenize， `Tokenizer` 在 pre-tokens 上使用 mdoel。 这是你的语料库中需要训练的部分。
