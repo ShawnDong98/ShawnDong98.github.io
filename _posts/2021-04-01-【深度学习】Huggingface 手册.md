@@ -1565,6 +1565,25 @@ trainer = trainers.UnigramTrainer(
 
 这个 tokenizer 基于 `Unigram` 模型。  它使用 NFKC Unicode normalization 方法规范化输入， 并且使用 `ByteLevel` pre-tokenizer 作为相应的解码器。
 
+
+### The most basic way
+
+最简单的方法是使用一个 `List`：
+
+```python
+# First few lines of the "Zen of Python" https://www.python.org/dev/peps/pep-0020/
+data = [
+    "Beautiful is better than ugly."
+    "Explicit is better than implicit."
+    "Simple is better than complex."
+    "Complex is better than complicated."
+    "Flat is better than nested."
+    "Sparse is better than dense."
+    "Readability counts."
+]
+tokenizer.train_from_iterator(data, trainer=trainer)
+```
+
 # GET STARTED
 
 ## 安装
