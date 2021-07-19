@@ -1460,6 +1460,23 @@ from tokenizers.pre_tokenizers import Whitespace
 bert_tokenizer.pre_tokenizer = Whitespace()
 ```
 
+使用我们之前见到的模板 post-processing：
+
+```python
+from tokenizers.processors import TemplateProcessing
+
+bert_tokenizer.post_processor = TemplateProcessing(
+    single="[CLS] $A [SEP]",
+    pair="[CLS] $A [SEP] $B:1 [SEP]:1",
+    special_tokens=[
+        ("[CLS]", 1),
+        ("[SEP]", 2),
+    ],
+)
+```
+
+
+
 # GET STARTED
 
 ## 安装
