@@ -1241,7 +1241,10 @@ trainer.train()
 
 # Tokenizer Doc
 
-## Training the tokenizer
+
+## Quicktour
+
+### Training the tokenizer
 
 我们使用  Byte-Pair Encoding (BPE) tokenizer。 
 
@@ -1296,6 +1299,19 @@ tokenizer.save("data/tokenizer-wiki.json")
 ```python
 tokenizer = Tokenizer.from_file("data/tokenizer-wiki.json")
 ```
+
+
+### Using the tokenizer
+
+
+现在我们已经训练了一个 tokenizer， 我们可以在使用它的 ` encode()` 方法 处理任意文本。
+
+```python
+output = tokenizer.encode("Hello, y'all! How are you 😁 ?")
+```
+
+
+## Tokenization pipeline
 
 
 
