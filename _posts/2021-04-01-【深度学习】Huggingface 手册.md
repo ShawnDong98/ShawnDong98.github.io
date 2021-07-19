@@ -1389,6 +1389,10 @@ tokenizer.pre_tokenizer = pre_tokenizer
 - 没有必要使用 `UNK` token， 因为我们可以用 256 个 tokens 表达任何东西。
 - 对于完全不可读的非 ascii 字符， 它依然可以工作。
 
+Input: `"Hello my friend, how are you?"`
+
+Ouput: `"Hello", "Ġmy", Ġfriend", ",", "Ġhow", "Ġare", "Ġyou", "?"`
+
 ### The Model
 
 一旦输入文本完成了 normalize 和 pre-tokenize， `Tokenizer` 在 pre-tokens 上使用 mdoel。 这是你的语料库中需要训练的部分。
