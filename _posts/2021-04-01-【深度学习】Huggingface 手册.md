@@ -1382,7 +1382,11 @@ tokenizer.pre_tokenizer = pre_tokenizer
 
 ### The Model
 
-一旦输入文本完成了 normalize 和 pre-tokenize， `Tokenizer` 在 pre-tokens 上使用 mdoel。 这是你的语料库中需要训练的部分
+一旦输入文本完成了 normalize 和 pre-tokenize， `Tokenizer` 在 pre-tokens 上使用 mdoel。 这是你的语料库中需要训练的部分。
+
+model 的作用是使用它学到的规则，将你的单词分解成 tokens。它还负责将这些 tokens 映射到模型词汇表对应的IDs。
+
+
 
 
 
