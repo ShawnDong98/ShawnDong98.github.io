@@ -1504,7 +1504,26 @@ tokenizer.decode([1, 27253, 16, 93, 11, 5097, 5, 7961, 5112, 6218, 0, 35, 2])
 # "Hello , y ' all ! How are you ?"
 ```
 
-如果你使用增加特殊 characters 来表示 给定 word 的 subtokens 的 model（想 WordPiece 中的 `##`）， 你需要定制化 decoder 合理地处理它们。 
+如果你使用增加特殊 characters 来表示 给定 word 的 subtokens 的 model（想 WordPiece 中的 `##`）， 你需要定制化 decoder 合理地处理它们。 如果我们使用我们之前的 `bert_tokenizer` ， 默认解码如下：
+
+```python
+output = bert_tokenizer.encode("Welcome to the 🤗 Tokenizers library.")
+print(output.tokens)
+# ["[CLS]", "welcome", "to", "the", "[UNK]", "tok", "##eni", "##zer", "##s", "library", ".", "[SEP]"]
+
+bert_tokenizer.decode(output.ids)
+# "welcome to the tok ##eni ##zer ##s library ."
+```
+
+通过改变它为一个合适的decoder， 我们得到：
+
+```python
+from tokenizers import decoders
+
+bert_tokenizer.decoder = decoders.WordPiece()
+bert_tokenizer.decode(output.ids)
+# "welcome to the tokenizers library."
+```
 
 # GET STARTED
 
