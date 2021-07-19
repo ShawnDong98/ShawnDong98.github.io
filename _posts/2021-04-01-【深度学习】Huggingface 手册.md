@@ -1396,10 +1396,15 @@ model 在初始化 Tokenizer 时被传递，因此您应该已经知道如何自
 
 **WordLevel**
 
-这是经典的tokenization算法。 它允许您简单地将单词映射到id，而不需要任何花哨的东西。这种方法的优点是使用和理解非常简单，但是它需要非常大的词汇表来实现良好的覆盖。
+这是经典的tokenization算法。 它允许您简单地将单词映射到id，而不需要任何花哨的东西。这种方法的优点是使用和理解非常简单，但是它需要非常大的词汇表来实现良好的覆盖。使用这个 `Model` 需要使用 `PreTokenizer`。 
 
 **BPE**
 
+最受欢迎的 subword tokenization 算法之一。 Byte-Pair-Encoding 由 characters 开始， 将最频繁一起出现的 characters 拼在一起， 创建出新的 tokens。 它然后迭代地创建新的tokens。BPE能够通过使用多个 subword tokens 来构建它从未见过的单词，因此需要更小的词汇表，拥有unk(unknown) tokens 的机会更小。
+
+**WordPiece**
+
+这是一个和 BPE 非常相似的 subword tokenization 算法， 通常由 Google 使用， 比如 BERT。 它使用一种贪婪算法， 尝试先构建一个长的 words， 当整个 words 不存在词汇表时， 将它拆分为多个 tokens。 它不同于 BPE 从 characers 开始， 尽可能地创建大的 tokens。 它使用著名的 `##` 前缀， 确定 tokens 是一个 word 的一部分。
 
 
 
