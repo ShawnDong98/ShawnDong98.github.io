@@ -1607,7 +1607,15 @@ def batch_iterator(batch_size=1000):
         yield dataset[i : i + batch_size]["text"]
 ```
 
-为了提高效率，我们实际上可以提供一批用于训练的样本，而不是逐个迭代它们。
+为了提高效率，我们实际上可以提供一批用于训练的样本，而不是逐个迭代它们。通过这样做，我们可以期望得到与直接从文件中训练时非常相似的性能。
+
+迭代器好了之后， 我们需要的近视开始训练。 为了使进度条更好看， 我们可以指定数据集的长度：
+
+```python
+tokenizer.train_from_iterator(batch_iterator(), trainer=trainer, length=len(dataset))
+```
+
+
 
 # GET STARTED
 
