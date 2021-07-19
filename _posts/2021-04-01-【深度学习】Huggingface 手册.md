@@ -1412,10 +1412,24 @@ model 在初始化 Tokenizer 时被传递，因此您应该已经知道如何自
 Unigram 也是一个 subword tokenization 算法， 通过尝试识别最佳 subword tokens 集来最大化给定句子的可能性。这与BPE的不同之处在于，它不是基于一组顺序应用的规则而确定的。相反，Unigram将能够计算多种tokenizing 方式，同时选择最可能的一种。
 
 
+### Post-Processing
+
+Post-processing 是 Tokenization pipeline 的最后一步， 在 `Encoding` 返回之前执行一个额外的变换， 比如增加特殊的 tokens。
 
 
+如我们在 quik tour 所见， 我们可以通过设定相关的 attribute 定制化一个 `Tokenizer` 的 post processor。 
 
+```python
+from tokenizers.processors import TemplateProcessing
 
+tokenizer.post_processor = TemplateProcessing(
+    single="[CLS] $A [SEP]",
+    pair="[CLS] $A [SEP] $B:1 [SEP]:1",
+    special_tokens=[("[CLS]", 1), ("[SEP]", 2)],
+)
+```
+
+与 pre-tokenizer 和 normalizer 不同的是， 你在修改 post-processor 后， 不需要重新训练一个 tokenizer。 
 
 
 # GET STARTED
