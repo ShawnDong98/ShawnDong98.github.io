@@ -1449,7 +1449,7 @@ Output: `"[CLS] I like this [SEP] but not this [SEP]"`
 
 
 
-## All together: a BERT tokenizer from scratch
+### All together: a BERT tokenizer from scratch
 
 让我们将它们放在一起构造一个 BERT tokenizer。 首先， BERT 依赖于 WordPiece， 因此我们使用这个 model 实例化一个新的 `Tokenizer`：
 
@@ -1540,6 +1540,27 @@ from tokenizers import decoders
 bert_tokenizer.decoder = decoders.WordPiece()
 bert_tokenizer.decode(output.ids)
 # "welcome to the tokenizers library."
+```
+
+## Using Tokenizers
+
+在 Quicktour 中， 我们看到了使用文本文件如何构造和训练一个 tokenizer， 实际上我们可以使用任意的 python 迭代器。
+
+下面的例子，我们将使用相同的 `Tokenizer` 和 `Trainer`， 构造如下：
+
+```python
+from tokenizers import Tokenizer, models, normalizers, pre_tokenizers, decoders, trainers
+
+tokenizer = Tokenizer(models.Unigram())
+tokenizer.normalizer = normalizers.NFKC()
+tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel()
+tokenizer.decoders = decoders.ByteLevel()
+
+trainer = trainers.UnigramTrainer(
+    vocab_size=20000,
+    initial_alphabet=pre_tokenizers.ByteLevel.alphabet(),
+    special_tokens=["<PAD>", "<BOS>", "<EOS>"],
+)
 ```
 
 # GET STARTED
