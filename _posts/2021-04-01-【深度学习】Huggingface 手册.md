@@ -1475,7 +1475,19 @@ bert_tokenizer.post_processor = TemplateProcessing(
 )
 ```
 
+如我们在 Quicktour 所见训练 tokenizer：
 
+```python
+from tokenizers.trainers import WordPieceTrainer
+
+trainer = WordPieceTrainer(
+    vocab_size=30522, special_tokens=["[UNK]", "[CLS]", "[SEP]", "[PAD]", "[MASK]"]
+)
+files = [f"data/wikitext-103-raw/wiki.{split}.raw" for split in ["test", "train", "valid"]]
+bert_tokenizer.train(files, trainer)
+
+bert_tokenizer.save("data/bert-wiki.json")
+```
 
 # GET STARTED
 
