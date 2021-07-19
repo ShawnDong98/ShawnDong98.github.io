@@ -1432,6 +1432,34 @@ tokenizer.post_processor = TemplateProcessing(
 与 pre-tokenizer 和 normalizer 不同的是， 你在修改 post-processor 后， 不需要重新训练一个 tokenizer。 
 
 
+## All together: a BERT tokenizer from scratch
+
+让我们将它们放在一起构造一个 BERT tokenizer。 首先， BERT 依赖于 WordPiece， 因此我们使用这个 model 实例化一个新的 `Tokenizer`：
+
+```python
+from tokenizers import Tokenizer
+from tokenizers.models import WordPiece
+
+bert_tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
+```
+
+然后BERT 通过 removing accents 和 lowercasing 预处理文本。 我们使用一个 unicode normalizer：
+
+```python
+from tokenizers import normalizers
+from tokenizers.normalizers import Lowercase, NFD, StripAccents
+
+bert_tokenizer.normalizer = normalizers.Sequence([NFD(), Lowercase(), StripAccents()])
+```
+
+pre-tokenizer 通过 whitespace 和 punctuation 拆分：
+
+```python
+from tokenizers.pre_tokenizers import Whitespace
+
+bert_tokenizer.pre_tokenizer = Whitespace()
+```
+
 # GET STARTED
 
 ## 安装
