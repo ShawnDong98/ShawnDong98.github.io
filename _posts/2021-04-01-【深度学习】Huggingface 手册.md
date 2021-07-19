@@ -1407,6 +1407,11 @@ model 在初始化 Tokenizer 时被传递，因此您应该已经知道如何自
 这是一个和 BPE 非常相似的 subword tokenization 算法， 通常由 Google 使用， 比如 BERT。 它使用一种贪婪算法， 尝试先构建一个长的 words， 当整个 words 不存在词汇表时， 将它拆分为多个 tokens。 它不同于 BPE 从 characers 开始， 尽可能地创建大的 tokens。 它使用著名的 `##` 前缀， 确定 tokens 是一个 word 的一部分。
 
 
+**Unigram**
+
+Unigram 也是一个 subword tokenization 算法， 通过尝试识别最佳 subword tokens 集来最大化给定句子的可能性。这与BPE的不同之处在于，它不是基于一组顺序应用的规则而确定的。相反，Unigram将能够计算多种tokenizing 方式，同时选择最可能的一种。
+
+
 
 
 
