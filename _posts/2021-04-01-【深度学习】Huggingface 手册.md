@@ -1489,6 +1489,21 @@ bert_tokenizer.train(files, trainer)
 bert_tokenizer.save("data/bert-wiki.json")
 ```
 
+### Decoding
+
+上面是编码输入文本， `Tokenizer` 也需要一个API解码， 它将 IDs 转换会 文本。 这由方法 `decode()` 和 `decode_batch()` 实现。
+
+decoder 将会首先将 IDs 映射回 tokens 并且 移除掉所有的 special tokens， 然后使用空格拼接这些tokens：
+
+```python
+output = tokenizer.encode("Hello, y'all! How are you 😁 ?")
+print(output.ids)
+# [1, 27253, 16, 93, 11, 5097, 5, 7961, 5112, 6218, 0, 35, 2]
+
+tokenizer.decode([1, 27253, 16, 93, 11, 5097, 5, 7961, 5112, 6218, 0, 35, 2])
+# "Hello , y ' all ! How are you ?"
+```
+
 # GET STARTED
 
 ## 安装
