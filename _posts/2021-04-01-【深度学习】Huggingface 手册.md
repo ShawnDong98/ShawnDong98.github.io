@@ -1436,6 +1436,18 @@ tokenizer.post_processor = TemplateProcessing(
 
 `TemplateProcessing` 让你很容易地模板化post processing， 增加 special tokens， 和为每个 sequence/special token 指定 `type_id`。 模板提供了两个字符串，分别代表单个序列和序列对，以及一组要使用的特殊 tokens。
 
+- single: `"[CLS] $A [SEP]"`
+- pair: `"[CLS] $A [SEP] $B [SEP]"`
+- special tokens:
+- - `"[CLS]"`
+- - `"[SEP]"`
+
+
+Input:  `("I like this", "but not this")`
+
+Output: `"[CLS] I like this [SEP] but not this [SEP]"`
+
+
 
 ## All together: a BERT tokenizer from scratch
 
