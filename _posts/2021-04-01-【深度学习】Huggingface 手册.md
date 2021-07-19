@@ -1361,7 +1361,16 @@ pre_tokenizer.pre_tokenize_str("Hello! How are you? I'm fine, thank you.")
 #  (",", (28, 29)), ("thank", (30, 35)), ("you", (36, 39)), (".", (39, 40))]
 ```
 
-你可以组合任意的 `PreTokenizer` 到一起。 例如， 这里有一个 pre-tokenizer， 它将按空格、标点符号和数字进行分割， 以单个数字分隔数字。
+你可以组合任意的 `PreTokenizer` 到一起。 例如， 这里有一个 pre-tokenizer， 它将按空格、标点符号和数字进行分割。
+
+```python
+from tokenizers import pre_tokenizers
+from tokenizers.pre_tokenizers import Digits
+
+pre_tokenizer = pre_tokenizers.Sequence([Whitespace(), Digits(individual_digits=True)])
+pre_tokenizer.pre_tokenize_str("Call 911!")
+# [("Call", (0, 4)), ("9", (5, 6)), ("1", (6, 7)), ("1", (7, 8)), ("!", (8, 9))]
+```
 
 
 
