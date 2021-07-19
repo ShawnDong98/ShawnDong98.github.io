@@ -1386,6 +1386,21 @@ tokenizer.pre_tokenizer = pre_tokenizer
 
 model 的作用是使用它学到的规则，将你的单词分解成 tokens。它还负责将这些 tokens 映射到模型词汇表对应的IDs。
 
+model 在初始化 Tokenizer 时被传递，因此您应该已经知道如何自定义这个部分。
+
+- BPE
+- Unigram
+- WordLevel
+- WordPiece
+
+
+**WordLevel**
+
+这是经典的tokenization算法。 它允许您简单地将单词映射到id，而不需要任何花哨的东西。这种方法的优点是使用和理解非常简单，但是它需要非常大的词汇表来实现良好的覆盖。
+
+**BPE**
+
+
 
 
 
