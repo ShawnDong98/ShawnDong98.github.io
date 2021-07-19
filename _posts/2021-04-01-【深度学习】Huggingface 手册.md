@@ -1349,7 +1349,19 @@ tokenizer.normalizer = normalizer
 
 Pre-tokenization 是将文本拆分成更小的 objects 的方式， 它给出了你的 tokens 在训练时的上界。 一个很好的方式是将你的文本拆分成 "words"， 然后你最终的 tokens 将会是这些 words 中的一部分。
 
+使用 空格 和 标点 将输入拆分是一种简单的 pre-tokenize 的方式， 它由 `Whitespace` pre-tokenizer实现：
 
+```python
+from tokenizers.pre_tokenizers import Whitespace
+
+pre_tokenizer = Whitespace()
+pre_tokenizer.pre_tokenize_str("Hello! How are you? I'm fine, thank you.")
+# [("Hello", (0, 5)), ("!", (5, 6)), ("How", (7, 10)), ("are", (11, 14)), ("you", (15, 18)),
+#  ("?", (18, 19)), ("I", (20, 21)), ("'", (21, 22)), ('m', (22, 23)), ("fine", (24, 28)),
+#  (",", (28, 29)), ("thank", (30, 35)), ("you", (36, 39)), (".", (39, 40))]
+```
+
+你可以组合任意的 `PreTokenizer`
 
 
 
