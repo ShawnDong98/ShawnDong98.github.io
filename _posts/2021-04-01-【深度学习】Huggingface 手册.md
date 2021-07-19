@@ -1378,8 +1378,11 @@ pre_tokenizer.pre_tokenize_str("Call 911!")
 tokenizer.pre_tokenizer = pre_tokenizer
 ```
 
-当然， 如果你更换了一个 tokenizer 的 pre-tokenizer,， 你应该从头训练 tokenizer。
+当然， 如果你更换了一个 tokenizer 的 pre-tokenizer， 你应该从头训练 tokenizer。
 
+### The Model
+
+一旦输入文本完成了 normalize 和 pre-tokenize， `Tokenizer` 在 pre-tokens 上使用 mdoel。 这是你的语料库中需要训练的部分
 
 
 
