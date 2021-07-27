@@ -61,3 +61,5 @@ tags:
 针对不同的下游任务， 对模型只需做出最小的更改。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1627383271685.png)
+
+对于Textual entailment， 拼接 premise $p$ 和 hypothesis $h$ token 序列， 在他们之间使用 token `$`分隔。 
