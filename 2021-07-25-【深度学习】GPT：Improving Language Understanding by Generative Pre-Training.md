@@ -41,3 +41,10 @@ tags:
 **Unsupervised pre-training** 一些方法使用来自于预训练的语言模型或者机器翻译模型中的隐表征作为在目标任务上训练一个监督模型的辅助特征。这种方法会给下游任务带来更多地参数， 而我们的方法仅对下游任务进行最小的更改。
 
 **Auxiliary training objectives** 增加辅助的无监督训练目标是半监督学习的另一种形式。
+
+
+# Framework
+
+## Unsupervised pre-training 
+
+在实验中使用多层的Transformer的decoder用以语言模型， 它是transformer的一种变体。
