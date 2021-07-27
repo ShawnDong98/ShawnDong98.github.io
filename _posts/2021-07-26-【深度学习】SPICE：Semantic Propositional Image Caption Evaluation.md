@@ -68,4 +68,10 @@ $$
 G(c) = <O(c), E(c), K(c)>
 $$
 
-其中 $O(c) \subseteq C$ 是一组在 $c$ 中提到的物体， $E(c) \subseteq O(c) \times R \times O(c)$ 是一组表征物体关系的边， $K(c) \subseteq O(c) \times A$ 是一组物体对应的属性。
+其中 $O(c) \subseteq C$ 是一组在 $c$ 中提到的物体， $E(c) \subseteq O(c) \times R \times O(c)$ 是一组表征物体关系的边， $K(c) \subseteq O(c) \times A$ 是一组物体对应的属性。不把途中出现的多个物体复制表示， 而是将数量作为物体的属性表示。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1627380984852.png)
+
+上下文无关的语法依存parser是三个后处理步骤， 它们用来简化量词， 处理代词和处理复数名词。
+
+然后，根据9个简单的语言规则对生成的树结构进行解析，提取出义化的对象、关系和属性，共同组成场景图。
