@@ -62,4 +62,6 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1627383271685.png)
 
-对于Textual entailment， 拼接 premise $p$ 和 hypothesis $h$ token 序列， 在他们之间使用 token `$`分隔。 
+**Textual entailment** 对于 Textual entailment 任务， 拼接 premise $p$ 和 hypothesis $h$ token 序列， 在他们之间使用 token `$`分隔。 
+
+**Similarity**： 对于 Similarity 任务， 因为两句话没有天然的先后顺序之分， 因此将输入改为包含两种可能性的情况分别处理， 产生两个序列表征相加在送入线性输出层。
