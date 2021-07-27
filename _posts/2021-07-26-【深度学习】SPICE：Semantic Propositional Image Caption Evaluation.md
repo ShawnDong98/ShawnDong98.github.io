@@ -38,3 +38,27 @@ tags:
 为了将image caption分解为scene graph， 我们需要一种两阶段的方式。
 
 在第一阶段， 使用在大数据集上预训练的 dependency parser 建立 caption 词之间的语法依存关系。
+
+在第二阶段， 使用基于规则的系统将依赖树映射为场景图。
+
+给定 candidate 和 reference 的 scene graphs， 我们的准则计算 定义在scene graph表征语义propositions的逻辑 tuples 组合的F-score。 
+
+# Background and Related Work
+
+
+Bleu 是一个带有 句子简短惩罚项的 修改过的准确度准则， 在不同长度的 n-grams 计算加权几何平均。
+
+METEROR在计算带有对齐fragmentation penalty的加权 F-score 之前， 使用 exact, stem, syninym 和 paraphrame 匹配 n-grams 之间取对齐句子。
+
+ROUGE是一组measures使用F-measures的文本总结的自动评估。
+
+CIDEr在candidate和reference 句子中应用 term frequency-inverse document frequency(tf-idf)权重到 n-grams 上， 然后比较n-grams之间的余弦相似度。
+
+# SPICE Metric
+
+给定一个 candidate caption $c$ 和 一组与图像相关的 reference captions $S = \{s_1, ..., s_m\}$， 我们的目标是计算在 $c$ 和 $S$ 相似度的分数。
+
+首先我们将 candidate caption 和 reference caption 转换为一个编码了语义 propositional content 的中间表征。 我们选择的语义表征是scene graph， 由几个现有的数据集和最近发布的Visual Genome数据集组成的通用结构。
+
+
+
