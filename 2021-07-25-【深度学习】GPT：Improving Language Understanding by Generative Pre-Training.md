@@ -65,3 +65,5 @@ tags:
 **Textual entailment** 对于 Textual entailment 任务， 拼接 premise $p$ 和 hypothesis $h$ token 序列， 在他们之间使用 token `$`分隔。 
 
 **Similarity**： 对于 Similarity 任务， 因为两句话没有天然的先后顺序之分， 因此将输入改为包含两种可能性的情况分别处理， 产生两个序列表征相加在送入线性输出层。
+
+**Question Answering and Commosense Reasoning** 将document context 、question和可能的answer拼接， 使用分隔符 token 分割， `[z; q; $; a_k]`。 每个序列分别处理， 最后通过一个softmax层规范化产生对所有答案可能的输出分布。
