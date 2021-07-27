@@ -48,3 +48,9 @@ tags:
 ## Unsupervised pre-training 
 
 在实验中使用多层的Transformer的decoder用以语言模型， 它是transformer的一种变体。
+
+## Supervised fine-tuning 
+
+将语言建模作为微调时一个辅助目标有以下帮助：
+- 帮助提升监督模型的泛化性。
+- 提升收敛速度。
