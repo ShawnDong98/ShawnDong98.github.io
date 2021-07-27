@@ -87,3 +87,15 @@ $$
 $$
 
 将scene graph中的semantic propositions视作一组tuples， 我们定义二值匹配操作符 $\otimes$ 作为两个scene graphs 返回匹配tuples的函数。
+
+$$
+P(c, S) = \frac{\mid T(G(c)) \otimes T(G(S))}{\mid T(G(c))\mid}
+$$
+
+$$
+R(c, S) = \frac{\mid T(G(c)) \otimes T(G(s))}{\mid T(G(s)) \mid}
+$$
+
+$$
+SPICE(c, S) = F_1(c, S)=\frac{2 · P(c, S) · R(c, S)}{p(c, S) + R(c, S)}
+$$
