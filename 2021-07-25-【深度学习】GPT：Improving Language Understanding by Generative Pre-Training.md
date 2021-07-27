@@ -54,3 +54,10 @@ tags:
 将语言建模作为微调时一个辅助目标有以下帮助：
 - 帮助提升监督模型的泛化性。
 - 提升收敛速度。
+
+
+## Task-specific input transformations 
+
+针对不同的下游任务， 对模型只需做出最小的更改。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1627383271685.png)
