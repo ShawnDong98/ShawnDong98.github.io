@@ -75,3 +75,15 @@ $$
 上下文无关的语法依存parser是三个后处理步骤， 它们用来简化量词， 处理代词和处理复数名词。
 
 然后，根据9个简单的语言规则对生成的树结构进行解析，提取出义化的对象、关系和属性，共同组成场景图。
+
+## F-score Calculation 
+
+为了评估 candidate 和 reference scene graphs 的相似性， 我们将 scene graph 中的 语义关系视为 logical propositions的组合， 或者是一个 tuple。
+
+比如， scene graph 可以被表示以下的 tuples：
+
+$$
+\{(girl), (court), (girl, young), (girl, standing), (court, tennis), (girl, on-top-of, court)\}
+$$
+
+将scene graph中的semantic propositions视作一组tuples， 我们定义二值匹配操作符 $\otimes$ 作为两个scene graphs 返回匹配tuples的函数。
