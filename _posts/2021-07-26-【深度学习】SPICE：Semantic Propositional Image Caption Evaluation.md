@@ -68,7 +68,7 @@ $$
 G(c) = <O(c), E(c), K(c)>
 $$
 
-其中 $O(c) \subseteq C$ 是一组在 $c$ 中提到的物体， $E(c) \subseteq O(c) \times R \times O(c)$ 是一组表征物体关系的边， $K(c) \subseteq O(c) \times A$ 是一组物体对应的属性。不把途中出现的多个物体复制表示， 而是将数量作为物体的属性表示。
+其中 $O(c) \subseteq C$ 是一组在 $c$ 中提到的物体， $E(c) \subseteq O(c) \times R \times O(c)$ 是一组表征物体关系的边， $K(c) \subseteq O(c) \times A$ 是一组物体对应的属性。不把图像中出现的多个物体复制表示， 而是将数量作为物体的属性表示。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1627380984852.png)
 
