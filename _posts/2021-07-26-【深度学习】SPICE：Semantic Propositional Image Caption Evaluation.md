@@ -60,5 +60,12 @@ CIDEr在candidate和reference 句子中应用 term frequency-inverse document fr
 
 首先我们将 candidate caption 和 reference caption 转换为一个编码了语义 propositional content 的中间表征。 我们选择的语义表征是scene graph， 由几个现有的数据集和最近发布的Visual Genome数据集组成的通用结构。
 
+## Semantic Parsing——Caption to Scene Graphs
 
+给定一组目标类别 $C$， 一组关系类型 $R$， 一组属性类型 $A$， 以及一个 caption $c$， 我们解码 $c$ 为一个 scene graph:
 
+$$
+G(c) = <O(c), E(c), K(c)>
+$$
+
+其中 $O(c) \subseteq C$ 是一组在 $c$ 中提到的物体， $E(c) \subseteq O(c) \times R \times O(c)$ 是一组表征物体关系的边， $K(c) \subseteq O(c) \times A$ 是一组物体对应的属性。
