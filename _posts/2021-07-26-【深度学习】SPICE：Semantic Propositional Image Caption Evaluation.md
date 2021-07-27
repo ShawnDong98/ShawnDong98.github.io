@@ -34,3 +34,7 @@ tags:
 假设 semantic propositional content 是 人类caption评估的重要组成成分之一。
 
 通过同时将 candidate 和 reference  转换为scene graph的基于图的语义表征 来 评估caption的质量。
+
+为了将image caption分解为scene graph， 我们需要一种两阶段的方式。
+
+在第一阶段， 使用在大数据集上预训练的 dependency parser 建立 caption 词之间的语法依存关系。
