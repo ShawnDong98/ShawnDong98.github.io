@@ -222,30 +222,12 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://challenge.ai.mgtv.com/home](https://challenge.ai.mgtv.com/home)
 
-## 我的比赛
+## NeurlPS2021
 
-**先导杯**
-
-- 2021/04/15 - 2021/07/15
+[https://nips.cc/Conferences/2021/CompetitionTrack](https://nips.cc/Conferences/2021/CompetitionTrack)
 
 
-**2021 DIGIX全球校园AI算法精英大赛**
-
-- 报名和选拔赛（06/10-07/31）
-- 选拔赛评审（08/01-08/15）
-- 入围队伍公示（08/16-08/20）
-- 精英赛（8月底）
-
-**中国研究生创新实践系列大赛**
-
-6月30日前，在大赛官网 https://cpipc.acge.org.cn/  中报名，通过培养单位资格审查后，8月31日前，在大赛官网提交参赛作品。（作品提交规范及模板见附件）
-
-
-**开发者社区(华录杯)**
-
-2021年6月16日—2021年10月17日
-
-
+[https://openproblems.bio/neurips_2021/](https://openproblems.bio/neurips_2021/)
 
 # 各种名词解释
 
