@@ -119,7 +119,7 @@ Decoder 也由 N=6 个叠起来的 identical layers组成。
 
 输入由一系列的维度为$d_k$的queries和keys以及维度为$d_v$的values组成。
 
-计算query对所有keys的点积除以$sqrt_{d_k}$， 然后作softmax得到对values的权重。
+计算query对所有keys的点积除以$\sqrt{d_k}$， 然后作softmax得到对values的权重。
 
 事实上， 我们对一组query同时做attention计算， 打包成一个矩阵Q。
 
@@ -141,7 +141,7 @@ $$Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$$
 
 ### Multi-Head Attention
 
-相比于使用$d_model$维度的key, value, queries单个注意力函数， 发现将query， keys和values投影到$d_k$, $d_k$和$d_v$维度学习不同的线性投影 投影 h次 更有益。
+相比于使用$d_{model}$维度的key, value, queries单个注意力函数， 发现将query， keys和values投影到$d_k$, $d_k$和$d_v$维度学习不同的线性投影 投影 h次 更有益。
 
 对每个投影后的queries， keys和values并行执行attention函数， 产生d_v维的输出values。
 
