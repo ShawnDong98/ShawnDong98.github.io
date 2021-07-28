@@ -50,7 +50,7 @@ pip install dlib
 python scripts/download_datasets.py
 ```
 
-可能会因为网络原因报错， 直接使用链接下载[https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=1rPcbnanuApZeo2uc7h55OneBkbcFCnnf](https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=1rPcbnanuApZeo2uc7h55OneBkbcFCnnf)
+可能会因为网络原因报错， 直接使用链接下载 [https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=1rPcbnanuApZeo2uc7h55OneBkbcFCnnf](https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=1rPcbnanuApZeo2uc7h55OneBkbcFCnnf)
 
 编译安装FlowNet2
 
@@ -67,8 +67,37 @@ docker pull zhiyuanzhao/cuda9-py36-pytorch1.1-nccl-ompi
 ```
 
 
-### 
+### Cityscapes
 
+下载预训练模型
 
+```
+python scripts/street/download_models.py
+```
 
-下载模型和数据集，
+测试模型(`bash ./scripts/street/test_2048.sh`)
+
+```
+#!./scripts/street/test_2048.sh
+python test.py --name label2city_2048 --label_nc 35 --loadSize 2048 --n_scales_spatial 3 --use_instance --fg --use_single_G
+```
+
+结果被保存在： `./results/label2city_2048/test_latest/`
+
+也提供单GPU更小模型的训练， 产生稍微差些的效果(1024 x 512 分辨率)
+
+下载模型
+
+```
+python scripts/street/download_models_g1.py
+```
+
+测试模型(`bash ./scripts/street/test_g1_1024.sh`)：
+
+```
+#!./scripts/street/test_g1_1024.sh
+python test.py --name label2city_1024_g1 --label_nc 35 --loadSize 1024 --n_scales_spatial 3 --use_instance --fg --n_downsample_G 2 --use_single_G
+```
+
+### Faces
+
