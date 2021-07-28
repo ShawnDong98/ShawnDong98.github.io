@@ -36,3 +36,9 @@ apt-get install libboost-python-dev
 
 pip install dlib
 ```
+
+如果使用 以下 docker环境 (cuda9)，一切安装顺利
+
+```
+docker pull zhiyuanzhao/cuda9-py36-pytorch1.1-nccl-ompi
+```
