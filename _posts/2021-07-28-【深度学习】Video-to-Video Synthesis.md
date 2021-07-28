@@ -132,4 +132,7 @@ python test.py --name edge2face_512 --dataroot datasets/face/ --dataset_mode fac
 
 这个错误由 numpy 1.18 的 api 导致， 将它降级为 1.17
 
+` Object arrays cannot be loaded when allow_pickle=False`
+
+
 
