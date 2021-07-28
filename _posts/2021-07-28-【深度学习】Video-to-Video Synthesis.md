@@ -125,4 +125,11 @@ python test.py --name edge2face_512 --dataroot datasets/face/ --dataset_mode fac
 测试结果保存在： `./results/edge2face_512/test_latest/`
 
 
+## 其他bug
+
+
+`TypeError: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer.`
+
+这个错误由 numpy 1.18 的 api 导致， 将它降级为 1.17
+
 
