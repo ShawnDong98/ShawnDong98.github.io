@@ -99,5 +99,7 @@ python scripts/street/download_models_g1.py
 python test.py --name label2city_1024_g1 --label_nc 35 --loadSize 1024 --n_scales_spatial 3 --use_instance --fg --n_downsample_G 2 --use_single_G
 ```
 
+在 `scripts/street/` 文件夹下找到这些脚本
+
 ### Faces
 
