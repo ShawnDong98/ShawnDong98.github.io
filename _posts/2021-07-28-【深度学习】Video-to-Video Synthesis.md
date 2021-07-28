@@ -134,6 +134,8 @@ python test.py --name edge2face_512 --dataroot datasets/face/ --dataset_mode fac
 
 ` Object arrays cannot be loaded when allow_pickle=False`
 
+将 numpy 降级为 1.16.1
+
 
 
 # Reference
