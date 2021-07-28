@@ -137,10 +137,15 @@ python test.py --name edge2face_512 --dataroot datasets/face/ --dataset_mode fac
 将 numpy 降级为 1.16.1
 
 
+`RuntimeError: DataLoader worker (pid 570) is killed by signal: Bus error.`
+
+由于docker容器中的共享内存不够大导致的问题， 在 `docker run` 的时候加入 `--shm-size 8G` 参数。
+
+
 
 # Reference
 1. [Error when evaluate: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer #580](https://github.com/facebookresearch/detectron2/issues/580)
 2. [How to fix 'Object arrays cannot be loaded when allow_pickle=False' for imdb.load_data() function?](https://stackoverflow.com/questions/55890813/how-to-fix-object-arrays-cannot-be-loaded-when-allow-pickle-false-for-imdb-loa)
-
+3. [Bus error (core dumped) model share memory #2244](https://github.com/pytorch/pytorch/issues/2244)
 
 
