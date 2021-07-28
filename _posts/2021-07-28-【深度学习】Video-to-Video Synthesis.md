@@ -75,6 +75,10 @@ docker pull zhiyuanzhao/cuda9-py36-pytorch1.1-nccl-ompi
 python scripts/street/download_models.py
 ```
 
+网络原因可能下载失败， 直接用链接下 [https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=1MKtImgtnGC28EPU7Nh9DfFpHW6okNVkl](https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=1MKtImgtnGC28EPU7Nh9DfFpHW6okNVkl)
+
+
+
 测试模型(`bash ./scripts/street/test_2048.sh`)
 
 ```
