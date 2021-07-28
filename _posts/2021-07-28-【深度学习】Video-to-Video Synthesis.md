@@ -103,3 +103,20 @@ python test.py --name label2city_1024_g1 --label_nc 35 --loadSize 1024 --n_scale
 
 ### Faces
 
+下载预训练模型：
+
+```
+python scripts/face/download_models.py
+```
+
+测试模型 `bash ./scripts/face/test_512.sh`
+
+```
+#!./scripts/face/test_512.sh
+python test.py --name edge2face_512 --dataroot datasets/face/ --dataset_mode face --input_nc 15 --loadSize 512 --use_single_G
+```
+
+测试结果保存在： `./results/edge2face_512/test_latest/`
+
+
+
