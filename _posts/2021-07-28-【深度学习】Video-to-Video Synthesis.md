@@ -138,6 +138,7 @@ python test.py --name edge2face_512 --dataroot datasets/face/ --dataset_mode fac
 
 # Reference
 1. [Error when evaluate: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer #580](https://github.com/facebookresearch/detectron2/issues/580)
+2. [How to fix 'Object arrays cannot be loaded when allow_pickle=False' for imdb.load_data() function?](https://stackoverflow.com/questions/55890813/how-to-fix-object-arrays-cannot-be-loaded-when-allow-pickle-false-for-imdb-loa)
 
 
 
