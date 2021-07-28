@@ -109,6 +109,8 @@ python test.py --name label2city_1024_g1 --label_nc 35 --loadSize 1024 --n_scale
 python scripts/face/download_models.py
 ```
 
+网络原因可能下载失败， 直接用链接下 [https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=10LvNw-2lrh-6sPGkWbQDfHspkqz5AKxb](https://docs.google.com/u/0/uc?export=download&confirm=Ccgd&id=10LvNw-2lrh-6sPGkWbQDfHspkqz5AKxb)
+
 测试模型 `bash ./scripts/face/test_512.sh`
 
 ```
