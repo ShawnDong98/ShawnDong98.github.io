@@ -652,6 +652,7 @@ sudo apt-get update
   
 原因可能是DNS污染, 可以通过修改 hosts文件 / 修改DNS服务器 / 代理 的方式访问。 可将 DNS 修改为 114.114.114.114。
 
+
 ```
 sudo vim /etc/resolv.conf 
 
