@@ -674,6 +674,16 @@ sudo apt-get install -y nvidia-docker2
 sudo systemctl restart docker
 ```
 
+这里可能报错 `Failed to allocate directory watch: Too many open files`, 可能是 inotify 数量限制了，修改后服务可以正常启动
+
+```
+vim /etc/sysctl.conf
+
+
+fs.inotify.max_user_instances=512
+fs.inotify.max_user_watches=262144
+```
+
 现在可以通过运行一个CUDA容器测试：
 
 ```
