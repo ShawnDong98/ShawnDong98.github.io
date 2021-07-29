@@ -896,7 +896,7 @@ sudo systemctl restart docker
 3. [手把手超详细操作说明](https://tianchi.aliyun.com/competition/entrance/231759/tab/174?spm=5176.12281978.0.0.37721a4a3S5tas)
 4. [重新安装Docker出现E: Sub-process /usr/bin/dpkg returned an error code (1)](https://blog.csdn.net/M82_A1/article/details/92186791)
 5. [github.io （nvidia.github.io）无法访问问题及解决（2021.01）](https://blog.csdn.net/u010006102/article/details/112272543)
-
+6. [Failed to allocate directory watch: Too many open files](https://blog.csdn.net/Bobsweetie/article/details/111688878)
 
 
 
