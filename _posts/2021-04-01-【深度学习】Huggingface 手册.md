@@ -1345,6 +1345,23 @@ tokenizer.normalizer = normalizer
 
 当然， 如果你更换了一个 tokenizer 的 normalization， 你应该从头训练 tokenizer。
 
+
+
+- NFD: NFD unicode normalization
+- NFKD: NFKD unicode normalization
+- NFC: NFC unicode normalization
+- NFKC: NFKC unicode normalization
+- Lowercase: 将所有大写替换为小写
+- Strip： 移除掉输出指定侧(left, right, 或者两边)的空格字符
+- StripAccents： 移除掉unicode中的所有重音符号(用在NFD中为了一致性)
+- Replace：用定制化的字符串替换掉指定内容
+- BertNormalizer： 提供一系列原始BERT中的 Normalizer
+- - clean_text
+- - handle_chinese_chars
+- - strip_accents
+- - lowercase
+- Sequence：组合多个Normalizers
+
 ### Pre-Tokenization
 
 Pre-tokenization 是将文本拆分成更小的 objects 的方式， 它给出了你的 tokens 在训练时的上界。 一个很好的方式是将你的文本拆分成 "words"， 然后你最终的 tokens 将会是这些 words 中的一部分。
