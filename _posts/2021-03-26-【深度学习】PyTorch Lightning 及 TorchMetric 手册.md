@@ -14,6 +14,8 @@ tags:
 
 # Getting started
 
+`__version__ == 1.2.6`
+
 ## LIGHTNING IN 2 STEPS
 
 导入下面的包：
