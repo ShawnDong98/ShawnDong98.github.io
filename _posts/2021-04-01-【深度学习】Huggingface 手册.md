@@ -1415,6 +1415,9 @@ Ouput: `"Hello", "Ġmy", Ġfriend", ",", "Ġhow", "Ġare", "Ġyou", "?"`
 - WhitespaceSplit： 在所有空格字符上分割
 - Punctuation： 分离所有的标点符号
 - Metaspace： 按空格分割， 并将空格替换为特殊字符 "`_`" (U+2581)
+- Digits： 将数字从其他字符中分割出来
+- Split：通用的 pre-tokenizer
+- Sequence： 对 `PreTokenizer` 做组合
 
 ### The Model
 
