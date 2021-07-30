@@ -1361,6 +1361,7 @@ tokenizer.normalizer = normalizer
 - - strip_accents
 - - lowercase
 - Sequence：组合多个Normalizers
+- 
 
 ### Pre-Tokenization
 
@@ -1409,6 +1410,11 @@ tokenizer.pre_tokenizer = pre_tokenizer
 Input: `"Hello my friend, how are you?"`
 
 Ouput: `"Hello", "Ġmy", Ġfriend", ",", "Ġhow", "Ġare", "Ġyou", "?"`
+
+- Whitespace： 按词的边界做分割
+- WhitespaceSplit： 在所有空格字符上分割
+- Punctuation： 分离所有的标点符号
+- Metaspace： 按空格分割， 并将空格替换为特殊字符 "`_`" (U+2581)
 
 ### The Model
 
