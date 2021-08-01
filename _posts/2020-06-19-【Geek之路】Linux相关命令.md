@@ -790,3 +790,4 @@ python run.py 2>&1 | tee train.log
 24. [如何在Ubuntu 18.04 LTS中更改文本大小](https://ubuntuqa.com/zh-tw/article/8457.html#:~:text=%E6%96%B9%E6%B3%951%EF%BC%9A%E9%80%9A%E9%81%8EUbuntu%E8%A8%AD%E7%BD%AE%E5%AF%A6%E7%94%A8%E7%A8%8B%E5%BA%8F&text=%E6%82%A8%E9%9C%80%E8%A6%81%E5%96%AE%E6%93%8A%E9%80%9A%E7%94%A8%E8%A8%AA%E5%95%8F%E9%81%B8%E9%A0%85%E5%8D%A1%E4%BB%A5%E9%85%8D%E7%BD%AE%E6%96%87%E6%9C%AC%E5%A4%A7%E5%B0%8F%E3%80%82&text=%E6%88%96%E8%80%85%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%9C%A8Dash,%E5%AD%97%E9%AB%94%E8%A8%AD%E7%BD%AE%E5%8D%B3%E6%9C%83%E7%94%9F%E6%95%88%E3%80%82)
 25. [apt-get常见错误——Unmet dependencies](https://www.cnblogs.com/x_wukong/p/5254183.html)
 26. [Ubuntu系统批量杀死进程方法](https://www.cnblogs.com/hewm/articles/11427874.html)
+27. [【小记】将控制台输出保存至文件](https://blog.csdn.net/qq_31347869/article/details/96586433)
