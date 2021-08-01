@@ -740,6 +740,14 @@ xrandr --delmode output name
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1617599008504.png)
 
 
+# 将控制台同时输出并保存至文件
+
+在 Linux 终端执行直接 run 代码时，可以在执行命令后加上 `2>&1`，在保存输出信息到文件的同时，终端仍正常打印信息。
+
+```
+python run.py 2>&1 | tee train.log
+```
+
 # Bugs
 
 ## apt-get常见错误——Unmet dependencies
