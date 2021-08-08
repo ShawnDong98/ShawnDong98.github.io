@@ -77,3 +77,12 @@ $$
 
 接着在这是个值中选择最大的两个 $P(A, B, C, D \mid c)$ 和 $P(C, E, D \mid c)$。 结果我们得到六个候选输出序列 i) $A$ ii) C iii) A, B iv) C, E v) A, B, D; vi) C, E, D。
 
+在最后， 我们得到基于六个序列的最终候选输出序列. 然后我们选择接下来分数最高的序列作为输出序列：
+
+$$
+\frac{1}{L^{\alpha}} \log P(y_1, ..., y_L \mid c) = \frac{1}{L^\alpha} \sum_{t' = 1}^L \log P(y_{t'} \mid y_1, ..., y_{t' - 1}, c)
+$$
+
+$L$ 是最终候选序列的长度 ， $\alpha$ 通常设为 0.75. 因为更长的句子有更高的对数和， $L^{\alpha}$ 惩罚长序列。
+
+beam search 的计算成本为 $O(k \mid \mathcal{Y} \mid T')$。 这个结果在 穷尽搜索和 贪婪搜索 之间。 当 beam size 为1时， 贪婪搜索可以视为特殊的束搜索。 灵活地选择beam size权衡了准确率和计算复杂度。
