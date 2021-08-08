@@ -45,3 +45,13 @@ $$
 
 尽管我们使用 Exhaustive Search 可以得到最优序列， 但是它的计算成本是 $O(\mid \mathcal{Y} \mid^{T'})$。 而贪婪搜索的计算复杂度为 $O(\mid \mathcal{Y} \mid T')$
 。 比如当 $\mid \mathcal{Y} \mid = 10000$ 和 $T' = 10$, 我们仅需要评估 $10000 \times 10 = 10^5$个序列， 而Exhaustive Search需要 $10000^10 = 10^{40}$ 个序列。
+
+
+# Beam Search
+
+Beam Search 是贪婪搜索的一种改进。 它有一个叫做 beam size $k$ 的超参数。 在时间步1, 我们选择有最高条件概率的 $k$ 个tokens。 每个 token 都会分别作为$k$个候选输出的第一个 token。 在接下来的每个时间步。 基于 $k$ 个候选输出序列将会继续从 $k \mid \mathcal{Y} \mid$选择 $k$ 个条件概率最高的候选输出序列。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1628436661084.png)
+
+beam size 为 2， 最大输出序列长度为3。 候选输出薛烈为 A, C, AB, CE, ABD, 和 CED。 
+
