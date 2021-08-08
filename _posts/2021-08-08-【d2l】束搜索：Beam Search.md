@@ -39,3 +39,9 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1628435404637.png)
 
 如果我们在时间步2选择 token `"C"`, 它是第二高的条件概率。 载音输出子序列在时间步1和2， 时间步3基于前两个时间步， 将 "A" 和 “B” 改变为 "A" 和 “C”， 在时间步3的每个 token 的条件概率也会发生改变。假设我们在时间步3选择 "B"。 那么时间步4的token选择也会发生改变。结果输出序列 `"A"`, `"C"`, `"B"` 和 `"<eos>"` 的条件概率为 $0.5 \times 0.3 \times 0.6 \times 0.6 = 0.054$。 在这个例子中， 贪婪搜索 `"A"`, `"B"`, `"C"` 和 `"<eos>"` 的输出序列不是最优序列。
+
+
+# Exhaustive Search
+
+尽管我们使用 Exhaustive Search 可以得到最优序列， 但是它的计算成本是 $O(\mid \mathcal{Y} \mid^{T'})$。 而贪婪搜索的计算复杂度为 $O(\mid \mathcal{Y} \mid T')$
+。 比如当 $\mid \mathcal{Y} \mid = 10000$ 和 $T' = 10$, 我们仅需要评估 $10000 \times 10 = 10^5$个序列， 而Exhaustive Search需要 $10000^10 = 10^{40}$ 个序列。
