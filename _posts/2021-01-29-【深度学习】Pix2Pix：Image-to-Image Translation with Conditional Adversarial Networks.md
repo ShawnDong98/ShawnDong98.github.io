@@ -325,7 +325,29 @@ $$ r_{l + 1} = r_l + ((k_{l+1} - 1) \times \prod_{i = 0}^l s_i) $$
 
 `models` 文件夹包括和目标函数， 优化器 和 网络结构相关的模块。如果要添加一个叫做 `dummy` 的自定义模型类， 你需要添加一个叫做 `dummy_model.py` 的文件 并且定义一个继承 `BaseModel` 的子类 `DummyModel`。 你需要实现四个函数 `__init__`(初始化类； 你需要首先调用 `BaseModel.__init__(self, opt)`)， `set_input`(从 dataset 中解压 data 并且应用预处理)， `forward`（生成中间结果）， `optimize_parameters` (计算损失， 梯度， 并且更新网络权重)， 以及可选的 `modify_commandline_options`(增加一个特定模型的选择 并且 设置默认选项)。 现在你可以通过指定 `--model dummy` 使用模型类。
 
+- `__init__.py` 实现训练脚本和测试脚本的接口。 给定选项 `opt`， `train.py` 和 `test.py` 调用 `from models import create_model` 和 `model = create_model(opt)` 来创建模型。
+- `base_model.py` 实现模型的抽象基类。 它也包括通用的 helper 函数 (e.g. `setup`, `test`, `update_learning_rate`, `save_networks`, `load_networks`)， 这些可用于后面的子类。
+- `template_model.py` 提供有细节文档的 model 模板。 如果你打算实现你自己的模型， 查阅这个文件。
+- `pix2pix_model.py` 实现了 pix2pix 模型， 给定成对的数据， 从输入图像映射到输出图像。  这个模型的训练需要 `--dataset_mode aligned` dataset。 默认地， 它使用一个 `--netG unet256` U-Net 生成器， `--netD basic` 判别器 (PatchGAN)， 以及 `gan_mode vanilla` GAN loss(标准的交叉熵目标)。
+- `colorization_model.py` 实现 `Pix2PixModel` 的子类 用于图像上色 (黑白图像到彩色图像)。模型训练需要 `-dataset_model colorization` dataset。 默认地， 它使用 `--netG resnet_9blocks` ResNet 生成器，  `--netD basic` 判别器(由 pix2pid 引入的 PatchGAN)， 以及 最小均方 GANs 目标 (`--gan_mode lsgan`)。
+- `networks.py` 模块实现网络结构 (包括生成器和判别器)， 以及规范化层， 初始化方式， 优化调度器(i.e. learning rate 策略)， 以及 GAN 的目标函数 （`vanilla`, `lsgan`, `wgangp`）。
+- test_model.py 实现了用于生成 CycleGAN 仅一个方向结果的模型。 这个模型将自动设置 `dataset_mode single`， 它仅从一个集合中加载图像。 
 
+
+`options` 文件夹包括 option 模块： training options ， test options， 以及 basic options（同时用于训练和测试）。 `TrainOptions` 和 `TestOptions` 同时是 `BaseOptions` 的子类。 它们将复用定义在 `BaseOptions` 中的选项。
+
+- `__init__.py` 使 Python 将 `options` 文件夹视为 包含的包。
+- `base_options.py` 包括同时用于训练和测试的选项。 它也实现了一个 helper 函数， 比如 parsing, printing, 以及 saving 选项。 它也从 dataset 类 和 model 类的 `modify_commandline_options` 函数搜集额外的选项。
+- `train_options.py` 包括仅用于训练期间的选项。
+- `test_options.py` 包括仅用于测试期间的选项。
+
+
+`util` 文件夹包括一系列有用的 helper 函数。
+
+- `__init__.py` 使 Python 将 `util` 文件夹视为包含的包。
+- `get_data.py` 提供下载 CycleGAN 和 pix2pix 数据集的Python 脚本。可选地， 你可以使用 bash 脚本， 比如 `download_pix2pix_model.sh` 和 `download_cyclegan_model.sh`。
+- `html.py` 实现了保存图像到单个HTML文件的模块。 它由 `add_header`(给HTML文件增加文本标题),  `add_images` (给HTML文件增加一行图像)， `save` (保存HTML到磁盘)。 它基于 Python 库 `dominate`， 一个使用 DOM API用于创建和操控 HTML 文档的 Python 库。
+- `image_pool.py` 实现了存储之前生成图像的 image buffer。 这个 buffer 使得我们使用历史生成的图像， 而不是最近的生成器更新判决器。 原始的idea来自于 [paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Shrivastava_Learning_From_Simulated_CVPR_2017_paper.pdf)。 buffer 的大小由 `--pool_size` 决定。
 
 
 # References
