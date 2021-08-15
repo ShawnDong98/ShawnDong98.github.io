@@ -348,7 +348,9 @@ $$ r_{l + 1} = r_l + ((k_{l+1} - 1) \times \prod_{i = 0}^l s_i) $$
 - `get_data.py` 提供下载 CycleGAN 和 pix2pix 数据集的Python 脚本。可选地， 你可以使用 bash 脚本， 比如 `download_pix2pix_model.sh` 和 `download_cyclegan_model.sh`。
 - `html.py` 实现了保存图像到单个HTML文件的模块。 它由 `add_header`(给HTML文件增加文本标题),  `add_images` (给HTML文件增加一行图像)， `save` (保存HTML到磁盘)。 它基于 Python 库 `dominate`， 一个使用 DOM API用于创建和操控 HTML 文档的 Python 库。
 - `image_pool.py` 实现了存储之前生成图像的 image buffer。 这个 buffer 使得我们使用历史生成的图像， 而不是最近的生成器更新判决器。 原始的idea来自于 [paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Shrivastava_Learning_From_Simulated_CVPR_2017_paper.pdf)。 buffer 的大小由 `--pool_size` 决定。
-
+- `visualizer.py` 包括 展示/保存 图像 以及 打印/保存 logging信息的几个函数。 它使用 `visdom`
+ Python 库 和 使用`dominate` Python 库 (封装为 `HTML`)将图像创建 HTML 文件 来 展示。
+ - `util.py` 由几个简单的 helper 函数组成， 比如 `tensor2im`(将tensor array 转换为 numpy image array)， `diagnose_network` (计算并打印梯度值的平均绝对值)， 以及 `mkdirs`(创建多个文件夹)。
 
 # References
 1.  [Understanding PatchGAN](https://sahiltinky94.medium.com/understanding-patchgan-9f3c8380c207)
