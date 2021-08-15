@@ -323,7 +323,7 @@ $$ r_{l + 1} = r_l + ((k_{l+1} - 1) \times \prod_{i = 0}^l s_i) $$
 - `single_dataset.py` 包括一个可以从 `--dataroot /path/to/data` 加载单张图像的 dataset 类。 当模型选项 `-model test` 时， 它可以用于生成 CycleGAN 的单侧结果。
 - `colorization_dataset.py` 实现了一个可以加载 RGB 自然图像， 并且将 RGB 格式转化为 LAB 色彩空间的 dataset 类。 在 pix2pix-based colorization 模型中需要它 (`--model colorization`)。
 
-`models` 文件夹包括和目标函数， 优化器 和 网络结构相关的模块。
+`models` 文件夹包括和目标函数， 优化器 和 网络结构相关的模块。如果要添加一个叫做 `dummy` 的自定义模型类， 你需要添加一个叫做 `dummy_model.py` 的文件 并且定义一个继承 `BaseModel` 的子类 `DummyModel`。 
 
 
 # References
