@@ -717,6 +717,7 @@ dir/file2.txt
 
 
 ## setattr()、getattr()、hasattr() 
+
 在动态检查对象是否包含某些属性（包括方法〉相关的函数有如下几个：
 
 - hasattr(object,name)：检查 object 对象是否包含名为 name 的属性或方法。
@@ -1075,6 +1076,39 @@ capitalize()方法语法：
 ```
 str.capitalize()
 ```
+
+
+## ABC (Abstract Base Class)
+
+由于python 没有抽象类、接口的概念，所以要实现这种功能得abc.py 这个类库
+
+**抽象基类的作用**
+
+1. 用于判定某个对象的类型，例如 instance 函数
+2. 强制子类必须实现某些方法，相当于确定ABC类的派生类的基本方法
+
+
+**@abstractmethod特点**
+
+@abstractmethod：抽象方法，含abstractmethod方法的类不能实例化，继承了含abstractmethod方法的子类必须复写所有abstractmethod装饰的方法，未被装饰的可以不重写
+
+
+**举个反面栗子（实例化抽象类）**
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1629028430499.png)
+
+**举个正常栗子**
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1629028444310.png)
+
+### class abc.ABCMeta
+
+
+
+
+
+
+
 
 # os
 
@@ -2081,3 +2115,4 @@ pip install -r requirements.txt
 58. [Matplotlib入门-4-plt.legend( )创建图例](https://zhuanlan.zhihu.com/p/111108841)
 59. [`sys.modules[__name__]`](https://blog.csdn.net/jingyu7/article/details/83120442)
 60. [python读取csv文件](https://www.cnblogs.com/liangshian/p/11272155.html)
+61. [python @abstractmethod](https://www.cnblogs.com/baxianhua/p/10876181.html)
