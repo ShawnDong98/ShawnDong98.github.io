@@ -307,6 +307,21 @@ $$ r_{l + 1} = r_l + ((k_{l+1} - 1) \times \prod_{i = 0}^l s_i) $$
 
 # 代码
 
+`train.py` 是一个通用训练脚本。 它用于不同的模型(选项 `--model`: e.g. `pix2pix`, `cyclegan`, `colorization`) 和 不同的数据集 (选项 `--dataset_mode`： e.g. `aligned`, `unaligned`, `single`, `colorization`)。 
+
+
+`test.py` 是一个通用测试脚本。 一旦使用 `train.py` 训练好你的模型， 可以使用此脚本测试模型。 它会从 `--checkpoints_dir` 加载保存的模型 并且 保存结果到 `--results_dir`。 
+
+`data` 文件夹包括所有和数据加载和处理的模块。 如果添加一个自定义的数据集类叫做 `dummy`， 你需要添加一个叫做 `dummy_dataset.py`的文件 并且 定义一个继承自 `BaseDataset` 的叫做 `DummyDataset` 子类。 你需要实现四个函数： `__init__`（初始化类， 你需要先调用 `BaseDataset.__init__(self, opt)`）， `__len__` （返回数据集的大小）， `__getitem__`（得到一个数据）， 以及可选择的 `modify_commandline_options`（增加特定数据集的选项 并且 设定默认选项）。  现在你可以通过指定 `--dataset_mode dummy`使用数据集类。
+
+- `__init__.py`： 实现训练和测试脚本的接口。 给定选项 `opt`，` train.py` 和 `test.py` 调用 `from data import create_dataset` 和 `dataset = create_dataset(opt)`  创建数据集。
+- `base_dataset.py`: 为数据集实现抽象基类。 它也包括了常见的预处理函数 (e.g. `get_transform`, `__scale_width`)， 它会用于之后的子类中。
+- `image_folder.py` 实现 image folder 类。 我们修改了 PyTorch 官方的 image folder 代码， 使得这个类可以从当前文件夹以及它的子文件夹里加载图像。
+- `template_dataset.py` 提供有细节文档的 dataset 模板。 如果你打算实现自己的 dataset ， 查阅这个文件。
+- `aligned_dataset.py` 包括一个可以加载 图像对 的 dataset 类。 它假设单个图像文件夹 `/path/to/data/train`， 它以 `{A, B}` 的形式包含图相对。 在测试时， 你需要准备一个文件夹 `/path/to/data/test` 作为测试数据。
+- `unaligned_dataset.py` 包含一个可以加载 未对齐/未配对 的 dataset 类。 它假设两个文件夹 分别从 A `/path/to/data/trainA` 和 B `/path/to/data/trainB` 加载训练图像。 然后你可以使用 `--dataroot /path/to/data` 训练模型。 相似地， 你在测试期间需要准备两个文件夹 `/path/to/data/testA` 和 `/path/to/data/testB` 。
+
+
 
 # References
 1.  [Understanding PatchGAN](https://sahiltinky94.medium.com/understanding-patchgan-9f3c8380c207)
