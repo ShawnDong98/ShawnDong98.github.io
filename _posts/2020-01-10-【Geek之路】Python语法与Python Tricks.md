@@ -2134,3 +2134,4 @@ pip install -r requirements.txt
 59. [`sys.modules[__name__]`](https://blog.csdn.net/jingyu7/article/details/83120442)
 60. [python读取csv文件](https://www.cnblogs.com/liangshian/p/11272155.html)
 61. [python @abstractmethod](https://www.cnblogs.com/baxianhua/p/10876181.html)
+62. [python3 functools](https://blog.csdn.net/qq_37616069/article/details/79811016)
