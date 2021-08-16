@@ -1105,7 +1105,25 @@ str.capitalize()
 
 
 
+## functools
 
+functools，用于高阶函数：指那些作用于函数或者返回其它函数的函数，通常只要是可以被当做函数调用的对象就是这个模块的目标。
+
+在Python 2.7 中具备如下方法，
+
+cmp_to_key，将一个比较函数转换关键字函数；（**Python 3 不支持**）
+
+partial，把一个函数的某些参数设置默认值，返回一个新的函数，调用这个新函数会更简单。；
+
+reduce，与python内置的reduce函数功能一样；
+
+total_ordering，在类装饰器中按照缺失顺序，填充方法；
+
+update_wrapper，更新一个包裹（wrapper）函数，使其看起来更像被包裹（wrapped）的函数；
+
+wraps，可用作一个装饰器，简化调用update_wrapper的过程；
+
+### partial
 
 
 
