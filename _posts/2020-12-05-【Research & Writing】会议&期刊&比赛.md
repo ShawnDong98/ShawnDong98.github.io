@@ -229,6 +229,11 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://openproblems.bio/neurips_2021/](https://openproblems.bio/neurips_2021/)
 
+
+## 厦门市大数据安全开放平台
+
+[https://data.xm.gov.cn/opendata/#/](https://data.xm.gov.cn/opendata/#/)
+
 # 各种名词解释
 
 
