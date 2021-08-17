@@ -1148,7 +1148,9 @@ p2(a='python', b='itcast')
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1629092163524.png)
 
 
+## vars
 
+**vars()** 函数返回对象object的属性和属性值的字典对象。
 
 
 # os
