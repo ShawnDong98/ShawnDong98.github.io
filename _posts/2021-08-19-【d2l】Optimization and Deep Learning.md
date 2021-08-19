@@ -51,3 +51,10 @@ d2l.plot(x, [f(x), g(x)], 'x', 'risk')
 annotate('min of\nempirical risk', (1.0, -1.2), (0.5, -1.1))
 annotate('min of risk', (1.1, -1.05), (0.95, -0.5))
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1629363198125.png)
+
+
+# Optimization Challenges in Deep Learning
+
+在本章中，我们将特别关注优化算法在最小化目标函数时的性能，而不是模型的泛化误差。在3.1节中，我们区分了优化问题中的解析解和数值解。在深度学习中，大多数目标函数都是复杂的，没有解析解。进而，我们必须使用数值优化算法。
