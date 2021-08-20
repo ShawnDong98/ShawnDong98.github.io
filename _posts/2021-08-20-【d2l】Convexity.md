@@ -85,3 +85,39 @@ E_{Y \thicksim P(Y)} [- \log P(X \mid Y)] \geq - \log P(X)
 $$
 
 因为 $\int P(X) P(X \mid Y)dY = P(Y)$。 这可以用在变分方法中。这里 $Y$ 通常是未观测到的随机变量， $P(Y)$ 它可能的分布的最优猜测， $P(X)$ 是集成 $Y$ 后的分布。 例如， 聚类 $Y$ 可能是 聚类 标签 并且 $P(X \mid Y)$ 是应用 聚类标签的生成模型。
+
+
+# Properties
+
+凸函数有许多有用的性质。下面我们将介绍几种常用的方法。
+
+## Local Minima Are Global Minima
+
+首先，凸函数的局部极小值也是全局极小值。我们可以用下面的反证法来证明它。
+
+
+## Below Sets of Convex Functions Are Convex
+
+我们可以通过下面的凸函数集方便地定义凸集。具体地， 给定一个定义在凸集 $\mathcal{X}$ 上的凸函数 $f$, ：
+
+$$
+S_b := \{x \mid x \in \mathcal{X} \text{ and } f(x) \leq b\}
+$$
+
+是凸的。
+
+## Convexity and Second Derivatives
+
+函数的二阶导数 $f: \mathbb{R}^n \rightarrow \mathbb{R}$ 是否存在一个非常容易的方式是检查函数 $f$ 是否为凸函数。 我们需要去检查函数 $f$ 的海森矩阵是不是半正定的： $\nabla^2 f \geq 0$。
+
+
+## Constraints
+
+凸优化的一个很好的性质是它允许我们有效地处理约束。也就是说，它允许我们解决这种形式的约束优化问题：
+
+$$
+\mathop{\text{minimize}}_x f(x) \\
+\mathop{\text{subject to }} c_i(x) \leq 0 \text{ for all } i \in \{1, ..., n\}
+$$
+
+其中 $f$ 是目标函数， $c_i$ 是约束函数。 让我们来看一个例子， $c_1(x) = \|x\|_2 - 1$。 在这个例子下， 参数 $x$ 的约束是一个单位球。 如果第二个约束是 $c_2(x) = v^Tx + b$， 这个约束对应的是 $x$ 在半个空间中。 同时满足这两个约束等于选择一个球的切面。
