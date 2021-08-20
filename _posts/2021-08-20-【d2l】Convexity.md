@@ -28,7 +28,7 @@ from d2l import torch as d2l
 
 ## Convex Sets
 
-集合是凸性的基础。简单地说， 向量空间中的集合 $\mathcal{X}$ 如果对于任意的 $a, b \in \mathcal{X}$， $a$ 和 $b$ 的连线也在 $\mathcal{X}$ 中， 那么这个函数就是凸的。
+集合是凸性的基础。简单地说， 向量空间中的集合 $\mathcal{X}$ 如果对于任意的 $a, b \in \mathcal{X}$， $a$ 和 $b$ 的连线也在 $\mathcal{X}$ 中， 那么这个集合就是凸的。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1629421562686.png)
 
@@ -38,4 +38,9 @@ from d2l import torch as d2l
 
 我们可以用一些努力来加强这个结果： 给定凸集 $\mathcal{X_i}$， 它们的并集 $\cap_i \mathcal{X}_i$是凸的。 注意， 这个的逆命题是不成立的， 假设两个不相交的集合 $\mathcal{X} \cap \mathcal{Y} = \varnothing$。 现在选择 $a \in \mathcal{X}$ 并且 $b \in \mathcal{Y}$。 $a$ 和 $b$ 的连线的部分在 $\mathcal{X}$ 和 $\mathcal{Y}$ 的外面。
 
-深度学习中的问题通常定义在凸集上。例如， $\mathbb{R}^d$， 一个d维实数向量的集合， 是一个凸集($\mathbb{R}$^d 上两个点的连线仍然在 $\mathbb{R}^d$ 上)。 在某些情况下我们处理有界长度的变量， 比如球的半径， 定义如 $\{x \mid x \in \mathbb{R}^d \text{ and } \|x\| \leq r\}$
+深度学习中的问题通常定义在凸集上。例如， $\mathbb{R}^d$， 一个d维实数向量的集合， 是一个凸集($\mathbb{R}$^d 上两个点的连线仍然在 $\mathbb{R}^d$ 上)。 在某些情况下我们处理有界长度的变量， 比如球的半径， 定义如 $\{x \mid x \in \mathbb{R}^d \text{ and } \|x\| \leq r\}$。
+
+
+## Convex Functions
+
+现在我们
