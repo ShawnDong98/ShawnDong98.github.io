@@ -66,3 +66,22 @@ for ax, func in zip(axes, [f, g, h]):
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1629422692493.png)
 
 正如预期的那样，余弦函数是非凸函数，而抛物线函数和指数函数是凸函数。注意 $\mathcal{X}$ 是凸集是必要条件。 否则 $f(\lambda x + (1 - \lambda)x')$ 可能没有定义。
+
+
+##  Jensen’s Inequality
+
+给定一个凸函数 $f$， 一个最有用的数学工具是  Jensen 不等式。 这相当于对凸性定义的推广：
+
+$$
+\sum_i \alpha_i f(x_i) \geq f(\sum_i \alpha_i x_i) \text{ and } E_X[f(X)] \geq f(E_X[X])
+$$
+
+其中 $\alpha_i$ 是非负实数， $\sum_i \alpha_i = 1$ 并且 $X$ 是一个随机变量。 换句话说，凸函数的期望不小于一个期望的凸函数，而后者通常是一个更简单的表达式。为了证明第一个不等式，我们对求和中的一项反复应用凸性的定义。
+
+Jensen不等式的一个常见应用是用一个简单的表达式来限定一个较复杂的表达式。例如，它的应用可以是关于部分观察到的随机变量的对数似然。也就是说，我们使用
+
+$$
+E_{Y \thicksim P(Y)} [- \log P(X \mid Y)] \geq - \log P(X)
+$$
+
+因为 $\int P(X) P(X \mid Y)dY = P(Y)$。 这可以用在变分方法中。这里 $Y$ 通常是未观测到的随机变量， $P(Y)$ 它可能的分布的最优猜测， $P(X)$ 是集成 $Y$ 后的分布。 例如， 聚类 $Y$ 可能是 聚类 标签 并且 $P(X \mid Y)$ 是应用 聚类标签的生成模型。
