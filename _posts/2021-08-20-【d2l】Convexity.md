@@ -43,4 +43,26 @@ from d2l import torch as d2l
 
 ## Convex Functions
 
-现在我们
+现在我们由凸集引入凸函数 $f$。 给定一个凸集 $\mathcal{X}$, 以及 $f： \mathcal{X} \rightarrow \mathbb{R}$, 对所有 $x, x' \in \mathcal{X}$ 以及 对所有 $\lambda \in [0, 1]$有如下关系， 那么函数是凸的：
+
+$$
+\lambda f(x) + (1 - \lambda)f(x') \geq f(\lambda x + (1 - \lambda) x') 
+$$
+
+为了说明这一点，让我们绘制一些函数，并检查哪些函数满足要求。下面我们定义几个函数，包括凸函数和非凸函数。
+
+```python
+f = lambda x: 0.5 * x**2  # Convex
+g = lambda x: torch.cos(np.pi * x)  # Nonconvex
+h = lambda x: torch.exp(0.5 * x)  # Convex
+
+x, segment = torch.arange(-2, 2, 0.01), torch.tensor([-1.5, 1])
+d2l.use_svg_display()
+_, axes = d2l.plt.subplots(1, 3, figsize=(9, 3))
+for ax, func in zip(axes, [f, g, h]):
+    d2l.plot([x, segment], [func(x), func(segment)], axes=ax)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1629422692493.png)
+
+正如预期的那样，余弦函数是非凸函数，而抛物线函数和指数函数是凸函数。注意 $\mathcal{X}$ 是凸集是必要条件。 否则 $f(\lambda x + (1 - \lambda)x')$ 可能没有定义。
