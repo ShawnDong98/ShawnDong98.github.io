@@ -151,4 +151,8 @@ $$
 g \leftarrow g · \min (1, \theta / \|g\|)
 $$
 
-这表明 $g$ 的投影到一个半径为 $\theta$ 的球上。 更通用地， 凸集 $\mathcal{X}$ 的投影被定义为： $Proj_X(x) = \mathop{\text{argmin}}_{x' \in \mathcal{X}} \|x - x'\|$
+这表明 $g$ 的投影到一个半径为 $\theta$ 的球上。 更通用地， 凸集 $\mathcal{X}$ 的投影被定义为： 
+
+$$
+Proj_X(x) = \mathop{\text{argmin}}_{x' \in \mathcal{X}} \|x - x'\|
+$$
