@@ -22,4 +22,4 @@ $$
 \exp(\min(0, 1 - \frac{len_{label}}{len_{pred}})) \prod_{n=1}^k p_n^{1/2^n}
 $$
 
-n-grams 的准确率表示为 $p_n$， 它是在预测序列与标签序列匹配的 n-grams 数量 与  预测序列的 n-grams  数量的比值。  此外 len~label~ 与 len~pred~ 分别表示标签序列与预测序列的 tokens 的数量。 
+n-grams 的准确率表示为 $p_n$， 它是在预测序列与标签序列匹配的 n-grams 数量 与  预测序列的 n-grams  数量的比值。  此外， len~label~ 与 len~pred~ 分别表示标签序列与预测序列的 tokens 的数量。 $k$ 是要匹配的最长的 n-grams。 
