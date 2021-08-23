@@ -29,3 +29,22 @@ tags:
 
 - 提出的结构将文本模态的权重快速应用到跨模态任务中。
 - SRAUs 不仅可以平衡学习视觉和文本模态的特征， 还不容易落入零梯度的区域
+
+
+# Related Work
+
+早期的方法集中在将提取的目标、属性和关系填入模板。
+
+使用目标区域编码图像被证明有效(Bottom-up feature)。
+
+强化学习使得可以使用不可微的评价指标优化模型。
+
+Feng 等人提出不使用配对的image-caption 监督 来进行 无监督captioning。
+
+Kim 等人通过从辅助的不配对的 image-caption 数据中学习提高数据效率。
+
+# Background on Transformer 
+
+传统的transformers， encoder只有最后一层的输出会被使用。 Meshed-Memory transformers 中 encoder 的所有层都会通过相同的 编码器解码器 注意力。
+
+AoA 模块可以用来在cross-attention后融合视觉和语言信息。
