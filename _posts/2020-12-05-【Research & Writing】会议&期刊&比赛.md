@@ -85,6 +85,10 @@ ICCV兩年一次，與ECCV正好錯開，是公認的三個會議中級別最高
 2021年3月2日：提交论文的存档版本，以在AAAI数字图书馆中发表。\\
 
 
+## NLP 受认可会议
+
+NLP方向的会议是ACL、EMNLP、NAACL
+
 # 期刊
 
 ## IEEE TRANSACTIONS ON PATTERN ANALYSIS AND MACHINE INTELLIGENCE
