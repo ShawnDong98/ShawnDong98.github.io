@@ -931,6 +931,7 @@ sysctl -p
 5. [github.io （nvidia.github.io）无法访问问题及解决（2021.01）](https://blog.csdn.net/u010006102/article/details/112272543)
 6. [Failed to allocate directory watch: Too many open files](https://blog.csdn.net/Bobsweetie/article/details/111688878)
 7. [docker19.03＋NVIDIA显卡＋docker: Error response from daemon: could not select device driver "" with c](https://blog.csdn.net/BigData_Mining/article/details/104991349)
+8. [完美解决docker问题：Failed to allocate directory watch: Too many open files](https://blog.csdn.net/weixin_41194129/article/details/115762769)
 
 
 
