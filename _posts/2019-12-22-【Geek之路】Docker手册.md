@@ -900,6 +900,10 @@ docker: Error response from daemon: could not select device driver "" with capab
 验证是否安装了nvidia-container-runtime 或者 重新启动守护进程
 
 ```
+sudo apt-get install nvidia-container-runtime
+```
+
+```
 systemctl restart  docker
 ```
 
