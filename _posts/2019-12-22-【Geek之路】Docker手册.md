@@ -915,7 +915,7 @@ systemctl restart  docker
 4. [重新安装Docker出现E: Sub-process /usr/bin/dpkg returned an error code (1)](https://blog.csdn.net/M82_A1/article/details/92186791)
 5. [github.io （nvidia.github.io）无法访问问题及解决（2021.01）](https://blog.csdn.net/u010006102/article/details/112272543)
 6. [Failed to allocate directory watch: Too many open files](https://blog.csdn.net/Bobsweetie/article/details/111688878)
-
+7. [docker19.03＋NVIDIA显卡＋docker: Error response from daemon: could not select device driver "" with c](https://blog.csdn.net/BigData_Mining/article/details/104991349)
 
 
 
