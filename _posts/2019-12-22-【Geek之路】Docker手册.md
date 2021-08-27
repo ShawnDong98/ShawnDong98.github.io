@@ -897,7 +897,7 @@ sudo systemctl restart docker
 docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
 ```
 
-重新启动守护进程
+验证是否安装了nvidia-container-runtime 或者 重新启动守护进程
 
 ```
 systemctl restart  docker
