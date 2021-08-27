@@ -923,6 +923,18 @@ fs.inotify.max_user_watches=262144
 sysctl -p
 ```
 
+## Docker 找不到/etc/docker/daemon.json问题解决
+
+在配置dock镜像加速的时候需要把加速阿里的加速写入daemon.json文件。
+
+但是奇怪的是别说daemon.json文件了，在etc目录下，我连docker目录都找不到。
+
+于是访问官网， 看到下面一句话：
+
+**To configure the Docker daemon using a JSON file, create a file at /etc/docker/daemon.json on Linux systems, or C:\ProgramData\docker\config\daemon.json on Windows. On MacOS go to the whale in the taskbar > Preferences > Daemon > Advanced.**
+
+使用json配置 Docker daemon，请在linux系统创建/etc/docker/daemon.json。
+
 # Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
