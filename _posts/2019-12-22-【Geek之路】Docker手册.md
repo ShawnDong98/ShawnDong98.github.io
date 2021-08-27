@@ -889,6 +889,20 @@ sudo systemctl restart docker
 ```
 
 
+# Bugs
+
+## docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
+
+```
+docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
+```
+
+重新启动守护进程
+
+```
+systemctl restart  docker
+```
+
 
 # Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
