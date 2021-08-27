@@ -908,6 +908,21 @@ systemctl restart  docker
 ```
 
 
+## Failed to allocate directory watch: Too many open files
+
+vim /etc/sysctl.conf， 添加
+
+```
+fs.inotify.max_user_instances=512
+fs.inotify.max_user_watches=262144
+```
+
+生效：
+
+```
+sysctl -p
+```
+
 # Reference
 1. [是否可以使用适用于Windows的docker进行GPU传递？](https://bbs.csdn.net/topics/394360047)
 2. [NVIDIA docker on windows?](https://github.com/NVIDIA/nvidia-docker/issues/665)
