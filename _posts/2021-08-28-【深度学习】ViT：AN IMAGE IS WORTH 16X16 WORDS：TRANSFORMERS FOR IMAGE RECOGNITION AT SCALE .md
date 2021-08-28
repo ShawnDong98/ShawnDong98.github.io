@@ -14,3 +14,26 @@ tags:
 # ABSTRACT
 
 在视觉中，注意力通常和卷积神经网络组合起来或者替换掉特定的卷及网络以保持它们的整体结构。我们证明对CNNs的依赖不是必须的， 直接对图像patch序列使用transformer也可以在图像分类任务上表现地很好。
+
+
+# INTRODUCTION
+
+当不适用强正则化在中等大小数据集上(比如ImageNet)训练， 模型产生的结果比同样大小的ResNet低几个百分点。
+
+# RELATED WORK 
+
+通常图像的自注意力需要计算每个像素值对其它像素值的权重。
+
+
+# Method
+
+## VISION TRANSFORMER (VIT)
+
+为了处理 2D 图像， 将图像 $x \in \mathbb{R}^{H \times W \times C}$ reshape 成一个拉平的 2D patch 的序列 $x_p \in \mathbb{R}^{N \times (P^2 · C)}$。
+
+因为Transformer的所有层输入都是一个大小为 D 的隐向量， 将patch拉平 并且通过一个可学习的线性投影 映射到 D 维。
+
+分类头 在预训练时由一个带一个隐藏层的多层感知机实现， 在微调时是一个单线性层。
+
+位置编码用来保存位置信息， 因为并没观察到使用 2D 的位置编码比 1D 的位置编码有更高的性能表现， 因此使用 1D 的位置编码。
+
