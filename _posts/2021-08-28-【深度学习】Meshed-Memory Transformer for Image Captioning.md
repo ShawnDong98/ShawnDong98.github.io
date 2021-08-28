@@ -46,3 +46,13 @@ tags:
 与此同时， Yang等人使用多模态图卷积神经网络将场景图加入视觉表征。
 
 Herdade等人对image captioning使用Transformer结构并且将检测的输入目标之间的几何关系融入进去。
+
+Li等人通过一个额外的 tagger 使用 Transformer 模型发觉视觉信息和额外的语义知识。
+
+Huang等人年引入一种注意力操作的拓展， 通过由上下文门控对最后参与的信息加权。
+
+
+# Meshed-Memory Transformer 
+
+见论文
+
