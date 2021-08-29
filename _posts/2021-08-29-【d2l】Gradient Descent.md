@@ -278,6 +278,30 @@ epoch 10, x: tensor(0.)
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630228871189.png)
 
+
+现在让我们考虑非凸函数 $f(x) = x cos(cx)$ , $c$ 为常数。 请注意，在牛顿的方法中，我们最终除以了Hessian。 这意味着，如果二阶导数是负的，我们可以走向 $f$ 的值增大的方向。这是算法的致命缺陷。让我们看看在实践中会发生什么。
+
+```python
+c = torch.tensor(0.15 * np.pi)
+
+def f(x):  # Objective function
+    return x * torch.cos(c * x)
+
+def f_grad(x):  # Gradient of the objective function
+    return torch.cos(c * x) - c * x * torch.sin(c * x)
+
+def f_hess(x):  # Hessian of the objective function
+    return -2 * c * torch.sin(c * x) - x * c**2 * torch.cos(c * x)
+
+show_trace(newton(), f)
+```
+
+```
+epoch 10, x: tensor(26.8341)
+```
+
+
+
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630228826698.png)
 
 ## Convergence Analysis
