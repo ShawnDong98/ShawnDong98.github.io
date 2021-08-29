@@ -244,7 +244,7 @@ $$
 
 举一个简单的例子， $f(x) = \frac{1}{2} x^2$ , 我们有 $\nabla f(x) = x$ 并且 $H = 1$。因此对于任意的 $x$， 我们得到 $\epsilon = -x$。 只需一步就足以完美地收敛，无需任何调整。我们是幸运的： 泰勒展开是准确的， 因为 $f(x + \epsilon) = \frac{1}{2} x^2 + \epsilon x + \frac{1}{2} \epsilon$。
 
-让我们看看在其他问题中会发生什么。对于一些常数 $c$， 给定一个凸双曲余弦函数 $f(x) = cos h(cx)$， 我们可以看到在一些迭代后 达到全局最小值$x = 0$ 。
+让我们看看在其他问题中会发生什么。对于一些常数 $c$， 给定一个凸双曲余弦函数 $f(x) = cosh(cx)$， 我们可以看到在一些迭代后 达到全局最小值$x = 0$ 。
 
 
 
@@ -276,6 +276,9 @@ show_trace(newton(), f)
 epoch 10, x: tensor(0.)
 ```
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630228871189.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630228826698.png)
 
 ## Convergence Analysis
 
