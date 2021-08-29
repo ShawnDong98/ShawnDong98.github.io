@@ -120,3 +120,30 @@ epoch 10, x: 61.917364
 ```
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630224400653.png)
+
+
+## Local Minima
+
+为了解释在非凸函数上会发生什么， 我们假设 $f(x) = x · cos(cx)$,  $c$为常数。 这个函数有无穷多个局部极小值。根据我们对学习率的选择以及问题条件设置的好坏程度，我们最终可能会得到许多解决方案中的一个。下面的例子说明了高学习率如何导致较差的局部最小值。
+
+```python
+c = torch.tensor(0.15 * np.pi)
+
+def f(x):  # Objective function
+    return x * torch.cos(c * x)
+
+def f_grad(x):  # Gradient of the objective function
+    return torch.cos(c * x) - c * x * torch.sin(c * x)
+
+show_trace(gd(2, f_grad), f)
+```
+
+```
+epoch 10, x: -1.528166
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630224987106.png)
+
+# 多变量梯度下降
+
+现在我们对单变量情况有了更好的直觉，让我们考虑这样的情况，$x = [x_1, x_2, ..., x_d]^T$。也就是说， 目标函数 $f: \mathbb{R}^d \rightarrow  \mathbb{R}$ 将向量映射为标量。因此，它的梯度也是多元的， 它是一个由 $d$ 个偏导数组成的向量。
