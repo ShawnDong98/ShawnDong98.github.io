@@ -147,3 +147,15 @@ epoch 10, x: -1.528166
 # 多变量梯度下降
 
 现在我们对单变量情况有了更好的直觉，让我们考虑这样的情况，$x = [x_1, x_2, ..., x_d]^T$。也就是说， 目标函数 $f: \mathbb{R}^d \rightarrow  \mathbb{R}$ 将向量映射为标量。因此，它的梯度也是多元的， 它是一个由 $d$ 个偏导数组成的向量。
+
+$$
+\nabla f(x) = [\frac{\partial f(x)}{\partial x_1}, \frac{\partial f(x)}{\partial x_2}, ..., \frac{\partial f(x)}{\partial x_d}]^T
+$$
+
+梯度中的每个偏导元素 $\partial f(x) / \partial x_i$ 表示 分别对每个输入 $x_i$ $f$ 在 $x$ 处的变化率。 和之前一样，在单变量情况下，我们可以对多元函数使用相应的泰勒近似来得到我们的一些想法。
+
+$$
+f(x + \epsilon) = f(x) + \epsilon^T \nabla f(x) + O(\| \epsilon\|^2)
+$$
+
+换句话说，在 $\epsilon$ 的二阶项（$O(\|\epsilon\|^2)$）之前，最陡下降的方向是由负梯度给出的
