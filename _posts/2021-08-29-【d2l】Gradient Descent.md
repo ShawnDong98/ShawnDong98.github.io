@@ -144,7 +144,7 @@ epoch 10, x: -1.528166
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630224987106.png)
 
-# 多变量梯度下降
+# Multivariate Gradient Descent
 
 现在我们对单变量情况有了更好的直觉，让我们考虑这样的情况，$x = [x_1, x_2, ..., x_d]^T$。也就是说， 目标函数 $f: \mathbb{R}^d \rightarrow  \mathbb{R}$ 将向量映射为标量。因此，它的梯度也是多元的， 它是一个由 $d$ 个偏导数组成的向量。
 
@@ -167,3 +167,55 @@ $$
 为了了解算法在实践中的表现，让我们构造一个目标函数 $f(x) = x_1^2 + 2x_2^2$， 输入是一个两维的向量 $x = [x_1, x_2]^T$， 输出是一个标量。梯度由 $\nabla f(x) = [2x_1, 4x_2]^T$ 给定。 我们将会观察到从初始位置 $[-5, -2]$ 通过梯度下降 $x$ 的轨迹。
 
 首先，我们还需要两个辅助函数。第一种方法使用一个更新函数，并将其应用于初始值20次。第二个帮助可视化 $x$ 的轨迹。
+
+
+```python
+def train_2d(trainer, steps=20, f_grad=None):  #@save
+    """Optimize a 2D objective function with a customized trainer."""
+    # `s1` and `s2` are internal state variables that will be used later
+    x1, x2, s1, s2 = -5, -2, 0, 0
+    results = [(x1, x2)]
+    for i in range(steps):
+        if f_grad:
+            x1, x2, s1, s2 = trainer(x1, x2, s1, s2, f_grad)
+        else:
+            x1, x2, s1, s2 = trainer(x1, x2, s1, s2)
+        results.append((x1, x2))
+    print(f'epoch {i + 1}, x1: {float(x1):f}, x2: {float(x2):f}')
+    return results
+
+def show_trace_2d(f, results):  #@save
+    """Show the trace of 2D variables during optimization."""
+    d2l.set_figsize()
+    d2l.plt.plot(*zip(*results), '-o', color='#ff7f0e')
+    x1, x2 = torch.meshgrid(torch.arange(-5.5, 1.0, 0.1),
+                            torch.arange(-3.0, 1.0, 0.1))
+    d2l.plt.contour(x1, x2, f(x1, x2), colors='#1f77b4')
+    d2l.plt.xlabel('x1')
+    d2l.plt.ylabel('x2')
+```
+
+接下来， 我们观察对于学习率 $\eta = 0.1$ ， 优化变量 $x$ 的轨迹。 我们可以看到在20步后， $x$ 的值在 $[0, 0]$ 接近它的最小值。 尽管进展相当缓慢，但进展相当顺利。
+
+```python
+def f_2d(x1, x2):  # Objective function
+    return x1**2 + 2 * x2**2
+
+def f_2d_grad(x1, x2):  # Gradient of the objective function
+    return (2 * x1, 4 * x2)
+
+def gd_2d(x1, x2, s1, s2, f_grad):
+    g1, g2 = f_grad(x1, x2)
+    return (x1 - eta * g1, x2 - eta * g2, 0, 0)
+
+eta = 0.1
+show_trace_2d(f_2d, train_2d(gd_2d, f_grad=f_2d_grad))
+```
+
+```
+epoch 20, x1: -0.057646, x2: -0.000073
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630227270133.png)
+
+# Adaptive Methods
