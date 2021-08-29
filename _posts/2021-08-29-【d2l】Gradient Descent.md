@@ -248,7 +248,7 @@ $$
 
 
 
-```
+```python
 c = torch.tensor(0.5)
 
 def f(x):  # Objective function
@@ -272,6 +272,9 @@ def newton(eta=1):
 show_trace(newton(), f)
 ```
 
+```
+epoch 10, x: tensor(0.)
+```
 
 
 ## Convergence Analysis
