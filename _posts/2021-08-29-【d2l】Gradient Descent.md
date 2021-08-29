@@ -219,3 +219,23 @@ epoch 20, x1: -0.057646, x2: -0.000073
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630227270133.png)
 
 # Adaptive Methods
+
+正如我们在第11.3.1.1节中所看到的，要得到正确的学习速率 $\eta$ 是很困难的。如果我们选择的太小，我们取得的进步就很小。如果取的太大，解就会振荡，最坏的情况下它甚至会发散。如果我们可以自动地确定 $η$，或者完全不需要选择一个学习速率，那会怎么样呢？在这种情况下，不仅考虑目标函数的值和梯度，而且考虑其曲率的二阶方法会有所帮助。虽然由于计算成本，这些方法不能直接应用于深度学习，但它们提供了有用的直觉，帮助我们设计先进的优化算法，模拟以下列出的算法的许多理想特性。
+
+## Newton’s Method
+
+回顾泰勒展开 $f： \mathbb{R}^d \rightarrow \mathbb{R}$ ， 不需要在第一项后就停止。 事实上， 我们可以写成：
+
+$$
+f(x + \epsilon) = f(x) + \epsilon^T \nabla f(x) + \frac{1}{2} \epsilon^T \nabla^2 f(x) \epsilon + O(\|\epsilon\|^3)
+$$
+
+为了避免冗长的符号， 我用定义 $H \mathop{=}^{def} \nabla^2 f(x)$
+
+## Convergence Analysis
+
+
+## Preconditioning
+
+
+## Gradient Descent with Line Search
