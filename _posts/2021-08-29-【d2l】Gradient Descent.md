@@ -230,7 +230,49 @@ $$
 f(x + \epsilon) = f(x) + \epsilon^T \nabla f(x) + \frac{1}{2} \epsilon^T \nabla^2 f(x) \epsilon + O(\|\epsilon\|^3)
 $$
 
-为了避免冗长的符号， 我用定义 $H \mathop{=}^{def} \nabla^2 f(x)$
+为了避免冗长的符号， 我用定义 $H \mathop{=}^{def} \nabla^2 f(x)$ 表示 $f$ 的海森矩阵， 它是一个 $d \times d$ 的矩阵。 对于小的 $d$ 以及简单问题的 $H$ 是容易计算的。 对于深度神经网络， $H$ 可能非常大， 因为它的空间复杂度为 $O(d^2)$。 此外，通过反向传播进行计算可能过于成本高。现在让我们忽略这些考虑，看看我们会得到什么算法。
+
+最后， 最小化 $f$ 满足 $\nabla f = 0$。 下面的计算规则在 2.4.3 节中， 通过忽略高阶项并且对 $\epsilon$ 求 11.3.8 的偏导， 我们得到：
+
+
+$$
+\nabla f(x) + H \epsilon = 0 \text{ and hence } \epsilon = -H^{-1} \nabla f(x)
+$$
+
+
+也就是说 ，我们需要将海森矩阵 $H$ 转换为优化问题的一部分。
+
+举一个简单的例子， $f(x) = \frac{1}{2} x^2$ , 我们有 $\nabla f(x) = x$ 并且 $H = 1$。因此对于任意的 $x$， 我们得到 $\epsilon = -x$。 只需一步就足以完美地收敛，无需任何调整。我们是幸运的： 泰勒展开是准确的， 因为 $f(x + \epsilon) = \frac{1}{2} x^2 + \epsilon x + \frac{1}{2} \epsilon$。
+
+让我们看看在其他问题中会发生什么。对于一些常数 $c$， 给定一个凸双曲余弦函数 $f(x) = cos h(cx)$， 我们可以看到在一些迭代后 达到全局最小值$x = 0$ 。
+
+
+
+```
+c = torch.tensor(0.5)
+
+def f(x):  # Objective function
+    return torch.cosh(c * x)
+
+def f_grad(x):  # Gradient of the objective function
+    return c * torch.sinh(c * x)
+
+def f_hess(x):  # Hessian of the objective function
+    return c**2 * torch.cosh(c * x)
+
+def newton(eta=1):
+    x = 10.0
+    results = [x]
+    for i in range(10):
+        x -= eta * f_grad(x) / f_hess(x)
+        results.append(float(x))
+    print('epoch 10, x:', x)
+    return results
+
+show_trace(newton(), f)
+```
+
+
 
 ## Convergence Analysis
 
