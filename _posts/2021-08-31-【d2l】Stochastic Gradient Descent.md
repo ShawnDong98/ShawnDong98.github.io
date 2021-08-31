@@ -12,6 +12,24 @@ tags:
 ---
 
 
+# 动态学习率
+
+将 $\eta$ 替换为一个依赖时间的学习率 $\eta(t)$ 会增加优化算法的复杂度。 特别是我们需要找出怎样的 $\eta$ 会快速的下降。 如果它太快，我们将过早地停止优化。如果我们降低得太慢，我们就会在优化上浪费太多时间。下面是一些基本的用于随着时间调整 $\eta$ 的策略：
+
+
+$$
+\eta(t) = \eta_i \quad \text{ if } t_i \leq t \leq t_{i+1} \qquad \text{piecewise constant}
+$$
+
+$$
+\eta(t) = \eta_0 · e^{-\lambda t} \qquad \qquad \text{exponential decay}
+$$
+
+$$
+\eta(t) = \eta_0 · (\beta t + 1)^{-\alpha} \qquad \qquad \text{polynomial decay}
+$$
+
+在第一个 piecewise constant 场景中，当优化取得进展时我们降低学习率。 这是训练深度网络的常用策略。
 
 # 凸目标的收敛分析
 
