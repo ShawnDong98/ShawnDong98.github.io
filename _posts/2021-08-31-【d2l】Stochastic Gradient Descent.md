@@ -45,6 +45,10 @@ lr = exponential_lr
 d2l.show_trace_2d(f, d2l.train_2d(sgd, steps=1000, f_grad=f_grad))
 ```
 
+```
+epoch 1000, x1: -0.903849, x2: 0.026687
+```
+
 # 凸目标的收敛分析
 
 假设目标函数 $f(\xi, x)$ 对于所有的 $\xi$  是凸的。更具体地， 我们考虑随机梯度的更新：
