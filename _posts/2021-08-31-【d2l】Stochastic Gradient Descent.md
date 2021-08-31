@@ -49,6 +49,31 @@ d2l.show_trace_2d(f, d2l.train_2d(sgd, steps=1000, f_grad=f_grad))
 epoch 1000, x1: -0.903849, x2: 0.026687
 ```
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630385990438.png)
+
+如预期的那样，参数中的方差显著减少。然而，这是以不能收敛到最优解 $x = (0, 0$ 为代价的。 即使经过1000个迭代步骤，我们仍然离最优解决方案很遥远。实际上，该算法根本无法收敛。另一方面，如果我们使用一个步数的负平方根的学习速率衰减的polynomial decay，收敛性在仅仅50步后变得更好。
+
+```python
+def polynomial_lr():
+    # Global variable that is defined outside this function and updated inside
+    global t
+    t += 1
+    return (1 + 0.1 * t)**(-0.5)
+
+t = 1
+lr = polynomial_lr
+d2l.show_trace_2d(f, d2l.train_2d(sgd, steps=50, f_grad=f_grad))
+```
+
+```
+epoch 50, x1: -0.067160, x2: -0.054952
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630386272072.png)
+
+
+对于如何设置学习率，有更多的选择。例如，我们可以从一个小的速率开始，然后迅速上升，然后再次下降。我们甚至可以在更小和更大的学习速率之间交替。存在着各种各样的这样的学习率策略。对于一般的非凸问题，由于极小化非线性非凸问题一般是NP hard的，因此很难得到有意义的收敛保证。
+
 # 凸目标的收敛分析
 
 假设目标函数 $f(\xi, x)$ 对于所有的 $\xi$  是凸的。更具体地， 我们考虑随机梯度的更新：
