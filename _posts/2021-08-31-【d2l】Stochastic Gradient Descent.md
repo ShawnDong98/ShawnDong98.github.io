@@ -29,7 +29,21 @@ $$
 \eta(t) = \eta_0 · (\beta t + 1)^{-\alpha} \qquad \qquad \text{polynomial decay}
 $$
 
-在第一个 piecewise constant 场景中，当优化取得进展时我们降低学习率。 这是训练深度网络的常用策略。或者我们可以通过 exponential decay 来更剧烈地减小它。不幸的是，这通常会导致在算法收敛之前过早停止。
+在第一个 piecewise constant 场景中，当优化取得进展时我们降低学习率。 这是训练深度网络的常用策略。或者我们可以通过 exponential decay 来更剧烈地减小它。不幸的是，这通常会导致在算法收敛之前过早停止。一个受欢迎的选择是 $\alpha = 0.5$ 的 polynomial decay。 在凸优化的情况下，有许多证明表明这个速率是良好的。
+
+让我们看看实际中的指数衰减是怎样的。
+
+```python
+def exponential_lr():
+    # Global variable that is defined outside this function and updated inside
+    global t
+    t += 1
+    return math.exp(-0.1 * t)
+
+t = 1
+lr = exponential_lr
+d2l.show_trace_2d(f, d2l.train_2d(sgd, steps=1000, f_grad=f_grad))
+```
 
 # 凸目标的收敛分析
 
