@@ -84,6 +84,11 @@ ICCV兩年一次，與ECCV正好錯開，是公認的三個會議中級別最高
 2021年2月2日至9日： AAAI 2021年 \\
 2021年3月2日：提交论文的存档版本，以在AAAI数字图书馆中发表。\\
 
+## WWW
+
+WWW总体上是A类会议，这个在很多会议排名上都有体现，比如csrankings.org，csmetrics.org等等。国内的CCF以前把WWW评为数据挖掘的B类，现在已经更正成交叉的A类的。WWW的录取率在15%左右，但是各个track的质量和录取率都是有差异的，根据我老板说，今年的PC meeting最难的graph track只有8%的录取率，录最多的track能有40%左右。当然录取率不能完全代表质量。
+
+
 ## AI 受认可会议
 
 AI方向的会议是NIPS、ICLR、ICML，AAAI数据也还不错
@@ -252,3 +257,4 @@ PubMed Central (PMC)链接：PubMed Central
 2.  [http://cvpr2021.thecvf.com/node/36](http://cvpr2021.thecvf.com/node/36)
 3.  [http://iccv2021.thecvf.com/](http://iccv2021.thecvf.com/)
 4.  [https://aaai.org/Conferences/AAAI-21/#](https://aaai.org/Conferences/AAAI-21/#)
+5.  [为什么大家很少提及WWW会议？](https://www.zhihu.com/question/299166656/answer/581306278)
