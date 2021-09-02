@@ -130,3 +130,21 @@ epoch 20, x1: -0.126340, x2: -0.186632
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630564129220.png)
 
 注意，我们可以将动量和随机梯度下降结合起来，特别是，小批量随机梯度下降。唯一要做的变化就是用 $g_t$ 替换掉梯度 $g_{t, t-1}$。 最后， 为了方便我们在时间 $t = 0$ 初始化 $v_0 = 0$。  让我们来看一下 leaky averaging 对更新实际做了什么。
+
+
+## Effective Sample Weight
+
+回忆一下 $v_t = \sum_{\tau=0}^{t-1} \beta^\tau g_{t - \tau, t - \tau - 1}$。 取极限，这些项加起来是 $\sum_{\tau=0}^\infty \beta^\tau = \frac{1}{1-\beta}$。 换句话说， 与其在梯度下降或者随机梯度下降中采用步长大小为 $\eta$， 我们使用步长大小为 $\frac{\eta}{1 - \beta}$， 这样做可能将会有更好表现的梯度方向。 为了解释不同 $\beta$ 的选择对权重表现的影响，绘制如下的表格 ：
+
+```python
+d2l.set_figsize()
+betas = [0.95, 0.9, 0.6, 0]
+for beta in betas:
+    x = torch.arange(40).detach().numpy()
+    d2l.plt.plot(x, beta**x, label=f'beta = {beta:.2f}')
+d2l.plt.xlabel('time')
+d2l.plt.legend();
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630565168464.png)
