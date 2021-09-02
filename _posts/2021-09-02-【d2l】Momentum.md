@@ -172,3 +172,80 @@ $$
 
 梯度为 $\partial_x f(x) = Q(x - Q^{-1}c)$。 也就是说， 它取决于 $x$ 之间的局咯 以及 极小值点和 $Q$ 的乘积。 因此动量是 $Q(x_t - Q^{-1}c)$ 的线性组合。
 
+因为 $Q$是正定的， 它可以通过 $Q = O^T  \Lambda O$分解为特征值和特征向量， $O$为正交矩阵， $\Lambda$ 为正特征值的对角矩阵。 这里我们可以实现一个代换： $z := O(x - Q^{-1}c)$ 以得到简化表达式：
+
+$$
+h(z) = \frac{1}{2} z^T \Lambda z + b'
+$$
+
+这里 $b' = b - \frac{1}{2}c^TQ^{-1}c$。 因为 $O$ 是正交矩阵， 它不会影响梯度。 表达式中 $z$ 的梯度下降变为：
+
+$$
+z_t = z_{t-1} - \Lambda z_{t-1} = (I - \Lambda) z_{t-1}
+$$
+
+这个表达式中重要的事实是梯度下降不会在不同的特征空间中混合。优化问题以协调的方式进行：
+
+$$
+v_t = \beta v_{t-1} + \Lambda z_{t-1}
+$$
+
+$$
+\begin{aligned}
+z_t &= z_{t-1} - \eta (\beta v_{t-1} + \Lambda z_{t-1}) \\
+&= (I - \eta \Lambda) z_{t-1} - \eta \beta v_{t-1}
+\end{aligned}
+$$
+
+在此过程中，我们证明了以下定理:凸二次函数的有动量和无动量梯度下降分解为二次矩阵特征向量方向上的坐标优化。
+
+
+### Scalar Functions
+
+根据上面的结果，让我们看看当我们最小化这个函数 $f(x) = \frac{\lambda}{2}x^2$ 时会发生什么。 对于梯度下降我们有：
+
+$$
+x_{t+1} = x_t - \eta \lambda x_t = (1 - \eta \lambda) x_t
+$$
+
+当 $\mid 1 - \eta \lambda \mid < 1$， 这个优化以指数速率收敛， 因为在 $t$ 步之后， 我们有 $x_t = (1 - \eta \lambda)^t x_0$。 这表明了收敛速率如何提升， 当我们增加学习率 $\eta$ 直到 $\eta \lambda = 1$。 
+
+
+```python
+lambdas = [0.1, 1, 10, 19]
+eta = 0.1
+d2l.set_figsize((6, 4))
+for lam in lambdas:
+    t = torch.arange(20).detach().numpy()
+    d2l.plt.plot(t, (1 - eta * lam)**t, label=f'lambda = {lam:.2f}')
+d2l.plt.xlabel('time')
+d2l.plt.legend();
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630568389151.png)
+
+
+为了分析动量情况下的收敛性，我们首先用两个标量来重写更新方程： 一个是 $x$， 另一个是动量 $v$。 这将产生：
+
+$$
+\left[\begin{matrix}
+v_{t+1} \\
+x_{t+1}
+\end{matrix}
+\right]
+= \left[\begin{matrix}
+\beta & \lambda \\
+-\eta \beta & (1 - \eta \lambda)
+\end{matrix}
+\right]
+\left[\begin{matrix}
+v_{t} \\
+x_{t}
+\end{matrix}
+\right]
+= R(\beta, \eta, \lambda) \left[\begin{matrix}
+v_{t} \\
+x_{t}
+\end{matrix}
+\right]
+$$
