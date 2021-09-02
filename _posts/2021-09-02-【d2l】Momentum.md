@@ -116,3 +116,17 @@ epoch 20, x1: 0.007188, x2: 0.002553
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630563941115.png)
 
 正如我们所看到的，即使使用我们之前使用的相同的学习速率，动量仍然可以很好地收敛。让我们看看当我们减小动量参数时会发生什么。将它减小为一半 $\beta = 0.25$ 导致了一个很难收敛的轨迹。但无论如何， 这都要比没有动量要好。 
+
+```python
+eta, beta = 0.6, 0.25
+d2l.show_trace_2d(f_2d, d2l.train_2d(momentum_2d))
+```
+
+```
+epoch 20, x1: -0.126340, x2: -0.186632
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630564129220.png)
+
+注意，我们可以将动量和随机梯度下降结合起来，特别是，小批量随机梯度下降。唯一要做的变化就是用 $g_t$ 替换掉梯度 $g_{t, t-1}$。 最后， 为了方便我们在时间 $t = 0$ 初始化 $v_0 = 0$。  让我们来看一下 leaky averaging 对更新实际做了什么。
