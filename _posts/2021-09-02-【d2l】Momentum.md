@@ -96,4 +96,23 @@ $$
 x_t \leftarrow x_{t-1} - \eta_t v_t
 $$
 
-当 $\beta = 0$ 时， 恢复为普通的梯度下降。 
+当 $\beta = 0$ 时， 恢复为普通的梯度下降。 在深入研究数学属性之前，让我们快速了解一下算法在实践中的表现。
+
+```python
+def momentum_2d(x1, x2, v1, v2):
+    v1 = beta * v1 + 0.2 * x1
+    v2 = beta * v2 + 4 * x2
+    return x1 - eta * v1, x2 - eta * v2, v1, v2
+
+eta, beta = 0.6, 0.5
+d2l.show_trace_2d(f_2d, d2l.train_2d(momentum_2d))
+```
+
+
+```
+epoch 20, x1: 0.007188, x2: 0.002553
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630563941115.png)
+
+正如我们所看到的，即使使用我们之前使用的相同的学习速率，动量仍然可以很好地收敛。让我们看看当我们减小动量参数时会发生什么。将它减小为一半 $\beta = 0.25$ 导致了一个很难收敛的轨迹。但无论如何， 这都要比没有动量要好。 
