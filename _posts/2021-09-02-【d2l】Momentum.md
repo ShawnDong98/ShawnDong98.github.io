@@ -148,3 +148,27 @@ d2l.plt.legend();
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1630565168464.png)
+
+
+## Theoretical Analysis
+
+
+$f(x) = 0.1 x_1^2 + 2x_2^2$ 看起像是人为创造的。 我们现在会看到，这实际上是一个很有代表性的问题，至少在最小化凸二次目标函数的情况下。
+
+
+### Quadratic Convex Functions
+
+考虑下面的函数
+
+$$
+h(x) = \frac{1}{2} x^T Q x + x^Tc + b
+$$
+
+这是一个通用的二次函数。对于正定矩阵 $Q \succ 0$，例如， 对于有正特征值的矩阵在 $x^* = -Q^{-1}c$ 是极小值点 并且 极小值为 $b - \frac{1}{2} c^T Q^{-1} c$。 因此我们可以重写 $h$ 为：
+
+$$
+h(x) = \frac{1}{2}(x - Q^{-1}c)Q(x - Q^{-1}c) + b - \frac{1}{2}c^TQ^{-1}c
+$$
+
+梯度为 $\partial_x f(x) = Q(x - Q^{-1}c)$。 也就是说， 它取决于 $x$ 之间的局咯 以及 极小值点和 $Q$ 的乘积。 因此动量是 $Q(x_t - Q^{-1}c)$ 的线性组合。
+
