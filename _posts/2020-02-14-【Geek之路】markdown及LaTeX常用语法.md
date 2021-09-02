@@ -62,6 +62,7 @@ tags:
 - $\overline{test}$：\overline{test}
 - $\lor$： \lor
 - $\land$： \land 
+- $\succ$:  \succ
 
 # LaTex
 
