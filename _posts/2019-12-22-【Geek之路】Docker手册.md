@@ -537,7 +537,7 @@ docker push image:tag
 
 ## docker 配置java环境
 
-下载 jdk8， oracle需要注册账号， 建议保存到网盘。
+下载 jdk8， oracle需要注册账号下载， 建议保存到网盘。
 
 
 # ubuntu 配置 Nvida-Docker
