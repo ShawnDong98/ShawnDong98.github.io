@@ -987,8 +987,7 @@ sysctl -p
 7. [docker19.03＋NVIDIA显卡＋docker: Error response from daemon: could not select device driver "" with c](https://blog.csdn.net/BigData_Mining/article/details/104991349)
 8. [完美解决docker问题：Failed to allocate directory watch: Too many open files](https://blog.csdn.net/weixin_41194129/article/details/115762769)
 9. [Docker 找不到/etc/docker/daemon.json问题解决](https://blog.csdn.net/qq_36481502/article/details/105991891)
-
-
+10. [linux安装jdk8](https://blog.csdn.net/pdsu161530247/article/details/81582980)
 
 
 
