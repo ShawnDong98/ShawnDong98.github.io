@@ -539,6 +539,10 @@ docker push image:tag
 
 下载 jdk8， oracle需要注册账号下载， 建议保存到网盘。
 
+```
+tar -zxvf jdk-8u291-linux-x64.tar.gz
+```
+
 
 # ubuntu 配置 Nvida-Docker
 
