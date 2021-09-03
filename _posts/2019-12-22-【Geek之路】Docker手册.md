@@ -543,6 +543,39 @@ docker push image:tag
 tar -zxvf jdk-8u291-linux-x64.tar.gz
 ```
 
+设置环境变量：
+
+```
+export JAVA_HOME=/usr/local/jdk1.8.0_291  #jdk安装目录
+ 
+export JRE_HOME=${JAVA_HOME}/jre
+ 
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib:$CLASSPATH
+ 
+export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin
+ 
+export PATH=$PATH:${JAVA_PATH}
+```
+
+
+立即生效 
+
+```
+source /etc/profile
+```
+
+测试：
+
+```
+javac
+```
+
+```
+java -version
+```
+
+
+
 
 # ubuntu 配置 Nvida-Docker
 
