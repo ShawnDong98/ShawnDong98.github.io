@@ -1153,6 +1153,36 @@ p2(a='python', b='itcast')
 **vars()** 函数返回对象object的属性和属性值的字典对象。
 
 
+## itertools
+
+### groupby
+
+
+```
+itertools.groupby(iterable,key=None)
+```
+
+这个函数的有两个参数，第一个是可迭代对象，第二个是key。
+
+groupby可以将相邻的重复元素挑出来放在一起：
+
+
+```
+for key,group in itertools.groupby('AAAABBBBCCAA'):
+	print(key,list(group)
+
+
+输出如下：
+A ['A', 'A', 'A', 'A']
+B ['B', 'B', 'B', 'B']
+C ['C', 'C']
+A ['A', 'A']
+```
+
+
+
+
+
 # os
 
 
