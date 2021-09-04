@@ -2190,3 +2190,4 @@ pip install -r requirements.txt
 60. [python读取csv文件](https://www.cnblogs.com/liangshian/p/11272155.html)
 61. [python @abstractmethod](https://www.cnblogs.com/baxianhua/p/10876181.html)
 62. [python3 functools](https://blog.csdn.net/qq_37616069/article/details/79811016)
+63. [itertools中groupby的学习](https://blog.csdn.net/i897355249/article/details/99171842)
