@@ -22,4 +22,16 @@ tags:
 
 # Introduction
 
-如果我们有G : X -> Y 和 F： Y -> X， G和F是互相的逆，通过映射 G 和 F 同时训练， 添加循环一致损失鼓励 $F(G(x)) \approx x$ 和 $G(F(y)) \approx y$
+如果我们有G : X -> Y 和 F： Y -> X， G和F是互相的逆，通过映射 G 和 F 同时训练， 添加循环一致损失鼓励 $F(G(x)) \approx x$ 和 $G(F(y)) \approx y$。
+
+
+# Related Work
+
+**Image-to-Image Translation**：使用pix2pix的结构， 并且不需要成对的训练样本。
+
+
+**Unpaired Image-to-Image Translation**： XX方法使用额外的项强制使输出与输入预定义的指标空间相近， 比如类别标签空间、图像像素空间 和 图像特征空间。
+
+**Cycle Consistency**： 通过映射 G 和 F 同时训练， 添加循环一致损失鼓励 $F(G(x)) \approx x$ 和 $G(F(y)) \approx y$
+
+**Neural Style Transfer**： 神经风格迁移通过组合图像的内容与另一图像的风格生成图像， 另一图像的风格通过预训练的深度特征计算Gram矩阵得到
