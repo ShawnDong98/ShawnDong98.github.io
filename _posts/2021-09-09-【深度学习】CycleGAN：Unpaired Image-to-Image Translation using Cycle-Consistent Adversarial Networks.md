@@ -34,4 +34,17 @@ tags:
 
 **Cycle Consistency**： 通过映射 G 和 F 同时训练， 添加循环一致损失鼓励 $F(G(x)) \approx x$ 和 $G(F(y)) \approx y$
 
-**Neural Style Transfer**： 神经风格迁移通过组合图像的内容与另一图像的风格生成图像， 另一图像的风格通过预训练的深度特征计算Gram矩阵得到
+**Neural Style Transfer**： 神经风格迁移通过组合图像的内容与另一图像的风格生成图像， 另一图像的风格通过预训练的深度特征计算Gram矩阵得到。
+
+# Formulation 
+
+损失函数包括两项： 对抗损失 和 循环一致损失。
+
+## Adversarial Loss
+
+
+$$
+L_{GAN}(G, D_Y, X, Y) = E_{y \thicksim p_{data}(y)}[\log D_Y(y)] + E_{x \thicksim p_{data}(x)}[\log (1 - D_{Y}(G(x)))]
+$$
+
+$G$ 想要最小化这个目标， 而 $D$ 想要最大化这个目标
