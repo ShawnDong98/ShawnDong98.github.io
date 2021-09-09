@@ -66,5 +66,7 @@ $$
 完整的损失如下：
 
 $$
-		L(G, F, D_X, D_Y) = L_{GAN}(G, D_Y, X, Y) + L_{GAN}(F, D_X, X, Y) + \lambda L_{cyc}(G, F)
+L(G, F, D_X, D_Y) = L_{GAN}(G, D_Y, X, Y) + L_{GAN}(F, D_X, X, Y) + \lambda L_{cyc}(G, F)
 $$
+
+单cycle不足以规范这种无约束的问题
