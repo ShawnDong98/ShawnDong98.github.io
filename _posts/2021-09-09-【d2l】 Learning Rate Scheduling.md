@@ -96,3 +96,71 @@ def train(net, train_iter, test_iter, num_epochs, loss, trainer, device,
     print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '
           f'test acc {test_acc:.3f}')
 ```
+
+让我们看一下如果我们使用默认配置的算法将会发生什么，比如学习率 0.3, 训练30 epochs。注意训练的准确性是如何持续增加的，而测试的准确率在超过一个点后停滞不前。两条曲线的差距表明过拟合了。
+
+```python
+lr, num_epochs = 0.3, 30
+net = net_fn()
+trainer = torch.optim.SGD(net.parameters(), lr=lr)
+train(net, train_iter, test_iter, num_epochs, loss, trainer, device)
+```
+
+```
+train loss 0.143, train acc 0.944, test acc 0.898
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631152773531.png)
+
+#  Schedulers
+
+调整学习速率的一种方法是在每一步都明确设置它。这可以通过 set_learning_rate 方法方便地实现。我们可以在每个epoch之后(甚至在每个minibatch之后)向下调整它，例如，以动态方式响应优化的进展。
+
+```python
+lr = 0.1
+trainer.param_groups[0]["lr"] = lr
+print(f'learning rate is now {trainer.param_groups[0]["lr"]:.2f}')
+```
+
+```
+learning rate is now 0.10
+```
+
+更一般地，我们想定义一个调度程序。当输入更新次数时， 它返回适当的学习率值。 让我们定义一个简单的公式来设置学习速率 $\eta = \eta_0 (t + 1)^{-\frac{1}{2}}$。
+
+
+```python
+class SquareRootScheduler:
+    def __init__(self, lr=0.1):
+        self.lr = lr
+
+    def __call__(self, num_update):
+        return self.lr * pow(num_update + 1.0, -0.5)
+```
+
+让我们绘制它在一系列值上的行为。
+
+```python
+scheduler = SquareRootScheduler(lr=0.1)
+d2l.plot(torch.arange(num_epochs), [scheduler(t) for t in range(num_epochs)])
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631153021632.png)
+
+
+现在我们来看看这对训练 Fashion-MNIST 有什么影响。我们只是将调度程序作为训练算法的附加参数提供。
+
+```python
+net = net_fn()
+trainer = torch.optim.SGD(net.parameters(), lr)
+train(net, train_iter, test_iter, num_epochs, loss, trainer, device,
+      scheduler)
+```
+
+```
+train loss 0.271, train acc 0.900, test acc 0.877
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631153108176.png)
+
+这比之前好多了。有两件事很突出:曲线比以前更加平滑。其次， 有更少的过拟合。不幸的是，为什么特定策略不会导致过度拟合，这个问题并没有在理论上得到很好的解决。
