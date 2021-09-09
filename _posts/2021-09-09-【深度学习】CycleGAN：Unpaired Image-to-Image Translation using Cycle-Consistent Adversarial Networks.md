@@ -69,4 +69,9 @@ $$
 L(G, F, D_X, D_Y) = L_{GAN}(G, D_Y, X, Y) + L_{GAN}(F, D_X, X, Y) + \lambda L_{cyc}(G, F)
 $$
 
-单cycle不足以规范这种无约束的问题
+单cycle不足以规范这种无约束的问题。
+
+
+# Implementation
+
+**Network Architecture**：网络包含3层卷积， 几个残差块， 以及两个反卷积， 最后有一个卷积将特征映射为RGB。128 x 128 的图像使用 6 个残差块， 256x256以及恒高分辨率的图像使用 9 个残差块。使用 instance norm。 判决器使用 70 x 70 的PatchGAN。
