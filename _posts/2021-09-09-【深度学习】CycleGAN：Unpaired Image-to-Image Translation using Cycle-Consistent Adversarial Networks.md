@@ -59,3 +59,12 @@ $G$ 想要最小化这个目标， 而 $D$ 想要最大化这个目标。
 $$
 L_{cyc}(G, F) = E_{x \thicksim p_{data}(x)} [\| F(G(x)) - x\|_1]  + E_{y \thicksim p_{data}(y)} [\| F(G(y)) - y\|_1]
 $$
+
+
+## Full Objective
+
+完整的损失如下：
+
+$$
+		L(G, F, D_X, D_Y) = L_{GAN}(G, D_Y, X, Y) + L_{GAN}(F, D_X, X, Y) + \lambda L_{cyc}(G, F)
+$$
