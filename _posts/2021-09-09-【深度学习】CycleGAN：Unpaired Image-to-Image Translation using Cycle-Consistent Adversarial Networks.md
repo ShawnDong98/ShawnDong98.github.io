@@ -78,3 +78,6 @@ $$
 
 
 **Training details**： 1. 使用 LSGAN 的损失。2. 使用历史生成的图像而不是用生成器最近生成的图像， 存储之前创建的50张图像。对所有实验使用 $\lambda = 10$, Adam优化器， batchsize为1。 学习率为0.0002， 从头开始训练。前100个epoch使用相同的学习率， 后100个epoch学习率线性衰减到0。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631198782823.png)
