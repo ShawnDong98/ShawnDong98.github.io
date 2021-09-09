@@ -289,4 +289,32 @@ train loss 0.190, train acc 0.929, test acc 0.899
 
 ## Warmup
 
-在某些情况下，初始化参数不足以保证得到一个好的解决方案。这对于一些高级网络设计来说尤其是个问题，可能会导致不稳定的优化问题。我们可以通过选择一个足够小的学习速率来解决这个问题，以防止一开始就出现发散。
+在某些情况下，初始化参数不足以保证得到一个好的解决方案。这对于一些高级网络设计来说尤其是个问题，可能会导致不稳定的优化问题。我们可以通过选择一个足够小的学习速率来解决这个问题，以防止一开始就出现发散。不幸的是，这意味着进展缓慢。相反，大的学习率最初会导致发散。
+
+解决这一困境的一个相当简单的方法是使用warmup，在此期间学习率增加到最初的最大值，然后冷却学习率，直到优化过程结束。为简单起见，通常使用线性递增。这导致了如下表所示的调度。
+
+```python
+scheduler = CosineScheduler(20, warmup_steps=5, base_lr=0.3, final_lr=0.01)
+d2l.plot(torch.arange(num_epochs), [scheduler(t) for t in range(num_epochs)])
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631156103598.png)
+
+请注意，网络在开始时收敛得更好(特别是观察前5个时期的性能)。
+
+
+```python
+net = net_fn()
+trainer = torch.optim.SGD(net.parameters(), lr=0.3)
+train(net, train_iter, test_iter, num_epochs, loss, trainer, device,
+      scheduler)
+```
+
+```
+train loss 0.195, train acc 0.928, test acc 0.899
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631156214394.png)
+
+Warmup可以应用于任何调度程序(不仅仅是余弦)。他们特别发现，在非常深的网络中，warmup阶段限制了参数的发散量。这在直觉上是有意义的，因为我们预计由于在网络的那些部分的随机初始化而导致显著的发散，这些部分在开始时花费了最多的时间。
