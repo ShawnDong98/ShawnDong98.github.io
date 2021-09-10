@@ -95,3 +95,82 @@ print(fancy_func(1, 2, 3, 4))
 从历史上看，大多数深度学习框架都是在命令式方式和符号式方式之间进行选择的。例如，Theano, TensorFlow，Keras, CNTK都是用符号式构建模型。相反，Chainer和PyTorch采用命令式方法。 在后来的版本中，TensorFlow 2.0和Keras添加了命令模式。
 
 如上所述，PyTorch基于命令式编程并使用动态计算图。为了利用符号编程的可移植性和效率，开发人员考虑是否有可能将两种编程模型的优点结合起来。这就产生了torchscript，允许用户使用纯命令式编程进行开发和调试，同时能够将大多数程序转换为符号程序，以便在需要产品级计算性能和部署时运行。
+
+
+#  Hybridizing the Sequential Class
+
+要了解 hybridization 是如何工作的，最简单的方法是考虑多层的深层网络。按照惯例，Python解释器需要执行所有层的代码，以生成一条指令，然后转发给CPU或GPU。对于单个计算设备，这不会导致任何重大问题。然而， 如果我们使用 8-GPU的服务器， Python将忙于保持所有GPU工作。 单线程Python解释器成了这里的瓶颈。让我们看看如何通过将Sequential替换为HybridSequential来解决代码的重要部分。我们首先定义一个简单的MLP。
+
+```python
+import torch
+from torch import nn
+from d2l import torch as d2l
+
+# Factory for networks
+def get_net():
+    net = nn.Sequential(nn.Linear(512, 256), nn.ReLU(), nn.Linear(256, 128),
+                        nn.ReLU(), nn.Linear(128, 2))
+    return net
+
+x = torch.randn(size=(1, 512))
+net = get_net()
+net(x)
+```
+
+```
+tensor([[0.1009, 0.1146]], grad_fn=<AddmmBackward>)
+```
+
+使用 `torch.jit.script` 函数转换模型， 们能够在MLP中编译和优化计算。模型的计算结果保持不变。
+
+```python
+net = torch.jit.script(net)
+net(x)
+```
+
+```
+tensor([[0.1009, 0.1146]], grad_fn=<AddmmBackward>)
+```
+
+这似乎好得让人难以置信: 编写与之前相同的代码，然后使用 `torch.jit.script` 简单地转换模型。 一旦发生这种情况，网络就被优化了(我们将在下面对性能进行基准测试)。
+
+
+## Acceleration by Hybridization
+
+为了演示编译所获得的性能改进，我们比较了 Hybridization 前后评估 net(x) 所需的时间。让我们先定义一个类来度量这个时间。当我们开始度量(和改进)性能时，它将在整个章节中非常有用。
+
+```python
+#@save
+class Benchmark:
+    """For measuring running time."""
+    def __init__(self, description='Done'):
+        self.description = description
+
+    def __enter__(self):
+        self.timer = d2l.Timer()
+        return self
+
+    def __exit__(self, *args):
+        print(f'{self.description}: {self.timer.stop():.4f} sec')
+```
+
+现在我们可以调用网络两次，一次使用torchscript，一次不使用torchscript。
+
+```python
+net = get_net()
+with Benchmark('Without torchscript'):
+    for i in range(1000):
+        net(x)
+
+net = torch.jit.script(net)
+with Benchmark('With torchscript'):
+    for i in range(1000):
+        net(x)
+```
+
+```
+Without torchscript: 0.7222 sec
+With torchscript: 0.5762 sec
+```
+
+如上面观察到的结果， 在 `nn.Sequential`  使用 `torch.jit.script` 函数之后，通过符号式编程提高了计算性能。 
