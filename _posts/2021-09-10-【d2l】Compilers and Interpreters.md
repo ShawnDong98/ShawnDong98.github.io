@@ -173,4 +173,18 @@ Without torchscript: 0.7222 sec
 With torchscript: 0.5762 sec
 ```
 
-如上面观察到的结果， 在 `nn.Sequential`  使用 `torch.jit.script` 函数之后，通过符号式编程提高了计算性能。 
+如上面观察到的结果， 在 `nn.Sequential`  使用 `torch.jit.script` 函数之后，通过符号式编程提高了计算性能。
+
+
+## Serialization
+
+编译模型的好处之一是我们可以将模型及其参数序列化(保存)到磁盘上。这允许我们以一种独立于所选择的前端语言的方式存储模型。这使我们能够将训练过的模型部署到其他设备上，并轻松地使用其他前端编程语言。同时，代码通常比命令式编程更快。让我们看看 save 函数的作用。
+
+```python
+net.save('my_mlp')
+!ls -lh my_mlp*
+```
+
+```
+-rw-r--r-- 1 jenkins jenkins 651K Jul 24 08:45 my_mlp
+```
