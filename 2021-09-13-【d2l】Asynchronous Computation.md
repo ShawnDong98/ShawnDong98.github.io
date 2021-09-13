@@ -16,3 +16,36 @@ tags:
 
 
 因此，了解异步编程如何工作有助于我们开发更高效的程序， 异步编程主动减小计算需求和相互依赖。这允许我们减少内存开销并增加处理器利用率。
+
+
+```python
+import os
+import subprocess
+import numpy
+import torch
+from torch import nn
+from d2l import torch as d2l
+```
+
+
+# Asynchrony via Backend
+
+
+作为一个热身，考虑下面的简单问题:我们想生成一个随机矩阵并将其相乘。让我们在NumPy和PyTorch张量中都做一下，看看区别。注意 Pytorch 的张量定义在 GPU 上。
+
+```python
+# Warmup for GPU computation
+device = d2l.try_gpu()
+a = torch.randn(size=(1000, 1000), device=device)
+b = torch.mm(a, a)
+
+with d2l.Benchmark('numpy'):
+    for _ in range(10):
+        a = numpy.random.normal(size=(1000, 1000))
+        b = numpy.dot(a, a)
+
+with d2l.Benchmark('torch'):
+    for _ in range(10):
+        a = torch.randn(size=(1000, 1000), device=device)
+        b = torch.mm(a, a)
+```
