@@ -90,3 +90,76 @@ array([[3., 3.]])
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631497621748.png)
 
 当Python前端线程执行前三条语句中的一条时，它会简单地将任务返回到后端队列。当需要打印最后一条语句的结果时，Python前端线程将等待c++后端线程完成变量 z 的计算。这种设计的一个好处是，Python前端线程不需要执行实际的计算。因此，无论Python的性能如何，对程序的总体性能的影响都很小。图 12.2.3  说明前端和后端如何交互。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631497963583.png)
+
+
+
+# Barriers and Blockers
+
+有许多操作将迫使Python等待完成
+
+- 很显然 `npx.waitall()` 等待直到所有计算完成，而不管计算指令是何时发出的。在实践中，除非绝对必要，否则使用这个操作符是一个坏主意，因为它会导致性能差。
+- 如果我们只是想等待，直到一个特定的变量可用，我们可以调用 `z.wait_to_read()`。 在本例中，MXNet阻塞到计算完变量z, 才返回到Python。其他计算可以在以后继续进行。
+
+
+让我们看看这在实践中是如何工作的。
+
+```python
+with d2l.Benchmark('waitall'):
+    b = np.dot(a, a)
+    npx.waitall()
+
+with d2l.Benchmark('wait_to_read'):
+    b = np.dot(a, a)
+    b.wait_to_read()
+```
+
+```python
+waitall: 0.0138 sec
+wait_to_read: 0.0045 sec
+```
+
+这两种操作大约需要相同的时间来完成。除了明显的阻塞操作，我们建议您了解隐式阻塞器。打印变量显然需要变量是可用的，因此会导致阻塞。最后，通过 `z.asnumpy()` 和通过 `z.item()` 转换到NumPy标量都是阻塞的，因为NumPy没有异步的概念。它需要访问这些值，就像print函数一样。
+
+频繁地将少量数据从MXNet的作用域复制到NumPy或复制回NumPy会破坏代码的性能，因为每个这样的操作都需要计算图来评估所有中间结果，然后才能进行其他操作。
+
+```python
+with d2l.Benchmark('numpy conversion'):
+    b = np.dot(a, a)
+    b.asnumpy()
+
+with d2l.Benchmark('scalar conversion'):
+    b = np.dot(a, a)
+    b.sum().item()
+```
+
+```
+numpy conversion: 0.0117 sec
+scalar conversion: 0.0212 sec
+```
+
+
+# Improving Computation
+
+
+在多线程系统上(即使是普通的笔记本电脑也有4个或更多线程，而在多套接字服务器上这个数字可能超过256)，调度操作的开销可能会非常大。这就是为什么计算和调度以异步和并行方式发生是非常可取的。为了说明这样做的好处，让我们看看如果将一个变量按顺序或异步方式加1多次会发生什么。我们通过在每次加法之间插入一个 ` wait_to_read` 的等待来模拟同步执行。
+
+```python
+with d2l.Benchmark('synchronous'):
+    for _ in range(10000):
+        y = x + 1
+        y.wait_to_read()
+
+with d2l.Benchmark('asynchronous'):
+    for _ in range(10000):
+        y = x + 1
+    npx.waitall()
+```
+
+```
+synchronous: 1.0607 sec
+asynchronous: 0.8800 sec
+```
+
+Python前端线程和c++后端线程之间的一个稍微简化的交互可以总结如下: 前端命令后端将计算任务y = x + 1插入队列； 然后后端从队列接收计算任务并执行实际的计算；然后后端从队列接收计算任务并执行实际的计算。假设这三个阶段的持续时间分别为 $t_1$， $t_2$ 和 $t_3$。 如果我们不使用异步编程，执行10000个计算所花费的总时间大约是 $10000(t_1 + t_2 + t_3)$。 
