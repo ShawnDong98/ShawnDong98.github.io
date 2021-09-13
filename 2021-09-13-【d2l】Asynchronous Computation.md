@@ -49,3 +49,9 @@ with d2l.Benchmark('torch'):
         a = torch.randn(size=(1000, 1000), device=device)
         b = torch.mm(a, a)
 ```
+
+```
+numpy: 1.0163 sec
+torch: 0.0011 sec
+```
+
