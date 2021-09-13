@@ -55,3 +55,16 @@ numpy: 1.0163 sec
 torch: 0.0011 sec
 ```
 
+通过PyTorch的基准输出要快几个数量级。NumPy点乘是在CPU上执行的，而PyTorch矩阵乘法是在GPU上执行的，因此后者的速度预计会快得多。但巨大的时差表明一定还有其他原因。默认情况下，PyTorch中的GPU操作是异步的。强制PyTorch在返回完成所有计算之前发生的事情： 计算被后端执行，而前端将控制权返回给Python。
+
+```python
+with d2l.Benchmark():
+    for _ in range(10):
+        a = torch.randn(size=(1000, 1000), device=device)
+        b = torch.mm(a, a)
+    torch.cuda.synchronize(device)
+```
+
+```
+Done: 0.0023 sec
+```
