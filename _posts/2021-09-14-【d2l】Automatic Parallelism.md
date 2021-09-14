@@ -78,4 +78,24 @@ GPU1 & GPU2: 0.4905 sec
 
 # Parallel Computation and Communication
 
-在很多情况下，我们需要在不同的设备之间移动数据，比如在CPU和GPU之间，或者在不同的GPU之间。例如，当我们想要执行分布式优化，需要在多个加速卡上聚合梯度时，就会发生这种情况。
+在很多情况下，我们需要在不同的设备之间移动数据，比如在CPU和GPU之间，或者在不同的GPU之间。例如，当我们想要执行分布式优化，需要在多个加速卡上聚合梯度时，就会发生这种情况。让我们通过在GPU上计算来模拟这个过程，然后将结果复制回CPU。
+
+```python
+def copy_to_cpu(x, non_blocking=False):
+    return [y.to('cpu', non_blocking=non_blocking) for y in x]
+
+with d2l.Benchmark('Run on GPU1'):
+    y = run(x_gpu1)
+    torch.cuda.synchronize()
+
+with d2l.Benchmark('Copy to CPU'):
+    y_cpu = copy_to_cpu(y)
+    torch.cuda.synchronize()
+```
+
+```
+Run on GPU1: 0.4904 sec
+Copy to CPU: 2.3032 sec
+```
+
+这是有点效率低下。注意我们可以在计算剩余列表的同时将部分的 y 复制到 CPU。
