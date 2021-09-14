@@ -107,3 +107,6 @@ with d2l.Benchmark('Run on GPU1 and copy to CPU'):
     torch.cuda.synchronize()
 ```
 
+```
+Run on GPU1 and copy to CPU: 1.6358 sec
+```
