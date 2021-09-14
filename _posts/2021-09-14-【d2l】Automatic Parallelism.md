@@ -40,3 +40,18 @@ x_gpu2 = torch.rand(size=(4000, 4000), device=devices[1])
 
 现在我们将函数应用于数据。`torch.cuda.synchronize()` 等待CUDA设备上所有流中的所有内核完成。 它接受一个 `device` 参数， 它是我们要同步的设备。	如果参数为 None 的话， 它使用 `current_device()` 返回的设备。
 
+
+```python
+run(x_gpu1)
+run(x_gpu2)  # Warm-up all devices
+torch.cuda.synchronize(devices[0])
+torch.cuda.synchronize(devices[1])
+
+with d2l.Benchmark('GPU1 time'):
+    run(x_gpu1)
+    torch.cuda.synchronize(devices[0])
+
+with d2l.Benchmark('GPU2 time'):
+    run(x_gpu2)
+    torch.cuda.synchronize(devices[1])
+```
