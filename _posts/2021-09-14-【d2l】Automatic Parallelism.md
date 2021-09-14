@@ -37,3 +37,5 @@ x_gpu1 = torch.rand(size=(4000, 4000), device=devices[0])
 x_gpu2 = torch.rand(size=(4000, 4000), device=devices[1])
 ```
 
+
+现在我们将函数应用于数据。`torch.cuda.synchronize()` 等待CUDA设备上所有流中的所有内核完成。 它接受一个 `device` 参数， 它是我们要同步的设备。
