@@ -99,3 +99,11 @@ Copy to CPU: 2.3032 sec
 ```
 
 这是有点效率低下。注意我们可以在计算剩余列表的同时将部分的 y 复制到 CPU。这种情况在我们计算一个 minibatch 反向传播梯度的情况下会出现。 一些参数的梯度将比其他参数的梯度更早可用。因此，在GPU还在运行的时候就开始使用PCI-Express总线带宽对我们是有好处的。在Pytorch中， 几个如 `to()` 和 `copy_()` 的函数接受 `non_blocking` 参数， 这会使得调用者在不必要的时候不进行同步。 
+
+```python
+with d2l.Benchmark('Run on GPU1 and copy to CPU'):
+    y = run(x_gpu1)
+    y_cpu = copy_to_cpu(y, True)
+    torch.cuda.synchronize()
+```
+
