@@ -27,3 +27,13 @@ tags:
 
 让我们从定义要测试的参考工作负载开始:下面的run函数使用分配给两个变量 $x_{gpu1}$ 和 $x_{gpu2}$ 的数据，在我们选择的设备上执行10次矩阵-矩阵乘法。
 
+```python
+devices = d2l.try_all_gpus()
+
+def run(x):
+    return [x.mm(x) for _ in range(50)]
+
+x_gpu1 = torch.rand(size=(4000, 4000), device=devices[0])
+x_gpu2 = torch.rand(size=(4000, 4000), device=devices[1])
+```
+
