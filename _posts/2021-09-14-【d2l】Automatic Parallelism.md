@@ -62,3 +62,14 @@ GPU2 time: 0.4866 sec
 ```
 
 如果我们移除两个任务之间的 `synchronize` 语句，系统就可以自由地在两个设备上自动并行化计算。
+
+```python
+with d2l.Benchmark('GPU1 & GPU2'):
+    run(x_gpu1)
+    run(x_gpu2)
+    torch.cuda.synchronize()
+```
+
+```
+GPU1 & GPU2: 0.4905 sec
+```
