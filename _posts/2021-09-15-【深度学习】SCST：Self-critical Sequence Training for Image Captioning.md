@@ -80,4 +80,4 @@ $$
 \frac{\partial L(\theta)}{\partial s_t} = (r(w^s) - r(\hat w))(p_\theta(w_t \mid h_t) - 1_{w_t^s})
 $$
 
-其中 $r(\hat w)$ 是当前模型测试时在推理算法下得到的 `reward`。 根据模型采样， 比 $\hat w$ 返回更高 `reward` 的采样将会被 "pushed up"， 或者增大概率， 否则将会被抑制。 
+其中 $r(\hat w)$ 是当前模型测试时在推理算法下得到的 `reward`。 根据模型采样， 比 $\hat w$ 返回更高 `reward` 的采样将会被 "pushed up"， 或者增大概率， 否则将会被抑制。 SCST具有REINFORCE算法的所有优点，因为它直接优化真实的、序列级的评价度量， 而且避免了必须学习一个(上下文依赖的)对未来`reward`的期望估计作为基线。
