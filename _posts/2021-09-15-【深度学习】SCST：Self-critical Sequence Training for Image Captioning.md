@@ -14,7 +14,7 @@ tags:
 
 # Reinforcement Learning
 
-
+**Sequence Generation as an RL problem.**： Caption系统传统使用交叉熵损失函数训练。
 
 
 # Self-critical sequence training (SCST) 
