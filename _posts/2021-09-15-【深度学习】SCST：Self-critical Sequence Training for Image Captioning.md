@@ -73,3 +73,11 @@ $$
 
 
 # Self-critical sequence training (SCST) 
+
+SCST训练方法的最重要的思想是使用当前模型在测试时的reward作为RL算法的baseline。 模型采样 $w^s$ 的负的 `reward` 的梯度经过 softmax 激活， 在时间步 $t$ 变成：
+
+$$
+\frac{\partial L(\theta)}{\partial s_t} = (r(w^s) - r(\hat w))(p_\theta(w_t \mid h_t) - 1_{w_t^s})
+$$
+
+其中 $r(\hat w)$ 是当前模型测试时在推理算法下得到的 `reward`。 根据模型采样， 比 $\hat w$ 返回更高 `reward` 的采样将会被 "pushed up"， 或者增大概率， 否则将会被抑制。 
