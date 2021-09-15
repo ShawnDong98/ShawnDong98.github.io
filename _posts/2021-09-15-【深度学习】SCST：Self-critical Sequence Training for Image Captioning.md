@@ -14,7 +14,7 @@ tags:
 
 # Reinforcement Learning
 
-**Sequence Generation as an RL problem.**： Caption系统传统使用交叉熵损失函数训练。
+**Sequence Generation as an RL problem.**： Caption系统传统使用交叉熵损失函数训练。为了直接优化NLP 指标 并且避免 exposure bias 问题， 我们可以用强化学习建模生成模型。
 
 
 # Self-critical sequence training (SCST) 
