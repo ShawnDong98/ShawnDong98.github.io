@@ -20,5 +20,7 @@ $$
 L(\theta) = - E_{w^s \thicksim p_\theta}[r(w^s)]
 $$
 
+其中 $w^s  = (w_1^s, ..., w_T^s)$ , $w_t^s$ 是模型在时间步 $t$ 采样的词。 
+
 
 # Self-critical sequence training (SCST) 
