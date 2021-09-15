@@ -20,7 +20,12 @@ $$
 L(\theta) = - E_{w^s \thicksim p_\theta}[r(w^s)]
 $$
 
-其中 $w^s  = (w_1^s, ..., w_T^s)$ , $w_t^s$ 是模型在时间步 $t$ 采样的词。 
+其中 $w^s  = (w_1^s, ..., w_T^s)$ , $w_t^s$ 是模型在时间步 $t$ 采样的词。 实际上 $L(\theta)$ 通常用 $p_\theta$ 的单个采样来估计：
+
+$$
+L(\theta) \approx -r(w^s), w^s \thicksim p_\theta
+$$
+
 
 
 # Self-critical sequence training (SCST) 
