@@ -72,3 +72,21 @@ $$
 $$
 
 这四行写了很多东西。在第一行，我们交换了导数和积分的顺序。在第二行中， 我们使用了 `probabilistic identity trick`， 这使得我们得到了 score ratio。 使用 `log-derivative trick`， 我们使用第三行的对数概率的梯度替换 score ratio 。 第四行就是我们想要的stochastic estimator， 我们从 $p(z)$ 采样通过 Monte Carlo 计算它， 然后计算加权梯度。
+
+这是梯度的 unbiased estimator。 在整个过程中，我们的假设很简单：
+
+- 积分和微分顺序的交换是有效地。 我们可以用 `Leibniz integral rule ` 来推理它的正确性。
+- $f(z)$ 是不可微的。进而， 给定 $z$ 我们应该能够评估它或者观察到它的值。
+- 从分布 $p(z)$ 采样很容易， 因为积分的 Monte Carlo evaluation 所需要的。
+
+其他很多领域的研究已经研究过 `log-derivative trick`， 并给出了和他们的问题表述相关的名字， 包括：
+
+
+**Score function estimators**：我们的微分允许我们将期望的梯度转换为 score function $\nabla_\theta \log p(z ; \theta)$ 的期望, 使得很自然地得到 `score function estimators`。基于 `score function estimators` 的计算机仿真模型的优化和敏感度分析 具有非常深刻的简介并且描述了许多重要的历史发展。
+
+**Likelihood ratio methods**：P. W. Glynn 是在推广这类估计中最有影响力的人之一。Glynn 把 score ratio $\nabla_\theta p(z; \theta) / p(z; \theta)$ 解释为 likelihood ratio， 并且描述这个 estimators 为 likelihood ratio 方法。重要的paper：
+
+- 'Likelihood Ratio Gradient Estimation for Stochastic Systems', Glynn 详细解释了重要的方差性质。
+- Gradient Estimation by Michael Fu is indispensable。
+
+**Automated Variational Inference**：变分推断将贝叶斯分析中出现的棘手的积分转化为随机优化问题。
