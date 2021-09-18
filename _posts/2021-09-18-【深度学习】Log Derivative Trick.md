@@ -71,4 +71,4 @@ $$
 \approx \frac{1}{S} \sum_{s=1}^S f(z^{(s)}) \nabla_\theta \log p(z^{(s)}; \theta) \qquad z^{(s)} \thicksim p(z)
 $$
 
-这四行写了很多东西。在第一行，我们交换了导数和积分的顺序。在第二行中， 我们使用了 `probabilistic identity trick`， 这使得我们得到了 score ratio。 
+这四行写了很多东西。在第一行，我们交换了导数和积分的顺序。在第二行中， 我们使用了 `probabilistic identity trick`， 这使得我们得到了 score ratio。 使用 `log-derivative trick`， 我们使用第三行的对数概率的梯度替换 score ratio 。 第四行就是我们想要的stochastic estimator， 我们从 $p(z)$ 采样通过 Monte Carlo 计算它， 然后计算加权梯度。
