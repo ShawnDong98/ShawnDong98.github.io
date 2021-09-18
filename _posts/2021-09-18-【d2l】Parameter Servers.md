@@ -78,3 +78,15 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631946561739.png)
 
 上面单个参数服务器是一个瓶颈，因为它的带宽是有限的。下面多个参数服务器以聚合带宽存储部分参数。
+
+# Key–Value Stores
+
+在实践中实现分布式多GPU训练所需的步骤是非常重要的。这就是为什么使用通用抽象(即重定义更新语义的键值存储)是值得的。
+
+在许多 workers 和 gpu 的计算梯度 $i$ 可以被定义为：
+
+$$
+g_i = \sum_{k \in workers} \sum_{j \in GPUs} g_{ijk}
+$$
+
+其中 $g_{ijk}$ 是 woker $k$ 在GPU $j$ 上的梯度 $i$。 在这个操作的关键方面是它是 `commutative reduction`， 也就是说，它将许多向量转化为常量，而操作的顺序并不重要。这对于我们的目的是很好的，因为我们不需要(需要)细粒度控制何时接收梯度。此外， 注意这个操作独立于不同的 $i$。
