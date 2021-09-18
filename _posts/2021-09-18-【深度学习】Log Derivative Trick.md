@@ -102,4 +102,4 @@ $$
 \nabla_\theta \mathbb{E}_{p(z;\theta)}[f(z)] = \mathbb{E}_{p(z;\theta)}[f(z) - \lambda \nabla_\theta \log p(z; \theta)]
 $$
 
-其中 $\lambda$ 叫做 `control variate`， 在 Monte Carlo estimators 中被广泛用于减小方差。
+其中 $\lambda$ 叫做 `control variate`， 在 Monte Carlo estimators 中被广泛用于减小方差。`control variate` 可以是任意使得 estimator 均值为 0 的项。 `control variate` 的选择是在使用 `score function estimators` 的主要挑战。
