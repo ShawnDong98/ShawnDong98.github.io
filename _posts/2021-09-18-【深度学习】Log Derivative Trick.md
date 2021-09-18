@@ -70,3 +70,5 @@ $$
 = \int p(z; \theta) \nabla_\theta \log p(z; \theta) f(z)dz = \mathbb{E}_{p(z;\theta)}[f(z) \nabla_\theta \log p(z; \theta)] \\
 \approx \frac{1}{S} \sum_{s=1}^S f(z^{(s)}) \nabla_\theta \log p(z^{(s)}; \theta) \qquad z^{(s)} \thicksim p(z)
 $$
+
+这四行写了很多东西。在第一行，我们交换了导数和积分的顺序。在第二行中， 我们使用了 `probabilistic identity trick`， 这使得我们得到了 score ratio。 
