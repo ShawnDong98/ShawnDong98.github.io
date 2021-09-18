@@ -89,4 +89,4 @@ $$
 - 'Likelihood Ratio Gradient Estimation for Stochastic Systems', Glynn 详细解释了重要的方差性质。
 - Gradient Estimation by Michael Fu is indispensable。
 
-**Automated Variational Inference**：变分推断将贝叶斯分析中出现的棘手的积分转化为随机优化问题。
+**Automated Variational Inference**：变分推断将贝叶斯分析中出现的棘手的积分转化为随机优化问题。毫无意外， `score function estimators` 也出现在这个领域， 并且有很多不同的名字： variational stochastic search, automated variational inference, black-box variational inference 和 neural variational inference 等。
