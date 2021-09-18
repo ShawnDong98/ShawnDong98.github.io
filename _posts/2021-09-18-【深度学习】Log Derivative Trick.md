@@ -54,4 +54,19 @@ $$
 
 这是机器学习中一个反复出现的任务， 变分推断的后验计算， 强化学习中的值函数和策略学习， computational finance 的 derivative pricing等等。
 
-梯度很难计算， 因为积分通常是未知的并且有参数 $\theta$。 此外， 我们可能当函数 $f$ 是不可微的时候想要计算这个梯度。
+梯度很难计算， 因为积分通常是未知的并且有参数 $\theta$。 此外， 我们可能当函数 $f$ 是不可微的时候想要计算这个梯度。使用  `log derivative trick` 以及 score function 的性质， 我们可以用更合理的方法来计算这个梯度：
+
+$$
+\nabla_\theta \mathbb{E}_{p(z; \theta)}[f(z)] = \mathbb{E}_{p(z; \theta)}[f(z) \nabla_\theta \log p(z; \theta)]
+$$
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631961066441.png)
+
+让我们推导这个表达式，并探讨它对优化问题的影响。我们将会使用另外一个十分普遍的技巧 `probabilistic identity trick`。 结合 `probabilistic identity trick` 和 `log-derivative trick`， 我们得到梯度的 score function estimator：
+
+$$
+\nabla_\theta \mathbb{E}_{p(z; \theta)}[f(z)] = \int \nabla_\theta  p(z; \theta) f(z) dz \\
+= \int \frac{p(z; \theta)}{p(z; \theta)} \nabla_\theta p(z ; \theta) f(z) dz \\
+= \int p(z; \theta) \nabla_\theta \log p(z; \theta) f(z)dz = \mathbb{E}_{p(z;\theta)}[f(z) \nabla_\theta \log p(z; \theta)] \\
+\approx \frac{1}{S} \sum_{s=1}^S f(z^{(s)}) \nabla_\theta \log p(z^{(s)}; \theta) \qquad z^{(s)} \thicksim p(z)
+$$
