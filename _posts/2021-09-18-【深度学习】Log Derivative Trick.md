@@ -91,4 +91,4 @@ $$
 
 **Automated Variational Inference**：变分推断将贝叶斯分析中出现的棘手的积分转化为随机优化问题。毫无意外， `score function estimators` 也出现在这个领域， 并且有很多不同的名字： variational stochastic search, automated variational inference, black-box variational inference 和 neural variational inference 等。
 
-**REINFORCE and policy gradients**： 对于强化学习问题， 我们可以将函数 $f$ 映射为 从环境中获得的 `reward`, 分布 $p(z; \theta)$ 为 `policy`， 
+**REINFORCE and policy gradients**： 对于强化学习问题， 我们可以将函数 $f$ 映射为 从环境中获得的 `reward`, 分布 $p(z; \theta)$ 为 `policy`， 以及 score 为 `policy gradient`。 
