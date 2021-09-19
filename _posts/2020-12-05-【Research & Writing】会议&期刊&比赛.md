@@ -251,6 +251,10 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://data.xm.gov.cn/opendata/#/](https://data.xm.gov.cn/opendata/#/)
 
+## QQ浏览器 2021AI算法大赛(2021 ACM CIKM)
+
+[https://algo.browser.qq.com/](https://algo.browser.qq.com/)
+
 # 各种名词解释
 
 
