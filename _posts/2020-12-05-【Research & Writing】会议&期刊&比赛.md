@@ -89,6 +89,10 @@ ICCV兩年一次，與ECCV正好錯開，是公認的三個會議中級別最高
 WWW总体上是A类会议，这个在很多会议排名上都有体现，比如csrankings.org，csmetrics.org等等。国内的CCF以前把WWW评为数据挖掘的B类，现在已经更正成交叉的A类的。WWW的录取率在15%左右，但是各个track的质量和录取率都是有差异的，根据我老板说，今年的PC meeting最难的graph track只有8%的录取率，录最多的track能有40%左右。当然录取率不能完全代表质量。
 
 
+## ACM CIKM
+
+ACM CIKM 全称为（ACM International Conference on Information and Knowledge Management），是国际计算机学会（ACM）主办的数据库、知识管理、信息检索领域的重要学术会议。
+
 ## AI 受认可会议
 
 AI方向的会议是NIPS、ICLR、ICML，AAAI数据也还不错
