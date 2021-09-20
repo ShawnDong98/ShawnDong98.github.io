@@ -75,7 +75,7 @@ $$
 
 这是梯度的 unbiased estimator。 在整个过程中，我们的假设很简单：
 
-- 积分和微分顺序的交换是有效地。 我们可以用 `Leibniz integral rule ` 来推理它的正确性。
+- 积分和微分顺序的交换是有效的。 我们可以用 `Leibniz integral rule ` 来推理它的正确性。
 - $f(z)$ 是不可微的。进而， 给定 $z$ 我们应该能够评估它或者观察到它的值。
 - 从分布 $p(z)$ 采样很容易， 因为积分的 Monte Carlo evaluation 所需要的。
 
