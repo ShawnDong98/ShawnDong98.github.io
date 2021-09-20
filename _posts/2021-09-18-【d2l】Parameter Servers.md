@@ -38,7 +38,7 @@ tags:
 
 # Ring Synchronization
 
-当谈到现代深度学习硬件上的同步时，我们经常遇到定制的网络连接。例如，AWS p3.16xlarge和NVIDIA DGX-2实例共享如图12.7.4所示的连接结构。 每个GPU连接到主GPU通过一个PCIe连接， 它最快有 16GB/s。 此外每个GPU有6个 NVLink 连接， 每个的速度能够达到双向 300 Gbit/s。 这能达到大约每条连接单向 18GB/s。总之，NVLink总带宽明显高于PCIe带宽。问题是如何最有效地利用它。
+当谈到现代深度学习硬件上的同步时，我们经常遇到定制的网络连接。例如，AWS p3.16xlarge和NVIDIA DGX-2实例共享如图12.7.4所示的连接结构。 每个GPU通过一个PCIe连接连接到主GPU， 它最快有 16GB/s。 此外每个GPU有6个 NVLink 连接， 每个的速度能够达到双向 300 Gbit/s。 这能达到大约每条连接单向 18GB/s。总之，NVLink总带宽明显高于PCIe带宽。问题是如何最有效地利用它。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1631941087966.png)
 
