@@ -13,7 +13,7 @@ tags:
 
 
 
-机器学习设计控制概率。 这些概率通常表示为 `normalised-probabilities` 或 `log-probabilities`。掌握这两种表示之间灵活转换的能力是增强我们解决现代机器学习问题的关键一步。`log derivative trick` 利用对数导数的性质帮助我们。这个技巧在我们用它来解决随机优化问题时很有用，它将给我们提供一种新的方法来推导随机梯度估计量。我们首先来定义一个 score 函数。
+机器学习涉及控制概率。 这些概率通常表示为 `normalised-probabilities` 或 `log-probabilities`。掌握这两种表示之间灵活转换的能力是增强我们解决现代机器学习问题的关键一步。`log derivative trick` 利用对数导数的性质帮助我们。这个技巧在我们用它来解决随机优化问题时很有用，它将给我们提供一种新的方法来推导随机梯度估计量。我们首先来定义一个 score 函数。
 
 # Score Functions
 
@@ -108,3 +108,9 @@ $$
 # Summary
 
 ` log derivative trick` 使我们可以在 normalised probability 和 log-probability 分布表示之间转换。它是 score function 的基础， 并且使最大似然估计成为可能。 重要的是，我们可以利用它为随机优化问题提供一个通用 gradient estimator，而随机优化问题是我们目前面临的许多最重要的机器学习问题的基础。 我们追求的通用机器学习需要 Monte Carlo gradient estimators， 理解它们以及建立在它们之上的tricks是必要的。
+
+
+
+# Reference
+
+[Machine Learning Trick of the Day (5): Log Derivative Trick](http://blog.shakirm.com/2015/11/machine-learning-trick-of-the-day-5-log-derivative-trick/)
