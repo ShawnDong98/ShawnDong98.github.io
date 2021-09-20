@@ -33,7 +33,7 @@ $$
 = \int p(x;\theta) \frac{\nabla_\theta p(x; \theta)}{p(x; \theta)}dx = \nabla_\theta \int p(x; \theta)dx = \nabla_\theta 1 = 0
 $$
 
-在第一行我们使用了 `log derivative trick`， 在第二行我们交换了求导和积分的顺序。 这个恒等式是我们追去的概率灵活性： 它允许我们从 score 中减去任何期望为0的项， 并且不影响score的期望。
+在第一行我们使用了 `log derivative trick`， 在第二行我们交换了求导和积分的顺序。 这个恒等式是我们追求的概率灵活性： 它允许我们从 score 中减去任何期望为0的项， 并且不影响score的期望。
 
 - score 的方差是 Fisher information 并且 用来决定 Cramer-Rao lower bound。
 
@@ -41,7 +41,7 @@ $$
 \mathbb{V}[\nabla_\theta \log p(x; \theta)] = \mathcal{L} (\theta) = \mathbb{E}_{p(x; \theta)}[\nabla_\theta \log p(x; \theta) \nabla_\theta \log p(x; \theta)^T]
 $$
 
-我们现在可以从对数概率的梯度 跳到 概率的梯度，然后再跳回来。
+我们现在可以从对数概率的梯度 变换为 概率的梯度，然后再变换回来。
 
 
 # Score Function Estimators
