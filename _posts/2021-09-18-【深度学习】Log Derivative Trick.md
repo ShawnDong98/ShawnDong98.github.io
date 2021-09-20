@@ -103,3 +103,6 @@ $$
 $$
 
 其中 $\lambda$ 叫做 `control variate`， 在 Monte Carlo estimators 中被广泛用于减小方差。`control variate` 可以是任意使得 estimator 均值为 0 的项。 `control variate` 的选择是在使用 `score function estimators` 的主要挑战。最简单的方法是使用一个常数baseline， 但是也有其他方法被使用， 比如 clever sampling schemes (例如 antithetic 或stratified)， delta methods， 或者自适应 baseline。 
+
+
+# Summary
