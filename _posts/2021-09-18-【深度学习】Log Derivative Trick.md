@@ -106,3 +106,5 @@ $$
 
 
 # Summary
+
+` log derivative trick` 使我们可以在 normalised probability 和 log-probability 分布表示之间转换。
