@@ -82,7 +82,7 @@ $$
 其他很多领域的研究已经研究过 `log-derivative trick`， 并给出了和他们的问题表述相关的名字， 包括：
 
 
-**Score function estimators**：我们的微分允许我们将期望的梯度转换为 score function $\nabla_\theta \log p(z ; \theta)$ 的期望, 使得很自然地得到 `score function estimators`。基于 `score function estimators` 的计算机仿真模型的优化和敏感度分析 具有非常深刻的简介并且描述了许多重要的历史发展。
+**Score function estimators**：我们的微分允许我们将期望的梯度转换为 score function $\nabla_\theta \log p(z ; \theta)$ 的期望, 使得很自然地得到 `score function estimators`。基于 `score function estimators` 的计算机仿真模型的优化和敏感度分析 具有非常深刻的见解并且描述了许多重要的历史发展。
 
 **Likelihood ratio methods**：P. W. Glynn 是在推广这类估计中最有影响力的人之一。Glynn 把 score ratio $\nabla_\theta p(z; \theta) / p(z; \theta)$ 解释为 likelihood ratio， 并且描述这个 estimators 为 likelihood ratio 方法。重要的paper：
 
