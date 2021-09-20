@@ -107,4 +107,4 @@ $$
 
 # Summary
 
-` log derivative trick` 使我们可以在 normalised probability 和 log-probability 分布表示之间转换。
+` log derivative trick` 使我们可以在 normalised probability 和 log-probability 分布表示之间转换。它是 score function 的基础， 并且使最大似然估计成为可能。 重要的是，我们可以利用它为随机优化问题提供一个通用 gradient estimator，而随机优化问题是我们目前面临的许多最重要的机器学习问题的基础。 我们追求的通用机器学习需要 Monte Carlo gradient estimators， 理解它们以及建立在它们之上的tricks是必要的。
