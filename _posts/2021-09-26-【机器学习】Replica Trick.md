@@ -12,3 +12,7 @@ tags:
 ---
 
 
+# Reference
+
+1. [Machine Learning Trick of the Day (1): Replica Trick](http://blog.shakirm.com/2015/07/machine-learning-trick-of-the-day-1-replica-trick/)
+
