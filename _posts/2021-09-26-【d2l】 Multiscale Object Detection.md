@@ -56,3 +56,24 @@ def display_anchors(fmap_w, fmap_h, s):
 ```
 
 首先让我们考虑小目标的检测。 为了在显示时更容易区分，这里不同中心的 Anchor 框不重叠: Anchor框 ratios 设置为0.15, feature map的高度和宽度设置为4。我们可以看到， Anchor 框的中心 在图像上4行4列分布均匀。
+
+```python
+display_anchors(fmap_w=4, fmap_h=4, s=[0.15])
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1632636515778.png)
+
+
+我们继续将特征图的高度和宽度减半，并使用更大的 Anchor框 来检测更大的对象。当比例设置为0.4时，一些Anchor框 会相互重叠。
+
+```python
+display_anchors(fmap_w=2, fmap_h=2, s=[0.4])
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1632637436922.png)
+
+最后，我们进一步将feature map的高度和宽度减半，将anchor框 ratio 增加到0.8。现在锚框的中心就是图像的中心。
+
+```
+display_anchors(fmap_w=1, fmap_h=1, s=[0.8])
+```
