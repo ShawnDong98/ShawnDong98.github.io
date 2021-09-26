@@ -40,4 +40,4 @@ h, w
 回想一下，在第6.2节中，我们将卷积层的二维数组输出称为特征映射。通过定义特征图形状，我们可以确定任意图像上均匀采样的 Anchor框 中心。
 
 
-`display_anchors` 函数定义如下。 
+`display_anchors` 函数定义如下。 我们在feature map (fmap)上生成 Anchor框(anchors)，每个像素作为 Anchor框 的中心。
