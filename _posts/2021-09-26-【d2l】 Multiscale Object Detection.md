@@ -41,3 +41,5 @@ h, w
 
 
 `display_anchors` 函数定义如下。 我们在feature map (fmap)上生成 Anchor框(anchors)，每个像素作为 Anchor框 的中心。因为 (x, y)-轴的 Anchor框 的坐标值除以特征图的宽和高， 因此值在0到1之间， 它们表示Anchor框在特征图上的相对位置。
+
+由于 Anchor框 的中心分布在 feature map (fmap) 的所有像素上，这些中心必须根据它们的相对空间位置均匀分布在任何输入图像上。更具体地， 分别给定特征图的宽和高 `fmap_w` 和 `fmap_h`， 下面的函数在输入图像 `fmap_h` 行 和 `fmap_w` 列的像素上上均匀地采样。 以这些均匀采样的像素为中心， 生成不同尺度 $s$ 和 不同 ratios 的anchor框。
