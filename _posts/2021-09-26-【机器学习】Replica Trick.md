@@ -12,7 +12,9 @@ tags:
 ---
 
 
-无论是在科研中还是在工业生产中， "Tricks" 在机器学习中被大量使用。 
+无论是在科研中还是在工业生产中， "Tricks" 在机器学习中被大量使用。 这些技巧让我们能够解决许多不同类型的数据分析问题，大致上可以是分析、统计、算法或数值问题。今天的 trick 是来自于 statistical physics 中的 analytical class： **Replica trick**。
+
+
 
 # Reference
 
