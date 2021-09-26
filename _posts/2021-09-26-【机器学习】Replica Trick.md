@@ -16,7 +16,7 @@ tags:
 
 Replica trick 用于 log-normalising constants(log-partition functions) 的分析计算。 Replica trick 为概率模型的 replica analysis 提供了一种工具 ——对模型的性质和期望表现的理论分析。 Replica analysis 已经广泛地用于当今几乎所有的机器学习模型， 包括 linear (GLM) regression, latent variable models, multi-layer neural networks 和 Gaussian processes等等。
 
-
+我们通常对模型的泛化能力很感兴趣； 而像PAC学习这样的方法则提供了worse-case analysis
 
 # Reference
 
