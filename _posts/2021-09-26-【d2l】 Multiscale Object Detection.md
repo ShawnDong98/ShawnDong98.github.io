@@ -77,3 +77,8 @@ display_anchors(fmap_w=2, fmap_h=2, s=[0.4])
 ```
 display_anchors(fmap_w=1, fmap_h=1, s=[0.8])
 ```
+
+# Multiscale Detection
+
+我们已经生成了多尺度 Anchor框，我们将使用它们来检测不同尺度下不同大小的物体。下面我们介绍一种基于CNN的多尺度目标检测方法，我们将在 Section 13.7 中实现它。
+
