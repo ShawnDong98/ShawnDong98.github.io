@@ -22,4 +22,4 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633003745368.png)
 
 
-DNA定义有机体。事实上，你可以通过基因组移植(genome transplantation)来改变细菌的种类。 然而，DNA不是功能性的(functional)。
+DNA定义有机体。事实上，你可以通过基因组移植(genome transplantation)来改变细菌的种类。 然而，DNA不是功能性的(functional)。它包含一套必须转化成RNA然后再转化成蛋白质的指令。在大多数情况下，你可以把RNA看作是DNA和蛋白质之间的信使。DNA是由基因组成的，这些基因包含如何制造蛋白质的指令。
