@@ -65,3 +65,11 @@ Eberwine等人(1992)首次使用分子探针对单细胞RNA进行了测量。直
 单细胞数据， 标注是不可行的。 数据是有噪声的并且没有完全理解细胞类型快速进化的描述。 同样，由于目前的测量技术涉及到破坏细胞，所以无法纵向测量细胞中的所有RNA。然而，有了多模态单细胞数据，我们现在可以直接观察到同一细胞中的两层遗传信息。这提供了一个机会，利用这两组数据在同一细胞中同时出现的事实作为标签。这类似于用两种语言表达相同的情感，为机器翻译提供了标签。
 
 然而，由于这些技术相对较新，大多数公开可用的数据集都是为探索而设计的，而不是 benchmarking。为了建立multimodal single-cell data integration的竞赛，我们开始创建一个适合目标的benchmarking数据集。
+
+
+# The benchmarking dataset
+
+我们目前正在为竞赛创建一个基准数据集。将有两种类型的数据：
+
+- 使用  ` Biolegend TotalSeq™-B Universal Cocktail v1.0` 的 `10X Genomics Single Cell Gene Expression with Feature Barcoding` 测量的单细胞 RNA 和 蛋白质的 Joint profiling。 
+- 使用 `10X Genomics Single Cell Multiome ATAC + Gene Expression Kit` 单核 RNA 和 染色体 accessibility 的 Joint profiling。
