@@ -123,4 +123,5 @@ adata_adt = ad.read_h5ad("cite/cite_adt_processed_training.h5ad")
 
 在这个数据集中，使用如 `10X Multiome Product Guide` 描述的 3 种 细胞核RNA 捕获测量方法得到 基因表达。 注意，并非所有的RNA都是在细胞核中发现的。细胞核RNA 和 细胞质 RNA 以及 单核RNA 和 单细胞RNA序列 的比较之前已经有工作报导(e.g. Bakken 2018; Abdelmoez 2018, Lake 2017)。
 
-对于基因表达数据， 根据线粒体内容过滤细胞， UMI每个细胞计数， 以及每个细胞检测到的基因。 
+对于基因表达数据， 根据线粒体内容过滤细胞， UMI每个细胞计数， 以及每个细胞检测到的基因。 使用 [scran](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0947-7) 计算 Size factors 并保存在 ` adata.obs["size_factors"]`。
+
