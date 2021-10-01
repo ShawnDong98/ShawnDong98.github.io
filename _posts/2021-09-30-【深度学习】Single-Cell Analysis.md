@@ -104,3 +104,13 @@ explore
 
 训练数据可以在 ` AnnData` h5ad 文件中得到。 更多关于 AnnData 的信息可以在 [这里](https://openproblems.bio/neurips_docs/submission/quickstart/) 找到。 你可以使用 `AnnData.read_h5ad()` 函数下载这些文件。 最简单的开始方式是 在 Saturn Cloud 上注册一个免费的 Jupyter 服务器。 
 
+
+```python
+!pip install anndata
+import anndata as ad
+
+adata_gex = ad.read_h5ad("cite/cite_gex_processed_training.h5ad")
+adata_adt = ad.read_h5ad("cite/cite_adt_processed_training.h5ad")
+```
+
+您可以在我们的数据中找到用于探索数据的代码示例 [exploration notebooks](https://github.com/openproblems-bio/neurips2021-notebooks/tree/main/notebooks/explore)。
