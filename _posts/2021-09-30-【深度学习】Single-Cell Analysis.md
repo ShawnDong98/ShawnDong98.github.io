@@ -125,3 +125,8 @@ adata_adt = ad.read_h5ad("cite/cite_adt_processed_training.h5ad")
 
 对于基因表达数据， 根据线粒体内容过滤细胞， UMI每个细胞计数， 以及每个细胞检测到的基因。 使用 [scran](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0947-7) 计算 Size factors 并保存在 ` adata.obs["size_factors"]`。
 
+然后通过UMI计数除以 size factors 将每个细胞的计数标准化。原始计数存储在 `adata.layers["counts"]`。 size factor 规范化后的计数存储在 `adata.X`。
+
+最后， 规范化后的计数进行  [log1p transformed](https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.log1p.html)。标准化后的计数存储在 `adata.layers["log_norm"]`。
+
+在 [这里](https://www.embopress.org/doi/full/10.15252/msb.20188746) 可以找到关于 single-cell analysis 最佳实践的更多信息。
