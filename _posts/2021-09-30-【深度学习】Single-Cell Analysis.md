@@ -114,3 +114,7 @@ adata_adt = ad.read_h5ad("cite/cite_adt_processed_training.h5ad")
 ```
 
 您可以在我们的数据中找到用于探索数据的代码示例 [exploration notebooks](https://github.com/openproblems-bio/neurips2021-notebooks/tree/main/notebooks/explore)。
+
+## Preprocessing
+
+为了便于探索数据，每个数据集都经过预处理，以去除低质量的细胞和重复数据。下面几节详细介绍每种数据模态的细节。
