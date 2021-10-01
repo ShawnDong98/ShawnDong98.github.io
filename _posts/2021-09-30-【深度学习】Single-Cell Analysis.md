@@ -127,6 +127,13 @@ adata_adt = ad.read_h5ad("cite/cite_adt_processed_training.h5ad")
 
 然后通过UMI计数除以 size factors 将每个细胞的计数标准化。原始计数存储在 `adata.layers["counts"]`。 size factor 规范化后的计数存储在 `adata.X`。
 
-最后， 规范化后的计数进行  [log1p transformed](https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.log1p.html)。标准化后的计数存储在 `adata.layers["log_norm"]`。
+最后， 规范化后的计数进行  [log1p transformed](https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.log1p.html)。规范化化后的计数存储在 `adata.layers["log_norm"]`。
 
 在 [这里](https://www.embopress.org/doi/full/10.15252/msb.20188746) 可以找到关于 single-cell analysis 最佳实践的更多信息。
+
+
+## Preprocessing of ATAC
+
+蛋白质数据使用  134个细胞表面标记和6个 isotype controls 的 `TotalSeq™-B Human Universal Cocktail, V1.0`  测量得到。  isotype controls 存储在 `adata.obsm["isotype_controls"]`。 这些对照不针对任何人类蛋白，其表达应考虑背景。
+
+ADT蛋白的测定是基于ADT总数进行质量控制的(样本范围从1100-1200到24000)， 每个细胞中捕获的蛋白质数量(下限为80)和6个 isotype controls 的ADT计数相加(范围从1到100)。 
