@@ -73,3 +73,14 @@ Eberwine等人(1992)首次使用分子探针对单细胞RNA进行了测量。直
 
 - 使用  ` Biolegend TotalSeq™-B Universal Cocktail v1.0` 的 `10X Genomics Single Cell Gene Expression with Feature Barcoding` 测量的单细胞 RNA 和 蛋白质的 Joint profiling。 
 - 使用 `10X Genomics Single Cell Multiome ATAC + Gene Expression Kit` 单核 RNA 和 染色体 accessibility 的 Joint profiling。
+
+
+## Download the data
+
+数据的当前形式在S3上是公开的。要下载数据，首先在您的计算机上安装AWS CLI： [https://aws.amazon.com/cli/](https://aws.amazon.com/cli/)。
+
+您可以使用以下命令将数据下载到本地计算机(数据集大小大约有1.2GiB)：
+
+```bash
+aws s3 sync s3://openproblems-bio/public/explore  /tmp/public/ --no-sign-request
+```
