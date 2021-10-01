@@ -84,3 +84,23 @@ Eberwine等人(1992)首次使用分子探针对单细胞RNA进行了测量。直
 ```bash
 aws s3 sync s3://openproblems-bio/public/explore  /tmp/public/ --no-sign-request
 ```
+
+您将找到以下文件：
+
+```
+explore
+├── LICENSE.txt
+├── README.txt
+├── cite/cite_adt_processed_training.h5ad
+├── cite/cite_gex_processed_training.h5ad
+├── multiome/multiome_atac_processed_training.h5ad
+└── multiome/multiome_gex_processed_training.h5ad
+```
+
+
+这些都是AnnData h5ad文件，如下节所述。
+
+## Data file format
+
+训练数据可以在 ` AnnData` h5ad 文件中得到。 更多关于 AnnData 的信息可以在 [这里](https://openproblems.bio/neurips_docs/submission/quickstart/) 找到。 你可以使用 `AnnData.read_h5ad()` 函数下载这些文件。 最简单的开始方式是 在 Saturn Cloud 上注册一个免费的 Jupyter 服务器。 
+
