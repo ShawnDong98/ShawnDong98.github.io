@@ -42,4 +42,4 @@ Eberwine等人(1992)首次使用分子探针对单细胞RNA进行了测量。直
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633007372169.png)
 
 
-接下来在单细胞测量的主要创新是  Steockius et al. (2017) and Cao et al. (2018) 引入了多模态单细胞数据， 分别测量RNA和蛋白质 或 chromatin accessibility 和 RNA。 
+接下来在单细胞测量的主要创新是  Steockius et al. (2017) and Cao et al. (2018) 引入了多模态单细胞数据， 分别测量RNA和蛋白质 或 chromatin accessibility 和 RNA。 第一种方法叫做 ` Cellular Indexing of Transcriptomes` 和 `Epitopes by Sequencing (CITE-seq)`， 测量每个细胞的所有 RNA 以及 ~10-200个细胞表面markers。 第二种方法， 称作 `Multiome Assay for Transposase-Accessible Chromatin using sequencing (ATAC) + Gene Expression`， 提供一个通过基因组和所有基因的基因表达 测量染色体 accessibility。与 `CITE-seq` 不同， 这种 Multiome technology 提供在细胞中横跨所有 DNA 和 RNA 的一种视角。
