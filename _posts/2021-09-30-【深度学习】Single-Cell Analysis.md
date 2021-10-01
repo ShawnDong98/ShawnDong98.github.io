@@ -118,3 +118,9 @@ adata_adt = ad.read_h5ad("cite/cite_adt_processed_training.h5ad")
 ## Preprocessing
 
 为了便于探索数据，每个数据集都经过预处理，以去除低质量的细胞和重复数据。下面几节详细介绍每种数据模态的细节。
+
+## Preprocessing of gene expression (GEX)
+
+在这个数据集中，使用如 `10X Multiome Product Guide` 描述的 3 种 细胞核RNA 捕获测量方法得到 基因表达。 注意，并非所有的RNA都是在细胞核中发现的。细胞核RNA 和 细胞质 RNA 以及 单核RNA 和 单细胞RNA序列 的比较之前已经有工作报导(e.g. Bakken 2018; Abdelmoez 2018, Lake 2017)。
+
+对于基因表达数据， 根据线粒体内容过滤细胞， UMI每个细胞计数， 以及每个细胞检测到的基因。 
