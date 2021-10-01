@@ -49,4 +49,10 @@ Eberwine等人(1992)首次使用分子探针对单细胞RNA进行了测量。直
 
 ## Measuring multiple modalities in single cells
 
-我们直到 DNA 必须是  accessible 的(ATAC data) 以生产 mRNA (expression data)， 以及 mRNA反过来作为一种模板生产蛋白质(protein abundance)。 这些过程通常是由它们产生的相同分子控制的:例如，一种蛋白质可以结合DNA来阻止更多mRNA的产生。理解这些调控过程对于生物合成和药物发现是革命性的。任何从一种模态预测另一种模态的方法可以解释这些调控过程， 而且对于多模数据的需求表明这是重要的。
+我们知道 DNA 必须是  accessible 的(ATAC data) 以生产 mRNA (expression data)， 以及 mRNA反过来作为一种模板生产蛋白质(protein abundance)。 这些过程通常是由它们产生的相同分子控制的:例如，一种蛋白质可以结合DNA来阻止更多mRNA的产生。理解这些调控过程对于生物合成和药物发现是革命性的。任何从一种模态预测另一种模态的方法可以解释这些调控过程， 而且对于多模数据的需求表明这是重要的。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633052177216.png)
+
+它还能够捕获同一细胞中的RNA和蛋白质表达。细胞表面的蛋白质不仅对识别不同的细胞群很重要，而且这些蛋白质也有功能作用，特别是在免疫系统中。目前，我们只能测量单个细胞上大约100-200种蛋白质，但我们知道细胞含有数万种(或更多)独特的蛋白质。然而，这一信息对于解开转录相似但表达不同功能表面标记的细胞群的身份至关重要。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633052332592.png)
