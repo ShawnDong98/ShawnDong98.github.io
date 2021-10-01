@@ -145,3 +145,41 @@ ADT蛋白的测定是基于ADT总数进行质量控制的(样本范围从1100-12
 
 关于特征更多的信息可以在每个对象的 `.var` 和 `.obs`DataFrame 中找到。
 
+## Gene expression observation metadata
+
+GEX `adata` 对象有以下的列：
+
+- `.obs.index`：每个批量观测标签添加的细胞条码 。
+- `.obs["n_genes_by_counts"]`： 一个细胞中至少有一个计数的基因的数量。
+- `.obs["pct_counts_mt"]`： 对应线粒体基因的 UMI 计数的百分比。
+- `.obs["n_counts"]`： cell中检测到的UMIs数量。
+- `.obs["n_genes"]`： 细胞中检测到的基因数量。
+- `.obs["size_factors"]`： 细胞估计的 size factor。 见 [OSCA Ch. 7 - Normalization](https://bioconductor.org/books/release/OSCA/normalization.html)。
+- `.obs["phase"]`： 由 scanpy.tl.score_genes_cell_cycle 计算得到的每个细胞的 `cell cycle phase`。
+- `.obs["leiden_final"]`：
+- `.obs["atac_ann"]`： 来自joint ATAC数据的细胞的细胞类型注释。
+- `.obs["cell_type"]`： 来自 GEX 数据的细胞的细胞类型注释。
+- `.obs["pseudotime_order_GEX"]`： 对数据中发展轨迹标注的 [diffusion pseudotime ](https://www.nature.com/articles/nmeth.3971) 标注。
+- `.obs["batch"]`： 取样细胞的批次。 对于 Site1 Donor 1格式是 `s1d1`。
+
+## Gene expression feature metadata
+
+GEX `adata.var` DataFrames 有以下的列：
+
+- `.var.index`： 对于每个基因的 ` Ensembl Gene Names` 。
+- `.var["gene_ids"]`： 用于追踪 随着时间变化基因名字变化的 基因的唯一的 ` Ensembl Gene Names`。
+- `.var["feature_types"]`： 将每个特征表示为基因表达特征。 所有基因都应该为 `GEX`。
+- `.var["genome"]`： 用于读取映射的 ` Genome Assembly`。
+- `var["n_cells-[batch]"] `： 在 `[batch]` 中检测到基因的细胞的数量。
+- `.var["highly_variable-[batch]"]`： 基因是否在 `[batch]` 中被确定是 `highly variable` 的。
+
+## ATAC observation metadata
+
+
+## ATAC feature metadata
+
+ATAC `adata.var` DataFrames 有如下的列：
+
+- `.var.index` - 对于每个 ATAC peak 的 Genomic coordinates， 它与参考基因组直接相关， 并按下列格式包括chromosome name*、起始位置和结束位置: `chr1-1234570-1234870`。
+- `.var["feature_types"]`： 表示每个特征为一个基因表达特征。所有的 peaks 应该都是 `ATAC`。
+- `.var["n_cells-[batch]"]`： 在检测到 peak 的 `[batch]` 中， 细胞的数量。
