@@ -137,3 +137,11 @@ adata_adt = ad.read_h5ad("cite/cite_adt_processed_training.h5ad")
 蛋白质数据使用  134个细胞表面标记和6个 isotype controls 的 `TotalSeq™-B Human Universal Cocktail, V1.0`  测量得到。  isotype controls 存储在 `adata.obsm["isotype_controls"]`。 这些对照不针对任何人类蛋白，其表达应考虑背景。
 
 ADT蛋白的测定是基于ADT总数进行质量控制的(样本范围从1100-1200到24000)， 每个细胞中捕获的蛋白质数量(下限为80)和6个 isotype controls 的ADT计数相加(范围从1到100)。 
+
+由于捕获的ADT总数是有限的，如果存在高度丰富的蛋白质，绝对ADT计数似乎较低。为了解释这一影响，使用中心对数比(CLR)转换进行归一化。CLR计数存储在 `adata.X` 并且原始计数存储在  `adata.layers["counts"]`。
+
+
+# Metadata
+
+关于特征更多的信息可以在每个对象的 `.var` 和 `.obs`DataFrame 中找到。
+
