@@ -42,4 +42,11 @@ Eberwine等人(1992)首次使用分子探针对单细胞RNA进行了测量。直
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633007372169.png)
 
 
-接下来在单细胞测量的主要创新是  Steockius et al. (2017) and Cao et al. (2018) 引入了多模态单细胞数据， 分别测量RNA和蛋白质 或 chromatin accessibility 和 RNA。 第一种方法叫做 ` Cellular Indexing of Transcriptomes` 和 `Epitopes by Sequencing (CITE-seq)`， 测量每个细胞的所有 RNA 以及 ~10-200个细胞表面markers。 第二种方法， 称作 `Multiome Assay for Transposase-Accessible Chromatin using sequencing (ATAC) + Gene Expression`， 提供一个通过基因组和所有基因的基因表达 测量染色体 accessibility。与 `CITE-seq` 不同， 这种 Multiome technology 提供在细胞中横跨所有 DNA 和 RNA 的一种视角。
+接下来在单细胞测量的主要创新是  Steockius et al. (2017) and Cao et al. (2018) 引入了多模态单细胞数据， 分别测量RNA和蛋白质 或 chromatin accessibility 和 RNA。 第一种方法叫做 ` Cellular Indexing of Transcriptomes` 和 `Epitopes by Sequencing (CITE-seq)`， 测量每个细胞的所有 RNA 以及 ~10-200个细胞表面markers。 第二种方法， 称作 `Multiome Assay for Transposase-Accessible Chromatin using sequencing (ATAC) + Gene Expression`， 提供一个通过基因组和所有基因的基因表达 测量染色体 accessibility。与 `CITE-seq` 不同， 这种 Multiome technology 提供在细胞中横跨所有 DNA 和 RNA 的一种视角。第二年，Nature Methods将单细胞多模态组学评为2019年度方法，指出这些方法为先进统计和计算方法的发展打开了前所未有的机遇。
+
+令我们兴奋的是，到2021年，我们可以使用强大的商业可用试剂来创建参考基准数据集，以推动多模态单细胞数据集成的创新。
+
+
+## Measuring multiple modalities in single cells
+
+我们直到 DNA 必须是  accessible 的(ATAC data) 以生产 mRNA (expression data)， 以及 mRNA反过来作为一种模板生产蛋白质(protein abundance)。 这些过程通常是由它们产生的相同分子控制的:例如，一种蛋白质可以结合DNA来阻止更多mRNA的产生。理解这些调控过程对于生物合成和药物发现是革命性的。任何从一种模态预测另一种模态的方法可以解释这些调控过程， 而且对于多模数据的需求表明这是重要的。
