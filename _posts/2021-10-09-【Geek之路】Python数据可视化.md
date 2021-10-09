@@ -160,3 +160,28 @@ plt.show()
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633770351233.png)
 
 ls 就是 linestyle 的缩写， c 是 color 的缩写， lw 是 linewidth 的缩写。
+
+
+### axhline()——绘制平行于 x 轴的水平参考线
+
+> plt.axhline(y=0.0, c="r", ls="--", lw=2)
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.sin(x)
+
+plt.plot(x, y, ls="-.", lw=2, c="c", label="plot figure")
+
+plt.legend()
+
+plt.axhline(y=0.0, c="r", ls="--", lw=2)
+plt.axvline(x=4.0, c="r", ls="--", lw=2)
+
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633770548459.png)
