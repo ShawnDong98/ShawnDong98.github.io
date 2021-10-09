@@ -132,3 +132,31 @@ plt.show()
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633770164422.png)
+
+
+### grid()——绘制刻度线的网格线
+
+> plt.grid(linestyle=":", color="r")
+
+- linestyle： 网格线的线条风格
+- color： 网格线的线条颜色
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.sin(x)
+
+plt.plot(x, y, ls="-.", lw=2, c="c", label="plot figure")
+
+plt.legend()
+
+plt.grid(linestyle=":", color="r")
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633770351233.png)
+
+ls 就是 linestyle 的缩写， c 是 color 的缩写， lw 是 linewidth 的缩写。
