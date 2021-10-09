@@ -276,3 +276,26 @@ plt.show()
 ```
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633773223581.png)
+
+
+### legend()—— 标识不同图形的文本标签图例
+
+> plt.legend(loc="lower left")
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.sin(x)
+
+plt.plot(x, y, ls="-.", lw=2, c="c", label="plot figure")
+
+plt.legend()
+
+plt.legend(loc="lower left")
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633773512295.png)
