@@ -249,6 +249,30 @@ plt.annotate("maximum",
 plt.show()
 ```
 
-
-
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633771382757.png)
+
+
+### text()——添加图形内容细节的无指向型注释文本
+
+> plt.text(x, y, string, weight="bold", color="b")
+
+- weight： 注释文本内容的粗细风格
+- color： 注释文本内容的字体颜色
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.sin(x)
+
+plt.plot(x, y, ls="-.", lw=2, c="c", label="plot figure")
+
+plt.legend()
+
+plt.text(3.10, 0.09, "y=sin(x)", weight="bold", color="b")
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633773223581.png)
