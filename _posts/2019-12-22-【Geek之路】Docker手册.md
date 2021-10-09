@@ -35,7 +35,6 @@ tags:
 
 bootfs
 
-
 rootfs
 
 ## 镜像命令
@@ -630,7 +629,10 @@ sudo mkdir info
 
 
 
-### 安装
+
+
+
+### 删除之前安装的残留
 
  删除某软件,及其安装时自动安装的所有包
 
@@ -664,6 +666,7 @@ sudo rm -rf /var/lib/docker
 docker --version
 ```
 
+### 安装
 
 Ubuntu上的 Docker-CE 使用 Docker的官方脚本设置：
 
@@ -671,6 +674,14 @@ Ubuntu上的 Docker-CE 使用 Docker的官方脚本设置：
 sudo curl https://get.docker.com | sh \
   && sudo systemctl --now enable docker
 ```
+
+**在wsl2中使用以下命令**：
+
+```bash
+sudo curl https://get.docker.com | sh \
+  && sudo /etc/init.d/docker start
+```
+
 
 设置 `stable` repository 和 GPG key：
 
@@ -988,6 +999,7 @@ sysctl -p
 8. [完美解决docker问题：Failed to allocate directory watch: Too many open files](https://blog.csdn.net/weixin_41194129/article/details/115762769)
 9. [Docker 找不到/etc/docker/daemon.json问题解决](https://blog.csdn.net/qq_36481502/article/details/105991891)
 10. [linux安装jdk8](https://blog.csdn.net/pdsu161530247/article/details/81582980)
+11. [System has not been booted with systemd as init system (PID 1). Can't operate #457](https://github.com/MicrosoftDocs/WSL/issues/457)
 
 
 
