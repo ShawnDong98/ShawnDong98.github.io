@@ -22,3 +22,113 @@ tags:
 
 
 通过调用 `matploblib.pyplot` 模块的API中的函数， 我们可以快速绘制这些组成元素， 例如 `matplotlib.pyplot.xlim()` 和 `matplotlib.pyplot.ylim()` 控制 x 轴和 y 轴的数值显示范围。 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633767191099.png)
+
+本章以上图为讲解切入点， 从这些函数的 **函数功能**、**调用签名**、**参数说明**和**调用展示**四个方面来全面阐述 API 函数的使用方法和技术细节。 
+
+
+## 绘制 matplotlib 图表组成元素的函数用法
+
+### plot() —— 展现变量的趋势变化
+
+
+> plt.plot(x, y, ls="-", lw=2, label="plot figure")
+
+展现变量的趋势变化
+
+- ls: 折线图的线条风格
+- lw：折线图的线条宽度
+- label： 标记图形内容的标签
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.cos(x)
+
+plt.plot(x, y,  ls="-", lw=2, label="plot figure")
+
+plt.legend()
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633769283214.png)
+
+
+### scatter()——寻找变量之间的关系
+
+> plt.scatter(x, y, c="b", label="scatter figure")
+
+- c: 散点图中的标记的颜色
+- label： 标记图形内容的标签文本
+
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.random.rand(1000)
+
+plt.scatter(x, y, c="b", label="scatter figure")
+
+plt.legend()
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633769588424.png)
+
+
+### xlim()——设置 x 轴的数值显示范围
+
+> plt.xlim(xmin, xmax)
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.random.rand(1000)
+
+plt.scatter(x, y, label="scatter figure")
+
+plt.legend()
+
+plt.xlim(0.05, 10)
+plt.ylim(0, 1)
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633769930326.png)
+
+
+### xlabel()——设置 x 轴的标签文本
+
+> plt.xlabel(string)
+
+- string：标签文本内容
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.sin(x)
+
+plt.plot(x, y, ls="-.", lw=2, c="c", label="plot figure")
+
+plt.legend()
+
+plt.xlabel("x-axis")
+plt.ylabel("y-axis")
+
+plt.show()
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633770164422.png)
