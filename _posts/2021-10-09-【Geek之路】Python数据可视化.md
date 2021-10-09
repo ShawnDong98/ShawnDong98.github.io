@@ -185,3 +185,33 @@ plt.show()
 ```
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633770548459.png)
+
+
+### axvspan() —— 绘制垂直于 x 轴的参数区域
+
+> plt.axvspan(xmin=1.0, xmax=2.0, facecolor="y", alpha=0.3)
+
+- facecolor： 参考区域的填充颜色
+- alpha： 参考区域的填充颜色的透明度
+
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0.05, 10, 1000)
+y = np.sin(x)
+
+plt.plot(x, y, ls="-.", lw=2, c="c", label="plot figure")
+
+plt.legend()
+
+plt.axvspan(xmin=4.0, xmax=6.0, facecolor="y", alpha=0.3)
+plt.axhspan(ymin=0.0, ymax=0.5, facecolor="y", alpha=0.3)
+
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1633770765569.png)
+
+
