@@ -11,6 +11,10 @@ tags:
     - 
 ---
 
+# Overview
+
+## Description
+
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634437283803.png)
 
 一图胜千言。你知道吗，一张照片可以拯救千万条生命？世界各地每天都有数百万流浪动物在街头受苦或在收容所被安乐死。你可能会认为带着迷人照片的宠物会引起更多的兴趣，并更快地被收养。但怎样才能拍出好照片呢？在数据科学的帮助下，你可以准确地判断宠物照片的吸引力，甚至提出改进建议，让这些被救助的动物有更高的机会拥有爱的家。
@@ -21,4 +25,28 @@ tags:
 
 顶级参与者可能会被邀请合作实施他们的解决方案，并利用他们的人工智能技能创造性地改善全球动物福利。
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634437747689]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634437747688.png)
+
+## Evaluation
+
+**Root Mean Squared Error 𝑅𝑀𝑆𝐸**
+
+提交使用均方根损失打分。 RMSE 定义为：
+
+$$
+RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n(y_i - \hat y_i)^2} 
+$$
+
+对于每个样本 $i$， 其中 $\hat y_i$ 是预测值， $y_i$ 是原始值
+
+## Code Requirements
+
+参赛作品必须通过 Notebooks 提交。为了使“提交”按钮在提交后处于活动状态，必须满足以下条件：
+
+- CPU Notebook <= 9 小时运行时间
+- GPU Notebook <= 9 小时运行时间
+- 互联网接入禁用
+- 允许免费和公开的外部数据，包括预训练的模型
+- 提交文件必须命名为 `submission.csv`
+
+
