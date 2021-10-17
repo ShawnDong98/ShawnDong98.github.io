@@ -111,3 +111,92 @@ etc.
 - Occlusion - 特定的不受欢迎的物体阻塞宠物的部分(例如人，笼子或栅栏)。注意，并非所有阻塞对象都被认为是遮挡。
 - Info -  自定义添加的文本或标签(如宠物名，描述)。
 - Blur - 特别是宠物的眼睛和脸，焦距明显不清或有噪音。对于模糊条目，Eyes列总是设置为0。
+
+
+# Pawpular : EDA + Understanding + Effnet + W&B
+
+## Libraries
+
+```python
+%%sh
+pip install -q pytorch-lightning==1.1.8
+pip install -q timm
+pip install -q albumentations
+pip install -q --upgrade wandb
+```
+
+```python
+import gc
+import os
+import glob
+import sys
+import cv2
+import imageio
+import joblib
+import math
+import random
+import wandb
+import math
+
+import numpy as np
+import pandas as pd
+
+from scipy.stats import kstest
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from statsmodels.graphics.gofplots import qqplot
+
+plt.rcParams.update({'font.size': 18})
+plt.style.use('fivethirtyeight')
+
+import seaborn as sns
+import matplotlib
+
+from termcolor import colored
+
+from multiprocessing import cpu_count
+from tqdm.notebook import tqdm
+from sklearn.model_selection import StratifiedKFold
+from scipy.stats import pearsonr
+
+import timm
+import torch
+import transformers
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import DataLoader, Dataset
+
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import r2_score, mean_squared_error
+
+import pytorch_lightning as pl
+from pytorch_lightning.loggers import WandbLogger
+from pytorch_lightning.callbacks import ModelCheckpoint
+
+from albumentations import (
+    HorizontalFlip, VerticalFlip, IAAPerspective, ShiftScaleRotate, CLAHE, RandomRotate90,
+    Transpose, ShiftScaleRotate, Blur, OpticalDistortion, GridDistortion, HueSaturationValue,
+    IAAAdditiveGaussianNoise, GaussNoise, MotionBlur, MedianBlur, IAAPiecewiseAffine, RandomResizedCrop,
+    IAASharpen, IAAEmboss, RandomBrightnessContrast, Flip, OneOf, Compose, Normalize, Cutout, CoarseDropout, ShiftScaleRotate, CenterCrop, Resize
+)
+from albumentations.pytorch import ToTensorV2
+
+import warnings
+warnings.simplefilter('ignore')
+
+# Activate pandas progress apply bar
+tqdm.pandas()
+```
+
+```python
+# Wandb Login
+import wandb
+wandb.login()
+```
+
+```
+wandb: You can find your API key in your browser here: https://wandb.ai/authorize
+wandb: Appending key for api.wandb.ai to your netrc file: /root/.netrc
+True
+```
