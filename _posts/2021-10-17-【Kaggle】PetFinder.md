@@ -39,6 +39,20 @@ $$
 
 对于每个样本 $i$， 其中 $\hat y_i$ 是预测值， $y_i$ 是原始值
 
+**Submission File**
+
+对于测试集中的每个 `Id`， 你必须预测目标变量中 `Pawpularity` 的概率。 该文件应该包含一个 header ，并具有以下格式： 
+
+```
+Id, Pawpularity
+0008dbfb52aa1dc6ee51ee02adf13537, 99.24
+0014a7b528f1682f0cf3b73a991c17a0, 61.71
+0019c1388dfcd30ac8b112fb4250c251, 6.23
+00307b779c82716b240a24f028b0031b, 9.43
+00320c6dd5b4223c62a9670110d47911, 70.89
+etc.
+```
+
 ## Code Requirements
 
 参赛作品必须通过 Notebooks 提交。为了使“提交”按钮在提交后处于活动状态，必须满足以下条件：
