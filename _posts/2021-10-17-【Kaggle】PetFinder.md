@@ -295,3 +295,12 @@ dtype = {
 train = pd.read_csv(config.TRAIN_CSV_PATH, dtype=dtype)
 test = pd.read_csv(config.TEST_CSV_PATH, dtype=dtype)
 ```
+
+## Tabular Exploration
+
+
+### Train Head
+
+```
+train.head()
+```
