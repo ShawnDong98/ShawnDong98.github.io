@@ -200,3 +200,98 @@ wandb: You can find your API key in your browser here: https://wandb.ai/authoriz
 wandb: Appending key for api.wandb.ai to your netrc file: /root/.netrc
 True
 ```
+
+## Weights and Biases
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634441536295.png)
+
+**Weights & Biases** 是让开发人员更快地建立更好的模型的机器学习平台。
+
+您可以使用W&B的轻量级、可互操作的工具:
+
+- 快速跟踪实验
+- 版本和数据集上进行迭代
+- 评估模型性能
+- 复现模型
+- 可视化结果与 spot regressions
+- 并与同事分享结果
+
+在5分钟内建立W&B，然后在您的机器学习 pipeline 上快速迭代，确保您的数据集和模型在可靠的记录系统中被跟踪和版本化。
+
+在这个笔记本中，我将使用 **Weights & Biases** 的惊人功能来无缝地执行奇妙的可视化和记录。
+
+
+## Global Config
+
+```
+class config:
+    DIRECTORY_PATH = "../input/petfinder-pawpularity-score"
+    TRAIN_CSV_PATH = DIRECTORY_PATH + "/train.csv"
+    TEST_CSV_PATH = DIRECTORY_PATH + "/test.csv"
+    
+    SEED = 42
+    
+Config = dict(
+    NFOLDS = 5,
+    EPOCHS = 1,
+    LR = 2e-4,
+    IMG_SIZE = (224, 224),
+    MODEL_NAME = 'tf_efficientnet_b6_ns',
+    DR_RATE = 0.35,
+    NUM_LABELS = 1,
+    TRAIN_BS = 32,
+    VALID_BS = 16,
+    min_lr = 1e-6,
+    T_max = 20,
+    T_0 = 25,
+    NUM_WORKERS = 4,
+    infra = "Kaggle",
+    competition = 'petfinder',
+    _wandb_kernel = 'neuracort',
+    wandb = False
+)
+```
+
+```
+# wandb config
+WANDB_CONFIG = {
+     'competition': 'PetFinder', 
+              '_wandb_kernel': 'neuracort'
+    }
+```
+
+```python
+wandb_logger = WandbLogger(project='pytorchlightning', group='vision', job_type='train', 
+                           anonymous='allow', config=Config)
+```
+
+```python
+def set_seed(seed=config.SEED):
+    random.seed(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    np.random.seed(seed)
+    
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    
+set_seed()
+```
+
+## Load Datasets
+
+```python
+# Efficient Data Types
+dtype = {
+    'Id': 'string',
+    'Subject Focus': np.uint8, 'Eyes': np.uint8, 'Face': np.uint8, 'Near': np.uint8,
+    'Action': np.uint8, 'Accessory': np.uint8, 'Group': np.uint8, 'Collage': np.uint8,
+    'Human': np.uint8, 'Occlusion': np.uint8, 'Info': np.uint8, 'Blur': np.uint8,
+    'Pawpularity': np.uint8,
+}
+
+train = pd.read_csv(config.TRAIN_CSV_PATH, dtype=dtype)
+test = pd.read_csv(config.TEST_CSV_PATH, dtype=dtype)
+```
