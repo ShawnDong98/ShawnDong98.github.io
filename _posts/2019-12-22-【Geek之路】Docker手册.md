@@ -767,6 +767,10 @@ sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
 
 ```
 
+### wslg 配置 gpu docker
+
+
+
 
 ## 开通阿里云容器镜像服务
 
