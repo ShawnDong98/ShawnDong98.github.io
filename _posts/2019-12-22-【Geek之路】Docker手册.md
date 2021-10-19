@@ -683,9 +683,6 @@ rm -rf /run/docker.sock
 rm -rf /var/lib/containerd
 rm -rf /run/containerd
 rm -rf /opt/containerd
-————————————————
-版权声明：本文为CSDN博主「MWbayern」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_43077628/article/details/114520707
 ```
 
 确定docker卸载完毕
@@ -1032,6 +1029,7 @@ sysctl -p
 9. [Docker 找不到/etc/docker/daemon.json问题解决](https://blog.csdn.net/qq_36481502/article/details/105991891)
 10. [linux安装jdk8](https://blog.csdn.net/pdsu161530247/article/details/81582980)
 11. [System has not been booted with systemd as init system (PID 1). Can't operate #457](https://github.com/MicrosoftDocs/WSL/issues/457)
+12. [ubuntu16.04离线安装与卸载docker和nvidia-docker](https://blog.csdn.net/weixin_43077628/article/details/114520707)
 
 
 
