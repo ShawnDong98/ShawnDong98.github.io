@@ -660,6 +660,34 @@ sudo rm -rf /etc/systemd/system/docker.service.d
 sudo rm -rf /var/lib/docker
 ```
 
+```
+sudo apt-get purge docker-ce
+sudo apt-get purge docker-ce-cli
+sudo apt-get purge containerd.io
+```
+
+查看是否卸载完毕
+
+```
+apt list --installed | grep docker
+apt list --installed | grep contain.io
+```
+
+删除残留文件
+
+```
+rm -rf /var/lib/docker
+rm -rf /var/run/docker
+rm -rf /etc/docker
+rm -rf /run/docker.sock
+rm -rf /var/lib/containerd
+rm -rf /run/containerd
+rm -rf /opt/containerd
+————————————————
+版权声明：本文为CSDN博主「MWbayern」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_43077628/article/details/114520707
+```
+
 确定docker卸载完毕
 
 ```
