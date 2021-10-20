@@ -1284,3 +1284,20 @@ Vocab size: 49408
 train_image_path = Path("../input/petfinder-pawpularity-score/train")
 file_names = [f.name for f in train_image_path.iterdir() if f.suffix == ".jpg"]
 ```
+
+```python
+original_images = []
+images = []
+plt.figure(figsize=(15, 12))
+
+for filename in file_names[:9]:
+    image = Image.open(join(train_image_path, filename))
+  
+    plt.subplot(3, 3, len(images) + 1)
+    plt.imshow(image)
+    plt.xticks([])
+    plt.yticks([])
+
+    original_images.append(image)
+    images.append(preprocess(image))
+```
