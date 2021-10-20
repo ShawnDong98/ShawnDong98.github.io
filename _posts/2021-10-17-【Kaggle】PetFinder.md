@@ -1367,3 +1367,10 @@ plt.show()
 
 
 # RAPIDS SVR Boost 
+
+
+## Boost CV LB +0.2 with RAPIDS SVR Head
+
+在这个notebook中， 我们展示如何添加一个 PAPIDS SVR 第二个头到一个已经训练好的有第一个头的 CNN 或者 Image Transformer模型中。
+
+我们提取图像嵌入(from the trained fold models) 并且为每个 fold 训练额外的 RAPIDS SVR 头。 
