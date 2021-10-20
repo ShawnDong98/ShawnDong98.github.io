@@ -1301,3 +1301,10 @@ for filename in file_names[:9]:
     original_images.append(image)
     images.append(preprocess(image))
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634732723840.png)
+
+## Prompt Feature Engineering
+
+[Multimodal Neurons in Artificial Neural Networks](https://openai.com/blog/multimodal-neurons/) 表明 CLIP 能够学习到抽象概念， 例如 emotions 或者 geographical regions。 有了一些关于什么使得动物更受欢迎的先验知识， 这可以创造一些有趣的特征。
+
