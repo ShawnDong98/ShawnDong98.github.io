@@ -1114,3 +1114,63 @@ MBConv块没什么特别的，只是一个Inverted Residual Block(在MobileNetV2
 
 1） 固定 $\varphi = 1$， 假设可用的资源增加了两倍，然后为 $\alpha$, $\beta$ 和 $\gamma$执行一个小型网格搜索。 对于 baseline 网络 B0， 它表明最优的值为 $\alpha = 1.2$， $\beta = 1.1$ 和 $\gamma = 1.15$， 使得 $\alpha * \beta^2 * \gamma^2 \approx 2$。 
 
+2） 现在固定 $\alpha$， $\beta$ 和 $\gamma$ 为常数（上面步骤找到的值） 并且用不同的 $\varphi$ 值实验。 不同的 $\varphi$ 值产生 EfficientNets $B1 - B7$。
+
+```python
+class PetFinderModel(pl.LightningModule):
+    def __init__(self, pretrained=True):
+        super(PetFinderModel, self).__init__()
+        self.model = timm.create_model(Config['MODEL_NAME'], pretrained=pretrained)
+        
+        self.n_features = self.model.classifier.in_features
+        self.model.reset_classifier(0)
+        self.fc = nn.Linear(self.n_features + 12, Config['NUM_LABELS'])
+        
+        self.train_loss = nn.MSELoss()
+        self.valid_loss = nn.MSELoss()
+
+    def forward(self, images, meta):
+        features = self.model(images)
+        features = torch.cat([features, meta], dim=1)
+        output = self.fc(features)
+        return output
+    
+    def training_step(self, batch, batch_idx):
+        imgs = batch[0]
+        meta = batch[1]
+        target = batch[2]
+        
+        out = self(imgs, meta)
+        train_loss = torch.sqrt(self.train_loss(out, target))
+        
+        logs = {'train_loss': train_loss}
+        
+        return {'loss': train_loss, 'log': logs}
+    
+    def validation_step(self, batch, batch_idx):
+        imgs = batch[0]
+        meta = batch[1]
+        target = batch[2]
+        
+        out = self(imgs, meta)
+        valid_loss = torch.sqrt(self.valid_loss(out, target))
+        
+        return {'val_loss': valid_loss}
+    
+    def validation_end(self, outputs):
+        avg_loss = torch.stack([x['val_loss'] for x in outputs]).mean()
+        logs = {'val_loss': avg_loss}
+        
+        print(f"val_loss: {avg_loss}")
+        return {'avg_val_loss': avg_loss, 'log': logs}
+    
+    def configure_optimizers(self):
+        opt = torch.optim.Adam(self.parameters(), lr=Config['LR'])
+        sch = torch.optim.lr_scheduler.CosineAnnealingLR(
+            opt, 
+            T_max=Config['T_max'],
+            eta_min=Config['min_lr']
+        )
+        
+        return [opt], [sch]
+```
