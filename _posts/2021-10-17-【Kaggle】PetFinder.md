@@ -301,6 +301,77 @@ test = pd.read_csv(config.TEST_CSV_PATH, dtype=dtype)
 
 ### Train Head
 
-```
+```python
 train.head()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634693462220.png)
+
+### Test Head 
+
+
+```python
+test.head()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634693498291.png)
+
+
+### Train Info
+
+```python
+train.info()
+```
+
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 9912 entries, 0 to 9911
+Data columns (total 14 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   Id             9912 non-null   string
+ 1   Subject Focus  9912 non-null   uint8 
+ 2   Eyes           9912 non-null   uint8 
+ 3   Face           9912 non-null   uint8 
+ 4   Near           9912 non-null   uint8 
+ 5   Action         9912 non-null   uint8 
+ 6   Accessory      9912 non-null   uint8 
+ 7   Group          9912 non-null   uint8 
+ 8   Collage        9912 non-null   uint8 
+ 9   Human          9912 non-null   uint8 
+ 10  Occlusion      9912 non-null   uint8 
+ 11  Info           9912 non-null   uint8 
+ 12  Blur           9912 non-null   uint8 
+ 13  Pawpularity    9912 non-null   uint8 
+dtypes: string(1), uint8(13)
+memory usage: 203.4 KB
+```
+
+### Test Info 
+
+```python
+test.info()
+```
+
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 8 entries, 0 to 7
+Data columns (total 13 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   Id             8 non-null      string
+ 1   Subject Focus  8 non-null      uint8 
+ 2   Eyes           8 non-null      uint8 
+ 3   Face           8 non-null      uint8 
+ 4   Near           8 non-null      uint8 
+ 5   Action         8 non-null      uint8 
+ 6   Accessory      8 non-null      uint8 
+ 7   Group          8 non-null      uint8 
+ 8   Collage        8 non-null      uint8 
+ 9   Human          8 non-null      uint8 
+ 10  Occlusion      8 non-null      uint8 
+ 11  Info           8 non-null      uint8 
+ 12  Blur           8 non-null      uint8 
+dtypes: string(1), uint8(12)
+memory usage: 288.0 bytes
 ```
