@@ -375,3 +375,16 @@ Data columns (total 13 columns):
 dtypes: string(1), uint8(12)
 memory usage: 288.0 bytes
 ```
+
+
+### Dataset Size
+
+```python
+print(f"Training Dataset Shape: {colored(train.shape, 'yellow')}")
+print(f"Test Dataset Shape: {colored(test.shape, 'yellow')}")
+```
+
+```
+Training Dataset Shape: (9912, 14)
+Test Dataset Shape: (8, 13)
+```
