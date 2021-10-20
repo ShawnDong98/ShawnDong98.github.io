@@ -562,3 +562,9 @@ plt.show()
 ```
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634717591801.png)
+
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Subject Focus", kde=True)
+plt.show()
+```
