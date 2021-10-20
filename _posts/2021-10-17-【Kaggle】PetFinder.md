@@ -1031,3 +1031,6 @@ Scaling 通常是为了提高模型在特定任务上的准确性，例如ImageN
 - Width - 宽度指网络的宽度。 例如，宽度的一种度量是Conv层中的通道数量。
 - Resolution - 分辨率是传递给CNN的图像分辨率。
 
+下面的图表(来自论文)将让你清楚地了解在不同维度上缩放的含义。我们也将详细讨论这些问题。
+
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634724566322]]]" )
