@@ -1038,4 +1038,4 @@ Scaling 通常是为了提高模型在特定任务上的准确性，例如ImageN
 
 ### Depth Scaling (d)
 
-通过深度来 Scaling 一个网络是最常见的 Scaling 方式。 深度可以通过分别增加或者删除层数来 Scale up 或者 Scale down。 
+通过深度来 Scaling 一个网络是最常见的 Scaling 方式。 深度可以通过分别增加或者删除层数来 Scale up 或者 Scale down。 ResNet 可以从 ResNet-50 Scale up 到 ResNet-200， 也可以从 ResNet-50 scale down 到 ResNet-18。
