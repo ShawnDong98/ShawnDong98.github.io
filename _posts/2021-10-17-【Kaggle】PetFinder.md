@@ -526,3 +526,24 @@ plt.title('Quantile-Quantile plot of Pawpularity distribution',
           fontsize=20, fontweight='bold')
 plt.show()
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634694995832.png)
+
+我们注意到这个 QQPlot 的 deviation ，它表明这似乎不是一个高斯分布。我们将使用Kolmogorov-Smirnov测试进行检查(Shapiro-Wilks不适用于大于5000个条目的数据集)。
+
+```python
+# Kolmogorov-Smirnov test with Scipy
+stat, p = kstest(train['Pawpularity'],'norm')
+print('Statistics=%.3f, p=%.3f' % (stat, p))
+# interpret
+alpha = 0.05
+if p > alpha:
+    print(f'Sample looks Gaussian (fail to reject H0 at {int(alpha*100)}% test level)')
+else:
+    print(f'Sample does not look Gaussian (reject H0 at {int(alpha*100)}% test level)')
+```
+
+```
+Statistics=0.990, p=0.000
+Sample does not look Gaussian (reject H0 at 5% test level)
+```
