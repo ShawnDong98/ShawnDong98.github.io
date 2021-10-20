@@ -454,3 +454,49 @@ min       113.000000
 max      1280.000000
 dtype: float64
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634694695689.png)
+
+### Images Ratio Distribution
+
+```python
+# Images Ratio Distribution
+print(colored('Ratio Statistics', 'yellow'))
+display(pd.Series(ratios).describe())
+print()
+
+plt.figure(figsize=(15,8))
+plt.title(f'Images Ratio Distribution', size=24)
+plt.hist(ratios, bins=16, label='Image Heights')
+plt.legend(prop={'size': 16})
+plt.show()
+```
+
+```
+Ratio Statistics
+count    9912.000000
+mean        0.909855
+std         0.337773
+min         0.326042
+25%         0.750000
+50%         0.750000
+75%         1.038329
+max         3.152709
+dtype: float64
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634694839671.png)
+
+### Pawpularity Score Distribution
+
+```python
+# Pawpularity Score Distribution
+print(colored('Pawpularity Statistics', 'yellow'))
+display(train['Pawpularity'].describe())
+print()
+
+plt.figure(figsize=(15,8))
+plt.title('Train Data Pawpularity Score Distribution', size=24)
+plt.hist(train['Pawpularity'], bins=32)
+plt.show()
+```
