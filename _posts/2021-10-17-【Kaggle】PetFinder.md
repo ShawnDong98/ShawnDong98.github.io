@@ -1309,3 +1309,17 @@ for filename in file_names[:9]:
 [Multimodal Neurons in Artificial Neural Networks](https://openai.com/blog/multimodal-neurons/) 表明 CLIP 能够学习到抽象概念， 例如 emotions 或者 geographical regions。 有了一些关于什么使得动物更受欢迎的先验知识， 这可以创造一些有趣的特征。
 
 有了良好定义的 prompts， 从图像中提取复杂概念是可能的。 我们使用语言和图像嵌入之间的余弦相似度来提取特征进行建模。 
+
+```python
+texts = ['Cute',
+         'Funny',
+         'Derp', # let's see if this works
+         'Small',
+         'Happy',
+         'Sad',
+         'Aggressive',
+         'Friendly',
+         'Old',
+         'Young',
+         'Love']
+```
