@@ -1033,4 +1033,9 @@ Scaling 通常是为了提高模型在特定任务上的准确性，例如ImageN
 
 下面的图表(来自论文)将让你清楚地了解在不同维度上缩放的含义。我们也将详细讨论这些问题。
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634724566322]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634724566321.png)
+
+
+### Depth Scaling (d)
+
+通过深度来 Scaling 一个网络是最常见的 Scaling 方式。 深度可以通过分别增加或者删除层数来 Scale up 或者 Scale down。 
