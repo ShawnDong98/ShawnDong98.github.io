@@ -1096,3 +1096,5 @@ $$
 \text{s.t. } \alpha · \beta^2 · \gamma^2 \approx 2 \\
 \alpha \geq 1, \beta \geq 1, \gamma \geq 1
 $$
+
+
