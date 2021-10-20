@@ -692,4 +692,120 @@ sns.histplot(train, x="Pawpularity", hue="Collage", kde=True)
 plt.show()
 ```
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634719498896]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719498895.png)
+
+
+### Human
+
+```python
+sns.boxplot(data=train, x='Human', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719669638.png)
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Human", kde=True)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719685525.png)
+
+
+### Occlusion
+
+```python
+sns.boxplot(data=train, x='Occlusion', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719700520.png)
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Occlusion", kde=True)n
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719721308.png)
+
+### Info
+
+```python
+sns.boxplot(data=train, x='Info', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719739095.png)
+
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Info", kde=True)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719756049.png)
+
+
+### Blur
+
+```python
+sns.boxplot(data=train, x='Blur', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719777887.png)
+
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Blur", kde=True)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719791076.png)
+
+## Pawpularity Score Wise Images
+
+```python
+def pawpularity_pics(df, num_images, desired_pawpularity, random_state):
+    
+    '''The pawpularity_pics() function accepts 4 parameters: df is a dataframe, 
+    num_images is the number of images you want displayed, desired_pawpularity 
+    is the pawpularity score of pics you want to see, and random state ensures reproducibility.'''
+    
+    #how many images to display
+    num_images = num_images
+    
+    #set the rample state for the sampling for reproducibility
+    random_state = random_state
+    
+    #filter the train_df on the desired_pawpularity and use .sample() to get a sample
+    random_sample = df[df["Pawpularity"] == desired_pawpularity].sample(num_images, random_state=random_state).reset_index(drop=True)
+    
+    #The for loop goes as many loops as specified by the num_images
+    for x in range(num_images):
+        #start from the id in the dataframe
+        image_path_stem = random_sample.iloc[x]['Id']
+        root = '../input/petfinder-pawpularity-score/train/'
+        extension = '.jpg'
+        image_path = root + str(image_path_stem) + extension
+         
+        #get the pawpularity to confirm it worked
+        pawpularity_by_id = random_sample.iloc[x]['Pawpularity']
+    
+        #use plt.imread() to read in the image file
+        image_array = plt.imread(image_path)
+        
+        #make a subplot space that is 1 down and num_images across
+        plt.subplot(1, num_images, x+1)
+        #title is the pawpularity score from the id
+        title = pawpularity_by_id
+        plt.title(title) 
+        #turn off gridlines
+        plt.axis('off')
+        
+        #then plt.imshow() can display it for you
+        plt.imshow(image_array)
+
+    plt.show()
+    plt.close()
+```
