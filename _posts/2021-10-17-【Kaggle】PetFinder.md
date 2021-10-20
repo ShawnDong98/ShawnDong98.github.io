@@ -1102,3 +1102,12 @@ $\phi$ 是一个特定用户的系数， 它控制多少资源可用， $\alpha$
 
 在一个 CNN 中， 卷积层是网络中计算成本最高的地方。 同样，卷积运算的FLOPS是与 $d$, $w^2$, $r^2$ 成比例的， 例如将深度增加一倍将使FLOPS增加一倍，而将宽度或分辨率增加一倍将使FLOPS增加几乎四倍。 因此，为了确保总FLOPS不超过 $2^ \varphi$, 因此增加约束 $(\alpha * \beta^2 * \gamma^2) \approx 2$。
 
+### EfficientNet Architecture
+
+缩放不会改变层操作，因此最好先有一个良好的基线网络，然后使用提出的复合缩放沿不同维度缩放它。作者通过神经结构搜索(NAS)获得了他们的基本网络，该搜索优化了准确性和FLOPS。该体系结构与M-NASNet相似，因为它是使用类似的搜索空间找到的。网络的 layers/block 如下所示：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634727434968.png)
+
+MBConv块没什么特别的，只是一个Inverted Residual Block(在MobileNetV2中使用)，有些地方有 Squeeze 和 Excite 块。
+
+现在我们有了基本网络，我们可以为缩放参数寻找最优值。如果我们回顾条件方程，您将很快意识到我们总共有四个参数要搜索 $\alpha$， $\beta$， $\gamma$ 和 $\varphi$。 
