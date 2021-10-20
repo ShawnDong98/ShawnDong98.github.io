@@ -1373,4 +1373,4 @@ plt.show()
 
 在这个notebook中， 我们展示如何添加一个 PAPIDS SVR 第二个头到一个已经训练好的有第一个头的 CNN 或者 Image Transformer模型中。
 
-我们提取图像嵌入(from the trained fold models) 并且为每个 fold 训练额外的 RAPIDS SVR 头。 
+我们提取图像嵌入(from the trained fold models) 并且为每个 fold 训练额外的 RAPIDS SVR 头。 原始的NN头取得了CV RSME 18.0 并且 新的 RAPIDS SVR 头取得 CV RSME 18.0。 两个头都非常的多样性因为 NN 头使用 分类(BCE)损失， 而SVR头使用回归损失。 在推理过程中， 我们用两个头预测。 当我们平均两个头的预测时，我们得到了 CV RMSE 17.8。
