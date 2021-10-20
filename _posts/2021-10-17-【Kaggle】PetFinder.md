@@ -1323,3 +1323,8 @@ texts = ['Cute',
          'Young',
          'Love']
 ```
+
+```python
+image_input = torch.tensor(np.stack(images)).cuda()
+text_tokens = clip.tokenize(texts).cuda()
+```
