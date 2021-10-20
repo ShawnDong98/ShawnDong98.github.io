@@ -1013,3 +1013,10 @@ class Augments:
         ToTensorV2(p=1.0),
     ], p=1.)
 ```
+
+
+## Efficientnet Model and Understanding
+
+### What is Scaling?
+
+Scaling 通常是为了提高模型在特定任务上的准确性，例如ImageNet分类。尽管有时候研究员不太关心模型的 efficient， 因为竞赛是为了击败SOTA， 如果 scaling 做的正确，也可以帮助提高模型的效率。
