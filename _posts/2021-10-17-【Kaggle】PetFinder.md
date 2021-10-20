@@ -604,7 +604,29 @@ sns.histplot(train, x="Pawpularity", hue="Face", kde=True)
 plt.show()
 ```
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634719326650]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719326649.png)
 
 
-### 
+### Near
+
+```python
+sns.boxplot(data=train, x='Near', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719360428.png)
+
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Near", kde=True)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719372490.png)
+
+### Action
+
+```python
+sns.boxplot(data=train, x='Action', y='Pawpularity')
+plt.show()
+```
