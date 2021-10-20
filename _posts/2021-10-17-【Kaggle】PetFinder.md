@@ -500,3 +500,29 @@ plt.title('Train Data Pawpularity Score Distribution', size=24)
 plt.hist(train['Pawpularity'], bins=32)
 plt.show()
 ```
+
+```
+Pawpularity Statistics
+count    9912.000000
+mean       38.039044
+std        20.591990
+min         1.000000
+25%        25.000000
+50%        33.000000
+75%        46.000000
+max       100.000000
+Name: Pawpularity, dtype: float64
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634694967212.png)
+
+
+### Quantile-Quantile plot of Pawpularity distribution
+
+```python
+fig = plt.figure()
+qqplot(train['Pawpularity'], line='s')
+plt.title('Quantile-Quantile plot of Pawpularity distribution', 
+          fontsize=20, fontweight='bold')
+plt.show()
+```
