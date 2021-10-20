@@ -639,4 +639,57 @@ sns.histplot(train, x="Pawpularity", hue="Action", kde=True)
 plt.show()
 ```
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634719409690]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719409689.png)
+
+
+### Accessory
+
+```python
+sns.boxplot(data=train, x='Accessory', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719425687.png)
+
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Accessory", kde=True)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719438287.png)
+
+
+
+### Group
+
+```python
+sns.boxplot(data=train, x='Group', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719454742.png)
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Group", kde=True)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719466747.png)
+
+
+### Collage
+
+```python
+sns.boxplot(data=train, x='Collage', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719484366.png)
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Collage", kde=True)
+plt.show()
+```
+
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634719498896]]]" )
