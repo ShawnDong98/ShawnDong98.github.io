@@ -1328,3 +1328,42 @@ texts = ['Cute',
 image_input = torch.tensor(np.stack(images)).cuda()
 text_tokens = clip.tokenize(texts).cuda()
 ```
+
+```python
+with torch.no_grad():
+    image_features = model.encode_image(image_input).float()
+    text_features = model.encode_text(text_tokens).float()
+
+image_features /= image_features.norm(dim=-1, keepdim=True)
+text_features /= text_features.norm(dim=-1, keepdim=True)
+
+similarity_matrix = torch.inner(text_features, image_features).cpu()
+```
+
+```python
+count = len(texts)
+
+plt.figure(figsize=(20, 16))
+plt.imshow(similarity_matrix, vmin=0.1, vmax=0.3, cmap = 'RdBu')
+
+plt.yticks(range(count), texts, fontsize=18)
+plt.xticks([])
+
+for i, image in enumerate(original_images):
+    plt.imshow(image, extent=(i - 0.5, i + 0.5, -1.6, -0.6), origin="lower")
+for x in range(similarity_matrix.shape[1]):
+    for y in range(similarity_matrix.shape[0]):
+        plt.text(x, y, f"{similarity_matrix[y, x]:.2f}", ha="center", va="center", size=12)
+
+for side in ["left", "top", "right", "bottom"]:
+    plt.gca().spines[side].set_visible(False)
+
+plt.xlim([-0.5, count - 0.5])
+plt.ylim([count + 0.5, -2])
+
+plt.title("Cosine similarity matrix between text and image features", size=20, loc='left')
+plt.show()
+```
+
+
+# RAPIDS SVR Boost 
