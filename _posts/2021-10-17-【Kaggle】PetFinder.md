@@ -1111,3 +1111,6 @@ $\phi$ 是一个特定用户的系数， 它控制多少资源可用， $\alpha$
 MBConv块没什么特别的，只是一个Inverted Residual Block(在MobileNetV2中使用)，有些地方有 Squeeze 和 Excite 块。
 
 现在我们有了基本网络，我们可以为缩放参数寻找最优值。如果我们回顾条件方程，您将很快意识到我们总共有四个参数要搜索 $\alpha$， $\beta$， $\gamma$ 和 $\varphi$。 
+
+1） 固定 $\varphi = 1$， 假设可用的资源增加了两倍，然后为 $\alpha$, $\beta$ 和 $\gamma$执行一个小型网格搜索。 对于 baseline 网络 B0， 它表明最优的值为 $\alpha = 1.2$， $\beta = 1.1$ 和 $\gamma = 1.15$， 使得 $\alpha * \beta^2 * \gamma^2 \approx 2$。 
+
