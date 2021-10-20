@@ -431,3 +431,26 @@ plt.hist(widths, bins=32, label='Image Widths')
 plt.legend(prop={'size': 16})
 plt.show()
 ```
+
+```
+Width Statistics
+count    9912.000000
+mean      804.426251
+std       270.211921
+min        90.000000
+25%       675.000000
+50%       720.000000
+75%       960.000000
+max      1280.000000
+dtype: float64
+Height Statistics
+count    9912.000000
+mean      904.284302
+std       156.905980
+min       113.000000
+25%       908.750000
+50%       960.000000
+75%       960.000000
+max      1280.000000
+dtype: float64
+```
