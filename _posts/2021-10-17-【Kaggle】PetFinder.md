@@ -411,3 +411,23 @@ for file_path in tqdm(train['file_path']):
     widths.append(w)
     ratios.append(w / h)
 ```
+
+### Images Height and Width Distribution
+
+```python
+# Images Height and Width Distribution
+print(colored('Width Statistics', 'yellow'))
+display(pd.Series(widths).describe())
+print()
+
+print(colored('Height Statistics', 'yellow'))
+display(pd.Series(heights).describe())
+print()
+
+plt.figure(figsize=(15,8))
+plt.title(f'Images Height and Width Distribution', size=24)
+plt.hist(heights, bins=32, label='Image Heights')
+plt.hist(widths, bins=32, label='Image Widths')
+plt.legend(prop={'size': 16})
+plt.show()
+```
