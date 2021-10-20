@@ -547,3 +547,5 @@ else:
 Statistics=0.990, p=0.000
 Sample does not look Gaussian (reject H0 at 5% test level)
 ```
+
+测试清楚地表明，该分布不遵循高斯定律。因此，根据所选择的建模对数据进行规范化是很重要的。
