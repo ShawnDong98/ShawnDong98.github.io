@@ -568,3 +568,12 @@ plt.show()
 sns.histplot(train, x="Pawpularity", hue="Subject Focus", kde=True)
 plt.show()
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634717842188.png)
+
+## Eyes
+
+```python
+sns.boxplot(data=train, x='Eyes', y='Pawpularity')
+plt.show()
+```
