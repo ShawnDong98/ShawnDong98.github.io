@@ -809,3 +809,175 @@ def pawpularity_pics(df, num_images, desired_pawpularity, random_state):
     plt.show()
     plt.close()
 ```
+
+### Pawpularity = 10
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 10
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720251144.png)
+
+
+### Pawpularity = 20
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 20
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720279183.png)
+
+
+### Pawpularity = 30
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 30
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720307585.png)
+
+
+### Pawpularity = 40
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 40
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720328740.png)
+
+
+### Pawpularity = 50
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 50
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720347075.png)
+
+
+### Pawpularity = 60
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 60
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+
+### Pawpularity = 70
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 70
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720394144.png)
+
+### Pawpularity = 80
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 80
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720417464.png)
+
+### Pawpularity = 90
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 90
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720436292.png)
+
+### Pawpularity = 100
+
+```python
+df = train
+num_images = 5
+desired_pawpularity = 100
+random_state = 1
+pawpularity_pics(df, num_images, desired_pawpularity, random_state)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634720455319.png)
+
+## Dataset and Augmentations
+
+### Lightning Dataset
+
+```python
+class PetfinderData(Dataset):
+    def __init__(self, df, is_test=False, augments=None):
+        self.df = df
+        self.is_test = is_test
+        self.augments = augments
+        
+        self.images, self.meta_features, self.targets = self._process_df(self.df)
+    
+    def __getitem__(self, index):
+        img = self.images[index]
+        meta_feats = self.meta_features[index]
+        meta_feats = torch.tensor(meta_feats, dtype=torch.float32)
+        
+        img = cv2.imread(img)
+        img = img[:, :, ::-1]
+        img = cv2.resize(img, Config['IMG_SIZE'])
+        
+        if self.augments:
+            img = self.augments(image=img)['image']
+        
+        if not self.is_test:
+            target = torch.tensor(self.targets[index], dtype=torch.float32)
+            return img, meta_feats, target
+        else:
+            return img, meta_feats
+    
+    def __len__(self):
+        return len(self.df)
+    
+    def _process_df(self, df):
+        TRAIN = "../input/petfinder-pawpularity-score/train"
+        TEST = "../input/petfinder-pawpularity-score/test"
+        
+        if not self.is_test:
+            df['Id'] = df['Id'].apply(lambda x: os.path.join(TRAIN, x+".jpg"))
+        else:
+            df['Id'] = df['Id'].apply(lambda x: os.path.join(TEST, x+".jpg"))
+            
+        meta_features = df.drop(['Id', 'Pawpularity'], axis=1).values
+        
+        return df['Id'].tolist(), meta_features, df['Pawpularity'].tolist()
+```
