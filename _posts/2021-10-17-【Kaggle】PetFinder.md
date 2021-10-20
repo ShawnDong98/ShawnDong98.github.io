@@ -1020,3 +1020,14 @@ class Augments:
 ### What is Scaling?
 
 Scaling 通常是为了提高模型在特定任务上的准确性，例如ImageNet分类。尽管有时候研究员不太关心模型的 efficient， 因为竞赛是为了击败SOTA， 如果 scaling 做的正确，也可以帮助提高模型的效率。
+
+
+### Types of Scaling for CNNs
+
+对于CNN来说有三种 scaling 维度：
+
+
+- Depth - 深度指网络的深度，相当于网络的层数。
+- Width - 宽度指网络的宽度。 例如，宽度的一种度量是Conv层中的通道数量。
+- esolution - 分辨率是传递给CNN的图像分辨率。
+
