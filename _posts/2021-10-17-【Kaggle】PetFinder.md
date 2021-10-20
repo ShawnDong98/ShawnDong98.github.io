@@ -1174,3 +1174,58 @@ class PetFinderModel(pl.LightningModule):
         
         return [opt], [sch]
 ```
+
+### Data Folds
+
+```python
+# Run the Kfolds training loop
+kf = StratifiedKFold(n_splits=Config['NFOLDS'])
+train_file = pd.read_csv("../input/petfinder-pawpularity-score/train.csv")
+
+for fold_, (train_idx, valid_idx) in enumerate(kf.split(X=train_file, y=train_file['Pawpularity'])):
+    print(f"{'='*20} Fold: {fold_} {'='*20}")
+    
+    train_df = train_file.loc[train_idx]
+    valid_df = train_file.loc[valid_idx]
+    
+    train_set = PetfinderData(
+        train_df,
+        augments = Augments.train_augments
+    )
+
+    valid_set = PetfinderData(
+        valid_df,
+        augments = Augments.valid_augments
+    )
+    
+    train = DataLoader(
+        train_set,
+        batch_size=Config['TRAIN_BS'],
+        shuffle=True,
+        num_workers=Config['NUM_WORKERS'],
+        pin_memory=True
+    )
+    valid = DataLoader(
+        valid_set,
+        batch_size=Config['VALID_BS'],
+        shuffle=False,
+        num_workers=Config['NUM_WORKERS']
+    )
+    
+    checkpoint_callback = ModelCheckpoint(
+        monitor="val_loss",
+        dirpath="./",
+        filename=f"fold_{fold_}_{Config['MODEL_NAME']}",
+        save_top_k=1,
+        mode="min",
+    )
+    
+    model = PetFinderModel()
+    trainer = pl.Trainer(
+        max_epochs=Config['EPOCHS'], 
+        gpus=1, 
+        callbacks=[checkpoint_callback], 
+        logger= wandb_logger
+    )
+    trainer.fit(model, train, valid)
+```
