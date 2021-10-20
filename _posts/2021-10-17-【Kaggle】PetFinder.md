@@ -549,3 +549,16 @@ Sample does not look Gaussian (reject H0 at 5% test level)
 ```
 
 测试清楚地表明，该分布不遵循高斯定律。因此，根据所选择的建模对数据进行规范化是很重要的。
+
+
+## Feature Wise Analysis
+
+
+### Subject Focus
+
+```python
+sns.boxplot(data=train, x='Subject Focus', y='Pawpularity')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634717591801.png)
