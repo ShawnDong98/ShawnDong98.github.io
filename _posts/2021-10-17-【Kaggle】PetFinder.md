@@ -388,3 +388,26 @@ print(f"Test Dataset Shape: {colored(test.shape, 'yellow')}")
 Training Dataset Shape: (9912, 14)
 Test Dataset Shape: (8, 13)
 ```
+
+
+## Distribution Plots
+
+```python
+# Add File path to Train
+def get_image_file_path(image_id):
+    return f'/kaggle/input/petfinder-pawpularity-score/train/{image_id}.jpg'
+
+train['file_path'] = train['Id'].apply(get_image_file_path)
+```
+
+```python
+widths = []
+heights = []
+ratios = []
+for file_path in tqdm(train['file_path']):
+    image = imageio.imread(file_path)
+    h, w, _ = image.shape
+    heights.append(h)
+    widths.append(w)
+    ratios.append(w / h)
+```
