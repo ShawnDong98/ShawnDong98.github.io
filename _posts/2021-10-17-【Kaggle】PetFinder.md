@@ -1230,3 +1230,9 @@ for fold_, (train_idx, valid_idx) in enumerate(kf.split(X=train_file, y=train_fi
     trainer.fit(model, train, valid)
 ```
 
+# CLIP Prompt Feature Engineering | XGB
+
+## Introduction
+
+
+我在这个比赛中的第一个想法是，在预测动物受欢迎程度时，可爱是一个重要因素。这本 notebook  探讨了如何使用CLIP的多模态表示(以及对抽象概念的理解)进行特性工程
