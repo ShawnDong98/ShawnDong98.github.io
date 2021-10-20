@@ -595,3 +595,16 @@ plt.show()
 sns.boxplot(data=train, x='Face', y='Pawpularity')
 plt.show()
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719223807.png)
+
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Face", kde=True)
+plt.show()
+```
+
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634719326650]]]" )
+
+
+### 
