@@ -1087,4 +1087,12 @@ Scaling 通常是为了提高模型在特定任务上的准确性，例如ImageN
 
 ### Proposed Compound Scaling
 
-作者提出了一种简单而有效的缩放技术，即使用复合系数 $\phi$ 来有原则地均匀缩放网络的宽度、深度和分辨率
+作者提出了一种简单而有效的缩放技术，即使用复合系数 $\phi$ 来均匀缩放网络的宽度、深度和分辨率:
+
+$$
+\text{depth} : d = \alpha^\phi \\
+\text{width}： w = \beta^{\phi} \\
+\text{resolution}： r = \gamma^{\phi} \\
+\text{s.t. } \alpha · \beta^2 · \gamma^2 \approx 2 \\
+\alpha \geq 1, \beta \geq 1, \gamma \geq 1
+$$
