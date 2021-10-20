@@ -577,3 +577,21 @@ plt.show()
 sns.boxplot(data=train, x='Eyes', y='Pawpularity')
 plt.show()
 ```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719182772.png)
+
+
+```python
+sns.histplot(train, x="Pawpularity", hue="Eyes", kde=True)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634719203287.png)
+
+
+### Face
+
+```python
+sns.boxplot(data=train, x='Face', y='Pawpularity')
+plt.show()
+```
