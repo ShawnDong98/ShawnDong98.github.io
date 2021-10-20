@@ -1235,4 +1235,52 @@ for fold_, (train_idx, valid_idx) in enumerate(kf.split(X=train_file, y=train_fi
 ## Introduction
 
 
-我在这个比赛中的第一个想法是，在预测动物受欢迎程度时，可爱是一个重要因素。这本 notebook  探讨了如何使用CLIP的多模态表示(以及对抽象概念的理解)进行特性工程
+我在这个比赛中的第一个想法是，在预测动物受欢迎程度时，可爱是一个重要因素。这本 notebook  探讨了如何使用CLIP的多模态表示(以及对抽象概念的理解)进行特性工程。
+
+```python
+import torch
+import torch.nn as nn
+from torch.utils.data import Dataset, DataLoader
+from pathlib import Path
+from os.path import join
+import numpy as np
+import pandas as pd
+import clip, os, skimage
+import matplotlib.pyplot as plt
+import seaborn as sns
+from PIL import Image
+from tqdm import tqdm
+
+clip.available_models()
+```
+
+```
+['RN50', 'RN101', 'RN50x4', 'ViT-B/32']
+```
+
+```python
+model, preprocess = clip.load("../input/openai-clip/ViT-B-32.pt", jit=False)
+model = model.cuda().eval()
+input_resolution = model.visual.input_resolution
+context_length = model.context_length
+vocab_size = model.vocab_size
+
+print("Model parameters:", f"{np.sum([int(np.prod(p.shape)) for p in model.parameters()]):,}")
+print("Input resolution:", input_resolution)
+print("Context length:", context_length)
+print("Vocab size:", vocab_size)
+```
+
+```
+Model parameters: 151,277,313
+Input resolution: 224
+Context length: 77
+Vocab size: 49408
+```
+
+## Visualising the Data
+
+```python
+train_image_path = Path("../input/petfinder-pawpularity-score/train")
+file_names = [f.name for f in train_image_path.iterdir() if f.suffix == ".jpg"]
+```
