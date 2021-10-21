@@ -20,6 +20,12 @@ tags:
 通过渐进式学习，我们的 EfficientNetV2 在 ImageNet 和 CIFAR/Cars/Flowers 数据集上明显优于以前的模型。通过在同样的ImageNet21k上进行预训练，我们的 EfficientNetV2 在 ImageNet ILSVRC2012 上达到 87.3% 的 top-1 准确率，比最近的ViT高出 2.0% 的准确率，同时使用相同的计算资源进行5 -11x倍的训练。
 
 
+# Main Results 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634827598517.png)
+
+
+
 # Conclusion
 
 本文介绍了 EfficientNetV2，这是一个用于图像识别的更小、更快的新神经网络系列。经过 training-aware NAS 和 model scaling 的优化，我们的 Efficient - NetV2 显著优于以前的模型，同时在参数方面更快、更有效。为了进一步提高训练速度，我们提出了一种改进的渐进学习方法，即在训练过程中联合增加图像大小和正则化。大量实验表明我们的 EfficientNetV2 在 ImageNet 和 CIFAR/Flowers/Cars 上取得了很好的结果。与 EfficientNet 和最近的作品相比，我们的 EfficientNetV2 训练速度提高了 11 倍，同时体积缩小了 6.8 倍
