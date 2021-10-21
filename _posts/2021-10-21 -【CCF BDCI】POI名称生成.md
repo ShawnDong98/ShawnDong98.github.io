@@ -12,6 +12,10 @@ tags:
 ---
 
 
+# 数据格式
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634809297236.png)
+
 # 评测标准
 
 评测集每个挂牌的名称真值由一个最优名称和大于等于0个可接受名称组成。
