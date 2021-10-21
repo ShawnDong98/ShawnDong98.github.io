@@ -80,8 +80,14 @@ Microsoft Store 自带。
 
 包含八个小工具， 主要使用第7个小工具， 类似于mac中的SpotLight功能， 保持桌面清爽的同时，快速地搜索到要使用的应用， 十分好用。
 
+## Traffic Monitor
+
+Traffic Monitor是一款用于Windows平台的网速监控悬浮窗软件，可以显示当前网速、CPU及内存利用率，支持嵌入到任务栏显示，支持更换皮肤、历史流量统计等功能。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634831073855.png)
 
 
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1634831079447]]]" )
 
 # windows 使用技巧
 
