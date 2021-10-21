@@ -7,7 +7,7 @@ author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
-    - Kaggle
+    - Competition
     - 
 ---
 
@@ -1374,3 +1374,50 @@ plt.show()
 在这个notebook中， 我们展示如何添加一个 PAPIDS SVR 第二个头到一个已经训练好的有第一个头的 CNN 或者 Image Transformer模型中。
 
 我们提取图像嵌入(from the trained fold models) 并且为每个 fold 训练额外的 RAPIDS SVR 头。 原始的NN头取得了CV RSME 18.0 并且 新的 RAPIDS SVR 头取得 CV RSME 18.0。 两个头都非常的多样性因为 NN 头使用 分类(BCE)损失， 而SVR头使用回归损失。 在推理过程中， 我们用两个头预测。 当我们平均两个头的预测时，我们得到了 CV RMSE 17.8。
+
+
+这里说明的技术可以应用于CV LB boost的任何训练图像(或NLP)模型。 在这个 Notebook 的第一个版本，我们训练SVR头和保存 fold  模型。然后，在后来的 notebook  版本和Kaggle submission 期间，我们加载保存的SVR模型(从这个 notebook 的 version 1，它被制成一个Kaggle数据集)。
+
+
+## How to Add RAPIDS SVR Head
+
+建立 double head 模型有三个步骤。第一步是训练你的图像神经网络 backbone  和 head。下一步是用从冻结图像神经网络 backbone 中提取的嵌入来训练我们的RAPIDS SVR head。最后，我们用l两个 head 进行推断，并将预测结果平均。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634739435671.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634739455235.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1634739463184.png)
+
+
+## Load Libraries
+
+```python
+# based on the post here: https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/275094
+
+import sys
+sys.path.append("../input/tez-lib/")
+sys.path.append("../input/timmmaster/")
+
+import tez
+import albumentations
+import pandas as pd
+import cv2
+import numpy as np
+import timm
+import torch.nn as nn
+from sklearn import metrics
+import torch
+from tez.callbacks import EarlyStopping
+from tqdm import tqdm
+import math
+
+class args:
+    batch_size = 16
+    image_size = 384
+    
+def sigmoid(x):
+    return 1 / (1 + math.exp(-x))
+```
+
+
