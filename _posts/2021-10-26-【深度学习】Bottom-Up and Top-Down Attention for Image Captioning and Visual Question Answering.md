@@ -83,11 +83,56 @@ sudo apt-get install libopencv-dev
 pip install  opencv-python==3.1.0 -i http://pypi.douban.com/simple/    --trusted-host pypi.douban.com
 ```
 
+
+```
+cmake -DCMAKE_BUILD_TYPE=Release \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D OPENCV_GENERATE_PKGCONFIG=ON \
+-D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.15/modules \
+-D BUILD_DOCS=ON \
+-D BUILD_EXAMPLES=ON \
+-D INSTALL_C_EXAMPLES=ON \
+-D WITH_QT=ON \
+-D WITH_GSTREAMER=ON \
+-D VIDEOIO_PLUGIN_LIST=gstreamer \
+-D OPENCV_ENABLE_NONFREE=ON \
+-D BUILD_opencv_python2=ON \
+-D BUILD_opencv_python3=ON \
+-D WITH_LAPACK=ON \
+-D WITH_EIGEN=ON \
+-D WITH_OPENGL=ON \
+-D WITH_CUDA=ON \
+-D WITH_CUFFT=ON \
+-D WITH_CUBLAS=ON \
+-D WITH_CUDNN=ON \
+-D WITH_NVCUVID=ON \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D BUILD_EXAMPLES=ON \
+-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3\
+-D PYTHON3_EXCUTABLE=/usr/bin/python3\
+-D PYTHON3_INCLUDE_DIR=/usr/include/python3.6m\
+-D PYTHON3_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so \
+-D PYTHON_NUMPY_PATH=/usr/local/lib/python3.6/dist-packages/numpy/core/include \
+-D PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.6/dist-packages ..
+```
+
 # Opencv 3.4.5
 
 ##  Add the installation prefix of "Qt5" to CMAKE_PREFIX_PATH or set "Qt5_DIR" to a directory containing one of the above files.  If "Qt5" provides a separate development package or SDK, be sure it has been installed.
 
 ## CMake Error at cmake/OpenCVModule.cmake:273 (message):
+
+
+## Could NOT find Pylint (missing: PYLINT_EXECUTABLE)
+
+```bash
+sudo apt install -y pyflakes pylint
+```
+## Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE)
+
+```bash
+apt-get install doxygen
+```
 
 # Reference
 
