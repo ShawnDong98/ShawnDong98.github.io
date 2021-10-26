@@ -83,6 +83,12 @@ sudo apt-get install libopencv-dev
 pip install  opencv-python==3.1.0 -i http://pypi.douban.com/simple/    --trusted-host pypi.douban.com
 ```
 
+# Opencv 3.4.5
+
+##  Add the installation prefix of "Qt5" to CMAKE_PREFIX_PATH or set "Qt5_DIR" to a directory containing one of the above files.  If "Qt5" provides a separate development package or SDK, be sure it has been installed.
+
+## CMake Error at cmake/OpenCVModule.cmake:273 (message):
+
 # Reference
 
 1. [Caffe didn't see hdf5.h when compiling](https://stackoverflow.com/questions/37007495/caffe-didnt-see-hdf5-h-when-compiling/44912342)
