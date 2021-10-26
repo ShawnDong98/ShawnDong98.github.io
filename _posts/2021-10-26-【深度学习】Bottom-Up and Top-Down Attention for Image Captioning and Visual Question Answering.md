@@ -116,24 +116,15 @@ cmake -DCMAKE_BUILD_TYPE=Release \
 -D PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.6/dist-packages ..
 ```
 
-# Opencv 3.4.5
-
-##  Add the installation prefix of "Qt5" to CMAKE_PREFIX_PATH or set "Qt5_DIR" to a directory containing one of the above files.  If "Qt5" provides a separate development package or SDK, be sure it has been installed.
-
-## CMake Error at cmake/OpenCVModule.cmake:273 (message):
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635273571185.png)
 
 
-## Could NOT find Pylint (missing: PYLINT_EXECUTABLE)
-
+## CMake Error at cmake/OpenCVFindLibsGUI.cmake:18 (find_package): Could not find a package configuration file provided by "Qt5" with any of the following names:
+  
 ```bash
-sudo apt install -y pyflakes pylint
+apt-get install qt5-default
 ```
-## Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE)
-
-```bash
-apt-get install doxygen
-```
-
+  
 # Reference
 
 1. [Caffe didn't see hdf5.h when compiling](https://stackoverflow.com/questions/37007495/caffe-didnt-see-hdf5-h-when-compiling/44912342)
