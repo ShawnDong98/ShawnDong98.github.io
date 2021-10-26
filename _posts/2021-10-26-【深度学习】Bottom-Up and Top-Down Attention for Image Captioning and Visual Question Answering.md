@@ -22,3 +22,8 @@ tags:
 ## make: python: Command not found
 
 将 Makefile 中的python 改为 python3
+
+
+## AttributeError: 'dict' object has no attribute 'iteritems'
+
+Python3.5中：iteritems变为items
