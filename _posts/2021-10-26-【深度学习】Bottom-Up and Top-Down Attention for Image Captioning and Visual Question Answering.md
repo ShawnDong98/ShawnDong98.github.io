@@ -65,8 +65,17 @@ sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 ```
 
 
+## ./include/caffe/util/mkl_alternate.hpp:14:10: fatal error: cblas.h: No such file or directory
+
+```bash
+sudo apt-get install libopenblas-dev
+```
+
+## 
+
 
 # Reference
 
 1. [Caffe didn't see hdf5.h when compiling](https://stackoverflow.com/questions/37007495/caffe-didnt-see-hdf5-h-when-compiling/44912342)
 2. [caffe安装问题06——gflags.h没有那个文件或者目录](https://blog.csdn.net/sdlypyzq/article/details/85237020)
+3. [cblas.h : no such file or directory #3599](https://github.com/BVLC/caffe/issues/3599)
