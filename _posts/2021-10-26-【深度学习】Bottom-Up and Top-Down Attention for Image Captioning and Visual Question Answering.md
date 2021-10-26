@@ -75,7 +75,6 @@ sudo apt-get install libopenblas-dev
 
 ```bash
 sudo apt-get install libopencv-dev
-
 ```
 
 
