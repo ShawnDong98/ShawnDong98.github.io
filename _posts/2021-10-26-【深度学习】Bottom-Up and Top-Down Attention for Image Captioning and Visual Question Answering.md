@@ -34,3 +34,9 @@ Python3.5中：iteritems变为items
 ```bash
 sudo apt-get install  protobuf-compiler
 ```
+
+## src/caffe/internal_thread.cpp:1:28: fatal error: boost/thread.hpp: 没有那个文件或目录 compilation terminated.
+
+```bash
+sudo apt-get install libboost-all-dev  
+```
