@@ -80,7 +80,7 @@ sudo apt-get install libopencv-dev
 ## 安装opencv-python
 
 ```bash
-pip install  xxx  --index-url http://pypi.douban.com/simple/    --trusted-host pypi.douban.com
+pip install  opencv-python==3.1.0 -i http://pypi.douban.com/simple/    --trusted-host pypi.douban.com
 ```
 
 # Reference
