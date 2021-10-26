@@ -77,6 +77,11 @@ sudo apt-get install libopenblas-dev
 sudo apt-get install libopencv-dev
 ```
 
+## 安装opencv-python
+
+```bash
+pip install  xxx  --index-url http://pypi.douban.com/simple/    --trusted-host pypi.douban.com
+```
 
 # Reference
 
