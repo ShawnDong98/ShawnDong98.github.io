@@ -57,3 +57,8 @@ sudo apt-get install libprotobuf-dev protobuf-compiler
 --- INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
 +++ INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
 ```
+
+
+# Reference
+
+1. [Caffe didn't see hdf5.h when compiling](https://stackoverflow.com/questions/37007495/caffe-didnt-see-hdf5-h-when-compiling/44912342)
