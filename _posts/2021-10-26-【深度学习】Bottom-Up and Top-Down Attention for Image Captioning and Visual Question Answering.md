@@ -53,16 +53,20 @@ sudo apt-get install libprotobuf-dev protobuf-compiler
 
 在 `Makefile.config` 添加 `/usr/include/hdf5/serial/` 到 `INCLUDE_DIRS`
 
-```
+```bash
 --- INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
 +++ INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
 ```
 
 ## ./include/caffe/common.hpp:5:10: fatal error: gflags/gflags.h: No such file or directory
 
+```bash
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+```
 
 
 
 # Reference
 
 1. [Caffe didn't see hdf5.h when compiling](https://stackoverflow.com/questions/37007495/caffe-didnt-see-hdf5-h-when-compiling/44912342)
+2. [caffe安装问题06——gflags.h没有那个文件或者目录](https://blog.csdn.net/sdlypyzq/article/details/85237020)
