@@ -58,6 +58,10 @@ sudo apt-get install libprotobuf-dev protobuf-compiler
 +++ INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
 ```
 
+## ./include/caffe/common.hpp:5:10: fatal error: gflags/gflags.h: No such file or directory
+
+
+
 
 # Reference
 
