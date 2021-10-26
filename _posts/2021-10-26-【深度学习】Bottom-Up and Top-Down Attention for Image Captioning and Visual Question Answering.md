@@ -27,3 +27,10 @@ tags:
 ## AttributeError: 'dict' object has no attribute 'iteritems'
 
 Python3.5中：iteritems变为items
+
+## make: protoc: Command not found
+
+
+```bash
+sudo apt-get install  protobuf-compiler
+```
