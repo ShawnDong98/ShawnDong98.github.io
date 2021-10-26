@@ -40,3 +40,20 @@ sudo apt-get install  protobuf-compiler
 ```bash
 sudo apt-get install libboost-all-dev  
 ```
+
+
+## .build_release/src/caffe/proto/caffe.pb.h:9:10: fatal error: google/protobuf/stubs/common.h: No such file or directory
+
+
+```bash
+sudo apt-get install libprotobuf-dev protobuf-compiler
+```
+
+## src/caffe/net.cpp:8:10: fatal error: hdf5.h: No such file or directory
+
+在 `Makefile.config` 添加 `/usr/include/hdf5/serial/` 到 `INCLUDE_DIRS`
+
+```
+--- INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
++++ INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+```
