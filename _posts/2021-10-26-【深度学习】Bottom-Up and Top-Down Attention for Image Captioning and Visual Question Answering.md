@@ -71,7 +71,12 @@ sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 sudo apt-get install libopenblas-dev
 ```
 
-## 
+## src/caffe/layers/data_layer.cpp:2:10: fatal error: opencv2/core/core.hpp: No such file or directory
+
+```bash
+sudo apt-get install libopencv-dev
+
+```
 
 
 # Reference
