@@ -20,6 +20,8 @@ tags:
 
 研究了在没有 grounding annotations 的情况下生成具有准确 grounding regions 的 image captions 的问题。揭示了缓解 partial grounding 问题对 grounding performance 至关重要。提出了分布式注意力机制，强制网络在生成单词时将语义一致的不同区域聚合在一起。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635485791030.png)
+
 
 # Dual Graph Convolutional Networks with Transformer and Curriculum Learning for Image Captioning 
 
@@ -28,3 +30,5 @@ tags:
 
 
 提出一种使用 Curriculum Learning 作为学习策略 结合了 Dual-GCN 和 Transformer 的  image caption 模型。 由 object-level GCN 和 image-level GCN 编码的视觉特征被设计用来融合局部和全局视觉编码。Transformer 解码器能够理解提取的视觉特征生成合理的描述结果。 通过 cross-review 机制决定数据集的难度， 使用 curriculum learning 作为训练策略确保提出的模型以一种从易到难得方式训练。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635485822434.png)
