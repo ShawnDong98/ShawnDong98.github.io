@@ -23,4 +23,8 @@ tags:
 
 # Dual Graph Convolutional Networks with Transformer and Curriculum Learning for Image Captioning 
 
+
 现有的  image captioning 方法只关注于理解单个图像中对象或实例之间的关系，而没有探索上下文图像之间存在的上下文关联。在这片文章中为 Image Caption 提出了带有transformer和 curriculum learning 的双向图卷积神经网路(Dual-GCN)。具体来说，不使用object-level GCN来捕获单一图像中目标对目标的空间关系，而是采用 image-level GCN来捕获相似图像提供的特征信息。设计良好的双向 GCN 可以使 Transformer 更好地理解图像中不同目标之间的关系，并充分利用相似图像作为辅助信息对图像进行合理的描述。同时，通过引入 cross-review 策略来决定  difficulty levels，采用 curricu-lum learning 作为训练策略，以提高模型的鲁棒性和泛化性。
+
+
+提出一种使用 Curriculum Learning 作为学习策略 结合了 Dual-GCN 和 Transformer 的  image caption 模型。 由 object-level GCN 和 image-level GCN 编码的视觉特征被设计用来融合局部和全局视觉编码。
