@@ -12,3 +12,8 @@ tags:
 ---
 
 
+# Distributed Attention for Grounded Image Captioning
+
+
+我们研究了弱监督 grounded image caption 问题。
+
