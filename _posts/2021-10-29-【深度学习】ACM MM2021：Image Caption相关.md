@@ -32,3 +32,12 @@ tags:
 提出一种使用 Curriculum Learning 作为学习策略 结合了 Dual-GCN 和 Transformer 的  image caption 模型。 由 object-level GCN 和 image-level GCN 编码的视觉特征被设计用来融合局部和全局视觉编码。Transformer 解码器能够理解提取的视觉特征生成合理的描述结果。 通过 cross-review 机制决定数据集的难度， 使用 curriculum learning 作为训练策略确保提出的模型以一种从易到难得方式训练。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635485822434.png)
+
+
+# Question-controlled Text-aware Image Captioning
+
+
+# Similar Scenes arouse Similar Emotions: Parallel Data Augmentation for Stylized Image Captioning
+
+
+# 
