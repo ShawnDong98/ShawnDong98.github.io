@@ -41,7 +41,7 @@ tags:
 
 # Similar Scenes arouse Similar Emotions: Parallel Data Augmentation for Stylized Image Captioning
 
-Stylized image captioning 系统旨在生成一个不仅在语义上与给定的图像相关，而且还与给定的风格描述一致的标题。这个任务的最大挑战之一是缺乏足够的成对的 stylized  数据。许多研究关注的是无监督的方法，而没有从数据增强的角度考虑。这篇文章指出， 人们在类似的场景中可能会回忆起类似的情绪，并且经常用类似的风格短语表达类似的情绪，因此产生了数据增强想法。这篇文章提出了一个新的 Extract-Retrieve-Generate 数据增强框架，从小规模的 stylized 句子中提取风格短语，并将其 graft 到大规模的 factual captions 中。首先，我们设计了 emotional signal extractor 从小规模 stylized 句子中提取 style 短语。其次，我们构造了 plugable 的 multi-modal scene retriever，以检索由一对图像和它的stylized caption表征的场景， 它们和大规模 factual data 中的 query image 或 caption 相似。最后，基于相似场景的 style phrases 和当前场景的 factual description，构建 emotion-aware 的字幕生成器，为当前场景生成流畅多样的 stylized captions 。
+Stylized image captioning 系统旨在生成一个不仅在语义上与给定的图像相关，而且还与给定的风格描述一致的标题。这个任务的最大挑战之一是缺乏足够的成对的 stylized  数据。许多研究关注的是无监督的方法，而没有从数据增强的角度考虑。这篇文章指出， 人们在类似的场景中可能会回忆起类似的情绪，并且经常用类似的风格短语表达类似的情绪，因此产生了数据增强想法。这篇文章提出了一个新的 Extract-Retrieve-Generate 数据增强框架，从小规模的 stylized 句子中提取风格短语，并将其 graft 到大规模的 factual captions 中。首先，我们设计了 emotional signal extractor 从小规模 stylized 句子中提取 style 短语。其次，我们构造了 plugable 的 multi-modal scene retriever，以检索由一对图像和它的stylized caption表征的场景， 它们和大规模 factual data 中的 query image 或 caption 相似。最后，基于相似场景的 style phrases 和当前场景的 factual description，构建 emotion-aware 的 caption 生成器，为当前场景生成流畅多样的 stylized captions 。
 
 
 # 
