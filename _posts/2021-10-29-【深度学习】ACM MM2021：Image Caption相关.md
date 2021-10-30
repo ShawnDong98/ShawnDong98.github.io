@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】ACM MM2021：Image Caption相关"
+title:      "【深度学习】ACM MM2021：Image Caption相关论文"
 subtitle:   ""
 date:       2021-10-29
 author:     "ShawnD"
