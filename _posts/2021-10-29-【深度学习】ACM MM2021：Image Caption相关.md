@@ -70,6 +70,13 @@ Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635592761059.png)
 
+# Semi-Autoregressive Transformer for Image Captioning 
+
+目前最先进的 image captioning 模型采用自回归解码器，即它们通过对之前生成的单词为条件来生成每个单词，这导致了推断过程中的严重 latency。为了解决这个问题，非自回归 image captioning 模型最近被提出，通过并行生成所有单词，显著加快了推理的速度。然而，这些非自回归模型由于过度消除了单词依赖，不可避免地会出现大的生成质量的下降。 
+
+
+
+
 # Unifying Multimodal Transformer for Bi-directional Image and Text Generation 
 
 这篇文章研究的联合学习的 image-to-text 和 text-to-image 的生成，这是自然的双向任务。典型的现有工作为每个任务设计独立的  task-specific 的模型。这篇文章基于单个多模态模型来联合研究双向任务， 提出了一个统一的图像和文本生成框架。具体来说，将这两个任务描述为序列生成任务，其中将图像和文本表示为统一的 tokens 序列，Transformer学习 multimodal interactions 来生成序列。进一步提出 two-level granularity 特征表示和 sequence-level 训练来改进基于 transformer 的统一框架。
