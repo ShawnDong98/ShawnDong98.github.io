@@ -46,6 +46,9 @@ Stylized image captioning 系统旨在生成一个不仅在语义上与给定的
 这篇文章提出了一种新的 extract-retrieve-generate 数据增强框架，用于 stylized image captioning。该框架首先从已有的风格化句子中提取风格短语。然后，该框架通过 plugable 的 multi-modal scene retriever 进一步检索一组类似场景。该框架利用相似场景的 stylized captions 中的 style phrases，为大规模 factual corpus 中的图像 生成相应的 stylized captions。大量的实验结果表明，该框架能够有效地缓解数据匮乏问题。 它还显著提高了几种现有  image
 captioning 模型在有监督和无监督设置下的性能，大大优于最先进的 stylized image captioning 方法。
 
+# Triangle-Reward Reinforcement Learning: Visual-Linguistic Semantic Alignment for Image Captioning
+
+Image Captioning 是指在给定的图像中，生成一个由 sequential linguistic words 组成的句子，用来描述visual units(如物体、关系和属性)。
 
 
 # Unifying Multimodal Transformer for Bi-directional Image and Text Generation 
