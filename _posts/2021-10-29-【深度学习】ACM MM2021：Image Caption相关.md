@@ -36,6 +36,7 @@ tags:
 
 # Question-controlled Text-aware Image Captioning
 
+对于带有多个 scene texts 的图像，不同的人可能对不同的文本信息感兴趣。现有的 text-aware im-age captioning 模型无法根据不同的信息需求生成不同的 captions。
 
 # Similar Scenes arouse Similar Emotions: Parallel Data Augmentation for Stylized Image Captioning
 
