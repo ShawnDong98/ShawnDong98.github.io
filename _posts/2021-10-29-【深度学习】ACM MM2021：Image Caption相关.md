@@ -61,6 +61,11 @@ Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635590772939.png)
 
+# Group-based Distinctive Image Captioning with Memory Attention
+
+利用自然语言描述图像被称为 image captioning，随着计算机视觉和自然语言生成技术的发展， image captioning 技术得到了不断的发展。虽然传统的  captioning 模型基于流行指标实现了高的准确性，即BLEU,CIDEr和SPICE，captions 区分目标图像和其它相似图像的能力还有待探索。为了生成独特的标题，一些先辈使用对比学习 或 重新加权真实的 captions。但是，一个相似图像组中的对象之间的关系(例如，同一相册或细粒度事件中的 items 或 properties)将被忽略。这篇文章使用一种 Group-based Distinctive Captioning Model (GdisCap)来提高 image captions 的 distinctiveness ，该模型将每幅图像与一个相似组中的其他图像进行比较，突出了每幅图像的唯一性。
+特别地，提出了一种 group-based memory attention (GMA) 模块，该模块存储图像组中 unique 的物体特征(即与其他图像中的物体相似度低)。这些 unique  的物体特征在生成标题时被强调，从而产生更独特的captions。此外，在 ground-truth captions 中选择有特色的词来监督语言解码器和GMA。最后，提出了一个新的评价指标 —— distinctive word rate(DisWordRate)来衡量 captions 的distinctiveness 。
+
 
 
 # Unifying Multimodal Transformer for Bi-directional Image and Text Generation 
