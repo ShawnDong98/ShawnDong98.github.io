@@ -74,6 +74,9 @@ Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉
 
 目前最先进的 image captioning 模型采用自回归解码器，即它们通过对之前生成的单词为条件来生成每个单词，这导致了推断过程中的严重 latency。为了解决这个问题，非自回归 image captioning 模型最近被提出，通过并行生成所有单词，显著加快了推理的速度。然而，这些非自回归模型由于过度消除了单词依赖，不可避免地会出现生成质量的下降。 为了在速度和质量之间做出更好的权衡，我们引入了一种  image captioning 的半自回归模型(SATIC)，该模型在全局中保持了自回归特性，但在局部中并行生成单词。在 Transformer 的基础上，只需要进行少量的修改就可以实现SATIC。
 
+这篇文章引入了一种半自回归的 image captioning 模型(简称SATIC)，该模型在全局中保持了自回归特性，在局部中保持了非自回归特性。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635594880015.png)
 
 
 
