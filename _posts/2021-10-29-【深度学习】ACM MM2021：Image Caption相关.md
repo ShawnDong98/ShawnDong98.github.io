@@ -48,4 +48,4 @@ captioning 模型在有监督和无监督设置下的性能，大大优于最先
 
 # Unifying Multimodal Transformer for Bi-directional Image and Text Generation 
 
-这篇文章研究的联合学习的 image-to-text 和 text-to-image 的生成，这是自然的双向任务。
+这篇文章研究的联合学习的 image-to-text 和 text-to-image 的生成，这是自然的双向任务。典型的现有工作为每个任务设计独立的  task-specific 的模型。这篇文章基于单个多模态模型来联合研究双向任务， 提出了一个统一的图像和文本生成框架。具体来说，将这两个任务描述为序列生成任务，其中将图像和文本表示为统一的 tokens 序列，Transformer学习 multimodal interactions 来生成序列。
