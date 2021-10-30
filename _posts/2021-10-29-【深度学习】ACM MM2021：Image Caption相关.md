@@ -36,7 +36,7 @@ tags:
 
 # Question-controlled Text-aware Image Captioning
 
-对于带有多个 scene texts 的图像，不同的人可能对不同的文本信息感兴趣。现有的 text-aware im-age captioning 模型无法根据不同的信息需求生成不同的 captions。
+对于带有多个 scene texts 的图像，不同的人可能对不同的文本信息感兴趣。现有的 text-aware im-age captioning 模型无法根据不同的信息需求生成不同的 captions。为了探索如何生成个性化的text-aware captions，我们定义了一个新的挑战性任务，即 Question-controlled 的 Text-aware Image captioning (Qc-TextCap)。
 
 # Similar Scenes arouse Similar Emotions: Parallel Data Augmentation for Stylized Image Captioning
 
