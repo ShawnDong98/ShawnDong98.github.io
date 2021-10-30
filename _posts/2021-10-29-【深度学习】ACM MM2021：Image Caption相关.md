@@ -55,7 +55,7 @@ Image Captioning 是指在给定的图像中，生成一个由 sequential lingui
 
 # Direction Relation Transformer for Image Captioning
 
-Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉和自然语言处理来生成图像内容的文本描述。近年来，基于 Transformer 的编解码器结构在 image captioning 处理中取得了巨大的成功，该体系利用 multi-head attention mechanism 来捕获目标区域之间的上下文关系。但这类方法将区域特征视为  a bag of tokens ，而不考虑它们之间的方向关系，难以理解图像中物体之间的相对位置，难以有效生成正确的标题。这篇文章提出了一种新的 Direction Relation Transformer，将 relative direction embedding 加入到 multi-head 中，称为DRT，以改善视觉特征之间的方向感知。我们首先根据目标区域的位置信息生成 relative direction matrix，然后探索三种 direction-aware 的 multi-head attention形式，将 direction embedding 加入到 Transformer 架构中。
+Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉和自然语言处理来生成图像内容的文本描述。近年来，基于 Transformer 的编解码器结构在 image captioning 处理中取得了巨大的成功，该体系利用 multi-head attention mechanism 来捕获目标区域之间的上下文关系。但这类方法将区域特征视为  a bag of tokens ，而不考虑它们之间的方向关系，难以理解图像中物体之间的相对位置，难以有效生成正确的标题。这篇文章提出了一种新的 Direction Relation Transformer，将 relative direction embedding 加入到 multi-head 中，称为DRT，以改善视觉特征之间的方向感知。首先根据目标区域的位置信息生成 relative direction matrix，然后探索三种 direction-aware 的 multi-head attention形式，将 direction embedding 加入到 Transformer 架构中。
 
 这篇文章提出了一种新的Direction Relation Transformer，可以有效地利用目标区域之间的相对方向关系，从而改进 image captioning。通过预先定义方向类别，从 bounding boxes 中提取高层次的方向语义，以全面理解复杂的视觉场景。此外，还探索了三种 Direction-Aware  的 Multi-Head Attention，将  relative direction embedding 加入到注意力模块中。
 
@@ -72,7 +72,7 @@ Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉
 
 # Semi-Autoregressive Transformer for Image Captioning 
 
-目前最先进的 image captioning 模型采用自回归解码器，即它们通过对之前生成的单词为条件来生成每个单词，这导致了推断过程中的严重 latency。为了解决这个问题，非自回归 image captioning 模型最近被提出，通过并行生成所有单词，显著加快了推理的速度。然而，这些非自回归模型由于过度消除了单词依赖，不可避免地会出现生成质量的下降。 为了在速度和质量之间做出更好的权衡，我们引入了一种  image captioning 的半自回归模型(SATIC)，该模型在全局中保持了自回归特性，但在局部中并行生成单词。在 Transformer 的基础上，只需要进行少量的修改就可以实现SATIC。
+目前最先进的 image captioning 模型采用自回归解码器，即它们通过对之前生成的单词为条件来生成每个单词，这导致了推断过程中的严重 latency。为了解决这个问题，非自回归 image captioning 模型最近被提出，通过并行生成所有单词，显著加快了推理的速度。然而，这些非自回归模型由于过度消除了单词依赖，不可避免地会出现生成质量的下降。 为了在速度和质量之间做出更好的权衡，引入了一种  image captioning 的半自回归模型(SATIC)，该模型在全局中保持了自回归特性，但在局部中并行生成单词。在 Transformer 的基础上，只需要进行少量的修改就可以实现SATIC。
 
 这篇文章引入了一种半自回归的 image captioning 模型(简称SATIC)，该模型在全局中保持了自回归特性，在局部中保持了非自回归特性。
 
