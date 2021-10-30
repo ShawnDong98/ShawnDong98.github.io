@@ -63,8 +63,8 @@ Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉
 
 # Group-based Distinctive Image Captioning with Memory Attention
 
-利用自然语言描述图像被称为 image captioning，随着计算机视觉和自然语言生成技术的发展， image captioning 技术得到了不断的发展。虽然传统的  captioning 模型基于流行指标实现了高的准确性，即BLEU,CIDEr和SPICE，captions 区分目标图像和其它相似图像的能力还有待探索。为了生成独特的标题，一些先辈使用对比学习 或 重新加权真实的 captions。但是，一个相似图像组中的对象之间的关系(例如，同一相册或细粒度事件中的 items 或 properties)将被忽略。这篇文章使用一种 Group-based Distinctive Captioning Model (GdisCap)来提高 image captions 的 distinctiveness ，该模型将每幅图像与一个相似组中的其他图像进行比较，突出了每幅图像的唯一性。
-特别地，提出了一种 group-based memory attention (GMA) 模块，该模块存储图像组中 unique 的物体特征(即与其他图像中的物体相似度低)。这些 unique  的物体特征在生成标题时被强调，从而产生更独特的captions。此外，在 ground-truth captions 中选择有特色的词来监督语言解码器和GMA。最后，提出了一个新的评价指标 —— distinctive word rate(DisWordRate)来衡量 captions 的distinctiveness。
+利用自然语言描述图像被称为 image captioning，随着计算机视觉和自然语言生成技术的发展， image captioning 技术得到了不断的发展。虽然传统的  captioning 模型基于流行指标实现了高的准确性，即BLEU,CIDEr和SPICE，captions 区分目标图像和其它相似图像的能力还有待探索。为了生成独特的标题，一些先辈使用对比学习 或 重新加权真实的 captions。但是，一个相似图像组中的对象之间的关系(例如，同一相册或细粒度事件中的 items 或 properties)将被忽略。这篇文章使用一种 Group-based Distinctive Captioning Model (GdisCap)来提高 image captions 的 distinctiveness ，该模型将每幅图像与一个相似组中的其它图像进行比较，突出了每幅图像的唯一性。
+特别地，提出了一种 group-based memory attention (GMA) 模块，该模块存储图像组中 unique 的物体特征(即与其他图像中的物体相似度低)。这些 unique  的物体特征在生成描述时被强调，从而产生更独特的captions。此外，在 ground-truth captions 中选择有特色的词来监督语言解码器和GMA。最后，提出了一个新的评价指标 —— distinctive word rate(DisWordRate)来衡量 captions 的distinctiveness。
 
 这篇文章研究了 image captions 的一个重要特性  – distinctiveness，它模仿了人类描述图像独特细节的能力，从而使 image captions 能够从其他语义相似的图像中区分出来。提出了一种 Group-based Distinctive Captioning 模型(GdisCap)，该模型将目标图像中的物体与语义相似的图像中的物体进行比较，并突出了图像中独特的区域。此外，提出两个损失函数来训练所提出的模型： distinctive word loss 鼓励模型产生 distinguishing 的信息； memory classification loss 帮助 weighted memory attention 包含 distinct concepts。 
 
