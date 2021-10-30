@@ -50,6 +50,8 @@ captioning 模型在有监督和无监督设置下的性能，大大优于最先
 
 Image Captioning 是指在给定的图像中，生成一个由 sequential linguistic words 组成的句子，用来描述visual units(如物体、关系和属性)。大多数现有的方法依赖于流行的交叉熵(XE)函数的监督学习，将 sualunitsint 转换为sequence of linguistic words。然而， 我们认为 XE 目标对 visual-linguistic 对齐不敏感， 不能判别惩罚 semantic inconsistency，缩小 context gap。为了解决这些问题，我们提出了  Triangle-Reward Reinforcement Learning(TRRL) 方法。TRRL以 scene graph ($\mathcal{G}$) 对象为节点，关系为边，分别表示图像、生成的句子和真实句子，并在训练过程中相互对齐。具体来说，TRRL 将 image captioning 表示为operative agents，其中第一个 agent 旨在从图像(I)中提取visual scene graph ($\mathcal{G}_{img}$)，第二个 agent 将此 graph 翻译为句子(S)。为了判别惩罚 visual-linguistic inconsistency, TRRL 提出新的 triangle-reward function： 1）生成的句子及其所对应的真实句子分别被分解成linguistic scene graph ($\mathcal{G}_{sen}$) 和 真实 scene graph ($\mathcal{G}_{gt}$)。2） $\mathcal{G}_{img}$, $\mathcal{G}_{sen}$ 和 $\mathcal{G}_{gt}$ 配对计算语义相似度分数，通过这个语义相似度给各个 agent 分配 reward。同时，为了使训练目标对上下文变化敏感，提出了 node-level 和 triplet-level 评分方法来联合测量 visual-linguistic graph 的相关性。 
 
+这篇文章提出了 Triangle-Reward Reinforcement Learning(TRRL) 方法用于 image captioning，该方法由 multi-agent 网络和 triangle-reward 函数组成。与之前的方法相比，TRRL可以判别惩罚 visual-linguistic inconsistencyt 的不一致，从而实现 visual units 和 linguistic words 之间的显式语义对齐。特别地，TRRL 使用 scene graph 来分别表示图像、生成的句子和真实句子，这些句子相互对齐，按比例分配reward给agent。同时，为了使训练目标对上下文变化敏感，提出了 node-level  和 triplet-levels 评分方法，这两种方法联合测量了 visual-linguistic graph 的相关性，并有效地缩小了 context gap。
+
 
 # Unifying Multimodal Transformer for Bi-directional Image and Text Generation 
 
