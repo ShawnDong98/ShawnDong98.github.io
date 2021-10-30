@@ -35,7 +35,7 @@ tags:
 
 # Question-controlled Text-aware Image Captioning
 
-对于带有多个 scene texts 的图像，不同的人可能对不同的文本信息感兴趣。现有的 text-aware image captioning 模型无法根据不同的信息需求生成不同的 captions。为了探索如何生成个性化的text-aware captions，定义了一个新的具有挑战性任务，即 Question-controlled 的 Text-aware Image captioning (Qc-TextCap)。该任务以问题为控制信号，需要模型来理解问题，找到相关的 scene texts，并用人类语言流利地将其与物体结合起来进行描述。基于两个现有的 text-aware captioning 数据集，自动构造了两个数据集，ControlTextCaps和 Con-trolVizWiz 来支持该任务。提出了一种新的 Geometry 与 Question Aware 模型(GQAM)。GQAM首先采用 Geometry-informed Visual Encoder 考虑空间关系地融合 region-leve object features 和 region-level scene text features。然后，设计了一个 Question-guided 编码器，为每个问题选择最相关的视觉特征。最后，GQAM使用Multimodal Decoder生成个性化的 text-aware caption。
+对于带有多个 scene texts 的图像，不同的人可能对不同的文本信息感兴趣。现有的 text-aware image captioning 模型无法根据不同的信息需求生成不同的 captions。为了探索如何生成个性化的text-aware captions，定义了一个新的具有挑战性任务，即 Question-controlled 的 Text-aware Image captioning (Qc-TextCap)。该任务以问题为控制信号，需要模型来理解问题，找到相关的 scene texts，并用人类语言流利地将其与物体结合起来进行描述。基于两个现有的 text-aware captioning 数据集，自动构造了两个数据集 ControlTextCaps和 Con-trolVizWiz 来支持该任务。提出了一种新的 Geometry 与 Question Aware 模型(GQAM)。GQAM首先采用 Geometry-informed Visual Encoder 考虑空间关系来融合 region-leve object features 和 region-level scene text features。然后，设计了一个 Question-guided 编码器，为每个问题选择最相关的视觉特征。最后，GQAM使用Multimodal Decoder生成个性化的 text-aware caption。
 
 为视障人士生成个性化的 text-aware captions， 提出了一个新的有挑战性的任务， 叫做 Question-controlled Text-aware Image Captioning(Qc-TextCap)。 因为它在交互上很方便， 使用关于 scene texts 中的问题来控制 text-aware caption 生成。Qc-TextCap任务需要模型来理解问题，找到相关的场景文本区域，并将答案与初始标题合并，以生成最终的  text-aware caption。为了支持这个任务，基于现有的 text-aware 标题数据集自动构造了 ControlTextCaps 和 ControlVizWiz 数据集。进一步提出了一个 Geometry 和  Question Aware 模型(GQAM)，以逐步编码相关的视觉特征和文本特征。最后， 进一步证明了以问题作为控制信号的模型可以产生更丰富、更多样化的标题。
 
