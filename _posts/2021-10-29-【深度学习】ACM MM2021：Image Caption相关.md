@@ -58,3 +58,5 @@ Image Captioning 是指在给定的图像中，生成一个由 sequential lingui
 这篇文章研究的联合学习的 image-to-text 和 text-to-image 的生成，这是自然的双向任务。典型的现有工作为每个任务设计独立的  task-specific 的模型。这篇文章基于单个多模态模型来联合研究双向任务， 提出了一个统一的图像和文本生成框架。具体来说，将这两个任务描述为序列生成任务，其中将图像和文本表示为统一的 tokens 序列，Transformer学习 multimodal interactions 来生成序列。进一步提出 two-level granularity 特征表示和 sequence-level 训练来改进基于 transformer 的统一框架。
 
 这篇文章提出了一个统一的 multimodal Transformer 用于双向  image-and-text 生成任务。与针对双向任务的两个单独模型的设计相比，所提出的方法降低了 task-specific 模型的昂贵设计成本，并优化了存储利用率。为了解决基于 Transformer 的图像和文本生成模型的挑战，设计了 two-level granularity 特征表示和 sequence-level 训练策略。two-level granularity 特征表示解决了特征离散过程中信息丢失的问题。sequence-level 训练策略解决了交叉熵训练引起的测试时误差累积问题。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635590602190.png)
