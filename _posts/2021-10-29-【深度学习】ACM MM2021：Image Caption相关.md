@@ -48,7 +48,7 @@ captioning 模型在有监督和无监督设置下的性能，大大优于最先
 
 # Triangle-Reward Reinforcement Learning: Visual-Linguistic Semantic Alignment for Image Captioning
 
-Image Captioning 是指在给定的图像中，生成一个由 sequential linguistic words 组成的句子，用来描述visual units(如物体、关系和属性)。大多数现有的方法依赖于流行的交叉熵(XE)函数的监督学习，将 sualunitsint 转换为sequence of linguistic words。
+Image Captioning 是指在给定的图像中，生成一个由 sequential linguistic words 组成的句子，用来描述visual units(如物体、关系和属性)。大多数现有的方法依赖于流行的交叉熵(XE)函数的监督学习，将 sualunitsint 转换为sequence of linguistic words。然而， 我们认为 XE 目标对 visual-linguistic 对齐不敏感， 不能判别惩罚 semantic inconsistency，缩小 context gap。
 
 
 # Unifying Multimodal Transformer for Bi-directional Image and Text Generation 
