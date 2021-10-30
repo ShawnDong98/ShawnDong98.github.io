@@ -55,9 +55,13 @@ Image Captioning 是指在给定的图像中，生成一个由 sequential lingui
 
 # Direction Relation Transformer for Image Captioning
 
-Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉和自然语言处理来生成图像内容的文本描述。近年来，基于 Transformer 的编解码器结构在 image captioning 处理中取得了巨大的成功，该体系利用 multi-head attention mechanism 来捕获目标区域之间的上下文关系。
+Image Captioning 是一项具有挑战性的任务，它结合了计算机视觉和自然语言处理来生成图像内容的文本描述。近年来，基于 Transformer 的编解码器结构在 image captioning 处理中取得了巨大的成功，该体系利用 multi-head attention mechanism 来捕获目标区域之间的上下文关系。但这类方法将区域特征视为  a bag of tokens ，而不考虑它们之间的方向关系，难以理解图像中物体之间的相对位置，难以有效生成正确的标题。这篇文章提出了一种新的 Direction Relation Transformer，将 relative direction embedding 加入到 multi-head 中，称为DRT，以改善视觉特征之间的方向感知。我们首先根据目标区域的位置信息生成 relative direction matrix，然后探索三种 direction-aware 的 multi-head attention形式，将 direction embedding 加入到 Transformer 架构中。
+
+这篇文章提出了一种新的Direction Relation Transformer，可以有效地利用目标区域之间的相对方向关系，从而改进 image captioning。通过预先定义方向类别，从 bounding boxes 中提取高层次的方向语义，以全面理解复杂的视觉场景。此外，还探索了三种 Direction-Aware  的 Multi-Head Attention，将  relative direction embedding 加入到注意力模块中。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635590772939.png)
+
+
 
 # Unifying Multimodal Transformer for Bi-directional Image and Text Generation 
 
