@@ -18,6 +18,10 @@ tags:
 
 # bottom-up-attention-vqa
 
+| Model | Validation Accuracy | Training Time |
+|:-:|:-:|:-:|
+| Reported Model | 63.15 | 12 - 18 hours (Tesla K40) |
+| Implemented Model | 63.58 | 40 - 50 minutes (Titan Xp)|
 
 # Reference
 
