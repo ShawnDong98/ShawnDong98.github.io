@@ -40,6 +40,8 @@ Faster R-CNN 是一种两阶段的目标检测网络。 第一个阶段叫做  R
 
 原始的 Faster R-CNN multi-task loss 包括四个组成成分， 分别是 RPN 和 提议区域 的 分类损失 和 回归损失。我们增加一个额外的 multi-class loss 重新训练网络。 
 
+# bottom-up-attention.pytorch
+
 # bottom-up-attention-vqa
 
 | Model | Validation Accuracy | Training Time |
@@ -59,3 +61,4 @@ Faster R-CNN 是一种两阶段的目标检测网络。 第一个阶段叫做  R
 # Reference
 
 1. [bottom-up-attention-vqa](https://github.com/hengyuan-hu/bottom-up-attention-vqa)
+2. [bottom-up-attention.pytorch](https://github.com/MILVLG/bottom-up-attention.pytorch)
