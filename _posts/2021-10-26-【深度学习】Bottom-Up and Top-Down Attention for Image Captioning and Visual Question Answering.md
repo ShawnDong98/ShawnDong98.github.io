@@ -36,7 +36,7 @@ Faster R-CNN 是一种两阶段的目标检测网络。 第一个阶段叫做  R
 
 在这篇文章中， 使用 ResNet-101 CNN 作为主干的 Faster R-CNN。 为了得到用于 Image Captioning 和 VQA 的图像特征 $V$， 将每个类别通过非极大值抑制使用 IoU 阈值过滤， 然后选择所有超过置信度阈值的区域。 对于每个选择出来的区域 $i$， $v_i$ 定义为该区域经过平均池化得到的卷积特征， 其图像特征的维度为 2048。 使用这种方式， Faster R-CNN 可以视作一种有效的 “硬” 注意力机制。
 
-使用在ImageNet上预训练过的 ResNet-101 初始化 Faster R-CNN， 然后在 Visual Genome 数据集上训练。 为了学习到好的表征， 额外增加了一个训练输出， 用于预测 attribute。 
+使用在ImageNet上预训练过的 ResNet-101 初始化 Faster R-CNN， 然后在 Visual Genome 数据集上训练。 为了学习到好的表征， 额外增加了一个训练输出，将图像特征和一个 ground-truth object class 的学习到的 embedding 拼接，  用于预测 attribute。 
 
 # bottom-up-attention-vqa
 
