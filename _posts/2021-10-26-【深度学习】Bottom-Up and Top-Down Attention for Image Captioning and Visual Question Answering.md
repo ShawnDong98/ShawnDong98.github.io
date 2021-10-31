@@ -21,7 +21,11 @@ tags:
 
 在人类的视觉系统中，注意力 由 有意识(volitionally)被当前任务通过 top-down 信号 和 自动地无意识的新的或显著的刺激 决定。
 
-由非视觉 或者 task-specific 上下文 的注意力机制
+由 non-visual 或者 task-specific 上下文 驱动的注意力机制叫做 "top-down"。
+
+单纯通过 visual feed-forward 注意力机制叫做 "bottom-up"。
+
+ImageCaption 和 VAQ 中大多数的 visual 注意力机制 是 top-down 变体。 将部分 caption 输出 或者 一个图像的问题 的表征视为上下文， 这些模型通常训练有选择性地提取卷积神经网络(CNN)一层或多层的输出。这样会导致输入的区域等价于网络感受野大小的均匀的网格。
 
 # bottom-up-attention-vqa
 
