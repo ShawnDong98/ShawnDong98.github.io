@@ -13,8 +13,15 @@ tags:
 
 
 
-# 
+# Abstract
 
+这篇文章提出一种结合了 bottom-up 和 top-down 注意力机制的方法， 使得可以在目标级别和图像显著性区域计算注意力。其基于 Faster R-CNN 提议出的图像区域结合 bottom-up 机制， 将每个区域表示为一个特征向量， 使用 top-down 机制决定特征权重。
+
+# Introduction
+
+在人类的视觉系统中，注意力 由 有意识(volitionally)被当前任务通过 top-down 信号 和 自动地无意识的新的或显著的刺激 决定。
+
+由非视觉 或者 task-specific 上下文 的注意力机制
 
 # bottom-up-attention-vqa
 
