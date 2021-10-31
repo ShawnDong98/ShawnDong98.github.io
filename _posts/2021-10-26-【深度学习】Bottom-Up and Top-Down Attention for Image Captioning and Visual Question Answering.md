@@ -38,6 +38,8 @@ Faster R-CNN 是一种两阶段的目标检测网络。 第一个阶段叫做  R
 
 使用在ImageNet上预训练过的 ResNet-101 初始化 Faster R-CNN， 然后在 Visual Genome 数据集上训练。 为了学习到好的表征， 额外增加了一个训练输出，将图像特征和一个 ground-truth object class 的学习到的 embedding 拼接，  用于预测 attribute。 
 
+原始的 Faster R-CNN multi-task loss 包括四个组成成分， 分别是 RPN 和 提议区域 的 分类损失 和 回归损失。 
+
 # bottom-up-attention-vqa
 
 | Model | Validation Accuracy | Training Time |
