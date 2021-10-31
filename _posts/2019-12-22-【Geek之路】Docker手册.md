@@ -401,7 +401,18 @@ docker run -d p 3301:3306 -e MYSQL_ROOT_PASSWORD=123456 --name mysql02 --volumes
 
 ## 容器使用宿主机的代理
 
-```python
+```bash
+sudo docker run -it --shm-size 8G --net=host --env HTTP_PROXY="http://127.0.0.1:7890" --env HTTPS_PROXY="https://127.0.0.1:7890" --gpus all -v $(pwd):/home 1b5ecb66d7b6 /bin/bash
+```
+
+修改容器中的 `~/.bashrc`
+
+```
+host_ip=$(cat /etc/resolv.conf |grep "nameserver" |cut -f 2 -d " ")
+# export ALL_PROXY="http://$host_ip:7890"
+
+export http_proxy=http://$host_ip:7890
+export https_proxy=http://$host_ip:7890
 ```
 
 
