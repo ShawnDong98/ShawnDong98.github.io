@@ -25,7 +25,9 @@ tags:
 
 单纯通过 visual feed-forward 注意力机制叫做 "bottom-up"。
 
-ImageCaption 和 VAQ 中大多数的 visual 注意力机制 是 top-down 变体。 将部分 caption 输出 或者 一个图像的问题 的表征视为上下文， 这些模型通常训练有选择性地提取卷积神经网络(CNN)一层或多层的输出。这样会导致输入的区域等价于网络感受野大小的均匀的网格。
+ImageCaption 和 VAQ 中大多数的 visual 注意力机制 是 top-down 变体。 将部分 caption 输出 或者 一个图像的问题 的表征视为上下文， 这些模型通常训练有选择性地提取卷积神经网络(CNN)一层或多层的输出。这样会导致输入的区域等价于网络感受野大小的均匀的网格， 而不管图像的内容。
+
+通过 Faster-R-CNN 实现 bottom-up 注意力， 将网络表征视作 bottom-up attention 机制。top-down 机制使用 task-specific 上下文 来预测图像区域的注意力分布。
 
 # bottom-up-attention-vqa
 
