@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - MMLab
-    - 
+    - 深度学习
 ---
 
 # MMClassification
@@ -138,6 +138,8 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635932511929.png)
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635932572199.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1635932614855.png)
 
 # Reference
 
