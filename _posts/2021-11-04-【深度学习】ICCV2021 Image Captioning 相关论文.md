@@ -30,3 +30,6 @@ Image captioning 是一项重要的任务，可以进行视觉推理和帮助视
 # Auto-Parsing Network for Image Captioning and Visual Question Answering
 
 这篇文章提出了一个 Auto-Parsing Network(APN) 来发现和利用输入数据的hidden tree structures，以提高 Transformer-based 的视觉语言系统的有效性。具体地说，通过结合稀疏假设 对每个 self-attention 层的注意力操作进行参数化的 Probabilis-tic Graphical Model (PGM)。使用这个PGM将输入序列柔和地分割成几个簇，其中每个簇都可以被视为内部实体的父类。通过堆叠这些PGM约束的 self-attention 层，较低层的簇组成一个新的序列，较高层的PGM将进一步分割这个序列。通过迭代，可以隐式解析稀疏树，并将稀疏树的层次知识整合到转换后的 embeddings 中，用于解决目标视觉语言任务。具体来说，APN可以在两个主要的视觉语言任务中加强基于Transformer的网络: Captioning 和 Visual Question Answering 。 
+
+
+这篇文章对 Transformer 的 self-attention 层施加了一个  Probabilistic Graphical Model (PGM)，将稀疏假设融入到原始的全连接假设中。然后，可以避免 trivial global dependencies，并可以发现和利用关键的本地上下文。此外，将受约束的 self-attention 层堆叠起来，并在其上施加层次约束，通过这些约束可以隐式解析树。这样，模型可以在端到端的训练过程中无监督地解析树。提出了一种树解析算法，利用计算得到的PGM概率提取隐藏树。因此，我们可以找出每个样本的隐藏结构。在 Image Captioning 和 Visual Question Answering 两种任务上提出了两种不同的APN，结果表明，与基于self-attention transformer相比，APN在两种任务上都有改进。
