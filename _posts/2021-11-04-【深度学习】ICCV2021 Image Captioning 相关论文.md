@@ -26,3 +26,7 @@ Image captioning 是一项重要的任务，可以进行视觉推理和帮助视
 这项工作试图理解在 COCO image  captioning 数据集中存在什么种族偏见，而且还试图理解这些偏见如何传播到基于它们的模型中。标注了图片中人物的肤色和性别，并考虑了各种形式的偏见，比如不同群体之间的可区分性。在数据集和自动 image captioning 模型中发现了bias 的实例。然而，没有发现偏见的案例并不意味着没有偏见，仅仅是因为特定实验没有发现它们。通过观察那些最能说明 image captioning 空间发展方向的模型，可以看到偏见在增加。对于研究人员来说，这提醒他们要认识到这些偏见已经存在，并警告他们要小心随着 image captioning 技术的进步而增加的偏见。
 
 基于这些分析，这篇提出了减少 captioning 系统偏差的方向。首先，人类标注者在描述不同肤色群体的人时，会对图片中的人的人口统计特征做出假设或者使用不同的语言。为了缓解这一问题，数据集收集器可以为标注器提供更明确的指令(例如，不要给人们标记性别或包括种族描述符)。此外，还发现 ground-truth captions 包含 profane 的语言。包含污言秽语或其他冒犯性概念的人工标注字幕应该从数据集中删除。此外，只有7.0%的数据集包含了肤色较深的人的图像，即1096张图像。需要收集更多样化的数据集，这样就可以测量分类统计数据，并在知道测量不会受到高抽样偏差的影响的情况下，对SPICE分数等指标进行比较。最后，从对生成的字幕的分析中，与其他基于 Transformer 的模型相比，Oscar表现出更少的偏差。这表明，在对模型进行预训练后，数据集的更大多样性可能有助于减少自动 image captioning 的偏见。
+
+# Auto-Parsing Network for Image Captioning and Visual Question Answering
+
+这篇文章提出了一个 Auto-Parsing Network(APN) 来发现和利用输入数据的hidden tree structures，以提高 Transformer-based 的视觉语言系统的有效性。具体地说，通过结合稀疏假设 对每个 self-attention 层的注意力操作进行参数化的 Probabilis-tic Graphical Model (PGM)。
