@@ -33,3 +33,7 @@ Image captioning 是一项重要的任务，可以进行视觉推理和帮助视
 
 
 这篇文章对 Transformer 的 self-attention 层施加了一个  Probabilistic Graphical Model (PGM)，将稀疏假设融入到原始的全连接假设中。然后，可以避免 trivial global dependencies，并可以发现和利用关键的本地上下文。此外，将受约束的 self-attention 层堆叠起来，并在其上施加层次约束，通过这些约束可以隐式解析树。这样，模型可以在端到端的训练过程中无监督地解析树。提出了一种树解析算法，利用计算得到的PGM概率提取隐藏树。因此，我们可以找出每个样本的隐藏结构。在 Image Captioning 和 Visual Question Answering 两种任务上提出了两种不同的APN，结果表明，与基于self-attention transformer相比，APN在两种任务上都有改进。
+
+
+# In Defense of Scene Graphs for Image Captioning
+
