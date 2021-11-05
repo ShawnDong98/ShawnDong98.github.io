@@ -1223,7 +1223,6 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 ### os.path.splitext()
 
-
 os.path.splitext() 将文件名和扩展名分开
 
 
