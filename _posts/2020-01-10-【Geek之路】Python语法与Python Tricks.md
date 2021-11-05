@@ -1278,6 +1278,12 @@ print(os.path.dirname(os.getcwd()))
 > os.environ['CUDA_VISIBLE_DEVICES'] = '0, 2, 3, 4'
 
 
+## os.getenv
+
+> os.getenv(key, default = None) 
+
+- key:表示环境变量名称的字符串
+- default (可选)：表示 key 不存在时默认值的字符串。如果省略，则默认设置为“无”。
 
 # sys
 
