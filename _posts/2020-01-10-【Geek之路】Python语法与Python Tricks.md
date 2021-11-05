@@ -1219,7 +1219,7 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 > os.path.split(path)
 
-将path分割成目录和文件名二元组返回。
+将path分割成目录和文件名， 以二元组返回。
 
 ### os.path.splitext()
 
