@@ -1208,14 +1208,23 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 
 ## os.path常用方法：
 
+### os.path.join
+
 > os.path.join(path1[, path2[, ...]])
 
 将多个路径组合后返回，第一个绝对路径之前的参数将被忽略
+
+
+### os.path.split
 
 > os.path.split(path)
 
 将path分割成目录和文件名二元组返回。
 
+### os.path.splitext()
+
+
+os.path.splitext() 将文件名和扩展名分开
 
 
 
@@ -1257,6 +1266,8 @@ print(os.path.dirname(os.getcwd()))
 
 > os.environ['CUDA_VISIBLE_DEVICES'] = '0, 2, 3, 4'
 
+
+## os.path
 
 # sys
 
