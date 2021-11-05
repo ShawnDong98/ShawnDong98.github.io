@@ -1232,6 +1232,12 @@ os.walk 的返回值是一个生成器(generator),也就是说我们需要不断
 os.path.splitext() 将文件名和扩展名分开
 
 
+### os.path.expanduser
+
+> os.path.expanduser('~')
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636116450741.png)
 
 
 ## os.getcwd
@@ -1272,7 +1278,6 @@ print(os.path.dirname(os.getcwd()))
 > os.environ['CUDA_VISIBLE_DEVICES'] = '0, 2, 3, 4'
 
 
-## os.path
 
 # sys
 
