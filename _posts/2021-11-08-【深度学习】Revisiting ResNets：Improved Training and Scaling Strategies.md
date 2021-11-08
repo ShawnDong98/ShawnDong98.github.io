@@ -27,8 +27,8 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636364345605.png)
 
-我们提供了 scaling 视觉结构的新视角和实用建议。之前的工作从小模型或从小数量的 epochs 推断 scaling 规则， 我们通过在整个训练期间(例如350个epoch而不是10个epoch)的各种尺度上详尽地训练模型来设计 scaling 策略。
+我们提供了 scaling 视觉结构的新视角和实用建议。之前的工作从小模型或从小数量的 epochs 推断 scaling 规则， 我们通过在整个训练期间(例如350个epoch而不是10个epoch)的各种尺度上详尽地训练模型来设计 scaling 策略。在这样做的过程中，我们发现了最佳 scaling 策略和训练策略之间的强依赖性(例如， epochs数量、模型大小、数据集大小)。
 
 # Conclusion
 
-通过使用现代训练方法和改进的 scaling 策略来更新vision baseline，我们揭示了ResNet 结构非凡的持久性。简单的结构为最先进的方法设置了强大的基线。
+通过使用现代训练方法和改进的 scaling 策略来更新vision baseline，我们揭示了ResNet 结构非凡的持久性。简单的结构为最先进的方法设置了强大的基线。这些依赖关系在这些较小的机制中都被忽略了，导致了次优的 scaling 策略。
