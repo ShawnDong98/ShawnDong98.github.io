@@ -21,7 +21,7 @@ tags:
 
 视觉模型的性能是结构、训练方法和 scaling 策略的产物。然而，研究经常强调结构的变化。新的结构是许多进步的基础， 但往往与训练方法和超参数等其他关键细节变化(且不太公开)同时引入。此外，通过现代训练方法增强的新结构有时会与使用过时训练方法的旧结构进行比较(例如，使用ImageNet Top-1准确率为76.5%的ResNet-50 (He et al.， 2015))。我们的工作解决了这些问题，并实证研究了训练方法和 scaling 策略对流行的ResNet结构的影响(He et al.， 2015)。
 
-我们调研了了当今广泛使用的现代训练和正则化技术，并将它们应用于ResNets(图1)。在这个过程中，我们遇到了训练方法之间的相互作用，并且在与其他正则化技术结合使用时，显示了减少weight decay 值的好处。 表1中对训练方法的附加研究揭示了这些决策的显著影响: 通过改进的训练方法，top-1 ImageNet准确率为79.0%的标准ResNet提高到了82.2%(+3.2%)。通过两个小型且常用的架构改进，这一比例进一步提高到83.4%: ResNet-D (He et al., 2018) and Squeeze-and-Excitation (Hu et al., 2018)。 图1用 speed-accuracy Pareto 曲线跟踪了 ResNet 的改进过程。
+我们调研了了当今广泛使用的现代训练和正则化技术，并将它们应用于ResNets(图1)。在这个过程中，我们遇到了训练方法之间的相互作用，并且在与其他正则化技术结合使用时，显示了减少weight decay 值的好处。 表1中对训练方法的附加研究揭示了这些决策的显著影响: 通过改进的训练方法，top-1 ImageNet准确率为79.0%的标准ResNet提高到了82.2%(+3.2%)。通过两个很小但常用的结构改进，这一比例进一步提高到83.4%: ResNet-D (He et al., 2018) and Squeeze-and-Excitation (Hu et al., 2018)。 图1用 speed-accuracy Pareto 曲线跟踪了 ResNet 的改进过程。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636363738688.png)
 
