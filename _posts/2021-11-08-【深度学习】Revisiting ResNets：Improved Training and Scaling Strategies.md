@@ -31,4 +31,4 @@ tags:
 
 # Conclusion
 
-通过使用现代训练方法和改进的 scaling 策略来更新vision baseline，我们揭示了ResNet 结构非凡的持久性。简单的结构为最先进的方法设置了强大的基线。这些依赖关系在这些较小的机制中都被忽略了，导致了次优的 scaling 策略。
+通过使用现代训练方法和改进的 scaling 策略来更新vision baseline，我们揭示了ResNet 结构非凡的持久性。简单的结构为最先进的方法设置了强大的基线。这些依赖关系在这些较小的机制中都被忽略了，导致了次优的 scaling 策略。我们的分析引入了新的 scaling 策略，总结为(1)在可能发生过拟合时 scaling 模型深度(否则 scaling 宽度更好) 和 (2)比之前的工作(Tan & Le, 2019)更慢地 scaling 图像分辨率。
