@@ -27,7 +27,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636364345605.png)
 
-我们提供了 scaling 视觉结构的新视角和实用建议。
+我们提供了 scaling 视觉结构的新视角和实用建议。之前的工作从小模型或从小数量的 epochs 推断 scaling 规则， 我们通过在整个训练期间(例如350个epoch而不是10个epoch)的各种尺度上详尽地训练模型来设计 scaling 策略。
 
 # Conclusion
 
