@@ -19,7 +19,7 @@ tags:
 
 # Introduction
 
-视觉模型的性能是结构、训练方法和 scaling 策略的产物。
+视觉模型的性能是结构、训练方法和 scaling 策略的产物。然而，研究经常强调结构的变化。
 
 # Conclusion
 
