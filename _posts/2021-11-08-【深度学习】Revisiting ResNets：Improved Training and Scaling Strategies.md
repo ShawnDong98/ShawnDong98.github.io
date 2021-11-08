@@ -25,7 +25,9 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636363738688.png)
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636364345605.png)
 
+我们提供了 scaling 视觉结构的新视角和实用建议。
 
 # Conclusion
 
