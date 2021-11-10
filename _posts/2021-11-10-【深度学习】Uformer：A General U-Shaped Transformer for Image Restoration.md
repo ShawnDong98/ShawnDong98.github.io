@@ -67,6 +67,17 @@ Y_k^i = Attention(X^iW_k^Q, X^iW_k^K, X^iW_k^V), i=1, ..., N \\
 \hat X_k = {Y_k^1, Y_k^2, ..., Y_k^M}
 $$
 
+此外还在注意力模块中使用相对位置编码， 因此注意力可以被计算为：
+
+$$
+Attention(Q, K, V) = SoftMax(\frac{QK^T}{\sqrt{d_k}} + B) V
+$$
+
+其中 B 是相对位置偏置，它的值来自可学习参数 $\hat B \in \mathbb{R}^{(2M -1) \times (2M - 1)} $。  
+
+给定特征图 $X \in \mathbb{R}^{C \times H \times W}$， 计算复杂度从 $O(H^2W^2C)$ 减少到 $O(\frac{HW}{M^2}M^4C) = O(M^2HWC)$
+
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
