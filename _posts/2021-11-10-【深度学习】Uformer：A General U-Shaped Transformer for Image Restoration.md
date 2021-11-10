@@ -59,7 +59,7 @@ X_l^' = W-MSA(LN(X_{l-1})) + X_{l-1} \\
 X_l = LeFF(LN(X_l^')) + X_l'
 $$
 
-**Window-based Multi-head Self-Attention (W-MSA)**： 我们不像普通Transformer 那样使用全局 self-attention，而是在  non-overlapping local windows 中执行 self-attention，这大大降低了计算成本。
+**Window-based Multi-head Self-Attention (W-MSA)**： 我们不像普通Transformer 那样使用全局 self-attention，而是在  non-overlapping local windows 中执行 self-attention，这大大降低了计算成本。给定 2D 特征图 $X \in \mathcal{R}^{C \times H \times W}$， 将 $X$ 拆分成窗口大小为 $M \times M$ 的非重叠窗口， 然后从每个窗口 $i$ 得到得到拉平并转置的特征 $X^i \in \mathbb{R}^{M^2 \times C}$， 然后在每个窗口拉平的特征上做 self-attention。 
 
 # Conclusions
 
