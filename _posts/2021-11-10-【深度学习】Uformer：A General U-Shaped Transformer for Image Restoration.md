@@ -75,7 +75,7 @@ $$
 
 其中 B 是相对位置偏置，它的值来自可学习参数 $\hat B \in \mathbb{R}^{(2M -1) \times (2M - 1)} $。  
 
-给定特征图 $X \in \mathbb{R}^{C \times H \times W}$， 计算复杂度从 $O(H^2W^2C)$ 减少到 $O(\frac{HW}{M^2}M^4C) = O(M^2HWC)$
+给定特征图 $X \in \mathbb{R}^{C \times H \times W}$， 计算复杂度从 $O(H^2W^2C)$ 减少到 $O(\frac{HW}{M^2}M^4C) = O(M^2HWC)$。 
 
 
 # Conclusions
