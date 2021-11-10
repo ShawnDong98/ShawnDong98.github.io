@@ -25,6 +25,15 @@ Uformer主要两个核心设计使得它适合于图像复原：
 第二点是探索了 Transformer-based encoder-decoder 结构中， 如何取得更好的信息传递。 将encoder到decoder中传递信息的问题视为一个 self-attention 的计算, decoder 中的特征视为 queries, 寻找与encoder的特征之间的关系， encoder 的特征视为 key 和 value。 第一种方法是在decoder的transformer块中加入了一个 self-attention 模块， 使用来自 encoder 的特征作为key和value， decoder的特征作为 query。第二种方法是同时使用 encoder 和 decoder 的特征作为 key 和 value， 使用 decoder 的特征作为 query。
 
 
+# Method
+
+
+## Overall Pipeline
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636526673317.png)
+
+给定退化图像 $I \in \mathbb{R}^{C \times H \times W}$。 
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
