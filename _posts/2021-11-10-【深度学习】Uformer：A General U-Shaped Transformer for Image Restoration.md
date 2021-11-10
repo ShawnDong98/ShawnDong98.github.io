@@ -82,6 +82,8 @@ Window-based self-attention 相比于全局 self-attention 显著减少了计算
 
 ## Variants of Skip-Connection
 
+**Concatenation-based Skip-connection (Concat-Skip).**： 首先按通道拼接第 $l$ 阶段拉平特征 $E_l$ 和 第 $l-1$ 阶段解码器特征 $D_{l-1}$。 然后在解码阶段 将拼接的特征输入第一个 LeWin Transformer block 的 W-MSA 组件。 
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
