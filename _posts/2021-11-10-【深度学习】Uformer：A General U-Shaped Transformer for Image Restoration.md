@@ -78,6 +78,8 @@ $$
 Window-based self-attention 相比于全局 self-attention 显著减少了计算成本。 给定特征图 $X \in \mathbb{R}^{C \times H \times W}$， 计算复杂度从 $O(H^2W^2C)$ 减少到 $O(\frac{HW}{M^2}M^4C) = O(M^2HWC)$。 由于我们将Uformer设计成一个层级结构，我们 window-based 的低分辨率特征图的 self-attention 可以在更大的感受野上工作，足以学习长程依赖。
 
 
+**Locally-enhanced Feed-Forward Network (LeFF).**  标准Transformer中的Feed-Forward Network(FFN) 无法有效利用局部上下文， 但是临近的像素对于图像复原任务是十分重要的。
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
