@@ -34,6 +34,9 @@ Uformer主要两个核心设计使得它适合于图像复原：
 
 给定退化图像 $I \in \mathbb{R}^{C \times H \times W}$， Uformer首先使用 $3 \times 3$ 的带有LeakyReLU的卷积层提取低层特征 $X_0 \in \mathbb{R}^{C \times H \times W}$。 接下来， 特征 $X_0$ 经过 $K$ 个编码器阶段。 每个阶段包含几个叠在一起的所提出的 LeWin Transformer 块 和 下采样层。LeWin Transformer 块利用 self-attention 机制捕获长程依赖， 并且通过在特征图上使用 non-overlapping windows 的 self-attention 减少计算成本。在下采样层中， 我们首先将拉平的特征转换为 2D 空间特征图， 然后降采样特征图， 并且使用步长为 2 的 $4 \times 4$ 卷积将通道翻倍。例如， 输入特征图为 $X_0 \in \mathbb{R}^{C \times H \times W}$， 第 $l$ 阶段的编码器产生特征图 $X_l \in \mathbb{R}^{2^lC \times \frac{H}{w^l} \times \frac{W}{2^l}}$。 
 
+然后， 在encoder的末端添加一个 bottleneck stage， 它由 LeWin Transformer blocks 堆叠在一起组成。
+
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
