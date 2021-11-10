@@ -17,9 +17,12 @@ tags:
 
 # Introduction
 
-由于消费者和工业相机和智能手机的快速发展，消除图像中的退化的需求不断增长(如噪声、模糊、雨和云纹)。图像复原是计算机视觉中的一个经典问题。最近最先进的方法大多是基于 CNN 的，它们取得了令人印象深刻的结果，但在捕获远程依赖方面存在局限性。为了解决这个问题， 最近的一些研究引入了 self-attention 层，由于 self-attention 计算复杂度是特征图大小的二次方倍， 因此仅在低分辨率的特征图中使用单个或少量的 self-attention 层，。
+Uformer主要两个核心设计使得它适合于图像复原：
 
-在本文中，我们的目标是利用特征图在多尺度分辨率下的 self-attention 来恢复更多的图像细节。为了实现这一点，我们提出了Uformer，一种有效和高效的基于 Transformer 的图像复原结构。 Uformer是建立在一个优雅的架构之上，即所谓的“UNet”。我们将卷积层修改为Transformer块，同时保持相同的整体层级编码器-解码器结构和跳跃连接。
+
+第一点是 local-enhanced windows Transformer。使用 non-overlapping window-based self-attention捕获长程依赖。self-attention 捕获局部依赖有局限性。在Transformer块 的 feed-forward 网络的两层 全连接之间使用卷积层更好地捕获局部上下文。
+
+第二点是探索了 Transformer-based encoder-decoder 结构中， 如何取得更好的信息传递。 将encoder到decoder中传递信息的问题视为一个 self-attention 的计算, decoder 中的特征视为 queries, 寻找与encoder的特征之间的关系， encoder 的特征视为 key 和 value。 第一种方法是在decoder的transformer块中加入了一个 self-attention 模块， 使用来自 encoder 的特征作为key和value， decoder的特征作为 query。第二种方法是同时使用 encoder 和 decoder 的特征作为 key 和 value， 使用 decoder 的特征作为 query。
 
 
 # Conclusions
