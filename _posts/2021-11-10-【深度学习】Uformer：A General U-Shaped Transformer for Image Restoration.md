@@ -80,6 +80,8 @@ Window-based self-attention 相比于全局 self-attention 显著减少了计算
 
 **Locally-enhanced Feed-Forward Network (LeFF).**  标准Transformer中的Feed-Forward Network(FFN) 无法有效利用局部上下文， 但是临近的像素对于图像复原任务是十分重要的。我们为 Transformer FFN 中增加了一个 depth-wise 卷积块。 首先对每个token使用线性投影层增加它的特征维度。 接下来将 tokens 拉成 2D 特征图 并使用 $3 \times 3$ depth-wise 卷积捕获局部信息。然后我们通过另一个线性层 将特征拉平为 tokens 并减少通道数 以 匹配输出通道的维度。 使用GELU 作为每个线性层和卷积层的激活函数。
 
+## Variants of Skip-Connection
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
