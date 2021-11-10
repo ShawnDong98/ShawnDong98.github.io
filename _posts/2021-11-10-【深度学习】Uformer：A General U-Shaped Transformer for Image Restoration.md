@@ -75,7 +75,7 @@ $$
 
 其中 B 是相对位置偏置，它的值来自可学习参数 $\hat B \in \mathbb{R}^{(2M -1) \times (2M - 1)} $。  
 
-给定特征图 $X \in \mathbb{R}^{C \times H \times W}$， 计算复杂度从 $O(H^2W^2C)$ 减少到 $O(\frac{HW}{M^2}M^4C) = O(M^2HWC)$。 
+Window-based self-attention 相比于全局 self-attention 显著减少了计算成本。 给定特征图 $X \in \mathbb{R}^{C \times H \times W}$， 计算复杂度从 $O(H^2W^2C)$ 减少到 $O(\frac{HW}{M^2}M^4C) = O(M^2HWC)$。 由于我们将Uformer设计成一个层级结构，我们 window-based 的低分辨率特征图的 self-attention 可以在更大的感受野上工作，足以学习长期依赖。
 
 
 # Conclusions
