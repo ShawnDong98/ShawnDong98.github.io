@@ -59,7 +59,7 @@ X_l^' = W-MSA(LN(X_{l-1})) + X_{l-1} \\
 X_l = LeFF(LN(X_l^')) + X_l'
 $$
 
-**Window-based Multi-head Self-Attention (W-MSA)**： 
+**Window-based Multi-head Self-Attention (W-MSA)**： 我们不像普通Transformer 那样使用全局 self-attention，而是在  non-overlapping local windows 中执行 self-attention，这大大降低了计算成本。
 
 # Conclusions
 
