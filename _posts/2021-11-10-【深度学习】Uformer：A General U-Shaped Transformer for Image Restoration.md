@@ -37,6 +37,8 @@ Uformer主要两个核心设计使得它适合于图像复原：
 然后， 在encoder的末端添加一个 bottleneck stage， 它由 LeWin Transformer blocks 堆叠在一起组成。在这个阶段，得益于层次结构，Transformer块捕获更长的依赖(甚至是全局的，当窗口大小等于特征图大小时)。
 
 
+对于图像重构， 提出的解码器包含 K 个阶段。每个阶段包含一个上采样层和堆叠在一起的LeWin Transformer blocks。 使用步长为2的 $2 \times 2$ 卷积上采样。
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
