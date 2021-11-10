@@ -45,6 +45,22 @@ $$
 
 其中 $\hat I$ 是 ground-truth 图像， $\epsilon = 10^{-3}$。
 
+## LeWin Transformer Block 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636530063031.png)
+
+LeWin Transformer 包含两个核心设计：
+
+- non-overlapping Window-based Multi-head Self-Attention (W-MSA) 
+- Locally-enhanced Feed-Forward Network (LeFF).
+
+$$
+X_l^' = W-MSA(LN(X_{l-1})) + X_{l-1} \\
+X_l = LeFF(LN(X_l^')) + X_l'
+$$
+
+**Window-based Multi-head Self-Attention (W-MSA)**： 
+
 # Conclusions
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
