@@ -59,7 +59,13 @@ X_l^' = W-MSA(LN(X_{l-1})) + X_{l-1} \\
 X_l = LeFF(LN(X_l^')) + X_l'
 $$
 
-**Window-based Multi-head Self-Attention (W-MSA)**： 我们不像普通Transformer 那样使用全局 self-attention，而是在  non-overlapping local windows 中执行 self-attention，这大大降低了计算成本。给定 2D 特征图 $X \in \mathcal{R}^{C \times H \times W}$， 将 $X$ 拆分成窗口大小为 $M \times M$ 的非重叠窗口， 然后从每个窗口 $i$ 得到得到拉平并转置的特征 $X^i \in \mathbb{R}^{M^2 \times C}$， 然后在每个窗口拉平的特征上做 self-attention。 
+**Window-based Multi-head Self-Attention (W-MSA)**： 我们不像普通Transformer 那样使用全局 self-attention，而是在  non-overlapping local windows 中执行 self-attention，这大大降低了计算成本。给定 2D 特征图 $X \in \mathcal{R}^{C \times H \times W}$， 将 $X$ 拆分成窗口大小为 $M \times M$ 的非重叠窗口， 然后从每个窗口 $i$ 得到得到拉平并转置的特征 $X^i \in \mathbb{R}^{M^2 \times C}$， 然后在每个窗口拉平的特征上做 self-attention。 假设 head 的数量为 $k$ 并且 head dimension 为 $d_k = C / k$。 在 non-overlapping windows 中计算第 $k$ 个 head 的 self-attention 可定义为：
+
+$$
+X= {X^1, X^2, ..., X^N}, N = HW/M^2 \\
+Y_k^i = Attention(X^iW_k^Q, X^iW_k^K, X^iW_k^V), i=1, ..., N \\
+\hat X_k = {Y_k^1, Y_k^2, ..., Y_k^M}
+$$
 
 # Conclusions
 
