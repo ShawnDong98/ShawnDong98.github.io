@@ -78,7 +78,7 @@ $$
 Window-based self-attention 相比于全局 self-attention 显著减少了计算成本。 给定特征图 $X \in \mathbb{R}^{C \times H \times W}$， 计算复杂度从 $O(H^2W^2C)$ 减少到 $O(\frac{HW}{M^2}M^4C) = O(M^2HWC)$。 由于我们将Uformer设计成一个层级结构，我们 window-based 的低分辨率特征图的 self-attention 可以在更大的感受野上工作，足以学习长程依赖。
 
 
-**Locally-enhanced Feed-Forward Network (LeFF).**  标准Transformer中的Feed-Forward Network(FFN) 无法有效利用局部上下文， 但是临近的像素对于图像复原任务是十分重要的。
+**Locally-enhanced Feed-Forward Network (LeFF).**  标准Transformer中的Feed-Forward Network(FFN) 无法有效利用局部上下文， 但是临近的像素对于图像复原任务是十分重要的。我们为 Transformer FFN 中增加了一个 depth-wise 卷积块。 首先对每个token使用线性投影层增加它的特征维度。 接下来将 tokens 拉成 2D 特征图 并使用 $3 \times 3$ depth-wise 卷积捕获局部信息。然后我们通过另一个线性层 将特征拉平为 tokens 并减少通道数 以 匹配输出通道的维度。 使用GELU 作为每个线性层和卷积层的激活函数。
 
 # Conclusions
 
