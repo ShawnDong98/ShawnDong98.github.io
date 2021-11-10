@@ -84,7 +84,7 @@ Window-based self-attention 相比于全局 self-attention 显著减少了计算
 
 **Concatenation-based Skip-connection (Concat-Skip)**： 首先按通道拼接第 $l$ 阶段拉平特征 $E_l$ 和 第 $l-1$ 阶段解码器特征 $D_{l-1}$。 然后在解码阶段 将拼接的特征输入第一个 LeWin Transformer block 的 W-MSA 组件。 
 
-**Cross-attention as Skip-connection (Cross-Skip)**：按照 Transformer 中 的解码器机构设计了 Cross-Skip。 
+**Cross-attention as Skip-connection (Cross-Skip)**：按照 Transformer 中 的解码器机构设计了 Cross-Skip。 首先在每个解码阶段第一个 LeWin Transformer block 中加入一个额外的注意力模块。 
 
 # Conclusions
 
