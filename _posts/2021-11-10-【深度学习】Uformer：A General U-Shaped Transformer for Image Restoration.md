@@ -20,4 +20,4 @@ tags:
 
 这篇文章我们通过引入 Transformer 块提出一种用于图像复原的可替换结构。 与现有的基于CNN的结构相比， 我们的 Uformer 主要建立在 LeWin Transformer block 上， 它不仅能够处理局部信息而且可以有效地捕获长程依赖。为了探索如何在编码器-解码器结构中实现更好的信息传递，我们进一步研究了 Uformer 中三种不同的  skip-connection 方案，取得了有竞争力的结果。
 
-**Limitation and Broader Impacts.**： 得益于提出的结构， Uformer 在大量的图像复原任务(image denoising, deraining, deblurring, and demoireing)上取得了 SOTA 性能。我们还没有测试过 Uformer 用于更多的视觉任务，如 image-to-image trans-lation ，image super-resolution 等等。同时，我们也注意到滥用图像f复原技术带来的一些负面影响。
+**Limitation and Broader Impacts.**： 得益于提出的结构， Uformer 在大量的图像复原任务(image denoising, deraining, deblurring, and demoireing)上取得了 SOTA 性能。我们还没有测试过 Uformer 用于更多的视觉任务，如 image-to-image trans-lation ，image super-resolution 等等。同时，我们也注意到滥用图像f复原技术带来的一些负面影响。例如，在监控中恢复的图像可能会导致人的隐私问题。同时，该技术可能会破坏摄像机识别和多媒体版权的原始模式，影响图像取证的真实性。
