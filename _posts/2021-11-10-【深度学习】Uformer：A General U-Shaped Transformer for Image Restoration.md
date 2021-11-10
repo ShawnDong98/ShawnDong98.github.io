@@ -32,7 +32,7 @@ Uformer主要两个核心设计使得它适合于图像复原：
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636526673317.png)
 
-给定退化图像 $I \in \mathbb{R}^{C \times H \times W}$， Uformer首先使用 $3 \times 3$ 的带有LeakyReLU的卷积层提取低层特征 $X_0 \in \mathbb{R}^{C \times H \times W}$。 接下来， 特征 $X_0$ 经过 $K$ 个编码器阶段。 每个阶段包含几个叠在一起的所提出的 LeWin Transformer 块 和 下采样层。
+给定退化图像 $I \in \mathbb{R}^{C \times H \times W}$， Uformer首先使用 $3 \times 3$ 的带有LeakyReLU的卷积层提取低层特征 $X_0 \in \mathbb{R}^{C \times H \times W}$。 接下来， 特征 $X_0$ 经过 $K$ 个编码器阶段。 每个阶段包含几个叠在一起的所提出的 LeWin Transformer 块 和 下采样层。LeWin Transformer 块利用 self-attention 机制捕获长程依赖， 并且通过在特征图上使用 non-overlapping windows 的 self-attention 减少计算成本。
 
 # Conclusions
 
