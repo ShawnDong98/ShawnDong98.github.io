@@ -37,7 +37,13 @@ Uformer主要两个核心设计使得它适合于图像复原：
 然后， 在encoder的末端添加一个 bottleneck stage， 它由 LeWin Transformer blocks 堆叠在一起组成。在这个阶段，得益于层次结构，Transformer块捕获更长的依赖(甚至是全局的，当窗口大小等于特征图大小时)。
 
 
-对于图像重构， 提出的解码器包含 K 个阶段。每个阶段包含一个上采样层和堆叠在一起的LeWin Transformer blocks。 使用步长为2的 $2 \times 2$ 卷积上采样。
+对于图像重构， 提出的解码器包含 K 个阶段。每个阶段包含一个上采样层和堆叠在一起的LeWin Transformer blocks。 使用步长为2的 $2 \times 2$ 卷积上采样。然后将上采样的特征和 encoder 通过skip-connection的相关特征作为 LeWin Transformer blocks 的输入。在 K 个阶段之后， 将拉平的特征变为 2D 特征图 并且用 $3 \times 3$ 卷积层得到残差图像 $R \in \mathbb{R}^{3 \times H \time W}$。最终恢复图像由 $I' = I + R$ 得到。 在我们的实验中， 设置 $K = 4$ 并且每个阶段包含两个 LeWin Transformer blocks。 使用 Charbonnier loss：
+
+$$
+\mathcal{l}(I', \hat I) = \sqrt{\| I' - \hat I \|^2 + \epsilon^2}
+$$
+
+其中 $\hat I$ 是 ground-truth 图像， $\epsilon = 10^{-3}$。
 
 # Conclusions
 
