@@ -748,6 +748,32 @@ xrandr --delmode output name
 python run.py 2>&1 | tee train.log
 ```
 
+# 解压分块的zip文件
+
+直接 `unzip xxx.zip` 报错：
+
+```
+file #1:  bad zipfile offset (local header sig):  4
+file #2:  bad zipfile offset (local header sig):  207105
+file #3:  bad zipfile offset (local header sig):  209345
+..
+..
+file #302:  bad zipfile offset (lseek):  2924544
+file #303:  bad zipfile offset (lseek):  2940928
+..
+..
+..
+inflating: en_US/1/2.zip
+```
+
+```
+zip -F file.zip --out file-large.zip 
+```
+
+```
+unzip file-large.zip 
+```
+
 # Bugs
 
 ## apt-get常见错误——Unmet dependencies
