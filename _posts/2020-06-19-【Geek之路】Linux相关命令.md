@@ -817,3 +817,4 @@ unzip file-large.zip
 25. [apt-get常见错误——Unmet dependencies](https://www.cnblogs.com/x_wukong/p/5254183.html)
 26. [Ubuntu系统批量杀死进程方法](https://www.cnblogs.com/hewm/articles/11427874.html)
 27. [【小记】将控制台输出保存至文件](https://blog.csdn.net/qq_31347869/article/details/96586433)
+28. [bad zip file offset when unzipping multi-part files](https://blog.csdn.net/Tjj_1998/article/details/109612196)
