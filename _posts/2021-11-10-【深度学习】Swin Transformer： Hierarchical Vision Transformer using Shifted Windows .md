@@ -26,6 +26,8 @@ tags:
 如上图所示， 通过先从小的patch开始， 在深层的Transformer逐渐融合周围的patch构造层级的表征。线性计算复杂度通过在非重叠的窗口间计算Self-Attention实现。
 
 
+Swin Transformer的提个关键设计是在连续的 self-attention 层之间窗口滑动。
+
 # Conclusion
 
 这篇文章提出一种叫做 Swin Transformer的新的 Vision Transformer 的结构， 它会产生层级的特征表示， 并且对于输入图像的尺寸具有线性增长的计算复杂度。
