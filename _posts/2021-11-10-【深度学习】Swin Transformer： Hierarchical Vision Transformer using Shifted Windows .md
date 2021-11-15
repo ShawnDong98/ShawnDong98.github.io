@@ -27,6 +27,6 @@ tags:
 
 # Conclusion
 
-
+这篇文章提出一种叫做 Swin Transformer的新的 Vision Transformer 的结构， 它会产生层级的特征表示， 并且对于输入图像的尺寸具有线性增长的计算复杂度。
 
 
