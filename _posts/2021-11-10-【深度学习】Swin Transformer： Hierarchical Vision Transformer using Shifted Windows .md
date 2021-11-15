@@ -14,5 +14,5 @@ tags:
 
 # Abstract
 
-将transformer从语言迁移到视觉， 存在一些差异， 比如视觉上尺度与像素的高分辨率。 
+将transformer从语言迁移到视觉， 存在一些差异， 比如视觉上尺度与像素的高分辨率。 我们提出一种层级Transformer通过滑动窗口计算表征。 
 
