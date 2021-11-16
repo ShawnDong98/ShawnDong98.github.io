@@ -58,7 +58,7 @@ $$
 
 前者是 patch 数量 $hw$ 的二次方被， 后者当 $M$ 固定时是线性的(默认为7)。 
 
-**Shifted window partitioning in successive blocks** 基于窗口的 self-attention 缺乏跨窗口之间的连接， 这限制了它的建模能力。
+**Shifted window partitioning in successive blocks** 基于窗口的 self-attention 缺乏跨窗口之间的连接， 这限制了它的建模能力。为了维持非重叠窗口的计算有效性的同时引入跨窗口连接， 提出了 shifted window partitioning 方法， 在Swin Transformer blocks 中交替使用两种 partition。
 
 # Conclusion
 
