@@ -82,7 +82,7 @@ $$
 z^{l+1} = \text{MLP}(LN(\hat z^{l+1})) + \hat z^{l+1}
 $$
 
-其中 $\hat z^l$ 和 $z^l$ 分别表示 块 $l$ 的 (S)W-MSA模块 和 MLP 模块的特征。
+其中 $\hat z^l$ 和 $z^l$ 分别表示 块 $l$ 的 (S)W-MSA模块 和 MLP 模块的特征。W-MSA 和 SW-MSA 表示使用均匀划分策略的 window based multi-head self-attention 和使用配置划分策略的 shifted window based multi-head self-attention。
 
 
 # Conclusion
