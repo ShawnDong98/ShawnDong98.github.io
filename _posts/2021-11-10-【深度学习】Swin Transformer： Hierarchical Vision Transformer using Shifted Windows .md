@@ -25,7 +25,7 @@ tags:
 
 如上图所示， 通过先从小的patch开始， 在深层的Transformer逐渐融合周围的patch构造层级的表征。线性计算复杂度通过在非重叠的窗口间计算Self-Attention实现。
 
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1637039706126.png)
+
 
 Swin Transformer的一个关键设计是在连续的 self-attention 层之间窗口滑动。这种策略使得一个窗口中的所有 query patches 共享相同的 key set，在硬件上加速了内存的读取。
 
@@ -59,6 +59,31 @@ $$
 前者是 patch 数量 $hw$ 的二次方被， 后者当 $M$ 固定时是线性的(默认为7)。 
 
 **Shifted window partitioning in successive blocks** 基于窗口的 self-attention 缺乏跨窗口之间的连接， 这限制了它的建模能力。为了维持非重叠窗口的计算有效性的同时引入跨窗口连接， 提出了 shifted window partitioning 方法， 在Swin Transformer blocks 中交替使用两种 partition。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1637039706126.png)
+
+如上图所示， 第一个模块使用均匀规则的窗口划分策略， 他从左上角像素开始，  $8 \times 8 $ 的特征图被划分为 $2 \times 2$ 个大小为 $4 \times 4$ (M=4)的窗口。
+
+有了 shifted window partitioning 方法， 连续的 Swin Transformer blocks 被计算为：
+
+$$
+\hat z^l = \text{W-MSA(}LN(z^{l-1})) + z^{l-1}
+$$
+
+$$
+z^l = \text{MLP}(LN(\hat z^l)) + \hat z^l
+$$
+
+$$
+\hat z^{l+1} = \text{SW-MSA}(LN(z^l)) + z^l
+$$
+
+$$
+z^{l+1} = \text{MLP}(LN(\hat z^{l+1})) + \hat z^{l+1}
+$$
+
+其中 $\hat z^l$ 和 $z^l$ 分别表示 块 $l$ 的 (S)W-MSA模块 和 MLP 模块的特征。
+
 
 # Conclusion
 
