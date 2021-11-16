@@ -86,6 +86,7 @@ $$
 
 shifted window 划分策略在之前层的相邻不重叠窗口之间引入了连接， 这在计算机视觉任务上十分有效。
 
+**Efficient batch computation for shifted configuration**： shifted window partitioning 的一个问题是他会导致更多的窗口， 从 $\lceil \frac{h}{M}\rceil \times \lceil \frac{w}{M} \rceil$ 到 $(\lceil \frac{h}{M} \rceil + 1) \times (\lceil \frac{w}{M} \rceil + 1)$， 一些窗口回避 $M \times M$ 更小。 
 
 # Conclusion
 
