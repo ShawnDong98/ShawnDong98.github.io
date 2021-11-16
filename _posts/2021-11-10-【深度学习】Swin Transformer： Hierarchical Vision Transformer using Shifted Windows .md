@@ -34,7 +34,7 @@ Swin Transformer的一个关键设计是在连续的 self-attention 层之间窗
 
 ## Overall Architecture
 
-Swin Transformer 的结构如下图所示。它首先通过 patch split 模块将 RGB 图像拆分为非重叠的 patches， 像ViT一样。每个 patch 被看做一个 "token"， 并且它的特征被设为原始RGB像素值的拼接。这里使用 patch 大小为 $4 \times 4$， 因此每个 patch 的特征维度为 $4 \times 4 \times 3 = 48$。
+Swin Transformer 的结构如下图所示。它首先通过 patch split 模块将 RGB 图像拆分为非重叠的 patches， 像ViT一样。每个 patch 被看做一个 "token"， 并且它的特征被设为原始RGB像素值的拼接。这里使用 patch 大小为 $4 \times 4$， 因此每个 patch 的特征维度为 $4 \times 4 \times 3 = 48$。上使用一个线性 embedding 层将 raw-value 特征投影为任意的维度(表示为 $C$)。 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1637040108750.png)
 
