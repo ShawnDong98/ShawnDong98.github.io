@@ -1827,6 +1827,10 @@ array([0, 1, 2, 3, 4])
 array([3, 4, 0, 1, 5])
 ```
 
+## np.less
+
+> numpy.less(x1，x2 [，out])：检查x1是否小于x2
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
