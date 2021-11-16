@@ -96,7 +96,7 @@ $$
 \text{Attention}(Q, K, V) = \text{Softmax} (QK^T / \sqrt{d} + B) V
 $$
 
-其中 $Q, K, V \in \mathbb{R}^{M^2 \times d} $,  $M^2$ 是每个窗口中 patch 的数量。 
+其中 $Q, K, V \in \mathbb{R}^{M^2 \times d} $,  $M^2$ 是每个窗口中 patch 的数量。 因为相对位置每个州的取值范围为 $[-M+1, M - 1]$， 我们参数化 bias 矩阵为 $\hat B \in \mathbb{R}^{(2M-1) \times (2M -1)}$。 
 
 
 
