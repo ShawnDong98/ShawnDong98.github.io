@@ -84,7 +84,7 @@ $$
 
 其中 $\hat z^l$ 和 $z^l$ 分别表示 块 $l$ 的 (S)W-MSA模块 和 MLP 模块的特征。W-MSA 和 SW-MSA 表示使用均匀划分策略 和使用 shifted window 配置划分策略的 window based multi-head self-attention。
 
-shifted window
+shifted window 划分策略在之前层的相邻不重叠窗口之间引入了连接。
 
 
 # Conclusion
