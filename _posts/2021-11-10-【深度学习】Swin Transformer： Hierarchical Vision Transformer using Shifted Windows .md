@@ -25,8 +25,16 @@ tags:
 
 如上图所示， 通过先从小的patch开始， 在深层的Transformer逐渐融合周围的patch构造层级的表征。线性计算复杂度通过在非重叠的窗口间计算Self-Attention实现。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1637039706126.png)
 
 Swin Transformer的一个关键设计是在连续的 self-attention 层之间窗口滑动。这种策略使得一个窗口中的所有 query patches 共享相同的 key set，在硬件上加速了内存的读取。
+
+
+# Method
+
+## Overall Architecture
+
+
 
 # Conclusion
 
