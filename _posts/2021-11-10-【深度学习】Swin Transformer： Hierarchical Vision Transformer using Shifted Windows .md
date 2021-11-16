@@ -96,6 +96,8 @@ $$
 \text{Attention}(Q, K, V) = \text{Softmax} (QK^T / \sqrt{d} + B) V
 $$
 
+其中 $Q, K, V \in \mathbb{R}^{M^2 \times d} $,  $M^2$ 是每个窗口中 patch 的数量。 
+
 
 
 
