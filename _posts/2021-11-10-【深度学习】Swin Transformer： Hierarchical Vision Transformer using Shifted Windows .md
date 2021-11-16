@@ -86,7 +86,10 @@ $$
 
 shifted window 划分策略在之前层的相邻不重叠窗口之间引入了连接， 这在计算机视觉任务上十分有效。
 
-**Efficient batch computation for shifted configuration**： shifted window partitioning 的一个问题是他会导致更多的窗口， 从 $\lceil \frac{h}{M}\rceil \times \lceil \frac{w}{M} \rceil$ 到 $(\lceil \frac{h}{M} \rceil + 1) \times (\lceil \frac{w}{M} \rceil + 1)$， 一些窗口回避 $M \times M$ 更小。 一个简单的方法是padding 这些更小的窗口到 $M \times M$ 大小， 并且在计算 attention 时 mask 掉这些 padding 的位置。
+**Efficient batch computation for shifted configuration**： shifted window partitioning 的一个问题是他会导致更多的窗口， 从 $\lceil \frac{h}{M}\rceil \times \lceil \frac{w}{M} \rceil$ 到 $(\lceil \frac{h}{M} \rceil + 1) \times (\lceil \frac{w}{M} \rceil + 1)$， 一些窗口回避 $M \times M$ 更小。 一个简单的方法是padding 这些更小的窗口到 $M \times M$ 大小， 并且在计算 attention 时 mask 掉这些 padding 的位置。当以 regular partitioning 方式时， 窗口数量很小， 例如 $2 \times 2$， 这种简单的方法增加的计算复杂度是很多的 ($2 \times 2 \rightarrow 3 \times 3$)。这里提出了一种 batch computation 方法， 它向左上角 cyclic-shifting
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1637048356977.png)
 
 # Conclusion
 
