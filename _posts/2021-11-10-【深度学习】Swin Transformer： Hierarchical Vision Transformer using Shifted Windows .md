@@ -34,7 +34,9 @@ Swin Transformer的一个关键设计是在连续的 self-attention 层之间窗
 
 ## Overall Architecture
 
+Swin Transformer 的结构如下图所示。它首先通过 patch split 模块将 RGB 图像拆分为非重叠的 patches， 像ViT一样。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1637040108750.png)
 
 # Conclusion
 
