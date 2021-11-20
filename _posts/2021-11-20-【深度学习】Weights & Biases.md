@@ -58,3 +58,75 @@ pip install --upgrade -q wandb
 
 - `wandb.login()` ,  它会要求输入 API key, 复制粘贴即可
 - 使用 kaggle secrets 存储 API key 并且使用以下代码段登陆。
+
+```python
+from kaggle_secrets import UserSecretsClient
+
+user_secrets = UserSecretsClient()
+
+# I have saved my API token with "wandb_api" as Label. 
+# If you use some other Label make sure to change the same below. 
+wandb_api = user_secrets.get_secret("wandb_api") 
+
+wandb.login(key=wandb_api)
+```
+
+```python
+import wandb
+from wandb.keras import WandbCallback
+
+wandb.login()
+```
+
+```python
+# 1. Import other dependencies
+
+import tensorflow as tf
+print(tf.__version__)
+from tensorflow.keras import layers
+from tensorflow.keras import models
+import tensorflow_addons as tfa
+
+import os
+import json
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+from sklearn.model_selection import train_test_split
+```
+
+```python
+# 2. Set the random seeds
+
+def seed_everything():
+    os.environ['TF_CUDNN_DETERMINISTIC'] = '1' 
+    np.random.seed(hash("improves reproducibility") % 2**32 - 1)
+    tf.random.set_seed(hash("by removing stochasticity") % 2**32 - 1)
+    
+seed_everything()
+```
+
+```python
+# 3. Set hyperparameters
+
+TRAIN_PATH = '../input/resized-plant2021/img_sz_256/'
+AUTOTUNE = tf.data.experimental.AUTOTUNE
+
+CONFIG = dict (
+    num_labels = 6,
+    train_val_split = 0.2,
+    img_width = 224,
+    img_height = 224,
+    batch_size = 64,
+    epochs = 10,
+    learning_rate = 0.001,
+    architecture = "CNN",
+    infra = "Kaggle",
+    competition = 'plant-pathology',
+    _wandb_kernel = 'ayut'
+)
+```
+
+## Build Input Pipeline
