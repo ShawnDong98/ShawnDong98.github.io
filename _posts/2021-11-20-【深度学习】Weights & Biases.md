@@ -36,3 +36,20 @@ Databoard 有以下的优势：
 
 可以将 Artifact 想象一个带有版本控制的数据文件夹。 一旦在 Artifact 保存， 所有的修改都会自动被记录， 给你一个完成的改动历史。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1637387326697.png)
+
+
+# 设置 W&B
+
+## 安装wandb
+
+```
+pip install --upgrade -q wandb
+```
+
+## import wandb 并 log in
+
+你需要一个唯一的 API key 登陆 Weights & Biases。
+
+- 在 [https://wandb.ai/site ](https://wandb.ai/site ) 注册免费的账户
+- 在 [https://wandb.ai/authorize](https://wandb.ai/authorize) 得到 API key
