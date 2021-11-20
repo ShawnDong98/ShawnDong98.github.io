@@ -35,4 +35,10 @@ tags:
 ```
 4.12 ms ± 51.1 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 ```
+## PIL.Image -> numpy.ndarray
 
+> %timeit np.array(Image.open("../datasets/kaggle/petfinder_clean/train/00a1e0c0f89ff89a8f32d42e9025f6b2.jpg"))
+
+```
+13 ms ± 2.99 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
+```
