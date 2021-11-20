@@ -53,3 +53,8 @@ pip install --upgrade -q wandb
 
 - 在 [https://wandb.ai/site ](https://wandb.ai/site ) 注册免费的账户
 - 在 [https://wandb.ai/authorize](https://wandb.ai/authorize) 得到 API key
+
+在kaggle kernel 中有两种方式登陆：
+
+- `wandb.login()` ,  它会要求输入 API key, 复制粘贴即可
+- 使用 kaggle secrets 存储 API key 并且使用以下代码段登陆。
