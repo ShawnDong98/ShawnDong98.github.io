@@ -2230,3 +2230,4 @@ pip install -r requirements.txt
 62. [python3 functools](https://blog.csdn.net/qq_37616069/article/details/79811016)
 63. [itertools中groupby的学习](https://blog.csdn.net/i897355249/article/details/99171842)
 64. [os.path.expanduser(path)使用举例](https://blog.csdn.net/m0_46653437/article/details/111777116)
+65. [python学习——print和pprint两者的区别](https://blog.csdn.net/qq_24185239/article/details/80977556)
