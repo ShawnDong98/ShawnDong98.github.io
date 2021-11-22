@@ -1201,7 +1201,24 @@ wrapper
 解决方案就是引入  functools.wraps  ,以上代码的解决如下: 
 
 ```
+def user_login_data(f):
+	@functools.wraps(f)
+	  def wrapper(*args, **kwargs):
+		return f(*args, **kwargs)
+
+	  return wrapper
 ```
+
+增加@functools.wraps(f), 可以保持当前装饰器去装饰的函数的 `__name__` 的值不变
+
+以上输出结果就是: 
+
+```
+num1
+
+num2
+```
+
 
 ## vars
 
@@ -2280,3 +2297,4 @@ pip install -r requirements.txt
 63. [itertools中groupby的学习](https://blog.csdn.net/i897355249/article/details/99171842)
 64. [os.path.expanduser(path)使用举例](https://blog.csdn.net/m0_46653437/article/details/111777116)
 65. [python学习——print和pprint两者的区别](https://blog.csdn.net/qq_24185239/article/details/80977556)
+66. [python装饰器中functools.wraps的作用详解](https://www.cnblogs.com/skaarl/p/9406910.html)
