@@ -263,6 +263,12 @@ PubMed Central (PMC)链接：PubMed Central
 
 [https://algo.browser.qq.com/](https://algo.browser.qq.com/)
 
+
+## 传播内容科学数据中心(Communication Content Science Data Center, ccsdc）
+
+[http://data.sklccc.com/matchpage?t=context#](http://data.sklccc.com/matchpage?t=context#)
+
+
 # 各种名词解释
 
 
