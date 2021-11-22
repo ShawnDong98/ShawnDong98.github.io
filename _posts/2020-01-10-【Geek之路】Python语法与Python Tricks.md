@@ -1156,6 +1156,22 @@ p2(a='python', b='itcast')
 
 ### warp
 
+定义一个最简单的装饰器
+
+```python
+def user_login_data(f):
+def wrapper(*args, **kwargs):
+  return f(*args, **kwargs)
+
+return wrapper
+```
+
+```
+
+```
+
+
+
 
 ## vars
 
