@@ -1319,6 +1319,18 @@ os.path.splitext() 将文件名和扩展名分开
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1636116450741.png)
 
 
+### os.path.dirname
+
+> os.path.dirname(path)
+
+去掉文件名，返回目录
+
+```
+print(os.path.dirname("E:/Read_File/read_yaml.py"))
+#结果：
+E:/Read_File
+```
+
 ## os.getcwd
 
 > os.getcwd()
