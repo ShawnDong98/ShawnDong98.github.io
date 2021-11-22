@@ -1166,8 +1166,12 @@ def wrapper(*args, **kwargs):
 return wrapper
 ```
 
-```
+用装饰器装饰以下两个函数
 
+```python
+@user_login_data
+def num1():
+	print("aaa")
 ```
 
 
