@@ -774,6 +774,10 @@ zip -F file.zip --out file-large.zip
 unzip file-large.zip 
 ```
 
+# 开机自动启动 (以clash 和 frp为例)
+
+
+
 # Bugs
 
 ## apt-get常见错误——Unmet dependencies
