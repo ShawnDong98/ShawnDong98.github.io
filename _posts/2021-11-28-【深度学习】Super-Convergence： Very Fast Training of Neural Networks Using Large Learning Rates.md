@@ -13,4 +13,4 @@ tags:
 
 # Abstract
 
-这篇文章描述了一种叫做  “super-convergence” 的现象， 神经网络可以比标准的训练方法快一个数量级。super-convergence 的存在与理解深层网络为什么能很好地泛化有关。
+这篇文章描述了一种叫做  “super-convergence” 的现象， 神经网络可以比标准的训练方法快一个数量级。super-convergence 的存在与理解深层网络为什么能很好地泛化有关。super-convergence 的关键在于有一个 learning rate cycle 以及 一个大的最大学习率。 
