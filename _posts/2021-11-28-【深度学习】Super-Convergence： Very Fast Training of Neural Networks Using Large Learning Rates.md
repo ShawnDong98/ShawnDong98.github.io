@@ -18,7 +18,9 @@ tags:
 
 # Super-convergence
 
-这篇工作中， 使用 cyclical learning rates(CLR) 和  learning rate range test(LR range test)。 要使用CLR，需要指定最小和最大学习速率以及步长。之前的方法使用线性改变学习率 以及 离散跳跃改变学习率 的方式。 CLR的思想背后是结合了 curriculum learning 和  simulated annealing， 它们在深度学习中有很长历史。 
+这篇工作中， 使用 cyclical learning rates(CLR) 和  learning rate range test(LR range test)。 要使用CLR，需要指定最小和最大学习速率以及步长。之前的方法使用线性改变学习率 以及 离散跳跃改变学习率 的方式。 CLR的思想背后是结合了 curriculum learning 和  simulated annealing， 它们在深度学习中有很长的历史。 
+
+LR range test  可以用来决定  super-convergence 在网络结构中是否可行。在  LR range test  中， 训练从零开始或者从非常小的学习率开始， 缓慢线性增加。这提供了关于在一定的学习速率范围内如何训练网络的信息。 图2a 展示了 LR range test 中的典型曲线， 其中测试准确率有一个明显的尖峰。 当从小的学习率开始时， 网络开始收敛， 学习率增大时， 它最终变得过大导致训练/测试准确率下降。在这个峰值处的学习速率是CLR使用时最大的学习速率边界。最小的学习率可以通过将最大学习率除以以3和4为系数来选择。
 
 # Conclusion
 
