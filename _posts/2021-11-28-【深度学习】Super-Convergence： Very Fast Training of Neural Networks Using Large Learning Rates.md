@@ -18,4 +18,4 @@ tags:
 
 # Conclusion
 
-我们为一个之前未知的现象提出了 empirical evidence， 称之为 super-convergence。 在 super-convergence 中， 与使用分段常数训练机制相比， 网络的学习速度更快， 迭代次数更少，最终测试精度更高。 
+我们为一个之前未知的现象提出了 empirical evidence， 称之为 super-convergence。 在 super-convergence 中， 与使用分段常数训练机制相比， 网络的学习速度更快， 迭代次数更少，最终测试精度更高。 特别地，当可用的有标签训练数据变得更加有限时， super-convergence 的收益更大。此外，本文描述了一种简化的Hessian-free优化方法，用来估计学习速率。我们证明了 super-convergence 在各种数据集和网络结构中是有效的，只要通过减少其他形式的正则化来平衡大学习速率的正则化效应。
