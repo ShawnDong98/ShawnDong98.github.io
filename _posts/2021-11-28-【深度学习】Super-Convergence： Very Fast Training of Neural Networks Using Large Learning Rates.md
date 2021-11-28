@@ -18,4 +18,4 @@ tags:
 
 # Conclusion
 
-我们为一个之前未知的现象提出了 empirical evidence， 称之为 super-convergence。 
+我们为一个之前未知的现象提出了 empirical evidence， 称之为 super-convergence。 在 super-convergence 中， 与使用分段常数训练机制相比， 网络的学习速度更快， 迭代次数更少，最终测试精度更高。 
