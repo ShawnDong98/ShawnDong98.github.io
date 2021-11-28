@@ -100,6 +100,12 @@ Ctrl+r 恢复上一步被撤销的操作
 set autowriteall
 ```
 
+## 设置自动换行
+
+```
+set textwidth=60
+```
+
 
 
 # Reference
