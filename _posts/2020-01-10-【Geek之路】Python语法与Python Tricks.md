@@ -1268,6 +1268,87 @@ python模块中的 `__all__` ，用于模块导入时限制，如：from module 
 
 此时被导入模块若定义了 `__all__` 属性，则只有 `__all__` 内指定的属性、方法、类可被导入；若没定义，则导入模块内的所有公有属性，方法和类。
 
+## eval
+
+`eval()` 官方文档里面给出来的功能解释是：将字符串string对象转化为有效的表达式参与求值运算返回计算结果。
+
+```python
+>>> s='8*8'
+>>> eval(s)
+64
+>>> eval('2+5*4')
+22
+>>> x=1
+>>> y=4
+>>> eval('x+y')
+5
+>>> eval('98.9')
+98.9
+>>> eval('9.9\n')
+9.9
+>>> eval('9.9\n\t\r  \t\r\n')
+9.9
+```
+
+最有用的一个是 `eval` 可以将字符串转换成字典，列表，元组
+
+```
+>>> l = "[2,3,4,5]"
+>>> ll=eval(l)
+>>> ll
+[2, 3, 4, 5]
+>>> type(ll)
+<type 'list'>
+>>> d="{'name':'python','age':20}"
+>>> dd=eval(d)
+>>> type(dd)
+<type 'dict'>
+>>> dd
+{'age': 20, 'name': 'python'}
+>>> t='(1,2,3)'
+>>> tt=eval(t)
+>>> type(tt)
+<type 'tuple'>
+>>> tt
+(1, 2, 3)
+```
+
+`eval()` 函数功能强大，但也很危险，若程序中有以下语句：
+
+```python
+s=input('please input:')
+print (eval(s))
+```
+
+下面举几个被恶意用户使用的例子：
+
+**运行程序，如果用户恶意输入：**
+
+```
+please input:__import__('os').system('ls')
+```
+
+则 `eval()` 之后，当前目录文件都会展现在用户前面。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1638514475736.png)
+
+
+**运行程序，如果用户恶意输入：**
+
+```
+please input: open('xxx.py').read()
+```
+
+如果，当前目录中恰好有一个文件，名为 `data.py`，则恶意用户变读取到了文件中的内容。
+
+**运行程序，如果用户恶意输入：**
+
+```
+please input:__import__('os').system('del test.txt /q')
+```
+
+如果，当前目录中恰好有一个文件，名为test.txt，则恶意用户删除了该文件。/q ：指定静音状态。不提示您确认删除。
+
 # os
 
 
@@ -2316,3 +2397,4 @@ pip install -r requirements.txt
 64. [os.path.expanduser(path)使用举例](https://blog.csdn.net/m0_46653437/article/details/111777116)
 65. [python学习——print和pprint两者的区别](https://blog.csdn.net/qq_24185239/article/details/80977556)
 66. [python装饰器中functools.wraps的作用详解](https://www.cnblogs.com/skaarl/p/9406910.html)
+67. [eval和ast.literal_eval方法](https://blog.csdn.net/sinat_33924041/article/details/88350569)
