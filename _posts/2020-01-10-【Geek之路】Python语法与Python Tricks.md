@@ -1349,6 +1349,43 @@ please input:__import__('os').system('del test.txt /q')
 
 如果，当前目录中恰好有一个文件，名为test.txt，则恶意用户删除了该文件。/q ：指定静音状态。不提示您确认删除。
 
+
+## ast.literal_eval
+
+`ast.literal_eval` 是python针对 `eval` 方法存在的安全漏洞而提出的一种安全处理方式。
+
+简单点说 `ast` 模块就是帮助 Python应用来处理抽象的语法解析的。而该模块下的 `literal_eval()` 函数：则会判断需要计算的内容计算后是不是合法的Python类型，如果是则进行运算，否则就不进行运算。
+
+比如下面查看系统文件的操作就会被拒绝，而只会执行合法的python类型，从而大大降低了系统的危险性
+
+```
+import ast
+
+res = ast.literal_eval('1 + 1')
+print(res)
+# 2
+
+res = ast.literal_eval('[1, 2, 3, 4]')
+print(type(res))
+# <class 'list'>
+
+print(res)
+# [1, 2, 3, 4]
+
+
+res = ast.literal_eval("__import__('os').system('ls')")
+# 报错如下：
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/didi/.pyenv/versions/3.6.4/lib/python3.6/ast.py", line 85, in literal_eval
+    return _convert(node_or_string)
+  File "/Users/didi/.pyenv/versions/3.6.4/lib/python3.6/ast.py", line 84, in _convert
+    raise ValueError('malformed node or string: ' + repr(node))
+ValueError: malformed node or string: <_ast.Call object at 0x10e63ca58>
+```
+
+所以出于安全考虑，对字符串进行类型转换的时候，最好使用 `ast.literal_eval()`
+
 # os
 
 
