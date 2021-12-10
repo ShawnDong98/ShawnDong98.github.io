@@ -58,6 +58,8 @@ $$
 \hat x = R(x; \mathcal{D}) = D \alpha = \sum_{k=1}^K \alpha_k d_k
 $$
 
+
+
 ## Conclusion
 
 这篇文章在 Transformer self-attention 层上增加了一个 Probabilistic Graphical Model (PGM)， 它将稀疏假设增加入了原始的全连接注意力。 这样可以避免琐碎的全局依赖关系， 并且可以发现和利用局部上下文。此外，我们将受约束的 self-attention 层堆叠起来， 并在其上增加层次约束， 这样可以通过隐式解析得到一颗树。这样，模型就可以在端到端训练期间无监督地解析树。文中还提出一种树解析算法， 利用计算得到的 PGM 概率来提取hidden trees。 因此， 我们可以求出每个样本的 hidden structure。 在 Captioning 和 VQA 上提出两种不同的 APNs。
