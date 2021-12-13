@@ -2048,7 +2048,7 @@ np.full 构造一个数组，用指定值填充其元素
 
 > np.tile(A, reps)
 
-np.titl() 扩展成 `reps[0]` 行， `reps[1]`列
+np.titl() 重复 `A` 元素 `reps[0]` 行， `reps[1]`列
 
 ## 完整打印矩阵
 
