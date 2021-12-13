@@ -2046,6 +2046,10 @@ np.full 构造一个数组，用指定值填充其元素
 
 ## np.tile
 
+> np.tile(A, reps)
+
+np.titl() 扩展成 `reps[0]` 行， `reps[1]`列
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
