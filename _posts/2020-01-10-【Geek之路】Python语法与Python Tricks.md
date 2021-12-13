@@ -2044,6 +2044,8 @@ array([3, 4, 0, 1, 5])
 
 np.full 构造一个数组，用指定值填充其元素
 
+## np.tile
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
@@ -2058,6 +2060,7 @@ np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数
 
 
 np.set_printoptions(threshold = 1e6) #设置打印数量的阈值，1e6 = 1000000.0此方法为设置一较大值
+
 
 
 ## npy文件ndarray转list
