@@ -2038,6 +2038,12 @@ array([3, 4, 0, 1, 5])
 
 > numpy.less(x1，x2 [，out])：检查x1是否小于x2
 
+## np.full
+
+> full(shape, fill_value, dtype=None, order='C')
+
+np.full 构造一个数组，用指定值填充其元素
+
 ## 完整打印矩阵
 
 np.set_printoptions 设置打印选项，这些选项决定显示浮点数、数组和其他NumPy对象的方式。
