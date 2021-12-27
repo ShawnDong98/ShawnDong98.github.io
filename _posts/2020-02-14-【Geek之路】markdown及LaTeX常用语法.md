@@ -63,6 +63,7 @@ tags:
 - $\lor$： \lor
 - $\land$： \land 
 - $\succ$:  \succ
+- 伪逆符号 $\dagger$： \dagger
 
 # LaTex
 
