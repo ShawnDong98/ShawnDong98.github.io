@@ -147,7 +147,7 @@ $$
 \hat s = S_{\mathcal{X}}^{-1}(C_\delta^{-1}(y))
 $$
 
-
+系统的目标是最小化语义误差 并且 减少要传输的符号。
 
 ## Channel Encoder and Decoder Design
 
