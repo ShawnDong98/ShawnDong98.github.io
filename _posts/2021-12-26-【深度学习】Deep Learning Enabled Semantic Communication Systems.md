@@ -141,7 +141,13 @@ $$
 
 这篇文章主要考虑了 AWGN 信道 和 Rayleigh 衰落信道， 重点研究了语义编码和解码。
 
-receiver 包含信道解码器和语义解码器分别用以恢复传输的符号以及传输的句子。
+receiver 包含信道解码器和语义解码器分别用以恢复传输的符号以及传输的句子。解码信号可以表示为：
+
+$$
+\hat s = S_{\mathcal{X}}^{-1}(C_\delta^{-1}(y))
+$$
+
+
 
 ## Channel Encoder and Decoder Design
 
