@@ -109,6 +109,8 @@ Transformer 同时具有 RNN 和 CNN 的优势。
 
 传输层保证语义信息在 transmission medium 上正确传输。
 
+智能端到端通信系统采用随机物理信道， transceiver 和 receiver 具有不同的背景知识， 即不同的训练数据。
+
 
 # Conclusion
 
