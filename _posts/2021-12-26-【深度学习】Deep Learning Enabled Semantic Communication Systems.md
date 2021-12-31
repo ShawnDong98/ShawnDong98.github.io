@@ -117,6 +117,8 @@ Transformer 同时具有 RNN 和 CNN 的优势。
 
 ## Problem Description
 
+transmitter 将句子 $s$ 映射为复杂的符号流 $x$， 然后通过带有 transmission 损坏的物理信道， 比如失真和噪声。 对接收到的 $y$， 在 receiver 被解码用以评估原始的句子 $s$。 
+
 ## Channel Encoder and Decoder Design
 
 ## Performance Metrics 
