@@ -103,7 +103,9 @@ Transformer 同时具有 RNN 和 CNN 的优势。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1640961147098.png)
 
-考虑的系统包含两层： 语义层和传输层
+考虑的系统包含两层： 语义层和传输层。
+
+语义层处理语义信息， 通过编码和解码提取语义信息。
 
 
 # Conclusion
