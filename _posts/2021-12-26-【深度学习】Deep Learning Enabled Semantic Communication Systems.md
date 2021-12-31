@@ -139,7 +139,7 @@ $$
 
 可以用简单的神经网络建模 AWGN 信道， multiplicative Gaussion noise 信道 以及 erasure 信道。对于信道衰落， 需要使用更复杂的神经网络。
 
-这篇文章主要考虑了 AWGN 信道 和 衰落信道， 重点研究了语义编码和解码。
+这篇文章主要考虑了 AWGN 信道 和 Rayleigh 衰落信道， 重点研究了语义编码和解码。
 
 ## Channel Encoder and Decoder Design
 
