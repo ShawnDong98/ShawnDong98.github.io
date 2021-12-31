@@ -129,6 +129,14 @@ $$
 
 其中 $x \in \mathbb{C}^{M \times 1}$， $S_{\beta}(·)$ 是参数为 $\beta$ 的语义编码器网络， $C_{\alpha}$ 是参数为 $\alpha$ 信道编码器。
 
+为了简化分析， 我们假设相干时间为 $M$。 如果 $x$ 被发送， receiver 接收到的信号为 ：
+
+$$
+y = hx + n
+$$
+
+其中 $y \in C^{M \times 1}$， $h$ 表示 参数为 $\mathcal{C}\mathcal{N}(0, 1)$ 和 $n \thicksim \mathcal{C}\mathcal{N}(0, \sigma_n^2)$ 的 Rayleigh 衰落信道。 
+
 ## Channel Encoder and Decoder Design
 
 ## Performance Metrics 
