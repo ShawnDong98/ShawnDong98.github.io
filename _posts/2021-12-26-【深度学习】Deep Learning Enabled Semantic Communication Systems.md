@@ -121,7 +121,13 @@ transmitter 将句子 $s$ 映射为复杂的符号流 $x$， 然后通过带有 
 
 使用 DNN 联合设计 transmitter 和 receiver， 因为 DL 使得我们可以使用 可变长的句子和不同的语言来训练一个模型。
 
-假设 DeepSC 的输入 $s = [w_1, w_2, ..., w_L]$， 其中 $w_l$ 表示句子中的第 $l$ 个词。transmitter 包括两个部分， 叫做语义编码器和信道编码器， 用以从 $s$ 中提取语义信息 以及 保证在物理信道上成功传输语义信息。 
+假设 DeepSC 的输入 $s = [w_1, w_2, ..., w_L]$， 其中 $w_l$ 表示句子中的第 $l$ 个词。transmitter 包括两个部分， 叫做语义编码器和信道编码器， 用以从 $s$ 中提取语义信息 以及 保证在物理信道上成功传输语义信息。 编码符号流可以表示为：
+
+$$
+x = C_{\alpha} (S_{\beta}(s))
+$$
+
+其中 $x \in \mathbb{C}^{M \times 1}$， $S_{\beta}(·)$ 是参数为 $\beta$ 的语义编码器网络， $C_{\alpha}$ 是参数为 $\alpha$ 信道编码器。
 
 ## Channel Encoder and Decoder Design
 
