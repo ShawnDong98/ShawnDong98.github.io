@@ -107,6 +107,8 @@ Transformer 同时具有 RNN 和 CNN 的优势。
 
 语义层处理语义信息， 通过编码和解码提取语义信息。
 
+传输层保证语义信息在 transmission medium 上正确传输。
+
 
 # Conclusion
 
