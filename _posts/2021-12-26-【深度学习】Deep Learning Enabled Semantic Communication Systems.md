@@ -115,6 +115,12 @@ Transformer 同时具有 RNN 和 CNN 的优势。
 
 **定义二**： 物理信道噪声是有物理信道损坏引起的， 例如 ， 加性高斯白噪声(AWGN)， 信道衰落以及多径， 这会导致信号衰减和失真。
 
+## Problem Description
+
+## Channel Encoder and Decoder Design
+
+## Performance Metrics 
+
 # Conclusion
 
 提出一种叫作 DeepSC 的语义通信系统， 它为文本传输联合执行 semantic-channel 编码。
