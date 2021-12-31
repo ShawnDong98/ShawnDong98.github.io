@@ -99,6 +99,13 @@ RNN 并行性不好。
 Transformer 同时具有 RNN 和 CNN 的优势。
 
 
+# SYSTEM MODEL AND PROBLEM FORMULATION 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1640961147098.png)
+
+考虑的系统包含两层： 语义层和传输层
+
+
 # Conclusion
 
 提出一种叫作 DeepSC 的语义通信系统， 它为文本传输联合执行 semantic-channel 编码。
