@@ -137,6 +137,8 @@ $$
 
 其中 $y \in C^{M \times 1}$， $h$ 表示 参数为 $\mathcal{C}\mathcal{N}(0, 1)$ 和 $n \thicksim \mathcal{C}\mathcal{N}(0, \sigma_n^2)$ 的 Rayleigh 衰落信道。 
 
+可以用简单的神经网络建模 AWGN 信道， multiplicative Gaussion noise 信道 以及 erasure 信道。
+
 ## Channel Encoder and Decoder Design
 
 ## Performance Metrics 
