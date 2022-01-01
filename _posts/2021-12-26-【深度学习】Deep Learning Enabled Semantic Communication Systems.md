@@ -166,6 +166,15 @@ $$
 
 ## Channel Encoder and Decoder Design
 
+互信息可以在训练 receiver 时提供额外的信息
+
+$$
+I(x; y) = \int_{\mathcal{X} \times \mathcal{Y}} p(x, y) \log \frac{p(x, y)}{p(x)p(y)}dxdy = \mathbb{E}_{p(x, y)}\left[\log \frac{p(x, y)}{p(y)p(x)}\right]
+$$
+
+$p(x)$ 和 $p(y)$ 分别是发送 $x$ 和 接收 $y$ 的边缘概率。
+
+
 ## Performance Metrics 
 
 
