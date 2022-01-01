@@ -268,6 +268,10 @@ $$
 - 最后， 整个网络通过SGD优化。
 
 
+## Transfer Learning for Dynamic Environment
+
+不同通信场景导致不同的信道和训练数据。 为了解决这个问题， 采用深度迁移学习， 专注于存储在解决问题得到的知识， 同时将其应用在不同但相关的问题上。 
+
 
 # Conclusion
 
