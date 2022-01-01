@@ -156,6 +156,14 @@ $$
 
 即便现在信道的误码率很低， 但是由于信道的噪声等导致比特上的错误也会导致语义的错误。 使用DNN网络将信道噪声也加入编码过程， 使得DNN具有去噪抗干扰的能力。
 
+使用交叉熵度量 $s$ 和 $\hat s$ 之间的差异：
+
+$$
+L_{CE}(s, \hat s, \alpha, \beta, \mathcal{x}, \delta) = -\sum_{l=1} q(w_l) \log (p(w_l)) + (1 - q(w_l)) \log (1 - p(w_l))
+$$
+
+其中 $q(w_l)$ 是第 $l$ 个词的真实概率， $p(w_l)$ 是第 $l$ 个词预测概率。
+
 ## Channel Encoder and Decoder Design
 
 ## Performance Metrics 
