@@ -198,7 +198,13 @@ $$
 L_{MI}(x, y; T) = E_{p(x, y)}[f_T] - \log (\mathbb{E}_{p(x)p(y)}[e^{f_T}])
 $$
 
-其中 $f_T$ 是一个神经网络， 它的输入从 $p(x, y)$, $p(x)$ 和 $p(y)$ 中采样。 
+其中 $f_T$ 是一个神经网络， 它的输入从 $p(x, y)$, $p(x)$ 和 $p(y)$ 中采样。在这篇文章的设计中， $x$ 由函数 $C_\alpga$ 和 $S_{\beta}$ 生成， 因此损失函数可以通过 $L_{MI}(x, y; T, \alpha, \beta)$ 表示：
+
+$$
+L_{MI}(x, y; T, \alpha, \beta) \leq I(x; y)
+$$
+
+使用上式的损失函数训练神经网络得到 $\alpha$, $\beta$ 和 $T$。 举个例子， 当编码器的 $\alpha$ 和 $\beta$ 固定的时候， 可以通过训练网络 $T$ 来估计互信息。 当互信息得到之后，可以通过训练 $\alpha$ 和 $\beta$  优化 encoder。
 
 
 ## Performance Metrics 
