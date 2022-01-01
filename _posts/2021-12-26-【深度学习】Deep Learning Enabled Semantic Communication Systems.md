@@ -279,6 +279,14 @@ $$
 - 对于不同的通信环境， 我们重新设计和训练信道编码器和解码器层的部分， 冻结语义编码器和解码器层。
 
 
+# NUMERICAL RESULTS 
+
+## Simulation Settings
+
+## Basic Model 
+
+## Mutual Information 
+
 # Conclusion
 
 提出一种叫作 DeepSC 的语义通信系统， 它为文本传输联合执行 semantic-channel 编码。
