@@ -149,6 +149,8 @@ $$
 
 系统的目标是最小化语义误差 并且 减少要传输的符号。
 
+该系统存在两个挑战
+
 ## Channel Encoder and Decoder Design
 
 ## Performance Metrics 
