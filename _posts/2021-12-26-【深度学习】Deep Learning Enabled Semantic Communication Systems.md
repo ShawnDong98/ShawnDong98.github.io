@@ -296,6 +296,12 @@ $$
 
 ## Basic Model 
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641047897817.png)
+
+所有DL方法在低信噪比下更具竞争力。
+
+DL 方法在锐利衰减信道上表现比所有传统方法更好。
+
 ## Mutual Information 
 
 ## Transfer Learning for Dynamic Environment
