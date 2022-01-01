@@ -260,6 +260,12 @@ $$
 - 在 AWGN 信道下， 根据发送符号 $X$, 和接收的符号 $Y$， 可以计算损失 $L_{MI}(X, Y; T, \alpha, \beta)$。
 - 最后， 根据计算得到的 $L_{MI}$， 使用随机梯度下降优化 $f_T(·)$ 的权重和偏差。
 
+**Whole network training:**
+
+- 首先， 从知识 $mathcal{K}$ 中采样小批量 $S$， 然后将它编码为语义层级的 $M$， 然后 $M$ 编码为用于在物理信道上传输的符号 $X$。
+- 在receiver， 接收到失真符号 $Y$  ， 然后被信道解码器层解码为 $\hat M \in \mathcal{R}^{B \times L \times V}$ ， 其表示恢复的源信息的语义信息。
+
+
 
 # Conclusion
 
