@@ -162,7 +162,7 @@ $$
 L_{CE}(s, \hat s, \alpha, \beta, \mathcal{x}, \delta) = -\sum_{l=1} q(w_l) \log (p(w_l)) + (1 - q(w_l)) \log (1 - p(w_l))
 $$
 
-其中 $q(w_l)$ 是第 $l$ 个词的真实概率， $p(w_l)$ 是第 $l$ 个词预测概率。
+其中 $q(w_l)$ 是第 $l$ 个词的真实概率， $p(w_l)$ 是第 $l$ 个词预测概率。通过减小交叉熵， 网络学习到词的概率分布， 它表示语法、段落以及上下文词的含义。
 
 ## Channel Encoder and Decoder Design
 
