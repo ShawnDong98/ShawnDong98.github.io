@@ -270,7 +270,13 @@ $$
 
 ## Transfer Learning for Dynamic Environment
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641043267489.png)
+
 不同通信场景导致不同的信道和训练数据。 为了解决这个问题， 采用深度迁移学习， 专注于存储在解决问题得到的知识， 同时将其应用在不同但相关的问题上。 
+
+- 首先， 基于知识 $\mathcal{K}_0$ 和 信道 $\mathcal{N}_0$ 加载预训练的 transmitter 和 receiver。
+- 对于不同背景知识的应用， 我们仅需重新设计和训练语义编码器和解码器层， 冻结信道编码器和解码器层。
+- 对于不同的通信环境， 我们重新设计和训练信道编码器和解码器层的部分， 冻结语义编码器和解码器层。
 
 
 # Conclusion
