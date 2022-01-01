@@ -240,7 +240,7 @@ $$
 \mathcal{L}_{total} = \mathcal{L}_{CE}(s, \hat s; \alpha, \beta, \mathcal{X}, \delta) - \lambda L_{MI}(x, y; T, \alpha, \beta)
 $$
 
-注意力机制能够学习语义， 解决问题1.
+注意力机制能够学习语义， 解决问题1。 
 
 
 # Conclusion
