@@ -220,6 +220,8 @@ $$
 \text{match}(\hat s, s) = \frac{B_\Phi(s) · B_\Phi(\hat s)^T}{\|B_\Phi(s)\|\|B_\Phi(\hat s)\|}
 $$
 
+$B_\Phi$ 表示 BERT， 得到的即为 BERT 的表征。
+
 # PROPOSED DEEP SEMANTIC COMMUNICATION SYSTEMS 
 
 # Conclusion
