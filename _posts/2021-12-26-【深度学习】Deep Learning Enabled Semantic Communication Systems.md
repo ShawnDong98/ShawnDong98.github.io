@@ -287,6 +287,8 @@ $$
 
 ## Mutual Information 
 
+## Transfer Learning for Dynamic Environment
+
 # Conclusion
 
 提出一种叫作 DeepSC 的语义通信系统， 它为文本传输联合执行 semantic-channel 编码。
