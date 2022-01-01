@@ -250,7 +250,15 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641029935421.png)
 
-**Training of mutual information estimation model:** 首先， 知识集合 $\mathcal{K}$ 生成一个小批量句子 $S \in \mathcal{R}^{B \times L \times 1}\$。 经过 Embedding 层， 句子可以表示为词向量 $E \in mathcal{R}^{B \times L \times E}$。
+**Training of mutual information estimation model:**
+
+- 首先， 知识集合 $\mathcal{K}$ 生成一个小批量句子 $S \in \mathcal{R}^{B \times L \times 1}\$。 
+- 经过 Embedding 层， 句子可以表示为词向量 $E \in mathcal{R}^{B \times L \times E}$。
+- 然后， 输入语义编码器层得到 $M \in \mathcal{R}^{B \times L \times V}$。
+- 然后， $M$ 被编码为符号 $X$ 来处理物理信道的影响， $X \in \mathcal{R}^{B \times NL \times 2}$。 
+- 传输通过信道后， receiver 得到由信道噪声导致的失真信号 Y。
+- 在 AWGN 信道下， 根据发送符号 $X$, 和接收的符号 $Y$， 可以计算损失 $L_{MI}(X, Y; T, \alpha, \beta)$。
+- 最后， 根据计算得到的 $L_{MI}$， 使用随机梯度下降优化 $f_T(·)$ 的权重和偏差。
 
 
 # Conclusion
