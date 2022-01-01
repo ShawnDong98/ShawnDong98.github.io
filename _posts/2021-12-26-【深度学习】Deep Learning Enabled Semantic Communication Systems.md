@@ -210,6 +210,16 @@ $$
 ## Performance Metrics 
 
 
+BER 忽略通信的目标。
+
+BLEU 在语义相同时也很难到达 1。
+
+因此提出 句子相似度 指标：
+
+$$
+\text{match}(\hat s, s) = \frac{B_\Phi(s) · B_\Phi(\hat s)^T}{\|B_\Phi(s)\|\|B_\Phi(\hat s)\|}
+$$
+
 # PROPOSED DEEP SEMANTIC COMMUNICATION SYSTEMS 
 
 # Conclusion
