@@ -220,7 +220,7 @@ $$
 \text{match}(\hat s, s) = \frac{B_\Phi(s) · B_\Phi(\hat s)^T}{\|B_\Phi(s)\|\|B_\Phi(\hat s)\|}
 $$
 
-$B_\Phi$ 表示 BERT， 得到的即为 BERT 的表征。
+$B_\Phi$ 表示 BERT， 得到的即为 BERT 的表征。将传输的句子和恢复的句子输入 BERT 得到表征向量， 对象量计算余弦相似度。
 
 # PROPOSED DEEP SEMANTIC COMMUNICATION SYSTEMS 
 
