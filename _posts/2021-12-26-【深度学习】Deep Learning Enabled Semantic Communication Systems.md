@@ -248,6 +248,10 @@ $$
 
 联合语义-信道编码解决问题3。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641029935421.png)
+
+**Training of mutual information estimation model:** 首先， 知识集合 $\mathcal{K}$ 生成一个小批量句子 $S \in \mathcal{R}^{B \times L \times 1}\$。 经过 Embedding 层， 句子可以表示为词向量 $E \in mathcal{R}^{B \times L \times E}$。
+
 
 # Conclusion
 
