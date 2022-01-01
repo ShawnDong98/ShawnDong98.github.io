@@ -283,7 +283,16 @@ $$
 
 ## Simulation Settings
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1641046766216]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641046766215.png)
+
+对于baseline， 采用基于神经网络的信源信道编码 以及 典型的信源和信道编码分开的典型方法：
+
+- 基于DNN的信源信道编码： 使用双向LSTM网络(BLSTM)。 将它标记为 JSCC。
+- 传统方法：
+- - 信源编码： 哈弗曼编码， 定长编码(5-bit)， Brotli编码， 其中 Brotli 编码使用 2nd 上下文模型压缩上下文信息 并且在仿真中 128 个句子被压缩在一起。
+- - 信道编码： Turbo 编码 和 ReedSolomon (RS) 编码。 采用的 turbo 解码方式是5次迭代的 log-MAP 算法。
+
+使用 BLEU 和 句子相似度度量性能。
 
 ## Basic Model 
 
