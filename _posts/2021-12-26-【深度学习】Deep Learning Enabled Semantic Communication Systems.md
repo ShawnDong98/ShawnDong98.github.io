@@ -240,6 +240,9 @@ $$
 \mathcal{L}_{total} = \mathcal{L}_{CE}(s, \hat s; \alpha, \beta, \mathcal{X}, \delta) - \lambda L_{MI}(x, y; T, \alpha, \beta)
 $$
 
+注意力机制能够学习语义， 解决问题1.
+
+
 # Conclusion
 
 提出一种叫作 DeepSC 的语义通信系统， 它为文本传输联合执行 semantic-channel 编码。
