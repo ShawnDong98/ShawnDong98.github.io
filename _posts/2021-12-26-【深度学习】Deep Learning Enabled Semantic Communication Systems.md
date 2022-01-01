@@ -172,7 +172,25 @@ $$
 I(x; y) = \int_{\mathcal{X} \times \mathcal{Y}} p(x, y) \log \frac{p(x, y)}{p(x)p(y)}dxdy = \mathbb{E}_{p(x, y)}\left[\log \frac{p(x, y)}{p(y)p(x)}\right]
 $$
 
-$p(x)$ 和 $p(y)$ 分别是发送 $x$ 和 接收 $y$ 的边缘概率。
+$p(x)$ 和 $p(y)$ 分别是发送 $x$ 和 接收 $y$ 的边缘概率。互信息等价于边缘概率和联合概率的 KL 散度：
+
+$$
+I(x; y) = D_{KL}(p(x, y) \| p(x)p(y))
+$$
+
+**定理 1**： 
+
+$$
+D_{KL}(P \| Q) = \sup_{T: \Omega \rightarrow R} E_P[T] - \log (E_Q [e^T])
+$$
+
+根据定理 1， 可得到：
+
+$$
+D_{KL}(p(x, y) \| p(x)p(y)) \geq E_{p(x, y)}[T] - \log (E_{p(x)p(y)}[e^T])
+$$
+
+因此可以得到 $I(x; y)$ 的下限。 为了找到 $I(x; y)$ 的下限， 训练一个网络 $T$ 来估计这个下限。
 
 
 ## Performance Metrics 
