@@ -20,6 +20,12 @@ tags:
 # Details
 
 
+## 如何可视化 Scene Graph
+
+
+```python
+
+```
 
 # Reference
 1. [How do you generate coco_pred_sg.zip and coco_spice_sg2.zip, and what does the value in those npy files means? #7](https://github.com/yangxuntu/SGAE/issues/7)
