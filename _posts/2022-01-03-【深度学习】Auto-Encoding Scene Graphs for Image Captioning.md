@@ -135,5 +135,9 @@ ssg['rela_info']:numpy数组，每一行3个元素，分别为[sbj_id,obj_id,rel
 >
 > 对于coco_spice_sg2，其实就是字典更大了，比如coco_spice_sg中对应的字典是caption生成的字典时把小于等于5个词的词给删除了，然而coco_spice_sg2中对应的字典是caption生成的字典时把小于等于4个词的词给删除了.不同的字典对最后影响不是那么大。
 
+## 生成 sentence scene graph
+
+需要把 `coco_caption/pycocoevalcap/spice` 文件夹下的 `spice-1.0.jar`  替换为主文件夹下的 `spice-1.0.jar`。
+
 # Reference
 1. [How do you generate coco_pred_sg.zip and coco_spice_sg2.zip, and what does the value in those npy files means? #7](https://github.com/yangxuntu/SGAE/issues/7)
