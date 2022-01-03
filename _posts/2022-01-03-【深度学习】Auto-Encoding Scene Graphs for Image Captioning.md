@@ -51,5 +51,32 @@ attrbute matrix ：`[0, 1, 2]` 意味着 bbox 有三种属性， 分别是 `dict
 
 ```
 
+## 如何处理 sentence scene graph
+
+> 以下内容是如何处理sentence scene graph的：
+1).create_coco_sg.py
+通过spice中的parser方法来生成coco dataset中每个图片的scene graph
+运行的时候要先进代码将coco_use设置为coco_train,然后把self-critical.pytorch/coco-caption/pycocoevalcap/spice/中的sg.json保存为spice_sg_train.json，然后把这个文件放到/data中去，同理把coco_use设置为coco_val，然后把生成的sg.json保存为spice_sg_val.json。
+>
+> 2).process_spice_sg.py
+将spice_sg_val.json和spice_sg_train.json处理为按照image_id.npy形式保存在coco_spice_sg中。具体格式为：
+ssg['obj_info']:list,每一个list都代表着一个object以及其对应的attribute，
+ 第一个元素是object name在dict中的index，后面的元素都是
+ attribute对应dict中的index。
+ssg['rela_info']:numpy数组，每一行3个元素，分别为[sbj_id,obj_id,relation_id]
+ 其中的sbj_id和obj_id对应于ssg['obj_info']中的obj list的index，
+ relation_id为其在dict中的index。
+还有处理完的dict可以保存为spice_sg_dict.npz.
+我先生成了一个spice的字典，其中把很多词语正则化了一下，前9487个词和原始的词典一致，后面的为增补的词典。
+>
+> 3).process_sg_extend.py
+生成适合attention extend model的数据,直接从之前的生成的数据中来改。
+先生成一个字典，其中前9487个词和原始词典一致，然后加入sentence scene graph的字典，以及image scene graph的字典。
+然后把image scene graph的数据改了就好了。也就是只改变cocobu_rela中的数据，然后把改变完的数据保存到cocobu_sg_img中去。
+而对于sentence scene graph，其还是保存在coco_spice_sg中。
+新的字典保存在sg_dict_extend.npz中。
+>
+> 对于coco_spice_sg2，其实就是字典更大了，比如coco_spice_sg中对应的字典是caption生成的字典时把小于等于5个词的词给删除了，然而coco_spice_sg2中对应的字典是caption生成的字典时把小于等于4个词的词给删除了.不同的字典对最后影响不是那么大。
+
 # Reference
 1. [How do you generate coco_pred_sg.zip and coco_spice_sg2.zip, and what does the value in those npy files means? #7](https://github.com/yangxuntu/SGAE/issues/7)
