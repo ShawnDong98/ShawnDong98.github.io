@@ -41,6 +41,9 @@ array([[  0.,   9., 408.],
 
 scene graph matrix： `[0., 9., 408.]` 意思是第 0 个 box 和 第9个 box 之间的关系是 `dict[408]`， 如果 `dict[408]` 的关系是 `on`， 那么它们对应的关系就是 `on`。
 
+attrbute matrix ：`[0, 1, 2]` 意味着 bbox 有三种属性， 分别是 `dict[0]`， `dict[1]` 和 `dict[2]`。
+
+
 ## 如何可视化 Scene Graph
 
 
