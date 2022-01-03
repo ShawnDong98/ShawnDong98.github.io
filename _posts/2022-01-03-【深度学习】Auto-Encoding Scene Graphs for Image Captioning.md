@@ -48,7 +48,64 @@ attrbute matrix ：`[0, 1, 2]` 意味着 bbox 有三种属性， 分别是 `dict
 
 
 ```python
+from __future__ import print_function
+import argparse
+import numpy as np
 
+parser = argparse.ArgumentParser()
+# Input paths
+parser.add_argument('--id', type=str, default='558579',
+                help='id of image')
+parser.add_argument('--mode', type=str,  default='sen',
+                help='image or sen')
+
+opt, _ = parser.parse_known_args()
+
+if opt.mode == 'sen':
+    sg_dict = np.load('../datasets/Caption/SGAE/spice_sg_dict2.npz', allow_pickle=True)['spice_dict'][()]
+    sg_dict = sg_dict['ix_to_word']
+    folder = '../datasets/Caption/SGAE/coco_spice_sg2/'
+else:
+    sg_dict = np.load('../datasets/Caption/SGAE/coco_pred_sg_rela.npy', allow_pickle=True)[()]
+    sg_dict = sg_dict['i2w']
+    folder = '../datasets/Caption/SGAE/coco_img_sg/'
+
+sg_path = folder + opt.id + '.npy'
+sg_use = np.load(sg_path, allow_pickle=True, encoding="bytes")[()]
+if opt.mode == 'sen':
+    rela = sg_use['rela_info'.encode('utf-8')]
+    obj_attr = sg_use['obj_info'.encode('utf-8')]
+else:
+    rela = sg_use['rela_matrix'.encode('utf-8')]
+    obj_attr = sg_use['obj_attr'.encode('utf-8')]
+N_rela = len(rela)
+N_obj = len(obj_attr)
+
+for i in range(N_obj):
+    if opt.mode == 'sen':
+        print('obj #{0}'.format(i), end = ': ')
+        if len(obj_attr[i]) >= 2:
+            print ('(', end = '')
+            for j in range(len(obj_attr[i])-1):
+                print('{0} '.format(sg_dict[obj_attr[i][j + 1]]), end = '')
+            print (') ', end = '')
+        print(sg_dict[obj_attr[i][0]])
+    else:
+        print('obj #{0}'.format(i), end = ': ')  # maybe it means 'bounding box' but not 'object'
+        N_attr = 3
+        for j in range(N_attr - 1):
+            print('{0} {1}, '.format(sg_dict[obj_attr[i][j + 4]],\
+                sg_dict[obj_attr[i][j+1]]), end = '')
+        j = N_attr - 1
+        print('{0} {1}'.format(sg_dict[obj_attr[i][j + 4]],\
+            sg_dict[obj_attr[i][j+1]]))
+
+for i in range(N_rela):
+    obj_idx = 0 if opt.mode == 'sen' else 1
+    sbj = sg_dict[ int(obj_attr[int(rela[i][0])][obj_idx]) ]
+    obj = sg_dict[ int(obj_attr[int(rela[i][1])][obj_idx]) ]
+    rela_name = sg_dict[rela[i][2]]
+    print('rel #{3}: {0}-{1}-{2}'.format(sbj,rela_name,obj,i))
 ```
 
 ## 如何处理 sentence scene graph
