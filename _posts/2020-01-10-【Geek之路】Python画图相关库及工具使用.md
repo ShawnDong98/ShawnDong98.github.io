@@ -569,6 +569,22 @@ Axes.text(self, x, y, s, fontdict=None, **kwargs)[source]
 - multialignment or ma： {'left', 'right', 'center'}
 - verticalalignment or va： {'center', 'top', 'bottom', 'baseline', 'center_baseline'}
 
+
+##  保存时去掉白边和坐标轴
+
+去掉坐标轴
+
+```python
+plt.axis('off')
+```
+
+去掉白边：
+
+```python
+plt.savefig(path, bbox_inches = 'tight', dpi=300, pad_inches = 0)
+
+```
+
 # seaborn语法
 
 ## seaborn.set()
