@@ -582,7 +582,6 @@ plt.axis('off')
 
 ```python
 plt.savefig(path, bbox_inches = 'tight', dpi=300, pad_inches = 0)
-
 ```
 
 # seaborn语法
