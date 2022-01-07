@@ -25,5 +25,13 @@ tags:
 
 具体操作方法是，进入偏好设置的“常规”，在个性化中勾选“Dark mode has a white page color”。 
 
+## 快捷创建公式 
+
+`ctrl` + `=` 
+
+## 公式自动编号， 右对齐
+
+编辑完公示后加 `#()`， 括号里写编号。 
+
 # Reference
 1. [word for Mac，字体颜色变成白色的问题，有解决方法](https://www.163.com/dy/article/GFH9K4670550W29W.html)
