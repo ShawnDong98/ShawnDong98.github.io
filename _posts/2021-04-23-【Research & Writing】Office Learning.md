@@ -23,7 +23,9 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641565352307.png)
 
 
-具体操作方法是，进入偏好设置的“常规”，在个性化中勾选“Dark mode has a white page color”。 
+具体操作方法是，进入偏好设置的“常规”，在个性化中勾选“Dark mode has a white page color”。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641565508484.png)
 
 ## 快捷创建公式 
 
