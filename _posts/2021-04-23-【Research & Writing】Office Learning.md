@@ -16,3 +16,14 @@ tags:
 
 
 # Word
+
+## word for mac 打开后字体为灰色
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641565352307.png)
+
+
+具体操作方法是，进入偏好设置的“常规”，在个性化中勾选“Dark mode has a white page color”。 
+
+# Reference
+1. [word for Mac，字体颜色变成白色的问题，有解决方法](https://www.163.com/dy/article/GFH9K4670550W29W.html)
