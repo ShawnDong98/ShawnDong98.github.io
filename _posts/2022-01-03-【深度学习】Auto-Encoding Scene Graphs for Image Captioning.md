@@ -14,6 +14,18 @@ tags:
 
 # Abstract
 
+提出一种Scene Graph Auto-Encoder 将语言归纳偏置引入 Image Captioning。
+
+语言归纳偏置指， "person on bike" 这种句子， 我们会将 "on" 推理为 "ride"， 并且推理出 “person riding bike on a road”。
+
+使用 Scene Graph 同时表示 image (I) 和 sentence (S) 的复杂结构。
+
+在文本域， 使用 SGAE 学习一个字典 D， 它以 S -> G -> D -> S 的流程重构 sentence, 其中 D 编码我们所需要的语言先验， 即语言归纳偏置。
+
+在 vision-language 域， 我们使用共享的 D 引导 I -> G -> D -> S 流程。 得益于 Scene Graph 表征 和 共享字典， 归纳偏置可以跨域迁移。
+
+
+
 # Conclusion
 
 
