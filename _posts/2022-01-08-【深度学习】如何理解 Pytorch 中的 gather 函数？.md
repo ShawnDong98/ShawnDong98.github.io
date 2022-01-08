@@ -128,9 +128,9 @@ lens = torch.LongTensor([5,6,1,8,3,7,3,4])
 
 现在，只想从每个样本中提取第 `lens` 个 token 的隐藏状态值。
 
-`input` 的形状是 $batch\_size \times max\_seq\_len \times hidden\_state(8 \times 9 \times 6)$。 我们想沿着 $seq_len$ 维度 (1)， 因此， `index` 的形状为 $8 \times 1 \times 6$。
+`input` 的形状是 $batch\_size \times max\_seq\_len \times hidden\_state(8 \times 9 \times 6)$。 我们想沿着 $seq\_len$ 维度 (1)， 因此， `index` 的形状为 $8 \times 1 \times 6$。
 
-因此， 我们只有 8 个值(lens)， 但是我们需要填入 42 个值(8 * 6)。 解决方法是很简单的， 我们仅需要将 `lens ` 重复 6 次：
+因此， 我们只有 8 个值(lens)， 但是我们需要填入 48 个值(8 * 6)。 解决方法是很简单的， 我们仅需要将 `lens ` 重复 6 次：
 
 ```python
 lens = torch.LongTensor([5,6,1,8,3,7,3,4])
