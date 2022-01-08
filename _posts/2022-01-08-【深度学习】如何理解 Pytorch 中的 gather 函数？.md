@@ -200,5 +200,11 @@ indices[0,:]
 > tensor([5, 5, 5, 5, 5, 5])
 ```
 
+它包含6个元素，匹配隐藏状态的数量——这意味着对于第0个样本中的每个隐藏状态，选择`dim` 轴的第5个元素。同样的事情发生在批量中的第2个样本上： tensor 包含 `[1,1,1,1,1,1]` 意味着对于对于6个隐藏状态，我们想要从句子的第一个位置获取值。
+
+为了让它更清晰，我创建了简单的可视化。其它设置相同，除了 `lens = [2, 2, 2, 4, 4, 4, 6, 7]`。你可以清楚地看到 `indices` 的值是如何与 `input` 张量的值相对应的。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641634995871.png)
+
 # Reference
 1. [Understanding indexing with pytorch gather](https://medium.com/analytics-vidhya/understanding-indexing-with-pytorch-gather-33717a84ebc4)
