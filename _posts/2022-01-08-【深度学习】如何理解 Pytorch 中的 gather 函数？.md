@@ -158,6 +158,38 @@ print(indices)
         [4, 4, 4, 4, 4, 4]])
 ```
 
+进一步， 我们在中间插入一个空维度， 使得它变成 $8 \times 1 \times 6$
+
+```python
+indices = indices.unsqueeze(1)
+print(indices.shape)
+
+> torch.Size([8, 1, 6])
+```
+
+然后应用它：
+
+```python
+results = torch.gather(x, 1, indices)
+print(results.shape)
+
+> torch.Size([8, 1, 6])
+```
+
+形状是正确的， 那么值呢？
+
+```python
+tensor([[[ 50., 150., 250., 350., 450., 550.]],
+        [[ 61., 161., 261., 361., 461., 561.]],
+        [[ 12., 112., 212., 312., 412., 512.]],
+        [[ 83., 183., 283., 383., 483., 583.]],
+        [[ 34., 134., 234., 334., 434., 534.]],
+        [[ 75., 175., 275., 375., 475., 575.]],
+        [[ 36., 136., 236., 336., 436., 536.]],
+        [[ 47., 147., 247., 347., 447., 547.]]])
+```
+
+我们看到它包含了来自batch的所有样本，在每个样本中都有所有的特征，我们看到序列元素对应的是5 6 1 8 3 7 3 4。
 
 # Reference
 1. [Understanding indexing with pytorch gather](https://medium.com/analytics-vidhya/understanding-indexing-with-pytorch-gather-33717a84ebc4)
