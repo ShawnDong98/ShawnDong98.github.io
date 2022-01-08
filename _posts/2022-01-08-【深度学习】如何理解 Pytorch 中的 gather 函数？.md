@@ -120,8 +120,43 @@ x[:,4,:]
 
 这样的话我们会得到所有的 batches， 第4个序列元素， 以及所有的隐藏状态。
 
+接下来，我们知道每个序列最后一个元素的索引(这可以是NLP任务句子中最后一个 token 的索引)。
 
-# $8 \times 1 \times 6$
+```python
+lens = torch.LongTensor([5,6,1,8,3,7,3,4])
+```
+
+现在，只想从每个样本中提取第 `lens` 个 token 的隐藏状态值。
+
+`input` 的形状是 $batch\_size \times max\_seq\_len \times hidden\_state(8 \times 9 \times 6)$。 我们想沿着 $seq_len$ 维度 (1)， 因此， `index` 的形状为 $8 \times 1 \times 6$。
+
+因此， 我们只有 8 个值(lens)， 但是我们需要填入 42 个值(8 * 6)。 解决方法是很简单的， 我们仅需要将 `lens ` 重复 6 次：
+
+```python
+lens = torch.LongTensor([5,6,1,8,3,7,3,4])
+# add one trailing dimension
+lens = lens.unsqueeze(-1)
+print(lens.shape)
+
+> torch.Size([8, 1])
+# repeat 6 times
+indices = lens.repeat(1,6)
+
+print(indices.shape)
+
+> torch.Size([8, 6])
+
+print(indices)
+
+> tensor([[5, 5, 5, 5, 5, 5],
+        [6, 6, 6, 6, 6, 6],
+        [1, 1, 1, 1, 1, 1],
+        [8, 8, 8, 8, 8, 8],
+        [3, 3, 3, 3, 3, 3],
+        [7, 7, 7, 7, 7, 7],
+        [3, 3, 3, 3, 3, 3],
+        [4, 4, 4, 4, 4, 4]])
+```
 
 
 # Reference
