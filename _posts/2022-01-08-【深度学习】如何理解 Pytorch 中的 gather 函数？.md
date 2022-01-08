@@ -191,5 +191,14 @@ tensor([[[ 50., 150., 250., 350., 450., 550.]],
 
 我们看到它包含了来自batch的所有样本，在每个样本中都有所有的特征，我们看到序列元素对应的是5 6 1 8 3 7 3 4。
 
+# 发生了什么？
+
+为了理解它的意思，让我们仅分片批量中的一个样本：
+
+```
+indices[0,:]
+> tensor([5, 5, 5, 5, 5, 5])
+```
+
 # Reference
 1. [Understanding indexing with pytorch gather](https://medium.com/analytics-vidhya/understanding-indexing-with-pytorch-gather-33717a84ebc4)
