@@ -27,5 +27,31 @@ Gathers values along an axis specified by dim.
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641628901637.png)
 
+我们可能会想要这么做：
+
+```python
+indices = torch.LongTensor([3,7,4,1])
+x[:, indices]
+```
+
+但是我们会得到:
+
+```python
+tensor([[ 3,  7,  4,  1],
+        [13, 17, 14, 11],
+        [23, 27, 24, 21],
+        [33, 37, 34, 31]])
+```
+
+现在， 我们就需要 `gather` 函数。
+
+`gather` 函数有三个参数：
+
+- input： 输入的 tensor
+- dim： 收集值沿着的维度
+- index： 要从
+
+特别地， `input` 和 `index` 的维度除了在 `dim` 维度外的其他维度需要相同。 例如， `input` 的形状是 $4 \times 10 \times 15$， `dim` 为 0， 那么 `index` 必须是 $N \times 10 \times 15$ 
+
 # Reference
 1. [Understanding indexing with pytorch gather](https://medium.com/analytics-vidhya/understanding-indexing-with-pytorch-gather-33717a84ebc4)
