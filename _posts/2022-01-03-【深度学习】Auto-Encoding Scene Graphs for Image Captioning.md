@@ -50,7 +50,11 @@ tags:
 
 ## Multi-modal Graph Convolutional Network
 
-在主文 5.1 节中， 我们简短讨论了 MGCN， 表6 列出了它的细节。 除了目标、关系和属性外， MGCN 的输入还包括目标和关系的 RoI Features， 如表6 (1) 到 (5)。RoI Feature 从一个预训练的 Faster RCNN 提取， $v_r$ 是覆盖了 "subject" 和 "object" 区域的池化的特征。 表6(6) 到 (8) 中的词嵌入矩阵是 $W_{\Sigma_I} \in \mathbb{R}^{1000 \times 472}$ , 它和GCN 中用到的不一样。 表6(9)到(11)， 使用特征融合操作以融合词嵌入和视觉特征。 
+在主文 5.1 节中， 我们简短讨论了 MGCN， 表6 列出了它的细节。 除了目标、关系和属性外， MGCN 的输入还包括目标和关系的 RoI Features， 如表6 (1) 到 (5)。RoI Feature 从一个预训练的 Faster RCNN 提取， $v_r$ 是覆盖了 "subject" 和 "object" 区域的池化的特征。 
+
+表6(6) 到 (8) 中的词嵌入矩阵是 $W_{\Sigma_I} \in \mathbb{R}^{1000 \times 472}$ , 它和GCN 中用到的不一样。 表6(9)到(11)， 使用特征融合操作以融合词嵌入和视觉特征。 
+
+与主文中的等式 (6) 和 等式(8) 比较， MGCN对计算关系、属性和目标嵌入有以下更改： 词嵌入 $e$ 替换为 融合嵌入 $u$； $g$ 由 $f$ 替代， 这是一个一层的全连接层接着一个 ReLU。 
 
 
 # Details
