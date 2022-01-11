@@ -29,6 +29,11 @@ tags:
 # Conclusion
 
 
+为Image Captioning 模型引入一种语言归纳偏置。
+
+提出一种 Scene Graph Auto-Encoder(SGAE) 无监督学习方法， 其将归纳偏置编码为一个字典。
+
+
 # Details
 
 ## Scene Graph 所对应的含义
