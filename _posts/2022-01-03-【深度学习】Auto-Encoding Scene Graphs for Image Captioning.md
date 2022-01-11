@@ -76,11 +76,13 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641892699182.png)
 
-# Dictionary
+## Dictionary
 
 4.3节中的重编码器用于从索引向量 $x$ 和 一个字典 $D$ 中重编码一个新的表征 $\hat x$， 如表7所示的操作。分别如表 7(2) 和 (3)所示， 给定一个索引向量 $x$， 我们首先对x 和 $D$ 之间的每个元作素内积，然后使用 softmax 规范化计算的结果。 最后， 重编码的 $\hat x$ 对 $D$ 中的每个原子加权求和， $\sum_{k=1^K} \alpha_k d_k$， $K$ 的大小为 10000.
 
+## Decoders
 
+我们使用语言解码器设置主文中的等式(4) 和 等式 (5)的两个解码器 。 两个解码器都有相同的结构， 如表8所示， 除了输入的embedding不一样。
 
 
 # Details
