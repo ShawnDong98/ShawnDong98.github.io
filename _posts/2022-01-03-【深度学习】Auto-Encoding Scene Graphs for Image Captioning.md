@@ -40,7 +40,13 @@ tags:
 
 ## Graph Convolutional Network
 
-在主文4.2节中， 给定一个sentence scene graph， 我们展示了如何使用GCN计算三个 embeddings， 这个GCN的操作列成了表5。 在表5的 (1) 和 (3) 中， 目标标签 $l_o$， 关系标签 $l_r$， 以及属性标签 $l_a$ 都是 one-hot 向量。词向量矩阵 $W_{\Sigma_S } \in \mathbb{R}^{1000 \times 10102}$ 用于将这些 one-hot 向量映射为在表5(4) 到 (6) 的连续的向量空间。$W_{\Sigma_S}$ 的第二个维度是在所有sentence scene graph中的目标、关系和属性种类的总数。对于 表5(7) 到 (9) 中的 $g_r$, $g_a$, $g_o$ 和 $g_s$， 他们都是有着相同结构的独立参数： 一个全连接层后接一个 ReLU。 标记 $g_r$($D_{in} \rightarrow D_{out}$) 表示输入维度是 $D_{in}$， 输出维度是 $D_{out}$。
+在主文4.2节中， 给定一个sentence scene graph， 我们展示了如何使用GCN计算三个 embeddings， 这个GCN的操作列成了表5。
+
+在表5的 (1) 和 (3) 中， 目标标签 $l_o$， 关系标签 $l_r$， 以及属性标签 $l_a$ 都是 one-hot 向量。词向量矩阵 $W_{\Sigma_S } \in \mathbb{R}^{1000 \times 10102}$ 用于将这些 one-hot 向量映射为在表5(4) 到 (6) 的连续的向量空间。$W_{\Sigma_S}$ 的第二个维度是在所有sentence scene graph中的目标、关系和属性种类的总数。
+
+对于 表5(7) 到 (9) 中的 $g_r$, $g_a$, $g_o$ 和 $g_s$， 他们都是有着相同结构的独立参数： 一个全连接层后接一个 ReLU。 标记 $g_r$($D_{in} \rightarrow D_{out}$) 表示输入维度是 $D_{in}$， 输出维度是 $D_{out}$。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641890112333.png)
 
 
 
