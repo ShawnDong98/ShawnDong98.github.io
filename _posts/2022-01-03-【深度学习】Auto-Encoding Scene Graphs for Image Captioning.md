@@ -54,7 +54,31 @@ tags:
 
 表6(6) 到 (8) 中的词嵌入矩阵是 $W_{\Sigma_I} \in \mathbb{R}^{1000 \times 472}$ , 它和GCN 中用到的不一样。 表6(9)到(11)， 使用特征融合操作以融合词嵌入和视觉特征。 
 
-与主文中的等式 (6) 和 等式(8) 比较， MGCN对计算关系、属性和目标嵌入有以下更改： 词嵌入 $e$ 替换为 融合嵌入 $u$； $g$ 由 $f$ 替代， 这是一个一层的全连接层接着一个 ReLU。 
+与主文中的等式 (6) 和 等式(8) 比较， MGCN对计算关系、属性和目标嵌入有以下更改： 词嵌入 $e$ 替换为 融合嵌入 $u$； $g$ 由 $f$ 替代， 这是一个一层的全连接层接着一个 ReLU。 有了这些修改， 我们将MGCN三个嵌入的计算公式化为：
+
+**Relationship Embedding** $v'_{r_{ij}}$：
+
+$$
+v'_{r_{ij}} = f_r(u_{o_i}, u_{r_{ij}}, u_{o_j})
+$$
+
+**Attribute Embedding** $v_{a_i}'$：
+
+$$
+v_{a_i}' = \frac{1}{Na_{i}}\sum_{i=1}^{Na_{i}}f_a(u_{o_i}, u_{a_{i, l}})
+$$
+
+**Object Embedding** $v_{o_i}'$：
+
+$$
+v_{o_i}' = \frac{1}{Nr_i}[\sum_{o_j \in sbj(o_i)} f_s (u_{o_i}, u_{o_j}, u_{r_{ij}}) + \sum_{o_k \in obj(o_i)}f_o(u_{o_k}{, u_{o_i}, u_{r_{k_i}}})]
+$$
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1641892699182.png)
+
+# Dictionary
+
+4.3节中的重编码器用于从索引向量 $x$ 和 一个字典 $D$ 中重编码一个新的表征 $\hat x$， 如表7所示的操作。
 
 
 # Details
