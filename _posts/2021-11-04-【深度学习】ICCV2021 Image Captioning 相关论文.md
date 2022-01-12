@@ -37,6 +37,6 @@ Image captioning 是一项重要的任务，可以进行视觉推理和帮助视
 
 # In Defense of Scene Graphs for Image Captioning
 
-主流的  image captioning 模型依赖卷积神经网络(CNN)图像特征，通过循环模型生成 captions。最近，image scene graphs 利用其结构语义被用来增强 captioning 模型，以，如对象实体、关系和属性。一些研究已经注意到，使用 black-box scene graph 生成器的 scene graphs 会损害 image captioning 的性能，并且基于 scene graph 的 captioning 模型需要承担显式使用图像特征来生成合适的 captions 的开销。为了应对这些挑战，提出了SG2Caps框架，该框架仅利用 scene graph 标签来实现具有竞争力的image captioning 性能。其基本思想是消除两个 scene graphs 之间的语义差异 —— 一个来自输入图像，另一个来自描述。为了实现这一点，我们利用  spatial location of objects 和 Human-Object-Interaction (HOI) 标签作为附加的 HOI graph。SG2Caps比现有的仅 scene graph 字幕模型的表现要好很多，这表明 scene graphs 是一种很有前景的 image captioning 表示。直接使用 scene graph 标签避免了对高维CNN特征进行卷积运算，从而减少了49%的可训练参数。
+主流的  image captioning 模型依赖卷积神经网络(CNN)图像特征，通过循环模型生成 captions。最近，image scene graphs 利用其结构语义被用来增强 captioning 模型，以，如对象实体、关系和属性。几个研究指出简单将Scene Gragh 当做黑盒使用会损害 image captioning 的性能， 基于scene graph 的 captioning 模型会过于挖掘图像特征导致难以生成得体的句子。。为了应对这些挑战，提出了SG2Caps框架，该框架仅利用 scene graph 标签来实现具有竞争力的image captioning 性能。其基本思想是消除两个 scene graphs 之间的语义差异 —— 一个来自输入图像，另一个来自描述。为了实现这一点，我们利用  spatial location of objects 和 Human-Object-Interaction (HOI) 标签作为附加的 HOI graph。SG2Caps比现有的仅 scene graph 字幕模型的表现要好很多，这表明 scene graphs 是一种很有前景的 image captioning 表示。直接使用 scene graph 标签避免了对高维CNN特征进行卷积运算，从而减少了49%的可训练参数。
 
 对象、属性和关系的显式编码是  image captioning 的有用信息。然而，盲目地使用 visual scene graphs 进行 captioning 无法产生合理的句子。提出的 SG2Caps pipeline 使网络能够进行预训练 (1)在其他 scene graph 数据集上的SGDet，(2) 在 HOI 数据集上的语义角色，从而大大减少在COCO标题数据集上的精度差距，这表明 仅在低维对象和关系标签空间中就可以实现强大的 captioning  模型。
