@@ -102,7 +102,74 @@ VSG Generator 包括两个部分。
 - 从 $o_i$ 到 边界框 $b_i$ 有一条有向边
 - 如果存在三元关系 $<o_i - r_{ij} - o_j>$， 构造从 $o_i$ 到 $r_{ij}$ 和 从 $r_{ij}$ 到 $o_j$ 的两条有向边。
 
+接下来， 我们将原始的节点 embedding $e_o$, $e_a$, $e_b$, $e_r$ 转换为一个新的上下文无关的 embeddings 集合 $\mathcal{X} = {x_{r_{ij}}, x_{o_i}, x_{a_i}, x_{b_i}}$。
 
+我们使用五个空间图卷积函数 $g_r$, $g_a$, $g_b$, $g_s$, 和 $g_o$来生成上述embeddings。 它们是有独立参数的相同结构： 全连接层接着一个 ReLU激活函数。
+
+**Relationship embedding $x_{r_{ij}}$**： 给定 $\mathcal{G}$ 的三元组关系 $<o_i - r_{ij} - o_j>$， $x_{r_{ij}}$ 一起定义为 subject $o_i$, object $o_j$ 和 predicate ($r_{ij}$) 如下： 
+
+$$
+x_{r_{ij}} = g_r(e_{i_i}, e_{r_{ij}}, e_{o_j})
+$$
+
+**Attribute embedding $x_{a_i}$**： 对于 $\mathcal{G}$ 中的一个目标节点 $o_i$ 和 它的属性 $a_{i, 1:N_{a_i}}$， embedding $x_{a_i}$ 由：
+
+$$
+x_{a_i} = \frac{1}{N_{a_{i}}} \sum_{l=1}^{N_{a_i}}g_a(e_{o_i}, e_{a_{i, j}})
+$$
+ 
+ 其中 $N_{a_i}$ 是对 $o_i$ 的属性数量。
+ 
+ **Bounding box embedding $x_{b_i}$**： 给定 $o_i$ 和 它的边界框 $b_i$， $x_{b_i}$ 被定义为：
+ 
+ $$
+ x_{b_i} = g_b(e_{o_i, e_{b_i}})
+ $$
+ 
+ **Object embedding $x_{o_i}$**： 一个节点 $o_i$ 基于边的方向扮演不同的角色， 例如 $o_i$ 在三元组中可以作为 subject 或者 object。 object embeddings 将整个三元组考虑在内：
+ 
+ $$
+ x_{o_i} = \frac{1}{N_{r_i}[\sum_{o_j \in sbj(o_j)}(e_{o_i}, e_{o_j}, e_{r_{ij}}) + \sum_{o_k \in obj(o_i)} g_o(e_{o_k}, e_{o_i}, e_{r_{ki}})] 
+ $$
+ 
+ 其中 $N_{r_{i}} = \mid sbj(i) \mid + \mid obj(i) \mid$  是所有包含 $o_i$ 的三元组关系的数量。 
+ 
+ 注意模型和 SGAE 不同的地方在于 我们为 $x_{b_i}$ 学习参数 并且 融合不同输出 embeddings。 我们在节点级用求和操作组合 $x_{o_i}$， $x_{b_i}$, $x_{a_i}$ 来形成 $\mathcal{X}$， 再将其送入注意力 LSTM， 而SGAE是简单地拼接。
+ 
+ **Fusing visual features** 我们用视觉特征以一种简单的策略增强 scene graph 特征。在输出 graph embedding 添加一个 summary projection。求和节点使用 图像级 P6 特征的全局池化， 后面跟着一个投影层将 256 维summary 节点投影为 128 维向量， 后面接一个 ReLU 非线性激活。投影 summary 节点维度和 GCN embedding 大小相匹配。 因此它与上述的 $\mathcal{X}$ 向量相拼接。上述融合策略与其他论文不同， 其他论文将融合特征在单独节点层级融合。
+ 
+ 
+## Languge Model
+
+给定一幅图像 $I$ 的 VSG $\mathcal{G}$， 我们想要生成一个句子 $w_{1:T} = w_1, w_2, .., w_T$ 描述图像。对于 SG2Caps， 使用两层的 encoder-decoder LSTM 结构用于此部分。  LSTM 采用 VSG 编码的 $\mathcal{X}$ 作为输入。 
+
+LSTM  的操作可以表示为: $h_t = LSTM(x_t, h_{t-1})$， 其中 $x_t$ 是 LSTM 输入向量 并且 $h_t$ 是LSTM 输出向量。 令 LSTM 的注意力层和解码器层的状态为 $h_t^1$ 和 $h_t^2$。 在每个时间步 $t$， 注意力LSTM捕获上下文信息 $x_t^1$ 通过拼接之前的解码器 LSTM 的隐藏状态， 平均池化 VSG 特征 ($\bar f = \frac{1}{k} \sum_i f_i$) 和 之前生成的词表征： 
+
+$$
+x_t^1 = concat(h_{(t-1)}^2, \bar f_t, W_e u_t)
+$$
+
+其中 $W_e$ 是词典 $\sum$ 的词嵌入矩阵 并且 $u_t$ 是它在时间步 $t$ 的独热编码。
+
+对于 VSG 特征在时间步 $t$ 生成规范化权重 $\alpha_t$：
+
+$$
+a_{i, t} = w_a^T \tanh (W_{fa}f_i + W_{ha}h_t^1) \\
+\alpha_{i, t} = \text{softmax}(a_{i, t})
+$$
+
+其中 $w_a^T \in \mathbb{R}^H$, $W_{fa} \in \mathbb{R}^{H \times D_f}$， $W_{ha} \in \mathbb{R}^{H \times H}$ 是可学习的权重。 attended VSG 特征 $\hat f_t$ 输入 解码器 LSTM 是一个输入特征 $f_i$ 的一个凸组合：
+
+$$
+\hat f_t = \sum_{i=1}^{N_f} \alpha_{i, t} f_i
+$$
+ 
+ $\mathcal{X}$ 使得对 scene graph 的每个目标级别的节点学习注意力系数。
+ 
+ 解码器 LSTM 的输入由从注意力 LSTM 层的之前的隐藏状态、注意力加权的 VSG 特征： $x_t^2 = [h_t^1, \hat f_t]$ 自称。 对于一个词序列 $w_1, w_2, ..., w_T$， 表示为 $w_{1:T}$， 在时间步 $t$ 对可能的输出的条件概率分布为 $p(w_t \mid w_{1:t-1}) = \text{softmax}(W_ph_t^2 + b_p)$。 完整输出序列的分布计算为条件概率的乘积。
+ 
+ 
+  
 # Conclusion
 
 发掘目标、属性和关系的编码对 image captioning 来说是有用的信息。 然而， 盲目地使用 visual scene graph 生成 句子难以生成合理的句子描述。 
