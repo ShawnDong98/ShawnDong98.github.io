@@ -23,6 +23,40 @@ tags:
 
 直接利用 scene graph 标签避免了在高维CNN特征上卷积的代价， 减少了49%的可训练参数。
 
+# Introduction
+
+主流的 image captioning 模型依赖于图像卷积特征 以及对显著区域的注意力 以及 目标 通过循环模型生成 captions。
+
+几乎没有工作报告使用 scene graph 提升生成 caption 的性能， 同时有几个工作强调仅仅使用 scene graph 会产生较差的 captioning 结果 并且会损害 captioning 的性能。
+
+包含节点和边的 Scene Graph 表征可以通过两种方式获得： 1) Visual Scene Graph(VSG) 2) 基于规则的语义解析得从句子中得到 Textual Scene Graph(TSG)。 Scene graph 生成以及用于 image captioning 的文献主要指 VSG 表征
+
+为了利用 scene graph 生成描述， 我们需要 VSG-Caption 标注对。
+
+现在的方法在 Visual Genome 数据集上训练 VSG 生成器， 在 COCO-captions 数据集上训练 TSG 来生成 caption， 最后将在VG上训练的 VSGs 转换为 captions 一边随后使用。
+
+这种方法有两个问题：
+
+- VG 上训练的 VSGs 特定关系特别多(has, on等)， 关系的分布是一个长尾分布， 即便是最好性能的 VSG 生成器也不能准确地学习到有意义的关系。 这导致 VSGs 中的噪声， 进而导致损害 captions 的性能。 
+- 现有的方法存在一种假设， 即 TSGs 和 VSGs 是分庭抗礼的。 然而，当以 VSG 作为输入的时候， 能够生成很好性能的描述。语言偏置并不能从 TSG 迁移到 VSG 上。
+
+为了解决上述问题， 我们提出几种新的方法来提升 VSGs 的captioning 的上下文：
+
+- Human-Object Interaction(HOI) information：人类倾向于通过关注人与物的交互来描述涉及到人类的视觉场景，而忽略其他细节。从一幅图像中提取HOI信息，可以提供一种有效的方法来突出其VSG中的显著部分，从而使其更接近其对应的TSG。因此，我们提出利用预先训练的HOI推断作为部分VSGs，其中场景中所有检测到的对象(不限于人类)构成图节点，HOI信息以适当的关系和属性扩充少数相关节点。
+- VSG grounding：VSG的每个节点与图像中的目标边界框具有一对一的关联。这种空间信息可以用来捕捉物体之间的关系。在生成场景图的文献中，边界框极大地提高了对象间关系分类性能[18,17]。
+
+相比于现有的工作， 我们没有使用任何图像或者 目标级的视觉特征； 然而，通过利用HOI信息和VSG grounding，我们实现了具有竞争力的描述生成性能。
+
+研究人员已经表明，由于固有的数据集偏差和无法获得高质量的人工标注，图像描述生成算法的结果不太准确。
+
+SG2Caps模型利用了来自 image captioning 数据集之外的其他来源的额外标注，从而减少了NLP偏差。
+
+我们的贡献总结如下：
+
+- 我们表明，在 coco-caption 数据集上，仅使用VSG就可以实现有竞争力的标题性能，而不需要任何视觉特征。
+- 实验结果表明，VSG和TSG在描述生成过程中并不能分庭抗礼，因此提出了改进 VSG 到 captioning 的可学习的转换。
+- SG2Caps 利用 VSG 的空间位置 和 HOI 信息从 VSGs 生成更好的描述。节点位置有助于识别对象之间有意义的关系(结果在CIDEr得分中增加5分)。HOI抓住了自然语言交流的本质(在CIDEr得分中获得7分)。因此，它们有助于缩小TSG和VSG之间的语义差距，从而实现image captioning。
+- 为 SG2Caps 添加一种轻量化的如何视觉特征的策略。低维的全局视觉特征可以作为VSG 的一个节点， 进一步提升仅用 scene graph 模型的性能。
 
 # Conclusion
 
