@@ -96,7 +96,11 @@ VSG Generator 包括两个部分。
 
 ## VSG encoder
 
-我们使用伪标签和HOI graph的并集作为图像的VSG。一个VSG 是一个元组： $\mathcal{G} = (\mathcal{N}, \varepsilon)$, 其中 $\mathcal{N}$ 和 $\varepsilon$ 是节点和边的集合。 
+我们使用伪标签和HOI graph的并集作为图像的VSG。一个VSG 是一个元组： $\mathcal{G} = (\mathcal{N}, \varepsilon)$, 其中 $\mathcal{N}$ 和 $\varepsilon$ 是节点和边的集合。 $\mathcal{N}$ 中有四种节点： 目标节点 $o$， 属性节点 $a$， 边界框节点 $b$ 以及 关系节点 $r$。 $N$ 中的每个节点被表示为一个 d 维向量。 $\varepsilon$ 的边定义如下：
+
+- 如果目标 $o_i$ 有一个属性 $a_{i, l}$， 那么有一条有向边 $o_i$ 到 $a_{i, l}$
+- 从 $o_i$ 到 边界框 $b_i$ 有一条有向边
+- 如果存在三元关系 $<o_i - r_{ij} - o_j>$， 构造从 $o_i$ 到 $r_{ij}$ 和 从 $r_{ij}$ 到 $o_j$ 的两条有向边。
 
 
 # Conclusion
