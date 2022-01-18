@@ -623,3 +623,757 @@ yt.backward()
 
 这里的“backward”是指反向传播，这是计算每层导数过程的名称。当我们从头开始计算深层神经网的梯度时。这被称为网络的“反向传播”，而不是计算激活的“前向传播”。如果 `backward` 只是被称为 `calculate_grad`的话，可能会更加容易理解，但深度学习的人真的喜欢尽可能地添加行话！
 
+我们现在可以通过检查张量的梯度属性来查看梯度：
+
+```python
+xt.grad
+
+tensor(6.)
+```
+
+如果您还记得高中的微积分规则，`x**2` 的导数是 `2*x` ，我们有 x=3，所以梯度应该是 `2*3=6` ，这就是PyTorch为我们计算的！
+
+现在，我们将重复前面的步骤，但我们的函数有一个向量参数：
+
+```python
+xt = tensor([3.,4.,10.]).requires_grad_()
+xt
+
+tensor([ 3.,  4., 10.], requires_grad=True)
+```
+
+我们将向函数添加 `sum，以便它能够接受向量（即秩-1张量），并返回标量（即秩-0张量）：
+
+```python
+def f(x): return (x**2).sum()
+
+yt = f(xt)
+yt
+
+tensor(125., grad_fn=<SumBackward0>)
+```
+
+正如我们所期望的那样，我们的梯度是 `2*xt` ！
+
+```python
+yt.backward()
+xt.grad
+
+tensor([ 6.,  8., 20.])
+```
+
+
+梯度只告诉我们函数的斜率，它们实际上并没有确切地告诉我们调整参数的程度。但它让我们知道了多远；如果斜率很大，那么这可能意味着我们有更多的调整要做，而如果斜率很小，这可能意味着我们接近了最佳值。
+
+
+# Stepping With a Learning Rate
+
+根据梯度的值决定如何更改参数是深度学习过程的重要组成部分。几乎所有方法都从梯度乘以一些小数字的基本思想开始，称为学习率（LR）。学习率通常在0.001到0.1之间，尽管它可以是任何东西。通常，人们只需尝试一些，并在训练后找到最佳模型来选择学习率（我们将在本书后面向您展示一种更好的方法，称为学习率查找器）。选择学习率后，您可以使用以下简单函数调整参数：
+
+$$
+w -= \text{gradient}(w) * lr
+$$
+
+如果你选择的学习率太低，这可能意味着必须做很多步骤。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642446730476.png)
+
+但选择过高的学习率甚至更糟——这实际上可能导致损失恶化:
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642446762639.png)
+
+如果学习率太高，它也可能“反弹”，而不是发散；展示了这是如何采取许多步骤成功训练的结果。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642446791779.png)
+
+现在，让我们在端到端示例中应用所有这些。
+
+# An End-to-End SGD Example
+
+我们已经看到了如何使用梯度来找到最小值。现在是时候看看SGD示例了，看看如何利用找到最小值来训练模型以更好地适应数据了。
+
+让我们从一个简单、合成的示例模型开始。想象一下，当你过山车越过驼峰顶时，你正在测量过山车的速度。它会快速启动，然后在上山时变慢；在顶部会最慢，然后下坡时会再次加速。你想建立一个速度随时间变化的模型。如果您每秒手动测量速度，持续20秒，它可能如下所示：
+
+```python
+time = torch.arange(0,20).float(); time
+
+tensor([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10., 11., 12., 13., 14., 15., 16., 17., 18., 19.])
+```
+
+```python
+speed = torch.randn(20)*3 + 0.75*(time-9.5)**2 + 1
+plt.scatter(time,speed);
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642446896796.png)
+
+我们添加了一点随机噪音，因为手动测量东西并不精确。这意味着回答以下问题并不容易：训练的速度是多少？使用SGD，我们可以尝试找到一个与我们观察结果匹配的函数。我们不能考虑每个可能的函数，所以让我们猜测它是二次函数；即形式 `a*(time**2)+(b*time)+c` 的函数。
+
+我们希望明确区分函数的输入及其参数。因此，让我们在一个参数中收集参数，从而分离函数签名中的输入、`t` 和参数 `params`：
+
+```python
+def f(t, params):
+    a,b,c = params
+    return a*(t**2) + (b*t) + c
+```
+
+换句话说，我们已将找到最适合数据的最佳可想象的函数的问题限制在找到最佳二次函数上。这大大简化了问题，因为每个二次函数都完全由三个参数a、b和c定义。因此，要找到最佳二次函数，我们只需要为a、b和c找到最佳值。
+
+如果我们可以为二次函数的三个参数解决这个问题，我们将能够对参数更多的其他更复杂的函数（例如神经网络）应用相同的方法。让我们先找到 `f` 的参数，然后回来用神经网络为MNIST数据集做同样的事情。
+
+我们需要首先定义我们所说的“最佳”是什么意思。我们通过选择损失函数来精确地定义这一点，该函数将返回基于预测和目标的值，其中函数的较低值对应于“更好的”预测。对于连续数据，通常使用平均平方误差：
+
+```python
+def mse(preds, targets): return ((preds-targets)**2).mean().sqrt()
+```
+
+现在，让我们完成我们的7步流程。
+
+## Step 1: Initialize the parameters
+
+首先，我们将参数初始化为随机值，并告诉PyTorch，我们希望使用 `require_grad_` 跟踪它们的梯度：
+
+```python
+params = torch.randn(3).requires_grad_()
+```
+
+```python
+#hide
+orig_params = params.clone()
+```
+
+## Step 2: Calculate the predictions
+
+接下来，我们计算预测：
+
+```python
+preds = f(time, params)
+```
+
+让我们创建一个小函数，看看我们的预测离目标有多近，并看看：
+
+```python
+def show_preds(preds, ax=None):
+    if ax is None: ax=plt.subplots()[1]
+    ax.scatter(time, speed)
+    ax.scatter(time, to_np(preds), color='red')
+    ax.set_ylim(-300,100)
+```
+
+```python
+show_preds(preds)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642447393451.png)
+
+这看起来不是很接近——我们的随机参数表明过山车最终会倒退，因为我们的速度是负的！
+
+## Step 3: Calculate the loss
+
+我们按以下方式计算损失：
+
+```python
+loss = mse(preds, speed)
+loss
+
+tensor(25823.8086, grad_fn=<MeanBackward0>)
+```
+
+我们现在的目标是改善它。要做到这一点，我们需要知道梯度。
+
+## Calculate the gradients
+
+下一步是计算梯度。换句话说，计算参数需要如何更改的近似值：
+
+```python
+loss.backward()
+params.grad
+
+tensor([-53195.8594,  -3419.7146,   -253.8908])
+```
+
+```python
+params.grad * 1e-5
+
+tensor([-0.5320, -0.0342, -0.0025])
+```
+
+我们可以使用这些梯度来改进我们的参数。我们需要选择一个学习率（我们将在下一章中讨论在实践中如何做到这一点；目前我们只使用1e-5或0.00001）：
+
+```python
+params
+
+tensor([-0.7658, -0.7506,  1.3525], requires_grad=True)
+```
+
+## Step 5: Step the weights.
+
+现在我们需要根据我们刚刚计算的梯度更新参数：
+
+```python
+lr = 1e-5
+params.data -= lr * params.grad.data
+params.grad = None
+```
+
+> a：理解这一点取决于对近代历史的记忆。为了计算梯度，我们回调损失。但这种损失本身是由mse计算的，mse反过来将preds作为输入，并使用f作为输入参数计算，这是我们最初调用require_grads_的对象——这是现在允许我们对损失向后调用的原始调用。这个函数链调用代表了函数的数学组成，这使得PyTorch能够在引擎下使用微积分的链规则来计算这些梯度。
+
+让我们看看损失是否有所改善：
+
+```python
+preds = f(time,params)
+mse(preds, speed)
+
+tensor(5435.5366, grad_fn=<MeanBackward0>)
+```
+
+我们绘图来看一下：
+
+```python
+show_preds(preds)
+```
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642447746524.png)
+
+
+我们需要重复几次，所以我们将创建一个函数来应用 step：
+
+```python
+def apply_step(params, prn=True):
+    preds = f(time, params)
+    loss = mse(preds, speed)
+    loss.backward()
+    params.data -= lr * params.grad.data
+    params.grad = None
+    if prn: print(loss.item())
+    return preds
+```
+
+## Step 6: Repeat the process
+
+现在我们迭代。通过循环和执行许多改进，我们希望取得良好结果：
+
+```python
+for i in range(10): apply_step(params)
+
+5435.53662109375
+1577.4495849609375
+847.3780517578125
+709.22265625
+683.0757446289062
+678.12451171875
+677.1839599609375
+677.0025024414062
+676.96435546875
+676.9537353515625
+```
+
+```python
+#hide
+params = orig_params.detach().requires_grad_()
+```
+
+正如我们所希望的那样，损失正在下降！但只看这些损失数字就掩盖了一个事实，即在寻找最佳二次函数的路上，每个迭代代表着一个完全不同的二次函数。如果我们没有打印丢失函数，而是在每个步骤上绘制该函数，我们可以看到这个过程。然后，我们可以看到形状如何接近我们数据的最佳二次函数：
+
+```python
+_,axs = plt.subplots(1,4,figsize=(12,3))
+for ax in axs: show_preds(apply_step(params, False), ax)
+plt.tight_layout()
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642447921362.png)
+
+## Step 7: stop
+
+我们只是决定在10个 epoch 之后地停下来。在实践中，正如我们所讨论的那样，我们将关注训练和验证损失以及我们的指标，以决定何时停止。
+
+
+# Summarizing Gradient Descent
+
+总之，在开头，我们的模型的权重可以是随机的（从头开始训练），也可以来自预训练的模型（迁移学习）。在第一种情况下，我们将从输入中获得的输出与我们想要的东西无关，即使在第二种情况下，预训练模型也很有可能不擅长我们所针对的具体任务。因此，模型需要学习更好的权重。
+
+我们首先使用损失函数将模型给我们的输出与我们的目标进行比较（我们已经标记了数据，所以我们知道模型应该给出什么结果），该函数返回一个我们希望通过提高权重来尽可能低的数字。为此，我们从训练集中提取一些数据项（如图像），并将其输入我们的模型。我们使用损失函数比较相应的目标，我们得到的分数告诉我们我们的预测有多错误。然后我们稍微改变一下权重，让它稍微好一点。
+
+为了找到如何改变权重以使损失变得更好，我们使用微积分来计算梯度。（事实上，我们让PyTorch为我们做这件事！）让我们考虑一个类比。想象一下，你的车停在最低点，迷失在山里。要找到回到它的道路，你可能会随机地徘徊，但这可能没有多大帮助。既然你知道你的车处于最低点，你最好下坡。通过总是朝着最陡峭的下坡方向迈出一步，你最终应该到达目的地。我们使用梯度的大小（即斜坡的陡度）来告诉我们要迈出的一步有多大；具体来说，我们将梯度乘以我们选择的称为学习率的数字来决定步长。然后我们迭代，直到到达最低点，也就是我们的停车场，然后我们可以停下来。
+
+除了损失函数外，我们刚刚看到的所有信息都可以直接传输到MNIST数据集中。现在让我们看看如何定义一个好的训练目标。
+
+# The MNIST Loss Function
+
+我们已经有了独立的变量x——这些是图像本身。我们将把它们全部连接成一个张量，并将它们从矩阵列表（秩-3张量）更改为矢量列表（秩-2张量）。我们可以使用 `view` 来做到这一点， `view` 是一种PyTorch方法，可以在不更改张量内容的情况下更改张量的形状。-1是一个特殊的参数来查看，这意味着“使这个轴尽可能大，以适应所有数据”：
+
+```python
+train_x = torch.cat([stacked_threes, stacked_sevens]).view(-1, 28*28)
+```
+
+我们需要每个图像的标签。我们将使用1用于3，0用于7：
+
+
+```python
+train_y = tensor([1]*len(threes) + [0]*len(sevens)).unsqueeze(1)
+train_x.shape,train_y.shape
+
+(torch.Size([12396, 784]), torch.Size([12396, 1]))
+```
+
+PyTorch中的 `Dataset` 在索引时需要返回元组 `(x，y)` 。Python提供了一个 `zip` 函数，当与 `list` 相结合时，该函数提供了获取此功能的简单方法：
+
+```python
+dset = list(zip(train_x,train_y))
+x,y = dset[0]
+x.shape,y
+
+(torch.Size([784]), tensor([1]))
+```
+
+```python
+valid_x = torch.cat([valid_3_tens, valid_7_tens]).view(-1, 28*28)
+valid_y = tensor([1]*len(valid_3_tens) + [0]*len(valid_7_tens)).unsqueeze(1)
+valid_dset = list(zip(valid_x,valid_y))
+```
+
+现在我们需要每个像素的（最初是随机的）权重（这是我们七步过程中的初始化步骤）：
+
+```python
+def init_params(size, std=1.0): return (torch.randn(size)*std).requires_grad_()
+```
+
+```python
+weights = init_params((28*28,1))
+```
+
+函数 `weights*pixels` 不够灵活——当像素等于0时，它总是等于0（即它的拦截是0）。你可能从高中数学中记得，一行的公式是 `y=w*x+b` ；我们仍然需要 `b`。我们也会将其初始化为随机数字：
+
+```python
+bias = init_params(1)
+```
+
+在神经网络中，方程 `y=w*x+b` 中的w称为权重，b称为偏置。权重和偏差共同构成了参数。
+
+> 行话：参数：模型的权重和偏差。权重是 `w*x+b` 方程中的w，偏差是该方程中的b。
+
+我们现在可以计算一个图像的预测：
+
+```python
+(train_x[0]*weights.T).sum() + bias
+
+tensor([20.2336], grad_fn=<AddBackward0>)
+```
+
+虽然我们可以使用Python for loop来计算每个图像的预测，但这会非常缓慢。由于Python循环不会在GPU上运行，并且Python通常是循环的慢语言，因此我们需要使用更高级别的函数在模型中尽可能多地表示计算。
+
+
+在这种情况下，有一个非常方便的数学运算，可以计算矩阵的每一行 `w*x` ——它被称为矩阵乘法。下图显示了矩阵乘法的样子。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642448618262.png)
+
+在Python中，矩阵乘法用@运算符表示。让我们试试：
+
+```python
+def linear1(xb): return xb@weights + bias
+preds = linear1(train_x)
+preds
+
+tensor([[20.2336],
+        [17.0644],
+        [15.2384],
+        ...,
+        [18.3804],
+        [23.8567],
+        [28.6816]], grad_fn=<AddBackward0>)
+```
+
+正如我们预期的那样，第一个元素与我们之前计算的相同。这个方程，b batch@weights + bias，是任何神经网络的两个基本方程之一（另一个是激活函数，我们稍后会看到）。
+
+让我们检查一下我们的准确性。要决定输出是代表3还是7，我们只需检查它是否大于0.5，这样我们就可以计算每个项目的准确性（使用广播，所以没有循环！）：
+
+```python
+corrects = (preds>0.5).float() == train_y
+corrects
+
+tensor([[ True],
+        [ True],
+        [ True],
+        ...,
+        [False],
+        [False],
+        [False]])
+```
+
+```python
+corrects.float().mean().item()
+
+0.4912068545818329
+```
+
+
+现在让我们看看其中一个权重的一个小变化的准确性变化是什么：
+
+```python
+weights[0] *= 1.0001
+```
+
+```python
+preds = linear1(train_x)
+((preds>0.0).float() == train_y).float().mean().item()
+
+0.4912068545818329
+```
+
+正如我们所看到的，我们需要梯度来改进使用SGD的模型，为了计算梯度，我们需要一些表示模型有多好的损失函数。这是因为梯度是衡量损失函数如何随着权重的小调整而变化的尺度。
+
+因此，我们需要选择一个损失函数。显而易见的方法是使用准确性（这是我们的指标）作为我们的损失函数。在这种情况下，我们将计算每张图像的预测，收集这些值以计算总体准确性，然后计算每个权重相对于该整体准确性的梯度。
+
+
+不幸的是，我们这里有一个重大的技术问题。函数的梯度是它的斜率或陡度，可以定义为运行后的上升——即函数的值上升或下降程度除以我们更改输入的程度。我们可以用数学写成：`（y_new - y_old）/（x_new - x_old）`。当 `x_new` 与 `x_old` 非常相似时，这给了我们一个很好的梯度近似值，这意味着它们的差异很小。但只有当预测从3更改为7时，准确性才会发生变化，反之亦然。问题在于，权重从`x_old `到 `x_new` 的微小变化不太可能导致任何预测发生变化，因此`（y_new - y_old）` 几乎总是0。换句话说，梯度几乎到处都是0。
+
+权重值的很小变化通常实际上根本不会改变准确性。这意味着使用准确性作为损失函数是没有用的——如果我们这样做了，大多数时候我们的梯度实际上将是0，模型将无法从这个数字中学习。
+
+> S：从数学角度来看，准确性是一个几乎在所有地方都是恒定函数（阈值0.5除外），因此其导数几乎在所有地方都是零（阈值是无限）。然后，这给出了0或无限的梯度，这对更新模型毫无用处。
+
+相反，我们需要一个损失函数，当我们的权重导致略好的预测时，它会给我们略好一点的损失。那么，“稍微好的预测”到底是什么样子的呢？好吧，在这种情况下，这意味着如果正确答案是3，分数会更高一点，或者如果正确答案是7，分数会更低一点。
+
+现在让我们写这样一个函数。它采取什么形式？
+
+损失函数接收的不是图像本身，而是来自模型的预测。让我们对0到1之间的值进行一个参数，其中每个值都是图像为3的预测。它是一个矢量（即秩-1张量），对所有图像索引。
+
+损失函数的目的是测量预测值和真实值之间的差异——即目标（又称标签）。让我们做另一个参数，trgts，值为0或1，可以判断图像是否真的是3。它还是一个矢量（即另一个秩-1的张量），对所有图像索引。
+
+因此，例如，假设我们有三张我们知道的图像是3、7和3。假设我们的模型高度自信（0.9）预测第一个是3，略微自信（0.4）第二个是7，一般自信（0.2），但错误的是，最后一个是7。这意味着我们的损失函数将接收这些值作为其输入：
+
+```python
+trgts  = tensor([1,0,1])
+prds   = tensor([0.9, 0.4, 0.2])
+```
+
+以下是衡量预测和目标之间距离的损失函数的首次尝试：
+
+```python
+def mnist_loss(predictions, targets):
+    return torch.where(targets==1, 1-predictions, predictions).mean()
+```
+
+我们正在使用一个新的函数，`torch.where(a,b,c)`。这该函数的作用相同 `[b[i] if a[i] else c[i] for i in range(len(a))]`，除了它以C/CUDA速度在张量上工作。在普通英语中，这个函数将测量每个预测与1（如果应该是1）的距离，如果应该是0，它将与0的距离有多远，然后将测量所有这些距离的平均值。
+
+> 注意：阅读文档：了解这样的PyTorch函数很重要，因为Python中的张量循环以Python速度而不是C/CUDA速度运行！立即尝试运行help（torch.where）以阅读此函数的文档，或者更好的是，在PyTorch文档网站上查找它。
+
+让我们来试一下我们的 `prds` 和 `trgts`:
+
+```python
+torch.where(trgts==1, 1-prds, prds)
+
+tensor([0.1000, 0.4000, 0.8000])
+```
+
+您可以看到，当预测更准确、准确预测更自信（绝对值更高）和预测不那么自信时，此函数返回的数字更低。在PyTorch中，我们总是假设损失函数的较低值更好。由于我们需要最终损失的标量，mnist_loss使用上一个张量的平均值：
+
+```python
+mnist_loss(prds,trgts)
+
+tensor(0.4333)
+```
+
+例如，如果我们将一个“错误”目标的预测从0.2更改为0.8，损失将下降，这表明这是一个更好的预测：
+
+```python
+mnist_loss(tensor([0.9, 0.4, 0.8]),trgts)
+
+tensor(0.2333)
+```
+
+目前定义的 `mnist_loss` 的一个问题是，它假设预测总是在0到1之间。那么，我们需要确保情况确实如此！碰巧的是，有一个函数可以做到这一点——让我们看看。
+
+# Sigmoid
+`sigmoid` 函数总是输出0到1之间的数字。它的定义如下：
+
+```python
+def sigmoid(x): return 1/(1+torch.exp(-x))
+```
+
+Pytorch为我们定义了一个加速版本，所以我们真的不需要自己的版本。这是深度学习中的一个重要函数，因为我们通常希望确保值在0到1之间。
+
+```python
+plot_function(torch.sigmoid, title='Sigmoid', min=-4, max=4)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642517577441.png)
+
+如您所见，它接受任何输入值，无论是正值还是负值，其输出值在0到1之间。这也是一条只上升的平滑曲线，这使得SGD更容易找到有意义的梯度。
+
+让我们更新 `mnist_loss`，首先将 `sigmoid` 应用于输入：
+
+```python
+def mnist_loss(predictions, targets):
+    predictions = predictions.sigmoid()
+    return torch.where(targets==1, 1-predictions, predictions).mean()
+```
+
+现在即使预测不在0到1之间，我们的损失函数也会起作用。更高的预测对应着更高的置信度。
+
+在定义了损失函数后，现在是总结我们这样做的原因的好时机。毕竟，我们已经有一个指标，即准确性。那么，我们为什么要定义损失呢？
+
+关键区别在于，该指标是为了推动人类的理解，而损失是为了推动自动化学习。为了推动自动化学习，损失必须是一个具有导数的函数。它不能有大平坦的部分和大跳跃，但必须相当光滑。这就是为什么我们设计了一个损失函数，以应对置信水平的微小变化。这一要求意味着，有时它并不真正反映我们试图实现的目标，而是我们真正目标和可以使用其梯度优化的功能之间的妥协。损失函数是为我们数据集中的每个项目计算的，然后在 epoch 结束时，损失值都是平均的，并报告 epoch 的总体平均值。
+
+另一方面，指标是我们真正关心的数字之一。这些是每个 epoch 末尾打印的值，告诉我们我们的模型到底做得怎么样。在判断模型的性能时，重要的是我们要学会关注这些指标，而不是损失。
+
+
+# SGD and Mini-Batches
+
+现在我们有一个适合驱动SGD的损失函数，我们可以考虑学习过程下一阶段涉及的一些细节，即根据梯度更改或更新权重。这被称为优化步骤。
+
+为了采取优化步骤，我们需要计算一个或多个数据项的损失。我们应该用多少？我们可以为整个数据集计算它，并取平均值，也可以为单个数据项计算它。但两者都不理想。为整个数据集计算它需要很长时间。为单个样本计算它不会使用太多信息，因此会导致非常不精确和不稳定的梯度。也就是说，您将难以更新权重。
+
+因此，我们在两者之间达成妥协：我们一次计算几个数据项的平均损失。这被称为小批量。小批量处理中的数据项数量称为批处理大小。更大的批处理大小意味着您将从丢失函数中获得更准确、更稳定的数据集梯度估计，但这需要更长的时间，并且您将在每个epoch 处理更少的小批量。选择一个好的批量大小是您作为深度学习从业者需要做出的决定之一，以快速准确地训练您的模型。我们将在整个书中讨论如何做出这个选择。
+
+使用小批量处理而不是计算单个数据项的梯度的另一个良好原因是，在实践中，我们几乎总是在GPU等加速器上进行训练。这些加速器只有在一次有很多工作要做时才能表现良好，所以如果我们能给他们很多数据项来处理，那会很有帮助。使用小批量是做到这一点的最佳方式之一。然而，如果您给他们的数据太多，无法同时处理，它们就会耗尽内存——让GPU满意也很难！
+
+关于数据增强的讨论中所看到的，如果我们能在训练期间改变样本，我们会得到更好的泛化性。我们可以改变的一件简单而有效的事情是，我们在每个小批量中放置了哪些数据项。相反，我们通常做的不是简单地按每个epoch顺序枚举我们的数据集，而是在我们创建小批量之前，在每个 epoch 上随机随机洗牌。PyTorch和fastai提供了一个为您进行洗牌和小批处理排序的类，称为`DataLoader`。
+
+`DataLoader` 可以接收任何Python集合，并将其转换为多个批次的迭代器，例如：
+
+```python
+coll = range(15)
+dl = DataLoader(coll, batch_size=5, shuffle=True)
+list(dl)
+
+[tensor([ 3, 12,  8, 10,  2]),
+ tensor([ 9,  4,  7, 14,  5]),
+ tensor([ 1, 13,  0,  6, 11])]
+```
+
+为了训练模型，我们不仅想要任何Python集合，还需要一个包含独立变量和依赖变量（即模型的输入和目标）的集合。在PyTorch中，包含独立变量和因变量元组的集合称为数据集。以下是一个极其简单的数据集的例子：
+
+```python
+ds = L(enumerate(string.ascii_lowercase))
+ds
+
+(#26) [(0, 'a'),(1, 'b'),(2, 'c'),(3, 'd'),(4, 'e'),(5, 'f'),(6, 'g'),(7, 'h'),(8, 'i'),(9, 'j')...]
+```
+
+当我们将 `Dataset` 传递给 `DataLoader` 时，我们将返回许多小批量，这些小批量本身就是代表独立变量和依赖变量批处理的张量元组：
+
+```python
+dl = DataLoader(ds, batch_size=6, shuffle=True)
+list(dl)
+
+[(tensor([17, 18, 10, 22,  8, 14]), ('r', 's', 'k', 'w', 'i', 'o')),
+ (tensor([20, 15,  9, 13, 21, 12]), ('u', 'p', 'j', 'n', 'v', 'm')),
+ (tensor([ 7, 25,  6,  5, 11, 23]), ('h', 'z', 'g', 'f', 'l', 'x')),
+ (tensor([ 1,  3,  0, 24, 19, 16]), ('b', 'd', 'a', 'y', 't', 'q')),
+ (tensor([2, 4]), ('c', 'e'))]
+```
+
+我们现在准备使用SGD为模型编写第一个训练循环！
+
+
+# Putting It All Together
+
+在代码中，我们的流程将在每个 epoch 实现如下：
+
+```python
+for x,y in dl:
+    pred = model(x)
+    loss = loss_func(pred, y)
+    loss.backward()
+    parameters -= parameters.grad * lr
+```
+
+首先，让我们重新初始化我们的参数：
+
+```python
+weights = init_params((28*28,1))
+bias = init_params(1)
+```
+
+从一个 `Dataset` 创建一个 `DataLoader`：
+
+```python
+dl = DataLoader(dset, batch_size=256)
+xb,yb = first(dl)
+xb.shape,yb.shape
+
+(torch.Size([256, 784]), torch.Size([256, 1]))
+```
+
+我们将对验证集也这样做：
+
+```python
+valid_dl = DataLoader(valid_dset, batch_size=256)
+```
+
+让我们创建一个小批量为4进行测试：
+
+```python
+batch = train_x[:4]
+batch.shape
+
+torch.Size([4, 784])
+```
+
+
+```python
+preds = linear1(batch)
+preds
+
+tensor([[-11.1002],
+        [  5.9263],
+        [  9.9627],
+        [ -8.1484]], grad_fn=<AddBackward0>)
+```
+
+```python
+loss = mnist_loss(preds, train_y[:4])
+loss
+
+tensor(0.5006, grad_fn=<MeanBackward0>)
+```
+
+现在我们可以计算梯度了：
+
+```python
+loss.backward()
+weights.grad.shape,weights.grad.mean(),bias.grad
+
+(torch.Size([784, 1]), tensor(-0.0001), tensor([-0.0008]))
+```
+
+让我们把这些都放在一个函数中：
+
+```python
+def calc_grad(xb, yb, model):
+    preds = model(xb)
+    loss = mnist_loss(preds, yb)
+    loss.backward()
+```
+
+并测试它：
+
+```python
+calc_grad(batch, train_y[:4], linear1)
+weights.grad.mean(),bias.grad
+
+(tensor(-0.0002), tensor([-0.0015]))
+```
+
+但看看如果我们调用两次会发生什么：
+
+```python
+calc_grad(batch, train_y[:4], linear1)
+weights.grad.mean(),bias.grad
+
+(tensor(-0.0003), tensor([-0.0023]))
+```
+
+梯度变了！原因是 `loss.backwar` 实际上将 `loss` 的梯度 加到当前存储的梯度中。因此，我们必须先将当前梯度设置为0：
+
+```python
+weights.grad.zero_()
+bias.grad.zero_();
+```
+
+> 注意：就地操作：PyTorch中名称以下划线结尾的方法修改其对象。例如， bias.zero_() 将张量 `bias` 的所有元素设置为 0。
+
+我们剩下的唯一一步是根据梯度和学习率更新权重和偏差。当我们这样做时，我们必须告诉PyTorch也不要采取这一步的梯度——否则，当我们试图在下一批计算导数时，事情会变得非常混乱！如果我们分配给张量的数据属性，那么PyTorch将不采用该步骤的梯度。以下是我们一个 epoch 的基本训练循环：
+
+```python
+def train_epoch(model, lr, params):
+    for xb,yb in dl:
+        calc_grad(xb, yb, model)
+        for p in params:
+            p.data -= p.grad*lr
+            p.grad.zero_()
+```
+
+我们还想通过查看验证集的准确性来检查我们的情况。要决定输出是3还是7，我们只需检查它是否大于0。因此，我们可以计算我们每个样本的准确性（使用广播，所以没有循环！）：
+
+```python
+(preds>0.0).float() == train_y[:4]
+
+tensor([[False],
+        [ True],
+        [ True],
+        [False]])
+```
+
+这给了我们计算验证准确性的函数：
+
+```python
+def batch_accuracy(xb, yb):
+    preds = xb.sigmoid()
+    correct = (preds>0.5) == yb
+    return correct.float().mean()
+```
+
+我们可以检查它是否有效：
+
+```python
+batch_accuracy(linear1(batch), train_y[:4])
+
+tensor(0.5000)
+```
+
+然后将批次放在一起：
+
+
+```python
+def validate_epoch(model):
+    accs = [batch_accuracy(model(xb), yb) for xb,yb in valid_dl]
+    return round(torch.stack(accs).mean().item(), 4)
+```
+
+```python
+validate_epoch(linear1)
+
+0.5219
+```
+
+那是我们的起点。让我们训练一个epoch，看看准确性是否有所提高：
+
+```python
+lr = 1.
+params = weights,bias
+train_epoch(linear1, lr, params)
+validate_epoch(linear1)
+
+0.6883
+```
+
+然后再做几个：
+
+```python
+for i in range(20):
+    train_epoch(linear1, lr, params)
+    print(validate_epoch(linear1), end=' ')
+	
+0.8314 0.9017 0.9227 0.9349 0.9438 0.9501 0.9535 0.9564 0.9594 0.9618 0.9613 0.9638 0.9643 0.9652 0.9662 0.9677 0.9687 0.9691 0.9691 0.9696 
+```
+
+看起来不错！我们已经创建了与准确性相似的 "像素相似度" 。我们的下一步是创建一个对象，为我们处理SGD step。在PyTorch中，它被称为优化器。
+
+
+# Creating an Optimizer
+
+由于这是一个如此普遍的基础，PyTorch提供了一些有用的类，使其更容易实现。我们可以做的第一件事是用PyTorch的 `nn.Linear` 模块替换我们的 `linear1` 函数。模块是从 PyTorch `nn.Module` 类继承的类的对象。此类对象的行为与标准Python函数相同，因为您可以使用括号调用它们，它们将返回模型的激活。
+
+`nn.Linear` 等价于我们的 `init_params` 和 `linear` 合在一起。它包含单个类中的权重和偏置。以下是我们从上一节中复制模型的方法：
+
+```python
+linear_model = nn.Linear(28*28,1)
+```
+
+每个PyTorch模块都知道它可以训练哪些参数；它们可以通过参数方法获得：
+
+```python
+w,b = linear_model.parameters()
+w.shape,b.shape
+```
+
+
+
+
+
+
+
+
+
+
