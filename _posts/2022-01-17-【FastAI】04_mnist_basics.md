@@ -1366,14 +1366,214 @@ linear_model = nn.Linear(28*28,1)
 ```python
 w,b = linear_model.parameters()
 w.shape,b.shape
+
+(torch.Size([1, 784]), torch.Size([1]))
 ```
 
+我们可以使用这些信息创建一个优化器：
+
+```python
+class BasicOptim:
+    def __init__(self,params,lr): self.params,self.lr = list(params),lr
+
+    def step(self, *args, **kwargs):
+        for p in self.params: p.data -= p.grad.data * self.lr
+
+    def zero_grad(self, *args, **kwargs):
+        for p in self.params: p.grad = None
+```
+
+我们可以通过传递模型的参数来创建优化器：
+
+```python
+opt = BasicOptim(linear_model.parameters(), lr)
+```
+
+我们的训练循环现在可以简化为：
+
+```python
+def train_epoch(model):
+    for xb,yb in dl:
+        calc_grad(xb, yb, model)
+        opt.step()
+        opt.zero_grad()
+```
+
+我们的验证函数根本不需要更改：
+
+```python
+validate_epoch(linear_model)
+
+0.4157
+```
+
+让我们把我们的小训练循环放在一个函数中，让事情更简单：
+
+```python
+def train_model(model, epochs):
+    for i in range(epochs):
+        train_epoch(model)
+        print(validate_epoch(model), end=' ')
+````
+
+结果与上一节相同：
+
+```python
+train_model(linear_model, 20)
+
+0.4932 0.8618 0.8203 0.9102 0.9331 0.9468 0.9555 0.9629 0.9658 0.9673 0.9687 0.9707 0.9726 0.9751 0.9761 0.9761 0.9775 0.978 0.9785 0.9785 
+```
+
+fastai提供了 `SGD` 类，默认情况下，该类与我们的 `BasicOptim` 做相同的事情：
+
+```python
+linear_model = nn.Linear(28*28,1)
+opt = SGD(linear_model.parameters(), lr)
+train_model(linear_model, 20)
+
+0.4932 0.852 0.8335 0.9116 0.9326 0.9473 0.9555 0.9624 0.9648 0.9668 0.9692 0.9712 0.9731 0.9746 0.9761 0.9765 0.9775 0.978 0.9785 0.9785 
+```
+
+fastai还提供了 `Learner.fit`，我们可以用它来代替 `train_model`。要创建 `Learner`，我们首先需要通过训练和验证集的 `DataLoaders` 来创建 `DataLoaders`：
+
+```python
+dls = DataLoaders(dl, valid_dl)
+```
+
+要在不使用应用程序（如 `cnn_learner` ）的情况下创建 `Learner`，我们需要传递我们在本章中创建的所有元素：DataLoaders、模型、优化函数（将把参数传递进去）、损失函数以及可选的任何要打印的指标：
+
+```python
+learn = Learner(dls, nn.Linear(28*28,1), opt_func=SGD,
+                loss_func=mnist_loss, metrics=batch_accuracy)
+```
+
+现在我们可以调用 `fit`：
+
+```python
+learn.fit(10, lr=lr)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642531904566.png)
+
+正如你所看到的，PyTorch 和 fastai 类没有什么魔力。它们只是方便的预包装件，让您的生活更轻松一点！（它们还提供了我们将在未来章节中使用的许多额外功能。）
+
+# Adding a Nonlinearity
+
+到目前为止，我们有一个优化函数参数的一般程序，我们已经在一个非常无聊的函数上进行了尝试：一个简单的线性分类器。线性分类器在做什么方面非常有限。为了让它更复杂一点（并能够处理更多任务），我们需要在两个线性分类器之间添加一些非线性的东西——这就是我们神经网络的原因。
 
 
+以下是基本神经网络的完整定义：
+
+```python
+def simple_net(xb): 
+    res = xb@w1 + b1
+    res = res.max(tensor(0.0))
+    res = res@w2 + b2
+    return res
+```
+
+就这样！我们在 `simple_net` 中只拥有两个线性分类器，它们之间有一个 `max` 函数。
+
+在这里，w1和w2是权重张量，b1和b2是偏置张量；也就是说，最初随机初始化的参数，就像我们在上一节中所做的那样：
+
+```python
+w1 = init_params((28*28,30))
+b1 = init_params(30)
+w2 = init_params((30,1))
+b2 = init_params(1)
+```
+
+关于这一点的关键是，`w1` 有 30 个输出激活（这意味着 `w2` 必须有30个输入激活，所以它们匹配）。这意味着第一层可以构建30个不同的特征，每个特征代表一些不同的像素组合。您可以将这30更改为任何您喜欢的，以使模型或多或少复杂。
+
+这个小函数 `res.max(tensor(0.0))`被称为ReLU。即用零替换每个负数。这个微小的函数也可以在PyTorch中作为 `F.relu` 使用：
+
+```python
+plot_function(F.relu)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642532241655.png)
 
 
+> 深度学习中有大量的行话，包括 rectified linear unit 等术语。正如我们在本例中看到的，绝大多数术语并不比在短代码行中实现更复杂。现实是，为了让学者们发表论文，他们需要让论文听起来尽可能令人印象深刻和复杂。他们这样做的方法之一是引入行话。不幸的是，这导致该领域最终变得比应有的更令人生畏和难以进入。你确实必须学习行话，否则论文和教程对你来说意义不大。但这并不意味着你必须发现这个术语令人生畏。请记住，当你遇到一个你以前从未见过的单词或短语时，它几乎肯定会指的是一个非常简单的概念。
+
+基本思想是，通过使用更多的线性层，我们可以让我们的模型做更多的计算，从而建模更复杂的函数。但将一个线性层直接放在另一个线性层是没有意义的，因为当我们将事物相乘，然后将它们多次加时，这可以通过将不同事物相乘并仅相加一次来取代！也就是说，一行任意数量的线性层的一系列可以替换为具有不同参数集的单个线性层。
 
 
+但是，如果我们在它们之间放置一个非线性函数，例如 `max` 。现在，每个线性层实际上都与其他线性层脱钩了，并且可以做自己的有用工作。`max` 函数特别有趣，因为它是一个简单的 `if` 语句。
+
+> S：从数学上讲，我们说两个线性函数的组成是另一个线性函数。因此，我们可以将任意数量的线性分类器堆叠在一起，如果没有它们之间的非线性函数，它只会与一个线性分类器相同。
+
+令人惊讶的是，如果您能为 `w1` 和 `w2` 找到正确的参数，并且使这些矩阵足够大，可以从数学上证明，这个小函数可以任意高精度地解决任何可计算问题。对于任何任意晃动函数，我们可以将其近似为一堆连接在一起的线；为了使其更接近晃动函数，我们只需要使用更短的线。这被称为通用近似定理。我们这里的三行代码被称为 layers。第一行和第三行被称为线性层，第二行代码被称为非线性或激活函数。
+
+与上一节一样，我们可以通过利用PyTorch将此代码替换为更简单一点的内容：
+
+```python
+simple_net = nn.Sequential(
+    nn.Linear(28*28,30),
+    nn.ReLU(),
+    nn.Linear(30,1)
+)
+```
+
+`nn.Sequential` 创建一个模块，该模块将依次调用列出的每个层或函数。
+
+`nn.ReLU` 是一个PyTorch模块，其工作与 `F.relu` 函数完全相同。大多数可以在模型中出现的函数也具有模块相同的形式。一般来说，这只是用 `nn` 替换 `F` 并更改大写的情况。使用 `nn.Sequential` 时，PyTorch要求我们使用模块版本。由于模块是类，我们必须实例化它们，这就是为什么您在本示例中看到 `nn.ReLU()`。
+
+由于 `nn.Sequential` 是一个模块，我们可以得到它的参数，它将返回它包含的所有模块的所有参数的列表。我们试试吧！由于这是一个更深层次的模型，我们将使用较低的学习率和更多的时代。
+
+```python
+learn = Learner(dls, simple_net, opt_func=SGD,
+                loss_func=mnist_loss, metrics=batch_accuracy)
+```
+
+```python
+#hide_output
+learn.fit(40, 0.1)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642532605397.png)
+
+我们这里不显示40行输出来节省空间；训练过程记录在 `learning.recorder` 中，输出表格存储在 `value` 属性中，因此我们可以将训练的准确性绘制为：
+
+```python
+plt.plot(L(learn.recorder.values).itemgot(2));
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642532695716.png)
+
+我们可以查看最终的准确性：
+
+```python
+learn.recorder.values[-1][2]
+
+0.982826292514801
+```
+
+在这一点上，我们有一些相当神奇的东西：
+
+- 在给定正确参数集的情况下，可以以任何精度（神经网络）解决任何问题的函数
+- 找到任何函数（随机梯度下降）最佳参数集的方法
+
+这就是为什么深度学习可以做一些看似相当神奇的事情，比如奇妙的事情。相信这种简单技术的组合可以真正解决任何问题，这是我们发现许多学生必须采取的最大步骤之一。这似乎太好了，不可能是真的——事情肯定应该比这更困难、更复杂吗？我们的建议：试试看！我们刚刚在MNIST数据集上尝试了它，您已经看到了结果。由于我们自己从零开始做任何事情（除了计算梯度），你知道幕后没有隐藏着特殊的魔法。
 
 
+# Going Deeper
 
+没有必要只停留在两个线性层。只要我们在每对线性层之间添加非线性，我们就可以添加任意数量。然而，正如您将学到的，模型越深，在实践中优化参数就越困难。在这本书的后面，您将学习一些简单但非常有效的技术来训练更深层次的模型。
+
+我们已经知道，具有两个线性层的单个非线性就足以近似任何函数。那么，我们为什么要使用更深层次的模型呢？原因是性能。对于更深的模型（即具有更多层的模型），我们不需要使用那么多参数；事实证明，我们可以使用具有更多层的较小矩阵，并获得比使用较大矩阵和更少层更好的结果。
+
+这意味着我们可以更快地训练模型，它占用的内存会更少。在20世纪90年代，研究人员如此专注于通用近似定理，以至于很少有人试验一个以上的非线性。这种理论上但不是实践的基础多年来一直阻碍着这个领域。然而，一些研究人员确实对深层模型进行了实验，并最终能够表明这些模型在实践中可以做得更好。最终，得出了理论结果，说明了发生这种情况的原因。今天，发现任何人使用只有一个非线性的神经网络是非常罕见的。
+
+当我们使用相同的方法训练18层模型时会发生什么：
+
+```python
+dls = ImageDataLoaders.from_folder(path)
+learn = cnn_learner(dls, resnet18, pretrained=False,
+                    loss_func=F.cross_entropy, metrics=accuracy)
+learn.fit_one_cycle(1, 0.1)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1642532971538.png)
+
+近100%的准确性！这与我们简单的神经网络相比有很大区别。但正如您将在这本书的其余部分学到的，您只需要使用几个小技巧，才能从头开始获得如此伟大的结果。你已经知道了关键的基础部分。（当然，即使你知道了所有技巧，你几乎总是想使用PyTorch和fastai提供的预建类，因为它们让你不必自己思考所有小细节。）
