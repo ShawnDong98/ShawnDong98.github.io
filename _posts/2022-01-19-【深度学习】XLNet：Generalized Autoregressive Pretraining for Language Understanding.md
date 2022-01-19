@@ -23,3 +23,10 @@ tags:
 - 由于其自回归的的特性，克服了BERT的局限性
 
 进一步， XLNet 将 Transformer-XL 的思想引入预训练。
+
+
+# Conclusion
+
+XLNet 是一种具有泛化性的自回归预训练方法， 它使用全排列语言建模目标来结合自回归和自编码方法的优势。
+
+XLNet 的网络架构与自回归目标无缝结合， 包括集成了 Transformer-XL 和双向注意力机制。
