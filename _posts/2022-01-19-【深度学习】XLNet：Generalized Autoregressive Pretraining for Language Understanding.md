@@ -17,3 +17,9 @@ tags:
 
 然而， 依赖于使用mask破坏输入， BERT 忽略了mask 位置和预训练-微调差异 的依赖关系。
 
+鉴于这些利弊，我们提出了XLNet，一种具有泛化性的自回归预训练方法， 该方法：
+
+- 通过最大化所有 permutations of the factorization order 的期望似然来实现双向上下文的学习
+- 由于其自回归的的特性，克服了BERT的局限性
+
+进一步， XLNet 将 Transformer-XL 的思想引入预训练。
