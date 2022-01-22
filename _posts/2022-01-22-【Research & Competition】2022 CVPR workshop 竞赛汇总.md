@@ -36,3 +36,9 @@ tags:
 # VizWiz Grand Challenge: Describing Images and Videos Taken by Blind People
 
 [https://vizwiz.org/workshops/2022-workshop/](https://vizwiz.org/workshops/2022-workshop/)
+
+# RetailVision - Revolutionizing the World of Retail
+
+[https://retailvisionworkshop.github.io/#overview](https://retailvisionworkshop.github.io/#overview)
+
+# 
