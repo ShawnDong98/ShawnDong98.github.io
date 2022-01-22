@@ -60,3 +60,11 @@ tags:
 # Robustness in Sequential Data
 
 [https://rosecvpr22.github.io/#challenge-details](https://rosecvpr22.github.io/#challenge-details)
+
+# 8th IEEE International Workshop on Computer Vision in Sports (CVsports)
+
+[https://vap.aau.dk/cvsports/](https://vap.aau.dk/cvsports/)
+
+# 4th ScanNet Indoor Scene Understanding Challenge
+
+[http://www.scan-net.org/cvpr2022workshop/](http://www.scan-net.org/cvpr2022workshop/)
