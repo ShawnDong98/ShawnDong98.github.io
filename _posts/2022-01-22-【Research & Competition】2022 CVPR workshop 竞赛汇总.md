@@ -19,3 +19,6 @@ tags:
 
 [https://image-matching-workshop.github.io/](https://image-matching-workshop.github.io/)
 
+# Visual Perception and Learning in an Open World
+
+[http://www.cs.cmu.edu/~shuk/vplow.html#overview](http://www.cs.cmu.edu/~shuk/vplow.html#overview)
