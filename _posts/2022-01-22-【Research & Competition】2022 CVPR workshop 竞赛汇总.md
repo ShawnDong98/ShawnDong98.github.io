@@ -85,3 +85,15 @@ tags:
 # 3rd Embodied AI Workshop
 
 [https://embodied-ai.org/#challenges](https://embodied-ai.org/#challenges)
+
+# 3rd Workshop and Competition on Affective Behavior Analysis in-the-wild
+
+[https://ibug.doc.ic.ac.uk/resources/cvpr-2022-3rd-abaw/](https://ibug.doc.ic.ac.uk/resources/cvpr-2022-3rd-abaw/)
+
+# SHApe Recovery from Partial Textured 3D Scans
+
+[https://cvi2.uni.lu/sharp2022/](https://cvi2.uni.lu/sharp2022/)
+
+# Workshop on Autonomous Driving (WAD)
+
+[http://cvpr2021.wad.vision/](http://cvpr2021.wad.vision/)
