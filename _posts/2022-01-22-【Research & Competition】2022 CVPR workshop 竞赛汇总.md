@@ -41,4 +41,6 @@ tags:
 
 [https://retailvisionworkshop.github.io/#overview](https://retailvisionworkshop.github.io/#overview)
 
-# 
+# 18th CVPR Workshop on Perception Beyond the Visible Spectrum
+
+[https://pbvs-workshop.github.io/index.html](https://pbvs-workshop.github.io/index.html)
