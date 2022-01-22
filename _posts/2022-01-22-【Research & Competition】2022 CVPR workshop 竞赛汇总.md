@@ -73,3 +73,7 @@ tags:
 # CLVision: Workshop on Continual Learning in Computer Vision (3rd Edition)
 
 [https://sites.google.com/view/clvision2022/challenge?authuser=0](https://sites.google.com/view/clvision2022/challenge?authuser=0)
+
+# The Rainforest Challenge: Multimodal Processing to Track Amazon Deforestation
+
+[https://sites.google.com/view/rainforest-challenge](https://sites.google.com/view/rainforest-challenge)
