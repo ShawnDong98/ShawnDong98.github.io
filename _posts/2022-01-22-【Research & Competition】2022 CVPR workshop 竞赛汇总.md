@@ -22,3 +22,10 @@ tags:
 # Visual Perception and Learning in an Open World
 
 [http://www.cs.cmu.edu/~shuk/vplow.html#overview](http://www.cs.cmu.edu/~shuk/vplow.html#overview)
+
+
+# The Art of Robustness: Devil and Angel in Adversarial Machine Learning
+
+[https://artofrobust.github.io/#challenge](https://artofrobust.github.io/#challenge)
+
+# 
