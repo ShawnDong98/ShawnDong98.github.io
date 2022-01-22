@@ -31,3 +31,8 @@ tags:
 # AI for Content Creation Workshop
 
 [https://ai4cc.net/#competitions](https://ai4cc.net/#competitions)
+
+
+# VizWiz Grand Challenge: Describing Images and Videos Taken by Blind People
+
+[https://vizwiz.org/workshops/2022-workshop/](https://vizwiz.org/workshops/2022-workshop/)
