@@ -77,3 +77,11 @@ tags:
 # The Rainforest Challenge: Multimodal Processing to Track Amazon Deforestation
 
 [https://sites.google.com/view/rainforest-challenge](https://sites.google.com/view/rainforest-challenge)
+
+# CLIC 2022: The 5th Challenge and Workshop on Learned Image Compression
+
+[http://compression.cc/tasks/](http://compression.cc/tasks/)
+
+# 3rd Embodied AI Workshop
+
+[https://embodied-ai.org/#challenges](https://embodied-ai.org/#challenges)
