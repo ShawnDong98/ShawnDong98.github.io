@@ -68,3 +68,8 @@ tags:
 # 4th ScanNet Indoor Scene Understanding Challenge
 
 [http://www.scan-net.org/cvpr2022workshop/](http://www.scan-net.org/cvpr2022workshop/)
+
+
+# CLVision: Workshop on Continual Learning in Computer Vision (3rd Edition)
+
+[https://sites.google.com/view/clvision2022/challenge?authuser=0](https://sites.google.com/view/clvision2022/challenge?authuser=0)
