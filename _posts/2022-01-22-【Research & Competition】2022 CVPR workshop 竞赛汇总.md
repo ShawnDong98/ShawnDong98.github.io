@@ -28,4 +28,6 @@ tags:
 
 [https://artofrobust.github.io/#challenge](https://artofrobust.github.io/#challenge)
 
-# 
+# AI for Content Creation Workshop
+
+[https://ai4cc.net/#competitions](https://ai4cc.net/#competitions)
