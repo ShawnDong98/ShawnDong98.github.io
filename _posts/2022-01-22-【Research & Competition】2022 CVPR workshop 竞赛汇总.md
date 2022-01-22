@@ -44,3 +44,19 @@ tags:
 # 18th CVPR Workshop on Perception Beyond the Visible Spectrum
 
 [https://pbvs-workshop.github.io/index.html](https://pbvs-workshop.github.io/index.html)
+
+# 2nd Mobile AI Workshop and Challenges
+
+[https://ai-benchmark.com/workshops/mai/2022/](https://ai-benchmark.com/workshops/mai/2022/)
+
+# 7th New Trends in Image Restoration and Enhancement Workshop and Challenges
+
+[https://data.vision.ee.ethz.ch/cvl/ntire22/](https://data.vision.ee.ethz.ch/cvl/ntire22/)
+
+# 6th AI CITY CHALLENGE WORKSHOP
+
+[https://www.aicitychallenge.org/2022-challenge-tracks/](https://www.aicitychallenge.org/2022-challenge-tracks/)
+
+# Robustness in Sequential Data
+
+[https://rosecvpr22.github.io/#challenge-details](https://rosecvpr22.github.io/#challenge-details)
