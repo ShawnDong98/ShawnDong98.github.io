@@ -20,3 +20,14 @@ tags:
 
 VSGNet 从 human-object 对中提取视觉特征， 根据 human-object 的空间位置对特征进行 refine， 并通过图卷积利用 human-object 对之间的结构连接。
 
+
+# Discussions
+
+## Differences with similar works 
+将 VSGNet 与 使用空间关系、注意力机制 和 图卷积的方法进行了比较。
+
+之前也有使用空间关系的方法。 这些方法要么直接使用空间关系映射进行分类， 要么将空间关系特征与其视觉特征拼接起来。直接使用空间关系特征分类忽略了视觉特征， 这会导致只学习交互标签和空间位置之间的关系。
+## Summary
+
+
+
