@@ -20,4 +20,4 @@ rige regression 的 cost function 为：
 $$
 \min (\|Y - X(\theta) \|^2 + \lambda \| \theta \|^2)
 $$
-$\lambda$ 是惩罚项。 在 ridge function 中 $\lambda$ 表示为一个 alpha 参数。 
+$\lambda$ 是惩罚项。 在 ridge function 中 $\lambda$ 表示为一个 alpha 参数。 因此， 我们可以通过改变 alpha 的值 来控制惩罚项。 alpha值越高，惩罚越大，因此权重的规模就会减少。
