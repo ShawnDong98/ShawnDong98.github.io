@@ -163,3 +163,13 @@ TensorImage(x1[0]).show(ctx=axs[1]);
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1643031593989.png)
 
 你可以看到右边的图像不清晰，左下角有reflection padding artifacts；此外，左上角的草已经完全消失了。我们发现，在实践中，使用 `presizing` 可以显著提高模型的准确性，而且速度更快。
+
+Fastai库还提供了在训练模型之前检查数据看起来怎么样的简单方法，这是一个极其重要的步骤。我们接下来再看看它们。
+
+# Checking and Debugging a DataBlock
+
+我们永远不能只是假设我们的代码运行良好。写 `DataBlock` 就像写蓝图一样。如果您在代码的某个地方出现语法错误，您将收到错误消息，但您无法保证您的模板将按您的意愿在您的数据源上工作。因此，在训练模型之前，您应该始终检查您的数据。您可以使用 `show_batch` 方法进行此操作：
+
+```python
+dls.show_batch(nrows=1, ncols=3)
+```
