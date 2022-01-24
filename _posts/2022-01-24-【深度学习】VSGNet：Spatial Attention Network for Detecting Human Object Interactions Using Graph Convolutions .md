@@ -19,3 +19,4 @@ tags:
 目标之间的 **相对空间推理** 和 **结构连接** 对于 **分析交互** 是必要的线索， 因此提出 VSGNet 架构来解决这个问题。
 
 VSGNet 从 human-object 对中提取视觉特征， 根据 human-object 的空间位置对特征进行 refine， 并通过图卷积利用 human-object 对之间的结构连接。
+
