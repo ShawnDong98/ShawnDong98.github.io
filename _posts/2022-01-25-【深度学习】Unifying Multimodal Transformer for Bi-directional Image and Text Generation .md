@@ -22,3 +22,7 @@ tags:
 具体来说，我们将这两个任务都表示为序列生成任务，其中我们将图像和文本表示为统一的 token 序列，Transformer学习多模态交互来生成序列。
 
 进一步提出两级细粒度特征表示 和 序列级训练来改进基于 Transformer 框架。
+
+
+# Conclusion
+这篇文章提出一个统一的多模态 transformer 的双向 image-text 生成任务。
