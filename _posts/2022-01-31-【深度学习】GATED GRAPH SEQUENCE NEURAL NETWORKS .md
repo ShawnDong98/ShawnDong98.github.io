@@ -22,5 +22,18 @@ tags:
 
 我们展示了它能够在抽象数据结构需要被描述为子图的问题上能够达到SOTA性能。
 
-# Conclusion
+# Discussion
+**What is being learned?**： 例如，考虑回答下方示例所需的行子集。
 
+
+B is E  \\
+E has_fear H \\
+eval B has_fear \\
+
+
+要进行逻辑推理，我们不仅需要对故事中出现的事实进行逻辑编码，还需要将背景世界知识编码为推理规则，如
+
+$$
+is(x, y) \land has\_fear(y, z) \Rightarrow has\_fear(x, z)
+$$
+我们对任务的编码将故事解析简化为图形式，但它没有提供任何背景知识。GG-NN模型可以看作是在学习这一点，其结果存储在神经网络的权值中。
