@@ -29,4 +29,4 @@ BLIP 在大规模噪声 图像文本对 数据集上使用 dataset bootstrapped 
 
 bootstrapped 数据即将发布以加速视觉语言研究。
 
-BLIP 存在几个可能进一步提升性能的方向： 1) 使用多轮 dataset bootstapping  2)  每张图像生成多个合成 captions 以进一步扩大预训练数据集 3) 训练多个不同的 captioners 和 filters 并在 CapFilt 组合它们的 forces 进行模型融合。
+BLIP 存在几个可能进一步提升性能的方向：  1) 使用多轮 dataset bootstapping  2)  每张图像生成多个合成 captions 以进一步扩大预训练数据集 3) 训练多个不同的 captioners 和 filters 并在 CapFilt 组合它们的 forces 进行模型融合。
