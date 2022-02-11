@@ -27,3 +27,16 @@ tags:
 将视觉特征输入 VL 融合模型， 在大规模图文数据集上预训练， 在7个VL任务上微调， 以全面验证新模型的表现。
 
 消融研究表明，改进主要是由于在目标类别多样性、视觉属性训练、训练数据规模、模型大小和模型架构方面的设计选择。
+
+
+# Code
+
+## nvcc fatal : Unsupported gpu architecture ‘compute_86‘
+
+```
+export TORCH_CUDA_ARCH_LIST="7.5"
+```
+
+
+# Reference
+1. [nvcc fatal : Unsupported gpu architecture ‘compute_86‘](https://blog.csdn.net/qq_30614451/article/details/111173703)
