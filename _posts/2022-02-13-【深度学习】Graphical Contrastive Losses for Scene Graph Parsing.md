@@ -29,3 +29,13 @@ tags:
 
 # Conclusion
 
+这篇文章提出的方法解决场景图解析的两个主要问题： 1) Entity Instance Confusion 和 2) PRoxial Relationship Ambuguity。
+
+传统交叉熵损失没有利用结构化场景图的内在知识的优势， 因此不足以解决这两个问题。
+
+为了解决这个问题， 这篇文章提出 Graphical Contrastive Losses， 其有效利用了场景图的语义属性来对比正关系和负关系。
+
+对三个方面设计了三种损失以解决这个问题。
+
+结果表明对相同的流程， 添加这个损失可以在三个数据集上取得 SOTA。
+
