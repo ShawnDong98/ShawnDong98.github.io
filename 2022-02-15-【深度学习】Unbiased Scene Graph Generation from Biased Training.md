@@ -16,6 +16,6 @@ tags:
 今天的场景图生成(SGG)任务离实际应用仍然有很远的距离， 主要是由于严重的训练偏差， 比如将多样性的 human walk on/sit on / lay on beach 变为 human on beach。
 
 
-
+在这样的场景图生成(SGG)中， 如VQA这样的下游任务除了能预测出一堆目标外， 很难推理出更好的场景结构。
 # Conclusion
 
