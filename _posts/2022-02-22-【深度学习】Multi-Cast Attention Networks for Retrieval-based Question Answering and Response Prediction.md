@@ -23,6 +23,6 @@ tags:
 
 关键的思想是为接下来的编码器层提供一种 real-valued hint(feature)， 其目的是提升表征学习阶段。
 
-这种设计有几个优点， 它允许查斯特的 任意数量的注意力机制 和 注意力变体 (如 alignment-pooling, max-pooling, mean-pooling)同时被执行。
+这种设计有几个优点， 它允许 casted 任意数量的注意力机制 和 注意力变体 (如 alignment-pooling, max-pooling, mean-pooling)同时被执行。
 
 # Conclusion
