@@ -26,3 +26,9 @@ tags:
 这种设计有几个优点， 它允许 casted 任意数量的注意力机制 和 注意力变体 (如 alignment-pooling, max-pooling, mean-pooling)同时被执行。
 
 # Conclusion
+这篇文章提出一种新的 SOTA 模型用于 QA 和 conversation modeling 的 retrieval 和 matching 任务中。
+
+该模型是广泛应用的 neural attention 的重新想象。第一次将注意力作为特征增强，而不是池化操作。提出了三种将注意力矩阵压缩为标量特征的方法。
+
+所提的模型在四个任务和数据集上都取得了有竞争力的结果。
+
