@@ -13,4 +13,14 @@ tags:
 
 # Abstract
 
+注意力通常会选择最优信息量的子段用于预测。
+
+这篇文章提出一种新的注意力作为特征增强的形式， 叫做 casted attention。
+
+这篇文章提出 Multi-Cast Attention Networks(MCAN) 这种新的注意力机制以及一种通用的模型架构用于 conversational modeling 和 QA domains 中的 potpourri of ranking tasks。
+
+该方法执行一系列的 soft attention 操作， 每次在 inner word embeddings casting 一个 scalar 特征。
+
+关键的思想是为接下来的编码器层提供一种 real-valued hint(feature)， 其目的是提升表征学习阶段。
+
 # Conclusion
