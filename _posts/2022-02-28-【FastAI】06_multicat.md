@@ -7,8 +7,8 @@ author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
-    - FastAI 
     - 深度学习
+    - FastAI 
 ---
 
 # Other Computer Vision Problems
