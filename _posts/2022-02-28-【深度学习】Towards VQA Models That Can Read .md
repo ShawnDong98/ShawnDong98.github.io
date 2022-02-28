@@ -25,3 +25,15 @@ TextVQA 包含 45336 个对 28408 图像的问题。
 因此， 将该方法叫做 LoRRA(Look, Read, Reason 和 Answer)， LoRRA 在 TextVQA 数据集上比现有 SOTA VQA 模型表现更好。
 
 # Conclusion
+
+这篇文章探索了回答和推理图像中的文本问题， 以帮助视障人士。
+
+引入了 TextVQA 数据集， 其包含仅可以通过图像中的文本进行推理进行回答的问题。
+
+引入了 LoRRA(Look, Read, Reason & Answer) 模型结构基于图像中的文本回答问题。
+
+LoRRA 读取图像中的文本， 基于所提供的的问题进行推理， 并且根据固定的此表或者图像中发现的文本预测答案。
+
+LoRRA 与底层的 OCR 和 VQA 模块无关。
+
+LoRRA 在 TextVQA 数据集上比 SOTA VQA 模型表现更好。
