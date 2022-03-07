@@ -20,3 +20,79 @@ tags:
 这比我们之前的数据集要难得多，因为我们使用的是全尺寸、全彩色图像，这些图像是不同大小、不同方向、不同光线等物体的照片。因此，在本章中，我们将介绍一些充分利用数据集的重要技术，特别是当您从头开始训练时，或使用迁移学习在与使用的预训练模型非常不同的数据集上训练模型时。
 
 
+# Imagenette
+
+fast.ai首次启动时，人们使用三个主要数据集来构建和测试计算机视觉模型：
+
+- ImageNet: 130万张不同尺寸的图像，直径约为500像素，分为1000个类别，其需要几天时间训练
+- MNIST: 50,000 个 28×28 手写数字灰度图像
+- CIFAR10: 10个类别的60,000张32×32像素彩色图像
+
+问题是，较小的数据集实际上没有有效地推广到大型ImageNet数据集。在ImageNet上行之有效的方法通常必须在ImageNet上开发和训练。这导致许多人认为，只有能够访问巨大计算资源的研究人员才能有效地为开发图像分类算法做出贡献。
+
+我们认为这似乎不太可能是真的。我们从未真正看到过一项研究表明ImageNet恰好正好适合大小，并且无法开发其他数据集来提供有用的见解。因此，我们尝试创建一个新的数据集，研究人员可以快速、廉价地测试他们的算法，这也可能适用于整个ImageNet数据集。
+
+大约三个小时后，我们创建了Imagenette。我们从完整的ImageNet中选择了10个看起来非常不同的类。正如我们所希望的那样，我们能够快速、廉价地创建一个能够识别这些类的分类器。然后，我们尝试了一些算法调整，看看它们如何影响Imagenette。我们发现了一些效果很好的方法，并在ImageNet上进行了测试——我们很高兴发现我们的调整在ImageNet上也运行良好！
+
+这里有一个重要信息：您获得的数据集不一定是您想要的数据集。它特别不可能成为您想要进行开发和原型设计的数据集，这一点尤其不可能。您的目标应该是迭代速度不超过几分钟——也就是说，当您想出一个想尝试的新想法时，您应该能够训练模型，并在几分钟内看到它进展如何。如果做实验需要更长的时间，请考虑如何减少数据集或简化模型，以提高实验速度。你能做的实验越多越好！
+
+```python
+from fastai.vision.all import *
+path = untar_data(URLs.IMAGENETTE)
+```
+
+首先，我们将使用  presizing 技巧将数据集放入DataLoaders对象：
+
+```python
+dblock = DataBlock(blocks=(ImageBlock(), CategoryBlock()),
+                   get_items=get_image_files,
+                   get_y=parent_label,
+                   item_tfms=Resize(460),
+                   batch_tfms=aug_transforms(size=224, min_scale=0.75))
+dls = dblock.dataloaders(path, bs=64)
+```
+
+然后进行一次训练作为 baseline
+
+```python
+model = xresnet50(n_out=dls.c)
+learn = Learner(dls, model, loss_func=CrossEntropyLossFlat(), metrics=accuracy)
+learn.fit_one_cycle(5, 3e-3)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1646663213980.png)
+
+这是一个很好的基线，因为我们没有使用预训练模型，但我们可以做得更好。当处理从头开始训练或微调到与预训练中使用的非常不同的数据集的模型时，有一些其他技术真的很重要。在本章的其余部分，我们将考虑您希望熟悉的一些关键方法。第一个是规范化您的数据。
+
+# Normalization
+
+在训练模型时，如果您的输入数据标准化，即平均值为0，标准差为1，这会有所帮助。但大多数图像和计算机视觉库对像素使用0到255之间的值，或0到1之间的值；无论哪种情况，您的数据都不会平均值为0，标准差为1。
+
+让我们抓住一批数据并查看这些值，方法是取除通道轴（轴1）以外的所有轴上的平均值：
+
+```python
+x, y = dls.one_batch()
+x.mean(dim=[0, 2, 3]), x.std(dim=[0, 2, 3])
+
+(TensorImage([0.4842, 0.4711, 0.4511], device='cuda:5'),
+ TensorImage([0.2873, 0.2893, 0.3110], device='cuda:5'))
+```
+
+正如我们所期望的，平均值和标准差不是很接近期望值。幸运的是，通过添加 `Normalize` 变换，在fastai中可以轻松实现数据规范化。这同时作用于整个 mini-batch，因此您可以将其添加到数据块的 `batch_tfms` 部分。您需要将您想要使用的平均值和标准差传递给此变换；fastai附带已定义的标准 ImageNet 平均值和标准差。（如果您没有将任何统计数据传递给 `Normalize` 变换，fastai将自动从您的一批数据中计算它们。）
+
+让我们添加此变换（使用 `imagenet_stats` ， 因为 Imagenette 是 ImageNet 的子集），现在查看一批数据：
+
+```python
+def get_dls(bs, size):
+    dblock = DataBlock(blocks=(ImageBlock, CategoryBlock),
+                   get_items=get_image_files,
+                   get_y=parent_label,
+                   item_tfms=Resize(460),
+                   batch_tfms=[*aug_transforms(size=size, min_scale=0.75),
+                               Normalize.from_stats(*imagenet_stats)])
+    return dblock.dataloaders(path, bs=bs)
+```
+
+```python
+dls = get_dls(64, 224)
+```
