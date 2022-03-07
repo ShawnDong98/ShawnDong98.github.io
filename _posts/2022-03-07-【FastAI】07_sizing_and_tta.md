@@ -133,3 +133,34 @@ learn.fit_one_cycle(5, 3e-3)
 
 逐步调整大小还有一个好处：这是另一种形式的数据增强。因此，您应该希望看到经过渐进调整大小训练的模型得到更好的泛化。
 
+要实现渐进调整大小，最方便的是，您首先创建一个 `get_dls` 函数，该函数像我们之前在部分中所做的那样采用图像大小和批处理大小，并返回您的 `DataLoaders`：
+
+现在，您可以创建小型 `DataLoaders`，并以通常的方式使用 `fit_one_cycle`，训练时间比平时少几个 epoch：
+
+```python
+dls = get_dls(128, 128)
+learn = Learner(dls, xresnet50(n_out=dls.c), loss_func=CrossEntropyLossFlat(), 
+                metrics=accuracy)
+learn.fit_one_cycle(4, 3e-3)
+```
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1646670528058.png)
+
+
+然后，您可以替换 `Learner` 内部的 `DataLoaders`，并进行微调：
+
+```python
+learn.dls = get_dls(64, 224)
+learn.fine_tune(5, 1e-3)
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1646670733881.png)
+
+如您所见，我们的性能要好得多，每个 epoch 对小图像的初始训练都要快得多。
+
+您可以随心所欲地重复增加大小和训练更多 epoch 的过程，以获得您想要的图像大小——但当然，使用大于原始图像大小的图像不会有任何好处。
+
+请注意，对于迁移学习，渐进式调整大小实际上可能会损害性能。如果您的预训练模型与迁移学习任务和数据集非常相似，并且是在类似大小的图像上训练的，权重不需要太大变化，则最有可能发生这种情况。在这种情况下，对较小图像的训练可能会损坏预训练的权重。
+
+另一方面，如果迁移学习任务将使用与训练前任务中使用的不同大小、形状或样式的图像，则渐进调整大小可能会有所帮助。和往常一样，“有帮助吗？” 的答案是 “试试看！”
+
+我们可以尝试的另一件事是将数据增强应用于验证集。到目前为止，我们只将其应用于训练集；验证集总是获得相同的图像。但也许我们可以尝试对验证集的几个增强版本进行预测并对其进行平均。我们接下来会考虑这种方法。
