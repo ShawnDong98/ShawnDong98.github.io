@@ -270,3 +270,13 @@ Mixup为我们处理了另一个微妙的问题，那就是实际上，对于我
 在实践中，我们不想对标签进行独热编码，幸运的是，我们不需要（独热编码只是可以解释标签平滑和可视化）。
 
 要在实践中使用此功能，我们只需在给 `Learner` 的 `callback` 中更改损失函数：
+
+```python
+model = xresnet50()
+learn = Learner(dls, model, loss_func=LabelSmoothingCrossEntropy(),
+				metrics=accuracy)
+learn.fit_one_cycle(5, 3e-3)
+```
+
+
+与Mixup一样，在训练更多 epoch 之前，您通常不会看到标签平滑的重大改进。你自己试试看：在标签平滑显示改善之前，你必须训练多少个 epoch？
