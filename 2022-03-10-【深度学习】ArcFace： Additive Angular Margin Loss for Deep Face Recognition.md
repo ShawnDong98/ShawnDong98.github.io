@@ -26,4 +26,4 @@ SphereFace 假设最后一个全连接层的线性变换矩阵可以用来作为
 
 ArcFace始终优于最先进的技术，并且可以轻松地实现，而计算开销可以忽略不计。
 # Conclusion
-
+这篇文章提出了一种 Additive Angular Margin 损失函数， 有效地增强通过DCNN学习用于人脸识别能力的特征嵌入。
