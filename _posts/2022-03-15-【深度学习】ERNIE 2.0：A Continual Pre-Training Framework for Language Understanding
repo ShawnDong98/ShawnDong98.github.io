@@ -1,0 +1,25 @@
+---
+layout:     post
+title:      "【深度学习】ERNIE 2.0: A Continual Pre-Training Framework for Language Understanding"
+subtitle:   ""
+date:       2022-03-15
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - 深度学习
+    - 
+---
+
+# Abstract 
+最近，经过预训练的模型在各种语言理解任务中取得了最先进的结果。目前的预训练程序主要集中在训练几个简单任务的模型来掌握单词或句子的共现现象。
+
+然而，在训练语料库中，除了共现信息外，还存在其他有价值的词汇、句法和语义信息，如命名实体、语义亲密度和语篇关系等。
+
+为了从训练语料库中提取出词汇、句法和语义信息，我们提出了一种名为ERNIE 2.0的持续预训练框架，该框架逐步构建预训练任务，然后通过持续多任务学习在这些构建的任务上学习预训练模型。
+
+在这个框架上，我们构建了几个任务，并训练ERNIE 2.0模型来捕获训练数据中的词汇、句法和语义方面的信息。
+
+实验表明 ERNIE 2.0 比 BERT 和 XLNet 在16个英文数据集和中文的几个相似任务上表现更好。
+
+# Conclusion
