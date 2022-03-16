@@ -97,9 +97,7 @@ tmpfs                         3.9G     0  3.9G   0% /dev/shm
 /dev/sdb1                      99G  188M   94G   1% /data
  ```
  
- 
-## 挂载硬盘
- 
+# 挂载硬盘
  
 ### 分区：fdisk
  
@@ -845,3 +843,4 @@ unzip file-large.zip
 26. [Ubuntu系统批量杀死进程方法](https://www.cnblogs.com/hewm/articles/11427874.html)
 27. [【小记】将控制台输出保存至文件](https://blog.csdn.net/qq_31347869/article/details/96586433)
 28. [bad zip file offset when unzipping multi-part files](https://blog.csdn.net/Tjj_1998/article/details/109612196)
+29. [如何在Ubuntu上设置自定义DNS服务器](https://www.myfreax.com/set-custom-dns-servers-on-ubuntu-18-or-20/)
