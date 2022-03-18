@@ -35,3 +35,23 @@ LXMERT构建了一个大规模的Transformer模型，该模型由三个编码器
 
 最后通过详细的分析和消融研究显示了几种模型组件和训练方法的有效性。
 
+
+# Bug
+
+## error: identifier “AT_CHECK” is undefined
+
+`detectron2/layers/csrc/deformable/deform_conv.h(135): error: identifier "AT_CHECK" is undefine` 頭文件中缺少定義，我們使用編輯器去修改頭文件即可：
+
+
+修改此文件 `detectron2/detectron2/layers/csrc/deformable/deform_conv.h`
+
+
+```
+#ifndef AT_CHECK
+#define AT_CHECK TORCH_CHECK
+#endif
+```
+
+
+# Reference
+1. [Detection2安裝BUG記錄](https://blog.csdn.net/qq_40246742/article/details/121061318)
