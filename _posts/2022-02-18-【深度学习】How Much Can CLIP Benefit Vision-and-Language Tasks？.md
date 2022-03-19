@@ -33,3 +33,10 @@ tags:
 2) 将CLIP 与 VL 预训练结合， 然后在下游任务上微调。
 
 大量的实验表明， CLIP-ViL 和 CLIP-ViL_p 能够取得有竞争力或更好的成绩。
+
+
+# Bug
+
+## RuntimeError: NCCL Error 1: unhandled cuda error 
+
+使用 pytorch 1.7.1 无此问题
