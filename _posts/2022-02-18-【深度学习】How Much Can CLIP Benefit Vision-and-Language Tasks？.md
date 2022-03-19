@@ -40,3 +40,8 @@ tags:
 ## RuntimeError: NCCL Error 1: unhandled cuda error 
 
 使用 pytorch 1.7.1 无此问题
+
+
+## pytorch/vision 安装失败
+
+pytorch 1.7.1 安装分支 -b v0.8.2。
