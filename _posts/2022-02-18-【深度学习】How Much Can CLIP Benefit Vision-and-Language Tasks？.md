@@ -56,4 +56,38 @@ apt install libgl1-mesa-glx
 ```
 apt-get install libglib2.0-dev
 ```
+### MMF
 
+提取特征 `no kernel image is available for execution on the device`
+
+将 `maskrcnn/layers/nms.py` 中的：
+
+```python
+nms = _C.nms
+```
+
+改为 
+
+```python
+try:
+    import torchvision
+    from torchvision.ops import nms
+except:
+    nms = _C.nms
+```
+
+将 `maskrcnn/layers/roi_align.py` 中的：
+
+```python
+roi_align = _ROIAlign.apply
+```
+
+改为
+
+```python
+try:
+    import torchvision
+    from torchvision.ops import roi_align
+except:
+    roi_align = _ROIAlign.apply
+```
