@@ -42,21 +42,8 @@ tags:
 使用 pytorch 1.7.1 无此问题
 
 
-## pytorch/vision 安装失败
 
-pytorch 1.7.1 安装分支 -b v0.8.2。
-
-## opencv 依赖
-
-
-```
-apt install libgl1-mesa-glx
-```
-
-```
-apt-get install libglib2.0-dev
-```
-### MMF
+# MMF
 
 提取特征 `no kernel image is available for execution on the device`
 
@@ -90,4 +77,93 @@ try:
     from torchvision.ops import roi_align
 except:
     roi_align = _ROIAlign.apply
+```
+
+
+## 安装 MMF
+
+```
+conda create -n mmf python=3.7
+conda activate mmf
+```
+
+```
+git clone https://github.com/facebookresearch/mmf.git
+cd mmf
+pip install --editable .
+```
+
+## 配置提取特征环境
+
+```
+conda create -n maskrcnn_benchmark
+conda activate maskrcnn_benchmark
+```
+
+```
+# first, make sure that your conda is setup properly with the right environment
+# for that, check that `which conda`, `which pip` and `which python` points to the
+# right path. From a clean conda env, this is what you need to do
+
+# this installs the right pip and dependencies for the fresh python
+conda install ipython
+
+# maskrcnn_benchmark and coco api dependencies
+pip install ninja yacs cython matplotlib
+
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 -c pytorch
+
+
+git clone https://gitlab.com/vedanuj/vqa-maskrcnn-benchmark.git
+cd vqa-maskrcnn-benchmark
+```
+
+
+将 `maskrcnn/layers/nms.py` 中的：
+
+```python
+nms = _C.nms
+```
+
+改为 
+
+```python
+try:
+    import torchvision
+    from torchvision.ops import nms
+except:
+    nms = _C.nms
+```
+
+将 `maskrcnn/layers/roi_align.py` 中的：
+
+```python
+roi_align = _ROIAlign.apply
+```
+
+改为
+
+```python
+try:
+    import torchvision
+    from torchvision.ops import roi_align
+except:
+    roi_align = _ROIAlign.apply
+```
+
+## Bug
+
+### pytorch/vision 安装失败
+
+pytorch 1.7.1 安装分支 -b v0.8.2。
+
+### opencv 依赖
+
+
+```
+apt install libgl1-mesa-glx
+```
+
+```
+apt-get install libglib2.0-dev
 ```
