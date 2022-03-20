@@ -45,3 +45,15 @@ tags:
 ## pytorch/vision 安装失败
 
 pytorch 1.7.1 安装分支 -b v0.8.2。
+
+## opencv 依赖
+
+
+```
+apt install libgl1-mesa-glx
+```
+
+```
+apt-get install libglib2.0-dev
+```
+
