@@ -151,6 +151,10 @@ except:
     roi_align = _ROIAlign.apply
 ```
 
+```
+python setup.py build develop
+```
+
 ## Bug
 
 ### pytorch/vision 安装失败
