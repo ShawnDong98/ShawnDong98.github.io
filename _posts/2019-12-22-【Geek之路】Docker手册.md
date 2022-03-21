@@ -980,7 +980,22 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
+# 设置默认工作路径
 
+创建一个新的 Dockerfile
+
+```
+FROM mmf
+
+## 指定默认工作目录为根目录（需要把run.sh和生成的结果文件都放在该文件夹下，提交后才能运行）
+WORKDIR /home/
+
+EXPOSE 8888
+EXPOSE 6666
+
+## 镜像启动后统一执行 sh run.sh
+CMD ["zsh"]
+```
 
 # Bugs
 
