@@ -23,3 +23,10 @@ tags:
 MS-COCO 上 caption retrieval 上提升 8.8% ， 在image retrieval 上提升 11.3%。
 # Conclusion
 
+这篇文章主要研究面向跨模态、图像标题检索的视觉语义嵌入方法。
+
+受结构化预测的启发，与目前使用期望误差的方法相比，提出了一种新的损失函数，该方法基于relatively hard negatives 引起的 vialations。
+
+在MS-COCO和Flickr30K数据集上进行了实验，结果表明，其提出的损失可以显著提高这些数据集上的性能。
+
+改进的损失可以更好地引导功能更强大的图像编码器ResNet152，在微调图像编码器时也可以更好地引导。
