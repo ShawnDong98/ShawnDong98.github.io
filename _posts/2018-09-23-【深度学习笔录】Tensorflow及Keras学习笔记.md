@@ -140,6 +140,19 @@ model.load_weights('my_model_weights.h5', by_name=True)
 ```
 # Tensorflow
 
+## tf.io
+
+### tf.io.gfile
+
+#### glob
+
+```python
+tf.io.gfile.glob(
+    pattern
+)
+```
+
+patterns 定义为字符串。这里定义了受支持的 patterns。注意，patterns 可以是可迭代的Python string patterns。
 
 ## TensorFlow的数据读取机制
 
