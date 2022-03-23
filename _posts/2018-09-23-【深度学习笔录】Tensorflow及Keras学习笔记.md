@@ -152,7 +152,20 @@ tf.io.gfile.glob(
 )
 ```
 
-patterns 定义为字符串。这里定义了受支持的 patterns。注意，patterns 可以是可迭代的Python string patterns。
+- patterns 定义为字符串。这里定义了受支持的 patterns。注意，patterns 可以是可迭代的Python string patterns。
+- return： 包含匹配给定 patterns 的文件名的字符串列表。
+
+
+## tf.random
+
+### uniform
+
+```python
+tf.random.uniform(
+    shape, minval=0, maxval=None, dtype=tf.dtypes.float32, seed=None, name=None
+)
+```
+
 
 ## TensorFlow的数据读取机制
 
