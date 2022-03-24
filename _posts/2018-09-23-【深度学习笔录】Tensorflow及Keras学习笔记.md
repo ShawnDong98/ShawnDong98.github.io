@@ -167,6 +167,18 @@ tf.random.uniform(
 )
 ```
 
+## 设置显存动态增长
+
+```python
+import tensorflow as tf
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+config=tf.compat.v1.ConfigProto() 
+# 设置最大占有GPU不超过显存的80%（可选）
+# config.gpu_options.per_process_gpu_memory_fraction=0.8
+config.gpu_options.allow_growth = True  # 设置动态分配GPU内存
+sess=tf.compat.v1.Session(config=config)
+```
 
 ## TensorFlow的数据读取机制
 
