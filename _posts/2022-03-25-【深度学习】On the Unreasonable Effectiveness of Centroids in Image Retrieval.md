@@ -34,5 +34,7 @@ tags:
 
 在两个ReID和Fashion检索数据集上进行的综合实验证明了该方法的有效性，其性能优于目前的先进水平。
 
+这篇文章提出的 centroid training 和检索作为一种可行的方法，无论是时尚检索和ReID应用。
+
 # Conclusion
 
