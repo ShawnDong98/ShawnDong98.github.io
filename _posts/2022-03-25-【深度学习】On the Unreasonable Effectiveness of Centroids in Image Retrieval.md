@@ -38,3 +38,5 @@ tags:
 
 # Conclusion
 
+这篇文章引入了 Centroid Triplet Loss —— 一种用于实例检索任务的新的损失函数。
+
