@@ -25,3 +25,4 @@ tags:
 在与BERT相同的训练过程中，实验证明Tree transformer在诱导树形结构、更好的语言建模和进一步学习更可解释的注意力分数。
 # Conclusion
 
+这篇文章提出 Tree Transformer， 首次尝试通过给将 Tree 结构集成到 Transformer 中。
