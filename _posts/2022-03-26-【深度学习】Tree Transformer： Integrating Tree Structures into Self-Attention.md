@@ -19,5 +19,7 @@ tags:
 由注意力头计算出来的注意力似乎与人类对层次结构的直觉不匹配。
 
 这篇文章提出了Tree Transformer，  其在双向 Transformer 编码器的注意头上增加了一个额外的约束，以鼓励注意头遵循树形结构。
+
+其提出的 Constituent Attention 模块可以从原始文本中自动诱导出树形结构，该模块通过两个相邻单词之间的自注意力来实现。
 # Conclusion
 
