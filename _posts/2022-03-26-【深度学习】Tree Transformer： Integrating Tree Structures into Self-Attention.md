@@ -21,5 +21,7 @@ tags:
 这篇文章提出了Tree Transformer，  其在双向 Transformer 编码器的注意头上增加了一个额外的约束，以鼓励注意头遵循树形结构。
 
 其提出的 Constituent Attention 模块可以从原始文本中自动诱导出树形结构，该模块通过两个相邻单词之间的自注意力来实现。
+
+在与BERT相同的训练过程中，实验证明Tree transformer在诱导树形结构、更好的语言建模和进一步学习更可解释的注意力分数。
 # Conclusion
 
