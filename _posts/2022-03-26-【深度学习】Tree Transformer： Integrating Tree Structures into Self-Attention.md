@@ -28,3 +28,5 @@ tags:
 这篇文章提出 Tree Transformer， 首次尝试通过给将 Tree 结构集成到 Transformer 中。
 
 其提出的“Constituent Attention”模块可以自动地从原始文本中诱导出树状结构，该模块通过自注意力将成分相互连接起来。
+
+在无监督解析方面的性能证明了模型在诱导与人类专家注释一致的树结构方面的有效性。
