@@ -35,3 +35,5 @@ novel query 扩充进一步提高了其泛化能力。
 ML-Decoder可以很好地处理固定或随机查询，并在训练和推理过程中使用不同的查询。
 
 通过基于 word 的 query 和 novel query 扩充，ML-Decoder还可以很好地推广到没见过的类。
+
+大量的实验分析表明 ML-Decoder 在几个分类任务上超过了基于全局池化的头。
