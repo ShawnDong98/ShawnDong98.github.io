@@ -14,5 +14,7 @@ tags:
 # Abstract
 
 这篇文章引入了一种新的基于注意的分类头ML-Decoder。
+
+ML-Decoder通过查询预测类标签的存在，与全局平均池化相比，能够更好地利用空间数据。
 # Conclusion
 
