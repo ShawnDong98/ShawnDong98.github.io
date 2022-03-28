@@ -16,5 +16,7 @@ tags:
 这篇文章引入了一种新的基于注意的分类头ML-Decoder。
 
 ML-Decoder通过查询预测类标签的存在，与全局平均池化相比，能够更好地利用空间数据。
+
+通过重新设计解码器的结构，并采用一种新的 group-decoding 方案，ML-Decoder具有很高的效率，并且可以很好地扩展到数千个类。
 # Conclusion
 
