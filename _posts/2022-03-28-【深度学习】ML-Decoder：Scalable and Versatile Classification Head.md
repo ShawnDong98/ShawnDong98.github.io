@@ -26,6 +26,7 @@ ML-Decoder也是通用的-它可以被用作各种分类头的替换，并在使
 novel query 扩充进一步提高了其泛化能力。
 
 使用ML-Decoder在几个分类任务上取得了最先进的结果:在MS-COCO多标签上，达到了91:4%的map; 在NUS-WIDE上，我们达到31:1% zsl mAP;在ImageNet单标签上，用ResNet50骨干达到了80:7%的新最高得分，无需额外的数据或蒸馏。
+
 # Conclusion
 
 本文介绍了一种新的基于注意的分类头ML-Decoder。
