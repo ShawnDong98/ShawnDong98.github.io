@@ -28,3 +28,6 @@ novel query 扩充进一步提高了其泛化能力。
 使用ML-Decoder在几个分类任务上取得了最先进的结果:在MS-COCO多标签上，达到了91:4%的map; 在NUS-WIDE上，我们达到31:1% zsl mAP;在ImageNet单标签上，用ResNet50骨干达到了80:7%的新最高得分，无需额外的数据或蒸馏。
 # Conclusion
 
+本文介绍了一种新的基于注意的分类头ML-Decoder。
+
+通过去除冗余的自注意力层并使用一种新的 group-decoding 方案，ML-Decoder可以很好地扩展到数千个类，并提供了比使用更大的主干更好的速度-精度折衷。
