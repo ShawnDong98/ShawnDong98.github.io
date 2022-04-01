@@ -24,3 +24,5 @@ tags:
 完全由标准ConvNet模块构建，ConvNeXts在准确性和可扩展性方面优于transformer，实现了87.8%的ImageNet准确度，在COCO检测和ADE20K分割方面优于Swin transformer，同时保持了标准ConvNet的简单性和效率。
 
 # Conclusion
+
+在21世纪20年代，视觉 Transformer，特别是像Swin Transformer 这样的层次结构的 Transformer，开始取代卷积网络，成为通用视觉主干的首选。
