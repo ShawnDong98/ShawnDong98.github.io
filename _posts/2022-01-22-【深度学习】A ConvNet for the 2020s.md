@@ -28,3 +28,5 @@ tags:
 在21世纪20年代，视觉 Transformer，特别是像Swin Transformer 这样的层次结构的 Transformer，开始取代卷积网络，成为通用视觉主干的首选。
 
 人们普遍认为视觉 Transformer 比卷积网络更精确、更高效、更可扩展。
+
+这篇文章提出了ConvNeXts，一个纯粹的卷积模型，可以在多个计算机视觉基准上与最先进的层次化视觉 Transformer 竞争，同时保持了标准卷积网络的简单性和效率。
