@@ -26,3 +26,5 @@ tags:
 # Conclusion
 
 在21世纪20年代，视觉 Transformer，特别是像Swin Transformer 这样的层次结构的 Transformer，开始取代卷积网络，成为通用视觉主干的首选。
+
+人们普遍认为视觉 Transformer 比卷积网络更精确、更高效、更可扩展。
