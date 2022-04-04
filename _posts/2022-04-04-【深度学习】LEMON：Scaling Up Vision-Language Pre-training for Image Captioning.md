@@ -32,3 +32,14 @@ tags:
 
 最后还展示了当以 zero-shot 方式使用时，LEMON可以生成带有长尾视觉概念的标题。
 # Conclusion
+这篇文章研究了用于 image captioning 的VLP模型的 scaling 行为，并构建了自己的大型数据集ALT200M。
+
+实验表明，扩大预训练可以显著提高下游 captioning 任务。
+
+LEMON 已经在多个基准上实现了新的 SOTA，包括COCO caption，nocaps，和 Conceptual Caption。
+
+LEMON还具有可以识别各种各样的长尾视觉对象的令人印象深刻的能力，甚至以 zero-shot 的方式。
+
+此外，对大型 Transformer 模型的研究表明，当可获得的训练数据大于数量级时，模型容量往往是瓶颈。
+
+利用互联网上大量的图文数据来训练一个大模型是非常有前景的方向。
