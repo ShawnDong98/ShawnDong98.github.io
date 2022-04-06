@@ -13,6 +13,7 @@ tags:
 
 # Abstract
 
-视觉识别多年来一直由卷积神经网络(cnn)主导。
+视觉识别多年来一直由卷积神经网络(CNN)主导。
 
+虽然目前流行的视觉 Transformer (ViTs)在 ImageNet 分类中显示出了很大的潜力，但如果不提供额外的数据，其性能仍不如最新的SOTA CNN。
 # Conclusion
