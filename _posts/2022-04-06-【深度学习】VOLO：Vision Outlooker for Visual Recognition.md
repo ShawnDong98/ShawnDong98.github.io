@@ -29,3 +29,4 @@ tags:
 
 此外，预训练好的VOLO可以很好地迁移到下游任务，如语义分割。在 Cityscapes 验证集上获得了84.3%的mIoU得分，在ADE20K验证集上获得了54.3%的mIoU得分。
 # Conclusion
+
