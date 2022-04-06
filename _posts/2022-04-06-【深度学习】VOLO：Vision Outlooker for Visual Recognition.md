@@ -13,4 +13,6 @@ tags:
 
 # Abstract
 
+视觉识别多年来一直由卷积神经网络(cnn)主导。
+
 # Conclusion
