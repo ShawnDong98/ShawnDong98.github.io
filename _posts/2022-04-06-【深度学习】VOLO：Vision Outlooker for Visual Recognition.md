@@ -29,4 +29,10 @@ tags:
 
 此外，预训练好的VOLO可以很好地迁移到下游任务，如语义分割。在 Cityscapes 验证集上获得了84.3%的mIoU得分，在ADE20K验证集上获得了54.3%的mIoU得分。
 # Conclusion
+这篇文章提出了一个新的模型，Vision outlook (VOLO)。
 
+大量的图像分类和分割实验表明，VOLO优于基于CNN和transformer的模型，并建立了新的SOTA结果。
+
+希望VOLO在多个计算机视觉任务上的强大表现将鼓励后续对更好的精细级特征学习的研究。
+
+VOLO的性能优势来自于新的 outlook attention 机制，它动态地密集地聚集了精细级特性，未来将继续在其他应用程序中进行研究，比如自然语言处理。
