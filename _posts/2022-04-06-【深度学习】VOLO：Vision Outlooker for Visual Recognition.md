@@ -20,4 +20,6 @@ tags:
 这项工作试图缩小性能差距，并证明基于注意力的模型确实能够优于CNN。
 
 这篇文章发现，限制vit用于ImageNet分类性能的一个主要因素是，它们在将精细级别的特征编码到令牌表示中的效率很低。
+
+为了解决这个问题，引入了一种新的 outlook attention，并提出了一个简单而通用的架构，称为Vision outlook (VOLO)。
 # Conclusion
