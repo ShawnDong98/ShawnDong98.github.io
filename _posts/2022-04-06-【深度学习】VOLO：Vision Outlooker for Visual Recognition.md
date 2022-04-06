@@ -22,4 +22,6 @@ tags:
 这篇文章发现，限制vit用于ImageNet分类性能的一个主要因素是，它们在将精细级别的特征编码到令牌表示中的效率很低。
 
 为了解决这个问题，引入了一种新的 outlook attention，并提出了一个简单而通用的架构，称为Vision outlook (VOLO)。
+
+与专注于粗级别的全局依赖建模的自注意力不同，outlook attention 有效地将精细级别的特征和上下文编码为 token，这被证明对识别性能非常有利，但在很大程度上被自注意力忽略了。
 # Conclusion
