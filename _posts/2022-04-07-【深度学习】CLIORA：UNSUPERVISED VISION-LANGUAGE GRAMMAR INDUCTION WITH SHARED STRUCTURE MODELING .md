@@ -32,3 +32,6 @@ tags:
 通过两个派生任务来评估模型，即语言语法归纳和 phrase grounding，并在这两个方面都进行了改进。
 # Conclusion
 
+虽然CLIORA已经取得了令人鼓舞的结果(成功的例子见图5(a)和附录H)，但无监督VL语法归纳远远不能令人满意。图5(b)演示了一个典型的失败案例，错误地预测了一个绿色区域，该区域在 ground-truth tree 中应该是绿色t恤。这个错误的 span 被错误地 grounded 到一个包含绿色建筑的大区域。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1649301093072.png)
