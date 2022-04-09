@@ -26,5 +26,7 @@ tags:
 
 此外，这使我们能够用语言建模目标来补充图像-文本对齐损失。
 
+在MSCOCO test captions上，模型建立了一种新SOTA，优于 non-grounded 版本，从而证实了visual grounding 在 contituency 语法归纳中的有效性。
+
 # Conclusion
 
