@@ -30,3 +30,12 @@ tags:
 
 # Conclusion
 
+这篇文章提出了 visually-grounded compound PCFGs(VC-PCFGs)学习框架，并推广了 visual grounded 的语法学习框架。
+
+VC - PCFG 通过对比学习利用 visual groundings，学习信号来自最小化图像-文本对齐损失。
+
+为了解决单纯基于协议的学习导致的错误和学习信号不足的问题，提出用一个定义在无标签文本上的对齐损失来补充图像-文本对齐损失。
+
+使用 Compound PCFG，使我们能够用语言建模目标补充对齐损失，从而实现完全可微的端到端 visual grounding 学习。
+
+实验表明，VC - PCFG 优于那些只通过 visual grounding 学习或只依赖文本训练的模型。
