@@ -32,3 +32,8 @@ tags:
 
 # Conclusion
 
+这篇文章提出一种新的对比学习范式， 用于通用的多模态表征学习。 它建立 image-text-label 空间， 由 unified contrastive learning 方法赋能。
+
+统一的范式促进了image-label和image-textpairs之间的无缝协作，从而实现了判别性性和语义丰富的表示学习，这给zero-shot、linear probe 和 微调基准带来了普遍的改进。
+
+此外还讨论了它与现有学习方法的联系，并通过实验证明，该学习方法在纯图像标签数据上是一个很好的替代学习者。
