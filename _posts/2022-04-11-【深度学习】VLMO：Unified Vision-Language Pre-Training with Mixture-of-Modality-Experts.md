@@ -27,3 +27,6 @@ tags:
 
 # Conclusion
 
+这篇文章提出一个联合视觉语言预训练模型VLMo， 其使用一个共享的 MoME Transformer Backbone 联合学习双向编码器和一个融合编码器。
+
+引入一组 modality experts 对特定的模态信息进行编码，并使用共享的自注意力模块对不同的模态进行对齐。
