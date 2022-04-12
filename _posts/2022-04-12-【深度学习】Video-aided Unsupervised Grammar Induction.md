@@ -22,4 +22,5 @@ tags:
 进一步提出了一个多模态复合PCFG模型(MMC-PCFG)来有效地聚合这些来自不同模态的丰富特征。
 
 MMC-PCFG经过端到端训练，在三个基准测试(即DiDeMo、YouCook2和MSRVTT)上优于每个单模态和先前的SOTA，证实了利用视频信息进行无监督语法归纳的有效性。
+
 # Conclusion
