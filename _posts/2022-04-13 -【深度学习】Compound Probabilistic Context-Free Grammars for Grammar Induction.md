@@ -21,7 +21,10 @@ tags:
 该语法采用 collapsed variational inference，将amortized 变分后验置于连续变量上，用动态规划 marginalized out 潜在树。
 
 在英语和中文的实验结果表明在使用无监督 parsing 评估时，所提方法相比于 SOTA 有效性。
+
 # Conclusion
+
+
 这篇文章研究了一种基于神经网络的PCFG语法归纳方法。
 
 首先提出用神经网络参数化潜符号的分布表示，并发现这种神经网络能够通过简单的最大似然学习归纳出具有语言意义的语法。
