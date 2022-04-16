@@ -11,7 +11,7 @@ tags:
     - 
 ---
 
-# 会议
+# 会议(CCF A)
 
 ## CVPR（Conference on Computer Vision and Pattern Recognition）
 
@@ -62,6 +62,7 @@ ICCV兩年一次，與ECCV正好錯開，是公認的三個會議中級別最高
 
 ## ECCV（European Conference on Computer Vision）
 
+## NeurIPS
 
 ## AAAI
 
@@ -87,6 +88,18 @@ ICCV兩年一次，與ECCV正好錯開，是公認的三個會議中級別最高
 ## WWW
 
 WWW总体上是A类会议，这个在很多会议排名上都有体现，比如csrankings.org，csmetrics.org等等。国内的CCF以前把WWW评为数据挖掘的B类，现在已经更正成交叉的A类的。WWW的录取率在15%左右，但是各个track的质量和录取率都是有差异的，根据我老板说，今年的PC meeting最难的graph track只有8%的录取率，录最多的track能有40%左右。当然录取率不能完全代表质量。
+
+
+
+
+## IJCAI
+
+## ICLR
+
+
+## 会议CCF(B)
+
+## ICMR
 
 
 ## ACM CIKM
