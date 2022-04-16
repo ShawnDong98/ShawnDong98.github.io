@@ -46,4 +46,4 @@ SG-Transformer采用编码器-解码器架构。
 
 编码解码器既可以从局部视图生成单词，也可以从全局视图生成单词。
 
-在MSCOCO[34]和Flickr30k[62]基准上进行的大量实验和卓越的结果证明了SG-Transformer在定量和定性方面的有效性和通用性。
+在MSCOCO和Flickr30k基准上进行的大量实验和卓越的结果证明了SG-Transformer在定量和定性方面的有效性和通用性。
