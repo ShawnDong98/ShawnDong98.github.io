@@ -36,5 +36,17 @@ tags:
 在广泛的视觉语言任务上验证了该方法，包括图像文本检索、视觉问题解答（VQA）、视觉内容和视觉推理。
 
 结果表明，该方法不仅优于最先进的VLP模型，而且在 IMF 指标上也表现出优势。
+
 # Conclusion
 
+这篇文章探讨了自注意力在视觉语言预训练（VLP）中对视觉特征学习的好处。
+
+通过在 VLP 中引入完整地 Transformer 来探索 CNN 在视觉模式学习方面的局限性。
+
+还在 Transformer 中设计了一种名为 Masked Feature Regression（MFR）的新型 masking 优化机制，以进一步促进 inter-modality 学习。
+
+为了验证MFR并探索 inter-modality 对齐的机制，提出 Inter-Modality Flow（IMF）来度量视觉和语言模式之间的相互作用。
+
+将来，将进一步探索各种模态的不同属性，并设计一个统一的 inter-modality 交互框架。
+
+另一个潜在方向是在模态间学习中涉及两种以上的模态，以实现更强大的理解和交互，例如图像标签。
