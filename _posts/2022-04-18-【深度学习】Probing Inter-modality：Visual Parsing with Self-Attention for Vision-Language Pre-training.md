@@ -29,7 +29,12 @@ tags:
 
 具体来说， 这篇文章提出了一个名为 Inter-Modality Flow（IMF）的指标来衡量视觉和语言（即 inter-modality） 之间的相互作用。
 
-我们还在 Transformer 中设计了一种名为屏蔽特征回归（MFR）的新型屏蔽优化机制，以进一步促进模式间学习。
+这篇文章还在 Transformer 中设计了一种名为 Masked Feature Regression（MFR）的新型 masking 优化机制，以进一步促进 inter-modality 学习。
 
+这可能是首次探索 Transformer 在VLP中进行视觉特征学习的好处。
+
+在广泛的视觉语言任务上验证了该方法，包括图像文本检索、视觉问题解答（VQA）、视觉内容和视觉推理。
+
+结果表明，该方法不仅优于最先进的VLP模型，而且在 IMF 指标上也表现出优势。
 # Conclusion
 
