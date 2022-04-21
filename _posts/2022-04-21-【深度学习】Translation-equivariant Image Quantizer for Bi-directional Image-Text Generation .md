@@ -23,3 +23,9 @@ tags:
 
 使用该方法，文本-图像生成的准确率提高了22%，图像-文本生成的准确率提高了26%，优于VQGAN。
 # Conclusion
+这项工作首先探索了 image quantized 空间中的 translation equivariance，并提出了一种简单有效的实现方法。
+
+
+实验结果表明，该方法增加了 translation equivariance，从而提高了图像-文本多模态生成性能。
+
+未来的研究方向包括大规模分析其他 image quantizers 的正交正则化训练及其在下游多个任务中的相应性能。
