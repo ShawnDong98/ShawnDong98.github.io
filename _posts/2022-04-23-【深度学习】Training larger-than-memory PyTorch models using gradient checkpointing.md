@@ -42,3 +42,5 @@ tags:
 因此， gradient checkpointing  是计算机科学中存在于内存和计算之间的权衡的一个经典例子。
 
 `torch.utils.checkpoint.checkpoint` 和 `torch.utils.checkpoint.checkpoint_sequential` 提供 gradient checkpointing，它实现了如下特性(根据文档中的注释)。在前向传播期间，PyTorch将输入元组保存给模型中的每个函数。在反向传播过程中，以即时的方式为每个函数重新计算输入元组和函数的组合，将其插入到需要它的每个函数的梯度公式中，然后丢弃。其净计算成本大致相当于每个样本在模型中向前传播两次的计算成本。
+
+Gradient checkpointing 首次发表于2016年的论文 "Training Deep Nets With Sublinear Memory Cost"。 这篇文章声称 gradient checkpointing 算法将模型的动态内存开销 从O(n)(其中n是模型中的层数 )降低到O(sqrt(n))，并通过将一个 ImageNet 变体从 48GB 显存压缩到 7GB 的显存实验证明了这一点。
