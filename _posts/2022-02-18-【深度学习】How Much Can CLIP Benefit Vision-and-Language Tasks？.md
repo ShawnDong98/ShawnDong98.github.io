@@ -23,6 +23,9 @@ tags:
 
 结果表明 CLIP 比广泛使用的视觉编码器 BottomUp-TopDown 表现更好。
 
+
+# 
+
 # Conclusion
 
 这篇文章提出利用CLIP作为视觉特征编码器在不同任务上用于不同的 V&L 模型。
