@@ -24,7 +24,9 @@ tags:
 结果表明 CLIP 比广泛使用的视觉编码器 BottomUp-TopDown 表现更好。
 
 
-# 
+# Introduction
+
+近期工作(Anderson et al.， 2018a;Jiang等，2020;Zhang等人，2021)观察到视觉表示已经成为V&L模型的性能瓶颈，并强调了学习一种强大的视觉编码器的重要性。
 
 # Conclusion
 
