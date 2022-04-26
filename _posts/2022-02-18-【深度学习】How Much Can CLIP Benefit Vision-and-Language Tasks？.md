@@ -57,6 +57,7 @@ CLIP在ImageNet分类等基准测试中显示了强大的 zero-shot 能力。我
 
 因此，我们建议将CLIP的视觉编码器与之前的V&L模型集成(图1)。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1650938155726.png)
 
 我们考虑使用CLIP的不同视觉主干。 (CLIP-ResNet denoted as CLIP-Res): CLIP-Res50, CLIP-Res101, CLIP-Res50x4, 和 CLIP-ViT-B。
 
@@ -65,7 +66,15 @@ CLIP在ImageNet分类等基准测试中显示了强大的 zero-shot 能力。我
 - 直接特定于任务的微调(第3节)
 - V&L预训练(第4节)。
 
+# CLIP-ViL
 
+## Visual Question Answering
+
+**Experimental Setup**： 参考 (Jiang 等人 2020) 提取 grid feature。
+
+**Experimental Results**：与传统的在 ImageNet 分类任务上预训练的视觉特征提取器相比， CLIP 视觉模块表现出明显的提升。
+
+我们进一步展示了在 VG 上预训练的检测的结果。相比于 ImageNet-Res50 编码器， 它提升了 Pythia_VG 2.82% 的表现， 在 MCAN_VG 上提升了 2.90% 的表现。然而，使用Pythia_VG时CLIP-Res50的性能下降了5.54%，使用MCAN_VG时下降了4.08%。可能原因是，与ImageNet相比，CLIP-Res50是在不同的数据和不同的方法上进行训练的，所以为ImageNet模型设计的Visual-Genome微调实际可能会损害性能。
 # Conclusion
 
 这篇文章提出利用CLIP作为视觉特征编码器在不同任务上用于不同的 V&L 模型。
