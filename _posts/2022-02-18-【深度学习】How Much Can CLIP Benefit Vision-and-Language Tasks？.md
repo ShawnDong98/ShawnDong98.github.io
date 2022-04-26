@@ -47,6 +47,25 @@ CLIP在ImageNet分类等基准测试中显示了强大的 zero-shot 能力。我
 
 在VL 预训练中， 将传统的基于区域的表征替换为 CLIP 特征。CLIP-VIL_p 在 VQAv2, SNLI-VE和GQA 上取得了好的表现， 在 VQA 上取得了新 SOTA (76.7% on test-std)， 在 SNLI-VE 上取得了新SOTA(80.20% on test)。CLIP-Res50 的 CLIP-ViL_p 比广泛基于区域的编码器 (BUTD) ResNet101 的表现更好。 CLIP-Res50x4 的 CLIP-ViL_p 比 VinVL-ResNeXt152 的表现更好， 其实当前的 SOTA， 并且极致 Scale-up 基于区域的编码器。
 
+# Background and Motivation
+
+## Motivation
+
+尽管CLIP在视觉任务中具有较强的zero-shot能力，但在某些V&L下游任务中，CLIP没有表现出相同的表现水平。
+
+例如，如果我们将VQA 2.0 (Goyal et al.， 2017)转换为 zero-shot 的图像到文本检索任务，我们只观察 chance 性能(第5节)。
+
+因此，我们建议将CLIP的视觉编码器与之前的V&L模型集成(图1)。
+
+
+我们考虑使用CLIP的不同视觉主干。 (CLIP-ResNet denoted as CLIP-Res): CLIP-Res50, CLIP-Res101, CLIP-Res50x4, 和 CLIP-ViT-B。
+
+接下来，我们将在两个场景中描述我们的方法:
+
+- 直接特定于任务的微调(第3节)
+- V&L预训练(第4节)。
+
+
 # Conclusion
 
 这篇文章提出利用CLIP作为视觉特征编码器在不同任务上用于不同的 V&L 模型。
