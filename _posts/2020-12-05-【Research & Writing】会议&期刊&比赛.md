@@ -123,6 +123,12 @@ NLP方向的会议是ACL、EMNLP、NAACL
 
 [2021-2022 International Conferences in Artificial Intelligence, Machine Learning, Computer Vision, Data Mining, Natural Language Processing and Robotics](https://jackietseng.github.io/conference_call_for_paper/conferences.html)
 
+
+# mark 会议
+
+## ICIG（国际图象图形学学术会议）
+
+## NCIG（中国图象图形学学术会议）
 # 期刊
 
 ## IEEE TRANSACTIONS ON PATTERN ANALYSIS AND MACHINE INTELLIGENCE
