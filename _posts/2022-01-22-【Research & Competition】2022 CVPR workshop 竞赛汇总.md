@@ -97,3 +97,8 @@ tags:
 # Workshop on Autonomous Driving (WAD)
 
 [http://cvpr2021.wad.vision/](http://cvpr2021.wad.vision/)
+
+
+# Woodscape Fisheye Object Detection Challenge for Autonomous Driving | CVPR 2022 OmniCV Workshop
+
+[https://codalab.lisn.upsaclay.fr/competitions/4074#learn_the_details](https://codalab.lisn.upsaclay.fr/competitions/4074#learn_the_details)
