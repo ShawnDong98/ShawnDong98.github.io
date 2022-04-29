@@ -45,3 +45,10 @@ tags:
 利用这些强大的预训练模型将在不久的将来获得吸引力。
 
 因此，了解如何利用这些组件非常有意义。
+
+
+# Q: 如何提取并利用图像特征的？
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1651208567463.png)
+
+transformer-based 结构的总览， 使得 CLIP 和 语言模型GPT-2 被冻结的情况下，生成有意义的 captions。
