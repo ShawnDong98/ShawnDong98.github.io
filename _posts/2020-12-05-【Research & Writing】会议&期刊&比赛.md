@@ -292,6 +292,15 @@ PubMed Central (PMC)链接：PubMed Central
 [https://algo.browser.qq.com/](https://algo.browser.qq.com/)
 
 
+## 微信大数据挑战赛
+
+https://algo.weixin.qq.com/[](https://algo.weixin.qq.com/)
+
+## 第一届船海数据智能应用创新大赛
+
+[https://competition.huaweicloud.com/information/1000041661/introduction
+](https://competition.huaweicloud.com/information/1000041661/introduction)
+
 ## 传播内容科学数据中心(Communication Content Science Data Center, ccsdc）
 
 [http://data.sklccc.com/matchpage?t=context#](http://data.sklccc.com/matchpage?t=context#)
