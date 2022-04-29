@@ -294,7 +294,7 @@ PubMed Central (PMC)链接：PubMed Central
 
 ## 微信大数据挑战赛
 
-https://algo.weixin.qq.com/[](https://algo.weixin.qq.com/)
+[https://algo.weixin.qq.com/](https://algo.weixin.qq.com/)
 
 ## 第一届船海数据智能应用创新大赛
 
