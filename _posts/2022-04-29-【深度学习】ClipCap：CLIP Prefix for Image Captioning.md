@@ -51,4 +51,4 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1651208567463.png)
 
-transformer-based 结构的总览， 使得 CLIP 和 语言模型GPT-2 被冻结的情况下，生成有意义的 captions。
+transformer-based 结构的总览， 使得 CLIP 和 语言模型GPT-2 被冻结的情况下，生成有意义的 captions。为了提取固定长度的前缀，我们从CLIP嵌入空间训练一个轻量级的基于 Transformer 的映射网络，并训练一个学习到的常量到GPT-2。
