@@ -1,0 +1,22 @@
+---
+layout:     post
+title:      "【深度学习】Pythia v0.1: the Winning Entry to the VQA Challenge 2018"
+subtitle:   ""
+date:       2022-04-30
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - 深度学习
+    - 
+---
+
+# Abstract
+
+这篇文章描述了 Facebook 人工智能研究(FAIR)的A-STAR团队在2018年VQA挑战赛中获胜的作品——Pythia v0.1。
+
+这篇文章出发点是自底向上自顶向下(up-down)模型的模块化重新实现。 我们演示了通
+
+过对模型架构和学习率调度进行细微但重要的更改，微调图像特征，并添加数据增强，我们可以显著提高VQA v2.0数据集上的 up-down 模型的性能，从65.67%提高到70.24%。
+
+此外，通过使用不同特征和不同数据集训练的模型的不同集成，能够比标准的集成方式(即使用不同随机种子的相同模型)显著提高1.31%。总的来说，其在VQA v2.0数据集的测试标准上实现了72.27%。
