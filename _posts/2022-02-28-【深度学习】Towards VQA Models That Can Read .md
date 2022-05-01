@@ -34,6 +34,14 @@ TextVQA 包含 45336 个对 28408 图像的问题。
 
 Pythia v0.3 修改了一些超参数 （如 question vocabulary 的大小， hidden dimension）， 并且在 VQA 和 VizWiz 数据集上取得了单模型的 VQA accraucy SOTA。
 
+Pythia 受启发于基于目标检测检测框预测 bottom-up top-down 注意力机制网络(VQA winner 2017) 的方式， 其有和依赖于 grid-base 特征的 VQA 2016 winner 相似的多模态注意力机制 。
+
+在Pythia中，对于空间特征fI(v)，同时依赖于来自图像的基于网格和基于区域特征。基于网格的特征是通过从预训练的ResNet-152[14]的res-5c块平均池化2048D特征得到的。基于区域的特征从改进的Faster-RCNN模型[8]的fc6层提取，该模型训练于Visual Genome[28]对象和[1]中提供的属性。在训练期间，我们微调fc7权重。
+
+我们为question embedding 使用预训练的 GloVe 嵌入与自定义词汇表(在VQA 2.0 中的 top 77k question words)。f_Q模块将GloVe嵌入传递给LSTM[15]和自注意[49]，生成问题的句子嵌入。对于OCR，我们运行Rosetta OCR系统[6]来提供字符串s1, ... , sN。OCR标记首先使用预训练的FastText嵌入 f_O，它甚至可以为OOV tokens 生成单词嵌入。
+
+在f_A中，f_Q(q) 被用来获得对 f_O(s) OCR tokens features 和 f_I(v) image features 的自顶向下的、任务特定的注意力。然后根据注意力权重对特征进行平均，以获得OCR token 和图像特征的最终特征表示。最终的网格级特征和基于区域的特征被 concatenated 在图像特征中。对于 OCR tokens, 注意力权重被 concatenated 到最终的 attended features。 f_comb(x, y) 两个特征嵌入被使用暗元素的 probduct 融合。来自 f_OCR(s, q) 的融合特征 和 拼接的特征 f_VQA(v, q) 被传一个 MLP 产生 logits， 最后产生answer
+
 # Conclusion
 
 这篇文章探索了回答和推理图像中的文本问题， 以帮助视障人士。
