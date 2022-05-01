@@ -24,6 +24,10 @@ TextVQA 包含 45336 个对 28408 图像的问题。
 
 因此， 将该方法叫做 LoRRA(Look, Read, Reason 和 Answer)， LoRRA 在 TextVQA 数据集上比现有 SOTA VQA 模型表现更好。
 
+# Related work
+
+**Copy Mechanism.** 我们提出的模型的一个核心组件是它能够决定问题的答案是应该是图像中检测到的OCR标记，还是OCR标记只应该通知问题的答案。前者的实现叫做 "copy mechanism"。 我们的 copy mechanism 是基于指针生成器网络[11,39,32,12,34]上的一系列工作。一种 copy mechanism 为网络提供了生成词汇外单词的能力，方法是在上下文中指向一个单词，然后复制它作为答案。这种方法被用于各种NLP任务， 如 summarization, question answering, langage modelling, neural machine translation 和 dialog。
+
 # Conclusion
 
 这篇文章探索了回答和推理图像中的文本问题， 以帮助视障人士。
