@@ -25,6 +25,7 @@ tags:
 在benchmark VQA-v2数据集上对MCAN进行定量和定性评价，并开展了广泛的消融研究，以探索MCAN有效性背后的原因。
 
 实验结果表明，MCAN的性能明显优于以往的最先进技术。
+
 # Conclusion
 
 这篇文章提出了一种用于VQA的深度 Modular Co-Attention 网络(MCAN)。
