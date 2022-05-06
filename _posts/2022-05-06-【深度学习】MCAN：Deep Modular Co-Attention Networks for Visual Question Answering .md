@@ -27,3 +27,9 @@ tags:
 实验结果表明，MCAN的性能明显优于以往的最先进技术。
 # Conclusion
 
+这篇文章提出了一种用于VQA的深度 Modular Co-Attention 网络(MCAN)。
+
+MCAN由级联的 modular co-attention 层组成，每个层由 self-attention 单元和 guided-attention 单元组成，协同模拟inra- 和 inter-modal 的相互作用。
+
+通过使用编码器-解码器策略深度叠加 MCA 层，获得了一个深度 MCAN 模型，为VQA实现了新的最先进的性能。
+
