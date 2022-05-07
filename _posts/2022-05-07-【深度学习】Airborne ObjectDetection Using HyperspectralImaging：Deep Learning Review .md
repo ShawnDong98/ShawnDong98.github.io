@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Airborne ObjectDetection Using HyperspectralImaging: Deep Learning Review "
+title:      "【深度学习】Airborne ObjectDetection Using Hyperspectral Imaging: Deep Learning Review "
 subtitle:   ""
 date:       2022-05-07
 author:     "ShawnD"
@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
-    - 
+    - HSI
 ---
 
 # Abstract
