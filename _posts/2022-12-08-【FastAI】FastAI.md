@@ -38,5 +38,5 @@ def my_auc(inp, targ):
 
 
 # Reference
-
-1. [https://forums.fast.ai/t/using-auc-as-metric-in-fastai/38917/38](https://forums.fast.ai/t/using-auc-as-metric-in-fastai/38917/38)
+1. https://github.com/fastai/fastai/issues/2832[](https://github.com/fastai/fastai/issues/2832)
+2. [https://forums.fast.ai/t/using-auc-as-metric-in-fastai/38917/38](https://forums.fast.ai/t/using-auc-as-metric-in-fastai/38917/38)
