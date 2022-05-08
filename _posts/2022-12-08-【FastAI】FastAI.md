@@ -19,7 +19,7 @@ tags:
 
 每次 `fit` 之前都需要
 
-```
+```python
 seed_everything(seed)
 dls.rng.seed(seed)
 ```
