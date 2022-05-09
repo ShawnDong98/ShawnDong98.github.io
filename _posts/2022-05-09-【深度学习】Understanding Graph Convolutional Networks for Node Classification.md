@@ -36,3 +36,9 @@ $$H^{[i + 1]} = \sigma(W^{[i]}H^{[i]}A^*)$$
 
 `A*` 是 `A` 的 normalized 版本。为了更好地理解为什么我们需要 normalize `A`，以及在 GCN 的前向传播过程中会发生什么，让我们做一个实验。
 
+
+# Building Graph Convolutional Networks
+## Initializing the Graph G
+
+让我们从使用 [NetworkX](https://networkx.org/documentation/networkx-2.3/index.html) 构建一个简单的无向图(G)开始。图 G 由 6 个节点组成，每个节点的特征对应于特定的节点号。例如，节点1的节点特征为1，节点2的节点特征为2，依此类推。为了简化，我们不打算在这个实验中分配边特征。
+
