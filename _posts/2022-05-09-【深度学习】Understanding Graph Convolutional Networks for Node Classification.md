@@ -244,3 +244,8 @@ plot_features(H2)
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652071212403.png)
 
 从上面的图中可以清楚地看到，主要有两组，左组包含节点0、1、2，右组包含节点3、4、5。我们可以看到 GCN 可以不用训练或反向传播学习特征表示。
+
+
+# Reference
+
+1. [Understanding Graph Convolutional Networks for Node Classification](https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b)
