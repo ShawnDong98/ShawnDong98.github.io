@@ -253,6 +253,22 @@ plot_features(H2)
 
 没有 Spectral 图卷积中的近似，空间图卷积通常具有更强的 scalable，因为它们的 filter 是 localized。主要的挑战是定义一个局部不变性的 CNNs, 其工作的中心节点有不同数量的邻居。在接下来的几节中，我们将快速概述不同的空间图卷积方法。我们可能会提出一些方程，有时你可能需要把这些点连起来。但为了不进一步延长文章，请参阅个别论文的细节。
  
+## Message Passing Neural Network (MPNN)
+
+MPNN概述了空间图卷积的一般 message passing 框架。它沿着边从一个节点传递信息(message)到另一个节点，并重复k步，使信息在图中传播。下式为节点v第k层的隐藏特征表示。它取决于 `v` 和它在前一层的邻居的隐藏特征，以及它和邻居的边的特征。`U` 和 `M` 函数的不同选择将导致模型的不同变体。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652078958943.png)
+
+最后一个隐藏层中节点的隐表示可以传递给输出层来执行节点级预测。或者它可以传递给一个带有可学习参数的读出函数 `R` 来执行图级预测。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652079202539.png)
+
+例如，在药物发现中，一个图表示以原子为节点，化学键为边的化合物。我们可能想要判别这种化合物是否能阻碍癌细胞的生长或者它是致癌的。因此，我们可以用上面的公式进行读出，进行图级预测。
+
+
+
+ 
 # Reference
 
 1. [Understanding Graph Convolutional Networks for Node Classification](https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b)
