@@ -37,8 +37,8 @@ $$H^{[i + 1]} = \sigma(W^{[i]}H^{[i]}A^*)$$
 `A*` 是 `A` 的 normalized 版本。为了更好地理解为什么我们需要 normalize `A`，以及在 GCN 的前向传播过程中会发生什么，让我们做一个实验。
 
 
-# Building Graph Convolutional Networks
-## Initializing the Graph G
+## Building Graph Convolutional Networks
+### Initializing the Graph G
 
 让我们从使用 [NetworkX](https://networkx.org/documentation/networkx-2.3/index.html) 构建一个简单的无向图(G)开始。图 G 由 6 个节点组成，每个节点的特征对应于特定的节点号。例如，节点1的节点特征为1，节点2的节点特征为2，依此类推。为了简化，我们不打算在这个实验中分配边特征。
 
@@ -74,7 +74,7 @@ plt.show()
 因为我们只有一个图，这个 data configuration 是 Single Mode representation 的一个例子。我们将构建一个GCN，它将学习节点的特征表示。
 
 
-## Inserting Adjacency Matrix (A) to Forward Pass Equation
+### Inserting Adjacency Matrix (A) to Forward Pass Equation
 
 下一步是从图 `G` 中获取邻接矩阵( `A` )和节点特征矩阵( `X` )。
 
@@ -107,7 +107,7 @@ print("Dot product of A and X (AX):\n", AX)
 
 但是，如果我们进一步思考，我们会意识到，当 `AX` 对相邻节点的特征进行汇总时，它没有考虑到节点本身的特征。
 
-## Inserting Self-Loops and Normalizing A
+### Inserting Self-Loops and Normalizing A
 
 为了解决这个问题，我们现在给 `A` 的每个节点添加 self-loops。 添加 self-loops 基本上是一种将节点连接到自身的机制。也就是说，邻接矩阵A的所有对角线元素现在都变成了1因为每个节点都与自身相连。让我们称加了自循环的 `A` 为 `A_hat`，并重新计算 `AX`，它现在是 `A_hat` 和 `X` 的点积：
 
@@ -178,7 +178,7 @@ print('DADX:\n', DADX)
 
 完成特征处理之后，是时候完成我们的GCN了。
 
-## Adding Weights and Activation Function
+### Adding Weights and Activation Function
 
 我们将使用 ReLu 作为激活函数构建一个2层 GCN。为了初始化权值，我们将使用随机种子，以便复现结果。只要记住权值初始化不能为0。在这个实验中，我们将设置4个神经元作为隐藏层。当我们绘制二维特征表示时，会有两个输出神经元。
 
@@ -212,7 +212,7 @@ print('Features Representation from GCN output:\n', H2)
 
 完成了!我们刚刚建立了第一个前向GCN模型
 
-## Plotting the Features Representations
+### Plotting the Features Representations
 
 GCN 的魔力是它可以不用训练学习特征表示。 让我们在通过2层GCN之后可视化特征表示。
 
@@ -245,7 +245,14 @@ plot_features(H2)
 
 从上面的图中可以清楚地看到，主要有两组，左组包含节点0、1、2，右组包含节点3、4、5。我们可以看到 GCN 可以不用训练或反向传播学习特征表示。
 
+# Spatial Graph Convolution 
 
+不同的空间图卷积依赖于不同的 aggregators 从每个节点的邻居收集信息。从概念上讲，我们也可以将其视为 message passing。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652073924810.png)
+
+没有 Spectral 图卷积中的近似，空间图卷积通常具有更强的 scalable，因为它们的 filter 是 localized。主要的挑战是定义一个局部不变性的 CNNs, 其工作的中心节点有不同数量的邻居。在接下来的几节中，我们将快速概述不同的空间图卷积方法。我们可能会提出一些方程，有时你可能需要把这些点连起来。但为了不进一步延长文章，请参阅个别论文的细节。
+ 
 # Reference
 
 1. [Understanding Graph Convolutional Networks for Node Classification](https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b)
