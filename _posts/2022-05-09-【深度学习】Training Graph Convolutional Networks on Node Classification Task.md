@@ -48,7 +48,32 @@ CORA citation network 数据集由2708个节点组成，每个节点代表一篇
 
 在这个实验中，我们将使用构建在Tensorflow 2上的Spektral API来构建和训练一个GCN模型。尽管Spektral 提供内置函数来加载和预处理CORA数据集，但在本文中，我们将从这里下载原始数据集，以便更深入地理解数据预处理和配置。
 
+```python
+import random
 
+all_data = []
+all_edges = []
+
+
+for root, dirs, files in os.walk("../datasets/GCNs/cora"):
+    for file in files:
+        if '.content' in file:
+            with open(os.path.join(root, file), 'r') as f:
+                all_data.extend(f.read().splitlines())
+        elif 'cites' in file:
+            with open(os.path.join(root, file), 'r') as f:
+                all_edges.extend(f.read().splitlines())
+
+print(all_data[0])
+print(all_edges[0])
+
+random_state = 77
+all_data = random.shuffle(all_data)
+```
+
+在 `cora.content` 文件中，每一行由几个元素组成: 第一个元素表示文档(或节点)ID，直到最后一个元素为止的第二个元素表示节点特征，最后一个元素表示特定节点的标签。
+
+在 `cora.cites` 文件中，每行包含一个文档(或节点) IDs 的元组。元组的第一个元素表示被引用的论文的ID，第二个元素表示包含引用的论文。
 
 
 # Reference
