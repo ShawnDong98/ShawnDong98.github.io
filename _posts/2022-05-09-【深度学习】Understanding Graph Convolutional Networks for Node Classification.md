@@ -34,3 +34,5 @@ GCNs本身可以分为两种主要算法，**Spatial Graph Convolutional Network
 
 $$H^{[i + 1]} = \sigma(W^{[i]}H^{[i]}A^*)$$
 
+`A*` 是 `A` 的 normalized 版本。为了更好地理解为什么我们需要 normalize `A`，以及在 GCN 的前向传播过程中会发生什么，让我们做一个实验。
+
