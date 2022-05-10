@@ -121,7 +121,37 @@ print('\nNumber of classes: ', num_classes)
 
 在论文中，他们为每个类挑选了20个标记好的样本。因此，有7个类，我们总共有140个带标签的训练样本。我们还将使用500个标记验证样本和1000个标记测试样本。
 
+```python
+def limit_data(labels, limit=20, val_num=500, test_num=1000):
+    label_counter = dict((l, 0) for l in labels)
+    train_idx = []
 
+    for i in range(len(labels)):
+        label = labels[i]
+        if label_counter[label] < limit:
+            train_idx.append(i)
+            label_counter[label] += 1
+
+        if all(count == limit for count in label_counter.values()):
+            break
+
+    rest_idx = [x for x in range(len(labels)) if x not in train_idx]
+    val_idx = rest_idx[:val_num]
+    test_idx = rest_idx[val_num:(val_num+test_num)]
+    return train_idx, val_idx, test_idx
+
+
+train_idx, val_idx, test_idx = limit_data(labels)
+
+train_mask = np.zeros((N, ), dtype=bool)
+train_mask[train_idx] = True
+
+val_mask = np.zeros((N, ), dtype=bool)
+val_mask[val_idx] = True
+
+test_mask = np.zeros((N, ), dtype=bool)
+test_mask[test_idx] = True
+```
 
 
 # Reference
