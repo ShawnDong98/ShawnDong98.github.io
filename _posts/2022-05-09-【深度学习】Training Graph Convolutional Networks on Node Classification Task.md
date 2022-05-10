@@ -185,6 +185,13 @@ print("labels_encoded: ", labels_encoded)
 print("classes: ", classes)
 ```
 
+现在，我们完成了数据预处理，并准备构建GCN
+
+
+## Build the Graph Convolutional Networks
+
+GCN模型结构和超参数遵循GCN原始论文的设计。GCN模型将接受2个输入，节点Node Features Matrix (X) 和 Adjacency Matrix (A)。
+
 
 # Reference
 1. [Training Graph Convolutional Networks on Node Classification Task](https://medium.com/towards-data-science/graph-convolutional-networks-on-node-classification-2b6bbec1d042)
