@@ -244,8 +244,37 @@ Note: 需要 tensorflow == 2.2.2, spektral == 0.6.0
 
 为了更好地评估每个类的模型性能，我们使用 `F1-score` 来代替准确性和损失指标。
 
-```
+```python
+# Train model
+validation_data = ([X, A], labels_encoded, val_mask)
+model.fit([X, A],
+          labels_encoded,
+          sample_weight=train_mask,
+          epochs=epochs,
+          batch_size=N,
+          validation_data=validation_data,
+          shuffle=False,
+          callbacks=[
+              EarlyStopping(patience=es_patience,  restore_best_weights=True),
+              tbCallBack_GCN
+          ])
+
+# Evaluate model
+X_te = X[test_mask]
+A_te = A[test_mask,:][:,test_mask]
+y_te = labels_encoded[test_mask]
+
+y_pred = model.predict([X_te, A_te], batch_size=N)
+report = classification_report(np.argmax(y_te,axis=1), np.argmax(y_pred,axis=1), target_names=classes)
+print('GCN Classification Report: \n {}'.format(report))
 ```
 
+**训练完成！**
+
+从分类报告中，我们得到 macro average  F1-score 为 74%。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652186447769.png)
+
+## 
 # Reference
 1. [Training Graph Convolutional Networks on Node Classification Task](https://medium.com/towards-data-science/graph-convolutional-networks-on-node-classification-2b6bbec1d042)
