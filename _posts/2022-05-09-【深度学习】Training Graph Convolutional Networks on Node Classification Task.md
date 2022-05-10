@@ -153,6 +153,38 @@ test_mask = np.zeros((N, ), dtype=bool)
 test_mask[test_idx] = True
 ```
 
+## Obtaining the Adjacency Matrix
+
+下一步是获取图的 Adjacency Matrix(A)。我们使用 NetworkX 来帮助我们做到这一点。我们将初始化一个图，然后将节点和边列表添加到图中。
+
+```python
+G = nx.Graph()
+G.add_nodes_from(nodes)
+G.add_edges_from(edge_list)
+
+A = nx.adjacency_matrix(G)
+print('Graph info: ', nx.info(G))
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652169518466.png)
+
+## Converting the label to one-hot encoding
+
+与其他机器学习模型一样，构建GCN之前的最后一步是对标签进行编码，然后将它们转换为独热编码。
+
+```python
+def encode_label(labels):
+    label_encoder = LabelEncoder()
+    labels = label_encoder.fit_transform(labels)
+    labels = to_categorical(labels)
+    return labels, label_encoder.classes_
+
+labels_encoded, classes = encode_label(labels)
+print("labels_encoded: ", labels_encoded)
+print("classes: ", classes)
+```
+
 
 # Reference
 1. [Training Graph Convolutional Networks on Node Classification Task](https://medium.com/towards-data-science/graph-convolutional-networks-on-node-classification-2b6bbec1d042)
