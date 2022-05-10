@@ -75,7 +75,53 @@ all_data = random.shuffle(all_data)
 
 在 `cora.cites` 文件中，每行包含一个文档(或节点) IDs 的元组。元组的第一个元素表示被引用的论文的ID，第二个元素表示包含引用的论文。虽然这个配置表示一个有向图，但在这种方法中，我们将数据集视为一个无向图。
 
-加载数据之后，我们构建节点特征矩阵(Node Features Matrix, X)和一个包含相邻节点元组的列表。这个边列表将用于构建一个图，从中我们可以获得邻接矩阵(a)。
+加载数据之后，我们构建Node Features Matrix (X) 和一个包含相邻节点元组的列表。这个边列表将用于构建一个图，从中我们可以获得 Adjacency Matrix(A)。
+
+
+```python
+labels = []
+nodes = []
+X = []
+
+for i, data in enumerate(all_data):
+    elements = data.split('\t')
+    # 最后一个元素是标签
+    labels.append(elements[-1])
+    # 第二个到倒数第二个是 X
+    X.append(elements[1:-1])
+    # 第一个是节点
+    nodes.append(elements[0])
+
+X = np.array(X, dtype=int)
+N = X.shape[0] # the number of nodes
+F = X.shape[1] # the size of node features
+print("X shape: ", X.shape)
+
+edge_list = []
+for edge in all_edges:
+    e = edge.split('\t')
+    edge_list.append((e[0], e[1]))
+
+print('\nNumber of nodes (N): ', N)
+print('\nNumber of features (F) of each node: ', F)
+print('\nCategories: ', set(labels))
+
+num_classes = len(set(labels))
+print('\nNumber of classes: ', num_classes)
+```
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652168266225.png)
+
+## Setting the Train, Validation, and Test Mask
+
+我们将 Node Features Matrix(X) 和 Adjacency Matrix(A) 输入到神经网络。我们还将为每个训练、验证和测试数据集设置长度为 N 的 **Boolean masks**。当它们属于相应的训练、验证或测试数据集时，这些mask 的元素为True。例如，对于训练数据，train mask的元素为True。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652168633600.png)
+
+在论文中，他们为每个类挑选了20个标记好的样本。因此，有7个类，我们总共有140个带标签的训练样本。我们还将使用500个标记验证样本和1000个标记测试样本。
+
+
 
 
 # Reference
