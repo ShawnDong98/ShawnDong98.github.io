@@ -190,8 +190,62 @@ print("classes: ", classes)
 
 ## Build the Graph Convolutional Networks
 
-GCN模型结构和超参数遵循GCN原始论文的设计。GCN模型将接受2个输入，节点Node Features Matrix (X) 和 Adjacency Matrix (A)。
+GCN模型结构和超参数遵循GCN原始论文的设计。GCN模型将接受2个输入，节点Node Features Matrix (X) 和 Adjacency Matrix (A)。我们将使用 Dropout 层 和 L2正则化实现 2层GCN。我们还将设置最大训练 epochs 为 200，并实施 Early Stopping，patience 为 10。这意味着，一旦验证损失连续10个epoch没有减少，训练将停止。为了监控训练和验证的准确性和损失，我们还将在回调中调用TensorBoard。
 
+在将 Adjacency Matrix(A) 输入到 GCN 之前，我们需要根据原文进行额外的预处理，执行 `renormalization trick` 技巧。
+
+
+```python
+# Parameters
+channels = 16           # Number of channels in the first layer
+dropout = 0.5           # Dropout rate for the features
+l2_reg = 5e-4           # L2 regularization rate
+learning_rate = 1e-2    # Learning rate
+epochs = 200            # Number of training epochs
+es_patience = 10        # Patience for early stopping
+
+# Preprocessing operations
+A = GraphConv.preprocess(A).astype('f4')
+
+# Model definition
+X_in = Input(shape=(F, ))
+fltr_in = Input((N, ), sparse=True)
+
+dropout_1 = Dropout(dropout)(X_in)
+graph_conv_1 = GraphConv(channels,
+                         activation='relu',
+                         kernel_regularizer=l2(l2_reg),
+                         use_bias=False)([dropout_1, fltr_in])
+
+dropout_2 = Dropout(dropout)(graph_conv_1)
+graph_conv_2 = GraphConv(num_classes,
+                         activation='softmax',
+                         use_bias=False)([dropout_2, fltr_in])
+
+# Build model
+model = Model(inputs=[X_in, fltr_in], outputs=graph_conv_2)
+optimizer = Adam(lr=learning_rate)
+model.compile(optimizer=optimizer,
+              loss='categorical_crossentropy',
+              weighted_metrics=['acc'])
+model.summary()
+
+tbCallBack_GCN = tf.keras.callbacks.TensorBoard(
+    log_dir='./Tensorboard_GCN_cora',
+)
+callback_GCN = [tbCallBack_GCN]
+```
+
+Note: 需要 tensorflow == 2.2.2, spektral == 0.6.0
+
+## Train the Graph Convolutional Networks
+
+我们正在实施 Transductive Learning，这意味着我们将把整个 graph 提供给训练和测试。我们使用之前构造的 Boolean masks 分离训练、验证和测试数据。这些 masks 将被传递给 `sample_weight` 参数。我们将 `batch_size` 设置为整个图的大小，否则图将被打乱。
+
+为了更好地评估每个类的模型性能，我们使用 `F1-score` 来代替准确性和损失指标。
+
+```
+```
 
 # Reference
 1. [Training Graph Convolutional Networks on Node Classification Task](https://medium.com/towards-data-science/graph-convolutional-networks-on-node-classification-2b6bbec1d042)
