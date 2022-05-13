@@ -150,6 +150,67 @@ tags:
 
 有了上面所构造的图的数值表示(使用向量而不是标量)，我们现在准备构建一个GNN。我们将从最简单的GNN架构开始，在这个架构中，我们学习所有图属性(节点、边、全局)的新嵌入，但我们还没有使用图的连通性。
 
+这个 GNN 在图的每个组件上使用单独的多层感知器(MLP)(或您喜欢的可微模型); 我们称之为GNN层。对于每个节点向量，我们应用 MLP 并得到一个学习到的节点向量。我们对每条边都这样做，学习每条边的嵌入，对全局上下文向量也这样做，学习整个图的单个嵌入。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652410653048.png)
+
+与神经网络模块或层一样，我们可以将这些GNN层堆叠在一起。
+
+由于GNN不更新输入图的连通性，因此我们可以用与输入图相同的邻接表和相同数量的特征向量来描述GNN的输出图。但是，输出图已经更新了嵌入，因为GNN已经更新了每个节点、边和全局上下文表示。
+
+
+## GNN Predictions by Pooling Information
+
+我们已经构建了一个简单的GNN，但是如何在上面描述的任何任务中进行预测呢？
+
+我们将考虑二分类的情况，但这个框架可以很容易地扩展到多类或回归的情况。如果任务是对节点进行二分类预测，并且图中已经包含了节点信息，那么这种方法对于每个节点嵌入很简单，应用一个线性分类器。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652411077394.png)
+
+然而，事情并不总是那么简单。例如，图中的信息可能存储在边中，但节点中没有信息，但仍然需要对节点进行预测。我们需要一种方法从边收集信息，并将其传递给节点进行预测。我们可以通过 `pooling` 来实现。分两步 Pooling proceeds:
+
+- 对于要 pooled 的每个项，收集它们的每个嵌入项并将它们连接到一个矩阵中。
+- 然后，通常通过求和操作对收集到的嵌入进行 aggregated。
+
+我们使用符号 $\rho$ 表示 pooling 操作，将从边收集信息到节点表示为 $\rho_{E_n \rightarrow V_n}$。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652419415417.png)
+
+因此，如果我们只有边级的特征，并试图预测二分类节点信息，我们可以使用 pooling 将信息 route (或pass) 到它需要去的地方。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652419492761.png)
+
+如果我们只有节点级的特征，并试图预测二分类的边级信息。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652419538464.png)
+
+如果我们只有节点级别的特性，并且需要预测二分类的全局属性，那么我们需要收集所有可用的节点信息并将它们聚合在一起。这类似于 CNN 的全局平均池层。对于边也可以这样做。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652419811981.png)
+在我们的例子中， 分类模型 $c$ 可以被任意可微的模型替换， 或者使用泛化的线性模型实现 multi-class 分类。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652420078795.png)
+
+现在我们已经演示了我们可以构建一个简单的 GNN 模型，并通过在图的不同部分之间 routing 信息来进行二分类预测。这种 pooling 技术将用作构建更复杂的GNN模型的构建块。如果我们有新的图属性，我们只需定义如何将信息从一个属性传递到另一个属性。
+
+请注意，在这个最简单的GNN公式中，我们根本没有在GNN层中使用图的连通性。每个节点、每条边以及全局上下文都是独立处理的。我们只在共享信息进行预测时使用连接性。
+
+
+## Passing messages between parts of the graph
+
+我们可以通过在 GNN 层中使用 pooling 来进行更复杂的预测，以便使我们所学的嵌入能够感知图的连通性。我们可以使用消息传递来实现这一点，在消息传递中，相邻节点或边交换信息并影响彼此更新的嵌入。
+
+消息传递分为三个步骤：
+
+- 图中的每个节点,收集所有相邻节点嵌入(或消息)， 其实上述中的 $g$ 函数
+- 通过聚合函数(如sum)聚合所有消息。
+- 所有 pooled 的消息都通过一个更新函数传递，通常是一个学习过的神经网络。
+
+正如 pooling 可以应用于节点或边一样，消息传递也可以发生在节点或边之间。
+
+这些步骤是利用图的连接性的关键。我们将在GNN层中构建更复杂的消息传递变体，这些变体将产生更具 expressiveness 和 power 的GNN模型。
+
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1652420405118]]]" )
 # Reference
 
 1. [A Gentle Introduction to Graph Neural Networks](https://distill.pub/2021/gnn-intro/)
