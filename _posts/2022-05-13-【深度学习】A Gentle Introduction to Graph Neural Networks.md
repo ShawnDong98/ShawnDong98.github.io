@@ -141,6 +141,11 @@ tags:
 图中每个 node/edge/global 使用标量值， 但是实际中它们大都是向量或张量。相比于将节点张量的大小为 $n_{nodes}$， 我们将把节点张量的大小表示为 $(n_{nodes}, node_{dim})$。 对其他图属性一样如此。
 
 
+# Graph Neural Networks
+
+既然图的描述是 permutation invariant 的矩阵形式，我们将使用图神经网络(GNN)来描述图的预测任务。GNN是对保持图对称性(permutation invariances)的图的所有属性(节点、边、全局上下文)的 optimizable transformation。
+
+
 # Reference
 
 1. [A Gentle Introduction to Graph Neural Networks](https://distill.pub/2021/gnn-intro/)
