@@ -102,6 +102,37 @@ tags:
 
 节点级预测问题的典型例子是 Zach’s karate club 。这个数据集是一个单一的社交网络图，由两支空手道俱乐部中的一支在政治分歧后宣誓效忠的个人组成。随着故事的发展，Mr. Hi (Instructor) 和 John H(Administrator)之间的不和造成了空手道俱乐部的分裂。节点代表每个空手道练习者，边代表空手道之外的这些成员之间的互动。预测问题是区分一个给定的成员在不和之后是忠于 Hi 先生还是忠于John H先生。在本例中，节点到 Instructor 或 Administrator 的距离与这个标签高度相关。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652408403039.png)
+
+在图像类比之后，节点级预测问题类似于图像分割，我们试图标记图像中每个像素的角色。对于文本，类似的任务是预测句子中每个单词的词性(如名词、动词、副词等)。
+
+## Edge-level task
+
+边级推理的一个例子是图像场景理解。除了识别图像中的物体，深度学习模型还可以用来预测它们之间的关系。我们可以将其描述为边级分类: 给定代表图像中物体的节点，我们希望预测这些节点中哪些共享一条边，或者这条边的值是多少。如果我们希望发现实体之间的连接，我们可以考虑图是全连接的，并根据它们的预测值修剪边，得到一个稀疏图。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652408490940.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652408528257.png)
+
+# The challenges of using graphs in machine learning
+
+那么，我们如何用神经网络来解决这些不同的图任务呢?第一步是考虑我们将如何表示与神经网络兼容的图。
+
+机器学习模型通常以矩形或网格状阵列作为输入。因此，如何以一种与深度学习兼容的格式表示它们并不是一种直观的方法。图有多达四种类型的信息，我们可能会使用它们来进行预测:节点、边、全局上下文和连接性。前三个相对比较直观： 例如， 节点可以形成节点特征矩阵 $N$， 通过在 N 中分配每条边一个索引 $i$ 并 存储 $node_i$的特征。虽然这些矩阵的样本数量可变，但它们可以在不使用任何特殊技术的情况下进行处理。
+
+然而，表示图的连通性要复杂得多。也许最明显的选择是使用邻接矩阵，因为它很容易 tensorisable。然而，这种表示方式有一些缺点。从示例数据集表中，我们可以看到一个图中的节点数可以达到数百万，每个节点的边数可以有很大的变化。通常，这会导致非常稀疏的邻接矩阵，这是空间低效的。
+
+另一个问题是，有许多邻接矩阵可以编码相同的连通性，并不能保证这些不同的矩阵在深度神经网络中会产生相同的结果(也就是说，它们不是 permutation invariant 的)。
+
+
+例如，前面的  Othello graph 可以用这两个邻接矩阵等价地描述。它也可以用节点的其他可能排列来描述。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652409164381.png)
+
+下面的例子显示了每个邻接矩阵，可以描述这个4个节点的小图。这已经是大量的邻接矩阵了对于更大的例子比如 Othello，这个数字是 untenable 的。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652409273075.png)
+
 # Reference
 
-1. [https://distill.pub/2021/gnn-intro/](https://distill.pub/2021/gnn-intro/)
+1. [A Gentle Introduction to Graph Neural Networks](https://distill.pub/2021/gnn-intro/)
