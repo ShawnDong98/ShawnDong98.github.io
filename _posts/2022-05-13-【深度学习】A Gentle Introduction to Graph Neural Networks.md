@@ -132,6 +132,14 @@ tags:
 下面的例子显示了每个邻接矩阵，可以描述这个4个节点的小图。这已经是大量的邻接矩阵了对于更大的例子比如 Othello，这个数字是 untenable 的。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652409273075.png)
+表示稀疏矩阵的一种优雅且节省内存的方法是用邻接表。在第 k 个邻接表的 entry 中 将 在节点 $n_i$ 和 $n_j$ 之间的边 $e_k$ 的连通性表示为 tuple(i, j)。因为我们期望边的数量远小于邻接矩阵($n^2_{nodes}$) entries 的数量， 我们避免在图不连通的部分的计算和存储。
+
+为了使这个概念具体化，我们可以看看在这个规范下如何表示不同图中的信息：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652409755427.png)
+
+图中每个 node/edge/global 使用标量值， 但是实际中它们大都是向量或张量。相比于将节点张量的大小为 $n_{nodes}$， 我们将把节点张量的大小表示为 $(n_{nodes}, node_{dim})$。 对其他图属性一样如此。
+
 
 # Reference
 
