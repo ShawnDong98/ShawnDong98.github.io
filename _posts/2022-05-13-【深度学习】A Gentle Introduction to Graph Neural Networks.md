@@ -143,7 +143,7 @@ tags:
 
 # Graph Neural Networks
 
-既然图的描述是 permutation invariant 的矩阵形式，我们将使用图神经网络(GNN)来描述图的预测任务。GNN是对保持图对称性(permutation invariances)的图的所有属性(节点、边、全局上下文)的 optimizable transformation。
+既然图的描述是 permutation invariant 的矩阵形式，我们将使用图神经网络(GNN)来描述图的预测任务。GNN是对保持图对称性(permutation invariances)的图的所有属性(节点、边、全局上下文)的 optimizable transformation。我们将使用 Gilmer 等人提出的 “message passing neural network” 来构建 GNN，使用Battaglia 等人引入的 Graph Nets architecture schematics。GNNs 采用“graph-in, graph-out”的架构，这意味着这些模型类型接受一个图作为输入，将信息加载到其节点、边和全局上下文中，并逐步转换这些嵌入，而不改变输入图的连通性。
 
 
 # Reference
