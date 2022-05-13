@@ -277,6 +277,25 @@ tags:
 
 通过下面的交互式图，我们通过几个主要的设计选择来探索GNN架构的空间和该任务的性能:Style of message passing, the dimensionality of embeddings, number of layers 和 aggregation operation type。
 
+散点图中的每个点代表一个模型:x轴是可训练变量的数量，y轴是性能。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652427687603.png)
+
+首先要注意的是，令人惊讶的是，参数的数量越多，性能越好。GNN 是一种非常有效的参数模型类型:即使是少量的参数(3k)，我们也可以找到高性能的模型。
+
+接下来，我们可以看看基于学习到的不同图属性表示维数聚合的性能分布。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652427767912.png)
+我们可以注意到，更高维度的模型往往有更好的平均值和下限性能，但在最大值上没有发现同样的趋势。一些性能最好的模型可以用于更小的尺寸。因为更高的维度也将涉及更多的参数，这些观察结果与前面的图相关联。
+
+接下来，我们可以看到基于GNN层数的性能分解。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652427872535.png)
+ box plot 显示了类似的趋势，虽然平均性能倾向于随着层数的增加而增加，但性能最好的模型不是有三层或四层，而是两层。此外，性能的下界到了四层会降低。这种影响以前已经观察到，层数越多的GNN将在更高的距离广播信息，并且可能会有节点表示因多次迭代而被稀释的风险。
+ 
+ 
+
+
 # Reference
 
 1. [A Gentle Introduction to Graph Neural Networks](https://distill.pub/2021/gnn-intro/)
