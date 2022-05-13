@@ -10,3 +10,12 @@ tags:
     - 深度学习
     - GNN & GCN
 ---
+神经网络已被用于利用图的结构和性质。我们探索了构建图神经网络所需的组件，并 motivate 了它们背后的设计选择。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652404436505.png)
+
+
+# Reference
+
+1. [https://distill.pub/2021/gnn-intro/](https://distill.pub/2021/gnn-intro/)
