@@ -156,3 +156,7 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 - `X` 的形状为 `[batch, nodes, n_feat]`
 - `E` 的形状为 `[batch, nodes, nodes, e_feat]` (注意现在它是 dense/`np.array` 格式， 不存在边的属性都是零)。
 
+如果图的节点数量是可变的，那么 `nodes` 的大小就是批中最大的图的大小。
+
+如果您不想用零填充图形或处理密集输入，那么最好使用 `disjoint mode` 。然而，请注意一些 pooling 层，如 `DiffPool` 和 `MinCutPool` 只能在 `batch mode` 下工作。
+
