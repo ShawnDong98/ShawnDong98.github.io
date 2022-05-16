@@ -77,3 +77,12 @@ Graph(n_nodes=2708, n_node_features=1433, n_edge_features=None, n_labels=7)
 >>> dataset[0].x.shape
 (2708, 1433)
 ```
+
+当在 `single mode` 下训练GNN时，我们可以使用 `SingleLoader`，它将从图中提取特征矩阵，并返回一个 `tf.data.Dataset` 来提供给我们的模型:
+
+```python
+>>> from spektral.data import SingleLoader
+>>> loader = SingleLoader(dataset)
+>>> loader.load()
+<RepeatDataset shapes: (((2708, 1433), (2708, 2708)), (2708, 7)), types: ((tf.float32, tf.int64), tf.int32)>
+```
