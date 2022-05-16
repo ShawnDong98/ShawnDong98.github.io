@@ -146,3 +146,13 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 
 注意，因为我们的数据集中没有边属性，所以加载器没有创建 `E` 矩阵。
 
+## Batch mode
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652705388531.png)
+
+在批处理模式中，图被零填充，以便它们适合形状 `[batch, N，…]` 的张量。由于 Scipy 和 TensorFlow 普遍缺乏对稀疏高阶张量的支持，所以 `X`、`A` 和 `E` 将是密集张量：
+
+- `A` 的形状为 `[batch, nodes, nodes]`
+- `X` 的形状为 `[batch, nodes, n_feat]`
+- `E` 的形状为 `[batch, nodes, nodes, e_feat]` (注意现在它是 dense/`np.array` 格式， 不存在边的属性都是零)。
+
