@@ -27,4 +27,9 @@ tags:
 
 datasets 的核心是 `read()` 方法。这在数据集的每次实例化时被调用，并且必须返回`spektral.data.Graph` 的列表。从文件中读取数据或动态创建数据并不重要，这是数据集在内存中加载的位置。
 
-所有 dataset 有一个 `path` 属性， 其表示数据存储的文件夹。 默认为 `~/.spektral/datasets/[ClassName]`。 
+所有 dataset 有一个 `path` 属性， 其表示数据存储的文件夹。 默认为 `~/.spektral/datasets/[ClassName]`。 你可以忽略它。但是，每次实例化数据集时，它将检查路径是否存在。如果没有，将调用download()方法。
+
+可以使用 `download()` 定义将原始数据保存到磁盘所需的任何额外操作。该方法将在 `read()` 之前被调用。
+
+`read()` 和 `download()` 都由数据集的 `init()` 方法调用。如果需要重写数据集的初始化，请 在实现的某个地方确保调用 `super().Init()`(通常在最后一行)。
+
