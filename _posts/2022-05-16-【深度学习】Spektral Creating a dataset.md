@@ -53,4 +53,40 @@ class MyDataset(Dataset):
         super().__init__(**kwargs)
 ```
 
-记得在最后一行调用 `super().__init__(**kwargs)`
+记得在最后一行调用 `super().__init__(**kwargs)`。
+
+然后，我们模拟从网上下载数据。因为如果 `path` 在系统上不存在，就会调用这个方法，所以现在创建相应的目录是有意义的：
+
+```python
+def download(self):
+    data = ...  # Download from somewhere
+
+    # Create the directory
+    os.mkdir(self.path)
+
+    # Write the data to file
+    for i in range(5):
+        x = rand(self.nodes, self.feats)
+        a = randint(0, 2, (self.nodes, self.nodes))
+        y = randint(0, 2)
+
+        filename = os.path.join(self.path, f'graph_{i}')
+        np.savez(filename, x=x, a=a, y=y)
+```
+
+最后，我们实现 `read()` 方法来返回一个 `Graph` 对象列表
+
+
+```python
+def read(self):
+    # We must return a list of Graph objects
+    output = []
+
+    for i in range(5):
+        data = np.load(os.path.join(self.path, f'graph_{i}.npz'))
+        output.append(
+            Graph(x=data['x'], a=data['a'], y=data['y'])
+        )
+
+    return output
+```
