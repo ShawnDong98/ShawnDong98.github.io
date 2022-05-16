@@ -214,3 +214,19 @@ Graph(n_nodes=784, n_node_features=1, n_edge_features=None, n_labels=1)
 >>>dataset[0].a
 # None
 ```
+
+我们可以使用 `MixedLoader` 来处理数据集中的图之间的邻接矩阵共享
+
+```
+>>> from spektral.data import MixedLoader
+>>> loader = MixedLoader(dataset, batch_size=3)
+>>> inputs, target = loader.__next__()
+
+>>> inputs[0].shape
+(3, 784, 1)
+
+>>> inputs[1].shape  # Only one adjacency matrix
+(784, 784)
+```
+
+`Mixed mode` 比其他三种模式需要更多的工作。特别是，不能使用 `loader.load()` 在这种模式下训练模型。
