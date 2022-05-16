@@ -173,3 +173,6 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 >>> inputs[1].shape
 (3, 42, 42)
 ```
+
+在本例中， loader 只创建了两个输入，因为我们不需要索引 `I`。还要注意， batch 被填充了，因此所有图都有42个节点，这是三个图中最大的一个。
+
