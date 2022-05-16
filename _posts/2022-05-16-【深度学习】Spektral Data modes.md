@@ -86,3 +86,20 @@ Graph(n_nodes=2708, n_node_features=1433, n_edge_features=None, n_labels=7)
 >>> loader.load()
 <RepeatDataset shapes: (((2708, 1433), (2708, 2708)), (2708, 7)), types: ((tf.float32, tf.int64), tf.int32)>
 ```
+
+## Disjoint mode
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652704426435.png)
+
+在 `disjoint mode` 下，我们将一组图表示为单个图，即它们的 “disjoint union”，其中:
+
+- `A` 是一个稀疏分块对角矩阵，其中每个分块是第 `i` 个图的邻接矩阵 `a_i`。
+- `X` 通过将节点属性 `x_i` 堆叠得到。
+- `E` 通过边 `e_i` 堆叠得到。
+
+
+三个矩阵的形状与单模态相同，但 `nodes` 是图集合中所有节点的累计数量。类似地，边特征以稀疏`COOrdinate format` 和相对于每个图的行主排序表示(参见入门教程)， `edges` 表示 disjoint union 的边的累计数量。
+
+
+
+
