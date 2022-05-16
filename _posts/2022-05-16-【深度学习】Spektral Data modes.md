@@ -176,3 +176,4 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 
 在本例中， loader 只创建了两个输入，因为我们不需要索引 `I`。还要注意， batch 被填充了，因此所有图都有42个节点，这是三个图中最大的一个。
 
+`BatchLoader` 单独对 batch 中每个样本进行零填充，这样我们就不会浪费内存。如果您希望消除填充每个 batch 的开销，可以使用 `PackedBatchLoader`，它将在生成 batch 之前预填充所有图。当然，这意味着所有图的节点数量与数据集中最大的图的节点数量相同(不仅仅是 batch)。
