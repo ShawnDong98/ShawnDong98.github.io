@@ -90,3 +90,25 @@ def read(self):
 
     return output
 ```
+
+我们现在可以实例化我们的数据集，这将 “download” 我们的数据并将其读入内存：
+
+```python
+>>> dataset = MyDataset(3, 2)
+>>> dataset
+MyDataset(n_graphs=5)
+```
+
+
+我们可以看到我们的图被保存为文件
+
+```
+$ ls ~/.spektral/datasets/MyDataset/
+graph_0.npz  graph_1.npz  graph_2.npz  graph_3.npz  graph_4.npz
+```
+
+所以下一次我们创建 `MyDataset` 时，它将从我们已经保存的文件中读取。
+
+您现在可以随意使用自定义数据集。Loaders 、transforms和文档中描述的所有其他功能都可以工作。
+
+请记住，如果您愿意，您可以自由地按您喜欢的方式存储数据。Spektral 中的数据集只是为了简化你的工作流程，但库仍然是根据 Keras 的原则设计的，即不妨碍你的工作。如果您希望以不同的方式操作数据，GNNs 仍然可以工作。
