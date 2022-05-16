@@ -142,3 +142,7 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 >>> i.shape
 (79, )
 ```
+
+
+注意，因为我们的数据集中没有边属性，所以加载器没有创建 `E` 矩阵。
+
