@@ -160,3 +160,16 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 
 如果您不想用零填充图形或处理密集输入，那么最好使用 `disjoint mode` 。然而，请注意一些 pooling 层，如 `DiffPool` 和 `MinCutPool` 只能在 `batch mode` 下工作。
 
+让我们重新使用上面示例中的数据集。我们可以使用 `BatchLoader`，如下所示：
+
+```python
+>>> from spektral.data import BatchLoader
+>>> loader = BatchLoader(dataset, batch_size=3)
+>>> inputs, target = loader.__next__()
+
+>>> inputs[0].shape
+(3, 42, 4)
+
+>>> inputs[1].shape
+(3, 42, 42)
+```
