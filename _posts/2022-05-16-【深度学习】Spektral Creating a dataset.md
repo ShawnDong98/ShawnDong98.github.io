@@ -53,4 +53,4 @@ class MyDataset(Dataset):
         super().__init__(**kwargs)
 ```
 
-
+记得在最后一行调用 `super().__init__(**kwargs)`
