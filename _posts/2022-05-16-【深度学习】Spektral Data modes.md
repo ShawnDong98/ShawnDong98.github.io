@@ -201,3 +201,16 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 MNIST(n_graphs=70000)
 ```
 
+mixed-mode 数据集有一个特殊的 `a` 的属性， 其存储了邻接矩阵， 有的数据集的图仅由 node/edge 特征组成。
+
+```python
+>>>dataset.a
+<784x784 sparse matrix of type '<class 'numpy.float64'>'
+    with 6396 stored elements in Compressed Sparse Row format>
+
+>>> dataset[0]
+Graph(n_nodes=784, n_node_features=1, n_edge_features=None, n_labels=1)
+
+>>>dataset[0].a
+# None
+```
