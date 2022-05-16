@@ -177,3 +177,27 @@ Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 在本例中， loader 只创建了两个输入，因为我们不需要索引 `I`。还要注意， batch 被填充了，因此所有图都有42个节点，这是三个图中最大的一个。
 
 `BatchLoader` 单独对 batch 中每个样本进行零填充，这样我们就不会浪费内存。如果您希望消除填充每个 batch 的开销，可以使用 `PackedBatchLoader`，它将在生成 batch 之前预填充所有图。当然，这意味着所有图的节点数量与数据集中最大的图的节点数量相同(不仅仅是 batch)。
+
+
+# Mixed mode
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1652706007543.png)
+
+在 `mixed mode` 中，我们使用单个图来支持不同的节点属性(有时也称为 “graph signals”)。
+
+在这个例子中，我们有这个：
+
+- `A` 是形状 `[nodes，nodes]` 的矩阵
+- `X` 是 `batch mode` 的张量， 形状为 `[batch, nodes, n_feat]`
+- `E` 是 `[batch, edges, e_feat]`， 我们再次表示每个边特征矩阵 `E[b]`，对于b = 0，…，batch - 1，以稀疏格式。
+
+注意，由于所有图的节点和边都是相同的，我们在高阶张量中堆叠了 `x_i` 和 `e_i` ，类似于 `batch mode`。
+
+`mixed mode` 数据集的一个例子是 MNIST 随机网格(Defferrard等人，2016)。
+
+```python
+>>> from spektral.datasets import MNIST
+>>> dataset = MNIST()
+>>> dataset
+MNIST(n_graphs=70000)
+```
+
