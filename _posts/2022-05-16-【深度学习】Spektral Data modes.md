@@ -101,6 +101,30 @@ Graph(n_nodes=2708, n_node_features=1433, n_edge_features=None, n_labels=7)
 三个矩阵的形状与单模态相同，但 `nodes` 是图集合中所有节点的累计数量。类似地，边特征以稀疏`COOrdinate format` 和相对于每个图的行主排序表示(参见入门教程)， `edges` 表示 disjoint union 的边的累计数量。
 
 
-为了跟踪 disjoint union 中的不同图，我们使用了一个由从零开始的索引 `I` 组成的额外数组来标识哪个节点属于哪个图。例如:如果节点8属于第三个图，则 `I[8] == 2`。在上面的例子中，蓝色代表0，绿色代表1，橙色代表2。
+为了跟踪 disjoint union 中的不同图，我们使用了一个由从零开始的索引 `I` 组成的额外数组来标识哪个节点属于哪个图。例如: 如果节点8属于第三个图，则 `I[8] == 2`。在上面的例子中，蓝色代表0，绿色代表1，橙色代表2。
+
+在卷积层中，disjoint mode  与 single mode 是不可区分的，因为不可能在图的 disjoint components 之间交换消息，所以 `I` 不需要计算输出。
+
+
+另一方面，池化层要求 `I` 知道哪些节点可以被池化在一起。
+
+让我们加载一个包含许多小图的数据集，看看前三个
+
+
+```python
+>>> from spektral.datasets import TUDataset
+>>> dataset = TUDataset('PROTEINS')
+Successfully loaded PROTEINS.
+
+>>> dataset = dataset[:3]
+>>> dataset[0]
+Graph(n_nodes=42, n_node_features=4, n_edge_features=None, n_labels=2)
+
+>>> dataset[1]
+Graph(n_nodes=27, n_node_features=4, n_edge_features=None, n_labels=2)
+
+>>> dataset[2]
+Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
+```
 
 
