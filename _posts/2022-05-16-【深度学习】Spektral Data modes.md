@@ -127,4 +127,18 @@ Graph(n_nodes=27, n_node_features=4, n_edge_features=None, n_labels=2)
 Graph(n_nodes=10, n_node_features=4, n_edge_features=None, n_labels=2)
 ```
 
+要以  disjoint mode 创建 batches，可以使用 `DisjointLoader`:
 
+```python
+>>> batch = loader.__next__()
+>>> inputs, target = batch
+>>> x, a, i = inputs
+>>> x.shape
+(79, 4)  # 79 == 42 + 27 + 10
+
+>>> a.shape
+(79, 79)
+
+>>> i.shape
+(79, )
+```
