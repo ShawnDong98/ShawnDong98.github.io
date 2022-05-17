@@ -2,7 +2,7 @@
 layout:     post
 title:      "【FastAI】FastAI"
 subtitle:   ""
-date:       2022-12-08
+date:       2021-12-08
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
