@@ -321,3 +321,4 @@ with tf.device('/cpu:0'):
 3. [Keras：Lambda 层](https://blog.csdn.net/VeritasCN/article/details/89884036)
 4. [如何保存Keras模型](https://blog.csdn.net/u010159842/article/details/54407745)
 5. [[苹果M1]：我没有注册与节点{{RngReadAndSkip RngReadAndSkip}}兼容的'GPU‘设备的’OpKernel‘节点。已注册:设备=‘CPU’](https://cloud.tencent.com/developer/ask/sof/749100)
+6. [How to save TextVectorization to disk in tensorflow?](https://stackoverflow.com/questions/65103526/how-to-save-textvectorization-to-disk-in-tensorflow)
