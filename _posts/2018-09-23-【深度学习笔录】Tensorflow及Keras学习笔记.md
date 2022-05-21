@@ -138,6 +138,72 @@ model.load_weights('my_model_weights.h5')
 ```python
 model.load_weights('my_model_weights.h5', by_name=True)
 ```
+
+### 保存 TextVectorization 层
+
+下面的结果得到的是 `dense` 张量
+
+```python
+text_dataset = tf.data.Dataset.from_tensor_slices([
+                                                   "this is some clean text", 
+                                                   "some more text", 
+                                                   "even some more text"]) 
+vectorizer = TextVectorization(max_tokens=10, output_mode='int', output_sequence_length = 10)   
+vectorizer.adapt(text_dataset.batch(1024))
+
+print(vectorizer("this"))
+pickle.dump({'config': vectorizer.get_config(),
+             'weights': vectorizer.get_weights()}
+            , open("tv_layer.pkl", "wb"))
+
+from_disk = pickle.load(open("tv_layer.pkl", "rb"))
+new_vectorizer = TextVectorization(max_tokens=from_disk['config']['max_tokens'],
+                                          output_mode='int',
+                                          output_sequence_length=from_disk['config']['output_sequence_length'])
+new_vectorizer.adapt(tf.data.Dataset.from_tensor_slices(["xyz"]))
+new_vectorizer.set_weights(from_disk['weights'])
+
+print(new_vectorizer("this"))
+```
+
+```
+tf.Tensor([5 0 0 0 0 0 0 0 0 0], shape=(10,), dtype=int64)
+tf.Tensor([5 0 0 0 0 0 0 0 0 0], shape=(10,), dtype=int64)
+```
+
+
+下面得到的是 `ragged` 张量：
+
+```python
+import tensorflow as tf
+
+text_dataset = tf.data.Dataset.from_tensor_slices([
+                                                   "this is some clean text", 
+                                                   "some more text", 
+                                                   "even some more text"]) 
+vectorizer = TextVectorization(max_tokens=10, output_mode='int', output_sequence_length = 10)   
+vectorizer.adapt(text_dataset.batch(1024))
+
+print(vectorizer("this"))
+pickle.dump({'config': vectorizer.get_config(),
+             'weights': vectorizer.get_weights()}
+            , open("tv_layer.pkl", "wb"))
+
+from_disk = pickle.load(open("tv_layer.pkl", "rb"))
+new_vectorizer = TextVectorization(max_tokens=from_disk['config']['max_tokens'],
+                                          output_mode=from_disk['config']['output_mode'],
+                                          output_sequence_length=from_disk['config']['output_sequence_length'])
+new_vectorizer.adapt(tf.data.Dataset.from_tensor_slices(["xyz"]))
+new_vectorizer.set_weights(from_disk['weights'])
+
+print(new_vectorizer("this"))
+```
+
+```python
+tf.Tensor([5 0 0 0 0 0 0 0 0 0], shape=(10,), dtype=int64)
+tf.Tensor([5], shape=(1,), dtype=int64)
+```
+
 # Tensorflow
 
 
