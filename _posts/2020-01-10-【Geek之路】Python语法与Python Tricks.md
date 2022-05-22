@@ -2396,7 +2396,7 @@ hight-level  `pool.map` 接口，生成一个对用户隐藏 RPC 内部信息的
 
 ## 在类中使用 multiprocessing
 
-
+ [multiprocessing在类中使用问题记录](https://www.cnblogs.com/isxjj/p/16054566.html)
 
 # Reference
 1. [python 字符串补全填充固定长度（补0）的三种方法](https://blog.csdn.net/weixin_42317507/article/details/93411132)
