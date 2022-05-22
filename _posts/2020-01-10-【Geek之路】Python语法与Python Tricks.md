@@ -2394,6 +2394,8 @@ hight-level  `pool.map` 接口，生成一个对用户隐藏 RPC 内部信息的
 
 众所周知，RPC服务器和通信通常是不安全的。然而，`pathos` 并没有试图使RPC通信本身安全，而是提供了在 ssh 隧道中自动包装任何分发服务或通信的能力。ssh 是一种普遍可信的方法。使用 ssh-tunnel, `pathos` 已经在国家实验室集群上启动了几次分布式计算，并且迄今为止已经利用多个国家实验室集群与用户笔记本电脑之间的节点到节点通信进行了测试计算。`pathos` 允许用户在非常原子化的层次上配置和启动。
 
+## 在类中使用 multiprocessing
+
 
 
 # Reference
@@ -2464,3 +2466,4 @@ hight-level  `pool.map` 接口，生成一个对用户隐藏 RPC 内部信息的
 65. [python学习——print和pprint两者的区别](https://blog.csdn.net/qq_24185239/article/details/80977556)
 66. [python装饰器中functools.wraps的作用详解](https://www.cnblogs.com/skaarl/p/9406910.html)
 67. [eval和ast.literal_eval方法](https://blog.csdn.net/sinat_33924041/article/details/88350569)
+68. [multiprocessing在类中使用问题记录](https://www.cnblogs.com/isxjj/p/16054566.html)
