@@ -211,6 +211,7 @@ seed = 999
 random.seed(seed)
 np.random.seed(seed)
 tf.random.set_seed(seed)
+tf.config.experimental.enable_op_determinism() # tf == 2.9.1
 os.environ['PYTHONHASHSEED'] = str(seed)
 ```
 
