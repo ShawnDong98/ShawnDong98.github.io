@@ -216,7 +216,7 @@ os.environ['PYTHONHASHSEED'] = str(seed)
 
 将 PYTHONHASHSEED 环境变量设置。对于 Python 3.2.3 以上版本，它对于某些基于散列的操作具有可重现的行为是必要的（例如，集合和字典的 item 顺序，请参阅 [Python 文档](https://docs.python.org/3.7/using/cmdline.html#envvar-PYTHONHASHSEED)和 [issue #2280](https://github.com/keras-team/keras/issues/2280#issuecomment-306959926) 获取更多详细信息）
 
-## Customize Keras
+## Customize Keras(2.6.0)
 
 增加 keras.Model.compute_loss
 
