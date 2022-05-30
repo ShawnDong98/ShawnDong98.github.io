@@ -15,6 +15,8 @@ tags:
 
 ## CVPR（Conference on Computer Vision and Pattern Recognition）
 
+### 2021
+
 开会时间： CVPR 2021将于6月19日至6月25日举行
 
 关键时间点：
@@ -28,6 +30,10 @@ tags:
 给作者的最终决定	2021年2月28日
 
 网址： [http://cvpr2021.thecvf.com/node/36](http://cvpr2021.thecvf.com/node/36)
+
+### 2022
+
+ accept paper id list 2022.03.01
 
 
 ## ICCV（International Comference on Computer Vision）
