@@ -96,7 +96,15 @@ WWW总体上是A类会议，这个在很多会议排名上都有体现，比如c
 
 ## ICLR
 
-## ACMMM
+## ACM MM
+
+### 2022
+
+regular paper (Abstract) 2022.03.31 
+
+ regular paper 2022.04.11
+ 
+ 
 
 
 ## 会议CCF(B)
