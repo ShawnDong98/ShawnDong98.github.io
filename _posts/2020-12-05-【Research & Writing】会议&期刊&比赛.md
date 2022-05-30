@@ -102,6 +102,22 @@ WWW总体上是A类会议，这个在很多会议排名上都有体现，比如c
 
 ## ICLR
 
+## ACL
+
+### 2022
+
+Deadline for submission to ACL Rolling Review:  2021.11.15
+
+Anonymity period for ACL 2022 starts:  2021.12.16
+
+Commitment deadline for ACL 2022:  2022.1.15
+
+Notification of acceptance:  2022.2.23
+
+Deadline to withdraw papers: 2022.2.28
+
+Camera-ready due: 2022.3.15
+
 ## ACM MM
 
 ### 2022
