@@ -47,6 +47,15 @@ tags:
 
 从相同的 bag-of-words 编码基线开始，我们将预测目标替换为图2中的对比目标，观察到 zero-shot 迁移到ImageNet的效率进一步提高了4倍。
 
+
+# Limitations
+
+尽管CLIP可以为各种各样的任务和数据集灵活地生成 zero-shot 分类器，但CLIP仍然局限于在给定的 zero-shot 分类器中选择的那些概念。
+
+不幸的是，如第2.3节所述，我们发现我们尝试的 image caption 基线的计算效率比CLIP低得多。
+
+一个值得尝试的简单想法是，将对比目标和生成目标联合训练，希望将CLIP的效率与标题模型的灵活性结合起来。
+
 # Conclusion
 
 这篇文章研究了是否有可能将NLP中 task-agnostic 的网络尺度预训练的成功转移到另一个领域。
