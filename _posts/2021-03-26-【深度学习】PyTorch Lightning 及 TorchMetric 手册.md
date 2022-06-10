@@ -2946,8 +2946,9 @@ trainer.fit(model)
 - `optimizer.step()` 更新模型参数
 
 
+下面是一个简单的例子：
 
-```
+```python
 from pytorch_lightning import LightningModule
 
 
