@@ -2934,6 +2934,37 @@ trainer = Trainer(resume_from_checkpoint='some/path/to/my_checkpoint.ckpt')
 trainer.fit(model)
 ```
 
+# 手动优化
+
+先在 `ightningModule` 的 `__init__` 中设置 `self.automatic_optimization=False`
+
+手动调用以下函数：
+
+- `self.optimizers()` 得到优化器
+- `optimizer.zero_grad()` 清楚之前训练的梯度
+- `self.manual_backward(loss)` 代替 `loss.backward()`
+- `optimizer.step()` 更新模型参数
+
+
+
+```
+from pytorch_lightning import LightningModule
+
+
+class MyModel(LightningModule):
+    def __init__(self):
+        super().__init__()
+        # Important: This property activates manual optimization.
+        self.automatic_optimization = False
+
+    def training_step(self, batch, batch_idx):
+        opt = self.optimizers()
+        opt.zero_grad()
+        loss = self.compute_loss(batch)
+        self.manual_backward(loss)
+        opt.step()
+```
+
 # TorchMetric
 
 ## torchmetrics.Accuracy()
