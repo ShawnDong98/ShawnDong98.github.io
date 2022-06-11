@@ -3115,3 +3115,8 @@ for i in range(n_batches):
 acc = metric.compute()
 print(f"Accuracy on all data: {acc}")
 ```
+
+
+# Reference
+
+1. [Add feature Exponential Moving Average (EMA)](https://github.com/PyTorchLightning/pytorch-lightning/issues/10914)
