@@ -3505,3 +3505,4 @@ print(f"Accuracy on all data: {acc}")
 # Reference
 
 1. [Add feature Exponential Moving Average (EMA)](https://github.com/PyTorchLightning/pytorch-lightning/issues/10914)
+2. [Make custom samplers distributed automatically](https://github.com/PyTorchLightning/pytorch-lightning/issues/9883)
