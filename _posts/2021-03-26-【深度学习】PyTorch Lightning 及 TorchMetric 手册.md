@@ -3045,7 +3045,7 @@ class EMA(pl.Callback):
         self._ema_state_dict_ready = callback_state["_ema_state_dict_ready"]
         self.ema_state_dict = callback_state["ema_state_dict"]
 ```
-# 手动优化
+# Manual optimize
 
 先在 `ightningModule` 的 `__init__` 中设置 `self.automatic_optimization=False`
 
@@ -3076,6 +3076,23 @@ class MyModel(LightningModule):
         self.manual_backward(loss)
         opt.step()
 ```
+
+# WeightedRandomSampler
+
+```python
+train_label = self.label[self.label['fold']!=self.hparams.fold]
+        train_label["category"] = train_label["category_id"].map(lambda x: category_id_to_lv2id(f"{x:0>4}"))
+        labels_unique, counts = np.unique(train_label['category'], return_counts=True)
+        class_weights = [sum(counts) / c for c in counts]
+        example_weights = [class_weights[e] for e in train_label["category"]]
+        sampler = WeightedRandomSampler(example_weights, len(train_label['category']))
+        sampler = DistributedSamplerWrapper(sampler,
+                                            shuffle=True,
+                                            num_replicas=get_world_size(),
+                                            rank=get_rank())
+```
+
+## DistributedSamplerWrapper
 
 # TorchMetric
 
