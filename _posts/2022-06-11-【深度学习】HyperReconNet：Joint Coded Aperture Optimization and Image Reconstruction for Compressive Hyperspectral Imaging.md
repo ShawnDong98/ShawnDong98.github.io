@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - HSI
-    - TIP
+    - TIP 2019
 ---
 
 # Abstract
