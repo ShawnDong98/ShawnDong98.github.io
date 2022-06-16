@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - HSI
-    - TPAMI
+    - TPAMI 2017
 ---
 
 # Abstract
