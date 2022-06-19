@@ -18,14 +18,14 @@ tags:
 
 这些基于CNN的方法实现了令人印象深刻的恢复性能，同时显示在捕获远程依赖和自相似性之前的局限性。
 
-为了解决这一问题， 这篇文章提出了一种新的基于 Transformer 的方法，Multi-stage Spectral-wise Transformer (MST + +)，用于高效的光谱重建。
+为了解决这一问题， 这篇文章提出了一种新的基于 Transformer 的方法，Multi-stage Spectral-wise Transformer (MST ++ )，用于高效的光谱重建。
 
 特别地，这篇文章采用了基于 HSI 空间稀疏而光谱自相似特性的 Spectral-wise Multi-head Self-Attention (S-MSA) 组成基本单元—— Spectral-wise Attention Block(SAB)。
 
 
 然后，SABs构建 Single-stage Spectral-wise Transformer (SST)，利用 u 形结构提取多分辨率上下文信息。
 
-最后，MST++由多个 SST 级联，从粗到细逐步提高重建质量。
+最后，MST++ 由多个 SST 级联，从粗到细逐步提高重建质量。
 
 
 # Conclusion
