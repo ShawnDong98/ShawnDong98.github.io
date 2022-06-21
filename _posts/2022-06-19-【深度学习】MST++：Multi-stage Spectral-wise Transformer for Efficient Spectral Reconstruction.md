@@ -74,13 +74,27 @@ tags:
 
 图2(a)描述了提出的 Multi-stage Spectral-wise Transformer(MST++ )，它由 $N_s$ 个级联的 Single-stage Spectral-wise Transformers (SSTs)组成。MST++ 以RGB图像作为输入，并重建其HSI对应的图像。利用 long identity mapping 简化训练过程。图2 (b)显示了由encoder、bottleneck 和 decoder 组成的 U-shaped SST。embedding 和 mapping 块是单个 conv 3x3层。编码器中的特征映射依次经历一个下采样操作(一个 strided conv4x4 层)、N_1个 Spectral-wise Attention Blocks (SABs)、一个下采样操作和 N_2 个SABs。Bottleneck 由 N_3 个  SABs 组成。解码器采用对称的结构。 上采样操作是一个 strided deconv 2x2 层。为了避免下采样过程中的信息丢失，编码器和解码器之间采用跳跃连接。图2 (c)说明了SAB的组成成分，即前馈网络(FFN，如图2 (d)所示)、光谱多头自注意(S-MSA)和两层归一化。S-MSA的细节如图2 (e)所示。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1655805432939.png)
+
+
+
 ## 3.2. Spectral-wise Multi-head Self-Attention
+
+与原始的 MSAs 不同， S-MSA 将每个光谱表征视为一个 token 并且计算每个 $head_j$ 的自注意力。
+
+HSI 按波长沿 Spectral Dimention 排序。因此，利用这种嵌入来编码不同光谱通道的位置信息。
 
 ## 3.3. Discussion with Original Transformers
 
 ### 3.3.1 General Paradigm of MSA
 
+在 spatial-wise MSAs 中， n 表示 tokens 的数量。 在 S-MSA 中， n 表示 token 的维度。
+
 ### 3.3.2 Spatial-wise MSA 
+
+spatial-wise 的 MSA 将每个像素向量视为一个 token 计算自注意力。
+
+spatial-wise 的 MSA 主要分为两种： global MSA 和 local window-based MSA。
 
 ### 3.3.3 S-MSA
 
