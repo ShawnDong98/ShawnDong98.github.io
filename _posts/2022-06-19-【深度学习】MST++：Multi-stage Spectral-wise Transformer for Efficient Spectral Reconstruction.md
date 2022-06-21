@@ -66,7 +66,7 @@ tags:
 
 ## 2.3. Vision Transformer
 
-近年来，Transformer 被引入到计算机视觉中，并因其在捕获空间区域之间的远程相关性方面的优势而受到广泛的欢迎。
+近年来，Transformer 被引入到计算机视觉中，并因其在捕获空间区域之间的远程相关性方面的优势而受到广泛的欢迎。Caiet al 提出了第一个基于 Transformer 的端到端框架MST，用于从压缩测量数据重建HSI。
 
 # Conclusion
 
