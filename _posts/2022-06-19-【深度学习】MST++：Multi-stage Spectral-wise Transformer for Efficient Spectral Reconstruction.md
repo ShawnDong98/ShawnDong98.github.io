@@ -55,7 +55,7 @@ tags:
 
 ## 2.1 Hyperspectral Image Aquisition 
 
-传统的图像采集系统通常采用分光计沿空间或光谱维度扫描场景。用于捕获 HSI 的 scanners 主要有三种: whiskbroom scannner、pushroom scanner 和 band sequential scanner。几十年来，这些扫描仪已广泛应用于探测、遥感、医学成像和环境监测。例如， pushbroom scanner 和 whiskbroom scanner 被用于卫星遥感。但由于扫描过程耗时较长，不适合用于动态场景的测量。此外，成像设备通常体积太大，无法插在便携式平台上。为了解决这些限制，研究人员开发了 SCI 系统来捕获HSI，其中3D HSI立方体被压缩成单一的2D measurement。在这些SCI系统中，编码孔径快照光谱成像(CASSI) 脱颖而出，形成了一个很有前景的研究方向。
+传统的图像采集系统通常采用分光计沿空间或光谱维度扫描场景。用于捕获 HSI 的 scanners 主要有三种: whiskbroom scannner、pushroom scanner 和 band sequential scanner。几十年来，这些扫描仪已广泛应用于探测、遥感、医学成像和环境监测。例如， pushbroom scanner 和 whiskbroom scanner 被用于卫星遥感。但由于扫描过程耗时较长，不适合用于动态场景的测量。此外，成像设备通常体积太大，无法插在便携式平台上。为了解决这些限制，研究人员开发了 SCI 系统来捕获HSI，其中3D HSI立方体被压缩成单一的2D measurement。在这些SCI系统中，编码孔径快照光谱成像(CASSI) 脱颖而出，形成了一个很有前景的研究方向。尽管如此，到目前为止，SCI系统对于消费级的使用仍然是非常昂贵的。即使是低成本的SCI系统也经常在1万到10万美元之间。
 
 # Conclusion
 
