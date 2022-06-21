@@ -68,6 +68,20 @@ tags:
 
 近年来，Transformer 被引入到计算机视觉中，并因其在捕获空间区域之间的远程相关性方面的优势而受到广泛的欢迎。Caiet al 提出了第一个基于 Transformer 的端到端框架MST，用于从压缩测量数据重建HSI。Lin等人将 HSI 稀疏性嵌入到 Transformer 中，建立了光谱压缩成像的粗到细学习方案。之前的工作 Uformer 采用Swin Transformer 块构建的 U 型结构进行自然图像恢复。
 
+# Method
+
+## 3.1. Network Architecture
+
+## 3.2. Spectral-wise Multi-head Self-Attention
+
+## 3.3. Discussion with Original Transformers
+
+### 3.3.1 General Paradigm of MSA
+
+### 3.3.2 Spatial-wise MSA 
+
+### 3.3.3 S-MSA
+
 # Conclusion
 
 这篇文章提出了第一个基于 Transformer 用于RGB光谱重构的框架，MST++ 。
