@@ -57,6 +57,12 @@ tags:
 
 传统的图像采集系统通常采用分光计沿空间或光谱维度扫描场景。用于捕获 HSI 的 scanners 主要有三种: whiskbroom scannner、pushroom scanner 和 band sequential scanner。几十年来，这些扫描仪已广泛应用于探测、遥感、医学成像和环境监测。例如， pushbroom scanner 和 whiskbroom scanner 被用于卫星遥感。但由于扫描过程耗时较长，不适合用于动态场景的测量。此外，成像设备通常体积太大，无法插在便携式平台上。为了解决这些限制，研究人员开发了 SCI 系统来捕获HSI，其中3D HSI立方体被压缩成单一的2D measurement。在这些SCI系统中，编码孔径快照光谱成像(CASSI) 脱颖而出，形成了一个很有前景的研究方向。尽管如此，到目前为止，SCI系统对于消费级的使用仍然是非常昂贵的。即使是低成本的SCI系统也经常在1万到10万美元之间。
 
+## 2.2. Spectral Reconstruction from RGB
+
+传统的SR方法主要基于手工制作的高光谱先验。例如，Paramar等提出了一种用于HSI重构的数据稀疏性扩展方法。Arad等人提出了一种稀疏编码方法，该方法创建了HSI信号及其RGB投影的字典。Aeschbacher等人使用一个相对较浅的学习模型从指定光谱先验学习以填满光谱拆分辨率。然而，这些基于模型的方法表示能力有限，泛化能力较差。
+
+最近，受深度学习在自然图像恢复中的巨大成功的启发，CNN被用来学习从RGB到HSI的底层映射函数。例如，Xiong等提出了一种统一的HSCNN框架，用于从RGB图像和压缩 measurement 重建HSI。Shi等人利用自适应残差块构建了用于SR的深度残差网络HSCNN-R。Zhang等人定制了一个 pixel-aware 的深度函数混合网络，用于建模 rgb-hsi 映射。然而，这些基于 CNN 的 SR 方法取得了令人印象深刻的结果，但在捕获非局部自相似性和长期相互依赖方面存在局限性
+
 # Conclusion
 
 这篇文章提出了第一个基于 Transformer 用于RGB光谱重构的框架，MST++ 。
