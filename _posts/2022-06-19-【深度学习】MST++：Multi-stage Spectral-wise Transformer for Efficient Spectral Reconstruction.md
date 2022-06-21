@@ -50,6 +50,13 @@ tags:
 - 在 SR 任务上验证了一系列自然图像恢复模型。针对这些问题，提出了一种Top-K多模型集成策略来改进 SR 表现。
 - 定量和定性实验表明，MST++ 在需要更少的参数和 FLOPS 时显著优于SOTA方法。
 
+
+# Related Work
+
+## 2.1 Hyperspectral Image Aquisition 
+
+传统的图像采集系统通常采用分光计沿空间或光谱维度扫描场景。用于捕获 HSI 的 scanners 主要有三种: whiskbroom scannner、pushroom scanner 和 band sequential scanner。几十年来，这些扫描仪已广泛应用于探测、遥感、医学成像和环境监测。例如， pushbroom scanner 和 whiskbroom scanner 被用于卫星遥感。但由于扫描过程耗时较长，不适合用于动态场景的测量。此外，成像设备通常体积太大，无法插在便携式平台上。为了解决这些限制，研究人员开发了 SCI 系统来捕获HSI，其中3D HSI立方体被压缩成单一的2D measurement。
+
 # Conclusion
 
 这篇文章提出了第一个基于 Transformer 用于RGB光谱重构的框架，MST++ 。
