@@ -42,7 +42,13 @@ tags:
 
 另一方面，基于窗口的局部MSA 在位置特定窗口中只有有限的感受野。
 
-为了解决上述限制，这篇文章提出了第一个基于 Transformer 的框架，Multi-stage Spectral-wise Transformer (MST++ )，用于从RGB图像高效的光谱重建。
+为了解决上述限制，这篇文章提出了第一个基于 Transformer 的框架，Multi-stage Spectral-wise Transformer (MST++ )，用于从RGB图像高效的光谱重建。值得注意的是，MST++ 是基于之前的工作MST，它是为光谱压缩成像恢复定制的。首先，注意到HSI信号在空间上是稀疏的，而在光谱上是自相似的。基于这一特性，采用 Spectral-wise Multi-head Self-attention (S-MSA)组成基本单元，即 Spectral-wise Attention Block(SAB)。S-MSA将每个 spectral feature map 作为 token，沿 spectral dimension 计算自注意力。其次，SABs 构建了 Single-stage Spectral-wise Transformer (SST)，该 Transformer 利用 u 形结构提取多分辨率光谱背景信息，这对HSI恢复至关重要。最后，MST++ 由多个 SST 级联，开发了一个多阶段学习方案，从粗到细逐步提高重建质量，显著提高了性能。
+
+这项工作的贡献点如下：
+
+- 为 SR 提出了一个新的框架，MST++ 。这可能是探索Transformer 在这项任务中的潜力的第一次尝试。
+- 在 SR 任务上验证了一系列自然图像恢复模型。针对这些问题，提出了一种Top-K多模型集成策略来改进 SR 表现。
+- 定量和定性实验表明，MST++ 在需要更少的参数和 FLOPS 时显著优于SOTA方法。
 
 # Conclusion
 
