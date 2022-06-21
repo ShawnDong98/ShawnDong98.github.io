@@ -72,6 +72,8 @@ tags:
 
 ## 3.1. Network Architecture
 
+图2(a)描述了提出的 Multi-stage Spectral-wise Transformer(MST++ )，它由 $N_s$ 个级联的 Single-stage Spectral-wise Transformers (SSTs)组成。MST++ 以RGB图像作为输入，并重建其HSI对应的图像。利用 long identity mapping 简化训练过程。图2 (b)显示了由encoder、bottleneck 和 decoder 组成的 U-shaped SST。embedding 和 mapping 块是单个 conv 3x3层。编码器中的特征映射依次经历一个下采样操作(一个 strided conv4x4 层)、N_1个 Spectral-wise Attention Blocks (SABs)、一个下采样操作和 N_2 个SABs。Bottleneck 由 N_3 个  SABs 组成。解码器采用对称的结构。 上采样操作是一个 strided deconv 2x2 层。为了避免下采样过程中的信息丢失，编码器和解码器之间采用跳跃连接。图2 (c)说明了SAB的组成成分，即前馈网络(FFN，如图2 (d)所示)、光谱多头自注意(S-MSA)和两层归一化。S-MSA的细节如图2 (e)所示。
+
 ## 3.2. Spectral-wise Multi-head Self-Attention
 
 ## 3.3. Discussion with Original Transformers
