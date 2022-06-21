@@ -98,6 +98,8 @@ spatial-wise 的 MSA 主要分为两种： global MSA 和 local window-based MSA
 
 ### 3.3.3 S-MSA
 
+S-MSA 将每个光谱特征图视为 token 并且计算自注意力。
+
 # Conclusion
 
 这篇文章提出了第一个基于 Transformer 用于RGB光谱重构的框架，MST++ 。
