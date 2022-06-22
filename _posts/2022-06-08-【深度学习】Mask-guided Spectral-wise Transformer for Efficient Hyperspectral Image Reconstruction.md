@@ -42,7 +42,7 @@ HSI表征在光谱维度上高度相似和相关。
 
 此外， 在CASSI中，HSI 是由 physical mask 调制的。以往基于 CNN 的方法主要采用 mask 与 shifted measurement 的内积作为输入。该方法破坏了输入的HSI信息，没有充分发挥 mask 的引导作用，改进有限。
 
-近年来， 自然语言处理中的 Transformer 模型被引入计算机视觉领域， 并且在很多任务上表现超过基于 CNN 的方法。 然而直接应用原始的 Transformer 于 HSI 重构是不合适的。 首先， 原始的的 Transformer 学会了在空间上捕捉远程依赖关系，但 HSI 的表征在光谱上高度自相似。
+近年来， 自然语言处理中的 Transformer 模型被引入计算机视觉领域， 并且在很多任务上表现超过基于 CNN 的方法。 然而直接应用原始的 Transformer 于 HSI 重构是不合适的。 首先， 原始的的 Transformer 学会了在空间上捕捉远程依赖关系，但 HSI 的表征在光谱上高度自相似。这种情况下， 光谱间的相似性和相关性没有很好地建模。
 
 # Conclusion
 
