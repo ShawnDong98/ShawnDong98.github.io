@@ -50,6 +50,14 @@ HSI表征在光谱维度上高度相似和相关。
 
 第三， 当使用原始的全局Transformer时，计算复杂度是空间大小的二次方倍。而当使用局部基于窗口的 Transformer 时，MSA模块的感受野被限制在特定位置的窗口内，一些高度相关的 token  可能会被忽略。
 
+这篇文章提出一种 Mask-guided Spectral-wise Transformer(MST) 用于 HSI 重构。 
+
+首先， 在图2 (a)中，我们观察到由于特定波长的限制，HSI 的每个光谱通道都捕获了同一场景的一个不完整部分。这表明HSI表征在谱维上是相似和互补的。因此，这篇文章提出了一个 Spectral-wise 的 MSA (S-MSA)来捕获长程光谱间的依赖关系。
+
+其次，在图2 (b)中，在CASSI系统中使用一个 mask 来调制 HSI。mask 上不同位置的透光率差异较大。这表明调制后的光谱信息保真度是位置敏感的。
+
+因此，这篇文章以 mask 为线索，提出了一种新的 mask 引导机制(mask -guided Mechanism, MM)，引导 S-MSA 模块关注具有高保真光谱表示的区域。
+
 # Conclusion
 
 这篇文章提出了一种高效的基于 Transformer 的框架，MST，用于精确的HSI重建。
