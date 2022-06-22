@@ -34,6 +34,10 @@ HSI表征在光谱维度上高度相似和相关。
 大量的实验表明，MST在模拟和真实HSI数据集上显著优于最先进的(SOTA)方法，同时需要非常便宜的计算和内存成本。
 
 
+# Introduction
+
+传统的基于模型的方法采用手工制作的先验，如 sparsity、total variation 和 non-local similarity 来正则化重建过程。
+
 # Conclusion
 
 这篇文章提出了一种高效的基于 Transformer 的框架，MST，用于精确的HSI重建。
