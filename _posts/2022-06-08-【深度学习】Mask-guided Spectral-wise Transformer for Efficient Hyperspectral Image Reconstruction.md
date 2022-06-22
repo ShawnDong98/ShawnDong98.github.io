@@ -38,6 +38,12 @@ HSI表征在光谱维度上高度相似和相关。
 
 传统的基于模型的方法采用手工制作的先验，如 sparsity、total variation 和 non-local similarity 来正则化重建过程。
 
+近年来随着深度学习的发展， 深度卷积网络使用强大的模型学习端到端地从 2D measurement 到 3D HSI cube 的映射。 尽管基于 CNN 的方法取得了令人印象深刻的结果， 但其在内部相似度和长程依赖建模方面有限制。
+
+此外， 在CASSI中，HSI 是由 physical mask 调制的。以往基于 CNN 的方法主要采用 mask 与 shifted measurement 的内积作为输入。该方法破坏了输入的HSI信息，没有充分发挥 mask 的引导作用，改进有限。
+
+
+
 # Conclusion
 
 这篇文章提出了一种高效的基于 Transformer 的框架，MST，用于精确的HSI重建。
