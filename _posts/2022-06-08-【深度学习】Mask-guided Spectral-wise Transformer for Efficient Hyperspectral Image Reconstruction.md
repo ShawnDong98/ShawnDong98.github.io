@@ -58,6 +58,12 @@ HSI表征在光谱维度上高度相似和相关。
 
 因此，这篇文章以 mask 为线索，提出了一种新的 mask 引导机制(mask -guided Mechanism, MM)，引导 S-MSA 模块关注具有高保真光谱表示的区域。
 
+这篇文章的贡献总结如下：
+
+- 提出了一种新的HSI重建方法，MST。可能是第一个将 Transformer 用于 HSI 重构的。
+- 提出了一种新的 self-attention，S-MSA，以捕获HSI光谱间的相似性和依赖性。
+- 定制了一个MM，引导S-MSA关注具有高保真 HSI 表示的区域。
+
 # Conclusion
 
 这篇文章提出了一种高效的基于 Transformer 的框架，MST，用于精确的HSI重建。
