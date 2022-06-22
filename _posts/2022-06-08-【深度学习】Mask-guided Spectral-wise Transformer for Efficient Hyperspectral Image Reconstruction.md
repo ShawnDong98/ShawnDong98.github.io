@@ -63,6 +63,7 @@ HSI表征在光谱维度上高度相似和相关。
 - 提出了一种新的HSI重建方法，MST。可能是第一个将 Transformer 用于 HSI 重构的。
 - 提出了一种新的 self-attention，S-MSA，以捕获HSI光谱间的相似性和依赖性。
 - 定制了一个MM，引导S-MSA关注具有高保真 HSI 表示的区域。
+- MST在模拟的所有场景中都显著优于SOTA方法，同时需要更少的参数和 FLOPS。
 
 # Conclusion
 
