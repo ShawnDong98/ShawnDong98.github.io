@@ -26,3 +26,17 @@ tags:
 
 通过将 HST 插入到 DAUF 中，建立了第一种基于 Transformer 的 deep unfolding 方法—— Degradation-Aware Unfolding Half-Shuffle  Transformer (DAUHST)，用于HSI重构。
 # Conclusion
+
+本文弥补了以往 deep unfolding 方法存在的两个问题: 
+
+1)它们不估计来自CASSI系统的信息参数来指导迭代学习
+
+2) 它们主要基于CNN，在捕获远程依赖性方面显示出局限性。
+
+为了解决这些挑战，首先制定了基于 principled MAP-based unfolding framework DAUF，从compressed measurement 和physical mask 估计参数。
+
+然后，将获取 CASSI degradation patterns 和 ill-posedness degree 的关键线索的参数用于每次迭代，以 contextually scale 线性投影，并为去噪网络提供噪声水平信息。
+
+其次，这篇文章提出了一种新的Transformer HST，它可以联合提取局部内容和建模非局部依赖。
+
+通过将 HST 插入 DAUF， 得到首个基于 Transformer 的 unfolding 方法 DAUHST 用于 HSI 重构。
