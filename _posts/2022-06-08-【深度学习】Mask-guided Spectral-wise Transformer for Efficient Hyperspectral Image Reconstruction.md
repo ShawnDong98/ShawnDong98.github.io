@@ -1,14 +1,15 @@
 ---
 layout:     post
-title:      "【深度学习】Mask-guided Spectral-wise Transformer for Efficient Hyperspectral Image Reconstruction"
+title:      "【深度学习】MST：Mask-guided Spectral-wise Transformer for Efficient Hyperspectral Image Reconstruction"
 subtitle:   ""
 date:       2022-06-08
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
-tags:
+tags: 
     - 深度学习
     - HSI
+    - CVPR 2022
 ---
 
 # Abstract
