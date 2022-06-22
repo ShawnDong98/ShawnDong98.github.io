@@ -24,4 +24,5 @@ tags:
 
 此外，这篇文章还定制了一种新的 Half-Shuffle Transformer (HST)，它可以同时捕获 local contents 和 non-local dependencies。
 
+通过将 HST 插入到 DAUF 中，建立了第一种基于 Transformer 的 deep unfolding 方法—— Degradation-Aware Unfolding Half-Shuffle  Transformer (DAUHST)，用于HSI重构。
 # Conclusion
