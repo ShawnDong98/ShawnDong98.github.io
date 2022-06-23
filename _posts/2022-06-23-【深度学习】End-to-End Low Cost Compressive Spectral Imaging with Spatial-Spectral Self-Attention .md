@@ -29,3 +29,11 @@ tags:
 
 # Conclusion
 
+这篇文章开发了一种端到端的低成本压缩光谱成像系统，single-disperser CASSI 和 TSA-Net。
+
+这篇文章提出一种 Spatial-Spectral Self-Attention模块，以一种 order-independent 的方式对空间和光谱相关性进行联合建模，并将其纳入编码器-解码器网络中，以实现高质量的重构。
+
+通过分析真实数据重构中的噪声影响和 arifacts，发现在训练数据中加入 shot noise 可以显著提高重构质量。
+
+
+高光谱图像视频速率捕获和重建的端到端解决方案为压缩光谱成像的实际应用铺平了道路。
