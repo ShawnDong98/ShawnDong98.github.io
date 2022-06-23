@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Deep Gaussian Scale Mixture Prior for Spectral Compressive Imaging "
+title: 【深度学习】DGSMP： Deep Gaussian Scale Mixture Prior for Spectral Compressive Imaging
 subtitle:   ""
 date:       2022-06-23
 author:     "ShawnD"
