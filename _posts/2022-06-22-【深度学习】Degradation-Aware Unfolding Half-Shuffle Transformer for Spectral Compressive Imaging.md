@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Degradation-Aware Unfolding Half-Shuffle Transformer for Spectral Compressive Imaging"
+title:      "【深度学习】DAUHST: Degradation-Aware Unfolding Half-Shuffle Transformer for Spectral Compressive Imaging"
 subtitle:   ""
 date:       2022-06-22
 author:     "ShawnD"
