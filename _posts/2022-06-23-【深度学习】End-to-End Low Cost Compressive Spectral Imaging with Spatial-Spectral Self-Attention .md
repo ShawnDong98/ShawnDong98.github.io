@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】End-to-End Low Cost Compressive Spectral Imaging with Spatial-Spectral Self-Attention "
+title:      "【深度学习】TSA-Net：End-to-End Low Cost Compressive Spectral Imaging with Spatial-Spectral Self-Attention "
 subtitle:   ""
 date:       2022-06-23
 author:     "ShawnD"
