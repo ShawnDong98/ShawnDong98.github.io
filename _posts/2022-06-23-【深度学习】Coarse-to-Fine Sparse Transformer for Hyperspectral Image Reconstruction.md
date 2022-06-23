@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction"
+title:      "【深度学习】CST：Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction"
 subtitle:   ""
 date:       2022-06-23
 author:     "ShawnD"
