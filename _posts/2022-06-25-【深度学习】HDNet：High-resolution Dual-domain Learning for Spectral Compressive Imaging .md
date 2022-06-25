@@ -30,3 +30,11 @@ tags:
 
 在 HDNet 中，HR pixel-level 的注意力和 frequency-level 的 refinement 相互促进HSI感知质量。
 # Conclusion
+
+这篇文章提出了一个高分辨率dual-domain 学习网络(HDNet)，包括 spatial-spectral-domain 学习和频率域学习，用于从 compressed measurement 数据重建HSI。
+
+通过高效设计HR空间光谱注意力与特征融合模块，实现了细粒度像素级预测。
+
+为了解决像素级损失造成的视觉差异，首次引入动态调整的频率级监督，以缩小重构的HSI与真实值之间的频域差异。
+
+大量的可视化分析和定量实验证明，HDNet在像素级和频率级HSI重建方面都取得了较好的结果。
