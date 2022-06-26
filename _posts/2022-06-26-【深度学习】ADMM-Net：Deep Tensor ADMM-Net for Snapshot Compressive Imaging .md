@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Deep Tensor ADMM-Net for Snapshot Compressive Imaging "
+title:      "【深度学习】ADMM-Net：Deep Tensor ADMM-Net for Snapshot Compressive Imaging "
 subtitle:   ""
 date:       2022-06-26
 author:     "ShawnD"
