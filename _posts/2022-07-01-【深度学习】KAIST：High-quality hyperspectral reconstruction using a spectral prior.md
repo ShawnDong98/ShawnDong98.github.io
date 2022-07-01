@@ -23,7 +23,7 @@ tags:
 
 它在光谱精度和空间分辨率方面都优于来自每种架构的最先进的方法，同时其计算复杂度相对于稀疏编码技术降低了两个数量级。
 
-此外，这篇文章提出的方法的两个额外的应用: hyperspectral interpolation 和 demosaicing。
+此外，这篇文章提出该方法的两个额外的应用: hyperspectral interpolation 和 demosaicing。
 
 最后创建了一个新的高分辨率高光谱数据集，其中包含比现有数据更清晰、光谱种类更多的图像。
 # Conclusion
