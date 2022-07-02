@@ -35,6 +35,20 @@ HSI表征在光谱维度上高度相似和相关。
 大量的实验表明，MST在模拟和真实HSI数据集上显著优于最先进的(SOTA)方法，同时需要非常便宜的计算和内存成本。
 
 
+# CASSI System
+
+一个简洁的 CASSI 系统如图2(b) 所示。 给定一个 3D HSI cube，表示为 $F \in \mathbb{R}^{H \times W \times N_{\lambda}}$。 $F$ 首先被编码模板 $M^* \in \mathbb{R}^{H \times W}$ 调制为：
+
+$$
+F^{'}(:, :, n_\lambda) = F(:, :, n_\lambda) \odot M^*
+$$
+其中 $F'$ 表示调制过的 HSIs, $n_\lambda \in [1, ..., N_\lambda]$ 索引光谱通道， $\odot$  表示按元素乘积。 经过 disperser 后， $F'$ 变 tilted， 并且沿着 y 轴 sheared。 使用 $F^{''} \in \mathbb{R}^{H \times (W + d(N_\lambda - 1)) \times N_\lambda)}$ 表示 tilted HSI cube， 其中 $d$ 表示 shifting step。 我们假设 $\lambda_c$ 是相关波长， 例如, $F^{''}(:, :, n_{\lambda_c})$ 没有沿着 y 轴 sheared。 我们有：
+
+$$
+F^{''}(u, v, n_\lambda) = F'(x, y + d(\lambda_n - \lambda_c), n_\lambda)
+$$
+其中 $(u, v)$ 表示系统在 detector plane 上的坐标， $\lambda_n$ 表示第 $n_\lambda -th$ 个通道， 并且 $d(\lambda_n - \lambda_c)$ 表示对于在 $F''$ 上的第 $n_\lambda-th$ 通道的空间偏移量。
+
 # Introduction
 
 传统的基于模型的方法采用手工制作的先验，如 sparsity、total variation 和 non-local similarity 来正则化重建过程。
