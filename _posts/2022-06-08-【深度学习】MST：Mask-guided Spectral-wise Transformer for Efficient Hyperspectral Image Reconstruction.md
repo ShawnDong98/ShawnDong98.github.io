@@ -47,7 +47,14 @@ $$
 $$
 F^{''}(u, v, n_\lambda) = F'(x, y + d(\lambda_n - \lambda_c), n_\lambda)
 $$
-其中 $(u, v)$ 表示系统在 detector plane 上的坐标， $\lambda_n$ 表示第 $n_\lambda -th$ 个通道， 并且 $d(\lambda_n - \lambda_c)$ 表示对于在 $F''$ 上的第 $n_\lambda-th$ 通道的空间偏移量。
+其中 $(u, v)$ 表示系统在 detector plane 上的坐标， $\lambda_n$ 表示第 $n_\lambda -th$ 个通道， 并且 $d(\lambda_n - \lambda_c)$ 表示对于在 $F''$ 上的第 $n_\lambda-th$ 通道的空间偏移量。最后， 捕获的 2D 压缩  measurement $Y \in \mathbb{R}^{H \times (W  + d(N_\lambda - 1))}$ 可通过下式得到：
+
+$$
+Y = \sum_{n_\lambda = 1}^{N_\lambda} F''(:, :, n_\lambda) + G
+$$
+
+其中 $G \in \mathbb{R}^{H \times (W + d(N_\lambda -1))}$ 是在 measurement 上的成像噪声， 由 photon sensing detector 生成。
+
 
 # Introduction
 
