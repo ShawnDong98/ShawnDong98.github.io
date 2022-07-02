@@ -27,6 +27,22 @@ tags:
 
 MixFormer在图像分类上提供了与 EfficientNet 有竞争力的结果，并显示了比 RegNet 和 Swin Transformer 更好的结果。
 
+# Method
+
+## The Mixing Block 
+
+Mixing Block(图1)在标准的基于窗口的注意力块的基础上增加了两个关键设计:
+
+(1)采用并行设计来结合局部窗口的自注意力和 depth-wise convlution
+
+(2)引入跨分支的双向交互。
+
+它们被提出用来解决感受野有限和局部窗口自注意力弱建模能力的缺点。
+
+**The Parallel Design**： 虽然在非重叠窗口内执行自注意力可以提高计算效率，但由于没有跨窗口连接，它会导致感受野有限。考虑到卷积层的设计是为了模拟局部关系，这篇文章选择了 Depth-wise Convolution 作为一个有效的连接窗口的方式。
+
+
+
 # Conclusion
 
 这篇文章提出 MixFormer 作为一种高效的通用视觉 Transformer。
