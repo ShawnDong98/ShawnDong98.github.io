@@ -73,7 +73,10 @@ $$
 $$
 MIX 表示得到 W-MSA 分支和 CONV(DW卷积) 分支混合后的特征。 MIX函数首先通过两个线性投影层和两个规范化层将输入特征投影到并行分支上。然后按照图1和图2所示的步骤混合这些特征。对于FFN， 遵循之前的工作，这是一个MLP，由两个线性层组成，其中一个GELU在它们之间。
 
-MixFormer是一种混合视觉 Transformer，它在 stem 层和下采样层中都使用了卷积层。
+
+## MixFormer
+
+**Overall Architecture.** 在 Block 基础上，设计了一种具有金字塔特征映射的高效通用视觉 Transformer MixFormer。MixFormer是一种混合视觉 Transformer，它在 stem 层和下采样层中都使用了卷积层。此外， 在 stages 的最后引入了投影层。投影层将特征通道增加到1280个，线性层之后是激活层，目的是在分类头之前的通道中保留更多的细节。它具有较高的分类性能，尤其适用于较小的模型。同样的设计可以在以前的高效网络中找到，如MobileNets和EfficeintNets。
 
 # Conclusion
 
