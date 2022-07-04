@@ -132,6 +132,22 @@ MST的基本单元是MSAB。如图3 (b)所示，MSAB由两层归一化组成，M
 第一个问题是，原始的 Transformer 在空间维度上对长期依赖关系进行了建模。但是HSI表示是空间稀疏和光谱相关的，如图2 (a)所示。建模 spectral-wise 关系可能比捕获空间维度的交互更有效率。因此，这篇文章提出了S-MSA，它将每个光谱特征图视为一个 token，并沿着光谱维度计算自注意力。图2(c1) 展示 MST 在 stage 0 的 S-MSA。输入 $X_{in}\in \mathbb{R}^{H \times W \times C}$ 被 reshape 为 token $X \in \mathbb{R}^{HW \times C}$。 X 被线性投影为$Q \in \mathbb{R}^{HW \times C}$, $K \in \mathbb{R}^{HW \times C}$, $V \in \mathbb{R}^{HW \times C}$。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1656905670426.png)
+图2(c1) 表示了当 N=1 的情况， 一些细节为了简单省去了。 与原始的MSAs不同，我们的S-MSA将每个光谱特征视为一个 token ，并计算每个头的自注意力。
+
+$$
+A_j = softmax(\sigma_j K_j^T Q_j), head_j = V_jA_j
+$$
+
+由于 spectral density 随波长变化明显，使用可学习参数 $\sigma$ 通过重新加权 head 的注意力权重适应自注意力 $A_j$。然后， 输出 N 个 head 在 spectral wise 拼接经过一个线性投影再和 position embedding 相加。
+
+$$
+S-MSA(X) = (\mathop{Concat}_{j=1}^{N}(head_j))W + f_p(V)
+$$
+
+$f_p$ 是生成 position emebdding 的函数。它由两个 depth-wise conv3x3 层， 一个 GELU 激活， 和 reshape 操作组成。HSI 按波长沿 spectral 维排序。因此，利用这种嵌入来编码不同光谱通道的位置信息。最后将 Eq 7 的结果 Reshape 得到特征图的输出 $X_{out} \in \mathbb{R}^{H \times W \times C}$。
+
+
+
 
 
 # Conclusion
