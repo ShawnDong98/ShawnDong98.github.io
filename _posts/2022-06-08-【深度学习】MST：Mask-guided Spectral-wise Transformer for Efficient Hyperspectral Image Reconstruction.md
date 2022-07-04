@@ -147,8 +147,9 @@ $$
 $f_p$ 是生成 position emebdding 的函数。它由两个 depth-wise conv3x3 层， 一个 GELU 激活， 和 reshape 操作组成。HSI 按波长沿 spectral 维排序。因此，利用这种嵌入来编码不同光谱通道的位置信息。最后将 Eq 7 的结果 Reshape 得到特征图的输出 $X_{out} \in \mathbb{R}^{H \times W \times C}$。
 
 
+## Mask-guided Mechanism 
 
-
+直接使用 Transformer 进行HSI恢复的第二个问题是，原始 Transformer 可能会关注一些信息较少的空间区域，这些区域具有低保真 HSI 表征。在CASSI中，一个物理 mask 被用来调制 HSI。因此，mask 上不同位置的 transmittance 是不同的。因此，调制后的光谱信息具有 position-sensitive 的保真度。应该将 mask 作为指导模型关注具有高保真HSI表征的区域的线索。在这一部分中首先分析了以往基于 CNN 的方法中 mask 的使用，然后介绍了 mask -guided Mechanism (MM)。
 
 # Conclusion
 
