@@ -87,6 +87,52 @@ $$
 其中 $G \in \mathbb{R}^{H \times (W + d(N_\lambda -1))}$ 是在 measurement 上的成像噪声， 由 photon sensing detector 生成。
 
 
+# Method
+
+## Overall Architecture
+
+MST 的整体结构如图 3(a) 所示。采用u型结构，由一个编码器、一个 bottleneck 和一个解码器组成。MST是由 mask-guided 的 spectral-wise Attention Blocks (MSAB) 构建的。首先实现 dipersion 逆过程， shift back measurement 来得到初始化信号 $H \in \mathbb{R}^{H \times W \times N_\lambda}$:
+
+$$
+H(x, y , n_\lambda) = Y(x, y - d(\lambda_n - \lambda_c))
+$$
+然后将 $H$ 送入模型。
+
+第一, MST使用一个 conv3x3 将 $H$ 映射为特征 $X_0 \in \mathbb{R}^{H \times W \times C}$。
+
+第二,  $X_0$ 经过 $N_1$ 个 MSABs, 一个下采样模块， $N_2$ MSABs, 和一个下采样模块生成层次化特征。
+
+下采样模块是一个 strided conv4x4 层，它向下缩放特征，并使通道数加倍。因此第 $i$ 个 stage 的编码器被表示为 $X_i \in \mathbb{R}^{\frac{H}{2^i} \times \frac{W}{2^i} \times 2^iC}$。
+
+第三， $X_2$ 经过 bottleneck ， 其由 $N_3$ 个 MSAB 组成。
+
+随后，遵循U-Net的精神，设计了一个对称结构的解码器。特别地，上采样模块是一个strided deconv2x2 层。
+
+利用跳跃连接进行编码器和解码器之间的特征聚合，以减轻由下采样操作造成的信息丢失。
+
+解码器第 i 个阶段的特征为 $X_i' \in \mathbb{R}^{H \times W \times N_\lambda}$。
+
+经过解码器后， 特征通过一个 conv3x3 层生成 residual HSIs $R \in \mathbb{R}^{H \times W \times N_\lambda}$。
+
+最终，重构的 HSIs $H'$ 可由 $R$ 和 $H$ 求和得到。
+
+在实现中， 将 C 设为 28, 改变 (N1, N2, N3) 的组合来建立不同大小和计算量的 MST： MST-S(2, 2, 2)， MST-M(2, 4, 4) 和 MST-L(4, 7, 5)。
+
+MST的基本单元是MSAB。如图3 (b)所示，MSAB由两层归一化组成，Mask-guided  Spectral-wise MSA (MS-MSA)和前馈网络(FFN)。FFN 的设计如图3(c)所示
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1656905370879.png)
+
+## Spectral-wise Multi-head Self-Attention
+
+非局部自相似性常被利用在HSI重建中，而基于CNN的方法通常不能很好地建模。由于Transformer在捕捉非局部远程依赖关系方面的有效性，以及在其他视觉任务中令人印象深刻的性能，这篇文章旨在探索Transformer在HSI重建方面的潜力。
+
+在将transformer直接应用于HSI恢复时，存在两个主要问题。
+
+第一个问题是，原始的 Transformer 在空间维度上对长期依赖关系进行了建模。但是HSI表示是空间稀疏和光谱相关的，如图2 (a)所示。建模 spectral-wise 关系可能比捕获空间维度的交互更有效率。因此，这篇文章提出了S-MSA，它将每个光谱特征图视为一个 token，并沿着光谱维度计算自注意力。图2(c1) 展示 MST 在 stage 0 的 S-MSA。输入 $X_{in}\in \mathbb{R}^{H \times W \times C}$ 被 reshape 为 token $X \in \mathbb{R}^{HW \times C}$。 X 被线性投影为$Q \in \mathbb{R}^{HW \times C}$, $K \in \mathbb{R}^{HW \times C}$, $V \in \mathbb{R}^{HW \times C}$。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1656905670426.png)
+
 
 # Conclusion
 
