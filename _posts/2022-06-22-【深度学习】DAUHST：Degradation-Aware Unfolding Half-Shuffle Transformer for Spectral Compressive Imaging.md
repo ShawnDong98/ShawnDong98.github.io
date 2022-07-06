@@ -26,6 +26,20 @@ tags:
 此外，这篇文章还定制了一种新的 Half-Shuffle Transformer (HST)，它可以同时捕获 local contents 和 non-local dependencies。
 
 通过将 HST 插入到 DAUF 中，建立了第一种基于 Transformer 的 deep unfolding 方法—— Degradation-Aware Unfolding Half-Shuffle  Transformer (DAUHST)，用于HSI重构。
+
+
+# Introduction 
+高光谱图像比普通RGB图像具有更多的光谱波段，可以存储更详细的信息。因此，HSI 被广泛应用于图像识别、目标检测、跟踪、医学图像处理、遥感等领域。为了获得 HSI ，传统的成像系统使用光谱仪沿着光谱或空间维度扫描场景，通常需要很长时间。这些成像系统无法捕捉动态物体。最近，快照压缩成像(SCI)系统已被开发用于以视频速率捕获HSI。在这些SCI系统中，编码孔径快照光谱成像(CASSI)以其令人印象深刻的性能脱颖而出。CASSI 使用编码孔径和 disperser 在不同波长调制 HSI 信号，然后混合所有调制信号产生二维压缩 measurement。随后，采用 HSI 复原方法解决CASSI逆问题，即从 measurement 恢复 HSI。这些方法分为 4 类:
+
+- 基于模型的方法依赖于手工制作的图像先验，如 total variation，sparsity，low-rank等。这些方法有理论推到证明并且具有可解释性。此外，这些方法需要手工调整参数，这减慢了重构速度。同时，它们的表征能力和泛化能力也很有限。
+- 即插即用(plug -and-play, PnP)算法将预训练的去噪网络插入传统的基于模型的方法，以解决HSI重构问题。然而，PnP方法中预训练的网络是固定的，不再训练，因此限制了性能。
+- 端到端(E2E)算法使用一个强大的模型，通常是卷积神经网络(CNN)，来学习从measurement 到期望的 HSI 的端到端映射函数。端到端方法具有深度学习的能力。然而，他们从压缩 measurement 到底层光谱图像学到的是一种暴力映射，从而忽略了CASSI系统的工作原理。它们没有经过理论验证的特性、可解释性和灵活性，因为不同硬件系统的成像模型之间存在很大差异。
+-  Deep unfolding 方法采用多级网络将 measurement 结果映射到 HSI 立方体中。每一阶段通常包括两个阶段，即先通过线性投影，然后将信号通过学习底层降噪先验的单阶段网络。在 deep unfolding 方法中，通过显式地刻画图像先验和系统成像模型，可以直观地解释网络结构。此外，这些方法还具有深度学习的力量，具有很大的潜力。然而，这一潜力尚未得到充分探索。
+
+现有的深度展开算法存在两个问题:
+
+- 迭代学习与CASSI系统高度相关。然而，目前的展开方法并没有在每次迭代中估计 CASSI 退化模式和病态度来调整线性投影和去噪网络。
+
 # Conclusion
 
 这篇文章弥补了以往 deep unfolding 方法存在的两个问题: 
