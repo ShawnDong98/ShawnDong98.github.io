@@ -54,7 +54,7 @@ tags:
 
 通过定制一种 Half-shuffle Multi-head Self-Attention (HS-MSA)机制来实现这一点，该机制构成了HST的基本单元。
 
-具体来说，HS-MSA有两个分支，即 local 分支 和 non-local 分支。local 分支在窗口内计算自注意力， 而 non-local 分支 shuffle tokens 并且捕获跨窗口的交互。将 HST 插入到 DAUF 中，建立了一个迭代结构，即 Degradation-Aware Unfolding Half-Shuffle Transformer (DAUHST)。
+具体来说，HS-MSA有两个分支，即 local 分支 和 non-local 分支。local 分支在窗口内计算自注意力， 而 non-local 分支 shuffle tokens 并且捕获跨窗口的交互。将 HST 插入到 DAUF 中，建立了一个迭代结构，即 Degradation-Aware Unfolding Half-Shuffle Transformer (DAUHST)。使用提出的技术，DAUHST模型大大超过了最先进的(SOTA)深度展开方法，在相同的阶段数超过4 dB。
 # Conclusion
 
 这篇文章弥补了以往 deep unfolding 方法存在的两个问题: 
