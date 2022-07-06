@@ -41,6 +41,20 @@ tags:
 - 迭代学习与CASSI系统高度相关。然而，目前的展开方法并没有在每次迭代中估计 CASSI 退化模式和病态度来调整线性投影和去噪网络。
 - 现有的深度展开方法主要基于CNN，因此在捕捉非局部自相似性和远程依赖性方面存在局限性，而这两者对 HSI 重建至关重要。
 
+由于 Transformer 建模非局部空间区域交互的强大能力， 其被广泛用于图像分类、目标检测、语义分割、人体姿态估计，图像复原等。但使用 Transformer 面临两个问题： 1) 全局 Transformer 对空间维度的计算复杂度是二次方倍。 2) 基于窗口的 Transformer 感受野有限。
+
+
+针对上述问题，这篇文章首先提出了基于最大后验概率(MAP)理论的 principled Degradation-Aware Unfolding Framework(DAUF) 用于 HSI 重建。
+
+与以前的 deep unfolding 方法不同，DAUF 从 degraded compressed measurement 和 physical mask 隐式估计信息参数。
+
+然后，DAUF将获取 CASSI degradation patterns 和 ill-posedness degree 关键线索的参数输入到每次迭代中，自适应缩放线性投影，并为去噪网络提供噪声水平信息。
+
+其次，设计了一种新的 Half-Shuffle Transformer (HST)作为每次迭代的去噪先验。HST可以联合提取局部上下文信息和建模非局部依赖关系，同时需要比全局 Transformer 更便宜的计算成本。
+
+通过定制一种 Half-shuffle Multi-head Self-Attention (HS-MSA)机制来实现这一点，该机制构成了HST的基本单元。
+
+具体来说，HS-MSA有两个分支，即 local 分支 和 non-local 分支。local 分支在窗口内计算自注意力， 而 non-local 分支 shuffle tokens 并且捕获跨窗口的交互。将 HST 插入到 DAUF 中，建立了一个迭代结构，即 Degradation-Aware Unfolding Half-Shuffle Transformer (DAUHST)。
 # Conclusion
 
 这篇文章弥补了以往 deep unfolding 方法存在的两个问题: 
