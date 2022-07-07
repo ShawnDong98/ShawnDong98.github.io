@@ -43,6 +43,13 @@ tags:
 
 基于这些有意义的发现，这篇文章提出了一个高分辨率的双域学习网络，称为HD-Net。dual domain 监督在其 spatial-spectral 域和频率域内发掘模型的表示能力。一方面，在 spatial-spectral 域，将特征分解为 spectral 注意力和 spatial 注意力，并以一种高效的特征融合(EFF)方式将两者联系起来。提出的细粒度像素级注意力避免了高内部分辨率的维度崩溃。另一方面，利用离散傅里叶变换(DFT)自适应监督真值与重构HSI 之间的频率距离。动态加权机制使模型集中处理难以生成的高频。在图1中，HDNet重构的频谱最接近真实情况，可见在缩小 HSI 之间的频率差方面的优势。SDL中的HR像素级注意力和FDL中的频率级优化相互促进共，进一步改善图像质量。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657172389879.png)
+
+这篇文章的贡献如下：
+
+- 首次采用了能缩小频域差异的动态频率级监督来提高感知质量。提出的FDL强迫模型自适应地恢复高频和难以生成频率。
+- 为了获得更高的内部特征分辨率，在SDL中设计了HR像素级的注意力，这进一步帮助了FDL中的频率对齐。互补的双域学习机制可以相互促进HSI质量的提高。
+- 在定量评估和视觉比较中， 该方法实现了最先进的(SOTA)性能。
 # Conclusion
 
 这篇文章提出了一个高分辨率dual-domain 学习网络(HDNet)，包括 spatial-spectral-domain 学习和频率域学习，用于从 compressed measurement 数据重建HSI。
