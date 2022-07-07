@@ -50,6 +50,8 @@ tags:
 - 首次采用了能缩小频域差异的动态频率级监督来提高感知质量。提出的FDL强迫模型自适应地恢复高频和难以生成频率。
 - 为了获得更高的内部特征分辨率，在SDL中设计了HR像素级的注意力，这进一步帮助了FDL中的频率对齐。互补的双域学习机制可以相互促进HSI质量的提高。
 - 在定量评估和视觉比较中， 该方法实现了最先进的(SOTA)性能。
+
+
 # Conclusion
 
 这篇文章提出了一个高分辨率dual-domain 学习网络(HDNet)，包括 spatial-spectral-domain 学习和频率域学习，用于从 compressed measurement 数据重建HSI。
