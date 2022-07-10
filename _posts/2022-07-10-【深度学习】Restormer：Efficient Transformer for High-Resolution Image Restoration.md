@@ -20,6 +20,6 @@ tags:
 
 在这项工作中提出了一个高效的Transformer模型，通过在构建模块(多头注意和前馈网络)中进行几个关键设计，这样它可以捕捉远程像素交互，同时仍然适用于大图像。
 
-Restormer 在各项任务上取得了 SOTA
+Restormer 在各项任务上取得了 SOTA。
 # Conclusion
 
