@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
-    - CVPR2022
+    - CVPR 2022
 ---
 
 # Abstract
