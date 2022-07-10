@@ -62,6 +62,20 @@ $$
 
 depthwise 卷积仅能滤波输入通道， 不能组合新特征。所以需要一个额外的 1x1 卷积层通过的线性组合 depthwise 卷积的输出 来生成这些新特征。
 
+将 depthwose 卷积和 pointwise 卷积的结合称为 depthwise separable 卷积。
+
+Depthwise separable 卷积的计算成本为：
+
+$$
+D_K · D_K  · M · D_F · D_F + M · N · D_F · D_F
+$$
+
+通过将卷积表示为滤波和组合的两步，可以减少的计算量为
+
+$$
+\frac{D_K · D_K  · M · D_F · D_F + M · N · D_F · D_F}{D_K · D_K · M · D_F · D_F} = \frac{1}{N} + \frac{1}{D_k^2}
+$$
+
 
 # Conclusion
 
