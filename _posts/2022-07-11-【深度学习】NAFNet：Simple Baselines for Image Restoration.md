@@ -128,7 +128,13 @@ $$
 $$
 CA(X) = X * \Psi(X) 
 $$
-可以注意到，Eqn. 6与Eqn. 1非常相似。这启发我们把通道注意力看作 GLU 的一个特例，可以像上一节的 GLU 一样简化。通过保留通道注意力的两个最重要的作用，即聚合全局信息和通道信息交互，提出了简化通道注意力
+可以注意到，Eqn. 6与Eqn. 1非常相似。这启发我们把通道注意力看作 GLU 的一个特例，可以像上一节的 GLU 一样简化。通过保留通道注意力的两个最重要的作用，即聚合全局信息和通道信息交互，提出了简化通道注意力。
+
+$$
+SCA(X) = X * W pool(X)
+$$
+
+**Summary**： 从第3节中提出的基线开始，我们通过将 GELU 替换为 SimpleGate 和将 Channel Attention 替换为 Simplified Channel Attention 来进一步简化它，而不损失性能。简化后，网络中不存在非线性激活函数(如ReLU、GELU、Sigmoid等)。
 
 # Conclusion
 
