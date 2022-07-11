@@ -23,6 +23,11 @@ tags:
 
 SOTA结果是在各种具有挑战性的基准上实现的，例如GoPro上33.69 dB PSNR(用于图像去模糊)，仅以8.4%的计算成本超过了之前的SOTA 0.38 dB;在SIDD上40.30 dB的PSNR(用于图像去噪)，超过了之前的SOTA 0.28 dB，计算成本不到它的一半。
 
+# Introduction
+
+随着深度学习的发展，图像恢复方法的性能显著提高。
+
+这些方法虽然性能良好，但系统复杂度较高。为了更清晰地讨论，将系统复杂度分解为两个部分: inter-block 复杂度和 intra-block 复杂度。首先，inter-block 复杂度，如图2所示。[6,24]引入了不同大小的特征图之间的连接。[4,35]是多阶段网络，后一阶段对前一阶段的结果进行细化。第二，inter-block 复杂度，即块内部的各种设计选择。例如[37]中的Multi-Dconv Head Transposed 注意力模块和 Gated Dconv Feed-Forward 网络(如图3a所示)，[21]中的Swin Transformer 块，[4] 中的 HINBlock等等。
 
 # Conclusion
 
