@@ -134,7 +134,7 @@ $$
 SCA(X) = X * W pool(X)
 $$
 
-**Summary**： 从第3节中提出的基线开始，我们通过将 GELU 替换为 SimpleGate 和将 Channel Attention 替换为 Simplified Channel Attention 来进一步简化它，而不损失性能。简化后，网络中不存在非线性激活函数(如ReLU、GELU、Sigmoid等)。
+**Summary**： 从第3节中提出的基线开始，我们通过将 GELU 替换为 SimpleGate 和将 Channel Attention 替换为 Simplified Channel Attention 来进一步简化它，而不损失性能。简化后，网络中不存在非线性激活函数(如ReLU、GELU、Sigmoid等)。所以称这个基线 Nonlinear Activation Free 网络，即NAFNet。
 
 # Conclusion
 
