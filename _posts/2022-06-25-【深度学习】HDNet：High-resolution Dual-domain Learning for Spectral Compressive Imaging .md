@@ -51,6 +51,85 @@ tags:
 - 为了获得更高的内部特征分辨率，在SDL中设计了HR像素级的注意力，这进一步帮助了FDL中的频率对齐。互补的双域学习机制可以相互促进HSI质量的提高。
 - 在定量评估和视觉比较中， 该方法实现了最先进的(SOTA)性能。
 
+# Related Work
+
+## HSI Reconstruction
+
+GAP-Net 提出了一种深度展开方法，并利用预训练的去噪方法进行HSI恢复。
+
+$\lambda$-Net 和 TSA-Net 探索了空间特征的自注意力。
+
+DGSMP 使用深度高斯尺度混合先验进行HSI重建。
+
+然而，目前基于学习的方法主要集中在空间-光谱域，其中用于HSI重构的频域学习仍未得到充分研究。
+
+## Self-Attention Mechanism 
+
+$\lambda$-net 首次探索了HSI恢复中的特征自相关。然后 [21] 利用双向网络对光谱相关性进行建模。
+
+TSA-Net 分别计算空间注意图和光谱注意图。
+
+Wang等人[39]利用光谱图像之间的局部和非局部相关性。
+
+然而，现有的大多数网络都牺牲了内部的注意力分辨率来加快计算速度，这不可避免地降低了性能。
+
+high-level 任务设计了一些像素级注意力模块[2,18,53]，进一步增强了模型的表示能力。
+
+因此，探索用于HSI重构的像素级 HR 注意力可以为提高性能提供一个有针对性的解决方案。
+
+## Image Frequency Spectrum Analysis
+
+F-Principle[48]证明深度学习网络为了拟合目标而倾向于使用低频，这将导致 frequency domain gap[47,52]。
+
+最近的研究[12,41,51]表明，频谱中显示的周期性模式可能与空间域的伪影一致。
+
+[6]在训练中对低频和高频图像的处理是不同的。
+
+DASR[44]采用 domain-gap aware 训练和 domain deviation 加权监督的方法来解决超分辨率中的 domain deviation 问题。
+
+Jiang et al.[13]证明，关注困难的频率可以提高重构质量。
+
+在HSI重建中，低频下的模型过拟合带来了平滑的纹理和模糊的结构。
+
+因此，探索特定频率上的自适应约束对精细化重构至关重要。
+
+
+# The Proposed Method
+
+## Frequency Domain Learning 
+
+CNN固有的偏置使得 SDL 中高频特征的合成具有挑战性，这也导致了图1中其他方法的频域差异。因此这篇文章引入动态 FDL 来进行频率级监督。
+
+**Discrete Fourier Transform** DFT将离散信号从时域变换到频域，分析其频率结构。对于一个有限长度的离散一维信号，每个频率的正弦波分量通过以下对应关系得到
+
+$$
+F(w) = \frac{1}{N} \sum_{n=1}^{N-1} f(n) e^{-j2\pi \frac{wn}{N}}
+$$
+
+**HSI Frequency Spectra Analysis** 利用二维 DFT 将 HSI 转换到频域以重构更多的高频细节。在特定通道 $k$ 中，空间坐标 $(h, w, k)$ 与频域坐标  $(u, v)$ 的转换关系为
+
+$$
+F_{gt}^k(u, v) = \sum_{h=0}^{H-1} \sum_{w=0}^{W-1} y_{gt}(h, w, k) e^{-j2\pi(\frac{uh}{H} + \frac{vw}{W})}
+$$
+$$
+F^k_{pred}(u, v) = \sum_{h=0}^{H-1} \sum_{w=0}^{W-1} y_{pred}(h, w, k) e^{-j2\pi(\frac{uh}{H} + \frac{vw}{W})}
+$$
+
+如图 2 所示， 它们的频谱可视化表现出灰度变化的严重程度。结构纹理和边缘映射为高频信号，背景映射为低频信号。因此，我们可以很容易地操纵HSI的高频或低频信息。然后引入动态权值，使网络能自适应地处理不同的频率。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657713762844.png)
+**Frequency Distance Optimization.** 我们使用频率距离系数 $\alpha$ 使距离相关性可调。 在每个通道 $k$ 中，真值和预测HSI之间的频率距离等价于它们的频谱之间的 power distance，定义为
+
+$$
+d^k(u, v) = \|F_{gt}^k(u, v) - F_{pred}^k(u, v)\|^\alpha
+$$
+
+然后定义一个与距离 $d(u, v)$ 线性相关的动态权系数 $\theta(u, v)$，使模型更加关注难以合成的频率。然后将真值与预测 HSI 在单个通道 $k$ 之间的距离表示为
+
+$$
+L_{FDL}(F_{gt}, F_{pred}) = \sum_{k=0}^{C-1} d(F_{gt}^k, F_{pred}^k)
+$$
+
 
 # Conclusion
 
