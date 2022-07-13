@@ -130,6 +130,15 @@ $$
 L_{FDL}(F_{gt}, F_{pred}) = \sum_{k=0}^{C-1} d(F_{gt}^k, F_{pred}^k)
 $$
 
+## Training Objective
+
+$$
+L_{SDL}(y_{gt}, y_{pred}) = \| y_{gt} - y_{pred} \|^1
+$$
+
+$$
+L_{total} = L_{SDL}(y_{gt}, y_{pred}) + \lambda L_{FDL}(F_{gt}, F_{pred})
+$$
 
 # Conclusion
 
