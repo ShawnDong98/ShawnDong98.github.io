@@ -61,4 +61,58 @@ $$
 q(x_t \mid x_0) = N(x_t; \sqrt{\alpha_t}x_0, (1 - \alpha_t)I)
 $$
 
-对步长大小为 $\epsilon$, 
+对步长大小为 $\epsilon$,  基于上一状态 $t-1$， 可以采样新的状态 $t$：
+
+$$
+x_t = x_{t-1} + \frac{\epsilon}{2} \nabla_x p(x_{t-1}) + \sqrt{\epsilon} z_i \qquad z_i \thicksim N(0, 1)
+
+$$
+
+# Reconstruction
+
+相反的过程需要在给定系统当前状态的较早时间步估计概率密度。这意味着要估计 $q(x_{t-1} \mid x_t)$， 从而从各向同性(isotropic)高斯噪声中生成数据样本。然而，与前向过程不同的是，从当前状态估计前一个状态需要所有前一个梯度的知识，如果没有一个可以预测这种估计的学习模型，我们就无法获得。因此，我们必须训练一个神经网络模型来基于时间步 $t$ 的当前状态和学习到的权重估计 $p_\theta(x_{t-1} \mid x_t)$。
+
+$$
+p_\theta(x_{t-1} \mid x_t) = N(x_{t-1}; \mu_\theta(x_t, t)， \Sigma_\theta(x_t, t))
+$$
+
+$$
+p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
+$$
+
+对均值函数的参数化可由 [3]提出的方法计算：
+
+$$
+\mu_\theta(x_t, t) = \frac{1}{\sqrt{a_t}}(x_t - \frac{\beta_t}{\sqrt{1 - \alpha_t})} \epsilon_\theta(x_t, t)
+$$
+[3] 提出使用固定方差函数 $\Sigma_\theta = \beta_t$。 时间 $t-1$ 的采样可以计算得到：
+
+$$
+x_{t-1} = \frac{1}{\sqrt{a_t}} (x_t - \frac{1 - \alpha_t}{\sqrt{1 - \alpha_t}}\epsilon_\theta(x_t, t)) + \sigma_t z
+$$
+# Training and Results
+
+## Construction of the Model
+
+扩散模型训练中使用的模型与VAE网络的模式相似，但与其他网络结构相比，它往往更简单和直接。
+输入层的输入大小与数据维度的输入大小相同。根据网络需求的深度，可以有多个隐藏层。中间层是具有各自激活函数的线性层。最后一层的大小再次与原始输入层相同，从而重构原始数据。在去噪扩散网络中，最后一层由两个单独的输出组成，每个输出分别用于预测概率密度的均值和方差。
+
+## Computation of Loss Function
+
+网络模型的目标是优化以下损失函数：
+
+$$
+L = E_q\left(-\log p(x_T) - \sum_{t \geq 1}log \frac{p_{\theta}(x_{t-1} \mid x_t) }{q(x_t \mid x_{t-1})}\right)
+$$
+这个损失函数的推导由 [1] 提出， 其根据两个高斯分布之间的KL 散度 和一组熵线性组合组成这个损失公式。这简化了计算， 并且使实现损失函数变得容易。因此， 损失函数变为：
+
+$$
+L= -E_q(D_{KL}(q(x_{t-1} \mid x_t, x_0) \| p_\theta(x_{t-1} \mid x_t)) + H_q(x_T \mid x_0) - H_q(x_1 \mid x_0) - H_p(x_T))
+$$
+
+[3] 提出进一步的简化损失函数，简化了均值的参数化部分
+
+## Results
+
+
+
