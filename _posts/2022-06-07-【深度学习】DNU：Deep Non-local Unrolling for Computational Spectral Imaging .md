@@ -90,7 +90,7 @@ $$
 $$
 f^{(k + 1)} = (\Phi^T \Phi + \eta I)^{-1 }(\Phi^Tg + \eta h^{(k)})
 $$
-以往图像复原领域的方法认为矩阵 $\Phi^T\Phi + \eta I$ 非常大， 不能直接计算其逆矩阵。 如果使用 conjugate gradient(CG) 算法， 需要很多次迭代 并且 不能保证找到准确解。 
+以往图像复原领域的方法认为矩阵 $\Phi^T\Phi + \eta I$ 非常大， 不能直接计算其逆矩阵。 如果使用 conjugate gradient(CG) 算法， 需要很多次迭代 并且 不能保证找到准确解。 这篇文章由于图 3 所示的 sensing matrix $\Phi$ 的特殊结构， 可以采用最近的方法[59, 31] 计算等式 (11) 来直接得到准确解。
 
 
 # Conclusion
