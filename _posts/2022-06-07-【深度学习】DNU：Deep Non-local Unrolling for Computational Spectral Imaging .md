@@ -88,9 +88,48 @@ $$
 等式 $8$ 中的 $f-subproblem$ 是一个二次正则化最小二乘问题。 
 
 $$
-f^{(k + 1)} = (\Phi^T \Phi + \eta I)^{-1 }(\Phi^Tg + \eta h^{(k)})
+f^{(k + 1)} = (\Phi^T \Phi + \eta I)^{-1 }(\Phi^Tg + \eta h^{(k)}) \tag{11}
 $$
-以往图像复原领域的方法认为矩阵 $\Phi^T\Phi + \eta I$ 非常大， 不能直接计算其逆矩阵。 如果使用 conjugate gradient(CG) 算法， 需要很多次迭代 并且 不能保证找到准确解。 这篇文章由于图 3 所示的 sensing matrix $\Phi$ 的特殊结构， 可以采用最近的方法[59, 31] 计算等式 (11) 来直接得到准确解。
+以往图像复原领域的方法认为矩阵 $\Phi^T\Phi + \eta I$ 非常大， 不能直接计算其逆矩阵。 如果使用 conjugate gradient(CG) 算法， 需要很多次迭代 并且 不能保证找到准确解。 而由于图 3 所示的 sensing matrix $\Phi$ 的特殊结构， 可以采用最近的方法[59, 31] 计算等式 (11) 来直接得到准确解。具体来说， 给定一个 block diagonal sensing matrix $\Phi \in \mathbb{R}^{MN \times MN\Lambda}$， 我们可以简单计算一个对角矩阵 $\Phi_i \Phi_i^T$：
+
+$$
+\Phi_i \Phi_i^T = diag\left\{\phi_1, ..., \phi_i, ..., \phi_{MN} \right\} \tag{12}
+$$
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657773851411.png)
+
+其中 $\phi_i$ 可以根据编码模板 $C$ 提前计算。 通过矩阵求逆， 等式  $11$ 可以被写成：
+
+$$
+(\Phi^T\Phi + \eta I)^{-1} = \eta^{-1}I - \eta^{-1}\Phi^T(I + \Phi_\eta^{-1}\Phi)^{-1}\Phi\eta^{-1} \tag{13}
+$$
+
+根据等式 $12$ ：
+
+$$
+(I + \Phi\eta^{-1}\Phi^T)^{-1} = diag\left\{\frac{\eta}{\eta + \phi_1}, ..., \frac{\eta}{\eta + \phi_i}, ..., \frac{\eta}{\eta + \phi_n}\right\} \tag{14}
+$$
+通过插入等式 $12$, 等式 $13$ 和 等式 $14$ 到等式 $11$， 并且化简公式， 我们有：
+
+$$
+f^{(k + 1)} = h^{(k)} + \Phi^T[(g - \Phi h^{(k)})]./(\eta + \Phi\Phi^T) \tag{15}
+$$
+
+在这种形式中， $f-subproblem$ 可以通过得到准确解来解决。 等式 $15$ 的计算仅需线性操作， 相比于基于 CG 的迭代方法有更少的计算成本。
+
+然后我们将两个子问题通过等式 $10$ 和 等式 $15$ 合并起来
+
+$$
+f^{(k + 1)} = S(f^{(k)}) + \Phi^T[(g - \Phi S(f^{(k)}))]./(\eta + \Phi \Phi^T) \tag{16}
+$$
+
+需要强调的是，由于计算光谱成像中 sensing matrix 的特殊结构，这是第一次推导出公式 $16$ 中的循环公式进行正则化优化。
+
+为了求解等式 $16$， 这里提出通过 DNN 展开循环， 如图 4 所示。该网络由多个循环组成，每个循环包括一个光谱图像先验网络(如3.3节所介绍的)拼接上一个等式 $16$ 的线性连接。在所提出的网络中，循环以前馈的方式运行。该网络是端到端训练的，遵循图像模型，同时利用图像先验，优于以往的 separative solver。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657776275589.png)
+
+特别地， 输出的压缩 patch $g$ 首先送入由 sensing matrix $\Phi^T$ 的转置参数化的线性层。 输出的向量被视为初始化： $f^{(0)} = \Phi^Tg$。 对于第 $k$ 次循环， 输入 $f^{k-1}$ 连续被送入光谱图像先验1网络 $S(·)$ 和一个残差网络块。 在残差网络块中， 恒等连接和残差连接分别模拟等式 $16$ 的第一部分和第二部分。
+
 
 
 # Conclusion
