@@ -90,7 +90,7 @@ $$
 $$
 f^{(k + 1)} = (\Phi^T \Phi + \eta I)^{-1 }(\Phi^Tg + \eta h^{(k)})
 $$
-以往图像复原领域的方法认为矩阵 $\Phi^T\Phi + \eta I$ 非常大， 不能直接计算其逆矩阵。 
+以往图像复原领域的方法认为矩阵 $\Phi^T\Phi + \eta I$ 非常大， 不能直接计算其逆矩阵。 如果使用 conjugate gradient(CG) 算法， 需要很多次迭代 并且 不能保证找到准确解。 
 
 
 # Conclusion
