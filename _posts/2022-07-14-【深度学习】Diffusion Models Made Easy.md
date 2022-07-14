@@ -110,9 +110,24 @@ $$
 L= -E_q(D_{KL}(q(x_{t-1} \mid x_t, x_0) \| p_\theta(x_{t-1} \mid x_t)) + H_q(x_T \mid x_0) - H_q(x_1 \mid x_0) - H_p(x_T))
 $$
 
-[3] 提出进一步的简化损失函数，简化了均值的参数化部分
+[3] 提出进一步的简化损失函数(将估计 $x_t$ 转化为了估计噪声 $\epsilon$)， 损失函数变为：
+
+$$
+L_{simple} = -E_{t, x_0, \epsilon} (\| \epsilon - \epsilon_\theta(\sqrt{\alpha_t}x_0 + \sqrt{1 - \alpha_t} \epsilon, t) \|^2)
+$$
 
 ## Results
 
+通过马尔可夫链添加高斯噪声的正向过程的结果如下图所示。总时间步数为100，而图中显示了生成的序列集中的10个样本。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657805722752.png)
+
+反向扩散过程的结果如下图所示。最终输出的质量取决于超参数的调整和训练周期的数量。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657805742400.png)
+
+
+# Conclusion
+
+在本文中，我们讨论了扩散模型的基础，以及它们的实现。尽管扩散模型在计算上比其他深度网络架构要昂贵，但是在某些应用中它们的性能要好得多。例如，最近在文本和图像合成任务中的应用，扩散模型已经优于其他架构[4]。进一步的实现细节和代码可以在以下github存储库中找到：[https://github.com/azad-academy/denoising-diffusion-model.git](https://github.com/azad-academy/denoising-diffusion-model.git)
 
