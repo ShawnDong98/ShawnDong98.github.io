@@ -54,10 +54,32 @@ tags:
 因为重构问题是严重的欠定问题， 他需要解决下面的最小化问题：
 
 $$
-\hat f = \arg \min_f \| g - \Phi f \|^2 + \tau R(f)
+\hat f = \arg \min_f \| g - \Phi f \|^2 + \tau R(f)  \tag{5}
 $$
 其中 $R(·)$ 是正则化项， 其在解上施加了一些图像先验， $\tau$ 是调节数据项和正则项的权重。
-上式的优化问题不能直接求解， 一个通用的策略是将它分解为两个子问题。
+上式的优化问题不能直接求解， 一个通用的策略是将它分解为两个子问题。通过引 入一个辅助变量， 上式可以被写成一个约束优化问题：
+
+$$
+\hat f = \arg \min_f \|g - \Phi f\|^2 + \tau R(h) \qquad s.t \quad h = f \tag{6}
+$$
+然后， 采用 half quadratic splitting (HQS) 方法将上述优化问题转换为一个无约束优化问题：
+
+$$
+(\hat f, \hat h) = \arg \min_{f, h} \|g - \Phi f\|^2 + \eta \|h - f\|^2 + \tau R(h) \tag{7}
+$$
+
+其中 $\eta$ 是惩罚项。  等式 ${7}$ 可以被拆分为两个子问题：
+
+$$
+\hat f^{(k + 1)} = \arg \min_f \|g - \Phi f\|^2 + \eta \| h^{(k)} - f \|^2 \tag{8}
+$$
+$$
+\hat h^{(k + 1)} = \arg \min_h \eta \|h - f^{(k+1)}\|^2 + \tau R(h) \tag{9}
+$$
+在这个视角， HQS 算法分为 sensing matrix $\Phi$ 和正则化 $R(·)$, 这两个子问题可以被交替求解。
+
+
+
 # Conclusion
 
 
