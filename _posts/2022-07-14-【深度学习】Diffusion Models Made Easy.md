@@ -131,3 +131,11 @@ $$
 
 在本文中，我们讨论了扩散模型的基础，以及它们的实现。尽管扩散模型在计算上比其他深度网络架构要昂贵，但是在某些应用中它们的性能要好得多。例如，最近在文本和图像合成任务中的应用，扩散模型已经优于其他架构[4]。进一步的实现细节和代码可以在以下github存储库中找到：[https://github.com/azad-academy/denoising-diffusion-model.git](https://github.com/azad-academy/denoising-diffusion-model.git)
 
+
+
+# Reference
+1. Sohl-Dickstein, J., Weiss, E. A., Maheswaranathan, N., & Ganguli, S. (2015). Deep unsupervised learning using nonequilibrium thermodynamics. arXiv preprint arXiv:1503.03585.
+2. Max Welling & Yee Whye Teh. “Bayesian learning via stochastic gradient langevin dynamics.” ICML 2011.
+3. Ho, J., Jain, A., & Abbeel, P. (2020). Denoising diffusion probabilistic models. arXiv preprint arXiv:2006.11239.
+4. Prafulla Dhariwal, Alex Nichol, Diffusion Models Beat GANs on Image Synthesis, arXiv: 2105.05233
+5. [Diffusion Models Made Easy](https://towardsdatascience.com/diffusion-models-made-easy-8414298ce4da)
