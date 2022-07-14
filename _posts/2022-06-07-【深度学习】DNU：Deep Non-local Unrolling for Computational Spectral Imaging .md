@@ -68,7 +68,7 @@ $$
 (\hat f, \hat h) = \arg \min_{f, h} \|g - \Phi f\|^2 + \eta \|h - f\|^2 + \tau R(h) \tag{7}
 $$
 
-其中 $\eta$ 是惩罚项。  等式 ${7}$ 可以被拆分为两个子问题：
+其中 $\eta$ 是惩罚项。  等式 $7$ 可以被拆分为两个子问题：
 
 $$
 \hat f^{(k + 1)} = \arg \min_f \|g - \Phi f\|^2 + \eta \| h^{(k)} - f \|^2 \tag{8}
@@ -78,6 +78,8 @@ $$
 $$
 在这个视角， HQS 算法分为 sensing matrix $\Phi$ 和正则化 $R(·)$, 这两个子问题可以被交替求解。
 
+这里， 我们想要为等式 $8$  中的 $f-subproblem$ 找到一个找到一个近似解。
+等式 $9$ 中的 $h-subproblem$ 可以使用 3.3 节中的光谱图像先验网络求解。 
 
 
 # Conclusion
