@@ -9,6 +9,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
+    - HSI
     - ECCV 2020
 ---
 
