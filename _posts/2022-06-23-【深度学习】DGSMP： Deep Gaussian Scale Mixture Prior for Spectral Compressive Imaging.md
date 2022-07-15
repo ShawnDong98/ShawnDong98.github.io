@@ -63,6 +63,26 @@ $$
 $$
 p(y \mid x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp (- \frac{\|y - Ax\|_2^2}{2\sigma^2})
 $$
+对于先验项 $p(x)$， 提出将 HSI 的每个像素 $x_i$ 特征化为一个 标准差为 $\theta_i$ 的 *nonzero-mean*
+的高斯分布。 有了 scale 先验 $p(\theta_i)$ 和 假设 $\theta_i$ 和 $x_i$ 相互独立， 我们可以使用如下的 GSM 模型建模 $x$：
+
+$$
+p(x) = \prod_i p(x_i), \qquad p(x_i) = \int_0^\infty p(x_i \mid \theta_i) p(\theta_i) d\theta_i
+$$
+其中 $p(x_i \mid \theta_i)$ 是一个均值为 $\mu_i$ 方差为 $\theta_i^2$ 的非零均值高斯分布：
+
+$$
+p(x_i \mid \theta_i) = \frac{1}{\sqrt{2\pi}\theta_i} \exp(-\frac{(x_i - \mu_i)^2}{2\theta_i^2})
+$$
+有了不同的 scale 先验， GSM 模型可以很好地表达很多分布。
+
+对于 scale 先验 $p(\theta_i)$， 想比于用确定先验建模 $p(\theta_i)$， 这篇文章引入一种通用形式：
+
+$$
+p(\theta_i) \propto \exp(-J(\theta_i))
+$$
+
+其中 $J(\theta_i)$ 是能量函数。 相比于计算 $p(x_i)$ 的解析表达式，这通常是 intracable 的， 作者提出通过替换 MAP 估计中的 $p(x)$ 为 $p(x, \theta)$ 来联合估计 $x$ 和 $\theta$。   
 
 
 
