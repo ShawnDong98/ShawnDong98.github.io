@@ -32,6 +32,22 @@ tags:
 
 在ImageNet分类(CLS)挑战的测试集上，通过3个残差和1个Inception-v4的集成，实现了3.08%的top-5错误。
 
+
+# Architectural Choices
+
+Inception-v4，为每个网格大小的 Inception 块做出统一的选择。 
+
+图中所有没有标记为V的卷积都是 same-padded 的，这意味着它们的输出网格与输入网格的大小匹配。
+
+标记为V的卷积被 valid-padded，这意味着每个单元的输入patch都被完全包含在前一层，输出激活图的网格大小也相应减小。
+
+图9展示了 Inceltion-V4 的结构。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866285468.png)
+图3， 4， 5， 6 ，7 和 8 展示了各种组件的细节。
+
+
+
 # Conclusion
 
 这篇文章详细介绍了三种新的网络结构：
