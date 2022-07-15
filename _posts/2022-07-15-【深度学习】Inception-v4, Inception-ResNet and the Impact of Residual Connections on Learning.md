@@ -34,3 +34,11 @@ tags:
 
 # Conclusion
 
+这篇文章详细介绍了三种新的网络结构：
+
+- Inception-resnet-v1:一个混合的Inception版本，其计算成本与从[15]开始的Inception-v3相似。
+- Inception-Resnet-v2:一个昂贵的混合Inception版本，显著提高了识别性能。
+- Inception-v4:一个没有残差连接的 Inception 变体，其识别性能与 Inception-Resnet-v2 大致相同。
+
+作者研究了残差连接的引入是如何显著提高 Inception 架构的训练速度的。此外，最新的模型(有和没有残差连接)比以前的所有网络都要好，这仅仅是因为模型尺寸增加了。
+
