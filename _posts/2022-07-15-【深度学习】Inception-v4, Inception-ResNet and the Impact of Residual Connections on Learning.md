@@ -54,11 +54,9 @@ Inception-v4，为每个网格大小的 Inception 块做出统一的选择。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866425327.png)
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1657866440402]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866440401.png)
 
 # Conclusion
-
-
 
 这篇文章详细介绍了三种新的网络结构：
 
