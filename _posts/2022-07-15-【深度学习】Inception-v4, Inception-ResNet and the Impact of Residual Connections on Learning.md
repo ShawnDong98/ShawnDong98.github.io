@@ -46,9 +46,19 @@ Inception-v4，为每个网格大小的 Inception 块做出统一的选择。
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866285468.png)
 图3， 4， 5， 6 ，7 和 8 展示了各种组件的细节。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866344844.png)
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866376504.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866391986.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1657866425327.png)
+
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1657866440402]]]" )
 
 # Conclusion
+
+
 
 这篇文章详细介绍了三种新的网络结构：
 
