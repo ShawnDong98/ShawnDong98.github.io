@@ -25,7 +25,7 @@ tags:
 
 此外，作者在不同的PGD迭代中设计了across proximal mapping 的 inter-stage 信息通路，通过一种多尺度和空间自适应的方式来纠正大多数深度展开网络(DUN)的固有信息损失。
 
-通过整合灵活的梯度下降和 informative proximal mapping，将迭代PGD算法展开为一个可训练的DNN。
+通过整合 flexible gradient descent 和 informative proximal mapping，将迭代PGD算法展开为一个可训练的DNN。
 
 对各种图像恢复任务的广泛实验证明了该方法在最先进的性能、可解释性和泛化方面的优越性。
 
