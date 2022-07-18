@@ -100,7 +100,7 @@ $$
 $$
 \mathcal{L}(\Omega) = \sum_{k=1}^K \| x - \hat x^k \|_2^2 \tag{10}
 $$
-其中 K 为 stage 数量。 $\hat x^k$ 为每个阶段输出的结果， $\Omega = \left{\rho^k, \right}$
+其中 K 为 stage 数量。 $\hat x^k$ 为每个阶段输出的结果， $\Omega = \left\{\rho^k, \mathcal{F}_A^k(·), \mathcal{F}_{A^T}^k(·), \theta^k\right\}_{k=1}^K$ 是DGUNet 的可训练参数。
 
 # Conclusion and Discussion
 
