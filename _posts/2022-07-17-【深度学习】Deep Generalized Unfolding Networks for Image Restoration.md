@@ -85,7 +85,7 @@ $$
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658131509890.png)
-上述的特征融合过程是一个标准的 spatial-adaptive normalization。 与 conditional normalization 方法不同， $\alpha_n^k$ 和 $\beta_n^k$  不是向量， 而是具有空间维度的张量。
+上述的特征融合过程是一个标准的 spatial-adaptive normalization。 与 conditional normalization 方法不同， $\alpha_n^k$ 和 $\beta_n^k$  不是向量， 而是具有空间维度的张量。通过这种方式， 编码器和解码器得到多尺度到的特征， 每个 scale 的特征图保留了之前 stage 的空间信息。 使用 $F^k$ 表示多尺度编码器和解码器特征集合。
 
 # Conclusion and Discussion
 
