@@ -82,8 +82,10 @@ $$
 
 考虑到大多数DUN方法的  intrinsic information 损失，设计了每个scale 的 inter-stage information pathways，以在不同 stage 从编码器和解码器广播有用的信息。在图2中使用不同颜色的线来分辨不同 scale 的编码器和解码器信息。为了融合 inter-stage 信息，我们在编码器的每个 scale 上设计了一个 inter-stage feature fusion submodule（ISFF）。由于编码器和解码器之间的跳跃连接，inter-stage 信息也可以自然地传播到解码器。ISFF 的结构如图 $3$ 所示， 其收到 [51, 66] 的启发。具体来说，在每个尺度上，将编码器和解码器特征从上一 stage 传输到当前 stage。
 
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658131509890.png)
 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658131509890.png)
+上述的特征融合过程是一个标准的 spatial-adaptive normalization。 与 conditional normalization 方法不同， $\alpha_n^k$ 和 $\beta_n^k$  不是向量， 而是具有空间维度的张量。
 
 # Conclusion and Discussion
 
