@@ -78,8 +78,7 @@ $$
 v^k = \hat x^{k-1} - \rho^k \mathcal{F}^k_{A^T}(\mathcal{F}_A^k(\hat x^{k-1}) - y) \tag{7}
 $$
 
-**Informative Proximal Mapping Module.**  对于等式 $5b$ 的解， 以贝叶斯的角度来看， 它对应于一个去噪问题。 在这个情况下， 设计了如图2所示的 infromative proximal mapping module(IPMM)。 IPMM 是一个 UNet 类型的结构， 有一个编码器和一个解码器组成， 以利用多尺度的特征图。 
-
+**Informative Proximal Mapping Module.**  对于等式 $5b$ 的解， 以贝叶斯的角度来看， 它对应于一个去噪问题。 在这个情况下， 设计了如图2所示的 infromative proximal mapping module(IPMM)。 IPMM 是一个 UNet 类型的结构， 有一个编码器和一个解码器组成， 以利用多尺度的特征图。 IPMM 首先以一个 channel attention block(CAB) 来提取浅层特征。 然后使用不带 BN 层的 residual block(RB) 提取三个尺度的特征。 使用 $F_{enc}^k = \left\{F^k_{enc \otimes n}\right\}_{n=1}^3$ 和 $F_{dec}^k = \left\{F_{dec \otimes n}^k\right\}_{n=1}^3$ 来表示从第 $k$ 个阶段第 $n$ 个尺度提取的特征。
 
 
 # Conclusion and Discussion
