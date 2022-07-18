@@ -43,10 +43,21 @@ tags:
 PGD 算法通过一个迭代函数估计等式$3$ 为一个迭代收敛问题：
 
 $$
-\hat x^k = \arg \max_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla g(\hat x^{k -1 })) \|_2^2 + \lambda J(x)
+\hat x^k = \arg \max_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla g(\hat x^{k -1 })) \|_2^2 + \lambda J(x) \tag{4}
 $$
 
-其中 $\hat x^k$ 表示第 $k$ 次迭代的输出， $g(·)$表示等式 $3$ 的数据保真度。 $\nabla$ 是微分操作， 齐备步长 $\rho$ 加权。 
+其中 $\hat x^k$ 表示第 $k$ 次迭代的输出， $g(·)$表示等式 $3$ 的数据保真度。 $\nabla$ 是微分操作， 齐备步长 $\rho$ 加权。数学上来说， 上面等式第一部分是一个梯度下降操作， 后面一部分可以通过近似操作 $prox_{\lambda, J}$ 求解。 因此， 它可分为两个子问题， 梯度下降和近似映射。
+
+$$
+v^k = \hat x^{k-1} - \rho A^T(A \hat x^{k-1} - y) \tag{5a}
+$$
+
+$$
+\hat x^k = prox_{\lambda, J}(v^k) \tag{5b}
+$$
+
+PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。
+
 # Conclusion and Discussion
 
 本文提出了一种用于图像复原的深度泛化展开网络(DGUNet)。
