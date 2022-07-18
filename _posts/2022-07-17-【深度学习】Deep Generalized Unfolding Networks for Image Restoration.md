@@ -80,6 +80,8 @@ $$
 
 **Informative Proximal Mapping Module.**  对于等式 $5b$ 的解， 以贝叶斯的角度来看， 它对应于一个去噪问题。 在这个情况下， 设计了如图2所示的 infromative proximal mapping module(IPMM)。 IPMM 是一个 UNet 类型的结构， 有一个编码器和一个解码器组成， 以利用多尺度的特征图。 IPMM 首先以一个 channel attention block(CAB) 来提取浅层特征。 然后使用不带 BN 层的 residual block(RB) 提取三个尺度的特征。 使用 $F_{enc}^k = \left\{F^k_{enc \otimes n}\right\}_{n=1}^3$ 和 $F_{dec}^k = \left\{F_{dec \otimes n}^k\right\}_{n=1}^3$ 来表示从第 $k$ 个阶段第 $n$ 个尺度提取的特征。为了在 IPMM 中切换尺度， 使用步长为 $2$ 的 $2 \times 2$ 的最大池化层用于降采样， 使用卷积层后双线性插值用于上采样。 与其他 denoiser 相似， 使用从输入到输出的全局 pathway， 其鼓励网络通过低频信息。 在 IPMM 的末端， 使用 supervised attention module(SAM) 提取干净的特征并且通过 subspace projection 将它们插入下个阶段。
 
+考虑到大多数DUN方法的  intrinsic information 损失，设计了每个scale 的 inter-stage information pathways，以在不同 stage 从编码器和解码器广播有用的信息。
+
 # Conclusion and Discussion
 
 本文提出了一种用于图像复原的深度泛化展开网络(DGUNet)。
