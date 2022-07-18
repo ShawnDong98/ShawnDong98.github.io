@@ -148,6 +148,21 @@ $$
 $g(·)$ 是等式 $3$ 中的数据保真项(l2范数？)。也就是?
 
 $$
-\hat x^k = \arg \min_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla \frac{1}{2}\|x - \hat x^{k-1}\|) \|_2^2 + \lambda J(x) \tag{4}
+\hat x^k = \arg \min_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla \frac{1}{2}\|y - A\hat x^{k-1}\|_2^2) \|_2^2 + \lambda J(x) \tag{4}
 $$
+
 其中 $\rho$ 是学习率。
+
+上式 $\hat x^{k-1} - \rho \nabla \frac{1}{2}\|y - A\hat x^{k-1}\|_2^2$ 是一个梯度下降操作：
+
+$$
+v^k = \hat x^{k-1} -\rho A^T (A\hat x^{k-1} - y)  \tag{5a}
+$$
+剩下的部分 $\hat x^k = \arg \min_x \frac{1}{2} \|x - v^k\| + \lambda J(x)$ 通过近似映射操作 $prox_{\lambda, J}$ 求解：
+
+$$
+\hat x^k = prox_{\lambda, J}(v^k) \tag{5b}
+$$
+
+
+PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。
