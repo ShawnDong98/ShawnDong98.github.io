@@ -56,7 +56,7 @@ $$
 \hat x^k = prox_{\lambda, J}(v^k) \tag{5b}
 $$
 
-PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。
+PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。 ISTA[4] 是一个典型的基于 PGD 的算法， 其正则项定义为 $l_1$ 范数， $J(x) = \| x \|_1$。 
 
 # Conclusion and Discussion
 
