@@ -121,7 +121,28 @@ $$
 图像退化过程可以定义为：
 
 $$
-y = Ax + n
+y = Ax + n \tag{1}
 $$
 
 其中 $y$ 为退化观测， $x$ 是原始图像， $A$ 是退化矩阵， $n$  表示加性噪声。
+
+
+求解等式 $1$ 可以使用贝叶斯估计：
+
+$$
+\hat x = \arg \max_x \log P(x \mid y) = \arg \max_x \log P(y \mid x) + \log P(x) \tag{2}
+$$
+
+数据保真项通常定义在 $l_2$ 范数下， 将等式 $2$ 表示为一下能量函数(损失函数？)：
+
+$$
+\hat x = \arg \min_x \frac{1}{2} \|y - Ax \|_2^2 + \lambda J(x) \tag{3}
+$$
+
+通过 PGD 算法估计等式 $3$ 可以将其视为一个迭代收敛问题：
+
+$$
+\hat x^k = \arg \min_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla g(\hat x^{k-1})) \|_2^2 + \lambda J(x) \tag{4}
+$$
+
+$g(·)$ 是等式 $3$ 中的数据保真项(l2范数？)。
