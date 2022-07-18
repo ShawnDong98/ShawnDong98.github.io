@@ -85,12 +85,22 @@ $$
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658131509890.png)
-上述的特征融合过程是一个标准的 spatial-adaptive normalization。 与 conditional normalization 方法不同， $\alpha_n^k$ 和 $\beta_n^k$  不是向量， 而是具有空间维度的张量。通过这种方式， 编码器和解码器得到多尺度到的特征， 每个 scale 的特征图保留了之前 stage 的空间信息。 使用 $F^k$ 表示多尺度编码器和解码器特征集合， $F^k = \{F^k_{enc}, F_{dec}^k\}$。最终， 等式 $5b$ 中的 IPMM 表达式为：
+上述的特征融合过程是一个标准的 spatial-adaptive normalization。 与 conditional normalization 方法不同， $\alpha_n^k$ 和 $\beta_n^k$  不是向量， 而是具有空间维度的张量。通过这种方式， 编码器和解码器得到多尺度到的特征， 每个 scale 的特征图保留了之前 stage 的空间信息。 使用 $F^k$ 表示多尺度编码器和解码器特征集合， $F^k = \left\{F^k_{enc}, F_{dec}^k\right\}$。最终， 等式 $5b$ 中的 IPMM 表达式为：
 
 $$
 \hat x^k, F^k = \text{prox}_{\theta^k} (v^k, F^{k-1}) \tag{9}
 $$ 
 其中 $\theta_k$ 表示 IPMM 第 $k$ 个阶段的参数。
+
+
+## Loss Function Design
+
+在所有的 stage 使用 $l_2$ 损失函数优化 DGUNet 和 DGUNet+。 给定一个退化 measurement y 和 ground-truth 图像 $x$， 训练的目标可以定义为：
+
+$$
+\mathcal{L}(\Omega) = \sum_{k=1}^K \| x - \hat x^k \|_2^2 \tag{10}
+$$
+其中 K 为 stage 数量。 $\hat x^k$ 为每个阶段输出的结果， $\Omega = \left{\rho^k, \right}$
 
 # Conclusion and Discussion
 
