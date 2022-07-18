@@ -31,6 +31,12 @@ tags:
 
 # Related Works
 
+## Deep Unfolding Networks
+
+深度展开网络(DUN)的主要思想是，传统的迭代优化算法可以通过一堆循环 DNN 块等价地进行叠加。
+
+这种对应关系最初应用于 deep plug-and-play（PNP）方法[44、57、74、92、94]，其利用训练好的 denoiser 隐式地将正则化项 $J(x)$ 表示为去噪问题。在PNP的启发下，DUN方法在特定任务中联作优化可训练的 denoiser，以端到端的方式进行训练。 例如，[16]联合优化了UNet作为ADMM [5]算法中的近端映射。然而，其网络结构与处理预定义图像退化的人工假设的退化假设密切相关。
+
 # Conclusion and Discussion
 
 本文提出了一种用于图像复原的深度泛化展开网络(DGUNet)。
