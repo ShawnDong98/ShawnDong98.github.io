@@ -60,11 +60,11 @@ PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。 ISTA[4] 是一个典
 
 ## Proposed Deep Generalized Unfolding Network
 
-所提出的 DGUNet 的整个网络结构如图 2 所示， 其是一个基于 DNN 的 PGD 算法的展开框架。 DGUNet 由几个重复的阶段组成。 每个阶段包含一个 flexible gradient descent module(FGDM) 和 informative proximal mapping module(IPMM), 分别对应 PGD 算法一次迭代步骤中的梯度下降和近似映射。 
+所提出的 DGUNet 的整个网络结构如图 2 所示， 其是一个基于 DNN 的 PGD 算法的展开框架。 DGUNet 由几个重复的阶段组成。 每个阶段包含一个 flexible gradient descent module(FGDM) 和 informative proximal mapping module(IPMM), 分别对应 PGD 算法一次迭代步骤中的梯度下降和近似映射。 默认情况下，阶段数设置为7个，除第一个和最后一个阶段外，它们共享相同的参数。为了进一步提高模型性能，还提出了一个加号版本，称为DGUNet+，其中所有阶段都与参数独立。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658124994671.png)
 
-
+**Flexible Gradient Descent Module.**  如等式 (5a) 解释， 当退化矩阵 $A$ 已知， 梯度下降步骤是很容易解决的。然而， 当在一些退化问题 $A$  未知， 使得 $A^T(A \hat x^{k-1} - y)$ 梯度计算不可解。
 
 
 
