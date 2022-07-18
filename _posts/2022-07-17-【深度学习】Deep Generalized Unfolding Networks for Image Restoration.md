@@ -66,6 +66,20 @@ PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。 ISTA[4] 是一个典
 
 **Flexible Gradient Descent Module.**  如等式 (5a) 解释， 当退化矩阵 $A$ 已知， 梯度下降步骤是很容易解决的。然而， 当在一些退化问题 $A$  未知， 使得 $A^T(A \hat x^{k-1} - y)$ 梯度计算不可解。在这种情况下， 这篇文章提出一个 flexible gradient descent module(FGDM)， 如图 2 第二行所示。它有两个模型设置来合理处理已知和未知的退化情况。
 
+如果 $A$ 已知， 直接使用准确的 $A$ 计算梯度。 为了提升鲁棒性， 令步长 $\rho$ 在每个 stage 中设置为可训练的参数， 最终变成如下的梯度下降操作：
+
+$$
+v^{k} = \hat x^{k-1} - \rho^k A^T (A \hat x^{k-1} - y) \tag{6}
+$$
+
+如果 $A$ 是未知的， 相比于为不同的退化问题制作任务特定的假设， 采用一个数据驱动的策略预测梯度。 利用两个独立的残差块， 叫做 $F_A^k$ 和 $F_{A^T}^k$ 来模拟第 $k$ 个阶段的  $A$ 和它的转置 $A^T$。 梯度被计算为 $F_{A^T}^k(F_A^k(\hat x^{k-1}) - y)$。 因此， 在不损失可解释的情况下, 在退化未知时， DGUNet中的梯度下降可以被定义为：
+
+$$
+v^k = \hat x^{k-1} - \rho^k \mathcal{F}^k_{A^T}(\mathcal{F}_A^k(\hat x^{k-1}) - y) \tag{7}
+$$
+
+**Informative Proximal Mapping Module.**  对于等式 $5b$ 的解， 以贝叶斯的角度来看， 它对应于一个去噪问题。 在这个情况下， 设计了如图2所示的 infromative proximal mapping module(IPMM)。 IPMM 是一个 UNet 类型的结构， 有一个编码器和一个解码器组成， 以利用多尺度的特征图。 
+
 
 
 # Conclusion and Discussion
