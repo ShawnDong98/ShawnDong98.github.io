@@ -145,4 +145,9 @@ $$
 \hat x^k = \arg \min_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla g(\hat x^{k-1})) \|_2^2 + \lambda J(x) \tag{4}
 $$
 
-$g(·)$ 是等式 $3$ 中的数据保真项(l2范数？)。
+$g(·)$ 是等式 $3$ 中的数据保真项(l2范数？)。也就是?
+
+$$
+\hat x^k = \arg \min_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla \frac{1}{2}\|x - \hat x^{k-1}\|) \|_2^2 + \lambda J(x) \tag{4}
+$$
+其中 $\rho$ 是学习率。
