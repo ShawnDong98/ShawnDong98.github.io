@@ -56,11 +56,10 @@ $$
 \hat x^k = prox_{\lambda, J}(v^k) \tag{5b}
 $$
 
-PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。 ISTA[4] 是一个典型的基于 PGD 的算法， 其正则项定义为 $l_1$ 范数， $J(x) = \| x \|_1$。 因此， ISTA 中的近似映射通过一个 软阈值函数 得到： 
+PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。 ISTA[4] 是一个典型的基于 PGD 的算法， 其正则项定义为 $l_1$ 范数， $J(x) = \| x \|_1$。 因此， ISTA 中的近似映射通过一个 软阈值函数 得到： $\text{prox}_{\lambda, J} (v^k) = \text{sign}(v^k) \max(0, \mid v^k \mid - \lambda)$。 然而， 手工 $l_1$ 正则限制了表征能力， 并且其在其应用限制在少数几个退化已知的任务(例如压缩感知)。 
 
-$$
-prox_{\lambda, J} (v^k) = \text{sign}(v^k) \max(0, \mid v^k \mid - \lambda)
-$$
+
+
 
 # Conclusion and Discussion
 
