@@ -64,7 +64,7 @@ PGD 算法迭代更新 $v^k$ 和 $\hat x^k$ 直到收敛。 ISTA[4] 是一个典
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658124994671.png)
 
-**Flexible Gradient Descent Module.**  如等式 (5a) 解释， 当退化矩阵 $A$ 已知， 梯度下降步骤是很容易解决的。然而， 当在一些退化问题 $A$  未知， 使得 $A^T(A \hat x^{k-1} - y)$ 梯度计算不可解。
+**Flexible Gradient Descent Module.**  如等式 (5a) 解释， 当退化矩阵 $A$ 已知， 梯度下降步骤是很容易解决的。然而， 当在一些退化问题 $A$  未知， 使得 $A^T(A \hat x^{k-1} - y)$ 梯度计算不可解。在这种情况下， 这篇文章提出一个 flexible gradient descent module(FGDM)， 如图 2 第二行所示。
 
 
 
