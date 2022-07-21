@@ -172,7 +172,13 @@ $$
 $$
 H = [D_1, ..., D_{n_\lambda}] \in \mathbb{R}^{n \times n_\lambda n} \tag{13}
 $$
-其中 $n = n_x(n_y + n_\lambda - 1)$, $D_b = \text{Diag}(\text{vec}(C(:, :, b)))$ 是对角矩阵， $\text{vec}(C(:, :, b))$ 是它的对角元素。
+其中 $n = n_x(n_y + n_\lambda - 1)$, $D_b = \text{Diag}(\text{vec}(C(:, :, b)))$ 是对角矩阵， $\text{vec}(C(:, :, b))$ 是它的对角元素。至此，我们可以重写公式 $11$ 为：
+
+$$
+y = Hx + z
+$$
+
+这在 video SCI 中同样适用。
 
 
 
