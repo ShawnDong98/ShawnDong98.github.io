@@ -99,7 +99,16 @@ y = Hx + z
 $$
 
 
-与标准的压缩感知不同， sensing matrix $H \in \mathbb{R}^{n_xn_y \times n_xn_yB}$ 在 video SCI 中是高度结构化和稀疏的。
+与标准的压缩感知不同， sensing matrix $H \in \mathbb{R}^{n_xn_y \times n_xn_yB}$ 在 video SCI 中是高度结构化和稀疏的。更具体地，它可以写成 $B$ 个矩阵的对角拼接：
+
+$$
+H = \left[D_1, ..., D_B\right] \tag{4} 
+$$
+
+其中， 对于 $b = 1, ..., B$， $D_b = \text{diag}(Vec(C_b)) \in \mathbb{R}^{n \times n}$， $n=n_xn_y$。 
+
+
+
 
 
 
