@@ -124,8 +124,55 @@ $$
 
 其中 $(u, v)$ 表示在 detector plane 上的坐标系统， $\lambda_b$ 是第 $b$ 个通道的波长， $\lambda_c$ 表示中心波长。 $d(\lambda_b - \lambda_c)$ 表示第 $b$ 个通道的空间移位。
 
+考虑到 detector sensor 集成了波长 $\left[\lambda_{min}, \lambda_{max}\right]$ 所有的光， 压缩的 measurement 在 detector $y(u, v)$ 位置上可以写作：
+
+$$
+y(u, v) = \int_{\lambda_{min}}^{\lambda_{max}} x''(u, v, b_{\lambda})d\lambda \tag{7}
+$$
+
+其中 $x''$ 表示 $X''$ 的模拟(连续)表示。
+
+在离散的版本中， 捕获的 2D measurements $Y \in \mathbb{R}^{n_x \times (n_y + n_\lambda - 1)}$ 可以写作：
+
+$$
+Y = \sum_{b=1}^{n_\lambda} X''(:, :, n_\lambda) + Z \tag{8}
+$$
+
+为了方便描述， 进一步使 $C \in \mathbb{R}^{n_x \times (n_y + n_\lambda - 1) \times n_\lambda}$ 表示为对应不同波长 mask $M^0$ 的移位后的版本：
+
+$$
+C(u, v, b) = M^0(x, y + d(\lambda_b - \lambda_c))
+$$
+
+相似地， 对于不同波长的每个信号帧， 位移后的版本为 $X \in \mathbb{R}^{n_x \times (n_y + n_\lambda - 1) \times n_\lambda}$
+
+$$
+X(u, v, b) = X^0(x, y + d(\lambda_b - \lambda_c), b) \tag{10}
+$$
+
+紧接着， measurement $Y$ 可以被表示为：
+
+$$
+Y = \sum_{b=1}^{n_\lambda} X(:, :, b) \odot C(:, :, b) + Z \tag{11}
+$$
+
+**Vectorized Formulation**  令 $vec(·)$ 表示矩阵向量化操作。 例如拼接一个矩阵的列为一个向量。 然后， 我们定义 $y = vec(Y), z = vec(Z) \in \mathbb{R}^{n_x(n_y + n_\lambda - 1)}$
 
 
+$$
+x = \begin{bmatrix}
+ x^{(1)} \\ \vdots \\ x^{(n_\lambda)}
+\end{bmatrix} \in \mathbb{R}^{n_x(n_y + n_\lambda -1)n_\lambda} \tag{12}
+$$
+
+其中，对于 $b = 1, ..., n_\lambda$, $x^{(b)} = vec(X(:, :, b))$。
+
+此外， 我们定义 sensing matrix:
+
+$$
+H = [D_1, ..., D_{n_\lambda}] \in \mathbb{R}^{n \times n_\lambda n} \tag{13}
+$$
+其中 $n = n_x(n_y + n_\lambda - 1)$, $D_b = \text{Diag}(\text{vec}(C(:, :, b)))$ 是对角矩阵， $\text{vec}(C(:, :, b))$ 是它的对角元素。
 
 
 
