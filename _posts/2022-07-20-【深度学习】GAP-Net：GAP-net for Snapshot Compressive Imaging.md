@@ -108,6 +108,22 @@ $$
 其中， 对于 $b = 1, ..., B$， $D_b = \text{diag}(Vec(C_b)) \in \mathbb{R}^{n \times n}$， $n=n_xn_y$。 
 
 
+## Forward Model of Spectral SCI
+
+图2(b) 展示了 spectral SCI 系统的图。 令 $X^0 \in \mathbb{R}^{n_x \times n_y \times n_\lambda}$ 和 $M^0 \in \mathbb{R}^{n_x \times n_y}$ 表示原始的 spectral cube 和 固定的 mask modulation。 在场景 $X^0$ 通过 mask 后， 令 $X' \in \mathbb{R}^{n_x \times n_y \times n_\lambda}$ 表示调制后的版本， 其中不同的波长分别被单独调制， 例如， 对于 $b = 1, ..., n_\lambda$， 有：
+
+$$
+X'(:, :, b) = X^0(:, :, b) \otimes M^0  \tag{5}
+$$
+
+在通过 disperser 后， cube $X'$ 被 tilted 并且沿着 y 轴 sheared。 令 $X'' \in \mathbb{R}^{N_x \times (N_y + N_\lambda - 1)\times N_\lambda} $ 表示 tilted cube 并且假设 $\lambda$ 是相关的波长， 例如 $X'(:, :, n_{\lambda_c})$ 是没有沿着 y 轴 sheared 的图像， 则有：
+
+$$
+X''(u, v, b) = X'(x, y + d(\lambda_b - \lambda_c), b) \tag{6}
+$$
+
+其中 $(u, v)$ 表示在 detector plane 上的坐标系统， $\lambda_b$ 是第 $b$ 个通道的波长， $\lambda_c$ 表示中心波长。 $d(\lambda_b - \lambda_c)$ 表示第 $b$ 个通道的空间移位。
+
 
 
 
