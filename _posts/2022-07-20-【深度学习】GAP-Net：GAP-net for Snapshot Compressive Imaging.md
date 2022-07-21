@@ -72,6 +72,11 @@ SCI重构算法可分为以下四类：
 - GAP-net在用合成数据和真实数据(视频SCI和光谱SCI)完成的实验结果中实现了最先进的(在某些情况下，具有竞争力)性能。
 
 
+# Video SCI and Spectral SCI 
+
+
+
+
 # Conclusion
 
 这篇文章提出了一种用于快照压缩成像的深度展开技术GAP-Net。
