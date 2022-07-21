@@ -76,6 +76,33 @@ SCI重构算法可分为以下四类：
 
 图2描绘了视频(左)和光谱(右)SCI的原理图。如前所述，两者的基本原理是使用比相机捕获率更高的速度来调制数据立方体。在视频SCI中，提出了不同的调制方案，如 shifting mask[21]和不同的digital micromirror device(DMD)模式[12]，它们都是 active modulation 方法。另一方面，在光谱SCI中，调制可以通过固定 mask 加 disperser [39]实现，这是一种被动调制方法，因此具有更高的能量效率。关键的思想是，使用 disperser，固定的调制模式可以改变不同的波长。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658393197983.png)
+
+## Froward Model of Video SCI
+
+考虑到 video SCI 编码器， 其中一个 $B$ 帧的视频 $X \in \mathbb{R}^{n_x \times n_y \times B} $ 被调制 并被 $B$ 个 sensing matrices(mask) $C \in \mathbb{R}^{n_x \times n_y \times B}$ 映射到单个 measurement 帧 $Y \in \mathbb{R}^{n_x \times n_y}$：
+
+$$
+Y = \sum_{b=1}^B C_b \odot X_b + Z \tag{1}
+$$
+
+其中 $Z \in \mathbb{R}^{n_x \times n_y}$ 表示噪声； $C_b = C(:, :, b)$ 以及 $X_b = X(:, :, b) \in \mathbb{R}^{n_x \times n_y}$ 表示第 $b$ 个 sensing matrix(mask)。 使用向量化操作， 定义 $y = Vec(Y) \in \mathbb{R}^{n_x n_y}$ 和 $z = Vec(Z) \in \mathbb{R}^{n_x n_y}$。 相似地， 定义 $x \in \mathbb{R}^{n_x n_y B}$ ：
+
+$$
+x = Vec(X) = [Vec(X_1)^T, ..., Vec(X_B)^T]^T \tag{2}
+$$
+
+有了上述定义， measurement 处理过程可定义如下：
+
+$$
+y = Hx + z
+$$
+
+
+与标准的压缩感知不同， sensing matrix $H \in \mathbb{R}^{n_xn_y \times n_xn_yB}$ 在 video SCI 中是高度结构化和稀疏的。
+
+
+
 
 # Conclusion
 
