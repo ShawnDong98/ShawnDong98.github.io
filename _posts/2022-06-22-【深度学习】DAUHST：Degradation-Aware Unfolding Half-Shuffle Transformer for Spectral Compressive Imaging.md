@@ -65,6 +65,51 @@ tags:
 - 在需要更少的计算和内存成本的同时，DAUHST在很大程度上优于SOTA方法。此外，在真实的HSI重建中，DAUHST的视觉效果更好。
 
 
+# Proposed Method 
+
+## Degradation-Aware Unfolding Framework 
+
+以前的展开框架[43,44,45,46]没有估计 CASSI 退化模式来调整迭代学习。为了缓解这一限制，这篇文章制定了一个principled Degradation-Aware Unfolding Framework(DAUF)，如图2所示。DAUF 来自 MAP 理论。 原始HSI信号可以通过最小化以下能量函数来估计：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658368759319.png)
+
+$$
+\hat x = \mathop{\text{argmin}}_x \frac{1}{2} \| y - \Phi x \|^2 + \tau R(x) \tag{2}
+$$
+其中 $\frac{1}{2}\|y - \Phi x\|^2$ 是数据保真项， $R(x)$ 是图像先验项， 并且 $\tau$ 是超参数调节重要性。通过引入辅助变量 $z$, 等式 $2$ 可以公式化为：
+
+$$
+\hat x = \mathop{\text{argmin}}_x \frac{1}{2} \| y - \Phi x \|^2 + \tau R(z) \qquad s.t. \quad z = x \tag{3}
+$$
+
+这是一个约束优化问题。 为了得到展开推理， 采用 half-quadratic splitting (HQS) 算法以简单和快速收敛。 等式 $3$ 可以通过最小化下列等式求解：
+
+$$
+L_\mu(x, z) = \frac{1}{2}\|y - \Phi x\|^2 + \tau R(z) + \frac{\mu}{2} \|z - x\|^2 \tag{4}
+$$
+其中 $\mu$ 是惩罚项， 其强制 $x$ 和 $z$ 接近。 等式 $4$ 可以通过将 $x$ 和 $z$ 分解为下面两个迭代子问题求解：
+
+$$
+x_{k+1} = \mathop{\text{argmin}}_x \| y - \Phi x\|^2 + \mu \|x - z_k \|^2 \\
+z_{k+1} = \mathop{\text{argmin}}_z  \frac{\mu}{2} \| z - x_{k+1}\|^2 + \tau R(z) \tag{5}
+$$
+
+其中 $k = 0, 1, ..., K -1$ 表示迭代次数。 数据保真项和一个 二次正则化最小二乘问题 相关， 如等式 $5$ 中的 $x_{k+1}$。它的 closed-form 解为：
+
+$$
+x_{k + 1} = (\Phi^T\Phi + \mu I)^{-1}(\Phi^Ty + \mu z_k) \tag{6}
+$$
+
+其中 $I$ 是对角矩阵。 因为 $\Phi$ 是 fat 矩阵， $\Phi^T\Phi + \mu I$ 会很大， 因此通过矩阵求逆公式简化$(\Phi^T \Phi + \mu I)^T$求逆问题的计算 ：
+
+$$
+(\Phi^T\Phi + \mu I)^{-1} = \mu^{-1} I - \mu^{-1} \Phi^T (I + \Phi \mu^{-1} \Phi^T)^{-1}\Phi \mu^{-1} \tag{7}
+$$
+
+通过将等式 $7$ 插入等式 $6$， 我们可以重公式化等式 $6$
+
+
+
 # Conclusion
 
 这篇文章弥补了以往 deep unfolding 方法存在的两个问题: 
