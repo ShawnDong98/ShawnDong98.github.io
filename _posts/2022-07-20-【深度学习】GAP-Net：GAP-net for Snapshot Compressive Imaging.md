@@ -178,7 +178,23 @@ $$
 y = Hx + z
 $$
 
-这在 video SCI 中同样适用。
+这在 video SCI 中同样适用。唯一的区别是 measurement 是 $Y \in \mathbb{R}^{n_x \times (n_y + n_\lambda - 1)}$, 然后我们复原 $X$， spatial-spectral cube 通过将$X$ 的每个通道移动回他原始的位置得到 $X^0$。
+
+
+
+# GAP-Net for SCI
+
+一个 SCI 重建系统的目标是解决如下优化问题：
+
+$$
+\hat x = \arg \min_x \frac{1}{2} \|y - Hx \|_2^2 + \tau \Omega(x) \tag{15}
+$$
+
+其中 $\Omega(x)$ 是正则项， 其用来捕获源结构。 为了求解 $15$， 这篇文章提出了 GAP-Net 算法，它利用了 deep unfolding 和 generalized alternating projection 的思想。 GAP-Net 同样受启发于 PnP 框架， 但与 PnP 不同的是， 在算法的每个阶段训练一个不同的去噪网络以提供高保真的重建以及高度的灵活性。
+
+
+
+
 
 
 
