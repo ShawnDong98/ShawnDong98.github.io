@@ -9,6 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - HSI
+    - ECCV 2022
 ---
 
 
