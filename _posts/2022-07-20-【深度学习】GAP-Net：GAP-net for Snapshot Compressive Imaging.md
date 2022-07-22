@@ -207,7 +207,32 @@ $$
 v^{(k + 1)} = D_{k+1}(x^{(k + 1)}) \tag{17}
 $$
 
-GAP-Net 和这篇文章提出的 re-purposed ADMM-Net(图4)  不同于原始的 ADMM-Net， deep-tensor-ADMM-Net 和 tensor-FISTA-Net， 这些网络的目标是在每个阶段模拟稀疏编码， 例如引入变换(由神经网络学习并且通常使用全连接或卷积网络)和收缩(由ReLU实现)。
+GAP-Net 和这篇文章提出的 re-purposed ADMM-Net(图4)  不同于原始的 ADMM-Net， deep-tensor-ADMM-Net 和 tensor-FISTA-Net， 这些网络的目标是在每个阶段模拟稀疏编码， 例如引入变换(由神经网络学习并且通常使用全连接或卷积网络)和收缩(由ReLU实现)。接下来我们比较 GAP-Net 和 ADMM-Net。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658457585955.png)
+
+
+## GAP-Net vs ADMM-Net
+
+在不丢失细节的情况下， 我们列出 ADMM-Net 每个阶段的三个步骤：
+
+- 通过 $x^{(k + 1)} = \arg \min_x \frac{1}{2} \| y - Hx\|_2^2 - (z^{(k)} + u^{(k)}\|_2^2$ 解 $x$。 其 close form 解为：
+
+$$
+x^{(k + 1)} = [H^TH + \gamma I]^{-1}[H^Ty + (v^{(k) }+ u^{(k)})] \tag{18}
+$$
+
+由于 $H$ 的特殊结构， 这可以以 one shot 求解
+- 通过 $v^{(k + 1)} = \arg \min_v [\frac{\gamma}{2}\|v - (x^{(k + 1)} - u^{(k)})\|_2^2 + \tau \Omega(v)]$。 在GAP-Net， 可以通过 CNN 去噪求解
+
+$$
+v^{(k+1)} = D_{k+1}(x^{(k+1)} - u^{(k)}) \tag{19}
+$$
+- 通过 $u^{(k + 1)} = u^{(k)} - (x^{(k + 1) }- v^{(k+1)})$ 更新辅助变量 $u$。
+
+ADMM-Net 的流程图如图4所示。
+
+与图3相比， GAP-Net 有更少的参数和操作， 因此它相比 ADMM-Net 有效率。 
 
 
 
