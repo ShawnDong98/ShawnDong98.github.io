@@ -37,3 +37,4 @@ tags:
 
 作者进一步展示了 focal frequency loss 改善 StyleGAN2 生成结果的潜力。
 
+探索其他应用和设计更好的频域优化策略可能是未来有趣的工作。
