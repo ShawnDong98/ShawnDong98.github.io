@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - CVPR 2022
-    - - Backbone
+    - Backbone
 ---
 
 # Abstract 
