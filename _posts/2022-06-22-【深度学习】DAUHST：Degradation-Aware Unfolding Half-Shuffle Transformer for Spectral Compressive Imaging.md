@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - HSI
-    - Arixv 2022
+    - Arxiv 2022
 ---
 
 
