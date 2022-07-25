@@ -679,6 +679,22 @@ $$
 
 $$x+y = z \tag{1.1}$$
 
+## Latex 子公式
+
+```
+\begin{subequations}
+    \begin{gather}
+        {\color{orange} v^{k} = \hat x^{k-1} - \rho \Phi^T (\Phi \hat x^{k-1} - y)}
+        \label{eq5a} \\
+        {\color{cyan} \hat x^k = \text{prox}_{\lambda, J}(v^k)}
+        \label{eq5b}
+    \end{gather}
+\end{subequations} 
+```
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658719136427.png)
+
+
 ##  LaTex 箭头上添加文字
 
 用法：
