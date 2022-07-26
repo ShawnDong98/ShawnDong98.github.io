@@ -83,7 +83,7 @@ $$
 \hat x = \mathop{\text{argmin}}_x \frac{1}{2} \| y - \Phi x \|^2 + \tau R(z) \qquad s.t. \quad z = x \tag{3}
 $$
 
-这是一个约束优化问题。 为了得到展开推理， 采用 half-quadratic splitting (HQS) 算法以简单和快速收敛。 等式 $3$ 可以通过最小化下列等式求解：
+这是一个约束优化问题。 为了得到展开推理， 采用 half-quadratic splitting (HQS) 算法以简化和快速收敛。 等式 $3$ 可以通过最小化下列等式求解：
 
 $$
 L_\mu(x, z) = \frac{1}{2}\|y - \Phi x\|^2 + \tau R(z) + \frac{\mu}{2} \|z - x\|^2 \tag{4}
@@ -108,6 +108,33 @@ $$
 $$
 
 通过将等式 $7$ 插入等式 $6$， 我们可以重公式化等式 $6$
+
+$$
+x_{k+1} = \frac{\Phi^\top y + \mu z_k}{\mu} - \frac{\Phi^\top(I + \Phi \mu^{-1}\Phi^\top)^{-1} \Phi \Phi^\top y}{\mu^2} - \frac{\Phi^\top (I + \Phi \mu^{-1} \Phi^\top)^{-1}\Phi z_k}{\mu} \tag{8}
+$$
+
+在 CASSI 系统中， $\Phi \Phi^\top$ 是对角矩阵， 其可以定义为 $\Phi \Phi^\top \stackrel{def}= \text{diag}\{\phi_1, ..., \phi_n\}$。通过插入 $\Phi \Phi^\top$ 到 $(I + \Phi \mu^{-1} \Phi^\top)^{-1}$ 和 $(I + \Phi \mu^{-1} \Phi^\top)^{-1} \Phi \Phi^\top$, 得到：
+
+$$
+(I + \Phi \mu^{-1} \Phi^\top)^{-1} = \text{diag} \left\{\frac{\mu}{\mu + \psi_1}, ..., \frac{\mu}{\mu + \psi_n}\right\} \\
+(I + \Phi \mu^{-1} \Phi^\top)^{-1}\phi \phi^\top =  \text{diag} \left\{\frac{\mu \psi_1}{\mu + \psi_1}, ..., \frac{\mu \psi_n}{\mu + \psi_n}\right\} \tag{9}
+$$
+
+令 $y \stackrel{def} = [y_1, ..., y_n]^\top$ 和 $[\Phi z_k]_i$ 表示 $\Phi z_k$ 的第 $i$ 个元素。将 $9$ 插入 $8$ 有：
+
+$$
+\begin{align}
+x_{k + 1} &= \frac{\Phi^\top y}{\mu} + z_k - \frac{1}{\mu} \Phi^\top \left[ \frac{y_1\psi_1 + \mu[\Phi z_k]_1}{\mu + \psi_1}, ..., \frac{y_n\psi_n + \mu[\Phi z_k]_n}{\mu + \psi_n}\right] \\
+&= z_k + \Phi^\top \left[\frac{y_1 - [\Phi z_k]_1}{\mu + \psi_1}, ..., \frac{y_n - [\Phi z_k]_n}{\mu + \psi_n} \right]^\top 
+\end{align} \tag{10}
+$$
+
+
+注意到 $\{y_i - [\Phi z_k]_i\}_{i=1}^n$ 可以直接通过 $y - \Phi z_k$ 更新， 并且 $\{\phi_i\}_{i=1}^n$ 被预先计算出来存储在 $\Phi \Phi^\top$。 因此，等式 $10$ 中的 element-wise 的计算可以被非常有效地更新。 根据等式 $5$， 惩罚参数 $\mu$ 应该足够大， 以便 $x$ 和 $z$ 接近相同的固定点。
+
+
+
+
 
 
 
