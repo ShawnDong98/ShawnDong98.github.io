@@ -83,7 +83,7 @@ $$
 \end{matrix}  \in \mathbb{C}^{n_1 B \times n_2B} \tag{5}
 $$
 
-TNN 已经被证明在 tensor multi-rank 的 $l_1$范数的情况下是  tightest convex relaxation。
+TNN 已经被证明在 tensor multi-rank 的 $l_1$范数的情况下是  tightest convex relaxation。通过泛化傅里叶变换到其他满秩时间-频率域变换， 将 $\|\mathcal{T}\|_{\Lambda, TNN} = \|\bar{\mathcal{T}}\|_{\Lambda, *}$ 表示为在变换 $\Lambda$ 下 $\mathcal{T}$ 的 TNN。
 
 
 
