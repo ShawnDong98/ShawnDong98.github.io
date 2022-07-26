@@ -186,7 +186,6 @@ Soft-thresholding 在 $l_1-norm$ 最小化中用于 singular value shrinkage ope
 
 **Linear Aggregation:** pattern 的 linear aggregation 来自等式 $(11)$ 中 multiplier $\tilde{\mathcal{U}_f^k}$。 常数 $\eta_f$ 视为可训练变量，因此对于不同 stages 的不同 pattern 的步长可变。为了便于 4.2.1 解的计算， 直接计算 $\tilde{\mathcal{V}}_f^k = \tilde{\mathcal{Z}_f^k} - \tilde{\mathcal{U}}_f^k$ 作为 pattern 的输出。
 
-**Linear Aggregation:**
 # Conclusion
 
 这篇文章为快照压缩成像系统提出了一种 Deep Tensor ADMM-Net，可以在秒内提供高质量的解码。
