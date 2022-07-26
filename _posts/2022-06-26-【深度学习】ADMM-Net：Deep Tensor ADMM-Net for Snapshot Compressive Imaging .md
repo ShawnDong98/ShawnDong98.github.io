@@ -154,11 +154,39 @@ $$
 其将被用于初始化网络的输入(图2(a)所示的输入)。 然而 $S^{k+1} \in \mathbb{R}^{n_1 n_2 B \times n_1n_2B}$ 在每个 stage 将会占用大量的内存， 使得梯度计算时不可行。 受到 $(4)$ 中对角块结构的启发， 以及基于 tensor 的与变换， 作者进一步调研了内部结构并且减少了处理复杂度。
 
 
-**Rectangular Diagonal Block(RDB)** 
+**Rectangular Diagonal Block(RDB)**  结构是 $n$-by-$n$ 对称对角矩阵的 $B \times B$ 的矩阵， 其在 plane 上形成一个 $nB \times nB$ 的矩形矩阵。由 RDB 结构的矩阵应该是满秩的、可逆的、以及每个对称对角矩阵是一个 *block*。 如图3所示， 对于有 RDB 结构的矩阵 $W$， 绿色背景表示一个 block。 相较于直接计算 $W^{-1}$， 逆矩阵通过下列步骤计算：
+
+ 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658819305284.png)
+
+### Pattern 
+
+采用等式 $(10)-(11)$， 作者设计了每个 pattern 的内部结构以实现辅助变量的更新。 根据等式 $(10)$， $\tilde{\mathcal{Z}_f^k}$ 的更新包含 nuclear-norm 最小化以及最小平方项。因此，作者首先引入定义 2 中相关理论的的 matrix shrinkage operator， 然后求解。
+
+**Definition 2. Singular value shrinkage operator.** 给定 rank-r 矩阵 $X = U \Sigma V^\top$ 的 SVD 和 $\Sigma = \text{diag}(\{\sigma_i\}_{1 \leq i \leq r})$ ， 对于每个 $\tau \geq 0$， soft-thresholding operator 定义为一个 singular value shrinkage operator:
+
+$$
+\mathcal{D}_\tau(X) = U\mathcal{D}_\tau(\Sigma) V^\top \tag{14}
+$$
+$$
+D_\tau(\Sigma) = \text{diag}({\max(\sigma_i - \tau, 0)}_{i \leq i \leq r}) \tag{15}
+$$
+**Theorem 1.**  对于每个 $\tau \geq 0$ 并且 $M \in \mathbb{R}^{n_1 \times n_2}$，定义2中的 singular value shrinkage operator 满足：
+
+$$
+D_\tau (M) = \mathop{\text{argmin}}_X\{\frac{1}{2}\|X - M\|_F^2 + \tau\|X\|_*\} \tag{16}
+$$
+
+Soft-thresholding 在 $l_1-norm$ 最小化中用于 singular value shrinkage operator， 并且这个理论表明这样的一个在辅助矩阵 $M$ 上的操作 等价于 最小化 最小平方 和 $l_1-norm$ 的组合。 $(10)$ 的解可以被描述为 $\tilde{\mathcal{Z}^k} = \mathcal{D}_{1 / \rho} (\tilde{U}^{k-1} + \tilde{\mathcal{X}^k})$。 由于 TNN 被定义为所有 frontal slices 的奇异值的和， shrinkage operator 可以单独用于每个 frontal slice。
+
+**Domain Transformer:** 如图2(b)所示， 全连接(FC)层在每个 pattern 开始作为 domain transformer。每个 tube $\mathcal{X}_f^k(i, j, :) \in \mathbb{R}^{1 \times B}$ 以并行的方式单独被送入 FC 层。
+
+**Shrinkage Operator:** [12] 表明 multi-layer feed forward networks(FFN) 对于任意的 vector-valued 函数是 unversal approximates。 此外，shrinkage operator 本质上是一个非线性函数，在 video 的每一项中都采用了它，它可以用 vector-value 的形式来描述。由于这个操作在图像上使用， 因此， 使用 2D 卷积层在 frontal slices, 其中除了最后一层外， 每一层的 kernels 数量 $B' > B$， 例如作者将三维像素作为每个空间单元对应的特征向量。
 
 
+**Linear Aggregation:** pattern 的 linear aggregation 来自等式 $(11)$ 中 multiplier $\tilde{\mathcal{U}_f^k}$。 常数 $\eta_f$ 视为可训练变量，因此对于不同 stages 的不同 pattern 的步长可变。为了便于 4.2.1 解的计算， 直接计算 $\tilde{\mathcal{V}}_f^k = \tilde{\mathcal{Z}_f^k} - \tilde{\mathcal{U}}_f^k$ 作为 pattern 的输出。
 
-
+**Linear Aggregation:**
 # Conclusion
 
 这篇文章为快照压缩成像系统提出了一种 Deep Tensor ADMM-Net，可以在秒内提供高质量的解码。
