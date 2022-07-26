@@ -130,7 +130,20 @@ x_{k + 1} &= \frac{\Phi^\top y}{\mu} + z_k - \frac{1}{\mu} \Phi^\top \left[ \fra
 $$
 
 
-注意到 $\{y_i - [\Phi z_k]_i\}_{i=1}^n$ 可以直接通过 $y - \Phi z_k$ 更新， 并且 $\{\phi_i\}_{i=1}^n$ 被预先计算出来存储在 $\Phi \Phi^\top$。 因此，等式 $10$ 中的 element-wise 的计算可以被非常有效地更新。 根据等式 $5$， 惩罚参数 $\mu$ 应该足够大， 以便 $x$ 和 $z$ 接近相同的固定点。
+注意到 $\{y_i - [\Phi z_k]_i\}_{i=1}^n$ 可以直接通过 $y - \Phi z_k$ 更新， 并且 $\{\phi_i\}_{i=1}^n$ 被预先计算出来存储在 $\Phi \Phi^\top$。 因此，等式 $10$ 中的 element-wise 的计算可以被非常有效地更新。 根据等式 $5$， 惩罚参数 $\mu$ 应该足够大， 以便 $x$ 和 $z$ 接近相同的固定点。这表示 $\mu$ 控制每次迭代的收敛和输出。 因此， 相比于手动调整 $\mu$, 将 $\mu$ 设置为 iteration-specific 的参数， 其从 CASSI 系统中自动估计。 我们将第 $k$ 次迭代的 $\mu$ 表示为 $\mu_k$ 。
+
+回到等式 $5$， 作者也设置 $\tau$ 为 iteration-specific 的参数，  $z_{k+1}$  可以被重公式化为：
+
+$$
+z_{k+1} = \mathop{\text{argmin}}_z \frac{1}{2(\sqrt{\tau_{k+1} / \mu_{k+1}})^2} \| z - x_{k+1} \|^2 + R(z) \tag{11}
+$$
+从贝叶斯概率的角度， 等式 $11$ 等价于高斯噪声在 level $\sqrt{\tau_{k+1}/\mu_{k+1}}$ 时， 对图像 $x_{k+1}$ 去噪。 为了方便求解等式 $11$, 设置 $\frac{1}{(\sqrt{\tau_{k+1} /\mu_{k+1}})^2} = \mu_{k+1} / \tau_{k+1} $ 作为从CASSI系统估计的参数。 令 $\alpha_k \stackrel{def}= \mu_k$, $\alpha \stackrel{def}=[\alpha_1, ..., \alpha_K]$， $\beta_k \stackrel{def}= \mu_k / \tau_k$ $\beta \stackrel{def}= [\beta_1, ..., \beta_K]$。 然后可以重公式化 DAUF  为一个迭代：
+
+$$
+(\alpha, \beta) = \xi(y, \Phi) ，\quad  x_{k+1} = \mathcal{P}(y, z_k, \alpha_{k+1}, \Phi), \quad z_{k+1} = \mathcal{D}(x_{k+1}, \beta_{k+1}) \tag{12}
+$$
+其中 $\xi$ 表示从CASSI 系统的压缩 measurement $y$ 和 sensing matrix $\Phi$ 中的参数估计器， $\mathcal{P}$ 等价于等式 $10$ 表示的线性投影， $\mathcal{D}$ 表示高斯去噪器求解等式 $11$。 $z_0$ 被通过  shift 的 $y$ 和 $\Phi$ 拼接通过 $conv1 \times 1$ 初始化。图 2 展示了 $\xi$ 的结构。 它包含一个 $conv1 \times 1$， 一个 strided $conv3 \times 3$， 一个全局平均池化和三个全连接层。通过 $\xi$, DAUF 通过学习由 mask-modulation 和 dispersion-integration 导致的退化模式和病态度从 CASSI 系统中捕获关键线索 。 参数 $\alpha$ 和 $\beta$ 从 $\xi$  估计，通过自适应缩放等式 $10$ 中的线性投影指导迭代学习， 并且为等式 $11$ 中去噪器先验提供噪声等级信息。
+
 
 
 
