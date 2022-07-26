@@ -86,6 +86,77 @@ $$
 TNN 已经被证明在 tensor multi-rank 的 $l_1$范数的情况下是  tightest convex relaxation。通过泛化傅里叶变换到其他满秩时间-频率域变换， 将 $\|\mathcal{T}\|_{\Lambda, TNN} = \|\bar{\mathcal{T}}\|_{\Lambda, *}$ 表示为在变换 $\Lambda$ 下 $\mathcal{T}$ 的 TNN。
 
 
+## Problem Formulation 
+
+这项工作将视频SCI系统中的重建任务建模为一个张量恢复问题，并使用多个变换域下的TNN最小化作为约束。值得注意的是，作者不像[18]那样将低秩性强加于非局部相似patch组，而是将低秩性强加于整个视频(张量)，但在不同的变换域[17]上。 为此，将视频SCI重构问题归结为多个变换域的加权凸优化问题
+
+$$
+\mathop{\text{argmin}}_{\mathcal{X} \in \mathbb{R}^{n_1 \times n_2 \times B}} \sum_{f=1}^F w_f \| \mathcal{X} \|_{\Lambda_f, TNN} \quad s.t. \quad y = \Phi x + n  \tag{6}
+$$
+
+其中 $w_f$ 表示与变换 $\Lambda_f$ 相关的权重。 总共有 $F$ 种变换。采用变换矩阵的通用形式, $(6)$ 中的优化问题等价于：
+
+
+$$
+\mathop{\text{argmin}}_{\mathcal{X} \in \mathbb{R}^{n_1 \times n_2 \times B}} \sum_{f=1}^F w_f \| \bar{\mathcal{X}_f} \|_{\Lambda_f, *} + \mathbb{1}_{y = \Phi x + n} \tag{7}
+$$
+
+其中 $\Lambda = [\Lambda_1, ..., \Lambda_F]$ 表示变换矩阵，$\bar{\mathcal{X}}$ 由 $\tilde{\mathcal{X}_f}$ 构造， $\tilde{\mathcal{X}_f}$ 由 $\mathcal{X}$ 构造， $1$ 表示 indicator function.
+
+对于 video SCI 解码， 我们可以从问题 $(7)$ 得到迭代算法， 并且运行大量的迭代之后得到一个满意的重构。 然而， 设置超参数， 如变换矩阵 $\Lambda_f$ 和相关权重 $w_f$， 是很有挑战性的并且调整对不同的场景调整这些参数也并不简单。 为了发掘神经网络的学习能力， 如图2所示， 这篇文章开发了一个在每次迭代(stage)中基于 layer-wise 结构的机制。 不依赖预先指定的稀疏表示领域知识，而是跨层解耦模型参数，以获得一种新的网络结构，并使用随机梯度下降法训练模型。通过这种方式，变换和权重可以以微分的方式学习。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1658810681803.png)
+
+
+# Deep Tensor ADMM-Net
+
+## TNN-ADMM Algorithm
+
+通过使用 ADMM 框架并且引入辅助变量 $\tilde{\mathcal{Z}} = [\tilde{\mathcal{Z_1}, ..., \tilde{\mathcal{Z}_f}}]$， $(7)$ 可以写作：
+
+$$
+\mathop{\text{argmin}}_{\mathcal{X}, \tilde{\mathcal{Z}}} \frac{1}{2} \| y - \Phi x\|_2^2 + \sum_{f=1}^F w_f \|\bar{\mathcal{Z}_f}\|_{\Lambda_f, *} \quad s.t. \quad \tilde{X_f} = \tilde{Z_f} \tag{8}
+$$
+与 $\mathcal{X}$ 类似， $\bar{\mathcal{Z}}$ 由 $\tilde{\mathcal{Z}}$ 得到。 其可以通过下列子问题求解：
+
+$$
+\mathcal{X}^k = \mathop{\text{argmin}}_{\mathcal{X}} \left\{\sum_{f=1}^F\left<\tilde{\mathcal{U}_f^{k-1}, \tilde{\mathcal{X}_f - \tilde{\mathcal{Z}_f}}}\right> + \frac{1}{2}\|y-\Phi x\|_F^2 + \sum_{f=1}^F \frac{\rho_f}{2}\| \tilde{\mathcal{X}_f} - \tilde{\mathcal{Z}_f^{k-1}} \|_F^2\right\} \tag{9}
+$$
+
+$$
+\tilde{\mathcal{Z}_f^k} = \mathop{\text{argmin}}_{\tilde{\mathcal{Z}_f}}\{\left<\tilde{\mathcal{U}_f^{k-1}, \tilde{\mathcal{X}_f^k - \tilde{\mathcal{Z}_f}}}\right> + w_f\|\bar{\mathcal{Z_f}}\|_* + \frac{\rho_f}{2}\|\tilde{\mathcal{X}_f - \tilde{\mathcal{Z}_f}\|_F^2}\} \tag{10}
+$$
+$$
+\tilde{\mathcal{U}_f}^k = \tilde{\mathcal{U}_f}^{k-1} + \eta_f(\tilde{X_f^k - \tilde{Z_f^k}}) \tag{11}
+$$
+
+其中 $\tilde{\mathcal{U}} = [\tilde{U_1}, ..., \tilde{U_f}]$ 和 $\rho = [\rho_1, ..., \rho_F]$ 表示 ADMM 框架中的 multipliers 和拉格朗日展开的 coefficients， $\eta_f$ 是一个决定步长的常数。由于变换矩阵是独立的， 对不同的变换域更新 $(10)$ 和 $(11)$ 在相同的迭代中中可以并行和独立地处理。如前所述，这种基于优化的算法虽然可能会得到很好的结果，但由于计算工作量大，需要花费很长时间。在接下来的文章中，使用一个深度网络来解决这个问题，称为 Deep Tensor ADMM-Net。 
+
+## Pipeline Design for Tensor ADMM-Net 
+
+从等式 $(9)$ 到等式 $(11)$ 得到， 图2展示了 stage-wise 深度模型结构。 在每个 stage， 我们首先聚集之前 stage 由 *Linear Projection* 模块得到的输出， 然后将输出送入另一个并行 *Patterns* 进一步处理。
+
+
+### Linaer Projection
+
+通过采用来自等式 $(9)$ 的等式， *Linear Projection* 模块聚集 measurement 和 前一阶段所有 patterns 的输出， 目标是重构想要的信号：
+
+$$
+\mathcal{X}^k = S^k(\Phi^\top y + \sum_{f=1}^F \rho_f^{k+1} \prod_f^k(\tilde{\mathcal{Z}}_f^{k-1} - \tilde{\mathcal{U}}_f^{k-1})) \\
+S^k = (\Phi^\top \Phi + \sum_{f=1}^F \rho_f^k \Pi_f^k \Pi_f^{k\top})^{-1} \\
+\Pi_f^k = \Lambda_f^k \otimes I_{n_1n_2} \tag{12}
+$$
+其中 $I_{n_1n_2} \in \mathbb{R}^{n_1n_2 \times n_1n_2}$ 表示单位矩阵， $\otimes$ 表示 Kronecker(tensor) product 并且 $\Lambda^k = [\Lambda_1^k, ..., \Lambda_F^k]$ 是在第 $k$ 个阶段通用的变换矩阵， 其和参数 $\rho^k = [\rho_1^k, ..., \rho_F^k]$ 在模型训练期间学习。通过设置 $\tilde{\mathcal{Z}}^0$ 和 $\tilde{\mathcal{U}}^0$ 为零矩阵， 我们定义：
+
+$$
+\bar \Phi = S^1 \Phi^\top \tag{13}
+$$
+其将被用于初始化网络的输入(图2(a)所示的输入)。 然而 $S^{k+1} \in \mathbb{R}^{n_1 n_2 B \times n_1n_2B}$ 在每个 stage 将会占用大量的内存， 使得梯度计算时不可行。 受到 $(4)$ 中对角块结构的启发， 以及基于 tensor 的与变换， 作者进一步调研了内部结构并且减少了处理复杂度。
+
+
+**Rectangular Diagonal Block(RDB)** 
+
+
 
 
 # Conclusion
