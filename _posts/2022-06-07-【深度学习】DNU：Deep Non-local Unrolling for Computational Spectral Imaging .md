@@ -214,5 +214,5 @@ $$
 $$
 x^{(k + 1)} = z^{(k)} + \Phi^\top [(y - \Phi z^{(k)})./(\eta + \Phi \Phi^\top)]
 $$
-
+以这种方式， $f-$subproblem 可以求解得到精确解。
 
