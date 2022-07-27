@@ -153,3 +153,35 @@ $$
 未来的一个研究方向是将所提出的方法扩展到更多的光谱图像处理问题，如光谱插值和去马赛克。
 
 另一个方向是加速该方法实现视频速率重构，从而实现高光谱视频的实时采集。
+
+
+# Summary
+
+重构问题需要解决以下最小化问题：
+
+$$
+\hat f = \mathop{\text{argmin}}_f \|g - \Phi f\|^2 + \tau R(f)  \tag{1}
+$$
+
+等式 $(1)$ 可以通过引入辅助变量写成一个带约束的优化问题：
+
+$$
+\hat f = \mathop{\text{argmin}}_f \|g - \Phi f\|^2 + \tau R(h) \quad s.t. \quad h = f \tag{2}
+$$
+然后采用 half quadratic splitting (HQS) 方法将上述约束优化问题转换为无约束优化问题：
+
+$$
+(\hat f, \hat h) = \mathop{\text{argmin}}_{f, h} \|g - \Phi f\|^2 + \eta \|h - f\|^2 + \tau R(h) \tag{3}
+$$
+$\eta$ 是惩罚项， 等式 $(3)$ 可以拆分为两个子问题：
+
+$$
+\hat f^{(k + 1)} = \mathop{\text{argmin}}_f \|g - \Phi f\|^2 + \eta \|h^{(k)} - f\|^2 \tag{4}
+$$
+
+$$
+\hat h^{(k + 1)} = \mathop{\text{argmin}}_h \eta\| h - f^{(k + 1)} \|^2 + \tau R(h) \tag{5}
+$$
+
+
+
