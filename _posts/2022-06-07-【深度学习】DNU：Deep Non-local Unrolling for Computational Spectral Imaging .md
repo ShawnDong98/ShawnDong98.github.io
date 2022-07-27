@@ -160,28 +160,41 @@ $$
 重构问题需要解决以下最小化问题：
 
 $$
-\hat f = \mathop{\text{argmin}}_f \|g - \Phi f\|^2 + \tau R(f)  \tag{1}
+\hat x = \mathop{\text{argmin}}_x \|y - \Phi x\|^2 + \tau R(x)  \tag{1}
 $$
 
 等式 $(1)$ 可以通过引入辅助变量写成一个带约束的优化问题：
 
 $$
-\hat f = \mathop{\text{argmin}}_f \|g - \Phi f\|^2 + \tau R(h) \quad s.t. \quad h = f \tag{2}
+\hat x = \mathop{\text{argmin}}_x \|y - \Phi x\|^2 + \tau R(z) \quad s.t. \quad z = x \tag{2}
 $$
 然后采用 half quadratic splitting (HQS) 方法将上述约束优化问题转换为无约束优化问题：
 
 $$
-(\hat f, \hat h) = \mathop{\text{argmin}}_{f, h} \|g - \Phi f\|^2 + \eta \|h - f\|^2 + \tau R(h) \tag{3}
+(\hat x, \hat z) = \mathop{\text{argmin}}_{x, z} \|y - \Phi x\|^2 + \eta \|z - x\|^2 + \tau R(z) \tag{3}
 $$
-$\eta$ 是惩罚项， 等式 $(3)$ 可以拆分为两个子问题：
+$\eta$ 是惩罚项， 等式 $(3)$ 可以拆分为两个子问题 $x-$subproblem  和 $z-$subproblem：
 
 $$
-\hat f^{(k + 1)} = \mathop{\text{argmin}}_f \|g - \Phi f\|^2 + \eta \|h^{(k)} - f\|^2 \tag{4}
+\hat x^{(k + 1)} = \mathop{\text{argmin}}_x \|y - \Phi x\|^2 + \eta \|z^{(k)} - x\|^2 \tag{4}
+$$
+
+
+$$
+\hat z^{(k + 1)} = \mathop{\text{argmin}}_z \eta\| z - x^{(k + 1)} \|^2 + \tau R(z) \tag{5}
+$$
+
+等式 $(4)$ 中的 $x-$subproblem 是一个 quadratic regularized least-squares 问题。 一个 closed form 为：
+
+$$
+x^{(k + 1)} = (\Phi^\top \Phi + \eta I)^{-1} (\Phi^\top y + \eta z^{(k)}) \tag{6}
+$$
+
+
+
+
 $$
 
 $$
-\hat h^{(k + 1)} = \mathop{\text{argmin}}_h \eta\| h - f^{(k + 1)} \|^2 + \tau R(h) \tag{5}
-$$
-
 
 
