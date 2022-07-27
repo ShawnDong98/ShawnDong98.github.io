@@ -190,10 +190,32 @@ $$
 x^{(k + 1)} = (\Phi^\top \Phi + \eta I)^{-1} (\Phi^\top y + \eta z^{(k)}) \tag{6}
 $$
 
-
-
+给定一个 block diagonal sensing matrix $\Phi \in \mathbb{R}^{MN \times NM\Lambda}$:
 
 $$
+\Phi_i \Phi_i^\top = \text{diag}\{\phi_1, ..., \phi_{MN}\} \tag{7}
+$$
+
+其中 $\phi_i$ 可以根据 code aperture pattern $C$ 提前计算出来。 通过矩阵求逆法则：
+
+$$
+(\Phi^\top \Phi + \eta I)^{-1} = \eta^{-1}I - \eta^{-1} \Phi^\top (I + \Phi \eta^{-1} \Phi^\top)^{-1} \Phi \eta^{-1} \tag{8}
+$$
+
+根据等式 $(7)$：
+
+$$
+(I + \Phi \eta^{-1} \Phi^\top)^{-1} = \text{diag}\{\frac{\eta}{\eta+ \phi_1}, ..., \frac{\eta}{\eta + \phi_n}\} \tag{9}
+$$
+
+
+通过将等式 $(7), (8), (9)$ 插入等式 $(6)$， 并且简化公式， 得到：
+
+$$
+x^{(k + 1)} = z^{(k)} + \Phi^\top [(g - \Phi h^{(k)})./(\eta + \Phi \Phi^\top)]
+$$
+$$
+
 
 $$
 
