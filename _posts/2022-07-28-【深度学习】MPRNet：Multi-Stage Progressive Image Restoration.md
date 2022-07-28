@@ -29,6 +29,13 @@ tags:
 
 由此产生的紧密相连的多阶段架构，被称为MPRNet，在包括图像解算、去模糊和去噪在内的一系列任务的10个数据集上提供了强大的性能提升。
 
+
+
+#  Multi-Stage Progressive Restoration
+
+图2所示的图像恢复框架包含三个逐步恢复图像的阶段。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1659016762304.png)
 # Conclusion
 
 在这项工作中提出了一种多阶段的图像恢复架构，通过在每个阶段注入监督，逐步改善退化的输入。
