@@ -66,7 +66,7 @@ tags:
 最近的图像恢复多阶段网络[70,88]直接在每一阶段预测一张图像，然后将其传递到连续的下一阶段。进而，作者在每两个阶段之间引入一个 supervise attention 模块，这有助于实现显著的性能增益。SAM的原理图如图4所示，它的贡献是有两点：a) 首先，它提供了对每一阶段的渐进式图像恢复有用的真实监督信号。 b) 在局部监督预测的帮助下，生成 attention map 来抑制当前阶段信息较少的特征，只允许有用的特征传播到下一阶段。
 
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1659017534235]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1659017534234.png)
 
 如图4所示，SAM将传入的前一阶段特征 $F_{in} \in \mathbb{R}^{H \times W \times C}$ 进行简单的 $1 \times 1$ 卷积生成残差图像 $R_S \in \mathbb{R}^{H \times W \times 3}$，其中 $H \times W$ 表示空间维数，$C$ 为通道数。残差图像加上退化输入图像 $I$  得到复原图像 $X_S \in \mathbb{R}^{H \times W \times 3}$。 对于这个预测的图像 $X_S$，用ground truth图像提供了显式监督。接下来，使用 $1 \times 1$ 卷积加上 sigmoid激活从图像 $X_S$ 生成逐像素的 attention mask  $M \in \mathbb{R}^{H \times W \times C}$。然后，这些  mask 被用来重新校准转换后的局部特征 $F_{in}$(通过 $1\times1$ 卷积得到)，使得注意力引导的特征添加到恒等映射路径。最后，由SAM产生的注意力增强特征表示 $F_{out}$， 被传递到下一阶段进行进一步处理。
 
