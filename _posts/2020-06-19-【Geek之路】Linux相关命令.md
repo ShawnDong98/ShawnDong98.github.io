@@ -71,7 +71,7 @@ cat /proc/cpuinfo | grep "model name" | uniq
 
  lsblk：blk是block的缩写。列出块设备
  
- ```
+```
  [xxx@localhost ~]$ lsblk
 NAME                        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sr0                          11:0    1 1024M  0 rom  
@@ -83,11 +83,11 @@ sda                           8:0    0   60G  0 disk
   ├─VolGroup-lv_root (dm-0) 253:0    0   50G  0 lvm  /
   ├─VolGroup-lv_swap (dm-1) 253:1    0    4G  0 lvm  [SWAP]
   └─VolGroup-lv_home (dm-2) 253:2    0  5.6G  0 lvm  /home
- ```
+```
  
  df：查看硬盘使用情况
  
- ```
+```
  [xxx@localhost ~]$ df -h
 Filesystem                    Size  Used Avail Use% Mounted on
 /dev/mapper/VolGroup-lv_root   50G  1.7G   46G   4% /
@@ -95,7 +95,7 @@ tmpfs                         3.9G     0  3.9G   0% /dev/shm
 /dev/sda1                     485M   39M  421M   9% /boot
 /dev/mapper/VolGroup-lv_home  5.5G  165M  5.1G   4% /home
 /dev/sdb1                      99G  188M   94G   1% /data
- ```
+```
  
 # 挂载硬盘
  
@@ -839,7 +839,28 @@ zip -F file.zip --out file-large.zip
 unzip file-large.zip 
 ```
 
-# 通过
+# ubuntu 修改 swap 文件大小
+
+
+
+```
+# 停用分区文件
+sudo swapoff /swapfile
+
+# 删除分区文件
+sudo rm /swapfile
+
+# /dev/zero 是选择的磁盘， 大小为1Gx8 == 8G，这里根据自己的需求去改
+sudo dd if=/dev/zero of=/swapfile bs=1G count=8
+
+# 修改权限，启用分区文件
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+# 查看swap空间大小
+free -m
+```
 
 # Bugs
 
