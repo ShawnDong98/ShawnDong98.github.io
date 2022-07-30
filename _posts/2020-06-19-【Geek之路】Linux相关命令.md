@@ -907,3 +907,4 @@ free -m
 27. [【小记】将控制台输出保存至文件](https://blog.csdn.net/qq_31347869/article/details/96586433)
 28. [bad zip file offset when unzipping multi-part files](https://blog.csdn.net/Tjj_1998/article/details/109612196)
 29. [如何在Ubuntu上设置自定义DNS服务器](https://www.myfreax.com/set-custom-dns-servers-on-ubuntu-18-or-20/)
+30. [Ubuntu修改swap文件大小](https://www.jianshu.com/p/b0bd101fecad)
