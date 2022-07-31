@@ -20,7 +20,6 @@ tags:
 
 在HIN Block的帮助下，HINet在各种图像恢复任务上都超越了最先进的方法(SOTA)。
 
-
 对于图像去噪，在SIDD数据集上的PSNR分别超过0.11dB和0.28 dB，其 multiplier-accumulator operations(MACs)仅为7.5%和30%，速度分别为6.8x 和 2.9x。
 
 对于图像去模糊，在REDS和GoPro数据集上， 性能相当的情况下， 仅使用22.5% macs， 加速 3.3x。
