@@ -54,6 +54,7 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1659261674698.png)
 
 如图 3a 所示， HIN block 首先对输入特征 $F_{in} \in \mathbb{R}^{C_{in} \times H \times W}$ 使用 $3 \times 3$ 然后 生成的中间特征 $F_{mid} \in \mathbb{C_{out} \times H \times W}$ ， 其中 $C_{in} / C_{out}$ 是 HIN block 的输入/输出通道数量。然后， $F_{mid}$ 特征被分为两部分 ($F_{mid_1} / F_{mid_2} \in \mathbb{R}^{C_{out} / 2 \times H \times W}$)。第一部分 $F_{mid_1}$ 被带有可学习仿射参数的 IN 进行归一化，然后与 $F_{mid_2}$ 通道维进行连接。HIN块在一半通道上使用IN，并在另一半通道上保存上下文信息。后续的实验也表明，这种设计对网络的浅层特征更加友好。在 concat 操作之后， 残差特征 $R_{out} \in \mathbb{R}^{C_{out} \times H \times W}$ 通过传入一个 $3 \times 3$ 卷积层和两个 Leaky ReLU 层得到， 如图 3a 所示。最后，HIN block 通过添加具有 shortcut 特征的 $R_{out}$ (通过 $1 \times 1$ 卷积得到)来得到输出 $F_{out}$。
+
 # Conclusion
 
 这项工作中在图像恢复任务中重用归一化。
