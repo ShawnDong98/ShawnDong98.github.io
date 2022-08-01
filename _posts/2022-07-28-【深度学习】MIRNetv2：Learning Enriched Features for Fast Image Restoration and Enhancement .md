@@ -64,6 +64,11 @@ $$
 
 视觉皮层神经元的一个基本特性是它们能够根据刺激改变感受野[111]。这种自适应调整感受野的机制可以通过多尺度特征生成(在同一层)，然后进行特征聚合和选择的方式融入到CNN中。最常用的特性聚合方法包括简单的 concat 或 sum。然而，正如文献[111]所报道的那样，这些选择对网络的表达能力有限。在MRB中，作者引入了一种非线性方法，利用自注意力机制来融合来自不同分辨率的特征。
 
+SKFF 模块执行两个操作来动态调整感受野 - Fuse 和 Select， 如图2所示。fuse 操作通过从多尺度流中结合信息生成全局 feature descriptors。select 操作使用这些 descriptor 重新校准(不同流的)特征图及其聚合。
+
+- **Fuse：** SKFF接收来自两个并行卷积流的输入，这些卷积流携带不同尺度的信息。首先使用 element-wise 求和来组合这些多尺度特征: $L = L_1 + L_2$。然后在 $L \in \mathbb{R}^{H \times W \times C}$ 的空间维度应用 global average pool(GAP) 计算 channel-wise 的数据 $s \in \mathbb{1 \times 1 \times C}$。然后使用一个 channel-downscaling 卷积层生成一个 compact feature representation $z \in \mathbb{R}^{1 \times 1 \times 4}$， 在所有实验中 $r = \frac{C}{8}$。最后，特征向量 $z$ 通过两个并行 channel-upscaling 卷积层(每个分辨率流一个)，并提供两个 feature descriptors $v_1$ 和 $v_2$，每个维度为 $1 \times 1 \times C$。
+- **Select**：这个操作应用 softmax 函数到 $v_1$ 和 $v_2$, 生成注意力激活 $s_1$ 和 $s_2$， 其可以分别自适应地校准多尺度特征。特征校准和聚合的所有过程可以定义为： $U = s_1 · L_1 + s_2 · L_2$。 
+
 # Conclusion
 
 传统的图像复原或增强流程坚持整个网络全分辨率或者使用编码器-解码器结构。
