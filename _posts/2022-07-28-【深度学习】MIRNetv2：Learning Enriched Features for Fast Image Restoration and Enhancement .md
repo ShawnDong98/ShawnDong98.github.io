@@ -40,6 +40,30 @@ tags:
 
 在六个真实的图像基准数据集上的广泛实验表明，该方法MIRNet-v2，在各种图像处理任务中取得了最先进的结果，包括去模糊、图像去噪、超分辨率和图像增强。
 
+# Proposed Method
+
+MIRNet-v2 的整体结构如图 1 所示。作者首先介绍MIRNet-v2用于图像恢复和增强的总览。然后，作者提供了多尺度残差块的细节，这是该方法的基本构建块，包含几个关键元素：
+
+a. 并行多分辨率卷积流，提取(从精细到粗)语义丰富和(从粗到细)空间精确的特征表示
+
+b. 跨多分辨率流的信息交换
+
+c. 来自不同信息流的基于注意力的特征聚合
+
+d. 残差上下文块提取基于注意的特征。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1659317498098.png)
+
+**Overall Pipeline.** 给定图像 $I \in \mathbb{R}^{H \times W \times 3}$， 首先应用一个卷积提取浅层特征 $F_0 \in \mathbb{R}^{H \times W \times C }$。然后， 特征图 $F_0$ 通过 $N$ 个 recursive residual groups(RRGs)， 生成深层特征 $F_n \in \mathbb{R}^{H \times W \times C}$。 每个 RRG 包含几个 multi-scale residual blocks。 然后应用卷积层到深层特征 $F_n$ 得到残差图像 $R \in \mathbb{R}^{H \times W \times 3}$。 最终的复原图像得到： $\hat I = I + R$。 使用 Charbonnier 损失优化网络:
+
+$$
+L(\hat I, I^*) = \sqrt{\|\hat I - I^*\|^2 + \epsilon^2}
+$$
+## Multi-Scale Residual Block 
+### Selective Kernel Feature Fusion 
+
+视觉皮层神经元的一个基本特性是它们能够根据刺激改变感受野[111]。这种自适应调整感受野的机制可以通过多尺度特征生成(在同一层)，然后进行特征聚合和选择的方式融入到CNN中。最常用的特性聚合方法包括简单的 concat 或 sum。然而，正如文献[111]所报道的那样，这些选择对网络的表达能力有限。在MRB中，作者引入了一种非线性方法，利用自注意力机制来融合来自不同分辨率的特征。
+
 # Conclusion
 
 传统的图像复原或增强流程坚持整个网络全分辨率或者使用编码器-解码器结构。
