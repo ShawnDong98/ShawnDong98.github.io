@@ -59,3 +59,7 @@ $$
 
 # Conclusion
 
+这篇文章提出了基于 generalized alternating projection 的压缩感知 total variation 最小化算法。
+
+
+在图像、视频和高光谱图像的压缩感知方面取得了良好的结果。
