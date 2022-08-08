@@ -21,6 +21,6 @@ tags:
 
 Deformable DETR 比 DETR(特别是在小物体上)可以在少10x 训练时间的情况下获得更好的性能。
 
-在COCO基准上的大量实验证明了该方法的有效性
+在COCO基准上的大量实验证明了该方法的有效性。
 
 # Conclusion
