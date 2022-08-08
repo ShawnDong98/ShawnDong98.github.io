@@ -20,5 +20,24 @@ tags:
 在CACTI和CASSI框架下，作者进一步推导了基于TV最小化的Alternating Direction Method of Multipliers(ADMM)框架，用于视频和高光谱图像压缩感知。
 
 提供了 GAP 和 ADMM 之间的联系。
+
+
+# Introduction
+
+最初在[1]中提出的 generalized alternating projection(GAP)算法，在二维(2D)图像[1 5]、高光谱图像[6,7]、视频[8 15]、深度图像[16 18]和偏振图像[19]等多种压缩感知(CS)问题上表现出了出色的性能。
+
+然而，以上所有的论证，包括实际的系统应用，都利用GAP来解决变换域的压缩感知问题, 即小波或DCT(离散余弦变换)域。
+
+GAP 被用来解决以下问题：
+
+$$
+\min_w \|w\|_{l_{2, 1}^{\mathcal{G} \beta}} \quad \text{subject to} \quad \Phi x = y \quad (\text{with } x = Tw) \tag{1}
+$$
+
+其中 $T$ 是变换矩阵， 如果变换对每个维度执行， 那么其是不同 base 的 Kronecker product。 
+
+$y$ 是 measurement， $\Phi$ 是 sensing matrix, $x$ 是想要的信号， $w$ 是变换域中对应的系数。
+
+
 # Conclusion
 
