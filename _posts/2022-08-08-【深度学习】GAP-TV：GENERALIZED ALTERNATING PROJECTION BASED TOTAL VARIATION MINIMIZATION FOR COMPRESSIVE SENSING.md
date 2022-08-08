@@ -19,5 +19,6 @@ tags:
 
 在CACTI和CASSI框架下，作者进一步推导了基于TV最小化的Alternating Direction Method of Multipliers(ADMM)框架，用于视频和高光谱图像压缩感知。
 
+提供了 GAP 和 ADMM 之间的联系。
 # Conclusion
 
