@@ -57,7 +57,7 @@ d. 残差上下文块提取基于注意的特征。
 **Overall Pipeline.** 给定图像 $I \in \mathbb{R}^{H \times W \times 3}$， 首先应用一个卷积提取浅层特征 $F_0 \in \mathbb{R}^{H \times W \times C }$。然后， 特征图 $F_0$ 通过 $N$ 个 recursive residual groups(RRGs)， 生成深层特征 $F_n \in \mathbb{R}^{H \times W \times C}$。 每个 RRG 包含几个 multi-scale residual blocks。 然后应用卷积层到深层特征 $F_n$ 得到残差图像 $R \in \mathbb{R}^{H \times W \times 3}$。 最终的复原图像得到： $\hat I = I + R$。 使用 Charbonnier 损失优化网络:
 
 $$
-L( \hat I, I^* ) = \sqrt{\|\hat I - I^*\|^2 + \epsilon^2}
+L\( \hat I, I^* \) = \sqrt{ \| \hat I - I^* \|^2 + \epsilon^2 }
 $$
 
 ## Multi-Scale Residual Block 
