@@ -34,3 +34,7 @@ tags:
 # Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction
 
 [https://arxiv.org/pdf/2203.04845.pdf](https://arxiv.org/pdf/2203.04845.pdf)
+
+# Generalizable Medical Image Segmentation via Random Amplitude Mixup and Domain-Specific Image Restoration
+
+[https://arxiv.org/pdf/2208.03901.pdf](https://arxiv.org/pdf/2208.03901.pdf)
