@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】ECCV 2022 low-level CV 汇总"
+title:      "【深度学习】ECCV 2022 low-level CV 论文汇总"
 subtitle:   ""
 date:       2022-08-10
 author:     "ShawnD"
