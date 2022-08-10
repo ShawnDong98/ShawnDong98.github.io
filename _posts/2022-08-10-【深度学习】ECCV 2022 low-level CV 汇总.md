@@ -26,3 +26,6 @@ tags:
 [https://arxiv.org/pdf/2207.09935.pdf](https://arxiv.org/pdf/2207.09935.pdf)
 
 
+# Simple Baselines for Image Restoration
+
+[https://arxiv.org/pdf/2204.04676.pdf](https://arxiv.org/pdf/2204.04676.pdf)
