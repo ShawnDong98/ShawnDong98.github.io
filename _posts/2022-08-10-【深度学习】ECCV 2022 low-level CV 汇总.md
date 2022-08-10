@@ -38,3 +38,8 @@ tags:
 # Generalizable Medical Image Segmentation via Random Amplitude Mixup and Domain-Specific Image Restoration
 
 [https://arxiv.org/pdf/2208.03901.pdf](https://arxiv.org/pdf/2208.03901.pdf)
+
+
+# Dynamic Dual Trainable Bounds for Ultra-low Precision Super-Resolution Networks
+
+[https://arxiv.org/pdf/2203.03844.pdf](https://arxiv.org/pdf/2203.03844.pdf)
