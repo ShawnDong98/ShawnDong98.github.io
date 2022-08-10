@@ -29,3 +29,8 @@ tags:
 # Simple Baselines for Image Restoration
 
 [https://arxiv.org/pdf/2204.04676.pdf](https://arxiv.org/pdf/2204.04676.pdf)
+
+
+# Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction
+
+[https://arxiv.org/pdf/2203.04845.pdf](https://arxiv.org/pdf/2203.04845.pdf)
