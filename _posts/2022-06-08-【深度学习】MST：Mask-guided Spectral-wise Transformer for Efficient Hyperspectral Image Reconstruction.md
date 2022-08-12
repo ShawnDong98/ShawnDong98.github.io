@@ -172,7 +172,8 @@ $$
 将 $M'$ reshape 为 $M \in \mathbb{R}^{HW \times C}$ 来匹配 $V$ 的维度。将 M 在 spectral wise 拆分为 N 个 heads。对于每个 head， MM 通过使用 $M_j$ 重新加权 $V_j$ 实现引导。
 
 
-# Qualitative Results
+# Experiments 
+## Qualitative Results
 
 **Simulation HSI Reconstruction.**  图4显示了使用 7 种 SOTA 方法和 MST-L，从场景5重构的仿真 HSIs 的 28 个光谱通道中选取 4 个。从重构后的HSI图(右)和所选黄框放大的 patch 可以看出，之前的方法对HSI细节的恢复效果较差。它们要么产生过于光滑的结果，牺牲了细粒度的结构内容和文本细节，要么引入了不受欢迎的 chromatic artifacts 和 blotchy textures。相比之下，MST-L更能产生感知愉悦和清晰的图像，并保留均匀区域的空间平滑性。这主要是因为 MST-L 具有调制信息的指导作用，并能捕捉到不同光谱通道的长程相关性。此外，作者绘制了光谱密度曲线(左下)，对应于RGB图像中绿色框选取的区域(左上)。曲线和真实值之间最高的相关性和一致性证明了 MST 在光谱一致性恢复方面的有效性。
 
