@@ -142,14 +142,29 @@ $$
 $$
 (\alpha, \beta) = \xi(y, \Phi) ，\quad  x_{k+1} = \mathcal{P}(y, z_k, \alpha_{k+1}, \Phi), \quad z_{k+1} = \mathcal{D}(x_{k+1}, \beta_{k+1}) \tag{12}
 $$
+
 其中 $\xi$ 表示从CASSI 系统的压缩 measurement $y$ 和 sensing matrix $\Phi$ 中的参数估计器， $\mathcal{P}$ 等价于等式 $10$ 表示的线性投影， $\mathcal{D}$ 表示高斯去噪器求解等式 $11$。 $z_0$ 被通过  shift 的 $y$ 和 $\Phi$ 拼接通过 $conv1 \times 1$ 初始化。图 2 展示了 $\xi$ 的结构。 它包含一个 $conv1 \times 1$， 一个 strided $conv3 \times 3$， 一个全局平均池化和三个全连接层。通过 $\xi$, DAUF 通过学习由 mask-modulation 和 dispersion-integration 导致的退化模式和病态度从 CASSI 系统中捕获关键线索 。 参数 $\alpha$ 和 $\beta$ 从 $\xi$  估计，通过自适应缩放等式 $10$ 中的线性投影指导迭代学习， 并且为等式 $11$ 中去噪器先验提供噪声等级信息。
 
 
 
+# Experiment
+
+## Quantitative Comparisons with State-of-the-Art Methods
+
+表一展示了不同方法的 FLOPs, PSNR 和 SSIM。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1660294096037.png)
 
 
+（i） 最好的模型DAUHST-9stg(9 stage DAUHST)产生了非常令人印象深刻的结果，即PSNR为38.36 dB, SSIM为0.967。DAUHST-9stg 明显优于最近的两种SOTA方法 BIRNAT 和 MST-L，分别为0.78和3.18 dB，表明该方法的有效性。
 
+（ii） DAUHST 模型大大超过了SOTA方法，同时需要更便宜的计算和内存成本。DAUHST-2stg 超出 MST-L 1.16 dB 并且仅需要 68.9% (1.40/2.03)的参数以及 65.5%(18.44/28.15) 的 FLOPs。与基于 CNN 的端到端方法相比，DAUHST-3stg比HDNet、TSA-Net和-Net高出2.24、5.75和8.68 dB，而只需要87.8%、4.7%、3.3%的参数和17.6%、24.7%、23.0%的FLOPS。与基于 RNN 的端到端方法BIRNAT相比，DAUHST-5stg高0.17 dB，但只花费2.1%的FLOPS和78.2%的Params。与基于CNN的深度展开方法相比，DAUHST-3stg的性能比ADMM-Net(9 stage)和GAP-Net(9 stage)分别高出3.63和3.95 dB，但仅花费48.7% Params和34.6% FLOPS。图1 绘制了 DAUHST 和SOTA展开方法的PSNR-FLOPS比较。在相同的 stage 数下，DAUHST的性能超过了其他竞争对手 4dB。
 
+## Qualitative Comparisons with State-of-the-Art Methods
+
+**Simulation HSI Reconstruction.** 图4是 DAUHST 方法和其他SOTA方法在场景2上用4个光谱通道(共28个)进行模拟HSI重建的对比。右上部分显示了整个 HSI 中被放大的黄色框块。可以看出，DAUHST-9stg更有利于重建视觉愉悦的 HSI, 有详细的内容，更干净的纹理，和更少的 artifacts，同时保持均匀区域的空间平滑。相比之下，以前的方法要么产生过度光滑的结果，损害细粒度结构，要么引入在真实(GT)图像中没有的 chromatic artifacts 和 blotchy textures。中上部分显示了密度-波长光谱曲线，对应于RGB图像中标识为a和b的绿色方框(左上)。该算法的光谱曲线与参考曲线的相关性和一致性最高，显示了该算法在光谱维一致性重建方面的优势。
+
+**Real HSI Reconstruction.** 作者进一步评估了DAUHST在真实HSI重建中的有效性。为了进行公平的比较，按照与[24,47,81]相同的设置，在CAVE和KAIST数据集上用真实 mask重新训练 DAUHST-3stg。模拟真实的成像情况，训练样本也注入了 11-bit shot 噪声。图5展示了 DAUHST-3stg 与9种SOTA方法的视觉对比。在前三行中，只有DAUHST-3stg能够重构出所有波长下黄色方框所对应的花朵patch，而其他方法都无法恢复整个patch。在最下面一行中，DAUHST-3stg还原了更多的HSI结构细节，内容更清晰， artifacts 更少。相比之下，其他方法恢复图像模糊，产生不完整的响应，并容易受到噪声的破坏。这一证据表明，DAUHST对噪声失真有更强的鲁棒性，在真实HSI重建中更有效。
 
 # Conclusion
 
