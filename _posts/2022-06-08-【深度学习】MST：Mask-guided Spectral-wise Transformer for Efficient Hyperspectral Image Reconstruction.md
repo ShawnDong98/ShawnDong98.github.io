@@ -179,7 +179,9 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1660290056484.png)
 
-**Real HSI Reconstruction.**
+**Real HSI Reconstruction.** 进一步将所提出的方法用于真实 HSI 重建。 重新对所有 CAVE 和 KAIST 数据集的场景训练。为了模拟真实的成像情况，在训练过程中向测量中注入11 shot 噪声。视觉对比见图5。MST-L算法在高频结构细节重建和真实噪声抑制方面超过了以往的算法。 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1660290354446.png)
 
 # Conclusion
 
