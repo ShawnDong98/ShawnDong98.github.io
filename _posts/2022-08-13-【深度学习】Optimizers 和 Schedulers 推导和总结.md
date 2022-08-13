@@ -29,19 +29,19 @@ $$
 给定 $n$ 个样本， 假设 $f_i(x)$ 是第 $i$ 个样本的损失函数， 有以下的目标函数：
 
 $$
-f(x) = \frac{1}{n} \sum_{i=1}^n f_i(x) \tag{1}
+f(x) = \frac{1}{n} \sum_{i=1}^n f_i(x) \tag{3}
 $$
 
 目标函数的梯度为：
 
 $$
-\nabla f(x) = \frac{1}{n} \sum_{i=1}^n \nabla f_i(x) \tag{2}
+\nabla f(x) = \frac{1}{n} \sum_{i=1}^n \nabla f_i(x) \tag{4}
 $$
 
 梯度下降的每次迭代从数据集中均匀采样， 用计算得到的梯度 $\nabla f_i(x)$ 更新 $x$：
 
 $$
-x \leftarrow x - \eta \nabla f_i(x) \tag{3}
+x \leftarrow x - \eta \nabla f_i(x) \tag{5}
 $$
 
 
@@ -50,6 +50,15 @@ $$
 $$
 # Minibatch Stochastic Gradient Descent
 
+Gradient Descent 使用整个数据集计算梯度并更新参数。 Stochastic Gradient Descent 一次使用一个样本计算梯度并更新参数。 小批量梯度下降一次性对一小批样本进行梯度下降 $\mathrm{w} \leftarrow \mathrm{w} - \eta_t \mathrm{g}_t$ 其中：
+
+$$
+\mathrm{g}_t = \partial_\mathrm{w} f(\mathrm{x}_t, \mathrm{w}) \tag{6} 
+$$
+
+$$
+\mathrm{g}_t = \partial_\mathrm{w} \frac{1}{\mid \mathcal{B}_t\mid} \sum_{i \in \mathcal{B}_t} f(\mathrm{x}_i, \mathrm{w}) \tag{7}
+$$
 
 
-# 
+因为 $\mathrm{x}_t$ 和 $\mathcal{B}_t$ 都是从训练集中均匀采样， 因此梯度的期望保持不变， 但是方差却显著减小了。这意味着更新更接近完整的梯度下降。
