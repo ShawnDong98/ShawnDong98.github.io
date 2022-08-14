@@ -165,7 +165,26 @@ $$
 $$
 每一步中权重都会减小一点，因此命名为权重衰减。
 
-在实践中， 大部分库都是通过在梯度上加上 $\text{wd} * \text{w}$ 实现。 对于原始的 SGD 来说， 两种实现方式是一样的， 但是如果添加动量或使用像 Adam 这样的复杂的优化器，L2 正则化和权重衰减会有所不同。
+$\mathrm{w}^2$ 的导数为 $2\mathrm{w}$ , 在实践中， 大部分库都是通过在梯度上加上 $\text{wd} * \text{w}$ 实现。 对于原始的 SGD 来说， 两种实现方式是一样的， 但是如果添加动量或使用像 Adam 这样的复杂的优化器，L2 正则化和权重衰减会有所不同。
+
+让我们看看带动量的 SGD。 
+
+首先在损失上使用 L2 正则化的方式，在梯度上加上 $\text{wd} * \text{w}$，但是梯度不会直接从权重中减去。 首先计算 moving average：
+
+$$
+\text{moving_avg} = \text{alpha} * \text{moving_avg} + (1 - \text{alpha}) * (\text{w.grad} + \text{wd} * \text{w})
+$$
+这个 moving average 将乘以学习率， 在从 $\text{w}$ 中减去。  和正则化相关的项是 $\text{lr} * (1 - \text{alpha}) * \text{wd} * \text{w}$加上 moving avg 之前累积的项。
+
+然后我们看看权重衰减的方式：
+
+$$
+\text{moving_avg} = \text{alpha} * \text{moving_avg} + (1 - \text{alpha}) * \text{w.grad} \\
+\text{w} = \text{w} - \text{lr} * \text{moving_avg} - \text{lr} * \text{wd} * \text{w}
+$$
+
+可以看到这两种方法和正则化相关的项是不同的。当使用 Adam 的时候， 它们会更不同。
+
 
 
 # Reference
