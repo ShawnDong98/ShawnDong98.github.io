@@ -185,6 +185,9 @@ $$
 
 可以看到这两种方法和正则化相关的项是不同的。当使用 Adam 的时候， 它们会更不同。
 
+因此 Adam + weight decay 不等价于 Adam + L2 正则化。
+
+AdamW 使用 Adam + L2 正则化的方式更新。 
 
 
 # Reference
