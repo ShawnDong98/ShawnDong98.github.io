@@ -156,8 +156,9 @@ Adam 和 RMSPrp 算法的主要差别就在于同时对梯度 $\mathrm{g}$ 的 m
 5. [https://d2l.ai/chapter_optimization/adagrad.html](https://d2l.ai/chapter_optimization/adagrad.html)
 6. [https://d2l.ai/chapter_optimization/rmsprop.html](https://d2l.ai/chapter_optimization/rmsprop.html)
 7. [https://d2l.ai/chapter_optimization/adam.html](https://d2l.ai/chapter_optimization/adam.html)
-8. 
-
+8. [Deep Learning 最优化方法之AdaGrad](https://zhuanlan.zhihu.com/p/29920135)
+8. [一个框架看懂优化算法之异同 SGD/AdaGrad/Adam](https://zhuanlan.zhihu.com/p/32230623)
+9. [AdamW and Super-convergence is now the fastest way to train neural nets](https://www.fast.ai/2018/07/02/adam-weight-decay/)
 
 
 
