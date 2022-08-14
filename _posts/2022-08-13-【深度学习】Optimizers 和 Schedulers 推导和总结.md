@@ -87,11 +87,13 @@ $$
 $$
 \mathrm{g}_t = \partial_\mathrm{w} l(y_t, f(\mathrm{x_t, \mathrm{w}})) \\
 \mathrm{s}_t = \mathrm{s}_{t - 1} + \mathrm{g}_t^2 \\
-\mathrm{w}_t = \mathrm{w}_{t-1} - \frac{\eta}{\sqrt{\mathrm{s}_t + \epsilon}} · \mathrm{g}_t \tag{10}
+\mathrm{w}_t = \mathrm{w}_{t-1} - \frac{\eta}{\sqrt{\mathrm{s}_t + \epsilon}} \odot \mathrm{g}_t \tag{10}
 $$
-这里的操作都是 coordinate wise 的。 coordinate wise 是指， $\mathrm{v}^2$ 有 $v_i^2$， $\frac{1}{\sqrt{\mathrm{v}}}$ 有 $\frac{1}{\sqrt{v_i}}$ , $\mathrm{u} · \mathrm{v}$ 有 $u_i v_i$。
+这里的操作都是 coordinate wise 的。 coordinate wise 是指， $\mathrm{v}^2$ 对应 $v_i^2$， $\frac{1}{\sqrt{\mathrm{v}}}$ 对应 $\frac{1}{\sqrt{v_i}}$ , $\mathrm{u} · \mathrm{v}$ 对应 $u_i v_i$。
 
-就像在动量的情况下，我们需要跟踪一个辅助变量，在这种情况下，允许每个坐标的单独学习率。
+该优化算法与普通的sgd算法差别就在于采取了累积平方梯度。设置全局学习率之后，每次通过 **全局学习率逐参数的除以历史梯度平方和的平方根**，使得每个参数的学习率不同。
+
+
 
 
 # RMSProp
@@ -114,6 +116,8 @@ $$
 $$
 
 因为 $1 + \gamma + \gamma^2 + ..., = \frac{1}{1-\gamma}$, 因此权重的和被规范化为 1。
+
+RMSProp 与 Adagrad 算法的差别在于累积梯度 $\mathrm{s}_t$ 的方法不同，其使用 ema 累积梯度。
 
 # Adam
 
@@ -144,7 +148,16 @@ $$
 
 
 
+# Reference
 
+1. [https://d2l.ai/chapter_optimization/gd.html](https://d2l.ai/chapter_optimization/gd.html)
+2. [https://d2l.ai/chapter_optimization/sgd.html](https://d2l.ai/chapter_optimization/sgd.html)
+3. [https://d2l.ai/chapter_optimization/minibatch-sgd.html](https://d2l.ai/chapter_optimization/minibatch-sgd.html)
+4. [https://d2l.ai/chapter_optimization/momentum.html](https://d2l.ai/chapter_optimization/momentum.html)
+5. [https://d2l.ai/chapter_optimization/adagrad.html](https://d2l.ai/chapter_optimization/adagrad.html)
+6. [https://d2l.ai/chapter_optimization/rmsprop.html](https://d2l.ai/chapter_optimization/rmsprop.html)
+7. [https://d2l.ai/chapter_optimization/adam.html](https://d2l.ai/chapter_optimization/adam.html)
+8. 
 
 
 
