@@ -97,6 +97,24 @@ $$
 # RMSProp
 
 
+$$
+\mathrm{s}_t \leftarrow \gamma \mathrm{s}_{t-1} + (1 - \gamma) \mathrm{g}_t^2
+$$
+$$
+\mathrm{x}_t \leftarrow \mathrm{x}_{t-1} - \frac{\eta}{\sqrt{\mathrm{s}_t + \epsilon}} \odot \mathrm{g}_t
+$$
+
+展开 $\mathrm{s}_t$ 得到：
+
+$$
+\begin{align}
+\mathrm{s}_t &= (1 - \gamma) \mathrm{g}_t^2 + \gamma \mathrm{s}_{t-1} \\
+&= (1 - \gamma)(\mathrm{g}_t^2 + \gamma \mathrm{g}_{t-1}^2 + \gamma^2 \mathrm{g}_{t-2}^2 + ...., )
+\end{align}
+$$
+
+因为 $1 + \gamma + \gamma^2 + ..., = \frac{1}{1-\gamma}$, 因此权重的和被规范化为 1。
+
 # Adam
 
 Adam 的关键组件是 exponential weighted moving average(EMA) 来得到梯度的 momentum 和 second momentum 的估计。它有两个状态变量：
