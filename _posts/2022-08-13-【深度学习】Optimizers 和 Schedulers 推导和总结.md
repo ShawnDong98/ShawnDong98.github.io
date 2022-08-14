@@ -158,8 +158,12 @@ L2正则化是减少过拟合的经典方法，在损失函数中加上模型所
 $$
 \text{final_loss} =  \text{loss} + \text{wd} * \text{all_weights}.\text{pow}(2).\text{sum}() / 2
 $$
+其中 `wd` 是要设置的超参数。 这被称为 `weight decay`， 当使用原始的 SGD 算法时， 它相当于这样更新权重：
 
-
+$$
+\mathrm{w} = \mathrm{w} - \text{lr} * \text{w.grad} - \text{lr} * \text{wd} * \text{w} 
+$$
+每一步中权重都会减小一点，因此命名为权重衰减。
 
 
 # Reference
