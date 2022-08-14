@@ -62,3 +62,74 @@ $$
 
 
 因为 $\mathrm{x}_t$ 和 $\mathcal{B}_t$ 都是从训练集中均匀采样， 因此梯度的期望保持不变， 但是方差却显著减小了。这意味着更新更接近完整的梯度下降。
+
+
+# Stochastic Gradient Descent with Momentum
+
+除了使用小批量减小方差外， 还有一些其他方法可以做到， 如 "leaky average"：
+
+$$
+\mathrm{v}_t = \beta \mathrm{v}_{t-1} + \mathrm{g}_{t, t-1} \tag{8}
+$$
+
+用过去所有梯度的平均来替代当前的梯度， $\mathrm{v}$ 就是 *momentum*。
+
+使用 $\mathrm{v}_t$ 代替梯度 $\mathrm{g}_t$ 得到以下的更新等式：
+
+$$
+\mathrm{v}_t \leftarrow \beta \mathrm{v}_{t-1} + \mathrm{g}_{t, t-1}  \\
+x_t \leftarrow x_{t-1} - \eta_t v_t \tag{9}
+$$
+# Adagrad
+
+使用 $s_t$ 累积过去的梯度：
+
+$$
+\mathrm{g}_t = \partial_\mathrm{w} l(y_t, f(\mathrm{x_t, \mathrm{w}})) \\
+\mathrm{s}_t = \mathrm{s}_{t - 1} + \mathrm{g}_t^2 \\
+\mathrm{w}_t = \mathrm{w}_{t-1} - \frac{\eta}{\sqrt{\mathrm{s}_t + \epsilon}} · \mathrm{g}_t \tag{10}
+$$
+这里的操作都是 coordinate wise 的。 coordinate wise 是指， $\mathrm{v}^2$ 有 $v_i^2$， $\frac{1}{\sqrt{\mathrm{v}}}$ 有 $\frac{1}{\sqrt{v_i}}$ , $\mathrm{u} · \mathrm{v}$ 有 $u_i v_i$。
+
+就像在动量的情况下，我们需要跟踪一个辅助变量，在这种情况下，允许每个坐标的单独学习率。
+
+
+# RMSProp
+
+
+# Adam
+
+Adam 的关键组件是 exponential weighted moving average(EMA) 来得到梯度的 momentum 和 second momentum 的估计。它有两个状态变量：
+
+$$
+v_t \leftarrow \beta_1 \mathrm{v}_{t-1} + (1 - \beta_1 ) \mathrm{g}_t, \\
+\mathrm{s_t} \leftarrow \beta_2 \mathrm{s}_{t-1} + (1 - \beta_2) \mathrm{g}_t^2
+$$
+$\beta_1$ 和 $\beta_2$ 是非负的权重参数。 通常选择 $\beta_1 = 0.9$， $\beta_2 = 0.999$。因此方差估计要比动量慢许多。注意如果初始化 $v_0=s_0=0$ 对小数值初始有更大的 bias 。 这可以通过系数 $\sum_{i=0}^t \beta^i = \frac{1 - \beta^t}{1 - \beta}$ 重新规范化解决。对应的被规范化的状态变量为：
+
+$$
+\hat v_t = \frac{v_t}{1 - \beta_1^t}  \quad \text{and} \quad \hat s_t = \frac{s_t}{1 - \beta_2^t}
+$$
+
+有了合适的估计， 我们可以重写更新等式。 首先重新缩放梯度：
+
+$$
+\mathrm{g}_t' = \frac{\eta \hat{\mathrm{v}}_t}{\sqrt{\hat s_t} + \epsilon}
+$$
+
+然后用以下式子更新：
+
+$$
+\mathrm{x}_t \leftarrow \mathrm x_{t-1} - \mathrm{g}_t'
+$$
+
+
+
+
+
+
+
+
+
+
+
