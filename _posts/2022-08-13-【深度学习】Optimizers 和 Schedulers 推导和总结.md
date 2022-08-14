@@ -100,11 +100,11 @@ $$
 
 
 $$
-\mathrm{s}_t \leftarrow \gamma \mathrm{s}_{t-1} + (1 - \gamma) \mathrm{g}_t^2
-$$
-$$
+\mathrm{s}_t \leftarrow \gamma \mathrm{s}_{t-1} + (1 - \gamma) \mathrm{g}_t^2 \\
 \mathrm{x}_t \leftarrow \mathrm{x}_{t-1} - \frac{\eta}{\sqrt{\mathrm{s}_t + \epsilon}} \odot \mathrm{g}_t
+\tag{11}
 $$
+
 
 展开 $\mathrm{s}_t$ 得到：
 
@@ -113,7 +113,9 @@ $$
 \mathrm{s}_t &= (1 - \gamma) \mathrm{g}_t^2 + \gamma \mathrm{s}_{t-1} \\
 &= (1 - \gamma)(\mathrm{g}_t^2 + \gamma \mathrm{g}_{t-1}^2 + \gamma^2 \mathrm{g}_{t-2}^2 + ...., )
 \end{align}
+\tag{12}
 $$
+
 
 因为 $1 + \gamma + \gamma^2 + ..., = \frac{1}{1-\gamma}$, 因此权重的和被规范化为 1。
 
@@ -126,25 +128,38 @@ Adam 的关键组件是 exponential weighted moving average(EMA) 来累积梯度
 $$
 \mathrm{v}_t \leftarrow \beta_1 \mathrm{v}_{t-1} + (1 - \beta_1 ) \mathrm{g}_t, \\
 \mathrm{s_t} \leftarrow \beta_2 \mathrm{s}_{t-1} + (1 - \beta_2) \mathrm{g}_t^2
+\tag{13}
 $$
+
 $\beta_1$ 和 $\beta_2$ 是非负的权重参数。 通常选择 $\beta_1 = 0.9$， $\beta_2 = 0.999$。因此方差估计要比动量慢许多。注意如果初始化 $v_0=s_0=0$，在初期 $\mathrm{v}_t$ 和 $\mathrm{s}_t$ 都接近于0， 这个估计是有问题的。 因此我们常常根据下式进行误差修正：
 
 $$
-\hat v_t = \frac{v_t}{1 - \beta_1^t}  \quad \text{and} \quad \hat s_t = \frac{s_t}{1 - \beta_2^t}
+\hat v_t = \frac{v_t}{1 - \beta_1^t}  \quad \text{and} \quad \hat s_t = \frac{s_t}{1 - \beta_2^t} \tag{14}
 $$
 和 RMSProp 一样， 重新缩放梯度：
 
 $$
-\mathrm{g}_t' = \frac{\eta}{\sqrt{\hat s_t} + \epsilon} \odot \hat{\mathrm{v}}_t
+\mathrm{g}_t' = \frac{\eta}{\sqrt{\hat s_t} + \epsilon} \odot \hat{\mathrm{v}}_t \tag{15}
 $$
 
 然后用以下式子更新：
 
 $$
-\mathrm{x}_t \leftarrow \mathrm x_{t-1} - \mathrm{g}_t'
+\mathrm{x}_t \leftarrow \mathrm x_{t-1} - \mathrm{g}_t' \tag{16}
 $$
 
 Adam 和 RMSPrp 算法的主要差别就在于同时对梯度 $\mathrm{g}$ 的 momentum 和 梯度平方 $\mathrm{g}^2$  的 momentum 使用 ema 估计。
+
+
+# AdamW
+
+L2正则化是减少过拟合的经典方法，在损失函数中加上模型所有权重的平方和，乘以给定的超参数：
+
+$$
+\text{final_loss} =  \text{loss} + \text{wd} * \text{all_weights}.\text{pow}(2).\text{sum}() / 2
+$$
+
+
 
 
 # Reference
