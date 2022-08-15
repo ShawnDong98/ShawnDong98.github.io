@@ -153,3 +153,20 @@ $$
 \end{align} \tag{6}
 $$
 
+
+通过将等式$(7)$ 中的高斯似然项 和先验项中的 $p(x_i \mid \theta_i)$ 和 $p(\theta_i)$ 代入上面的 MAP estimator， 得到以下目标函数：
+
+
+$$
+\begin{align}
+(x, \theta) &= \mathop{\text{argmin}}_{x, \theta} \| y - Ax\|_2^2  + \sigma^2 \sum_{i=1}^N \frac{1}{\theta_i^2} (x_i - u_i)^2 + 2 \sigma^2 \sum_{i=1}^{N} \log \theta_i  + 2 \sigma^2 J(\theta) \\
+&= \mathop{\text{argmin}}_{x, \theta} \| y - Ax\|_2^2 + \sigma^2 \sum_{i=1}^N \frac{1}{\theta^2_i}(x_i - u_i)^2 + R(\theta)
+\end{align} \tag{7}
+$$
+?
+
+
+其中 $R(\theta) = 2 \sigma^2 \sum_{i=1}^N \log \theta_i + 2 \sigma^2 J(\theta)$。 因此 HSI 重构问题可以通过交替优化 $x$ 和 $\theta$ 求解。
+
+
+
