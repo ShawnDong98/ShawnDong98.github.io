@@ -172,10 +172,29 @@ $$
 对于 $x$ - subproblem , 固定 $\theta$,  我们可以通过求解下式求解 $x$：
 
 $$
-x = \mathop{\text{argmin}}_x \| y - Ax \|_2^2 + \sum_{i=1}^N w_i(x_i - u_i)^2
+x = \mathop{\text{argmin}}_x \| y - Ax \|_2^2 + \sum_{i=1}^N w_i(x_i - u_i)^2 \tag{8}
 $$
 
 其中 $w_i = \frac{\sigma^2}{\theta_i^2}$ , 均值 $u_i$ 与 $x$ 一起更新。 计算局部 spatial-spectral 邻近像素的加权平均作为均值 $u_i$ 的估计。
 
+$$
+u_i = k_i^\top x_i \tag{9}
+$$
+
+为了求解等式 $(8)$， 我们可以应用梯度下降：
+
+$$
+x^{(t+1)} = x^{(t)} - 2 \delta \{A^\top (A x^{(t)} - y) + w^{(t)}(x^{(t)} - u^{(t)})\} \tag{10}
+$$
+
+其中 $\delta$ 是步长。
+
+对于 $\theta$- subproblem 可以改变为估计 $w$， 固定 $x$， $w$ 可以由以下等式估计：
+
+$$
+w = \mathop{\text{argmin}}_w \sum_{i=1}^N w_i(x_i - u_i)^2 + R(w) \tag{11}
+$$
+
+$w$的解依赖于 $R(w)$ 的选择。对于一些先验， 可以得到 closed-form 解； 对于其他情况， 可以使用迭代算法。 但它们各有利弊。这里可以使用 DCNN 从 $x^{(t+1)}$  估计 $w^{(t+1)}$ 。 
 
 
