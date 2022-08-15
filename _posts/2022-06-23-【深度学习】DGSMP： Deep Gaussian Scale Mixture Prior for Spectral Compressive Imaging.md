@@ -169,4 +169,13 @@ $$
 其中 $R(\theta) = 2 \sigma^2 \sum_{i=1}^N \log \theta_i + 2 \sigma^2 J(\theta)$。 因此 HSI 重构问题可以通过交替优化 $x$ 和 $\theta$ 求解。
 
 
+对于 $x$ - subproblem , 固定 $\theta$,  我们可以通过求解下式求解 $x$：
+
+$$
+x = \mathop{\text{argmin}}_x \| y - Ax \|_2^2 + \sum_{i=1}^N w_i(x_i - u_i)^2
+$$
+
+其中 $w_i = \frac{\sigma^2}{\theta_i^2}$ , 均值 $u_i$ 与 $x$ 一起更新。 计算局部 spatial-spectral 邻近像素的加权平均作为均值 $u_i$ 的估计。
+
+
 
