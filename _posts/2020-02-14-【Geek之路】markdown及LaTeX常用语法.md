@@ -64,6 +64,7 @@ tags:
 - $\land$： \land 
 - $\succ$:  \succ
 - 伪逆符号 $\dagger$： \dagger
+- 花体 $\ell$: \ell
 
 # LaTex
 
