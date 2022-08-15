@@ -63,8 +63,7 @@ $$
 $$
 p(y \mid x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp (- \frac{\|y - Ax\|_2^2}{2\sigma^2})
 $$
-对于先验项 $p(x)$， 提出将 HSI 的每个像素 $x_i$ 特征化为一个 标准差为 $\theta_i$ 的 *nonzero-mean*
-的高斯分布。 有了 scale 先验 $p(\theta_i)$ 和 假设 $\theta_i$ 和 $x_i$ 相互独立， 我们可以使用如下的 GSM 模型建模 $x$：
+对于先验项 $p(x)$， 提出将 HSI 的每个像素 $x_i$ 特征化为一个 标准差为 $\theta_i$ 的 *nonzero-mean* 的高斯分布。 有了 scale 先验 $p(\theta_i)$ 和 假设 $\theta_i$ 和 $x_i$ 相互独立， 我们可以使用如下的 GSM 模型建模 $x$：
 
 $$
 p(x) = \prod_i p(x_i), \qquad p(x_i) = \int_0^\infty p(x_i \mid \theta_i) p(\theta_i) d\theta_i
@@ -101,4 +100,35 @@ $$
 在合成数据集和真实数据集上的大量实验结果表明，该方法优于现有的先进算法。
 
 这篇文章提出的网络不仅限于光谱压缩成像如CASSI和类似系统，它还可以用于视频快照压缩成像系统。
+
+
+# Summary
+
+似然项用高斯函数建模， 先验项用高斯尺度混合模型建模。
+
+HSI 重建可以看作一个最大后验估计 (MAP) 问题：
+
+$$
+\log p(x \mid y) \propto \log p(y \mid x) + \log p(x)
+$$
+
+其中 $p(y \mid x)$ 是似然项， $p(x)$ 是先验分布。 似然项可以用高斯函数建模：
+
+$$
+p(y \mid x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp(- \frac{\|y - Ax\|_2^2}{2 \sigma^2})
+$$
+
+先验项 $p(x)$ 用 标准差 $\theta_i$ 非零均值的高斯分布建模 HSI 的每个像素 $x_i$。
+
+假设 $\theta_i$ 和 $x_i$ 相互独立， 可以用以下 GSM 模型建模 $x$：
+
+$$
+p(x) = \prod_i p(x_i), \quad p(x_i) = \int_0^\infty p(x_i \mid \theta_i) p(\theta_i) d \theta_i
+$$
+其中 $p(x_i \mid \theta_i)$ 是方差为 $\theta_i^2$ 均值为 $u_i$ 的非零均值高斯分布：
+
+$$
+p(x_i \mid \theta_i) = \frac{1}{\sqrt{2 \pi} \theta_i} \exp(- \frac{(x - u_i)^2}{2 \theta_i^2})
+$$
+有了不同的尺度先验， GSM 模型可以表示很多分布。
 
