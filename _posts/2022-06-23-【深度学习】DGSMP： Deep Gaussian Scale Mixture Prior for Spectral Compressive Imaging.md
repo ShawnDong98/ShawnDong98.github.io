@@ -109,26 +109,47 @@ $$
 HSI 重建可以看作一个最大后验估计 (MAP) 问题：
 
 $$
-\log p(x \mid y) \propto \log p(y \mid x) + \log p(x)
+\log p(x \mid y) \propto \log p(y \mid x) + \log p(x) \tag{1}
 $$
 
 其中 $p(y \mid x)$ 是似然项， $p(x)$ 是先验分布。 似然项可以用高斯函数建模：
 
 $$
-p(y \mid x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp(- \frac{\|y - Ax\|_2^2}{2 \sigma^2})
+p(y \mid x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp(- \frac{\|y - Ax\|_2^2}{2 \sigma^2}) \tag{2}
 $$
+
+---
 
 先验项 $p(x)$ 用 标准差 $\theta_i$ 非零均值的高斯分布建模 HSI 的每个像素 $x_i$。
 
 假设 $\theta_i$ 和 $x_i$ 相互独立， 可以用以下 GSM 模型建模 $x$：
 
 $$
-p(x) = \prod_i p(x_i), \quad p(x_i) = \int_0^\infty p(x_i \mid \theta_i) p(\theta_i) d \theta_i
+p(x) = \prod_i p(x_i), \quad p(x_i) = \int_0^\infty p(x_i \mid \theta_i) p(\theta_i) d \theta_i \tag{3}
 $$
+
 其中 $p(x_i \mid \theta_i)$ 是方差为 $\theta_i^2$ 均值为 $u_i$ 的非零均值高斯分布：
 
 $$
-p(x_i \mid \theta_i) = \frac{1}{\sqrt{2 \pi} \theta_i} \exp(- \frac{(x - u_i)^2}{2 \theta_i^2})
+p(x_i \mid \theta_i) = \frac{1}{\sqrt{2 \pi} \theta_i} \exp(- \frac{(x - u_i)^2}{2 \theta_i^2}) \tag{4}
 $$
 有了不同的尺度先验， GSM 模型可以表示很多分布。
+
+尺度先验 $p(\theta_i)$ ， 相比于用具体先验建模 $p(\theta_i)$ ， 引入一种通用形式：
+
+$$
+p(\theta_i) \propto \exp(-J(\theta_i)) \tag{5}
+$$
+
+
+---
+
+$p(x_i)$ 的解析表达式无法得到， 通过用 $p(x, \theta)$ 替换 MAP 中的 $p(x)$ 联合估计 $x$ 和 $\theta$：
+
+$$
+\begin{align}
+(x, \theta) &= \mathop{\text{argmax}}_{x, \theta} \log p(y \mid x) + \log p(x, \theta) \\
+&= \mathop{\text{argmax}}_{x, \theta} \log p(y \mid x) + \log p(x \mid \theta) + \log p(\theta) 
+\end{align} \tag{6}
+$$
 
