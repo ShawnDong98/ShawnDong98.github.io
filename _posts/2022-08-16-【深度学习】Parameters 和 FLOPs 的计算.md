@@ -142,7 +142,7 @@ $$
 $$
 
 
-# BN 
+# BN / LN 
 $$
 y = \frac{x - E[x]}{\sqrt{Var[x] + \epsilon}} \times \gamma + \beta
 $$
@@ -175,8 +175,6 @@ def bn_flops_counter_hook(module, input, output):
         batch_flops *= 2
     module.__flops__ += int(batch_flops)
 ```
-
-
 
 
 # References
