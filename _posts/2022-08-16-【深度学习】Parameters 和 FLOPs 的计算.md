@@ -33,7 +33,7 @@ $$
 
 # 池化层
 
-## 全局池化
+
 
 参数量为0
 
@@ -42,16 +42,6 @@ FLOPs：
 
 $$
 \text{FLOPs} =  H_{in} \times W_{in} \times C_{in}
-$$
-
-## 一般池化
-
-参数量为0
-
-FLOPs：
-
-$$
-\text{FLOPs} = C_{out} \times H_{out} \times W_{out} \times K^2
 $$
 
 
@@ -69,3 +59,5 @@ $$
 
 # References
 1. [Parameters & FLOP](https://surui.ink/2020/05/27/FLOPs/)
+2. [神经网络的FLOPs计算（一）：理论篇](https://blog.csdn.net/weixin_43915709/article/details/94566125)
+3. 
