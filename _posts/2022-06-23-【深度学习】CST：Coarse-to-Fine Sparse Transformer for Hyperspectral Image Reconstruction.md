@@ -94,6 +94,16 @@ $$
 
 SAH-MSA通过搜索产生最大内积的元素来学习将 token 聚集到不同的桶中。如图 3(c) 所示， 将 patch T恩正图表示为 $X_p \in \mathbb{R}^{M \times M \times C}$， 其通过 sparsity mask 筛选出。将 $X_p$ reshape 为 $X_r \in \mathbb{R}^{N \times C}$, 其中 $N = M \times M$ 是元素的数量。随后，我们使用哈希函数在光谱上聚合信息，并将 C-Dimension 元素(pixel vector) $x \in \mathbb{R}^C$ 映射为一个整数哈希码。
 
+
+
+# Experiment
+
+## Qualitative Results 
+
+**Simulation HSI Restoration.**  图4比较了 CST-L 和 7个 SOTA 算法复原的仿真 HSI 在场景2上的 28 通道的 4 个。请放大以便更好地显示。从重构的HSI(右)和黄框中放大的 patch 可以观察到，CST可以有效地产生感知愉快的图像，具有更生动的尖锐边缘细节，同时在不引入伪影的情况下保持均匀区域的空间平滑。相比之下，其他方法无法恢复细粒度的详细信息。它们要么获得过度光滑的结果，牺牲结构内容和高频细节，要么产生斑点纹理和彩色伪影。图4给出了RGB图像中绿色方框所选区域(左上)对应的光谱密度曲线(左下)。CST 的曲线与真实值具有最高的相关系数。这一证据清楚地证明了CST的光谱维一致性重建的有效性。
+
+**Real HSI Restoration.** 作者在真实HSI重建中评估CST。与之前的工作一致， 在 KAIST 和 CAVE 数据集上重新训练了 CST-L。为了模拟真实的CASSI，在训练过程中，在 measurement 中注入了 11-bit 的shot噪声。重建的HSI比较如图6所示。CST-L在细节恢复和真实噪声去除方面具有显著优势。这些结果验证了该方法的鲁棒性、可靠性和泛化能力。
+
 # Conclusion
 
 这篇文章研究了 HSI 重构中的一个关键问题，即如何将 HSI 稀疏性嵌入到基于学习的算法中。
