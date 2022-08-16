@@ -130,6 +130,22 @@ $$
 $1 \times 1$ 卷积就是空间上共享权重，在通道上的全连接层。
 
 
+# Self-Attention
+
+Params: 
+
+Q、K、V 和 proj 分别一个全连接层
+
+$$
+\text{Params} = 3 \times  C_{in} \times C_{in}  + C_{in} \times C_{out}
+$$
+FLOPs：
+
+$$
+\text{FLOPs} = (H_{in} \times W_{in}) \times (C + (C - 1)) \times (H_{in} \times W_{in}) \approx 2C \times (H_{in} \times W_{in})^2
+$$
+
+
 
 # ReLU / GELU
 
