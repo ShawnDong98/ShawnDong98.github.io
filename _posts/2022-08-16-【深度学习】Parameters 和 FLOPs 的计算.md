@@ -141,9 +141,18 @@ $$
 $$
 FLOPs：
 
+MSA 的FLOPs：
+
 $$
-\text{FLOPs} = (H_{in} \times W_{in}) \times (C + (C - 1)) \times (H_{in} \times W_{in}) \approx 2C \times (H_{in} \times W_{in})^2
+\text{MSA_FLOPs} = (H_{in} \times W_{in}) \times (C + (C - 1)) \times (H_{in} \times W_{in}) \approx 2C \times (H_{in} \times W_{in})^2
 $$
+
+全连接层的FLOPs：
+
+$$
+\text{Proj_FLOPs} = 3 \times [(2 \times C_{in} - 1) \times C_{in}] + (2 \times C_{in} - 1) \times C_{out}
+$$
+
 
 
 
