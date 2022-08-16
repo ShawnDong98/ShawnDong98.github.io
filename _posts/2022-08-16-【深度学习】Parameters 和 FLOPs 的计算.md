@@ -44,7 +44,7 @@ $$
 \text{FLOPs} =  C_{in} \times H_{in} \times W_{in} 
 $$
 
-ptflops 中对所有池化忽略 kernel 的计算。
+[ptflops](https://github.com/sovrasov/flops-counter.pytorch/blob/master/ptflops/pytorch_ops.py) 中对所有池化忽略 kernel 的计算。
 
 ```python
 def pool_flops_counter_hook(module, input, output):
@@ -189,7 +189,7 @@ $$
 
 
 
-ptflops 中的实现：
+[ptflops](https://github.com/sovrasov/flops-counter.pytorch/blob/master/ptflops/pytorch_ops.py) 中的实现：
 
 ```python
 def bn_flops_counter_hook(module, input, output):
