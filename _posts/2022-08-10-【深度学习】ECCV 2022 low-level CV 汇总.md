@@ -48,3 +48,7 @@ tags:
 # Uncertainty Learning in Kernel Estimation for Multi-Stage Blind Image Super-Resolution
 
 [https://see.xidian.edu.cn/faculty/wsdong/Papers/Conference/Blind_SR_ECCV2022.pdf](https://see.xidian.edu.cn/faculty/wsdong/Papers/Conference/Blind_SR_ECCV2022.pdf)
+
+# Modeling Mask Uncertainty in Hyperspectral Image Reconstruction
+
+[https://arxiv.org/pdf/2112.15362.pdf](https://arxiv.org/pdf/2112.15362.pdf)
