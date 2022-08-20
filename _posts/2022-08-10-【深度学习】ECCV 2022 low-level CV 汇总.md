@@ -43,3 +43,8 @@ tags:
 # Dynamic Dual Trainable Bounds for Ultra-low Precision Super-Resolution Networks
 
 [https://arxiv.org/pdf/2203.03844.pdf](https://arxiv.org/pdf/2203.03844.pdf)
+
+
+# Uncertainty Learning in Kernel Estimation for Multi-Stage Blind Image Super-Resolution
+
+[https://see.xidian.edu.cn/faculty/wsdong/Papers/Conference/Blind_SR_ECCV2022.pdf](https://see.xidian.edu.cn/faculty/wsdong/Papers/Conference/Blind_SR_ECCV2022.pdf)
