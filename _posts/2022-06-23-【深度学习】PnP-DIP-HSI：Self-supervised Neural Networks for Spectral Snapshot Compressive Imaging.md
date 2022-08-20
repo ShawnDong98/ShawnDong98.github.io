@@ -50,6 +50,9 @@ $$
 由于 data-cube 的第三维度被压缩为 2D measurement， 使用 DIP 能很好地重构空间信息，但有时不能很好的重构光谱信息。TV 先验通常能够较好地重构光谱信息，但是通常损失一些空间细节。这项工作结合了 DIP 先验和 TV 先验。
 
 
+## Proposed Joint Framework
+
+
 # Conclusion
 
 这篇文章提出了一种用于光谱快照压缩成像重建的自监督算法。
