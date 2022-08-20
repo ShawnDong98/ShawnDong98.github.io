@@ -52,6 +52,20 @@ $$
 
 ## Proposed Joint Framework
 
+将两种先验施加在要重构的 spectral data-cube 上, 得到下列公式：
+
+$$
+(\hat x, \hat \Theta) = \mathop{\text{argmin}}_{x, \Theta} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x), \quad \text{s.t} \quad x = T_\Theta(e) \tag{7}
+$$
+通过引入辅助变量 $b \in \mathbb{R}^{n_x n_y n_\lambda}$ 和平衡参数 $\mu$， 目标为最小化：
+
+$$
+\min_{x, \Theta} \frac{1}{2} \| y - H T_\Theta (e) \|_2^2 + \lambda R(x) + \mu \|x - T_\Theta(e) -b \|_2^2 \tag{8}
+$$
+
+使用 ADMM 将解分为三个子问题。
+
+由于等式 $(7)$ 的两种先验， 作者在实验中发现由于强制 DIP 的结果， 因此 $T_\Theta(e)$ 接近 measurement $y$， 其是该算法唯一的可用输入，  不能很好地融合两种先验。
 
 # Conclusion
 
