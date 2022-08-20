@@ -65,7 +65,13 @@ $$
 
 使用 ADMM 将解分为三个子问题。
 
-由于等式 $(7)$ 的两种先验， 作者在实验中发现由于强制 DIP 的结果， 因此 $T_\Theta(e)$ 接近 measurement $y$， 其是该算法唯一的可用输入，  不能很好地融合两种先验。
+由于等式 $(7)$ 的两种先验， 作者在实验中发现由于强制 DIP 的结果， 因此 $T_\Theta(e)$ 接近 measurement $y$， 其是该算法唯一的可用输入，  不能融合两种先验的优点。因此作者提出最小化：
+
+$$
+\min_{x, \Theta} \frac{1}{2} \| y - Hx\|_2^2  + \lambda R(x) + \frac{\rho}{2} \| y - H T_\Theta(e) \|_2^2 \quad \text{s.t.} \quad x = T_\Theta(e) \tag{9}
+$$
+
+
 
 # Conclusion
 
