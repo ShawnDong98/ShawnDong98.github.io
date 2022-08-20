@@ -45,7 +45,7 @@ $$
 $$
 \min_{\Theta} \| y - HT_\Theta(e) \|_2^2 \tag{6}
 $$
-想要的重构信号是 $\hat x = T_\Theta(e)$。DIP 和 现有的深度神经网络的关键区别在于 $\Theta$ 特定于每个 measurement $y$。 
+想要的重构信号是 $\hat x = T_\Theta(e)$。DIP 和 现有的深度神经网络的关键区别在于 $\Theta$ 从每个 measurement $y$ 学习。相比之下，现有的监督网络从训练数据中学习网络参数，然后在测试(推断)过程中固定网络参数。在 DIP 中， $\Theta$ 的训练本身是 $x $的重构过程。 
 
 
 # Conclusion
