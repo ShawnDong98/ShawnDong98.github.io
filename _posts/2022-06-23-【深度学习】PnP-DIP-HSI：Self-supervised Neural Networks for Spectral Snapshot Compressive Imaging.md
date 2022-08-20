@@ -26,6 +26,24 @@ tags:
 大量的综合数据和真实数据结果表明，这篇文章提出的不需要训练的算法能够获得与训练网络相竞争的结果。
 
 此外，通过将提出的方法与预训练的深度去噪先验相结合，取得了最先进的结果。
+
+# Method
+
+重构目标可公式化为：
+
+$$
+\hat x = \mathop{\text{argmin}}_x \frac{1}{2} \| y - Hx\|_2^2 + \lambda R(x)  \tag{5}
+$$
+以往在光谱 SCI 中使用包括 TV、sparsity 和 low-rank 等不同先验。
+
+
+## Deep Image Prior (DIP) 
+
+
+去除掉 $(5)$ 中的正则项 $R(x)$， deep image prior 假设想要的信号 $x$ 是神经网络 $T_\Theta(e)$ 的输出， 其中 $e$ 是一个随机向量并且 $\Theta$ 是神经网络要学习的参数。
+
+
+
 # Conclusion
 
 这篇文章提出了一种用于光谱快照压缩成像重建的自监督算法。
