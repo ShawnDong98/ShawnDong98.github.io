@@ -40,8 +40,12 @@ $$
 ## Deep Image Prior (DIP) 
 
 
-去除掉 $(5)$ 中的正则项 $R(x)$， deep image prior 假设想要的信号 $x$ 是神经网络 $T_\Theta(e)$ 的输出， 其中 $e$ 是一个随机向量并且 $\Theta$ 是神经网络要学习的参数。
+去除掉 $(5)$ 中的正则项 $R(x)$， deep image prior 假设想要的信号 $x$ 是神经网络 $T_\Theta(e)$ 的输出， 其中 $e$ 是一个随机向量并且 $\Theta$ 是神经网络要学习的参数。 DIP 求解下式：
 
+$$
+\min_{\Theta} \| y - HT_\Theta(e) \|_2^2 \tag{6}
+$$
+想要的重构信号是 $\hat x = T_\Theta(e)$。DIP 和 现有的深度神经网络的关键区别在于 $\Theta$ 特定于每个 measurement $y$。 
 
 
 # Conclusion
