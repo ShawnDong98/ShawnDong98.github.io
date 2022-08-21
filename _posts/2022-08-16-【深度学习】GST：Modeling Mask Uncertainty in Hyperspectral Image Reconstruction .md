@@ -49,6 +49,35 @@ $$
 
 作者通过估计 mask 后验概率 $p(m \mid X, Y)$ 来估计 mask uncertainty， 其中 $X$ 和 $Y$ 分别表示光谱图像和它们对应的 measurements。
 
+为此， 作者旨在学习一个由 $\phi$ 参数化的 variational distribution $q_\phi(m)$ 以最小化 $q_\phi(m)$ 和 $p(m \mid X, Y)$ 之间的 KL 散度， 如 $\min_\phi KL[q_\phi(m) \| p(m \mid X, Y)]$， 等价于最小化 evidence lower bound(ELBO)：
+
+$$
+\max_\phi \mathbb E_{q_\phi(m)}[\log p(X \mid Y, m)] - KL[q_\phi(m) \| p(m)] \tag{4}
+$$
+其中第一项度量重构， 第二项给定 mask 先验 $p(m)$ 正则化 $q_\phi(m)$。 variational distribution $q_\phi(m)$ 定义为以 $m \in \mathcal{M}$ 为中心的高斯分布。
+
+
+$$
+q_\phi(m) = \mathcal{N}(m, g_\phi(m)) \tag{5}
+$$
+
+$g_\phi(m)$ 学习 self-tuning variance 来建模 uncertainty。因此， variational noise distribution $q_\phi(z)$ 服从方差为 $g_\phi(m)$ 的高斯分布。 使用重参数技巧， 令 $m' \thicksim q_\phi(m)$ 是一个采样自 variational distribution 的随机变量， 有：
+
+$$
+m' = t(\phi, \epsilon) = m + g_\phi(m) \odot \epsilon, \quad \epsilon \thicksim \mathcal{N}(0, 1)  \tag{6}
+$$
+将 $m'$ 的值截断在 [0, 1] 之间。
+
+与AutoEncoder相似，将负对数似然 $\mathbb{E}_{q_\phi(m)}[- \log p(X \mid Y, m)]$  实现为 $\ell_2$ 损失并且计算它的蒙特卡洛估计：
+
+$$
+\ell(\phi, \theta; \mathcal{D}) = \frac{N}{B} \sum_{i=1}^B \| f_\theta(y_i, t(\phi, \epsilon_i)) - x_i \|^2 \tag{7}
+$$
+
+其中 $(x_i, y_i) \in \mathcal{D}$， $B$ 表示 mini-batch 大小， $t(\phi, \epsilon_i)$ 表示从 $q_\phi(m)$ 中采样的第 $i$ 个样本。
+
+因为 $p(m)$ 是未知的， 由于 mask 的不同的空间结构， 作者用 $q_\phi(m)$ 的熵估计等式 $(4)$ 中的 KL 项。
+
 
 ## Mask Uncertainty 
 
