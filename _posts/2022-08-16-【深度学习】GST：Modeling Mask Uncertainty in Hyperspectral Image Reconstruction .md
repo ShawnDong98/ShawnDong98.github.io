@@ -112,7 +112,7 @@ $$
 ## Bilevel Optimization
 
 
-尽管使用等式 $(8)$ 中的损失联合训练 HSI 重构网络 $f_\theta$ 和 self-tuning 网络 $g_\phi$ 是可能的， 但将这两个网络的训练表述为 mask 的两个超参数的 bilevel 优化框架更为合适。
+尽管使用等式 $(8)$ 中的损失联合训练 HSI 重构网络 $f_\theta$ 和 self-tuning 网络 $g_\phi$ 是可能的， 但将这两个网络的训练表述为 mask 的两个超参数的 bilevel 优化框架更为合适。首先， 深度重构网络对 masks 的改变和扰动是高度敏感的。
  
 
 # Conclusions
