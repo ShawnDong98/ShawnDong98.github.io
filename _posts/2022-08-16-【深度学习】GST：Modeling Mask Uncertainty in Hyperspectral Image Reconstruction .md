@@ -45,7 +45,9 @@ tags:
 $$
 m = \tilde m + z
 $$
-假设 $z$ 中的每个像素服从一个高斯分布， 表示为 $p(z) = \mathcal{N}(\mu, \sigma)$。$\tilde m$ 表示具有特定空间结构的二值 mask。 
+假设 $z$ 中的每个像素服从一个高斯分布， 表示为 $p(z) = \mathcal{N}(\mu, \sigma)$。$\tilde m$ 表示具有特定空间结构的二值 mask。
+
+作者通过估计 mask 后验概率 $p(m \mid X, Y)$ 来估计 mask uncertainty， 其中 $X$ 和 $Y$ 分别表示光谱图像和它们对应的 measurements。
 
 
 ## Mask Uncertainty 
