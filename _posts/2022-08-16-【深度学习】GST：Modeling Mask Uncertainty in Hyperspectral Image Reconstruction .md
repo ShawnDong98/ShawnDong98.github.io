@@ -76,7 +76,11 @@ $$
 
 其中 $(x_i, y_i) \in \mathcal{D}$， $B$ 表示 mini-batch 大小， $t(\phi, \epsilon_i)$ 表示从 $q_\phi(m)$ 中采样的第 $i$ 个样本。
 
-因为 $p(m)$ 是未知的， 由于 mask 的不同的空间结构， 作者用 $q_\phi(m)$ 的熵估计等式 $(4)$ 中的 KL 项。
+因为 $p(m)$ 是未知的， 由于 mask 的不同的空间结构， 作者用 $q_\phi(m)$ 的熵估计等式 $(4)$ 中的 KL 项。最终，用以下损失实现 $\text{ELBO}(q(m))$ ：
+
+$$
+\mathcal{L} (\phi, \theta; \mathcal{D}) = \ell(\phi, \theta; \mathcal{D}) + \beta \mathbb{H}[\log q_\phi(m)] \tag{8}
+$$
 
 
 ## Mask Uncertainty 
