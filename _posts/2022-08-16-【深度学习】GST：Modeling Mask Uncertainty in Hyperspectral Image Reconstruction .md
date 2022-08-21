@@ -27,6 +27,19 @@ tags:
 
 此外，作者开发了一个双层优化框架，以平衡HSI重建和不确定性估计，其负责 mask 的超参数属性。
 
+# Methodology
+
+## Preliminaries
+
+**Hardware miscalibration.**  Deep HSI models 在参数 $\theta$ 和 mask $m$ 之间存在一种成对关系。
+
+## Mask Uncertainty 
+
+## Graph-based Self-Tuning Network
+
+## Bilevel Optimization
+
+
 
 # Conclusions
 
