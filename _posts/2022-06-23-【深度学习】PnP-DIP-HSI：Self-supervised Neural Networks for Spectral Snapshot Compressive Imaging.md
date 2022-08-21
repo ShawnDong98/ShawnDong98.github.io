@@ -65,11 +65,63 @@ $$
 
 使用 ADMM 将解分为三个子问题。
 
-由于等式 $(7)$ 的两种先验， 作者在实验中发现由于强制 DIP 的结果， 因此 $T_\Theta(e)$ 接近 measurement $y$， 其是该算法唯一的可用输入，  不能融合两种先验的优点。因此作者提出最小化：
+由于等式 $(7)$ 的两种先验， 作者在实验中发现由于 enforce DIP 的结果， $T_\Theta(e)$ 接近 measurement $y$,  不能融合两种先验的优点。因此作者提出最小化：
 
 $$
 \min_{x, \Theta} \frac{1}{2} \| y - Hx\|_2^2  + \lambda R(x) + \frac{\rho}{2} \| y - H T_\Theta(e) \|_2^2 \quad \text{s.t.} \quad x = T_\Theta(e) \tag{9}
 $$
+为了求解 $(9)$， 相似地， 使用一个辅助变量 $b \in \mathbb{R}^{nn_\lambda}$ 和平衡参数 $\mu$， 现在目标为最小化：
+
+$$
+(\hat x, \hat \Theta, \hat b) = \mathop{\text{argmin}}_{x, \Theta, b} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) - \frac{\mu}{2} \| b \|_2^2  \\
++ \frac{\rho}{2}\| y - HT_\Theta(e)\|_2^2  + \frac{\mu}{2}\|x - T_\Theta(e) - b\|_2^2 \tag{10}
+$$
+使用以下子问题迭代求解 $(10)$。  
+
+1） $\Theta$ - subproblem: 给定 $x$ 和 $b$ ， 求解 $\Theta$ 通过：
+
+$$
+\hat \Theta = \mathop{\text{argmin}}_{\Theta} \frac{\rho}{2}\|y - HT_\Theta(e) \|_2^2 + \frac{\mu}{2} \|x - T_\Theta(e) - b \|_2^2 \tag{11}
+$$
+
+其强制 $T_\Theta(e)$ 接近 $x - b$。$T_\Theta(e)$ 现在扮演两个角色：
+
+- 去噪 $x - b$
+- 最小化 measuremetn loss $y - HT_\Theta(e)$
+
+2） $x$ - subproblem， 求解：
+
+$$
+\hat x = \mathop{\text{argmin}}_x \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) + \frac{\mu}{2}\| x - T_\Theta(e) - b \|_2^2
+$$
+通过引入 $u, v$ 使用 ADMM 使得最小化：
+
+$$
+\min_{x, u} \frac{1}{2} \|y - Hx\|_2^2 + \lambda R(u) + \frac{\mu}{2}\| x - T_\Theta(e) - b\|_2^2 \quad \text{s.t.} \quad u = x \tag{12}
+$$
+
+等式 $(12)$ 被重公式化为：
+
+$$
+\min_{x, u} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(u) + \frac{u}{2}\| x - T_\Theta(e) - b \|_2^2 \\ 
++ \frac{\eta}{2} \| x - u - v \|_2^2 - \frac{\eta}{2} \| v \|_2^2 \tag{13} 
+$$
+其可以通过下面两个子问题求解：
+
+2.1) $x$-subproblem:
+
+$$
+\hat x = \mathop{\text{argmin}}_x \frac{1}{2}\| y - Hx \|_2^2 + \frac{\mu}{2} \| x - T_\Theta(e) - b\|_2^2 + \frac{\eta}{2}\|x - u - v\|_2^2 \tag{14}
+$$
+
+这是一个二次型， 由于 $H$ 的特殊结构， 他有 closed-form 的解： $\hat x = (H^\top H + \mu I + \eta I)^{-1}[H^\top y + \mu(T_\Theta(e) + b) + \eta(u + v)]$。 
+
+2.2) $u$ - subproblem： $\hat u = \text{argmin}_u \eta \|x - u - v \|_2^2 + \lambda R(u)$。 这是一个去噪问题， 依赖于所选择的 $R$， 有：
+
+$$
+\hat u = \mathcal{D}_\sigma(x - v) \tag{16}
+$$
+其中 $\sigma$ 是依赖于 $\lambda / \eta$ 估计的噪声等级。
 
 
 
