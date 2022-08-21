@@ -101,7 +101,7 @@ $$
 $$
 g_\phi(m) = \delta(\text{CONV}(A)) \tag{10}
 $$
-其中 $\delta$ 表示 softplus 函数， $\phi$ 表示所有可学习的参数。因此， GST 自适应的 variance 建模任意真实 mask。
+其中 $\delta$ 表示 softplus 函数， $\phi$ 表示所有可学习的参数。因此， GST 使得自适应的 variance 建模任意真实 mask。
 
 
 
