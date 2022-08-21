@@ -117,10 +117,15 @@ $$
 具体而言，作者将 low-level 问题定义为HSI重构，high-level 问题定义为 mask uncertainty 估计，并提出 GST模型的最终目标函数如下：
 
 $$
-\min_\phi \mathcal{L}(\phi, \theta^*; \mathcal{D}^{val}) \quad \text{s.t.} \quad \theta^* = \mathop{\text{argmin}}_\theta \ell(\phi, \theta; \mathcal{D}^{trn})
+\min_\phi \mathcal{L}(\phi, \theta^*; \mathcal{D}^{val}) \quad \text{s.t.} \quad \theta^* = \mathop{\text{argmin}}_\theta \ell(\phi, \theta; \mathcal{D}^{trn})  \tag{11}
 $$
 
-其中 $\ell(\phi, \theta; \mathcal{D}^{trn})$ 由带训练集的等式 $(7)$ 提供， $\mathcal{L}(\phi, \theta^*; \mathcal{D}^{val})$ 在验证集中由等式 $(8)$ 提供。
+其中 $\ell(\phi, \theta; \mathcal{D}^{trn})$ 由带训练集的等式 $(7)$ 提供， $\mathcal{L}(\phi, \theta^*; \mathcal{D}^{val})$ 在验证集中由等式 $(8)$ 提供。在等式 $(11)$ 中， $f_\theta$ 和 $g_\theta$ 通过计算梯度 $\frac{\partial l}{\partial \theta}$ 和 $\frac{\partial \mathcal{L}}{\partial \phi}$交替更新。为了更好地初始化参数 $\theta$, 作者预训练重构网络 $f_\theta(m, y)$ 几个 epochs。 所提方法的整个训练流程总结为算法 $1$。 引入等式 $(11)$ 有两个好处： 
+
+- 它能平衡 HSI 重构和 mask uncertainty 估计
+- 它使得所提的 GST 作为一个超参数优化方法， 即便只工作在单个 mask 上， 其可以提供高保真的重构。
+
+
 # Conclusions
 
 这项工作探索了在真实的CASSI系统中部署深度HSI模型时的一个实际的硬件错误校准问题。
