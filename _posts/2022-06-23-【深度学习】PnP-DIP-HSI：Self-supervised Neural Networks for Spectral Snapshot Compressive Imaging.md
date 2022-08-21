@@ -121,7 +121,7 @@ $$
 $$
 \hat u = \mathcal{D}_\sigma(x - v) \tag{16}
 $$
-其中 $\sigma$ 是依赖于 $\lambda / \eta$ 估计的噪声等级。
+其中 $\sigma$ 是依赖于 $\lambda / \eta$ 的估计的噪声等级。
 
 2.3） $v$ 由下式更新：
 
