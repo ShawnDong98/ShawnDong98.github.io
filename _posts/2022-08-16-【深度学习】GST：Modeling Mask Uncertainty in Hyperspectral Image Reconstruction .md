@@ -40,6 +40,12 @@ tags:
 - 2D mask 的高维度和 mask set 大小的限制
 - mask 中多变的空间结构
 
+受到 mask 值分布的启发， 其峰值为 0 和 1 的高斯分布， 将 mask 分为两部分：
+
+$$
+m = \tilde m + z
+$$
+假设 $z$ 中的每个像素服从一个高斯分布， 表示为 $p(z) = \mathcal{N}(\mu, \sigma)$。$\tilde m$ 表示具有特定空间结构的二值 mask。 
 
 
 ## Mask Uncertainty 
