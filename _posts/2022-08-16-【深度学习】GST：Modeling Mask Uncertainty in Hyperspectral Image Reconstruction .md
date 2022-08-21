@@ -87,6 +87,9 @@ $$
 
 ## Graph-based Self-Tuning Network
 
+作者提出 graph-based self-tuning (GST) 网络实现等式 $(5)$ 中的 variance model $g_\phi(m)$， 其在每个 mask 附近捕获 uncertainties，并使得 mask 在 real masks 上的分布更光滑。
+
+
 ## Bilevel Optimization
 
 
