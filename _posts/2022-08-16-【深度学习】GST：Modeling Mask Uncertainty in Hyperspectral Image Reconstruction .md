@@ -31,7 +31,16 @@ tags:
 
 ## Preliminaries
 
-**Hardware miscalibration.**  Deep HSI models 在参数 $\theta$ 和 mask $m$ 之间存在一种成对关系。但是 $m$ 和 $\theta$ 之间的校准问题将会导致明显的性能下降。考虑到昂贵的训练时间和硬件中存在的各种噪声，这种错误校准问题不可避免地影响了跨真实系统部署深度HSI模型的灵活性和鲁棒性。为了解决这个问题， 将模型 $f_\theta$ 和 多个 mask 一起建模。然而， 用随机 masks 直接训练单个网络不能在没有见过的 masks 上提供满意的表现，因为缺乏在 uncertainties 和 不同 mask 结构之间显式地探索关系。
+**Hardware miscalibration.**  Deep HSI models 在参数 $\theta$ 和 mask $m$ 之间存在一种成对关系。但是 $m$ 和 $\theta$ 之间的校准问题将会导致明显的性能下降。考虑到昂贵的训练时间和硬件中存在的各种噪声，这种错误校准问题不可避免地影响了跨真实系统部署深度HSI模型的灵活性和鲁棒性。为了解决这个问题， 将模型 $f_\theta$ 和 多个 mask 一起建模。然而， 用随机 masks 直接训练单个网络不能在没有见过的 masks 上提供满意的表现，因为缺乏探索在 uncertainties 和 不同 mask 结构之间关系。
+
+## Mask Uncertainty
+
+建模 mask uncertainty 是有挑战性的， 由于：
+
+- 2D mask 的高维度和 mask set 大小的限制
+- mask 中多变的空间结构
+
+
 
 ## Mask Uncertainty 
 
