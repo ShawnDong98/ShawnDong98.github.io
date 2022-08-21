@@ -87,7 +87,13 @@ $$
 
 ## Graph-based Self-Tuning Network
 
-作者提出 graph-based self-tuning (GST) 网络实现等式 $(5)$ 中的 variance model $g_\phi(m)$， 其在每个 mask 附近捕获 uncertainties，并使得 mask 在 real masks 上的分布更光滑， 如图 3 所示。
+作者提出 graph-based self-tuning (GST) 网络实现等式 $(5)$ 中的 variance model $g_\phi(m)$， 其在每个 mask 附近捕获 uncertainties，并使得 mask 在 real masks 上的分布更光滑， 如图 3 所示。处理没有见过的的 mask(新硬件)的关键是了解如何随着 mask 的空间结构的变化分布。为此，作者将GST实现为视觉推理注意力网络。 它首先基于 neural embedding 计算 pixel-wise correlations(视觉推理)，然后基于图卷积网络(GCN)生成注意力分数。与以往的研究[6,25,61]不同，这篇文章提出的GST模型是针对构建 stochastic probabilistic 编码器来捕获 mask 分布而定制的。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661072899145.png)
+GST 的网络结构如图4所示。给定一个 real mask $m$, GST 使用两个拼接的 $\text{CONV}-\text{ReLU}$ 块生成 neural embedding $H_0$。 然后使用两个 $\text{CONV}$ 层来转换 $H_0$ 为两个不同的 embeddings $H_1$ 和 $H_2$， 通过矩阵乘法 $H_1^TH_2$ 生成一个图表征。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661073470087.png)
+
 
 
 ## Bilevel Optimization
