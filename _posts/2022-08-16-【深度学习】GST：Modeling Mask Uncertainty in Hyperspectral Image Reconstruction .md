@@ -112,6 +112,8 @@ $$
 ## Bilevel Optimization
 
 
+尽管使用等式 $(8)$ 中的损失联合训练 HSI 重构网络 $f_\theta$ 和 self-tuning 网络 $g_\phi$ 是可能的。
+ 
 
 # Conclusions
 
