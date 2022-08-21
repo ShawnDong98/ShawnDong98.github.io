@@ -82,8 +82,8 @@ $$
 \mathcal{L} (\phi, \theta; \mathcal{D}) = \ell(\phi, \theta; \mathcal{D}) + \beta \mathbb{H}[\log q_\phi(m)] \tag{8}
 $$
 
+其中 $\mathbb{H}[\log q_\phi(m)]$ 通过计算 $\ln (h_\phi(m) \sqrt{2 \pi e})$ 和 $\beta > 0$ 解释为 variational inference 和 variational optimization 之间的目标函数。  
 
-## Mask Uncertainty 
 
 ## Graph-based Self-Tuning Network
 
