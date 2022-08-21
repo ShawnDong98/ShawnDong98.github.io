@@ -156,3 +156,37 @@ $$
 此外，将提出的框架与最近预训练的高光谱图像深度去噪网络相结合，以实现联合重建机制。
 
 该联合算法在不同光谱快照压缩成像系统的合成数据集和真实数据集上提供了最先进的结果。
+
+
+
+# Summary
+
+重构目标：
+
+$$
+\hat x = \mathop{\text{argmin}}_{x, \Theta} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) \tag{1}
+$$
+引入 deep image prior：
+
+$$
+\hat x = \mathop{\text{argmin}}_{x, \Theta} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) \quad \text{s.t.} \quad x = T_\Theta(e) \tag{2} 
+$$
+
+$e$ 为随机向量。引入中间变量 $b$：
+
+$$
+\hat x = \mathop{\text{argmin}}_{x, \Theta} \frac{1}{2} \| y - H T_\Theta(e) \|_2^2 + \lambda R(x) + \mu \|x - T_\Theta(e)-b\|_2^2  \tag{3} 
+$$
+
+在实验中发现 $T_\Theta(e)$ 的结果接近 measurement $y$，因此转而提出最小化：
+
+$$
+\min_{x, \Theta} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) + \frac{\rho}{2} \| y - HT_\Theta(e)\|_2^2 \quad \text{s.t.} \quad x = T_\Theta(e) \tag{4}
+$$
+
+引入中间变量 $b$:
+
+$$
+(\hat x, \hat \Theta, \hat b) = \mathop{\text{argmin}}_{x, \Theta, b} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) - \frac{\mu}{2} \| b \|_2^2  \\
++ \frac{\rho}{2}\| y - HT_\Theta(e)\|_2^2  + \frac{\mu}{2}\|x - T_\Theta(e) - b\|_2^2 \tag{5}
+$$
