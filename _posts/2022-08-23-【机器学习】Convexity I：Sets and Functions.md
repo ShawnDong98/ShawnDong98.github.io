@@ -89,4 +89,77 @@ $$
 \mathcal{N}_C(x) = \{g : g^\top x \geq g^\top y, \quad \text{for all} \quad y \in C\}
 $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661256944056.png)
-- $\color{red}\text{Positive semidefinite cone}$： $\mathbb{S}_+^n = \{X \in \mathbb{S} : X \succeq 0\}$， 其中 $x \succeq$ 0  表示 $X$ 是 positive semidefinite ($mathbb{S}^n$ 是 $n \times n$ 对称矩阵的集合)
+- $\color{red}\text{Positive semidefinite cone}$： $\mathbb{S}_+^n = \{X \in \mathbb{S} : X \succeq 0\}$， 其中 $x \succeq$ 0  表示 $X$ 是 positive semidefinite ($\mathbb{S}^n$ 是 $n \times n$ 对称矩阵的集合)
+
+# Key properties of convex sets
+
+
+- $\color{red}\text{Separating hyperplane theorem}$： 两个不想交的 convex sets 在超平面间有 separating
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661258880612.png)
+
+如果 $C, D$ 有非空 convex sets $C \cap D = \emptyset$， 存在 $a, b$ :
+
+$$
+C \subseteq \{x : a^\top x \leq b \} \\
+D \subseteq \{x : a^\top x \geq b\}
+$$
+
+- $\color{red}\text{Supporting hyperplane theorem}$： 凸集的边界点有一个支撑超平面穿过它
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661260089038.png)
+
+如果 $C$ 是非空 convex set， $x_0 \in \text{bd}(C)$， 存在 $a$:
+
+$$
+C \subset \{x : a^\top x \leq a^\top x_0\}
+$$
+
+上述两个定理（seperating 和 supporting hyperplane 定理）都有部分相反；
+
+# Operations preserving convexity
+
+- $\color{red}\text{Intersection}$： 凸集的交是凸的
+- $\color{red}\text{Scaling and translation}$ ： 如果 $C$ 是凸的， 那么：
+
+$$
+aC + b = \{ax + b : x \in C\}
+$$
+是凸的， 对于任意 $a, b$ 
+
+- $\color{red}\text{Affine images and preimages}$： 如果 $f(x) = Ax + b$ 并且 $C$ 是凸的， 那么：
+
+$$
+f(C) = \{f(x) : x \in C\}
+$$
+
+是凸的， 如果 $D$ 是凸的， 那么：
+
+$$
+f^{-1}(D) = \{x : f(x) \in D\}
+$$
+
+是凸的
+
+
+# Example: linear matrix inequality solution set
+
+给定 $A_1, ..., A_k, B \in \mathbb{S}^n$， $\color{red}\text{linear matrix inequality}$ 是如下形式：
+
+$$
+x_1 A_1 + x_2 A_2 + ... + x_k A_k \preceq B
+$$
+对于变量 $x \in \mathbb{R}^k$。 让我们证明满足上述不等式的点 $x$ 的集合 $C$ 是凸的
+
+
+Approach 1： 直接验证 $x, y \in C \Rightarrow tx + (1- t)y \in C$。 对于任意 $v$:
+
+$$
+v^\top(B - \sum_{i=1}^k (t x_i + (1 - t)y_i) A_i) v \geq 0
+$$
+
+Approach 2:  令 $f: \mathbb{R}^k \rightarrow \mathbb{S}^n$， $f(x) = B - \sum_{i=1}^k x_i A_i$。$C = f^{-1}(\mathbb{S}_+^n)$ 是凸集的 affine preimage。
+
+$$
+
+$$
