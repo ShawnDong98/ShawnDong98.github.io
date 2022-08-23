@@ -79,3 +79,13 @@ $$
 其中 $\theta_i \geq 0, i = 1, ..., k$。
 
 $\color{red}{\text{Conic hull}}$ 是所有 conic combination。
+
+# Examples of convex cones
+
+- $\color{red}\text{Norm cone}$: $\{(x, t): \| x \| \leq t\}$ ， 对于一个范数 $\| · \|$。 在 $\ell_2$ 范数 $\| · \|_2$ 下， 叫做 $\color{red}\text{second-order cone}$
+- $\color{red}\text{Normal cone}$： 给定集合 $C$ 和 点 $x \in C$, 我们可以定义：
+
+$$
+\mathcal{N}_C(x) = \{g : g^\top x \geq g^\top y, \quad \text{for all} \quad y \in C\}
+$$
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661256944056.png)
