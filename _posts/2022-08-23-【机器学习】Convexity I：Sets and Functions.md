@@ -24,7 +24,7 @@ $$
 
 # Convex sets
 
-$\color{red}{\text{Convex set}}$： $C \in \mathbb R^{n}$ ：
+$\color{red}{\text{Convex set}}$： $C \subseteq \mathbb R^{n}$ ：
 
 $$
 x, y \in C \Rightarrow tx + (1 - t)y \in C \quad \text{for all} \quad 0 \leq t \leq 1
@@ -53,3 +53,29 @@ $\theta_i \geq 0, i = 1, ..., k$， 并且 $\sum_{i=1}^k \theta_i = 1$ 。
 - $\color{red}\text{Affine space}$ ： $\{x ： Ax = b\}$， 给定 $A, b$
 - $\color{red}\text{Polyhedron}$ ： $\{x : Ax \leq b\}$， 其中不等号解释为 componentwise
 -  $\color{red}\text{Simplex}$： plolyhedra 的特殊情况， 给定 $\text{conv}\{x_0, ..., x_k\}$， 其中这些点是 affinely independent 的
+
+
+# Cones
+
+$\color{red}\text{Cone}$： $C \subseteq \mathbb{R}^n$:
+
+$$
+x \in C \Rightarrow tx \in C \quad \text{for all} \quad t \geq 0
+$$
+
+$\color{red}\text{Convex cone}$： cone 也是凸的， 例如：
+
+$$
+x1, x2 \in C \Rightarrow t_1x_1 + t_2x_2 \in C \quad \text{for all} \quad t_1, t_2 \geq 0
+$$
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661256386114.png)
+
+$x_1, ..., x_k \in \mathbb{R}^n$ 的 $\color{red}\text{Conic combination}$ ： 任意线性组合：
+
+$$
+\theta_1 x_1 + ... + \theta_k x_k
+$$
+其中 $\theta_i \geq 0, i = 1, ..., k$。
+
+$\color{red}{\text{Conic hull}}$ 是所有 conic combination。
