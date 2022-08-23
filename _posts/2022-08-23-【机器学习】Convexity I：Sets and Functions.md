@@ -42,3 +42,14 @@ $$
 $\theta_i \geq 0, i = 1, ..., k$， 并且 $\sum_{i=1}^k \theta_i = 1$ 。 
 
 集合 $C$ 的 $\color{red}{\text{Convex hull}}$ $\text{conv}(C)$ 是所有元素的 convex combinations。 并且总是凸的。
+
+
+# Examples of convex sets
+
+- 空集， 点， 线
+- $\color{red}{\text{Norm ball}}$ : $\{x: \| x \| \leq r\}$, 给定范数 $\| · \|$， 半径为 $r$
+- $\color{red}\text{Hyperplane}$ : $\{x : a^\top x = b\}$， 给定 $a, b$
+- $\color{red}\text{Halfspace}$ ： $\{x : a^\top x \leq b\}$
+- $\color{red}\text{Affine space}$ ： $\{x ： Ax = b\}$， 给定 $A, b$
+- $\color{red}\text{Polyhedron}$ ： $\{x : Ax \leq b\}$， 其中不等号解释为 componentwise
+-  $\color{red}\text{Simplex}$： plolyhedra 的特殊情况， 给定 $\text{conv}\{x_0, ..., x_k\}$， 其中这些点是 affinely independent 的
