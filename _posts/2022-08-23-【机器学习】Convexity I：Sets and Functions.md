@@ -89,3 +89,4 @@ $$
 \mathcal{N}_C(x) = \{g : g^\top x \geq g^\top y, \quad \text{for all} \quad y \in C\}
 $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661256944056.png)
+- $\color{red}\text{Positive semidefinite cone}$： $\mathbb{S}_+^n = \{X \in \mathbb{S} : X \succeq 0\}$， 其中 $x \succeq$ 0  表示 $X$ 是 positive semidefinite ($mathbb{S}^n$ 是 $n \times n$ 对称矩阵的集合)
