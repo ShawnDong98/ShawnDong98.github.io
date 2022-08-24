@@ -160,6 +160,62 @@ $$
 
 Approach 2:  令 $f: \mathbb{R}^k \rightarrow \mathbb{S}^n$， $f(x) = B - \sum_{i=1}^k x_i A_i$。$C = f^{-1}(\mathbb{S}_+^n)$ 是凸集的 affine preimage。
 
-$$
+
+# More operations preserving convexity
+
+- $\color{red}\text{Perspective images and preimages}$： perspective function 是 $P: \mathbb{R}^n \times \mathbb{R}_{++} \rightarrow \mathbb{R}^n$ (其中 $\mathbb{R}_{++}$ 表示正实数)
 
 $$
+P(x, z) = x / z
+$$
+对于 $z > 0$。 如果 $C \subset \text{dom}(P)$ 是凸的， 那么 $P(C)$ 也是凸的， 如果 $D$ 是凸的， 那么 $P^{-1}(D)$ 也是凸的。 
+
+- $\color{red}\text{Linear-fractional images and preimages}$ ：由 affine function 组成的 perspective map:
+
+$$
+f(x) = \frac{Ax + b}{c^\top x + d}
+$$
+叫做 $\color{red}\text{linear-fractional}$ 函数，定义在 $c^\top x + d > 0$ 上。 如果 $C \subseteq \text{dom}(f)$  是凸的， 那么 $f(C)$ 也是凸的， 如果 $D$ 是凸的， 那么 $f^{-1}(D)$ 也是凸的
+
+# Example： conditional probability set
+
+令 $U, V$ 为在 $\{1, ..., n\}$ 和 $\{1, ..., m\}$ 上的随机变量。 令 $C \subseteq \mathbb{R}^{nm}$ 是 $U, V$ 的联合分布集合， 例如每个 $p \in C$ 定义为联合概率：
+
+$$
+p_{ij} = \mathbb{P}(U = i, V = j)
+$$
+令 $D \in \mathbb{R}^{nm}$ 包含对应的 $\color{red}\text{conditional distributions}$， 例如，每个 $q \in D$ 定义：
+
+$$
+q_{ij} = \mathbb{P}(U = i \mid V_j)
+$$
+假设 $C$ 是凸的， 让我们证明 $D$ 是凸的。
+
+$$
+D = \left\{q \in \mathbb{R}^{nm} : q_{ij} = \frac{p_{ij}}{\sum_{k=1}^n p_{kj}}, \quad \text{for some} \quad p \in C \right\} = f(C)
+$$
+
+
+# Convex functions
+
+$\color{red}\text{Convex function}$ ： $f: \mathbb{R}^n \rightarrow \mathbb{R}$ ， 有 $\text{dom}(f) \subseteq \mathbb{R}^n$ 凸， 并且：
+
+$$
+f(tx + (1 - t)y) \leq tf(x) + (1 - t) f(y) \quad \text{for } \quad 0 \leq t \leq 1
+$$
+
+对所有 $x, y \in \text{dom}(f)$
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661320917910.png)
+
+简答来说， 函数在线段 $f(x), f(y)$ 下面
+
+$\color{red}\text{Concave function}：$ 上面不等式的反：
+
+$$
+f \text{ concave} \Leftrightarrow -f \text{ convex}
+$$
+
+Important modifiers：
+
+- $\color{red}\text{Strictly convex}：$ 对 $x \neq y$ 并且 $0 < t < 1$， $f(tx + (1 - t)y) < tf(x) + (1 - t)f(y)$ 。简单来说，$f$ 是凸的， 并且比线性函数具有更大的曲率。
