@@ -24,3 +24,7 @@ neuralized estimator 的关键部分是一种自适应随机梯度 Langevin dyna
 在这些应用上的实验表明，该方法不仅在图像恢复质量方面优于现有的非学习和无监督解，而且具有更高的计算效率。
 
 # Conclusion
+
+这篇文章提出了一种用于一般图像恢复和重建问题的自监督深度学习方法，该方法基于 adaptive stochastic gradient Langevin dynamics 以有效 MCMC 采样用以积分计算。
+
+该方法具有通用性，在结构质量和计算效率方面优于现有的无监督学习方法。
