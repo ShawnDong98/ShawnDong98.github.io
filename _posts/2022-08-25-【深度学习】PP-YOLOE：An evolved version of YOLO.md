@@ -35,8 +35,10 @@ PP-YOLOv2的整体架构包括带有可形变卷积[34]的ResNet50-vd[10] Backbo
 
 **Backbone and Neck.**  Residual 连接[9,29,11]和 Dense 连接[12,15,20]在现代卷积神经网络中得到了广泛的应用。残差连接引入 shortcut 来解决梯度消失问题，也可以看作是一种模型集成方法。Dense 连接聚合具有不同感受野的中间特征，在目标检测任务中表现出良好的性能。CSPNet[27]利用 cross stage dense connections，在不损失精度的情况下降低了计算负担，在YOLOv5[14]、YOLOX[6]等有效的目标检测器中很受欢迎。VoVNet[15]和随后的TreeNet[20]在目标检测和实例分割方面也表现出了优越的性能。受这些作品的启发，作者提出了一种新的 RepResBlock，通过结合 Residual 连接和 Dense 连接，它被用于 Backbone 和 neck。
 
+来自TreeBlock[20]，RepResBlock 在训练阶段如图3(b)所示，在推断阶段如图3(c)所示。首先，作者对原始的TreeBlock进行简化(图3(a))。然后，我们将 concatenation 操作替换为 element-wise add 操作(图3(b))，因为 RMNet[19] 在一定程度上显示了这两个操作的近似。因此，在推断阶段，可以以 RepVGG[4] 的方式重新参数化的ResNet-34使用的一个基本的残差块(图3(c))。
 
-
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661408764201.png)
+作者使用提出的 RepResBlock来构建 backbone 和 neck。与ResNet类似，我们的主干名为CSPRepResNet，它包含一个stem，其由三个卷积层和 RepResBlock 堆叠的四个后续阶段组成，如图3(d)所示。每一级采用  cross stage partial connections ，避免了大量的 $3 \times 3$ 卷积层带来的大量参数和计算负担。在构建主干时，还使用了ESE (Effective Squeeze and extraction)层在每个 CSPRepResBlock 中施加通道注意力。和PP-YOLOv2[13]一样，使用提出的RepResBlock和CSPRepResStage 构建 neck。与backbone不同的是，在 becj 去除了 RepResBlock中的shortcut和CSPRepResStage中的ESE层。
 
 # Conclusion
 
