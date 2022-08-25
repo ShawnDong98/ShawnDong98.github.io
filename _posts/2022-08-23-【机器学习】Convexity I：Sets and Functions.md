@@ -293,4 +293,4 @@ $$
 对所有 $x, y \in \text{dom}(f)$。 因此对于一个可微 convex function $\nabla f(x) = 0 \Leftrightarrow x \text{ minimize } f$ 
 
 - $\color{red}\text{Second-order characterization}$ ： 如果 $f$ 是二阶可微的， 当且仅当 对所有 $x \in \text{dom}(f)$ , $\text{dom}(f)$ 是 convex 的 并且 $\nabla^2 f(x) \succeq 0$ ， 那么 $f$ 是 convex 的
-- $\color{red}\text{Jensen's inequality}$ ： 如果 $f$ 是 convex 的， 
+- $\color{red}\text{Jensen's inequality}$ ： 如果 $f$ 是 convex 的， 并且 $X$ 是一个支持 $\text{dom}(f)$ 的随机向量， 然后 $f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]$。 
