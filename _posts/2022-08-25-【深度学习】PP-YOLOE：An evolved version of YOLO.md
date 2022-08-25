@@ -38,7 +38,26 @@ PP-YOLOv2的整体架构包括带有可形变卷积[34]的ResNet50-vd[10] Backbo
 来自TreeBlock[20]，RepResBlock 在训练阶段如图3(b)所示，在推断阶段如图3(c)所示。首先，作者对原始的TreeBlock进行简化(图3(a))。然后，我们将 concatenation 操作替换为 element-wise add 操作(图3(b))，因为 RMNet[19] 在一定程度上显示了这两个操作的近似。因此，在推断阶段，可以以 RepVGG[4] 的方式重新参数化的ResNet-34使用的一个基本的残差块(图3(c))。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661408764201.png)
-作者使用提出的 RepResBlock来构建 backbone 和 neck。与ResNet类似，我们的主干名为CSPRepResNet，它包含一个stem，其由三个卷积层和 RepResBlock 堆叠的四个后续阶段组成，如图3(d)所示。每一级采用  cross stage partial connections ，避免了大量的 $3 \times 3$ 卷积层带来的大量参数和计算负担。在构建主干时，还使用了ESE (Effective Squeeze and extraction)层在每个 CSPRepResBlock 中施加通道注意力。和PP-YOLOv2[13]一样，使用提出的RepResBlock和CSPRepResStage 构建 neck。与backbone不同的是，在 becj 去除了 RepResBlock中的shortcut和CSPRepResStage中的ESE层。
+作者使用提出的 RepResBlock来构建 backbone 和 neck。与ResNet类似，我们的主干名为CSPRepResNet，它包含一个stem，其由三个卷积层和 RepResBlock 堆叠的四个后续阶段组成，如图3(d)所示。每一级采用  cross stage partial connections ，避免了大量的 $3 \times 3$ 卷积层带来的大量参数和计算负担。在构建主干时，还使用了ESE (Effective Squeeze and extraction)层在每个 CSPRepResBlock 中施加通道注意力。和PP-YOLOv2[13]一样，使用提出的RepResBlock和CSPRepResStage 构建 neck。与backbone不同的是，在 neck 去除了 RepResBlock中的shortcut和CSPRepResStage中的 ESE 层。
+
+作者使用 width multiplier $\alpha$ 和 depth multiplier $\beta$ 来共同缩放基本的 backbone 和 neck，就像YOLOv5[14]。由此，我们可以得到一系列不同参数、不同计算量的检测网络。基本 backbone 的 width 设定为 [64, 128, 256, 512, 1024]。 除 stem 外，基本 backbone 的深度设置为[3,6,6,3]。基本 neck 的 width 和 depth 分别设定为 [192, 384, 768] 和 3。 表1给出了不同的 width multiplier 和  depth multiplier的规格。这种修改可以获得 0.7% 的AP性能提升性能提升，如表2所示。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661410340416.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661410074563.png)
+
+**Task Alignment Learning(TAL).** 为了进一步提升准确率， 标签分配是需要考虑的另一个方面。标签分配是需要考虑的另一个方面。YOLOX使用SimOTA作为标签分配策略来提高性能。然而，为了进一步克服分类和定位的 misalignment，在TOOD[5]中提出了task alignment learning(TAL)，该学习由 dynamic label assignment 和任务对齐损失组成。Dynamic label assignment 意味着 prediction/loss aware。 根据预测结果，为每个标签分配动态数量的  positive anchors。 通过明确对齐两个任务，TAL可以同时获得最高的分类分数和最精确的边界框。
+
+对于任务对齐损失， TOOD 使用一个标准化的 $t$，即 $\hat t$ 来替换 loss 中的目标。它采用每个实例中最大的 IoU 归一化。 分类的 Binary Cross Entropy(BCE) 可以重写为： 
+
+
+$$
+L_{cls-pos} = \sum_{i=1}^{N_{pos}} BCE(p_i, \hat t_i) 
+$$
+
+作者使用不同的标签分配策略来研究其性能。作者在上述修改后的模型上进行了实验，该模型以 CSPRepResNet 为 backbone。为了快速得到验证结果，作者只在COCO train2017 上进行了 36 个 epoch 的训练，并在COCO val上进行了验证。如表3所示，TAL取得了最好的45.2%的AP性能。作者使用 TAL 代替 FCOS 的标签分配，取得了 0.9% AP的提高，如表2所示。
+
+
 
 # Conclusion
 
