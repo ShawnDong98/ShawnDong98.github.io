@@ -310,4 +310,59 @@ $$
 $$
 f(x) = \max_{y \in C} \| x - y \|
 $$
+对于任意固定的 $y$, $f_y(x) = \| x - y \|$ 是 convex 的， 通过 pointwise maximization rule, $f$ 是 convex 的
+
+令 $C$ 是 convex 的， 考虑到 $C$ 的 $\color{red}\text{minimum distance}$ ：
+
+$$
+f(x) = \min_{y \in C} \| x - y \|
+$$
+
+$g(x, y) = \| x - y \|$ 是 convex 的， 并且假设 $C$ 是 convex 的， 因此应用 partial minimization rule
+
+
+# More operations preserving convexity
+
+- $\color{red}\text{Affine composition}$ ： 如果 $f$ 是 convex 的， 那么 $g(x) = f(Ax + b)$ 是 convex 的
+- $\color{red}\text{General composition}$ ： 假设 $f = h \circ g$， 其中 $g : \mathbb{R}^n \rightarrow \mathbb{R}, h: \mathbb{R} \rightarrow \mathbb{R}, f: \mathbb{R}^n \rightarrow \mathbb{R}$ 那么：
+- - 如果 $h$ 是 convex 并且非递减的， $g$ 是 convex 的， 那么 $f$ 是 convex 的
+- - 如果 $h$ 是 convex 并且非递增的， $g$ 是 concave 的， 那么 $f$ 是 convex 的
+- - 如果 $h$ 是 concave 并且非递减的， $g$ 是 concave 的， 那么 $f$ 是 concave 的
+- - 如果 $h$ 是 concave 并且非递增的， $h$ 是 convex 的， 那么 $f$ 是 concave 的
+
+如何记住这些？ 回忆当 $n = 1$ 时， 链式法则：
+
+$$
+f''(x) = h''(g(x))g'(x)^2 + h'(g(x))g''(x)
+$$
+- $\color{red}\text{Vector composition}$ ： 假设
+
+$$
+f(x) = h(g(x)) = h(g_1(x), ..., g_k(x))
+$$
+其中 $g: \mathbb{R}^n \rightarrow \mathbb{R}^k, h : \mathbb{R}^k \rightarrow \mathbb{R}, f: \mathbb{R}^n \rightarrow \mathbb{R}$， 然后
+
+- - 如果 $h$ 是 convex 的并且在每个参数中是非递减的， $g$ 是 convex 的， 那么 $f$ 是 convex 的
+- - 如果 $h$ 是 convex 的并且在每个参数中是非递增的， $g$ 是 concave 的， 那么 $f$ 是 convex 的
+- - 如果 $h$ 是 concave 的并且在每个参数中是非递减的， $g$ 是 concave 的， 那么 $f$ 是 concave 的
+- - 如果 $h$ 是 concave 的并且在每个参数中是非递增的， $g$ 是 convex 的， 那么 $f$ 是 concave 的
+
+
+# Example： log-sum-exp function
+
+$\color{red}\text{Log-sum-exp function}$： 对于固定的 $a_i, b_i, i = 1, ..., k$， $g(x) = \log(\sum_{i=1}^k e^{a_i^\top x + b_i})$ 。 通常叫做 "soft max" , 因为它估计 $\max_{i=1, ..., k}(a_i^\top x + b_i)$
+
+首先， 足够证明 $f(x) = \log (\sum_{i=1}^n e^{x_i})$ 的 convexity (affine composition rule)
+
+现在使用使用 second-order characterization。 计算：
+
+$$
+\nabla_i f(x) = \frac{e^{x_i}}{\sum_{\ell = 1}^n e^{x_\ell}}
+$$
+$$
+\nabla_{ij}^2 f(x) = \frac{e^{x_i}}{\sum_{\ell = 1}^n e^{x_\ell}} 1\{i = j\} - \frac{e^{x_i}e^{x_j}}{(\sum_{\ell=1}^n e^{x_\ell})^2}
+$$
+
+将 $\nabla^2 f(x) = \text{diag}(z) - zz^\top$， 其中 $z_i = e^{x_i} / (\sum_{\ell = 1}^n e^{x_\ell})$。 这个矩阵是主对角矩阵， 因此是半正定的。
+
 
