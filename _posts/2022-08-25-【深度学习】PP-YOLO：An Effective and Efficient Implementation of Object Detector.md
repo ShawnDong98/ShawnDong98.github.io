@@ -47,6 +47,12 @@ one-stage anchor-based 检测器通常由 backbone、detection neck(典型的特
 
 **Detection Head** YOLOv3的检测头非常简单。它由两个卷积层组成。采用一个 $3 \times 3$ 卷积层和 $1 \times 1$ 卷积层得到最终的预测结果。每个最终预测的输出通道为 $3(K + 5)$，其中 $K$ 为类的数量。每个最终 prediction map 上的每个位置都与三个不同的 anchors 相关联。对于每个 anchor，前 $K$ 个通道是 $K$ 类的概率预测。后面4个通道是 bbox 定位的预测。最后一个通道是 objectness score 的预测。分类和定位时，分别采用交叉熵损失和L1损失。jectness loss[32]用于监督objectness score，用于判断是否存在目标。
 
+## Selection of Tricks 
+
+本节将介绍这篇文章中使用的各种技巧。这些技巧都是已经存在的，来自于不同的工作[10,1,42,39,38,25,12]。 这篇文章并没有提出一种新的检测方法，只是着重于结合现有的技巧来实现一种高效有效的检测器。由于许多技巧不能直接应用于YOLOv3，因此需要根据YOLOv3的结构进行调整。
+
+**Larger Batch Size** 使用更大的批大小可以提高训练的稳定性，获得更好的结果。作者将训练的 batch size 从 64 调整为 192， 并且调整 training schedule 和 learning rate。
+
 # Conclusion
 
 这篇文章介绍了一种基于PaddlePaddle的目标检测器的新实现——PP-YOLO。
