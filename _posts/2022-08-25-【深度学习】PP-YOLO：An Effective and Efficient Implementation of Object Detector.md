@@ -58,7 +58,11 @@ one-stage anchor-based 检测器通常由 backbone、detection neck(典型的特
 $$
 W_{EMA} = \lambda W_{EMA} + (1 - \lambda) W \tag{1}
 $$
-**DropBlock** DropBlock 是结构化 dropout 的一种形式， 在一个特征图的连续区域中的单元被放到一起。与原文不同的是，作者只在FPN上使用DropBlock，因为发现在 Backbone 上添加 DropBlock 会导致性能下降。
+**DropBlock** DropBlock 是结构化 dropout 的一种形式， 在一个特征图的连续区域中的单元被放到一起。与原文不同的是，作者只在FPN上使用DropBlock，因为发现在 Backbone 上添加 DropBlock 会导致性能下降。DropBlock的详细注入点由图2中的三角形标记。
+
+**IoU Loss** 边界框回归是目标检测的关键步骤。在YOLOv3中，采用 L1 损失进行bound-box regression。它不是为mAP评估指标量身定制的，而mAP高度依赖于Intersection over Union (IoU)。IoU损失以及CIoU损失和GIoU损失[46,34]等其他变体已经被提出来解决这个问题。与 yolov4 不同的是，作者没有直接用 IoU loss 替换 L1 loss，作者增加了另一个分支来计算IoU loss。作者发现各种 IoU loss 的改进都是相似的，所以我们选择了最基本的IoU loss [42]。
+
+**IoU Aware** 在YOLOv3中，分类概率和 objectness score 相乘作为最终检测置信度，不考虑定位精度。为了解决这一问题，增加了一个IoU预测分支来衡量定位的准确性。在训练中，采用IoU aware loss 的方法对 IoU 预测分支进行训练。
 
 # Conclusion
 
