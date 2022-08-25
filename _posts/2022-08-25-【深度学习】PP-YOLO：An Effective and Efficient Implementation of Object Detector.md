@@ -34,6 +34,15 @@ PP-YOLO通过多种技巧的结合，可以在准确率(45.2% mAP)和速度(72.9
 
 one-stage anchor-based 检测器通常由 backbone、detection neck(典型的特征金字塔网络，FPN)和用于目标分类和定位的detection head 组成。它们也是大多数基于 anchor-point 的 one-stage anchor-free 检测器中常见的组件。这篇文章首先对YOLOv3的详细结构进行了修改，其将 backbone 替换为 ResNet50-vd-dcn， 将其作为这篇文章的 baseline。然后作者引入了一堆可以几乎不损失效率的技巧来提高YOLOv3的性能。
 
+## Architecture 
+
+**Backbone** YOLOv3的整体架构如图2所示。作者将 backbone DrakNet-53 替换为 ResNet50-vd。将DarkNet-53 替换为 ResNet50-vd 会损害 YOLOv3 检测器的性能。 作者将ResNet50-vd中的部分卷积层替换为可形变卷积层。 可形变卷积网络(Deformable convolutional Networks, DCN)的有效性已经在许多检测模型中得到了验证。DCN 本身不会显著增加模型的参数量和 FLOPs， 但是实际上太多的 DCN 层将会大大增加推理时间。 因此，为了平衡效率和有效性，我们只在最后的 stage 用DCNs替换 $3 \times 3$ 卷积层。作者将这种修改后的 backbone 叫做 ResNet50-vd-dc, stage 3,4,5 的输出表示为 $C_3, C_4, C_5$。 
+
+
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661430351282.png)
+
 # Conclusion
 
 这篇文章介绍了一种基于PaddlePaddle的目标检测器的新实现——PP-YOLO。
