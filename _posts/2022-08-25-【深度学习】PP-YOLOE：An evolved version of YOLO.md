@@ -57,7 +57,16 @@ $$
 
 作者使用不同的标签分配策略来研究其性能。作者在上述修改后的模型上进行了实验，该模型以 CSPRepResNet 为 backbone。为了快速得到验证结果，作者只在COCO train2017 上进行了 36 个 epoch 的训练，并在COCO val上进行了验证。如表3所示，TAL取得了最好的45.2%的AP性能。作者使用 TAL 代替 FCOS 的标签分配，取得了 0.9% AP的提高，如表2所示。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661413235148.png)
 
+**Efficient Task-aligned Head (ET-head).** 在目标检测中，分类与定位之间的任务冲突是一个众所周知的问题。许多文献[5,32,16,30]都提出了相应的解决方案。YOLOX的 decoupled head 吸取了大多数 one-stage 和 two-stage 检测器的经验，成功地应用于YOLO模型，提高了精度。然而，decoupled head 可能使分类和定位任务分离和独立，缺乏 task specific learning。基于 TOOD， 作者改进了 head，提出了ET-head，目标是兼顾速度和准确性。如图2所示，作者使用 ESE 代替 TOOD 中的 layer attention，将分类分支的对齐简化为shortcut，将回归分支的对齐替换为 distribution focal loss(DFL)层[16]。 通过以上改动，ET-head在V100上增加了0.9ms。
+
+对于分类和定位任务的学习，作者分别选择了varifocal loss (VFL)和distribution focal loss (DFL)。PP-Picodet[31]成功地将VFL和DFL应用于目标检测器中，性能得到了提高。对于[32]的VFL，不同于[16]的 quality focal loss(QFL)， VFL使用目标评分来加权正样本的损失。 这使得 IoU 的正样本对损失的贡献相对较大。这也使得模型在训练时更加关注高质量的样本而不是低质量的样本。同样的，两者都以 IoU-aware classification score (IACS) 为目标进行预测。该方法可以有效地学习分类分数和定位质量估计的联合表示，实现训练和推理的高度一致性。对于DFL，为了解决边界框表示不灵活的问题，[16]提出使用  general distribution 来预测边界框。最终模型的损失函数为：
+
+$$
+Loss = \frac{\alpha · loss_{VFL} + \beta · loss_{G_{IoU}} + \gamma · loss_{DFL}}{\sum_i^{N_{pos}} \hat t}
+$$
+其中 $\hat t$ 表示规范化后的目标分数， 见等式 (1)。 
 
 # Conclusion
 
