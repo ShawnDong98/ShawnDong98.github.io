@@ -43,6 +43,8 @@ one-stage anchor-based 检测器通常由 backbone、detection neck(典型的特
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661430351282.png)
 
+**Detection Neck**  然后使用FPN[21]构建特征映射之间横向连接的特征金字塔。特征图 $C_3, C_4, C_5$ 输入 FPN 模块。
+
 # Conclusion
 
 这篇文章介绍了一种基于PaddlePaddle的目标检测器的新实现——PP-YOLO。
