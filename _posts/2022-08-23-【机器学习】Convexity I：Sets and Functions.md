@@ -300,4 +300,14 @@ $$
 
 - $\color{red}\text{Nonnegative linear combination}$： $f_1, ..., f_m$ 是 convex 意味着 对于任意 $a_1, ..., a_m \geq 0$， $a_1 f_1 + ... + a_m f_m$ 是 convex 的
 - $\color{red}\text{Pointwise maximization}$： 对任意 $s \in S$， 如果 $f_s$ 是 convex 的， 那么 $f(x) = \max_{s \in S} f_s(x)$ 是 convex 的。 这里的集合 $S$ (函数 $f_s$ 的数量)是有限的
-- $\color{red}\text{Partial minimization}$： 如果 $g(x, y)$ 是 convex 的， 并且 $C$ 是 convex 的， 那么 $f(x) = \min_{y \in C} g(x, y)$ 是 convex 的。
+- $\color{red}\text{Partial minimization}$： 如果 $g(x, y)$ 是 convex 的， 并且 $C$ 是 convex 的， 那么 $f(x) = \min_{y \in C} g(x, y)$ 是 convex 的
+
+
+# Example： distances to a set
+
+令 $C$ 是任意集合， 在一个任意范数 $\| · \|$下，  考虑到 $C$ 的 $\color{red}\text{maximum distance}$  ：
+
+$$
+f(x) = \max_{y \in C} \| x - y \|
+$$
+
