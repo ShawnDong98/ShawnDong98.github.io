@@ -29,4 +29,11 @@ tags:
 由于这篇文章所有的实验都是基于PaddlePaddle进行的，所以称之为PP-YOLO。
 
 PP-YOLO通过多种技巧的结合，可以在准确率(45.2% mAP)和速度(72.9 FPS)之间取得更好的平衡，超过了现有的最先进的检测器effentdet和YOLOv4。
+
 # Conclusion
+
+这篇文章介绍了一种基于PaddlePaddle的目标检测器的新实现——PP-YOLO。
+
+PP-YOLO比其他先进的检测器(如effentdet和YOLOv4)更快(FPS)和更准确(COCO mAP)。
+
+这篇文章探索了许多技巧，并展示了如何在YOLOv3检测器上组合这些技巧，并演示了它们的有效性。
