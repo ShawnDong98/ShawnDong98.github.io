@@ -30,6 +30,10 @@ tags:
 
 PP-YOLO通过多种技巧的结合，可以在准确率(45.2% mAP)和速度(72.9 FPS)之间取得更好的平衡，超过了现有的最先进的检测器effentdet和YOLOv4。
 
+# Method
+
+one-stage anchor-based 检测器通常由 backbone、detection neck(典型的特征金字塔网络，FPN)和用于目标分类和定位的detection head 组成。它们也是大多数基于 anchor-point 的 one-stage anchor-free 检测器中常见的组件。这篇文章首先对YOLOv3的详细结构进行了修改，其将 backbone 替换为 ResNet50-vd-dcn， 将其作为这篇文章的 baseline。然后作者引入了一堆可以几乎不损失效率的技巧来提高YOLOv3的性能。
+
 # Conclusion
 
 这篇文章介绍了一种基于PaddlePaddle的目标检测器的新实现——PP-YOLO。
