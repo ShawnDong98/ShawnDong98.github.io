@@ -22,6 +22,22 @@ tags:
 
 此外，加上TensorRT和fp16， PP-YOLOE推理速度达到149.2 FPS。
 
+
+# Method
+## A Brief Review of PP-YOLOv2
+
+PP-YOLOv2的整体架构包括带有可形变卷积[34]的ResNet50-vd[10] Backbone、带有SPP层和DropBlock[7]的PAN neck以及 lightweight IoU aware head。 在PP-YOLOv2中，Backbone 使用 ReLU 激活函数，neck 使用 mish 激活函数。和YOLOv3一样，PP-YOLOv2只为每个真实目标分配一个 anchor。除了分类损失、回归损失和 objectness loss 外，PP-YOLOv2还使用 IoU loss 和 IoU aware loss 来提高性能。详情请参考[13]。
+
+## Improvement of PP-YOLOE 
+
+**Anchor-free.** 如上所述，PP-YOLOv2[13]以一种基于 Anchor 的方式标记 ground truths。 然而，Anchor 机制引入了大量的超参数，并依赖于手工设计，这可能不能很好地泛化到其他数据集。基于上述原因，作者在PP-YOLOv2中引入了Anchor-free 方法。按照FCOS[25]在每个像素上 tiles 一个 anchor point，为三个 detection heads 设置 upper bounds 和 lower bounds，将ground truth分配给对应的feature map。然后计算 bbox 的中心，选择距离最近的像素作为正样本。和YOLO系列一样，预测一个4D向量(x, y, w, h)进行回归。此修改使模型速度稍快，损失0.3 AP，如表2所示。虽然根据PP-YOLOv2的 Anchor 尺寸精心设置了上界和下界，但基于 Anchor 和 Anchor-free 的赋值结果仍存在一些小的不一致，可能导致精度下降。
+
+
+**Backbone and Neck.**  Residual 连接[9,29,11]和 Dense 连接[12,15,20]在现代卷积神经网络中得到了广泛的应用。残差连接引入 shortcut 来解决梯度消失问题，也可以看作是一种模型集成方法。Dense 连接聚合具有不同感受野的中间特征，在目标检测任务中表现出良好的性能。CSPNet[27]利用 cross stage dense connections，在不损失精度的情况下降低了计算负担，在YOLOv5[14]、YOLOX[6]等有效的目标检测器中很受欢迎。VoVNet[15]和随后的TreeNet[20]在目标检测和实例分割方面也表现出了优越的性能。受这些作品的启发，作者提出了一种新的 RepResBlock，通过结合 Residual 连接和 Dense 连接，它被用于 Backbone 和 neck。
+
+
+
+
 # Conclusion
 
 这份报告介绍了PP-YOLOv2的几个更新，包括 scalable backbone-neck 结构，高效的 task aligned head，先进的 label assignment strategy 和精细的目标损失函数，形成了一系列高性能的目标探测器称为PP-YOLOE。
