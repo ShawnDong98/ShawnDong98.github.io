@@ -219,3 +219,34 @@ $$
 Important modifiers：
 
 - $\color{red}\text{Strictly convex}：$ 对 $x \neq y$ 并且 $0 < t < 1$， $f(tx + (1 - t)y) < tf(x) + (1 - t)f(y)$ 。简单来说，$f$ 是凸的， 并且比线性函数具有更大的曲率。
+- $\color{red}\text{Strongly convex}$ : 参数 $m > 0$: $f - \frac{m}{2} \| x \|_2^2$ 是凸的。 简单来说， $f$ 作为一个二次方程至少是凸的。
+
+Note： $\text{strongly convex}$ $\Rightarrow$ $\text{strickly convex}$ $\Rightarrow$ $\text{Convex}$
+
+
+# Example of convex functions
+
+- Univairate functions:
+- - Exponential function： 在 $\mathbb{R}$ 上, 对所有 $a$,  $e^{ax}$ 是 convex 的
+- - Power function：  在 $\mathbb{R}_+$ 上， 对 $a \geq 1$ 或者 $a \leq 0$ ， $x^a$ 是 convex 的
+- - Power function： 在 $\mathbb{R}_+$ 上， 对 $0 \leq  a \leq 1$， $x^a$ 是 concave 的
+- - Logarithmic function： 在 $\mathbb{R}_{++}$ 上， $\log x$ 是 concave
+
+
+- $\color{red}\text{Affine function}$： $a^\top x + b$ 同时是 convex 和 concave 的
+- $\color{red}\text{Quadratic function}$： 假设 $Q \succeq 0$(positive semidefinite)， $\frac{1}{2} x^\top Q x + b^\top x + c$ 是 convex 的
+- $\color{red}\text{Least squares loss}$ ： $\|y - Ax\|_2^2$ 总是 convex 的 (因为 $A^\top A$ 总是 positive semidefinite 的)
+- $\color{red}\text{Norm}$： 对所有范数， $\| x \|$ 是 convex 的， 例如 $\ell_p$ 范数
+
+$$
+\| x \|_p = (\sum_{i=1}^n \mid x_i \mid^p)^{1/p} \quad \text{for} \quad p \geq 1, \quad \| x \|_\infty = \max_{i = 1, ..., n} \mid x_i \mid
+$$
+
+包括 operator(spectral) 和 trace(nuclear) 范数
+
+$$
+\| X \|_{op} = \sigma_1(X)， \| X \|_{tr} = \sum_{i=1}^r \sigma_r(X)
+$$
+
+其中 $\sigma_1(X) \geq ... \geq \sigma_r(X) \geq 0$ 是矩阵 $X$ 是奇异值。
+
