@@ -53,6 +53,13 @@ one-stage anchor-based 检测器通常由 backbone、detection neck(典型的特
 
 **Larger Batch Size** 使用更大的批大小可以提高训练的稳定性，获得更好的结果。作者将训练的 batch size 从 64 调整为 192， 并且调整 training schedule 和 learning rate。
 
+**EMA** 当训练一个模型时，保持训练参数的 moving averages 通常是有益的。使用平均参数的计算有时会产生明显优于最终训练值[35]的结果。指数移动平均(EMA)利用指数衰减计算训练参数的 moving averages 。对于每个参数W，维护一个 shadow 参数：
+
+$$
+W_{EMA} = \lambda W_{EMA} + (1 - \lambda) W \tag{1}
+$$
+**DropBlock** DropBlock 是结构化 dropout 的一种形式， 在一个特征图的连续区域中的单元被放到一起。与原文不同的是，作者只在FPN上使用DropBlock，因为发现在 Backbone 上添加 DropBlock 会导致性能下降。
+
 # Conclusion
 
 这篇文章介绍了一种基于PaddlePaddle的目标检测器的新实现——PP-YOLO。
