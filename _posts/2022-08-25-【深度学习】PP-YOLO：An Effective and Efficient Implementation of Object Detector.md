@@ -43,7 +43,9 @@ one-stage anchor-based 检测器通常由 backbone、detection neck(典型的特
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661430351282.png)
 
-**Detection Neck**  然后使用FPN[21]构建特征映射之间横向连接的特征金字塔。特征图 $C_3, C_4, C_5$ 输入 FPN 模块。
+**Detection Neck**  然后使用FPN[21]构建特征映射之间横向连接的特征金字塔。特征图 $C_3, C_4, C_5$ 输入 FPN 模块。作者将金字塔层次 $l$ 的输出特征映射记为 $P_l$，在作者的实验中，$l = 3,4,5$。 对于尺寸为 $W \times H$ 的输入图像，$P_l$ 的分辨率为 $\frac{W}{2^l} \times \frac{H}{2^l}$。FPN的详细结构如图2所示。 
+
+**Detection Head** YOLOv3的检测头非常简单。它由两个卷积层组成。采用一个 $3 \times 3$ 卷积层和 $1 \times 1$ 卷积层得到最终的预测结果。
 
 # Conclusion
 
