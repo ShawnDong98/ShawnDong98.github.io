@@ -73,7 +73,17 @@ $$
 y = s · (g_y + \sigma(p_y)) \tag{3}
 $$
 
-其中 $\sigma$ 是 sigmoid 函数， $g_x$ 和 $g_y$是整数， $s$ 是 scale factor。
+其中 $\sigma$ 是 sigmoid 函数， $g_x$ 和 $g_y$是整数， $s$ 是 scale factor。显然， $x$ 和 $y$ 不能正好等于 $s · g_x$ 或 $s · (g_x + 1)$。 这使得预测 bbox 的中心很困难。 为了解决这个问题， 将等式改为：
+
+$$
+x = s · (g_x + \alpha · \sigma(p_x) - (\alpha - 1)/2) \tag{4}
+$$
+$$
+y = s · (g_y + \alpha · \sigma(p_y) - (\alpha - 1)/2) \tag{5}
+$$
+在文章中 $\alpha$ 被设为 1.05。这使得模型更容易预测边界框中心在网格边界上的准确位置。
+
+**Matrix NMS** Matrix NMS 受启发于 Soft-NMS。
 
 
 
