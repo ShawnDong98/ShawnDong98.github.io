@@ -62,7 +62,7 @@ $$
 
 **IoU Loss** 边界框回归是目标检测的关键步骤。在YOLOv3中，采用 L1 损失进行bound-box regression。它不是为mAP评估指标量身定制的，而mAP高度依赖于Intersection over Union (IoU)。IoU损失以及CIoU损失和GIoU损失[46,34]等其他变体已经被提出来解决这个问题。与 yolov4 不同的是，作者没有直接用 IoU loss 替换 L1 loss，作者增加了另一个分支来计算IoU loss。作者发现各种 IoU loss 的改进都是相似的，所以我们选择了最基本的IoU loss [42]。
 
-**IoU Aware** 在YOLOv3中，分类概率和 objectness score 相乘作为最终检测置信度，不考虑定位精度。为了解决这一问题，增加了一个IoU预测分支来衡量定位的准确性。在训练中，采用IoU aware loss 的方法对 IoU 预测分支进行训练。
+**IoU Aware** 在YOLOv3中，分类概率和 objectness score 相乘作为最终检测置信度，不考虑定位精度。为了解决这一问题，增加了一个IoU预测分支来衡量定位的准确性。在训练中，采用IoU aware loss 的方法对 IoU 预测分支进行训练。在推理过程中，将预测的IoU乘以分类概率和 objectiveness score，计算出最终的检测置信度，这与定位精度的相关度更高。然后将最终的检测置信度作为后续NMS的输入。 IoU aware 分支只有0.01%的参数数量和0.0001%的 FLOPs 增加，这几乎可以忽略。
 
 # Conclusion
 
