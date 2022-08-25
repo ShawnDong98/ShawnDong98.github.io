@@ -64,6 +64,19 @@ $$
 
 **IoU Aware** 在YOLOv3中，分类概率和 objectness score 相乘作为最终检测置信度，不考虑定位精度。为了解决这一问题，增加了一个IoU预测分支来衡量定位的准确性。在训练中，采用IoU aware loss 的方法对 IoU 预测分支进行训练。在推理过程中，将预测的IoU乘以分类概率和 objectiveness score，计算出最终的检测置信度，这与定位精度的相关度更高。然后将最终的检测置信度作为后续NMS的输入。 IoU aware 分支只有0.01%的参数数量和0.0001%的 FLOPs 增加，这几乎可以忽略。
 
+**Grid Sensitive** Grid Sensitive 是 YOLOv4 引入的一个有效技巧。当我们解码 bbox 中心 x 和 y 的坐标时，在原始的YOLOv3中，我们可以通过
+
+$$
+x = s · (g_x + \sigma(p_x)) \tag{2}
+$$
+$$
+y = s · (g_y + \sigma(p_y)) \tag{3}
+$$
+
+其中 $\sigma$ 是 sigmoid 函数， $g_x$ 和 $g_y$是整数， $s$ 是 scale factor。
+
+
+
 # Conclusion
 
 这篇文章介绍了一种基于PaddlePaddle的目标检测器的新实现——PP-YOLO。
