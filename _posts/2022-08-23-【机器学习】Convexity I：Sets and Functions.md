@@ -250,3 +250,47 @@ $$
 
 其中 $\sigma_1(X) \geq ... \geq \sigma_r(X) \geq 0$ 是矩阵 $X$ 是奇异值。
 
+- $\color{red}\text{Indicator function}$ : 如果 $C$ 是 convex 的， 那么它的 indicator function
+
+$$
+I_C(x) = \begin{cases}
+0 & x \in C \\
+\infty & x \neq C
+\end{cases}
+$$
+是 convex 的
+
+- $\color{red}\text{Support function}$： 对于任何集合 $C$ (convex or not)， 它的 support function
+
+$$
+I_C^*(x) = \max_{y \in C} x^\top y
+$$
+是 convex 的
+
+- $\color{red}\text{Max function}$： $f(x) = \max{x_1, ..., x_n}$ 是 convex 的
+
+
+# Key properties of convex functions
+
+- 函数是凸的，当且仅当其 restriction to any line 是 convex 的
+- $\color{red}\text{Epigraph characterization}$: 函数 $f$ 是 convex 的， 当且仅当它的 epigraph
+
+$$
+\text{epi}(f) = \{(x, t) \in \text{dom}(f) \times \mathbb{R} : f(x) \leq t\}
+$$
+是 convex set
+- $\color{red}\text{Convex sublevel sets}$: 如果 $f$ 是 convex 的， 那么它的 sublevel sets：
+
+$$
+\{x \in \text{dom}(f) : f(x) \leq t\}
+$$
+是 convex 的， 对于所有 $t \in \mathbb{R}$。 反之亦然。
+- $\color{red}\text{First-order characterization}$： 如果 $f$ 是可微的，  $f$ 是 convex 的， 当且仅当 $\text{dom}(f)$ 是 convex 的， 并且
+
+$$
+f(y) \geq f(x) + \nabla f(x)^\top(y - x)
+$$
+对所有 $x, y \in \text{dom}(f)$。 因此对于一个可微 convex function $\nabla f(x) = 0 \Leftrightarrow x \text{ minimize } f$ 
+
+- $\color{red}\text{Second-order characterization}$ ： 如果 $f$ 是二阶可微的， 当且仅当 对所有 $x \in \text{dom}(f)$ , $\text{dom}(f)$ 是 convex 的 并且 $\nabla^2 f(x) \succeq 0$ ， 那么 $f$ 是 convex 的
+- $\color{red}\text{Jensen's inequality}$ ： 如果 $f$ 是 convex 的， 
