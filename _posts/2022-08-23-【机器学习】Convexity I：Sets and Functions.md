@@ -294,3 +294,10 @@ $$
 
 - $\color{red}\text{Second-order characterization}$ ： 如果 $f$ 是二阶可微的， 当且仅当 对所有 $x \in \text{dom}(f)$ , $\text{dom}(f)$ 是 convex 的 并且 $\nabla^2 f(x) \succeq 0$ ， 那么 $f$ 是 convex 的
 - $\color{red}\text{Jensen's inequality}$ ： 如果 $f$ 是 convex 的， 并且 $X$ 是一个支持 $\text{dom}(f)$ 的随机向量， 然后 $f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]$。 
+
+
+# Operations preserving convexity
+
+- $\color{red}\text{Nonnegative linear combination}$： $f_1, ..., f_m$ 是 convex 意味着 对于任意 $a_1, ..., a_m \geq 0$， $a_1 f_1 + ... + a_m f_m$ 是 convex 的
+- $\color{red}\text{Pointwise maximization}$： 对任意 $s \in S$， 如果 $f_s$ 是 convex 的， 那么 $f(x) = \max_{s \in S} f_s(x)$ 是 convex 的。 这里的集合 $S$ (函数 $f_s$ 的数量)是有限的
+- $\color{red}\text{Partial minimization}$： 如果 $g(x, y)$ 是 convex 的， 并且 $C$ 是 convex 的， 那么 $f(x) = \min_{y \in C} g(x, y)$ 是 convex 的。
