@@ -29,3 +29,11 @@ effective 和 efficient 是实用的目标检测器的基本要求。
 采用TensorRT、FP16-precision和 batchsize = 1 的 Paddle inference 引擎，进一步提高了PP-YOLOv2的推理速度，达到106.5 FPS。
 
 这样的性能超过了现有的具有大致相同数量参数的目标检测器(即YOLOv4-CSP, YOLOv5l)。
+
+# Conclusion
+
+这篇文章介绍了PP-YOLO的一些更新，它形成了一个高性能的目标检测器PP-YOLOv2。
+
+PP-YOLOv2比其他著名的检测器，如YOLOv4和YOLOv5，在速度和精度之间取得了更好的平衡。
+
+这篇文章作者探索了一堆技巧，并展示了如何在PP-YOLO检测器上结合这些技巧，并演示了它们的有效性。
