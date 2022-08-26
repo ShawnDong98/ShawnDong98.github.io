@@ -46,7 +46,7 @@ effective 和 efficient 是实用的目标检测器的基本要求。
 $$
 loss = -t * \log (\sigma(p)) - (1 - t) * \log(1 - \sigma(p)) \tag{1}
 $$
-其中 $t$ 表示 anchor 和 它匹配的真实 bbox 之间的 IoU， $p$ 是 IoU aware 分支的原始输出， $\sigma(·)$ 表示 sigmoid 激活函数。
+其中 $t$ 表示 anchor 和 它匹配的真实 bbox 之间的 IoU， $p$ 是 IoU aware 分支的原始输出， $\sigma(·)$ 表示 sigmoid 激活函数。注意，只有具有 IoU aware 的正样本才会计算损失。通过替换损失函数，IoU aware 分支比以前工作得更好。
 
 # Conclusion
 
