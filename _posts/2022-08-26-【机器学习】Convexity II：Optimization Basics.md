@@ -55,3 +55,38 @@ Key property 1: $X_{opt}$ 是一个 $\color{red}\text{convex set}$
 因此 $tx + (1 - t)y$ 也是一个解
 
 Key proberty 2: 如果 $f$ 是 strictly convex， 那么 $\color{red}\text{solution is unique}$，如， $X_{opt}$ 包含一个元素。
+
+# Example： lasso
+
+给定 $y \in \mathbb{R}^n, X \in \mathbb{R}^{n \times p}$， $\color{red}\text{lasso}$  problem：
+
+$$
+\min_\beta \|y - X \beta\|_2^2 \quad \text{subject to} \quad \|\beta\|_1 \leq s
+$$
+它是 convex 的吗？它的 criterion 函数是什么？ inequality 和 equality constraints 是什么？ 可行解集是什么？ 如果解唯一， 当：
+
+- $n \geq p$ 并且 $X$ 是列满秩矩阵吗？
+- $p > n$ 吗？
+
+如果我们将 criterion 变为 $\color{red}\text{Huber loss}$， 我们的答案会发生什么变化？
+
+$$
+\sum_{i=1}^n \rho(y_i - x_i^\top \beta), \rho(z) = 
+\begin{cases}
+\frac{1}{2} z^2 & \mid z \mid \leq \delta \\
+\delta \mid z \mid - \frac{1}{2} \delta^2 & \text{else}
+\end{cases}
+$$
+# Example： support vector machines
+
+给定 $y \in \{-1, 1\}^n, X \in \mathbb{R}^{n \times p}$ , 行为 $x_1, ..., x_n$， 考虑 $\color{red}\text{support vector machine}$ 或 SVM 问题：
+
+$$
+\min_{\beta, \beta_0, \xi} \frac{1}{2}\|\beta\|_2^2 + C \sum_{i=1}^n \xi_i \quad \text{subject to} \quad \xi_i \geq 0, \quad i = 1, ..., n \\ y_i(x_i^\top \beta + \beta_0) \geq 1 - \xi_i, i = 1,..., n
+$$
+
+它是 convex 的吗？它的 criterion 函数是什么？ 约束和可行解集是什么？ 解 $\beta, \beta_0, \xi$ 唯一吗？如果将 criterion 变为下式会怎样：
+
+$$
+\frac{1}{2} \|\beta\|_2^2 + \frac{1}{2} \beta_0^2 + C \sum_{i=1}^n \xi_i^{1.01}
+$$
