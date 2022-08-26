@@ -30,6 +30,19 @@ effective 和 efficient 是实用的目标检测器的基本要求。
 
 这样的性能超过了现有的具有大致相同数量参数的目标检测器(即YOLOv4-CSP, YOLOv5l)。
 
+
+# Method
+
+**Path Aggregation Network.** 不同尺度的目标检测是目标检测的一个基本问题。在实践中，作者开发了一个 detection neck，用于在所有尺度上构建高级语义特征映射。PP-YOLO中采用FPN组成自下而上的路径。最近， FPN变体已被提出以增强金字塔表示的能力。如:BiFPN[24]、PAN[14]、RFP[19]等。作者按照PAN的设计从上到下进行信息聚合。PAN的详细结构如图2所示。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661485568410.png)
+
+**Mish Activation Function.**  Mish激活函数[18]在YOLOv4和YOLOv5等检测器中被证明是有效的。它们在 backbone 中采用mish激活函数。然而，作者更喜欢使用预训练的参数，因为作者有一个强大的模型，在ImageNet上达到82.4%的top-1精度。为了保持 backbone 不变，作者在 detection neck 使用 mish 激活函数。
+
+**Larger Input Size.** 增加输入尺寸会扩大目标的面积。因此，目标的小尺度信息将比以前更容易保留。但是，更大的输入占用更多的内存。要应用这个技巧，我们需要减小批处理大小。更具体地说，作者将批处理大小从每个GPU 24个图像减少到每个GPU 12个图像，并将最大输入大小从608扩展到768。输入大小均匀地从[320、352、384、416、448、480、512、544、576、608、640、672、704、736、768]中采样。
+
+
+
 # Conclusion
 
 这篇文章介绍了PP-YOLO的一些更新，它形成了一个高性能的目标检测器PP-YOLOv2。
