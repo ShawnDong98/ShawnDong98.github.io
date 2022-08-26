@@ -83,8 +83,14 @@ y = s · (g_y + \alpha · \sigma(p_y) - (\alpha - 1)/2) \tag{5}
 $$
 在文章中 $\alpha$ 被设为 1.05。这使得模型更容易预测边界框中心在网格边界上的准确位置。
 
-**Matrix NMS** Matrix NMS 受启发于 Soft-NMS。
+**Matrix NMS** Matrix NMS 受启发于 Soft-NMS。但是，该过程与传统的Greedy NMS一样是顺序的，不能并行实现。Matrix NMS从另一个角度看待这个过程，并以并行的方式实现。 因此，Matrix NMS 比传统 NMS 速度更快，不会带来效率的损失。
 
+**CoordConv** CoordConv，它的工作原理是通过使用额外的坐标通道来提供对自己的输入坐标的卷积访问。CoordConv 允许网络同时学习 complete translation invariance 和 varying degrees of translation dependence。 由于 CoordConv 会在卷积层增加两个输入通道，所以会增加一些参数和FLOPs。为了尽可能减少效率的损失，作者不改变 backbone 中的卷积层，只替换FPN中的1x1卷积层和 detection head 中的第一个卷积层。CoordConv的详细注入点在图2中被菱形标记。
+
+**SPP** 空间金字塔池化(SPP)是由He等人首先提出的。 YOLOv4通过将最大池化输出与 kernel size $k \times k$ concatenating 起来应用SPP模块，其中 $k = \{1, 5, 9, 13\}$, stride等于1。在这种设计下，一个相对较大的 $k \times k$ max-pooling 可以有效地增加 backbone 特征的感受野。 SPP仅应用于图2中带星号的顶部feature map。SPP本身不引入参数，但会增加后面卷积层的输入通道数。因此，大约额外引入2%的参数和1%额外的FLOPs。
+
+**Better Pretrain Model** 在ImageNet上使用分类精度更高的预训练模型可以获得更好的检测性能。这里作者使用蒸馏的ResNet50-vd模型作为预训练模型[29]。
+ 
 
 
 # Conclusion
