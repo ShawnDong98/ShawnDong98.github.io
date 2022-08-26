@@ -363,6 +363,6 @@ $$
 \nabla_{ij}^2 f(x) = \frac{e^{x_i}}{\sum_{\ell = 1}^n e^{x_\ell}} 1\{i = j\} - \frac{e^{x_i}e^{x_j}}{(\sum_{\ell=1}^n e^{x_\ell})^2}
 $$
 
-将 $\nabla^2 f(x) = \text{diag}(z) - zz^\top$， 其中 $z_i = e^{x_i} / (\sum_{\ell = 1}^n e^{x_\ell})$。 这个矩阵是主对角矩阵， 因此是半正定的。
+将 $\nabla^2 f(x) = \text{diag}(z) - zz^\top$， 其中 $z_i = e^{x_i} / (\sum_{\ell = 1}^n e^{x_\ell})$。 这个矩阵是主对角矩阵， 因此是半正定的。 
 
 
