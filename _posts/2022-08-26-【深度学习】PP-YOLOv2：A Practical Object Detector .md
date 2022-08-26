@@ -41,7 +41,12 @@ effective 和 efficient 是实用的目标检测器的基本要求。
 
 **Larger Input Size.** 增加输入尺寸会扩大目标的面积。因此，目标的小尺度信息将比以前更容易保留。但是，更大的输入占用更多的内存。要应用这个技巧，我们需要减小批处理大小。更具体地说，作者将批处理大小从每个GPU 24个图像减少到每个GPU 12个图像，并将最大输入大小从608扩展到768。输入大小均匀地从[320、352、384、416、448、480、512、544、576、608、640、672、704、736、768]中采样。
 
+**IoU Aware Branch.** 在PP-YOLO中，IoU aware loss 是用 soft weight 形式计算的，这与初衷不符。 因此， 作者应用 soft label 形式。 下面是 IoU aware loss：
 
+$$
+loss = -t * \log (\sigma(p)) - (1 - t) * \log(1 - \sigma(p)) \tag{1}
+$$
+其中 $t$ 表示 anchor 和 它匹配的真实 bbox 之间的 IoU， $p$ 是 IoU aware 分支的原始输出， $\sigma(·)$ 表示 sigmoid 激活函数。
 
 # Conclusion
 
