@@ -90,3 +90,81 @@ $$
 $$
 \frac{1}{2} \|\beta\|_2^2 + \frac{1}{2} \beta_0^2 + C \sum_{i=1}^n \xi_i^{1.01}
 $$
+
+
+# Local minima are global minima
+
+对于一个 convex problem， 一个 feasible point $x$ 叫做 $\color{red} \text{locally optimal}$, 局部最优是指 $R > 0$，有：
+
+$$
+f(x) < f(y) \quad \text{for all feasible $y$ such taht} \quad \|x - y\|_2 \leq R
+$$
+
+对于凸优化问题， $\color{red}\text{local optima are global optima}$。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661522066347.png)
+
+
+# Rewriting constraints
+
+优化问题：
+
+$$
+\min_x f(x) \quad \text{subject to} \quad g_i(x) \leq 0, i=1,..., m \quad Ax = b
+$$
+其可以写作：
+
+$$
+\min_x f(x) \quad \text{subject to} \quad x \in C
+$$
+
+其中可行解集为 $C = \{x : g_i(x) \leq 0, i = 1, ..., m, Ax = b\}$。 因此，后一种表述是 $\color{red}\text{compelely general}$
+
+使用 $I_C$ 作为C的 indicator，我们可以以无约束的形式写入：
+
+$$
+\min_x f(x) + I_C(x)
+$$
+
+# First-order optimality condition
+
+对于一个 convex problem：
+
+$$
+\min_x f(x) \quad \text{subject to} \quad x \in C
+$$
+
+和可微的 $f$ ，  当且仅当下式成立的时候， 一个 feasible point $x$ 是 optimal 的
+
+$$
+\nabla f(x)^T (y - x) \geq 0 \quad \text{for all} \quad y \in C
+$$
+
+这叫作 $\color{red}\text{first-order condition for optimality}$
+
+简单来说， $x$ 可行的方向与梯度 $\nabla f(x)$ 对齐
+
+重要的特殊情况: 如果 $C = \mathbb{R}^n$(无约束优化)， 那么 optimality condition 退化为 $\nabla f(x) = 0$
+
+
+# Example: quadratic minimization
+
+考虑最小化 $\color{red}\text{quadratic function}$
+
+$$
+f(x) = \frac{1}{2}x^\top Q x + b^\top x + c
+$$
+其中 $Q \succeq 0$。 first-order condition 表明解满足：
+
+$$
+\nabla f(x) = Qx + b = 0
+$$
+- 如果 $Q \succ 0$, 那么存在唯一解 $x = -Q^{-1}b$
+- 如果 $Q$ 是 singular 并且 $b \notin \text{col}(Q)$， 那么无解(例如 $\min_x f(x) = -\infty$)
+- 如果 $Q$ 是 singular 并且 $b \in \text{col}(Q)$， 那么存在无穷多解：
+
+$$
+x = -Q^+b + z, \quad z \in \text{null}(Q)
+$$
+其中 $Q^+$ 是 $Q$ 的 $\color{red}\text{pseudoinverse}$
+
