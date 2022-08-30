@@ -2399,7 +2399,7 @@ hight-level  `pool.map` 接口，生成一个对用户隐藏 RPC 内部信息的
  [multiprocessing在类中使用问题记录](https://www.cnblogs.com/isxjj/p/16054566.html)
  
  
-## python多进程假死
+## python多进程死锁
 
 结论：python多进程间用Queue通信时，如果子进程操作Queue满了或者内容比较大的情况下，该子进程会阻塞等待取走Queue内容(如果Queue数据量比较少，不会等待)，如果调用join，主进程将处于等待，等待子进程结束，造成死锁
 
