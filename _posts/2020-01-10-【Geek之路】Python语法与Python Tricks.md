@@ -2397,6 +2397,15 @@ hight-level  `pool.map` 接口，生成一个对用户隐藏 RPC 内部信息的
 ## 在类中使用 multiprocessing
 
  [multiprocessing在类中使用问题记录](https://www.cnblogs.com/isxjj/p/16054566.html)
+ 
+ 
+## python多进程假死
+
+结论：python多进程间用Queue通信时，如果子进程操作Queue满了或者内容比较大的情况下，该子进程会阻塞等待取走Queue内容(如果Queue数据量比较少，不会等待)，如果调用join，主进程将处于等待，等待子进程结束，造成死锁
+
+解决方式：在调用join前，及时把Queue的数据取出，而且Queue.get需要在join前
+
+[https://cloud.tencent.com/developer/article/1773574](https://cloud.tencent.com/developer/article/1773574)
 
 # Reference
 1. [python 字符串补全填充固定长度（补0）的三种方法](https://blog.csdn.net/weixin_42317507/article/details/93411132)
@@ -2467,3 +2476,4 @@ hight-level  `pool.map` 接口，生成一个对用户隐藏 RPC 内部信息的
 66. [python装饰器中functools.wraps的作用详解](https://www.cnblogs.com/skaarl/p/9406910.html)
 67. [eval和ast.literal_eval方法](https://blog.csdn.net/sinat_33924041/article/details/88350569)
 68. [multiprocessing在类中使用问题记录](https://www.cnblogs.com/isxjj/p/16054566.html)
+69. [python多进程假死](https://cloud.tencent.com/developer/article/1773574)
