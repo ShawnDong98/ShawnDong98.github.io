@@ -40,8 +40,10 @@ tags:
 
 如前所述，融合多层次特征是实现高分割精度的关键。除了 element-wise addition 和 concatenation 方法，研究者还提出了几种方法，如SFNet[15]、FaPN[11]和AttaNet[25]。在这项工作中，作者提出了一种Unified Attention Fusion Module(UAFM)，应用通道和空间注意力来丰富融合的特征表示。
 
+**UAFM Framework.**  如图4 (a)所示，UAFM利用注意力模块产生权重 $\alpha$，并将输入特征与 $\alpha$ 通过 Mul 和 Add 操作融合。细节上， 输入特征表示为 $F_{high}$ 和 $F_{low}$。$F_{high}$ 是更深模块的输出， $F_{low}$ 是编码器的 counterpart。注意，它们具有相同的通道。UAFM首先利用双线性插值运算将上采样 $F_{high}$ 上采样到和 $F_{low}$ 相同大小，上采样特征记为 $F_{up}$。 然后，注意力模块以 $F_{up}$ 和 $F_{low}$ 为输入，产生权重 $\alpha$。 注意，注意力模块可以是插件，比如空间注意力模块、通道注意力模块等。然后，作者分别对 $F_{up}$ 和 $F_{low}$ 应用 element-wise Mul 运算来获得注意力加权特征。最后，UAFM对注意力加权特征进行元素加法并输出融合后的特征。 
 
 
+**Spatial Attention Module.** 空间注意力模块的动机是利用空间间关系产生一个权重，它代表输入特征中每个像素的重要性。如 图4(b) 所示， 给定输入特征，例如 $F_{up} \in R^{C \times H \times W}$ 和 $F_{low} \in R^{C \times H \times W}$， 首先在通道上计算均值和方差生成四个特征， 其维度为 $R^{1 \times H \times W}$。 
 
 # Conclusion
 
