@@ -74,7 +74,8 @@ $$
 
 其次，PP-LiteSeg采用SPPM对远程依赖关系进行建模。SPPM以编码器的输出特征为输入，生成包含全局上下文信息的特征。
 
-最后，PP-LiteSeg利用提出的FLD逐步融合多层次特征并输出结果图像。具体来说，FLD 由两个UAFM和一个 segmentation head 组成。为了提高效率，在UAFM中采用了空间力注意模块。每个UAFM都有两个特征作为输入，一个是由编码器各阶段提取的低级特征，一个是由SPPM或深度融合模块产生的高级特征。
+最后，PP-LiteSeg利用提出的FLD逐步融合多层次特征并输出结果图像。具体来说，FLD 由两个UAFM和一个 segmentation head 组成。为了提高效率，在UAFM中采用了空间力注意模块。每个UAFM都有两个特征作为输入，一个是由编码器各阶段提取的低级特征，一个是由SPPM或深度融合模块产生的高级特征。后面的 UAFM 输出融合下采样率为 $1/8$ 的特征。在 Segmentation head 中， 使用 Conv-BN-ReLU 操作减少 $1/8$ 下采样特征的通道数为类别的数量。 然后进行上采样操作将特征大小扩大到输入图像的大小，并通过argmax操作预测每个像素的标签。cross entropy loss 使用 Online Hard Example Mining 优化模型。
+
 
 
 # Conclusion
