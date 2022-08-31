@@ -19,3 +19,7 @@ tags:
 
 # Conclusion
 
+在这项工作中，作者提出了一个object - contextual representation 方法的语义分割。
+
+
+成功的主要原因是像素的标签是像素所在对象的标签，通过用对应的对象区域表示对每个像素进行表征来加强像素表示。
