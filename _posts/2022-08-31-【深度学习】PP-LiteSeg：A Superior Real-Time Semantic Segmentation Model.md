@@ -54,6 +54,14 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661938628073.png)
 
+$$
+F_{cat} = Concat(AvgPool(F_{up}), MaxPool(F_{up}), AvgPool(F_{low}), MaxPool(F_{low})) \\
+\alpha = Sigmoid(Conv(F_{cat})) \tag{3}
+$$
+
+
+
+
 # Conclusion
 
 在本文中，作者重点设计了一种新的实时语义分割网络。
