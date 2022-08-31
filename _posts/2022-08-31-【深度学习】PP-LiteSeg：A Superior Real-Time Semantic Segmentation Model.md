@@ -49,7 +49,7 @@ $$
 F_{cat} = Concat(Mean(F_{up}), Max(F_{up}), Mean(F_{low}), Max(F_{low})) \\
 \alpha = Sigmoid(Conv(F_{cat})) \tag{2}
 $$
-**Channel Attention Module.** 通道注意力模块的关键概念是利用通道间的关系来生成一个权重，该权重表示每个通道在输入特征中的重要性。 如 图4 (b) 所示，提出的通道注意力模块利用平均池化和最大池化操作来压缩输入特征的空间维度。这个过程生成了四个具有维度为 $R^{C \times 1 \times 1}$ 的特征。 然后，它沿着通道轴将这四个特征连接起来，并进行卷积和 sigmoid 操作来产生一个权值 $\alpha \in R^{C \times 1 \times 1}$。  简而言之，通道注意力模块的程序可以表述为等式 3。
+**Channel Attention Module.** 通道注意力模块的关键概念是利用通道间的关系来生成一个权重，该权重表示每个通道在输入特征中的重要性。 如 图4 (b) 所示，提出的通道注意力模块利用平均池化和最大池化操作来压缩输入特征的空间维度。这个过程生成了四个具有维度为 $R^{C \times 1 \times 1}$ 的特征。 然后，它沿着通道轴将这四个特征连接起来，并进行卷积和 sigmoid 操作来产生一个权值 $\alpha \in R^{C \times 1 \times 1}$。  简而言之，通道注意力模块的过程可以表述为等式 3。
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661938628073.png)
