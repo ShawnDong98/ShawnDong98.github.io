@@ -59,7 +59,9 @@ F_{cat} = Concat(AvgPool(F_{up}), MaxPool(F_{up}), AvgPool(F_{low}), MaxPool(F_{
 \alpha = Sigmoid(Conv(F_{cat})) \tag{3}
 $$
 
+## Simple Pyramid Pooling Module
 
+如 图5 所示， 作者提出 Simple Pyramid Pooling Module(SPPM)。 其首先利用 pyramid pooling 模块融合输入特征。 pyramid pooling 模块有三个 全局平均池化操作 并且 bin size 分别是 $1 \times 1$, $2 \times 2$ 和 $4 \times 4$。然后对输出特征进行卷积和上采样操作。对于卷积运算，kernel 大小为 $1 \times 1$，输出通道小于输入通道。最后，将这些上采样特征加起来，并应用卷积运算产生 refine 特征。 与原始PPM相比，SPPM减少了中间和输出通道，消除了 short-cut，用加法操作取代了 concat 操作。因此，SPPM方法更有效，更适用于实时模型。
 
 
 # Conclusion
