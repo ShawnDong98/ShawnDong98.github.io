@@ -25,3 +25,9 @@ tags:
 作者进一步研究了Xception模型，并将深度可分离卷积应用于Atrous Spatial  Pyramid Pooling 和解码器模块，从而得到一个更快、更强的编码器-解码器网络。
 
 # Conclusion
+
+作者提出的模型 DeepLabv3+ 采用编码器-解码器结构，其中DeepLabv3用于编码丰富的上下文信息，并采用一个简单而又有效的解码器模块来恢复目标边界。
+
+人们也可以应用 atrous convolution 提取编码器的特征在任意分辨率，取决于可用的计算资源。
+
+作者还探索了Xception模型和atrous可分离卷积，使所提出的模型更快和更强。
