@@ -70,6 +70,11 @@ $$
 所提出的 PP-LiteSeg 的架构如图2所示。PP-LiteSeg主要由三个模块组成: encoder, aggregation 和 decoder. 。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661940018958.png)
+首先，给定一个输入图像，PP-Lite利用一个通用的轻量级网络作为编码器来提取层次特征。具体来说，作者选择STDCNet[8]。 STDCNet 有 5 个 stage， 每个 stage 的步长为 2，因此最终的特征大小为输入图像的 $1/32$。 如表1所示，作者提出了两个版本的PP-LiteSeg，分别是 PP-LiteSeg-T 和 PP-LiteSeg-B，编码器分别为STDC1和STDC2。 PP-LiteSeg-B具有更高的分割精度，而PP-LiteSeg-T的推理速度更快。值得注意的是，作者将SSLD[7]方法应用到编码器的训练中，得到了增强的预训练权值，这有利于分割训练的收敛。
+
+其次，PP-LiteSeg采用SPPM对远程依赖关系进行建模。SPPM以编码器的输出特征为输入，生成包含全局上下文信息的特征。
+
+最后，PP-LiteSeg利用提出的FLD逐步融合多层次特征并输出结果图像。具体来说，FLD 由两个UAFM和一个 segmentation head 组成。为了提高效率，在UAFM中采用了空间力注意模块。每个UAFM都有两个特征作为输入，一个是由编码器各阶段提取的低级特征，一个是由SPPM或深度融合模块产生的高级特征。
 
 
 # Conclusion
