@@ -43,7 +43,14 @@ tags:
 **UAFM Framework.**  如图4 (a)所示，UAFM利用注意力模块产生权重 $\alpha$，并将输入特征与 $\alpha$ 通过 Mul 和 Add 操作融合。细节上， 输入特征表示为 $F_{high}$ 和 $F_{low}$。$F_{high}$ 是更深模块的输出， $F_{low}$ 是编码器的 counterpart。注意，它们具有相同的通道。UAFM首先利用双线性插值运算将上采样 $F_{high}$ 上采样到和 $F_{low}$ 相同大小，上采样特征记为 $F_{up}$。 然后，注意力模块以 $F_{up}$ 和 $F_{low}$ 为输入，产生权重 $\alpha$。 注意，注意力模块可以是插件，比如空间注意力模块、通道注意力模块等。然后，作者分别对 $F_{up}$ 和 $F_{low}$ 应用 element-wise Mul 运算来获得注意力加权特征。最后，UAFM对注意力加权特征进行元素加法并输出融合后的特征。 
 
 
-**Spatial Attention Module.** 空间注意力模块的动机是利用空间间关系产生一个权重，它代表输入特征中每个像素的重要性。如 图4(b) 所示， 给定输入特征，例如 $F_{up} \in R^{C \times H \times W}$ 和 $F_{low} \in R^{C \times H \times W}$， 首先在通道上计算均值和方差生成四个特征， 其维度为 $R^{1 \times H \times W}$。 
+**Spatial Attention Module.** 空间注意力模块的动机是利用空间间关系产生一个权重，它代表输入特征中每个像素的重要性。如 图4(b) 所示， 给定输入特征，例如 $F_{up} \in R^{C \times H \times W}$ 和 $F_{low} \in R^{C \times H \times W}$， 首先在通道上计算均值和方差生成四个特征， 其维度为 $R^{1 \times H \times W}$。 之后这四个特征拼成一个特征 $F_{cat} \in R^{4 \times H \times W}$。 对这个拼接的特征使用卷积和 sigmoid 得到输出 $\alpha \in R^{1 \times H \times W}$。 空间注意力模块的公式如等式 (2) 所示。 此外，空间注意模块可以是灵活的，例如去掉max操作以降低计算成本。
+
+$$
+F_{cat} = Concat(Mean(F_{up}), Max(F_{up}), Mean(F_{low}), Max(F_{low})) \\
+\alpha = Sigmoid(Conv(F_{cat}))
+$$
+**Channel Attention Module.** 通道注意力模块的关键概念是利用通道间的关系来生成一个权重，该权重表示每个通道在输入特征中的重要性。 
+
 
 # Conclusion
 
