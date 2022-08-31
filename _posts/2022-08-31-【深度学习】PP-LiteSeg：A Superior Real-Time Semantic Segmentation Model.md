@@ -32,7 +32,16 @@ tags:
 
 ## Flexible and Lightweight Decoder
 
-编码器-解码器结构已被证明是有效的语义分割。一般来说，编码器利用一系列的层分组成几个阶段来提取层次特征。从低层到高层特征，通道数量逐渐增加，特征空间大小逐渐减小。该设计平衡了各级的计算成本，保证了编码器的效率。解码器也有几个阶段，负责融合和上采样特征。尽管特征的空间大小从高阶到低阶不断增加，但在最近的轻量级模型中，解码器在所有级别中保持特征通道相同。因此，浅层阶段的计算成本远远大于深层阶段，导致了浅层阶段的计算冗余。为了提高解码器的效率，作者提出了一种 Flexible and Lightweight Decoder (FLD)。如图3所示， FLD 从 hight level 到 low level 逐渐减少特征的通道数。
+编码器-解码器结构已被证明是有效的语义分割。一般来说，编码器利用一系列的层分组成几个阶段来提取层次特征。从低层到高层特征，通道数量逐渐增加，特征空间大小逐渐减小。该设计平衡了各级的计算成本，保证了编码器的效率。解码器也有几个阶段，负责融合和上采样特征。尽管特征的空间大小从高阶到低阶不断增加，但在最近的轻量级模型中，解码器在所有级别中保持特征通道相同。因此，浅层阶段的计算成本远远大于深层阶段，导致了浅层阶段的计算冗余。为了提高解码器的效率，作者提出了一种 Flexible and Lightweight Decoder (FLD)。如图3所示， FLD 从 hight level 到 low level 逐渐减少特征的通道数。FLD可以很容易地调整计算成本，以实现编码器和解码器之间更好的平衡。虽然FLD中的特征通道减少了，但实验表明，PP-LiteSeg方法取得了与其他方法相媲美的精度。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661921495646.png)
+
+## Unified Attention Fusion Module
+
+如前所述，融合多层次特征是实现高分割精度的关键。除了 element-wise addition 和 concatenation 方法，研究者还提出了几种方法，如SFNet[15]、FaPN[11]和AttaNet[25]。在这项工作中，作者提出了一种Unified Attention Fusion Module(UAFM)，应用通道和空间注意力来丰富融合的特征表示。
+
+
+
 
 # Conclusion
 
