@@ -67,7 +67,7 @@ $$
 
 ## Network Architecture 
 
-所提出的 PP-LiteSeg 的架构如图2所示。PP-LiteSeg主要由三个模块组成:编码器、聚合器和解码器。
+所提出的 PP-LiteSeg 的架构如图2所示。PP-LiteSeg主要由三个模块组成: encoder, aggregation and decoder. 。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1661940018958.png)
 
