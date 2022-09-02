@@ -41,8 +41,71 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1662087943121.png)
 
-对于在 PASCAL VOC 上评估 YOLO， 作者使用 $S = 7, B = 2$。 PASCAL VOC 有 20 哥标签类，因此 $C = 20$。 最终预测是一个 $7 \times 7 \times 30$ 的张量。
+对于在 PASCAL VOC 上评估 YOLO， 作者使用 $S = 7, B = 2$。 PASCAL VOC 有 20 个标签类，因此 $C = 20$。 最终预测是一个 $7 \times 7 \times 30$ 的张量。
 
+
+## Network Design 
+
+作者将该模型实现为卷积神经网络，并在PASCAL VOC检测数据集上对其进行评估。 网络的初始卷积层从图像中提取特征，而全连接层预测输出概率和坐标。
+
+该网络有24个卷积层，其次是2个全连接层。与GoogLeNet使用的初始模块不同，作者简单地使用了 $1 \times 1$ 卷积层用于 reduction， 后面是 $3 \times 3$ 卷积层，类似于Lin等人。 如图3所示。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1662088358986.png)
+
+作者还训练了YOLO的快速版本，旨在推动快速目标检测的边界。Fast YOLO使用的神经网络卷积层更少(9层而不是24层)，这些层中的 filter 也更少。除了网络的大小，YOLO和Fast YOLO的所有训练和测试参数都是相同的。
+
+网络的最终输出是 $7 \times 7 \times 30$ 的张量。
+
+## Training
+
+作者在ImageNet 1000-class 竞赛数据集上预训练卷积层。对于预训练，作者使用图3中的前20个卷积层，然后是平均池化层和全连接层。作者在训练和推理都使用 Darknet 框架。
+
+现在将模型转换为 detection 模型。Ren等人的研究表明，在预训练的网络中同时添加卷积层和连接层可以提高性能。按照他们的例子，作者添加了四个卷积层和两个全连接层，并随机初始化权值。检测通常需要细粒度的视觉信息，因此我们将网络的输入分辨率从 $224 \times 224$ 提高到$448 \times 448$ 。
+
+最后一层同时预测类概率和 bbox 坐标。作者用图像的宽度和高度对 bbox 的宽度和高度进行规范化，使它们落在0和1之间。作者将 box $x$ 和 $y$ 坐标参数化为特定 grid cell 位置的偏移量，因此它们也被限定在0和1之间。
+
+作者最后一层使用线性激活函数和所有其他层使用以下 leaky rectified 线性激活。
+
+$$
+\phi(x) = 
+\begin{cases}
+x & \text{if } x > 0 \\
+0.1x & \text{otherwise}
+\end{cases} \tag{2}
+$$
+
+作者对网络的输出优化平方和误差。作者使用平方和误差，因为它很容易优化，但它并不完全符合最大化平均精度的目标。它对定位误差和分类误差的按同等权重加权，可能不太理想。此外，在每幅图像中，许多 grid cell 不包含任何目标。这将使这些 cell 的置信度接近于零，通常压倒了包含目标的 cell 的梯度。这可能会导致模型不稳定，导致训练早期发散。
+
+为了弥补这一点，作者对不包含目标的框增大了边界框坐标预测的损失，并减少了置度预测的损失。作者使用两个参数 $\lambda_{coord}$ 和 $\lambda_{noobj}$ 来完成这一任务。作者设置 $\lambda_{coord} = 5$ 和 $\lambda_{noobj} = 0.5$。
+
+平方和误差在大 box 和小 box 中的权重也相等。误差度量应该反映出大 box 里的小偏差 比 小box 里的小偏差影响小。为了部分解决这个问题，作者预测边界框宽度和高度的平方根，而不是直接预测宽度和高度。
+
+YOLO每个 grid cell 预测多个边界框。在训练时，作者只希望一个 box 预测器对应一个目标。作者分类一个 predictor 负责预测一个目标，根据该预测和真实值之间的 IOU 最大。每个 predictor 都能更好地预测特定的尺寸、纵横比或对象的类别，从而提高整体 recall 能力。
+
+训练期间优化下列损失函数：
+
+$$
+\lambda_{coord} \sum_{i=0}^{S^2}\sum_{j=0}^B \mathbb{1}_{ij}^{obj}[(x_i - \hat x_i)^2 + （y_i- \hat y_i）^2] \\
++ \lambda_{coord} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{ij}^{obj} [(\sqrt{w_i} - \sqrt{\hat w_i})^2 + (\sqrt{h_i} - \sqrt{\hat h_i}^2)] \\
++  \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{ij}^{obj}(C_j - \hat C_i)^2 \\
++  \lambda_{noobj} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{ij}^{noobj}(C_i - \hat C_i)^2 \\
++  \sum_{i=0}^{S^2} \mathbb{1}_i^{obj} \sum_{c \in classes} (p_i(c) - \hat p_i(c))^2 \tag{3}
+$$
+
+其中 $\mathbb{1}_i^{obj}$ 表示 cell $i$ 中出现目标， $\mathbb{1}_{ij}^{obj}$  表示 cell $i$ 中第 $j$ 个 bbox predictor 负责的预测。
+
+请注意，如果 grid cell 中存在目标，则损失函数只惩罚分类错误(因此前面讨论了类条件概率)。如果预测器负责真值框，它也只会产生边界框坐标误差(即，在该 grid cell 中，IOU最高的预测器)。
+
+
+作者利用PASCAL VOC 2007和2012年的训练和验证数据集对网络进行了大约135个epoch的训练。在2012年的测试中，还包含了VOC 2007的测试数据用于训练。
+
+
+## Inference
+
+就像在训练中一样，预测测试图像的检测只需要一次网络评估。在PASCAL VOC算法中，网络预测每幅图像98个 bbox 和每个 box 的类概率。YOLO在测试时速度非常快，因为它只需要一个网络评估，不像基于分类器的方法。
+
+
+grid 设计加强了边界框预测的空间多样性。通常，目标所属的 grid cell 很清楚，网络只能为每个目标预测一个框。但是，一些较大的对象或多个 grid cell 附近的目标可以被多个单元格很好地定位。非最大抑制可以用来修复这些多重检测。
 
 
 # Conclusion
