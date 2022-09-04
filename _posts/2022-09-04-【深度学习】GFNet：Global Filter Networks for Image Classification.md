@@ -54,6 +54,14 @@ $$
 
 filter $K$ 与 $X$ 具有相同的维数，可以表示频域中任意的 filter ，因此称为 **global filter**。最后，采用 FFT 反变换将调制后 spectrum $\tilde X$ 变换回空间域并更新 token。
 
+$$
+x \leftarrow \mathcal{F}^{-1}[\tilde X]
+$$
+
+作者还发现，虽然提出的 **global filter** 也可以解释为空间域操作，但在网络中学习的 filter 在频域比空间域表现出更清晰的模式，这表明模型倾向于捕捉频域而不是空间域的关系(见图4)。
+
+注意，在频域实现的 global filter 也比在空间域实现的高效得多，频率域的复杂度 $O(DL \log L)$， 空间域中原始的 depthwise global circular convolution 的计算复杂度为 $O(DL^2)$。
+
 # Conclusion
 
 这篇文章提出了 Global Filter Network(GFNet), 其实一个简单但是计算高效的结构。
