@@ -24,6 +24,12 @@ tags:
 
 作者同时在 ImageNet 和 下游任务上展示了模型可喜的 准确率/复杂度权衡
 
+# Method
+
+## Global Filter Networks 
+
+
+
 # Conclusion
 
 这篇文章提出了 Global Filter Network(GFNet), 其实一个简单但是计算高效的结构。
