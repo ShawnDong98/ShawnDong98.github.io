@@ -31,7 +31,28 @@ tags:
 **Overall architecture.** 视觉 Transformer 的最新进展[10,43]表明，即使没有与卷积相关的归纳偏置，基于自注意力的模型也可以实现竞争性能。 此后，有几部工作[42,41]利用了除自注意力以外的方法(如MLPs)在 tokens 之间混合信息。提出的 Global Filter Networks (GFNet)遵循这一工作路线，旨在用更简单、更高效的自注意层取代计算度复杂(($O(N^2)$))的自注意力层。
 
 
-模型的总体架构如图1所示。模型的输入为 $H \times W$ 的不重叠的 patches 并且将拉平的 patches 沿着维度 $D$ 投影为 $L = HW$ 的 tokens。 
+模型的总体架构如图1所示。模型的输入为 $H \times W$ 的不重叠的 patches 并且将拉平的 patches 沿着维度 $D$ 投影为 $L = HW$ 的 tokens。 GFNet 的基本块包括：
+
+- **global filter layer**： 其高效地交换空间信息 ($O(L \log L)$)
+- **feedforward network(FFN)**
+
+最后一个 block 的输出 token 被送入一个全局平均池化层，后面跟着一个线性分类器。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1662266317690.png)
+
+**Global filter layer.**  作者提出 global filter 层作为自注意力层的替代，它可以混合表示不同空间位置的 token。给定 tokens $x \in \mathbb{R}^{H \times W \times D}$， 首先沿着空间维度执行 2D FFT 将 $x$ 转换到频率域：
+
+$$
+X = \mathcal{F}[x] \in \mathbb{C}^{H \times W \times D}
+$$
+
+$X$ 是复数张量并且表示 $x$ 的 spectrum。 通过将可学习的 filter $K \in \mathbb{C}^{H \times W \times D}$ 与 $X$ 相乘调制 spectrum。
+
+$$
+\tilde X = K \odot X
+$$
+
+filter $K$ 与 $X$ 具有相同的维数，可以表示频域中任意的 filter ，因此称为 **global filter**。最后，采用 FFT 反变换将调制后 spectrum $\tilde X$ 变换回空间域并更新 token。
 
 # Conclusion
 
