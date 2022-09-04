@@ -28,6 +28,7 @@ tags:
 
 ## Global Filter Networks 
 
+**Overall architecture.** 视觉 Transformer 的最新进展[10,43]表明，即使没有与卷积相关的归纳偏置，基于自注意力的模型也可以实现竞争性能。 
 
 
 # Conclusion
