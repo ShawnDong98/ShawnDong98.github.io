@@ -28,7 +28,7 @@ tags:
 
 ## Global Filter Networks 
 
-**Overall architecture.** 视觉 Transformer 的最新进展[10,43]表明，即使没有与卷积相关的归纳偏置，基于自注意力的模型也可以实现竞争性能。 
+**Overall architecture.** 视觉 Transformer 的最新进展[10,43]表明，即使没有与卷积相关的归纳偏置，基于自注意力的模型也可以实现竞争性能。 此后，有几部工作[42,41]利用了除自注意力以外的方法(如MLPs)在 tokens 之间混合信息。提出的 Global Filter Networks (GFNet)遵循这一工作路线，旨在用更简单、更高效的自注意层取代计算度复杂(($O(N^2)$))的自注意力层。
 
 
 # Conclusion
