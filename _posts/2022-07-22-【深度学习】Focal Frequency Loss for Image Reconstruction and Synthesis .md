@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      "【深度学习】Focal Frequency Loss for Image Reconstruction and Synthesis "
+title: 【深度学习】Focal Frequency Loss for Image Reconstruction and Synthesis
 subtitle:   ""
 date:       2022-07-22
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
-tags:
+tags: 
     - 深度学习
     - ICCV 2021
 ---
