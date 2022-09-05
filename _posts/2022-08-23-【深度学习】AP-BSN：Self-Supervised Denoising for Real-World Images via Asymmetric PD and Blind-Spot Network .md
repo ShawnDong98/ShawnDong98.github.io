@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】AP-BSN: Self-Supervised Denoising for Real-World Images via Asymmetric PD and Blind-Spot Network "
+title: '【深度学习】AP-BSN: Self-Supervised Denoising for Real-World Images via Asymmetric PD and Blind-Spot Network'
 subtitle:   ""
 date:       2022-08-23
 author:     "ShawnD"
@@ -8,6 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
+    - low-level CV
     - CVPR 2022
 ---
 
