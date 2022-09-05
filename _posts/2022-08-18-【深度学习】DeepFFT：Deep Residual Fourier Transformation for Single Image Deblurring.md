@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】DeepFFT：Deep Residual Fourier Transformation for Single Image Deblurring"
+title:      "【深度学习】DeepRFT：Deep Residual Fourier Transformation for Single Image Deblurring"
 subtitle:   ""
 date:       2022-08-18
 author:     "ShawnD"
@@ -8,6 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
+    - low-level CV
     - Arxiv 2021
 ---
 
