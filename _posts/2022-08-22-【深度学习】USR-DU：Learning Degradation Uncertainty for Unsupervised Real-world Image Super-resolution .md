@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】USR-DU：Learning Degradation Uncertainty for Unsupervised Real-world Image Super-resolution "
+title: 【深度学习】USR-DU：Learning Degradation Uncertainty for Unsupervised Real-world Image Super-resolution
 subtitle:   ""
 date:       2022-08-22
 author:     "ShawnD"
@@ -8,6 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
+    - low-level CV
     - IJCAI 2022
 ---
 
