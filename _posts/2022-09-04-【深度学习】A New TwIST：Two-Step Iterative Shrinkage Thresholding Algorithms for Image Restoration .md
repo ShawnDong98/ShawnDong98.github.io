@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
-    - CV
+    - low-level CV
     - TIP 2007
 ---
 
