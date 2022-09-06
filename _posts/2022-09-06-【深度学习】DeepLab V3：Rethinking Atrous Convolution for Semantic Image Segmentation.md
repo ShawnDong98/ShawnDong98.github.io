@@ -20,6 +20,8 @@ tags:
 
 此外，作者提出增强 Atrous Spatial Pyramid Pooling 模块，该模块探测多个尺度的卷积效果，具有编码全局上下文的图像级特征，以进一步提高性能。
 
+作者还详细介绍了实施细节，并分享了作者在训练系统方面的经验。
 
+与之前没有 DenseCRF 后处理的 DeepLab 版本相比，提出的 “DeepLabv3” 系统有了显著改进，并实现了与PASCAL VOC 2012语义图像分割基准上其他最先进的模型的性能。
 
 # Conclusion
