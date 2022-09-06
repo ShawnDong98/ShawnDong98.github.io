@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
-    - TPAMI 2018
+    - TPAMI 2017
 ---
 
 # Abstract
