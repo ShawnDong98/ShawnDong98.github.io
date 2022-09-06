@@ -18,6 +18,8 @@ tags:
 
 为了解决在多个尺度上分割物体的问题，作者设计了在级联或并行中使用 atrous 卷积的模块，通过采用多个 atrous rate 捕获多尺度上下文。
 
+此外，作者提出增强 Atrous Spatial Pyramid Pooling 模块，该模块探测多个尺度的卷积效果，具有编码全局上下文的图像级特征，以进一步提高性能。
+
 
 
 # Conclusion
