@@ -584,6 +584,22 @@ plt.axis('off')
 plt.savefig(path, bbox_inches = 'tight', dpi=300, pad_inches = 0)
 ```
 
+## matplotlib图例、标签、坐标轴刻度的字体设置
+
+```
+plt.figure(figsize=[15,8])
+plt.scatter(X, Y, label = 'RealValue')
+plt.plot(X, func(X, a, b), 'red', label = 'CurveLine')
+plt.title(station, fontdict={'family' : 'Times New Roman', 'size'   : 16})
+plt.ylabel('Clocks($\mu S$)', fontdict={'family' : 'Times New Roman', 'size'   : 16})
+plt.xlabel('Time', fontdict={'family' : 'Times New Roman', 'size'   : 16})
+plt.yticks(fontproperties = 'Times New Roman', size = 14)
+plt.xticks(fontproperties = 'Times New Roman', size = 14)
+plt.legend(prop={'family' : 'Times New Roman', 'size'   : 16})
+plt.savefig('./stationClocks/' + station + '.ps', dpi = 200)
+plt.show()
+```
+
 # seaborn语法
 
 ## seaborn.set()
@@ -660,3 +676,4 @@ numpy转Image：
 2. [PIL/Image的show()函数](https://blog.csdn.net/bcfd_yundou/article/details/89146169)
 3. [Matplotlib设计的基本逻辑](https://zhuanlan.zhihu.com/p/32693665)
 4. [Py-plt: Matplotlib常用柱状图详解](https://blog.csdn.net/MyName_Guan/article/details/110390312)
+5. [matplotlib图例、标签、坐标轴刻度的字体设置](https://blog.csdn.net/love__live1/article/details/83143195)
