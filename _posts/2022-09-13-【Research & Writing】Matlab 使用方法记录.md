@@ -18,7 +18,13 @@ A = imread("图片名")
 B = imcrop(A ,[x y width length])
 ```
 
+## 设置 Axis 在 Figture 中的边距、大小
+
+```
+set(gca,'Position', [.13 .17 .80 .74]);
+```
 
 # Reference
 
 1. [浅谈MATLAb中imcrop（）函数](https://blog.csdn.net/qq_57906941/article/details/125222861)
+2. [MATLAB 中设置 Figure 和 Axes 的位置和尺寸](https://zhuanlan.zhihu.com/p/446968474)
