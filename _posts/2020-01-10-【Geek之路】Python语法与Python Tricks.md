@@ -1386,6 +1386,32 @@ ValueError: malformed node or string: <_ast.Call object at 0x10e63ca58>
 
 所以出于安全考虑，对字符串进行类型转换的时候，最好使用 `ast.literal_eval()`
 
+## try except else
+
+使用 else 包裹的代码，只有当 try 块没有捕获到任何异常时，才会得到执行；反之，如果 try 块捕获到异常，即便调用对应的 except 处理完异常，else 块中的代码也不会得到执行。
+
+```python
+try:
+    result = 20 / int(input('请输入除数:'))
+    print(result)
+except ValueError:
+    print('必须输入整数')
+except ArithmeticError:
+    print('算术错误，除数不能为 0')
+else:
+    print('没有出现异常')
+print("继续执行")
+```
+
+```
+请输入除数:4
+5.0
+没有出现异常
+继续执行
+```
+
+
+
 # os
 
 
