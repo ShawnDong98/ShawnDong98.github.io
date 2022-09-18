@@ -26,6 +26,13 @@ tags:
 特别是，通过单模型和单尺度，EfficientDet-D7 在 COCO test-dev 上实现了最先进的55.1 AP，具有 77M parameters和 410B FLOPs，比以前的检测器小4倍-9倍，使用比以前的检测器少13倍至42倍的FLOPs。
 
 
+# BiFPN
+
+在本节中，作者首先提出了多尺度特征融合问题，然后介绍了作者提出的 BiFPN 的主要思想：高效的双向跨尺度连接和加权特征融合。
+
+## Problem Formulation
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1663507411895.png)
 
 # Conclusion
 
