@@ -25,7 +25,14 @@ tags:
 创建一个互补的分支，为每个 proposal 捕获不同的 views，以进一步改进 mask 预测。
 
 
+# Framework
 
+框架如图1所示。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1663508892662.png)
+
+
+Path agmentation 和 aggregation 以改善性能。 自下而上的路径得到了增强，使低层信息更容易传播。作者设计了自适应特征池化，允许每个提议访问来自各个级别的信息进行预测。将互补路径添加到 mask 预测分支中。这种新结构带来了很好的表现。与FPN类似，改进与CNN结构无关。
 
 # Conclusion
 
