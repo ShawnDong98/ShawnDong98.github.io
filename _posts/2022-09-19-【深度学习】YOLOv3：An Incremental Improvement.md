@@ -91,7 +91,14 @@ YOLOv3相当不错！见表3。就COCOs奇怪的 mAP 指标而言，它与SSD变
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1663576969249.png)
 
 
-然而，当作者查看“旧”检测指标(IoU 为 0.5 时的mAP，表中的 $AP_{50}$)时， YOLO v3 非常强。
+然而，当作者查看“旧”检测指标(IoU 为 0.5 时的mAP，表中的 $AP_{50}$)时， YOLO v3 非常强。它几乎与RetinaNet相当，远远高于SSD变体。这表明YOLOv3是一个非常强大的检测器，擅长为目标生成边界框。然而，随着 IoU 阈值的增加，性能显著下降，这表明 YOLOv3 难以使边界框与目标完美对齐。
+
+
+过去，YOLO与小目标作斗争。现在，我们看到了这种趋势的逆转。通过新的多尺度预测，可以看到YOLOv3具有相对较高的 $AP_S$性能。然而，它在中型和大型物体上的性能相对较差。需要更多的调研才能弄清真相。
+
+当绘制 $AP_{50}$ 指标的准确性与速度（见图3）时，YOLOv3比其他检测系统有显著的好处。也就是说，它更快、更好。
+
+![enter description here](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1663577328753.png)
 
 # Conclusion
 
