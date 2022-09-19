@@ -27,6 +27,13 @@ tags:
 在基本的 Faster R-CNN 系统中使用FPN，该方法在 COCO 检测基准上实现了最先进的单模型结果，超过了所有现有的单模型结果，包括COCO 2016 Challenge 获胜者。
 
 
+# Feature Pyramid Networks
+
+作者的目标是利用ConvNet的金字塔特征层次结构，该层次结构具有从低级到高级的语义，并构建一个具有高级语义的特征金字塔。
+
+由此产生的特征金字塔网络是通用的，这篇文章重点介绍了滑动窗口 proposer（区域提议网络，简称RPN）[29]和基于区域的检测器（Faster R-CNN）。
+
+
 
 # Conclusion
 
