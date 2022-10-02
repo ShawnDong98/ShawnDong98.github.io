@@ -20,5 +20,8 @@ tags:
 
 在这项工作中，作者重新审视了 Spatial Shuffle，将其作为在窗口之间建立连接的有效方法。
 
+因此，作者提出了一种名为 Shuffle Transformer 的新 Vision Transformer，它高效且易于实现， 仅需修改两行代码。
+
+此外，作者还引入了 Depth-wise 卷积，以补充 Spatial Shuffle，以加强邻近窗口连接。
 
 # Conclusion
