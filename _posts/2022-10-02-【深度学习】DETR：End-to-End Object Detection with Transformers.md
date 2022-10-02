@@ -18,5 +18,8 @@ tags:
 
 该方法简化了目标检测流程，有效地消除了对许多手工设计的组合的需求，如非极大值抑制过程或 Anchor 生成，这些过程或 Anchor 生成明确编码了对该任务的先验知识。
 
+新框架的主要成分称为 DEtection TRansformer 或 DETR，是基于集合的全局损失，其通过二分匹配和Transformer码器解码器结构进行预测。
+
+
 
 # Conclusion
