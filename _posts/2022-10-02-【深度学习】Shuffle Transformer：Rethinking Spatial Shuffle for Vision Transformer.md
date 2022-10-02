@@ -33,3 +33,9 @@ tags:
 为了高效建模，作者使用基于窗口的多头自注意力，该自注意力在非重叠窗口内计算自注意力。
 
 为了建立跨窗口连接，作者将 Spatial Shuffle 引入基于窗口的多头自注意力中。
+
+同时，为了增强邻近窗口连接，作者引入了一个 Depth-wise 卷积层，将残差连接到 Shuffle Transformer 块中。
+
+最后，借助连续的 Shuffle Transformer 块，所提出的 Shuffle Transformer 可以使信息在所有窗口中流动。
+
+广泛的实验表明，作者提出的两种架构都优于其他计算复杂度相似的最先进的视觉 Transformer。
