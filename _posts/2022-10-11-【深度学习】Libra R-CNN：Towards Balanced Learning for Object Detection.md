@@ -27,3 +27,9 @@ Libra R-CNN 受益于整体平衡的设计，显著提高了检测性能。
 # Conclusion
 
 这篇文章系统地重新审视了检测器的训练过程，发现由于训练过程中存在的不平衡问题，模型结构的潜力没有得到充分利用。
+
+基于这一观察，作者提出 Libra R-CNN 通过整体平衡设计来平衡不平衡。
+
+在简单但有效的组件的帮助下，如 IoU-balanced sampling, balanced feature pyramid 和 balanced L1 loss， Libra R-CNN 在 MS COCO 数据集带来了性能上很大的提升。
+
+广泛的实验表明，Libra R-CNN很好地推广到两阶段检测器和单阶段检测器的各种主干。
