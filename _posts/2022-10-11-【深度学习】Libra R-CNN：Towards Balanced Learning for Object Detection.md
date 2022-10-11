@@ -24,6 +24,23 @@ tags:
 
 Libra R-CNN 受益于整体平衡的设计，显著提高了检测性能。
 
+
+# Methodology
+
+##  IoU-balanced Sampling
+
+## Balanced Feature Pyramid
+
+## Balanced L1 Loss
+
+自Fast R-CNN 以来，分类和定位问题在多任务损失的指导下同时得到解决，该损失被定义为
+
+$$
+L_{p, u, t^u, v} = L_{cls}(p, u) + \lambda[u \geq 1] L_{loc}(t^u, v)
+$$
+
+
+
 # Conclusion
 
 这篇文章系统地重新审视了检测器的训练过程，发现由于训练过程中存在的不平衡问题，模型结构的潜力没有得到充分利用。
