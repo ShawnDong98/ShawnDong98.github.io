@@ -24,6 +24,4 @@ tags:
 
 Libra R-CNN 受益于整体平衡的设计，显著提高了检测性能。
 
-
-
 # Conclusion
