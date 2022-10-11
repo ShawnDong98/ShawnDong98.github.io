@@ -20,6 +20,6 @@ tags:
 
 为了减轻由此造成的不利影响，作者提出了Libra R-CNN，这是一个简单但有效的框架，旨在平衡学习目标检测。
 
-它集成了三个新组件：IoU平衡采样、平衡特征金字塔和平衡L1损耗，分别用于减少样本、特征和目标水平的不平衡。
+它集成了三个新组件：IoU-balanced sampling, balanced feature pyramid 和 balanced L1 loss，分别用于减少样本、特征和目标的不平衡。
 
 # Conclusion
