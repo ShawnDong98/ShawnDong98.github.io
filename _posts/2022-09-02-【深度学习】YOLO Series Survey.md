@@ -28,6 +28,28 @@ tags:
 
 ## Loss 计算
 
+$$
+l = \lambda_{coord} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{ij}^{obj} [(x_i - \hat x_i)^2 + (y_i - \hat y_i)^2] \\
++ \lambda_{coord} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{ij}^{obj}[(\sqrt{w_i} - \sqrt{\hat w_i})^2 + (\sqrt{h_i} - \sqrt{\hat h_i})^2] \\
+ + \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{ij}^{obj}(C_i - \hat C_i)^2 \\
+ + \lambda_{noobj} \sum_{i=0}^{S^2} \sum_{j=0}^B \mathbb{1}_{ij}^{noobj} (C_i - \hat C_i)^2 \\  + \sum_{i=0}^{S^2} \mathbb{1}_i^{obj} \sum_{c \in \text{classes}}(p_i(c) - \hat p_i(c))^2 
+$$
+### binary_cross_entropy_with_logits
+
+$$
+Out = -Labels * \log(\sigma(Logit)) + (1 - Labels) * \log(1 - \sigma(Logit))
+$$
+
+
+
+
+
+
+
+
+## 训练
+
+## 推理
 
 # YOLO V2
 
