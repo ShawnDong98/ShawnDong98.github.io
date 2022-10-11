@@ -13,6 +13,15 @@ tags:
 
 # YOLO V1
 
+## Architecture 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1665456885064.png)
+
+作者使用1×1 reduction layers，然后使用 3×3 卷积层
+
+
+## Loss 计算
+
 
 # YOLO V2
 
