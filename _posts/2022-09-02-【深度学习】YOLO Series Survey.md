@@ -40,6 +40,9 @@ $$
 Out = -Labels * \log(\sigma(Logit)) + (1 - Labels) * \log(1 - \sigma(Logit))
 $$
 
+### sigmoid_focal_loss
+
+
 
 
 
