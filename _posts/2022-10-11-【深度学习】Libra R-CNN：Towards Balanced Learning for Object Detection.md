@@ -39,7 +39,7 @@ $$
 L_{p, u, t^u, v} = L_{cls}(p, u) + \lambda[u \geq 1] L_{loc}(t^u, v)
 $$
 
-
+$L_{cls}$ 和 $L_{loc}$ 分别是对应识别和定位的目标函数。 $L_{cls}$ 中的预测和标签表示为 $p$ 和 $u$。 $t^u$ 是类别 $u$ 对应的回归结果。 $v$ 是回归标签。 $\lambda$ 用于调整多任务学习中的权重。 
 
 # Conclusion
 
