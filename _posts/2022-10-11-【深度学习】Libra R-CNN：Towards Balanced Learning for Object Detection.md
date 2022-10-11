@@ -22,4 +22,8 @@ tags:
 
 它集成了三个新组件：IoU-balanced sampling, balanced feature pyramid 和 balanced L1 loss，分别用于减少样本、特征和目标的不平衡。
 
+Libra R-CNN 受益于整体平衡的设计，显著提高了检测性能。
+
+
+
 # Conclusion
