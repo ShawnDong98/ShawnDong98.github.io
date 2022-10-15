@@ -22,6 +22,8 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1665848653861.png)
 太平洋时间比北京时间晚八个小时。
 
+投稿开始时间为 Oct 17 2022 04:59 PM UTC-0， 摘要注册时间为： Nov 04 2022 04:59PM UTC-0， 投稿截止时间为 Nov 11 2022 03:59PM UTC-0。
+
 
 # Paper Submission
 
