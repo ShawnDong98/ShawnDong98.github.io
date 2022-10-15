@@ -21,3 +21,14 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1665848653861.png)
 太平洋时间比北京时间晚八个小时。
+
+
+# Paper Submission
+
+所有的提交将通过 OpenReview 会议提交网站进行电子处理 [ https://openreview.net/group?id=thecvf.com/CVPR/2023/Conference]( https://openreview.net/group?id=thecvf.com/CVPR/2023/Conference)。所有作者必须同意以下规定的政策。提交截止日期为2022年11月11日，不会更改。补充材料提交截止日期为2022年11月18日。
+
+# Policies
+
+在向CVPR提交稿件时，作者承认在审查期间(2022年11月11日，2023年2月27日)没有或将没有向其他会议或研讨会提交内容基本相似的论文。
+
+通过向CVPR提交论文，作者同意评审过程，并理解论文由 OpenReview 处理，以匹配每个稿件的最佳区域主席和审稿人。
