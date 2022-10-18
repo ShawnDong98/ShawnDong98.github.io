@@ -48,7 +48,7 @@ $$
 \hat x^k = \arg \max_x \frac{1}{2} \| x - (\hat x^{k-1} - \rho \nabla g(\hat x^{k -1 })) \|_2^2 + \lambda J(x) \tag{4}
 $$
 
-其中 $\hat x^k$ 表示第 $k$ 次迭代的输出， $g(·)$表示等式 $3$ 的数据保真度。 $\nabla$ 是微分操作， 齐备步长 $\rho$ 加权。数学上来说， $\hat x^{k-1} - \rho \nabla \frac{1}{2}\|y - A\hat x^{k-1}\|_2^2$ 是一个梯度下降操作， 剩下的部分 $\hat x^k = \arg \min_x \frac{1}{2} \|x - v^k\| + \lambda J(x)$ 通过近似映射操作 $prox_{\lambda, J}$ 求解。 因此， 它可分为两个子问题， 梯度下降和近似映射。
+其中 $\hat x^k$ 表示第 $k$ 次迭代的输出， $g(·)$表示等式 $3$ 的数据保真度。 $\nabla$ 是微分操作， 齐备步长 $\rho$ 加权。数学上来说， $\hat x^{k-1} - \rho \nabla \frac{1}{2}|y - A\hat x^{k-1}|_2^2$ 是一个梯度下降操作， 剩下的部分 $\hat x^k = \arg \min_x \frac{1}{2} | x - v^k | + \lambda J(x)$ 通过近似映射操作 $prox_{\lambda, J}$ 求解。 因此， 它可分为两个子问题， 梯度下降和近似映射。
 
 $$
 v^k = \hat x^{k-1} - \rho A^T(A \hat x^{k-1} - y) \tag{5a}
