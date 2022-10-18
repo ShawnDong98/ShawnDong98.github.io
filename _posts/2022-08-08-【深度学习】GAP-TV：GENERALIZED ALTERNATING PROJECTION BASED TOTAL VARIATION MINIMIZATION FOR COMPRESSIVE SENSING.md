@@ -38,7 +38,7 @@ $$
 
 $y$ 是 measurement， $\Phi$ 是 sensing matrix, $x$ 是想要的信号， $w$ 是变换域中对应的系数。
 
-$\|·\|_{l_{2, 1}^{\mathcal{G}, \beta}}$ 表示加权组 $l_{2, 1}$ 范数， 定义为：
+$|·|_{l_{2, 1}^{\mathcal{G}, \beta}}$ 表示加权组 $l_{2, 1}$  范数， 定义为：
 
 $$
 \|w\|_{l_{2, 1}^{\mathcal{G, \beta}}} = \sum_{k=1}^K \beta_k \|w_{\mathcal{G}_k}\|_2
