@@ -1,7 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】BEVFormer++：Improving BEVFormer for 3D Camera-only Object Detection：1st Place Solution for Waymo Open Dataset Challenge 2022
-"
+title:      "【深度学习】BEVFormer++：Improving BEVFormer for 3D Camera-only Object Detection：1st Place Solution for Waymo Open Dataset Challenge 2022"
 subtitle:   ""
 date:       2022-10-29
 author:     "ShawnD"
