@@ -39,9 +39,13 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667217953000.png)
 
-从表1中可以看出，端到端训练， 耦合头降低了4.2AP， 而解耦头降低了 0.8 AP。因此作者将YOLO的检测头替换为了如图2所示的一个轻量的解耦头。
+从表1中可以看出，端到端训练， 耦合头降低了4.2AP， 而解耦头降低了 0.8 AP。因此作者将YOLO的检测头替换为了如图2所示的一个轻量的解耦头。具体来说，它包含一个1×1的conv层来减少通道尺寸，然后是两个平行的分支，上面有两个3×3的conv层。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667218038095.png)
+作者在表2中汇报了在 V100 上批量大小为 1 的推理时间， 解耦头增加了1.1ms。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667218204332.png)
 
 # Conclusion
 
