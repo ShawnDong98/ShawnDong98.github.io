@@ -20,6 +20,13 @@ tags:
 
 此外，作者使用单一的YOLOX-L模型赢得了 Streaming Perception 挑战(CVPR 2021年自动驾驶研讨会)的第一名。
 
+
+# YOLOX
+
+## YOLOX-DarkNet53
+
+**YOLOv3 baseline**： baseline 采用 DarkNet53 加上 SPP 层作为主干的结构。 相比原始的实现加入一些训练细节， 加入EMA权重更新， 余弦学习策略，IoU loss 和 IoU-aware 分支。使用 BCE 训练 cls 和 obj 分支， IoU loss 训练 reg 分支。 
+
 # Conclusion
 
 在这份报告中，作者介绍了YOLO系列的一些更新，它形成了一个高性能的 Anchor-free 检测器，称为YOLOX。
