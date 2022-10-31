@@ -39,7 +39,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667217953000.png)
 
-从表1中可以看出，端到端训练， 耦合头降低了4.2AP， 而解耦头降低了 0.8 AP。
+从表1中可以看出，端到端训练， 耦合头降低了4.2AP， 而解耦头降低了 0.8 AP。因此作者将YOLO的检测头替换为了如图2所示的一个轻量的解耦头。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667218038095.png)
 
