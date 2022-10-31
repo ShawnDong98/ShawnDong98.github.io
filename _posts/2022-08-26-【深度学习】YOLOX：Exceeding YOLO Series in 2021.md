@@ -48,6 +48,8 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667218204332.png)
 
 **Strong data augmentation** 作者将Mosaic和MixUp添加到数据增强策略中，以提高YOLOX的表现。Mosaic 是 Ultralytics-YOLOv3 提出的一种高效增强策略。 然后，它被广泛用于YOLOv4、YOLOv5和其他检测器。MixUp最初是为图像分类任务设计的，但后来在 BoF 中进行了修改，用于目标检测训练。作者在模型中采用了MixUp和Mosaic实现，并在最后15个 epoch 关闭了它，在表2中实现了42.0%的AP。在使用强大的数据增强后，作者发现ImageNet预训练不再有益，因此我们从头开始训练以下所有模型。
+
+**Anchor-free**： YOLOv4 和YOLOv5 都遵循YOLOv3的原始的先验框流程。然而，先验框机制有许多已知的问题。首先，为了实现最佳检测性能，需要在训练前进行聚类分析以确定一组最佳先验框。
  
 
 # Conclusion
