@@ -47,7 +47,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667218204332.png)
 
-**Strong data augmentation** 作者将Mosaic和MixUp添加到数据增强策略中，以提高YOLOX的表现。Mosaic 是 Ultralytics-YOLOv3 提出的一种高效增强策略。 然后，它被广泛用于YOLOv4 [1]、YOLOv5 [7]和其他检测器[3]。
+**Strong data augmentation** 作者将Mosaic和MixUp添加到数据增强策略中，以提高YOLOX的表现。Mosaic 是 Ultralytics-YOLOv3 提出的一种高效增强策略。 然后，它被广泛用于YOLOv4、YOLOv5和其他检测器。MixUp最初是为图像分类任务设计的，但后来在 BoF 中进行了修改，用于目标检测训练。
  
 
 # Conclusion
