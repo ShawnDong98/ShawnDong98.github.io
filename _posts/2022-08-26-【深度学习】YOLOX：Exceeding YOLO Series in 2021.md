@@ -25,7 +25,7 @@ tags:
 
 ## YOLOX-DarkNet53
 
-**YOLOv3 baseline**： baseline 采用 DarkNet53 加上 SPP 层作为主干的结构。 相比原始的实现加入一些训练细节， 加入EMA权重更新， 余弦学习策略，IoU loss 和 IoU-aware 分支。使用 BCE 训练 cls 和 obj 分支， IoU loss 训练 reg 分支。 
+**YOLOv3 baseline**： baseline 采用 DarkNet53 加上 SPP 层作为主干的结构。 相比原始的实现加入一些训练细节， 加入EMA权重更新， 余弦学习策略，IoU loss 和 IoU-aware 分支。使用 BCE 训练 cls 和 obj 分支， IoU loss 训练 reg 分支。这些通用的训练技巧与YOLOX的关键提升正交， 因此作者将它们加入baseline。 
 
 # Conclusion
 
