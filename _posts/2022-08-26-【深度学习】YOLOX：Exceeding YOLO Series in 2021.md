@@ -25,7 +25,9 @@ tags:
 
 ## YOLOX-DarkNet53
 
-**YOLOv3 baseline**： baseline 采用 DarkNet53 加上 SPP 层作为主干的结构。 相比原始的实现加入一些训练细节， 加入EMA权重更新， 余弦学习策略，IoU loss 和 IoU-aware 分支。使用 BCE 训练 cls 和 obj 分支， IoU loss 训练 reg 分支。这些通用的训练技巧与YOLOX的关键提升正交， 因此作者将它们加入baseline。 
+**YOLOv3 baseline**： baseline 采用 DarkNet53 加上 SPP 层作为主干的结构。 相比原始的实现加入一些训练细节， 加入EMA权重更新， 余弦学习策略，IoU loss 和 IoU-aware 分支。使用 BCE 训练 cls 和 obj 分支， IoU loss 训练 reg 分支。这些通用的训练技巧与YOLOX的关键提升正交， 因此作者将它们加入baseline。此外作者仅仅执行了 RandomHorizontalFlip， ColorJitter 和 多尺度的数据增强， 并且抛弃了 RandomResizedCrop 策略， 因为作者发现这与 misaic 数据增强冲突。  
+
+**Decoupled head：** 在目标检测中，分类和回归任务之间的冲突是一个众所周知的问题。 因此，用于分类和定位的解耦头被广泛用于大多数单阶段和两阶段检测器中。 然而，由于 YOLO 系列的主干和特征金字塔(FPN, PAN)不断发展， 他们的检测头一直耦合着。
 
 # Conclusion
 
