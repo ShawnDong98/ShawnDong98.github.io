@@ -47,6 +47,9 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667218204332.png)
 
+**Strong data augmentation** 作者将Mosaic和MixUp添加到数据增强策略中，以提高YOLOX的表现。
+ 
+
 # Conclusion
 
 在这份报告中，作者介绍了YOLO系列的一些更新，它形成了一个高性能的 Anchor-free 检测器，称为YOLOX。
