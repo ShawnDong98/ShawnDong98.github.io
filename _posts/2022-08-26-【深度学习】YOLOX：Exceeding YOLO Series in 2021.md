@@ -29,6 +29,20 @@ tags:
 
 **Decoupled head：** 在目标检测中，分类和回归任务之间的冲突是一个众所周知的问题。 因此，用于分类和定位的解耦头被广泛用于大多数单阶段和两阶段检测器中。 然而，由于 YOLO 系列的主干和特征金字塔(FPN, PAN)不断发展， 他们的检测头一直耦合着。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667217870551.png)
+
+作者的两个分析实验表明，耦合检测头可能会损害性能。
+
+1）用解耦头取代YOLO的头部可以大大提高收敛速度，如图3所示。
+
+2）解耦头对YOLO的端到端版本至关重要（接下来将描述）。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667217953000.png)
+
+从表1中可以看出，端到端训练， 耦合头降低了4.2AP， 而解耦头降低了 0.8 AP。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667218038095.png)
+
 # Conclusion
 
 在这份报告中，作者介绍了YOLO系列的一些更新，它形成了一个高性能的 Anchor-free 检测器，称为YOLOX。
