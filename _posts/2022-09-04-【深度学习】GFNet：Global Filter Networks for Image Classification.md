@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - Backbone
-    - NeurIPS 2021
+    - NIPS 2021
 ---
 
 # Abstract
