@@ -20,9 +20,10 @@ tags:
 
 实验结果表明 conditional DETR 在  back- bones R50 和 R101  上收敛速度快 6.7x, 比更强的 backbones DC5-R50 和 DC5-R101 快 10x。
 
-
-
-
-
-
 # Conclusion
+
+作者提出了一个简单的 conditional cross-attention 机制。
+
+关键是从 reference point 和 decoder embedding 中学习 spatial query。
+
+spatial query 包含为上一个解码器层中的类别和边界框预测挖掘的空间信息，使得空间注意力权重映射突出显示目标框中包含 extremities 和小区域的band。
