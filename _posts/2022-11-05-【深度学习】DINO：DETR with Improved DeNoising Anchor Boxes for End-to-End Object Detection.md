@@ -26,4 +26,12 @@ DINO在模型大小和数据大小上都能很好地扩展。
 
 与排行榜上的其他模型相比，DINO显著减少了其模型大小和预训练数据大小，同时取得了更好的结果。
 
-# Conclution
+# Conclusion
+
+这篇文章提出了一种强大的端到端 Transformer 检测器DINO，具有 contrastive denoising training、mixed query selection 和 look forward twice，这显著提高了训练效率和最终检测性能。
+
+因此，DINO在使用多尺度特征的12 epoch 和36 epoch 设置中都优于 COCO val2017 上所有以前基于ResNet-50的模型。
+
+在改进的推动下，在更大的数据集上使用更强大的骨干训练DINO，并实现了新的技术水平，即COCO 2017测试开发的63.3 AP。
+
+这一结果将类似DETR的模型作为主流检测框架，不仅因为它的新颖的端到端检测优化，还因为它的卓越性能。
