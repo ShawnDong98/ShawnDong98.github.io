@@ -33,7 +33,9 @@ tags:
 
 # RetinaNet Detector
 
-**Classification Subnet:** 分类子网络在每个空间位置为A个先验框预测目标出现的概率和K个目标类别。该子网络是连接到每个FPN 层级的小型 FCN；该子网络的参数在所有金字塔层级共享。它的设计很简单。从给定金字塔层级获取带有 $C$ 个通道的输入特征图，子网络应用了四个 $3 \times 3$ 卷积层，每个层都有 $C$ 卷积核，每个层后跟 ReLU 激活，然后是带有 $K A$ 个卷积核的 $3 \times 3$ 卷积层。
+**Classification Subnet:** 分类子网络在每个空间位置为A个先验框预测目标出现的概率和 $K$ 个目标类别。该子网络是连接到每个FPN 层级的小型 FCN；该子网络的参数在所有金字塔层级共享。它的设计很简单。从给定金字塔层级获取带有 $C$ 个通道的输入特征图，子网络应用了四个 $3 \times 3$ 卷积层，每个层都有 $C$ 卷积核，每个层后跟 ReLU 激活，然后是带有 $K A$ 个卷积核的 $3 \times 3$ 卷积层。最后，每个空间位置使用 sigmoid 激活， 输出 $KA$ 二分类预测， 如图3c所示。在实验中使用 $C = 256$ 和 $A = 9$。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667807953854.png)
 
 # Conclusion
 
