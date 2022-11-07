@@ -6,7 +6,7 @@ date:       2022-11-07
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
-tags: 'Detection,ICCV 2017'
+tags:
     - 深度学习
     - Detection
     - ICCV 2017
