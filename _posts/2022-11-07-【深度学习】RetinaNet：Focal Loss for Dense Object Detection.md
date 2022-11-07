@@ -31,7 +31,5 @@ tags: 'Detection,ICCV 2017'
 该结果表明，当对 focal loss 进行训练时，RetinaNet能够匹配之前单阶段检测器的速度，同时超过所有现有最先进的两阶段检测器的准确性。
 
 
-
-
 # Conclusion
 
