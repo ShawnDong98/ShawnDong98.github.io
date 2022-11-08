@@ -63,6 +63,7 @@ $$
   
 ## Extending TLC to Existing Modules
 
+这一小节借用了上面定义的符号（例如，$\Phi/\Psi$ 分别表示全局/局部信息聚合运算）。为了拓展 TLC 到现有模块， 作者将信息聚合操作从全局转换为局部。
 
 
 
