@@ -35,7 +35,7 @@ SPP-net在目标检测方面的能力也很重要。使用SPP-net，只从整个
 
 在2014年的ImageNet大尺度视觉识别挑战赛(ILSVRC)中，该方法在所有38个团队中在目标检测和图像分类方面排名第2和第3。
 
-# DEEP NETWORKS WITH SPATIAL PYRA- MID POOLING
+# DEEP NETWORKS WITH SPATIAL PYRAMID POOLING
 
 ## The Spatial Pyramid Pooling Layer
 
