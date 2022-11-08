@@ -35,6 +35,18 @@ SPP-net在目标检测方面的能力也很重要。使用SPP-net，只从整个
 
 在2014年的ImageNet大尺度视觉识别挑战赛(ILSVRC)中，该方法在所有38个团队中在目标检测和图像分类方面排名第2和第3。
 
+# DEEP NETWORKS WITH SPATIAL PYRA- MID POOLING
+
+## The Spatial Pyramid Pooling Layer
+
+卷积层接受任意输入大小，但它们产生可变大小的输出。
+
+分类器（SVM/softmax）或全连接层需要固定长度的向量。此类向量可以通过将特征汇集在一起的词袋（BoW）方法[16]生成。
+
+空间金字塔池[14]，[15]改进了BoW，因为它可以通过在局部空间中池化来保留空间信息。
+
+
+
 # Conclusion
 
 SPP是一种灵活的解决方案，可以处理不同的尺度、大小和纵横比。
