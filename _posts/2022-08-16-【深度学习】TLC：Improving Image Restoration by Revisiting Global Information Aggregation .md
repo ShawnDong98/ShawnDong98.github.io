@@ -63,8 +63,18 @@ $$
   
 ## Extending TLC to Existing Modules
 
-这一小节借用了上面定义的符号（例如，$\Phi/\Psi$ 分别表示全局/局部信息聚合运算）。为了拓展 TLC 到现有模块， 作者将信息聚合操作从全局转换为局部。
+这一小节借用了上面定义的符号（例如，$\Phi/\Psi$ 分别表示全局/局部信息聚合运算）。为了拓展 TLC 到现有模块， 作者将信息聚合操作从全局转换为局部。在下面，作者以 Squeeze-and-Excitation(SE) 和 Instance Normalization(IN) 为代表，它可以很容易地应用于其他规范化模块，如  Group Normalization(GN) 或者 SE 的变体(例如， CBAM， GE)。
 
+**Extending TLC to SE Block.** 首先简单回顾  squeeze-and-excitation (SE) 块。对于一个空间大小为 $(H, W)$ 和 $C$ 个通道的特征图 $X \in \mathbb{R}^{H \times W \times C}$， SE块首先压缩全局空间信息到通道， 他可以表示为 $\Phi(X^{(c)}, id), \forall c \in [C]$， 其中 $id(t) = t, \forall t \in \mathbb{R}$。 然后，接下来是一个多层感知器（MLP）来评估通道注意力，从而重新加权特征图。随着全局信息分布的偏移，对全局空间维度的压缩可能不理想。为了解决这个问题， 作者通过替换 $\Phi(X^{(c)}, id)$ 为 $\Phi(X^{(c)}, id) \forall c \in [C]$ 拓展 TLC 到 SE 上。与SE一样，然后是沿着通道维度的MLP。不同的是，在这种情况下，特征图被 element-wise 注意力重新加权。
+
+**Extending TLC to IN.**  对于特征映射 $X \in \mathbb{R}^{H \times W}$（为了简单起见，省略了通道维度），IN 的归一化特征 $Y$ 计算为：$Y = (X − \mu) / \sigma$，其中统计量 $\mu$ 和 $\sigma$ 是在 $X$ 的全局空间上计算的平均值和方差：
+
+$$
+\mu = \Phi(X, id), \sigma^2 = \Phi(X, sq) - \mu^2
+$$
+其中 $id(t) = t, sq(t) = t^2, \forall t \in \mathbb{R}$。 此外，可学习的参数 $\gamma, \beta$ 被用于缩放和偏移规范化后的特征 $Y$。 在推理期间， 作者通过分别替换 $\Phi(X, id)$ 和 $\Phi(X, sq)$ 为 $\Psi(X, id)$ 和 $\Psi(X, sq)$ 。 因此，每个像素都被邻域统计信息归一化。
+
+**Extending to transposed self-attention.** TLC 可以将 Restormer 中的 transpoed self-attention 从全局转换为局部区域。
 
 
 # Conclusion
