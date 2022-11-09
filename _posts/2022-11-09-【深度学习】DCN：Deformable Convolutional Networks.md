@@ -30,8 +30,23 @@ tags:
 
 CNN中的特征图和卷积是3D的。deformable convolution 和 RoI pooling 模块都在二维空间域上运行。在整个通道维度上，操作保持不变。为了清晰的符号清晰起见，这些模块在这里以2D描述。扩展到3D很简单。
 
-
 ## Deformable Convolution
+
+2D 卷积包括两个步骤： 
+
+1) 对输入特征图 $x$ 使用网格 $\mathcal{R}$ 采样；
+
+2）采样值被 $w$ 加权求和
+
+网格 $\mathcal{R}$ 定义为 receptive field size  和 dilation。
+
+对于在输出特征图 $y$ 的每个位置 $p_0$，有：
+
+$$
+y(p_0) = \sum_{p_n \in \mathcal{R}} w(p_n) · x(p_0 + p_n)
+$$
+其中 $p_n$ 是 $\mathcal{R}$ 的位置枚举。
+
 
 ## Deformable RoI Pooling
 
