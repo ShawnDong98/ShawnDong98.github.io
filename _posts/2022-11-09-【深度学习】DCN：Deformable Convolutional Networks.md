@@ -26,6 +26,17 @@ tags:
 
 这篇文章首次表明，在深度CNN中学习密集的空间变换对目标检测和语义语义分割等复杂的视觉任务是有效的。
 
+#  Deformable Convolutional Networks
+
+CNN中的特征图和卷积是3D的。deformable convolution 和 RoI pooling 模块都在二维空间域上运行。在整个通道维度上，操作保持不变。为了清晰的符号清晰起见，这些模块在这里以2D描述。扩展到3D很简单。
+
+
+## Deformable Convolution
+
+## Deformable RoI Pooling
+
+## Deformable ConvNets
+
 # Conclusion
 
 本文提出了 deformable ConvNets，这是一种简单、高效、深度和端到端的解决方案，用于模拟密集的空间变换。
