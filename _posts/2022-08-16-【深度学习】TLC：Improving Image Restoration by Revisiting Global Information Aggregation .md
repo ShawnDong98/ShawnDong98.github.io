@@ -74,7 +74,7 @@ $$
 $$
 其中 $id(t) = t, sq(t) = t^2, \forall t \in \mathbb{R}$。 此外，可学习的参数 $\gamma, \beta$ 被用于缩放和偏移规范化后的特征 $Y$。 在推理期间， 作者通过分别替换 $\Phi(X, id)$ 和 $\Phi(X, sq)$ 为 $\Psi(X, id)$ 和 $\Psi(X, sq)$ 。 因此，每个像素都被邻域统计信息归一化。
 
-**Extending to transposed self-attention.** TLC 可以将 Restormer 中的 transpoed self-attention 从全局转换为局部区域。
+**Extending to transposed self-attention.** TLC 可以将 Restormer 中的 transpoed self-attention 从全局转换为局部区域。然而，由于GPU内存的低效率和局限性，即每个像素的注意力权重不同，TLC在转换自注意时使用更大的步长而不是步长为1。具体来说，转换的自注意力独立应用于从输入特征切片的 $K_h \times K_w$ 的每个重叠窗口。然后，通过沿着空间维度串联并在重叠区域上平均来融合重叠的输出。
 
 
 # Conclusion
