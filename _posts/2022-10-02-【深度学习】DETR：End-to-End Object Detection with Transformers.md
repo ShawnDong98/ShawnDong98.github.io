@@ -65,6 +65,13 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667963968161.png)
 与许多现代检测器不同，DETR可以在任何深度学习框架中实现，该框架提供通用CNN主干和仅几百行的 Transformer 原型结构实现。DETR的推理代码可以在PyTorch中以不到50行实现。
 
+**Backbone.** 从初始图像 $x_{img} \in \mathbb{R}^{3 \times H_0 \times W_0}$， 一个传统的 CNN 主干生成一个低分辨率特征图 $f \in \mathbb{R}^{C \times H \times W}$。 通常值设置为 $C = 2048$, $H, W = \frac{H_0}{32}, \frac{W_0}{32}$。
+
+**Transformer encoder.** 首先， 一个 $1 \times 1$ 卷积减少高层特征图 $f$ 的通道维度 $C$ 为一个更小的维度 $d$。 创建一个新的特征图 $z_0 \in \mathbb{R}^{d \times H \times W}$。 编码器期望一个序列作为输入，因此将 $z_0$ 的空间维度拉成一维， 得到一个 $d \times H W$  的特征图。每个编码器有一个标准的结构并且有一个多头注意力模块(MSA)和前向网络(FFN) 组成。由于 Transformer 架构是 permutation-invariant 的，作者用固定位置编码[31,3]来修复它，这些编码添加到每个注意力层的输入中。
+
+**Transformer decoder.** 解码器遵循 Transformer 的标准架构，使用多头自注意力和编码器和解码器注意力机制转换尺寸为 $d$ 的 $N$ 个嵌入。与原始 Transformer 的区别在于，该模型在每个解码器层并行解码 $N$ 个目标，而 Vaswani等人[47]使用自回归模型，一次预测一个元素的输出序列。由于解码器也是 permutation-invariant 的，N个输入嵌入必须不同才能产生不同的结果。这些放置嵌入是学习的位置编码，称之为 object queries，与编码器类似，将它们添加到每个注意力层的输入中。N个 object queries 由解码器转换为输出嵌入。然后，它们通过前向网络（在下一小节中描述）独立解码为框坐标和类标签，从而产生 $N$ 个最终预测。使用对这些嵌入的自编码器和解码器注意力，该模型使用它们之间的配对关系对所有目标进行全局推理，同时能够将整个图像用作上下文。
+
+**Prediction feed-forward networks (FFNs).** 最终预测由具有ReLU激活函数和维度为 $d$ 的 $3$ 层感知器以及线性投影层计算得到。FFN预测边界框的归一化后的中心坐标、高度和宽度， 线性层使用 softmax 函数预测类别标签。
 
 # Conclusion
 
