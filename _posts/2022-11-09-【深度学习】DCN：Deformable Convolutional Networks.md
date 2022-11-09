@@ -47,6 +47,20 @@ y(p_0) = \sum_{p_n \in \mathcal{R}} w(p_n) · x(p_0 + p_n)
 $$
 其中 $p_n$ 是 $\mathcal{R}$ 的位置枚举。
 
+在 deformable convolution 中， 网格 $\mathcal{R}$ 由偏移量 ${\Delta p_n \mid n = 1, ..., N}$， 其中 $N = \mid R \mid$ 增强, 上式变为：
+
+$$
+y(p_0) = \sum_{p_n \in \mathcal{R}} w(p_n) · x(p_0 + p_n + \Delta p_n)
+$$
+
+现在，采样在带有偏移量的位置 $p_n + \Delta p_n$上进行。 偏移量 $\Delta p_n$ 通常很小， 上式通过双线性插值实现：
+
+$$
+x(p) = \sum_q G(q, p) · x(q)
+$$
+其中 $p$ 表示任意的位置 $p = p_0 + p_n + \Delta p_n$， $q$ 枚举特征图 $x$ 的所有内部空间位置， $G(·，·)$ 是双线性插值核。
+
+
 
 ## Deformable RoI Pooling
 
