@@ -55,7 +55,7 @@ $$
 \mathcal{L}_{Hungarian}(y, \hat y) = \sum_{i=1}^N [-\log \hat p_{\hat \sigma}(c_i) + \mathbb{1}_{c_i \neq \emptyset} \mathcal{L}_{box}(b_i, \hat b_{\sigma}(i))]
 $$
 
-其中 $\hat \sigma$ 是第一步计算的最优分配。为了类别平衡， 实际中， 对于 $c_i = \emptyset$ 的对数概率项将其权重缩小10倍。这类似于 Faster R-CNN 训练程序如何通过子采样来平衡正/负提议。
+其中 $\hat \sigma$ 是第一步计算的最优分配。为了类别平衡， 实际中， 对于 $c_i = \emptyset$ 的对数概率项将其权重缩小10倍。这类似于 Faster R-CNN 训练程序如何通过子采样来平衡正/负提议。注意， 目标和 $\emptyset$ 之间的匹配成本不依赖于预测， 这意味着成本为常数。
 
 
 # Conclusion
