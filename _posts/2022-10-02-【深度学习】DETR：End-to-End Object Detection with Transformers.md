@@ -63,7 +63,7 @@ $$
 整体DETR架构出人意料地简单，如图2所示。它包含三个主要组件，在下面描述：用于提取紧凑特征表示的CNN主干，编码器-解码器 Transformer，以及进行最终检测预测的简单前向网络（FFN）。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1667963968161.png)
-与许多现代检测器不同，DETR可以在任何深度学习框架中实现，该框架提供通用CNN主干和仅几百行的 Transformer 原型结构实现。
+与许多现代检测器不同，DETR可以在任何深度学习框架中实现，该框架提供通用CNN主干和仅几百行的 Transformer 原型结构实现。DETR的推理代码可以在PyTorch中以不到50行实现。
 
 
 # Conclusion
