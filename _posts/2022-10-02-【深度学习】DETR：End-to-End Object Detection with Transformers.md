@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - Detection
-    - Arxiv 2020
+    - ECCV 2020
 ---
 
 # Abstract
