@@ -46,6 +46,13 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1668153867545.png)
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1668153994578.png)
+
+
+
+**Backbone adaptation.**  目标检测器受益于高分辨率输入图像，但计算整个主干的全局自注意力由于内存大小被限制，并且速度缓慢。在该研究中，作者重点关注预训练的主干执行全局自注意力的场景，然后在微调期间适应高分辨率的输入。这与目前直接通过主干预训练中修改注意力计算的方法形成了鲜明的对比。
+
+
 # Conclusion
 
 作者的探索表明，朴素骨干检测是一个有前景的研究方向。
