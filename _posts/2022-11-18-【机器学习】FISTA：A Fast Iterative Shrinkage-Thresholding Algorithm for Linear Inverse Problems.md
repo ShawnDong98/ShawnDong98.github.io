@@ -33,4 +33,4 @@ tags:
 $$
 Ax = b + w
 $$
-其中 $A \in \mathbb{R}^{m \times n}$ 和 $b \in \mathbb{R}$ 是已知的，$w$ 是未知的噪声（或者扰动）向量， 并且 $x$ 是真值或者要估计的位置信号/图像。在图像去模糊问题中， $b \in \mathbb{R}^m$ 表示模糊的图像， $x \in \mathbb{R}^n$ 是未知的真值图像。
+其中 $A \in \mathbb{R}^{m \times n}$ 和 $b \in \mathbb{R}$ 是已知的，$w$ 是未知的噪声（或者扰动）向量， 并且 $x$ 是真值或者要估计的位置信号/图像。在图像去模糊问题中， $b \in \mathbb{R}^m$ 表示模糊的图像， $x \in \mathbb{R}^n$ 是未知的真值图像， 其大小假设和 $b$ 相等(即 $m = n$)。 $b$ 和 $x$ 通过堆叠二维图像的列形成。
