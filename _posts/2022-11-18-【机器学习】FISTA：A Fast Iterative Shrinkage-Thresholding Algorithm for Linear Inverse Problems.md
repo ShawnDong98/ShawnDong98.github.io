@@ -61,3 +61,27 @@ $$
 凸优化问题（1.3）可以转换为二阶锥规划问题，因此可以通过内点方法解决[1]。然而，在大多数应用中，例如在图像模糊中，问题不仅是大规模的（可以达到数百万个决策变量），还涉及密集的矩阵数据，这往往排除了复杂内点方法的使用和潜在优势。这启发了寻找更简单的基于梯度的算法用以求解 $(1.3)$， 其中主要的计算成本是相对便宜的包括 $A$ 和 $A^T$ 的 matrix-vector 乘法。
 
 
+# The building blocks of the analysis.
+
+## The building blocks of the analysis.
+
+考虑连续可微函数的无约束最小化问题 $f: \mathbb{R}^n \rightarrow \mathbb{R}$
+
+$$
+(U) \min \{f(x) : x \in \mathbb{R}^n\}
+$$
+最简单的求解 $(U)$ 的方法是梯度下降算法， 其生成一个序列 ${x_k}$ 通过：
+
+$$
+x_0 \in \mathbb{R}^n, \quad  x_k = x_{k-1} - t_k \nabla f(x_{k-1}) \tag{2.1}
+$$
+
+其中 $t_k > 0$ 是步长。梯度迭代过程可以视作线性函数 $f$ 在 $x_{k-1}$ 的近端正则化， 等价写为：
+
+$$
+x_k = \mathop{\text{argmin}}_x \left\{ f(x_{k-1}) + <x - x_{k-1}, , \nabla f(x_{k-1})> + \frac{1}{2 t_k} \|x - x_{k-1}\|^2 \right\}
+$$
+
+对非光滑的 $l_1$ 正则化问题采用相同的基本梯度思想
+
+
