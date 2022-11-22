@@ -40,7 +40,16 @@ tags:
 $$
 q(z_t \mid z_0) = \mathcal{N}(z_t \mid \sqrt{\bar \alpha_t} z_0, (1 - \bar \alpha_t) I)
 $$
-其通过添加噪声到 $z_0$ 上， 将数据样本 $z_0$ 转换为隐噪声样本 $z_t$， 其中 $t \in {0, 1, ..., T}$。
+其通过添加噪声到 $z_0$ 上， 将数据样本 $z_0$ 转换为隐噪声样本 $z_t$， 其中 $t \in {0, 1, ..., T}$。 $\bar \alpha_t := \prod_{s=0}^t \alpha_s = \prod_{s=0}^t (1 - \beta_s)$， 其中 $\beta_s$ 表示噪声方差策略。在训练期间， 一个神经网络 $f_\theta(z_t， t)$ 被训练以预测 $z_0$ 到 $z_t$ ， 通过最小化 $\ell_2$ 损失：
+
+$$
+\mathcal{L}_{train} = \frac{1}{2} \| f_\theta(z_t, t) - z_0\|^2
+$$
+
+在推理阶段， 数据样本 $z_0$， 最推理阶段，数据样本 $z_0$ 被从噪声 $z_T$ 和模型 $f_\theta$ 以及更新规则以一种迭代的形式重建出来， 如 $z_T \rightarrow z_{T - \Delta} \rightarrow ... \rightarrow z_0$。 
+
+
+在这项工作中，作者旨在通过扩散模型解决目标检测任务。在设置中，数据样本是一组边界框 $z_0 = b$，其中 $b \in \mathbb{R}^{N \times 4}$ 是一组 $N$ 个边界框。
 
 # Conclusion and Future Work
 
