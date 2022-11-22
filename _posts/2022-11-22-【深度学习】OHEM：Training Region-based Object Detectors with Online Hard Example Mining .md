@@ -12,3 +12,12 @@ tags:
     - Detection
     - CVPR 2016
 ---
+
+# Abstract
+在卷积网络的浪潮上， 目标检测领域取得了显著的提高，
+但是他们的训练过程包含很多难以调整的启发式设计和超参数。
+
+
+# Method
+# Conclusion
+
