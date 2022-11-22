@@ -79,9 +79,21 @@ $$
 其中 $t_k > 0$ 是步长。梯度迭代过程可以视作线性函数 $f$ 在 $x_{k-1}$ 的近端正则化， 等价写为：
 
 $$
-x_k = \mathop{\text{argmin}}_x \left\{ f(x_{k-1}) + <x - x_{k-1}, , \nabla f(x_{k-1})> + \frac{1}{2 t_k} \|x - x_{k-1}\|^2 \right\}
+x_k = \mathop{\text{argmin}}_x \left\{ f(x_{k-1}) + \langle x - x_{k-1}, , \nabla f(x_{k-1}) \rangle + \frac{1}{2 t_k} \|x - x_{k-1}\|^2 \right\}
 $$
 
-对非光滑的 $l_1$ 正则化问题采用相同的基本梯度思想
+对非光滑的 $l_1$ 正则化问题采用相同的基本梯度思想：
+
+
+$$
+x_k = \mathop{\text{argmin}}_x \left\{ f(x_{k-1}) + \langle x - x_{k-1}, , \nabla f(x_{k-1}) \rangle + \frac{1}{2 t_k} \|x - x_{k-1}\|^2 + \lambda J(x) \right\}
+$$
+
+忽略掉常数项， 可以重写为：
+
+$$
+x_k = \mathop{\text{argmin}}_x \left\{\frac{1}{2 t_k} \|x - (x_{k-1} - \rho \nabla f(x_{k-1}))\|^2 + \lambda J(x)\right\}
+$$
+
 
 
