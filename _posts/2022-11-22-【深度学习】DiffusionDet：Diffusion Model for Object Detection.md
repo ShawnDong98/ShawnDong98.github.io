@@ -59,10 +59,13 @@ $$
 **Image encoder.** 图像编码器将原始图像作为输入，并为以下检测解码器提取其高级特征。我们使用卷积神经网络(如ResNet)和基于 Transformer 的模型(如Swin)实现DiffusionDet。
 
 
-**Detection decoder.** 借鉴于 Sparse R-CNN， 检测解码器以一组提议框作为输入，从图像编码器生成的特征图中裁剪 RoI 特征，并将这些 RoI 特征发送到检测头，获得边界框回归和分类结果。检测解码器有 6 个级联的阶段。 
+**Detection decoder.** 借鉴于 Sparse R-CNN， 检测解码器以一组提议框作为输入，从图像编码器生成的特征图中裁剪 RoI 特征，并将这些 RoI 特征发送到检测头，获得边界框回归和分类结果。检测解码器有 6 个级联的阶段。 解码器和Sparse R-CNN中的解码器之间的区别是
 
+(1) DiffusionDet从随机框开始，而 Sparse R-CNN 在推理中使用一组固定的学习框
 
- Fol- lowing, our detection decoder is composed of 6 cascading stages.
+(2) Sparse R-CNN 将提议框及其对应的提议特征作为输入对，而 DiffusionDet 只需要提议框
+
+(3) DiffusionDet在迭代采样步骤中重复使用检测器头，参数在不同的步骤之间共享，每个步骤都通过  timestep embedding [35,86]指定为扩散过程，而 Sparse R-CNN 在前向过程中只使用一次检测解码器。
 
 # Conclusion and Future Work
 
