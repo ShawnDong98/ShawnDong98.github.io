@@ -59,8 +59,10 @@ $$
 **Image encoder.** 图像编码器将原始图像作为输入，并为以下检测解码器提取其高级特征。我们使用卷积神经网络(如ResNet)和基于 Transformer 的模型(如Swin)实现DiffusionDet。
 
 
-**Detection decoder.** 借鉴于 Sparse R-CNN， 检测解码器以一组提议框作为输入，从图像编码器生成的特征图中裁剪 RoI 特征，并将这些 RoI 特征发送到检测头，获得边界框回归和分类结果。
+**Detection decoder.** 借鉴于 Sparse R-CNN， 检测解码器以一组提议框作为输入，从图像编码器生成的特征图中裁剪 RoI 特征，并将这些 RoI 特征发送到检测头，获得边界框回归和分类结果。检测解码器有 6 个级联的阶段。 
 
+
+ Fol- lowing, our detection decoder is composed of 6 cascading stages.
 
 # Conclusion and Future Work
 
