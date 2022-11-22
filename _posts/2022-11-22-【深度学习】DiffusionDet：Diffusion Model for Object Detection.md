@@ -33,7 +33,7 @@ tags:
 
 ## Preliminaries
 
-**Object detection.** 目标检测的学习目标是输入目标对 $(x, b, c)$， 其中 $x$ 是输入图像， $b$ 和 $c$ 分别是在图像 $x$ 中的目标的一组边界框和类别标签。
+**Object detection.** 目标检测的学习目标是输入目标对 $(x, b, c)$， 其中 $x$ 是输入图像， $b$ 和 $c$ 分别是在图像 $x$ 中的目标的一组边界框和类别标签。具体来说， 作者公式化集合中第 $i$ 哥边界框为 $b^i = (c_x^i, c_y^i, w^i, h^i)$， 其中 $(c_x^i, c_y^i)$ 是边界框的中心坐标， $(w^i, h^i)$ 分别是边界框的宽和高。
 
 # Conclusion and Future Work
 
