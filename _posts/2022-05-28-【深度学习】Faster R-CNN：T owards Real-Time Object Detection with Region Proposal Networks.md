@@ -114,6 +114,8 @@ $$
 
 ### Training RPNs
 
+RPN可以通过反向传播和随机梯度下降（SGD）端到端训练.
+
 # Conclusion
 
 这篇文章提出了RPN，以高效和准确地生成区域提议。
