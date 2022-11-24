@@ -59,7 +59,7 @@ tags:
 
 ## Feature Pyramid Networks for RPN
 
-RPN [29]是一个滑动窗口  class-agnostic 的目标检测器。在最初的 RPN 设计中，在密集的 $3 \times 3$ 滑动窗口上，在单尺度卷积特征图上评估一个小子网络，执行目标/非目标二分类和边界框回归。
+RPN [29]是一个滑动窗口  class-agnostic 的目标检测器。在最初的 RPN 设计中，使用一个小的子网络在单尺度特征图上执行一个密集的 $3 \times 3$ 滑动窗口，执行目标/非目标二分类和边界框回归。这通过一个 $3 \times 3$ 卷积层，然后是两个 $1 \times 1$ 卷积来进行分类和回归，称之为网络 head。 用于目标/非目标准则和边界框回归目标的一组参考框称为 anchors。
 
 
 # Conclusion
