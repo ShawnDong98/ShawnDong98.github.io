@@ -70,7 +70,7 @@ RPN [29]是一个滑动窗口  class-agnostic 的目标检测器。在最初的 
 
 ## Feature Pyramid Networks for Fast R-CNN
 
-Fast R-CNN [11]是一个基于区域的对象检测器，其中使用兴趣区域（RoI）池化来提取特征。
+Fast R-CNN [11]是一个基于区域的对象检测器，其中使用兴趣区域（RoI）池化来提取特征。Fast R-CNN最常在单尺度特征图上执行。要将其与FPN一起使用，需要将不同尺度的 RoI 分配给金字塔层级。
 
 
 
