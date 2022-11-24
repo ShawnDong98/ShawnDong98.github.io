@@ -9,7 +9,7 @@ catalog:     flase
 tags:
     - 深度学习
     - Detection
-    - Arxiv 2017
+    - CVPR 2017
 ---
 
 # Abstract
