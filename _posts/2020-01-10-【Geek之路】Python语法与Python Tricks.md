@@ -2531,3 +2531,4 @@ hight-level  `pool.map` 接口，生成一个对用户隐藏 RPC 内部信息的
 67. [eval和ast.literal_eval方法](https://blog.csdn.net/sinat_33924041/article/details/88350569)
 68. [multiprocessing在类中使用问题记录](https://www.cnblogs.com/isxjj/p/16054566.html)
 69. [python多进程假死](https://cloud.tencent.com/developer/article/1773574)
+70. [Python3 函数参数列表单独一个星号 * 的作用](https://blog.csdn.net/weixin_40796925/article/details/107654347)
