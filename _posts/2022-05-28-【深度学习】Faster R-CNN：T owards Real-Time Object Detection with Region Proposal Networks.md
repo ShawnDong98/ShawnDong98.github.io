@@ -114,7 +114,7 @@ $$
 
 ### Training RPNs
 
-RPN可以通过反向传播和随机梯度下降（SGD）端到端训练.
+RPN可以通过反向传播和随机梯度下降（SGD）端到端训练。
 
 # Conclusion
 
