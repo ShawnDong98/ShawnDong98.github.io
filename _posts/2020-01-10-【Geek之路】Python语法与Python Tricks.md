@@ -605,6 +605,34 @@ TypeError: a() takes exactly 0 arguments (2 given)
 
 ```
 
+### Python3 函数参数列表单独一个星号 * 的作用
+
+《Effective Python》第 21 条：用只能以关键字形式指定的参数来确保代码明晰
+
+
+Python 3 中可以定义一种只能以关键字形式来指定的参数，从而确保调用该函数的代码读起来会比较明确。这些参数必须以关键字的形式提供，而不能按位置提供。
+
+例如下面这个 safe_division 函数，带有两个只能以关键字形式来指定的参数，参数列表里的 * 星号，标志着位置参数的就此终结，之后的那些参数，都只能以关键字形式来指定。
+
+```python
+def safe_division(number, divisor, *,ignore_overflow = False, ignore_zero_division = False):
+    try:
+        return number/divisor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float('inf')
+        else:
+            raise
+```
+
+
+
+
 **优先级**：
 
 ```python
