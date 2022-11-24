@@ -55,11 +55,11 @@ tags:
 
 # Applications
 
-作者的方法是在深层ConvNets中构建特征金字塔的通用解决方案。在下面，作者采用了用于边界框提议生成生成的RPN [29]方法，在 Fast R-CNN [11] 中用于目标检测。
+作者的方法是在深层ConvNets中构建特征金字塔的通用解决方案。在下面，作者采用RPN作为边界框提议生成的方法，使用 Fast R-CNN [11] 做目标检测。为了证明所提方法的简单性和有效性，当它们适应特征金字塔时，作者对[29，11]的原始系统进行了最小的修改。
 
 ## Feature Pyramid Networks for RPN
 
-
+RPN [29]是一个滑动窗口  class-agnostic 的目标检测器。
 
 
 # Conclusion
