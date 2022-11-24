@@ -79,7 +79,7 @@ k = \lfloor k_0 + \log_2 (\sqrt{wh} / 224) \tag{1}
 $$
 这里 224 是 ImageNet 的预训练大小， $k_0$ 是目标在 $w \times h = 224^2$ 的 RoI 上映射的层级。在基于 ResNet 的 Fastrer R-CNN 系统中使用 $C_4$ 作为单尺度特征图， 作者设置 $k_0$ 为 $4$。直觉上等式(1) 意味着， 如果 RoI 的尺度小于 (224 的 1/2)，他应该被映射为一个细粒度分辨率的层级(例如 $k=3$)。
 
-作者将预测器头（在Fast R-CNN中，head 是 class-specific 的分类器和边界框回归器）附加到所有层级的所有RoI上。
+作者将预测器头（在Fast R-CNN中，head 是 class-specific 的分类器和边界框回归器）附加到所有层级的所有 RoI 上。
 
 
 
