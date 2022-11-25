@@ -1,0 +1,20 @@
+---
+layout:     post
+title:      "【深度学习】DAIR-V2X: A Large-Scale Dataset for Vehicle-Infrastructure Cooperative 3D Object Detection"
+subtitle:   ""
+date:       2022-11-25
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     true
+tags:
+    - 深度学习
+    - Detection
+    - CVPR 2022
+---
+
+# Abstract
+
+由于缺乏全局视角和远程感知能力受到限制，自动驾驶面临巨大的安全挑战。
+
+
+# Conclusion
