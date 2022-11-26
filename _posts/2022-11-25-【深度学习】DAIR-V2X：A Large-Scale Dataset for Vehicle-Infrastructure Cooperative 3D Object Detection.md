@@ -124,7 +124,7 @@ TCLF框架的细节见图3。
 在这里，作者分析了第5.1.1节中 VIC3D 目标检测基准方法的属性。
 
 
-**Cooperative-view vs. Single-view.** 作者比较了使用设施数据和车辆数据的方法的每种形式。在表3中，后期融合的检测性能比 Veh.-Only 或 Inf.-Only 的性能要好得多，无论是基于图像还是基于激光雷达，还是基于VIC-Sync 数据集或 VIC-Async-k 数据集。
+**Cooperative-view vs. Single-view.** 作者比较了使用设施数据和车辆数据的方法的每种形式。在表3中，后期融合的检测性能比 Veh.-Only 或 Inf.-Only 的性能要好得多，无论是基于图像还是基于激光雷达，还是基于VIC-Sync 数据集或 VIC-Async-k 数据集。例如，在 VIC-Sync 数据集上使用后期融合的 LiDAR Detection 3D检测达到 41.90 AP 和 BEV Detection 达到 47.96 AP。然而，仅使用车辆数据的激光雷达检测在3D检测中仅达到 31.33% AP，在BEV检测方面的 AP 达到 35.06%，而仅使用设施数据的 LiDAR检测在3D检测中仅达到17.62%的AP 和 BEV检测的 AP 为24.40%。实验结果表明，融合设施信息可以有效地提升车辆的感知性能。这主要是因为设施数据提供了补充信息，弥补了车辆的感受野。
 
 
 # Conclusion
