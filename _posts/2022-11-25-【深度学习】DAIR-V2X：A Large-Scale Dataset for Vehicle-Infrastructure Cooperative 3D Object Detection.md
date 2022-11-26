@@ -115,8 +115,16 @@ TCLF框架的细节见图3。
 **LiDAR detection baseline with Early Fusion.**  为了探索原始数据级别的融合效果，作者在 VIC-Sync 数据集上实现了以 PointPillars 为3D检测器的早期融合。作者首先将 VIC-Sync 数据集中设施点云转换为车辆激光雷达坐标系统，然后融合设施点云和车辆点云。作者直接使用点云训练和评估检测器。为了进一步说明时间异步问题，作者还在 VIC-Async-k 数据集上实现了与PointPillars的早期融合。
 
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669463818934.png)
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669463842982.png)
 
 
+### Analysis
+
+在这里，作者分析了第5.1.1节中 VIC3D 目标检测基准方法的属性。
+
+
+**Cooperative-view vs. Single-view.** 作者比较了使用设施数据和车辆数据的方法的每种形式。在表3中，后期融合的检测性能比 Veh.-Only 或 Inf.-Only 的性能要好得多，无论是基于图像还是基于激光雷达，还是基于VIC-Sync 数据集或 VIC-Async-k 数据集。
 
 
 # Conclusion
