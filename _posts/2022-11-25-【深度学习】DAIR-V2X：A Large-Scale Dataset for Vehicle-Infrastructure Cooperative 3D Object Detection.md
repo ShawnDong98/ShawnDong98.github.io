@@ -112,6 +112,10 @@ TCLF框架的细节见图3。
 **Image detection baseline with Late Fusion.** 为了检查仅图像的 VIC3D 目标检测，作者还通过仅设施图像和车辆图像实现后期融合框架。作者选择 ImvoxelNet 作为3D检测器并且使用 VIC-Sync 训练数据的相应部分训练设施检测器以及车辆检测器。 作者实现了图像检测后期融合遵循激光雷达后期融合的方案。
 
 
+**LiDAR detection baseline with Early Fusion.**  为了探索原始数据级别的融合效果，作者在 VIC-Sync 数据集上实现了以 PointPillars 为3D检测器的早期融合。作者首先将 VIC-Sync 数据集中设施点云转换为车辆激光雷达坐标系统，然后融合设施点云和车辆点云。
+
+
+
 # Conclusion
 
 这篇文章介绍了DAIR-V2X，这是第一个用于车辆基础设施合作自动驾驶的大规模、多模态、多视图数据集，所有帧都从真实场景中3D标注的。
