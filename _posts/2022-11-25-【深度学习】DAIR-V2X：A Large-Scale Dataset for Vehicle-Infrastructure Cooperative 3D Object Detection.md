@@ -128,6 +128,8 @@ TCLF框架的细节见图3。
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669463818934.png)
 
 **Temporal Asynchrony vs Time Compensation.** 时间异步给融合基础设施数据带来了挑战。与 VIC-Sync 数据集的结果相比，带有融合的激光雷达检测性能在 VIC-Async-k 上显著下降（VIC-Async-1为2点，VIC-Async-2上有6点）。下降主要是由于移动物体的状态变化，导致匹配困难和融合误差。然而，TCLF 可以有效地提高 VIC-Async-1 和 VIC-Async-2 上高达 0.5%AP 和 1.5%AP 的后期融合性能，这表明时间补偿可以有效地缓解时间异步问题，特别是在时间延迟较大的情况下。图5中提供了充足的可视化。
+ 
+**Early Fusion vs. Late Fusion.** 与后期融合相比，无论是基于 VIC-Sync 数据集还是 VIC-Async-1 数据集，早期融合在 BEV 和 3D 基准下都实现了高达8%的AP。然而，早期融合应该传输整个点云，并承受极高的传输成本，大约是后期融合的4000倍。对于更实际的应用，作者鼓励未来研究在消耗更少传输带宽的同时实现更好的性能。将来，作者还将为基准发布特征融合。
 
 
 # Conclusion
