@@ -115,7 +115,6 @@ TCLF框架的细节见图3。
 **LiDAR detection baseline with Early Fusion.**  为了探索原始数据级别的融合效果，作者在 VIC-Sync 数据集上实现了以 PointPillars 为3D检测器的早期融合。作者首先将 VIC-Sync 数据集中设施点云转换为车辆激光雷达坐标系统，然后融合设施点云和车辆点云。作者直接使用点云训练和评估检测器。为了进一步说明时间异步问题，作者还在 VIC-Async-k 数据集上实现了与PointPillars的早期融合。
 
 
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669463818934.png)
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669463842982.png)
 
 
@@ -125,6 +124,10 @@ TCLF框架的细节见图3。
 
 
 **Cooperative-view vs. Single-view.** 作者比较了使用设施数据和车辆数据的方法的每种形式。在表3中，后期融合的检测性能比 Veh.-Only 或 Inf.-Only 的性能要好得多，无论是基于图像还是基于激光雷达，还是基于VIC-Sync 数据集或 VIC-Async-k 数据集。例如，在 VIC-Sync 数据集上使用后期融合的 LiDAR Detection 3D检测达到 41.90 AP 和 BEV Detection 达到 47.96 AP。然而，仅使用车辆数据的激光雷达检测在3D检测中仅达到 31.33% AP，在BEV检测方面的 AP 达到 35.06%，而仅使用设施数据的 LiDAR检测在3D检测中仅达到17.62%的AP 和 BEV检测的 AP 为24.40%。实验结果表明，融合设施信息可以有效地提升车辆的感知性能。这主要是因为设施数据提供了补充信息，弥补了车辆的感受野。图4中显示了可视化样本。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669463818934.png)
+
+**Temporal Asynchrony vs Time Compensation.** 时间异步给融合基础设施数据带来了挑战。与 VIC-Sync 数据集的结果相比，带有融合的激光雷达检测性能在 VIC-Async-k 上显著下降（VIC-Async-1为2点，VIC-Async-2上有6点）。下降主要是由于移动物体的状态变化，导致匹配困难和融合误差。然而，TCLF 可以有效地提高 VIC-Async-1 和 VIC-Async-2 上高达 0.5%AP 和 1.5%AP 的后期融合性能，这表明时间补偿可以有效地缓解时间异步问题，特别是在时间延迟较大的情况下。图5中提供了充足的可视化.
 
 
 # Conclusion
