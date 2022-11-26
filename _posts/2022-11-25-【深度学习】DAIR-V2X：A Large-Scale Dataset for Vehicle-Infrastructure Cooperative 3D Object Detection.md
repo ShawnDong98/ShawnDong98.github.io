@@ -134,7 +134,9 @@ TCLF框架的细节见图3。
 
 ## Benchmark for SV3D Detection
 
-作者为那些对基于 DAIR-V2X-V 和 DAIR-V2X-I 数据集的单视图（SV）3D检测任务感兴趣的人提供了广泛的3D检测基准。与 DAIR-V2X-C 中的单面数据相比，这两个数据集更加多样化，在实现3D目标检测方面可能更具挑战性。因此，我们鼓励那些仅旨在提高 DAIR-V2X-V 和 DAIR-V2X-I 上车辆3D目标检测或设施3D目标性能的研究人员。
+作者为那些对基于 DAIR-V2X-V 和 DAIR-V2X-I 数据集的单视图（SV）3D检测任务感兴趣的人提供了广泛的3D检测基准。与 DAIR-V2X-C 中的单面数据相比，这两个数据集更加多样化，在实现3D目标检测方面可能更具挑战性。因此，作者鼓励那些仅旨在提高 DAIR-V2X-V 和 DAIR-V2X-I 上车辆3D目标检测或设施3D目标性能的研究人员。
+
+作者将 DAIR-V2X-V 和 DAIR-V2X-I 数据集按 5:2:3 划分为训练/验证/测试部分。作者分别在两个数据集上提出了一些基于不同模态的方法的基线：ImvoxelNet、PointPillars、SECOND和MVXNet。作者使用 PASCAL 标准 KITTI[10] 来评估3D目标检测性能，即根据图像平面上的边界框高度对远距离物体进行过滤。评估使用三种模式，包括Easy、Moderate和Hard模式。我们使用MMDetection3D框架实现这些基线。
 
 # Conclusion
 
