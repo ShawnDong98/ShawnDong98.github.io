@@ -138,6 +138,10 @@ TCLF框架的细节见图3。
 
 作者将 DAIR-V2X-V 和 DAIR-V2X-I 数据集按 5:2:3 划分为训练/验证/测试部分。作者分别在两个数据集上提出了一些基于不同模态的方法的基线：ImvoxelNet、PointPillars、SECOND和MVXNet。作者使用 PASCAL 标准 KITTI[10] 来评估3D目标检测性能，即根据图像平面上的边界框高度对远距离物体进行过滤。评估使用三种模式，包括Easy、Moderate和Hard模式。作者使用MMDetection3D框架实现这些基线， 如表4和表5所示。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669467708072.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669467787947.png)
+
 
 
 # Conclusion
