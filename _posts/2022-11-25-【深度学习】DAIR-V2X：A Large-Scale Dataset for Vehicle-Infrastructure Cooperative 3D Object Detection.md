@@ -109,7 +109,7 @@ TCLF框架的细节见图3。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669452994263.png)
 
-**Image detection baseline with Late Fusion.** 为了检查仅图像的 VIC3D 目标检测，作者还通过仅设施图像和车辆图像实现后期融合框架。作者选择 ImvoxelNet 作为3D检测器并且使用 VIC-Sync 训练数据的相应部分训练设施检测器以及车辆检测器。
+**Image detection baseline with Late Fusion.** 为了检查仅图像的 VIC3D 目标检测，作者还通过仅设施图像和车辆图像实现后期融合框架。作者选择 ImvoxelNet 作为3D检测器并且使用 VIC-Sync 训练数据的相应部分训练设施检测器以及车辆检测器。 作者实现了图像检测后期融合遵循激光雷达后期融合的方案。
 
 
 # Conclusion
