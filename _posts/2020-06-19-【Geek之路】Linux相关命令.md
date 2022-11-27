@@ -934,3 +934,4 @@ free -m
 28. [bad zip file offset when unzipping multi-part files](https://blog.csdn.net/Tjj_1998/article/details/109612196)
 29. [如何在Ubuntu上设置自定义DNS服务器](https://www.myfreax.com/set-custom-dns-servers-on-ubuntu-18-or-20/)
 30. [Ubuntu修改swap文件大小](https://www.jianshu.com/p/b0bd101fecad)
+31. [zip分卷压缩与合并解压](https://blog.csdn.net/jiangjiang_jian/article/details/108266820)
