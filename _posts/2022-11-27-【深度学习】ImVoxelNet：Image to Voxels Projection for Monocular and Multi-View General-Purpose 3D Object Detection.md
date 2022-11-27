@@ -28,6 +28,10 @@ ImVoxelNet成功处理室内和室外场景，使其成为通用的。
 在ScanNet上，ImVoxelNet为多视图3D目标检测设定了新的基准。
 
 
+# Proposed Method
+
+该方法接受一组任意大小的RGB输入和相机位姿。
+
 # Conclusion
 
 这篇文章将基于多视图RGB的3D目标检测作为端到端优化问题。
