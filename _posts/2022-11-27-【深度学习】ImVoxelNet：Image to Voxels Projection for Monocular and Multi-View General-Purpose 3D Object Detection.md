@@ -9,6 +9,7 @@ catalog:     true
 tags:
     - 深度学习
     - Detection
+    -  WACV 2022
 ---
 
 # Abstract
@@ -35,6 +36,8 @@ ImVoxelNet成功处理室内和室外场景，使其成为通用的。
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669527657228.png)
 
 Atlas 提出了2D特征投影和3D neck 网络。 首先，作者简要概述这些步骤。然后，作者介绍了一种专为室内检测设计的新型多尺度3D head。
+
+
 
 # Conclusion
 
