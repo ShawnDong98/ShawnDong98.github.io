@@ -813,6 +813,32 @@ xrandr --delmode output name
 python run.py 2>&1 | tee train.log
 ```
 
+# zip 分卷压缩和合并解压
+
+压缩：
+
+```
+zip test.zip test.doc //先压缩不然会报错  
+```
+
+分卷：
+
+```
+zip -s 15g test.zip --out ziptest  //每个子文件15g大小
+```
+
+合卷： 
+
+```
+cat ziptest.z* > test.zip //利用cat来合卷  
+```
+
+解压：
+
+```
+unzip test.zip
+```
+
 # 解压分块的zip文件
 
 直接 `unzip xxx.zip` 报错：
