@@ -830,13 +830,13 @@ zip -s 15g test.zip --out ziptest  //每个子文件15g大小
 合卷： 
 
 ```
-cat ziptest.z* > test.zip //利用cat来合卷  
+zip -F ziptest.zip --out file-large.zip 
 ```
 
 解压：
 
 ```
-unzip test.zip
+unzip file-large.zip 
 ```
 
 # 解压分块的zip文件
