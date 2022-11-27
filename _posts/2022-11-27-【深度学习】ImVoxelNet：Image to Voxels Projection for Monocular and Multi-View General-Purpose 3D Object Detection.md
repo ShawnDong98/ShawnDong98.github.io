@@ -23,4 +23,8 @@ ImVoxelNet成功处理室内和室外场景，使其成为通用的。
 
 具体来说，在所有接受 RGB 图像的方法中，它在 KITTI（单目）和 nuScenes（多视图）基准测试上实现了最先进的汽车检测结果。
 
+此外，它超过了 SUN RGB-D 数据集上现有的基于 RGB 的 3D 目标检测方法。
+
+在ScanNet上，ImVoxelNet为多视图3D目标检测设定了新的基准。
+
 # Conclusion
