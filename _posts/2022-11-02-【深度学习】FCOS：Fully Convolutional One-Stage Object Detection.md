@@ -55,6 +55,15 @@ $$
 
 **Network Outputs.** 对应于训练目标，网络的最后一层预测一个80维的类别向量 $p$ 和一个 4D 向量 $t = (l, t, r, b)$ 边界框坐标。相比于训练一个多类别的分类器， 作者训练 $C$ 个二分类器。作者在骨干网络的特征映射后分别添加了四个卷积层，用于分类分支和回归分支。此外，由于回归目标总是正的，作者在回归分支使用 $exp(x)$ 将任意实数映射到 $(0, \infty)$。值得注意的是，与每个位置有9个先验框的基于先验框的检测器相比，FCOS的网络输出变量少 9 倍。
 
+**Loss Function.** 作者定义训练损失函数为：
+
+$$
+L({p_{x, y}}, {t_{x, y}}) = \frac{1}{N_{pos}} \sum_{x, y} L_{cls} (p_{x, y}, c^*_{x, y}) \\
++ \frac{\lambda}{N_{pos}} \sum_{x, y} \mathbb{1}_{c^*_{x, y} > 0} L_{reg}(t_{x, y}, t^*_{x, y})
+$$
+其中 $L_{cls}$ 是 focal loss， $L_{reg}$ 是 UnitBox 中的 IoU loss。
+
+
 
 # Conclusion
 
