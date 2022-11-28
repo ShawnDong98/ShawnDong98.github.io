@@ -96,6 +96,8 @@ $$*
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669631071823.png)
 作者使用 sqrt 来减慢 cneter-ness 的衰减。center-ness 从 0 到 1 不等，因此训练有二分类交叉熵（BCE）损失。损失被添加到等式 (2) 中的损失中。在测试时，最终分数（用于对检测到的边界框进行排名）是通过将预测的 center-ness 乘以相应的分类分数来计算的。因此，center-ness 可以降低远离物体中心的边界框的分数。因此，这些低质量的边界框可能会被最终的非最大抑制（NMS）过程过滤掉，从而显著提高检测性能。
 
+center-ness 的另一种选择是仅使用真实边界框的中心部分作为实证样本，价格为一个额外的超参数，如作品所示。
+
 
 # Conclusion
 
