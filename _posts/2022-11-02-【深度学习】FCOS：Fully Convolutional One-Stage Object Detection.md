@@ -74,7 +74,7 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669628274996.png)
 
-
+根据FPN[14]，作者在不同层级的特征图上检测到不同大小的目标。
 
 # Conclusion
 
