@@ -36,6 +36,10 @@ tags:
 
 在这篇文章中，作者首先以每像素预测的方式重新制定目标检测。接下来，作者展示了如何利用多级预测来改进召回并解决重叠边界框导致的模糊。最后，作者提出了 “centerness” 分支，它有助于抑制低质量检测到的边界框，并大大提高整体性能。
 
+## Fully Convolutional One-Stage Object Detector
+
+令 $F_i \in \mathbb{R}^{H \times W \times C}$ 表示一个主干 CNN 第 $i$ 层的特征图。
+
 
 # Conclusion
 
