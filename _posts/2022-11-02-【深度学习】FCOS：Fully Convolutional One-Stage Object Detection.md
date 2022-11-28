@@ -38,7 +38,7 @@ tags:
 
 ## Fully Convolutional One-Stage Object Detector
 
-令 $F_i \in \mathbb{R}^{H \times W \times C}$ 表示一个主干 CNN 第 $i$ 层的特征图。
+令 $F_i \in \mathbb{R}^{H \times W \times C}$ 表示一个主干 CNN 第 $i$ 层的特征图， $s$ 为知道该层的总步长。
 
 
 # Conclusion
