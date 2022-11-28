@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】CSPNET：A NEW BACKBONE THAT CAN ENHANCE LEARNING CAPABILITY OF CNN"
+title:      "【深度学习】CSPNet：A New Backbone That Can Enhance Learning Capability of CNN"
 subtitle:   ""
 date:       2022-10-09
 author:     "ShawnD"
