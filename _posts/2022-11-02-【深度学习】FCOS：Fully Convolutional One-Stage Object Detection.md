@@ -61,7 +61,7 @@ $$
 L({p_{x, y}}, {t_{x, y}}) = \frac{1}{N_{pos}} \sum_{x, y} L_{cls} (p_{x, y}, c^*_{x, y}) \\
 + \frac{\lambda}{N_{pos}} \sum_{x, y} \mathbb{1}_{c^*_{x, y} > 0} L_{reg}(t_{x, y}, t^*_{x, y})
 $$
-其中 $L_{cls}$ 是 focal loss， $L_{reg}$ 是 UnitBox 中的 IoU loss。 $N_{pos}$ 表示正样本的数量， $\lambda$ 为 1 为 $L_{reg}$  平衡权重。
+其中 $L_{cls}$ 是 focal loss， $L_{reg}$ 是 UnitBox 中的 IoU loss。 $N_{pos}$ 表示正样本的数量， $\lambda$ 为 1 为 $L_{reg}$  平衡权重。总和是在特征图上的所有位置上计算的 $F_i · \mathbb{1}_{c^*_i > 0}$ 是指示函数， 如果 $c_i^* > 0$ 为 1 否则为0.
 
 
 
