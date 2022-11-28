@@ -94,7 +94,7 @@ $$*
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669631071823.png)
-作者使用 sqrt 来减慢 cneter-ness 的衰减。
+作者使用 sqrt 来减慢 cneter-ness 的衰减。center-ness 从 0 到 1 不等，因此训练有二分类交叉熵（BCE）损失。
 
 
 # Conclusion
