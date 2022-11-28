@@ -96,7 +96,9 @@ $$*
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669631071823.png)
 作者使用 sqrt 来减慢 cneter-ness 的衰减。center-ness 从 0 到 1 不等，因此训练有二分类交叉熵（BCE）损失。损失被添加到等式 (2) 中的损失中。在测试时，最终分数（用于对检测到的边界框进行排名）是通过将预测的 center-ness 乘以相应的分类分数来计算的。因此，center-ness 可以降低远离物体中心的边界框的分数。因此，这些低质量的边界框可能会被最终的非最大抑制（NMS）过程过滤掉，从而显著提高检测性能。
 
-center-ness 的另一种选择是仅使用真实边界框的中心部分作为实证样本，价格为一个额外的超参数，如作品所示。
+center-ness 的另一种选择是仅使用真实边界框的中心部分作为正样本，价格为一个额外的超参数，如工作[12, 33]所示。在提交后，[1]表明这两种方法的组合可以实现更好的性能。实验结果见表3。
+
+
 
 
 # Conclusion
@@ -113,3 +115,7 @@ FCOS还在单阶段检测器中实现了最先进的性能。
 
 鉴于其有效性和效率，作者希望 FCOS 可以成为基于先验框的主流检测器的强大而简单的替代品。
 
+# Reference
+1. https://github.com/yqyao/FCOS_PLUS,2019.
+12. Lichao Huang, Yi Yang, Yafeng Deng, and Yinan Yu. Dense- box: Unifying landmark localization with end to end object detection. arXiv preprint arXiv:1509.04874, 2015.
+33. Xinyu Zhou, Cong Yao, He Wen, Yuzhi Wang, Shuchang Zhou, Weiran He, and Jiajun Liang. EAST: an efficient and accurate scene text detector. In Proc. IEEE Conf. Comp. Vis. Patt. Recogn., pages 5551–5560, 2017.
