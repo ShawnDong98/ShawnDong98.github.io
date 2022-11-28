@@ -38,7 +38,7 @@ tags:
 
 ## Fully Convolutional One-Stage Object Detector
 
-令 $F_i \in \mathbb{R}^{H \times W \times C}$ 表示一个主干 CNN 第 $i$ 层的特征图， $s$ 为直到该层的总步长。
+令 $F_i \in \mathbb{R}^{H \times W \times C}$ 表示一个主干 CNN 第 $i$ 层的特征图， $s$ 为直到该层的总步长。对于输入图像的真实边界框定义为 ${B_i}$， 其中 $B_i = (x_0^{(i)}, y_0^{(i)}, x_1^{(i)}, y_1^{(i)}, c^{(i)}) \in \mathbb{R}^4 \times {1, 2, ..., C}$。 这里 $(x_0^{(i)}, y_0^{(i)})$ 和 $(x_1^{(i)}, y_1^{(i)})$ 表示边界框的左上角和右下角的坐标。
 
 
 # Conclusion
