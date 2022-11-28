@@ -117,5 +117,5 @@ FCOS还在单阶段检测器中实现了最先进的性能。
 
 # Reference
 1. https://github.com/yqyao/FCOS_PLUS,2019.
-12. Lichao Huang, Yi Yang, Yafeng Deng, and Yinan Yu. Dense- box: Unifying landmark localization with end to end object detection. arXiv preprint arXiv:1509.04874, 2015.
+12. Lichao Huang, Yi Yang, Yafeng Deng, and Yinan Yu. Densebox: Unifying landmark localization with end to end object detection. arXiv preprint arXiv:1509.04874, 2015.
 33. Xinyu Zhou, Cong Yao, He Wen, Yuzhi Wang, Shuchang Zhou, Weiran He, and Jiajun Liang. EAST: an efficient and accurate scene text detector. In Proc. IEEE Conf. Comp. Vis. Patt. Recogn., pages 5551–5560, 2017.
