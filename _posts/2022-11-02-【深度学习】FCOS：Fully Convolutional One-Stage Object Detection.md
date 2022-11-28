@@ -78,6 +78,8 @@ $$
  
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669628872369.png)
 
+与基于先验框的检测器不同，基于先验框的检测器将不同尺寸的先验框分配给不同的特征层级，作者直接限制了每个层级的边界框回归范围。
+
 # Conclusion
 
 作者提出了一种无先验框和无提议的单阶段检测器FCOS。
