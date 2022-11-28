@@ -46,8 +46,9 @@ tags:
 
 $$
 l^* = x - x_0^{(i)}, \quad t^* = y - y_0^{(i)} \\
-r^* = x_1^{(i)} - x, \quad b^* = y_1^{(i)} - y
+r^* = x_1^{(i)} - x, \quad b^* = y_1^{(i)} - y  \tag{1}
 $$
+
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669624010719.png)
@@ -59,12 +60,13 @@ $$
 
 $$
 L({p_{x, y}}, {t_{x, y}}) = \frac{1}{N_{pos}} \sum_{x, y} L_{cls} (p_{x, y}, c^*_{x, y}) \\
-+ \frac{\lambda}{N_{pos}} \sum_{x, y} \mathbb{1}_{c^*_{x, y} > 0} L_{reg}(t_{x, y}, t^*_{x, y})
++ \frac{\lambda}{N_{pos}} \sum_{x, y} \mathbb{1}_{c^*_{x, y} > 0} L_{reg}(t_{x, y}, t^*_{x, y}) \tag{2}
 $$
+
 
 其中 $L_{cls}$ 是 focal loss， $L_{reg}$ 是 UnitBox 中的 IoU loss。 $N_{pos}$ 表示正样本的数量， $\lambda$ 为 1 为 $L_{reg}$  平衡权重。总和是在特征图上的所有位置上计算的 $F_i · \mathbb{1}_{c^*_i > 0}$ 是指示函数， 如果 $c_i^* > 0$ 为 1 否则为0。
 
-**Inference.** FCOS的推理很简单。给定输入图像，我们通过网络转发它，并获得特征图Fi上每个位置的分类分数px，y和回归预测tx，y。
+**Inference.** FCOS的推理很简单。给定输入图像，通过网络前向它，并获得特征图 $F_i$ 上每个位置的分类分数 $p_{x，y}$ 和回归预测 $t_{x，y}$ 。和RetinaNet一样，作者选择 $p_{x,y} > 0.05$ 的位置作为正样本，并反推等式（1）以获得预测的边界框。
 
 
 
