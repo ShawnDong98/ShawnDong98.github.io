@@ -98,7 +98,7 @@ $$*
 
 center-ness 的另一种选择是仅使用真实边界框的中心部分作为正样本，价格为一个额外的超参数，如工作[12, 33]所示。在提交后，[1]表明这两种方法的组合可以实现更好的性能。实验结果见表3。
 
-
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669631949421.png)
 
 
 # Conclusion
