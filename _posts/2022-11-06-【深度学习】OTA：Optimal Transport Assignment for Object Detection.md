@@ -70,7 +70,8 @@ n - m \times k， \quad if \quad i = m + 1
 \end{cases} \tag{4}
 $$
 
-因为我们已经有了代价矩阵 $c$， 供应向量 $s \in \mathbb{R}^{m+1}$ 和 需求向量 $d \in \mathbb{R}^n$, 最优传输策略 $\pi^* \in \mathbb{R}^{(m+1) \times n}$ 可以通过使用 Sinkhorn-Knopp 迭代求解这个 OP 问题得到。在得到 $\pi^*$ 之后，  可以解码相应的标签分配策略， 通过分配每个先验框到供应商， 供应商传出最大数量的标签给他们。
+因为我们已经有了代价矩阵 $c$， 供应向量 $s \in \mathbb{R}^{m+1}$ 和 需求向量 $d \in \mathbb{R}^n$, 最优传输策略 $\pi^* \in \mathbb{R}^{(m+1) \times n}$ 可以通过使用 Sinkhorn-Knopp 迭代求解这个 OP 问题得到。在得到 $\pi^*$ 之后，  可以解码相应的标签分配策略， 通过分配每个先验框到供应商， 供应商传出最大数量的标签给他们。后续过程(例如基于分配结果的计算， 反向传播)与 FCOS 和 ATSS 相同。
+
 
 
 
