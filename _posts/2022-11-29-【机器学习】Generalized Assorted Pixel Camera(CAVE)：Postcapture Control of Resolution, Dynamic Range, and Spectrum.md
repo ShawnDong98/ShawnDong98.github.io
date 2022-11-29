@@ -21,4 +21,7 @@ GAP相机使用复杂的 color filters 阵列（或马赛克）。
 
 这导致了具有 strong aliasing 的重建图像。
 
+作者在这篇文章中做了四个贡献：
+
+
 # Conclusion
