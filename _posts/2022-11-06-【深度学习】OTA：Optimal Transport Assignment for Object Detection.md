@@ -31,7 +31,7 @@ tags:
 
 ##  Optimal Transport
 
-最佳运输（OT）描述了以下问题：假设某个领域有 $m$ 个供应商和 $n$ 个需求者。
+最佳运输（OT）描述了以下问题：假设某个领域有 $m$ 个供应商和 $n$ 个需求者。第 $i$ 个供应商有 $s_i$ 个货物， 而第 $j$ 个需求者需要 $d_j$ 个货物。
 
 ## OT for Label Assignment
 
