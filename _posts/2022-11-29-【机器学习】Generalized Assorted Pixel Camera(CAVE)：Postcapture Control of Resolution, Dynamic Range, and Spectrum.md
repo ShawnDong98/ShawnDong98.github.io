@@ -23,5 +23,9 @@ GAP相机使用复杂的 color filters 阵列（或马赛克）。
 
 作者在这篇文章中做了四个贡献：
 
+1) 作者提出了一种全面的优化方法来得出GAP相机彩 color filters 阵列的空间和光谱布局。
+
+2）作者开发了一种新的算法，用于重新构建图像采样不足的通道，同时最小化 aliasing artifacts
+
 
 # Conclusion
