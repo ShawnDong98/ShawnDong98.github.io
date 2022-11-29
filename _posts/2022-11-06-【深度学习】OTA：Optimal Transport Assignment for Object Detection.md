@@ -60,7 +60,18 @@ $$
 $$
 c_j^{bg} = L_{cls}(P_j^{cls}(\theta), \emptyset) \tag{3}
 $$
-其中 $\emptyset$ 表示背景类。 拼接 $c^{bg} \in \mathbb{R}^{1 \times n}$ 到 $c^{fg} \in \mathbb{R}^{m \times n}$最后一行， 可以得到代价矩阵 $c \in \mathbb{R}^{(m + 1) \times n}$ 的闭式解。
+其中 $\emptyset$ 表示背景类。 拼接 $c^{bg} \in \mathbb{R}^{1 \times n}$ 到 $c^{fg} \in \mathbb{R}^{m \times n}$最后一行， 可以得到代价矩阵 $c \in \mathbb{R}^{(m + 1) \times n}$ 的闭式解。供应向量 $s$ 应该相应地按如下更新：
+
+$$
+s_i = 
+\begin{cases}
+k, \quad if \quad i \leq m \\
+n - m \times k， \quad if \quad i = m + 1
+\end{cases} \tag{4}
+$$
+
+因为我们已经有了代价矩阵 $c$， 供应向量 $s \in \mathbb{R}^{m+1}$。 
+
 
 
 
