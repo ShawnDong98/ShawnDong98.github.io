@@ -26,6 +26,14 @@ tags:
 此外，这篇文章提出该方法的两个额外的应用: hyperspectral interpolation 和 demosaicing。
 
 最后创建了一个新的高分辨率高光谱数据集，其中包含比现有数据更清晰、光谱种类更多的图像。
+
+# Results
+
+## A New Hyperspectral Image Dataset
+
+在实验中，作者发现哥伦比亚数据集提供了具有广泛光谱信息的图像，但空间分辨率低且略微失焦。
+
+
 # Conclusion
 
 这篇文章提出了一种新的高光谱图像重建方法，该方法在空间分辨率和光谱精度方面都优于目前最先进的方法。
