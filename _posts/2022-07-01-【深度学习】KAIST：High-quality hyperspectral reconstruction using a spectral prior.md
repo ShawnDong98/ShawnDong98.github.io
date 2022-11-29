@@ -31,8 +31,7 @@ tags:
 
 ## A New Hyperspectral Image Dataset
 
-在实验中，作者发现哥伦比亚数据集提供了具有广泛光谱信息的图像，但空间分辨率低且略微失焦。
-
+在实验中，作者发现 Columbia 数据集提供了具有广泛光谱信息的图像，但空间分辨率低且略微失焦。同样，Harvard 数据集提供高空间分辨率，但光谱范围有限。
 
 # Conclusion
 
