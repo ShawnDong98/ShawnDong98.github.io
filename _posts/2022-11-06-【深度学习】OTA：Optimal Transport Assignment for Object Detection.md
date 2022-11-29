@@ -81,6 +81,8 @@ $$
 
 OTA的可视化如图2所示。作者还描述了 OTA 完整的过程，包括算法1中的中心先验和动态 $k$ 估计。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669695443178.png)
+
  
 # Conclusion
 
