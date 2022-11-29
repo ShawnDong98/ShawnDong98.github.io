@@ -52,7 +52,7 @@ c_{ij}^{fg} = L_{cls}(P_j^{cls}(\theta)， G_i^{cls}) \\
 + \alpha L_{reg}(P_j^{box}(\theta), G_i^{box}) \tag{2}
 $$
 
-其中 $\theta$ 表示模型参数。 $P^{cls}_j$ 和 $P_j^{box}$ 表示对 $a_j$ 预测的 $cls$ 分数和边界框。 $G_i^{cls}$ 和 $G_i^{box}$ 表示 $gt_i$ 的真实类别和边界框。 $L_{cls}$ 和 $L_{reg}$ 表示交叉熵损失和 IoU 损失。人们也可以用Focal loss 和 GIoU/Smooth L1 loss 取代这两种损失。
+其中 $\theta$ 表示模型参数。 $P^{cls}_j$ 和 $P_j^{box}$ 表示对 $a_j$ 预测的 $cls$ 分数和边界框。 $G_i^{cls}$ 和 $G_i^{box}$ 表示 $gt_i$ 的真实类别和边界框。 $L_{cls}$ 和 $L_{reg}$ 表示交叉熵损失和 IoU 损失。人们也可以用Focal loss 和 GIoU/Smooth L1 loss 取代这两种损失。$\alpha$ 是平衡系数。
 
 
 ## Advanced Designs
