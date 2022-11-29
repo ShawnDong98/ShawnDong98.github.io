@@ -32,6 +32,12 @@ GAP相机使用复杂的 color filters 阵列（或马赛克）。
 4） 最后，GAP相机的性能已经通过广泛的模拟进行了验证，这些模拟使用现实世界场景的多光谱图像。
 
 
+# Experimental Results
+
+## Experiments With Multispectral Images
+
+作者还使用 tunable filter(VariSpec Liquid Crystal Tunable Filter) 和 cooled CCD 相机 (Apogee Alta U260, 512 x 512 pixels) 捕获了几个静态场景的31波段多光谱图像（400-700纳米，间隔10纳米）。作者捕获了各种物体和材料的多光谱图像，包括纺织品、皮肤、头发、真假水果和蔬菜、糖果、饮料、油漆等。
+
 # Conclusion
 
 这篇文章提出了 generalized assorted pixel 相机的概念。作者开发了一个用于设计GAP相机的一般框架，该框架可以同时捕获扩展的动态范围和更高的光谱分辨率。作者还提出了一种降噪算法，可以减少 aliasing artifacts。仿真结果基于真实的多光谱图像。
