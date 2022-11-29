@@ -45,6 +45,8 @@ $$
 
 ## OT for Label Assignment
 
+在目标检测中，假设对于输入图像 $I$ 存在 $m$ 个真实目标和 $n$ 个先验框(在所有 FPN 层级上)， 作者将每个真实标签视为带有 $k$ 个正标签的供应商。
+
 
 ## Advanced Designs
 
