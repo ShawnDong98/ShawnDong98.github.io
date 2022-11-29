@@ -70,7 +70,7 @@ n - m \times k， \quad if \quad i = m + 1
 \end{cases} \tag{4}
 $$
 
-因为我们已经有了代价矩阵 $c$， 供应向量 $s \in \mathbb{R}^{m+1}$。 
+因为我们已经有了代价矩阵 $c$， 供应向量 $s \in \mathbb{R}^{m+1}$ 和 需求向量 $d \in \mathbb{R}^n$, 最优传输策略 $\pi^* \in \mathbb{R}^{(m+1) \times n}$。 
 
 
 
