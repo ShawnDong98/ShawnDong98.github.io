@@ -25,6 +25,20 @@ tags:
 在COCO上，一个配备最佳传输分配(OTA)的FCOS-ResNet-50检测器可以在 1× scheduler 下达到40.7%的mAP，优于所有其他现有分配方法。
 
 
+# Method
+
+在这节中，作者首先回顾了了最优传输问题的定义，然后演示了如何将目标检测中的标签分配转化成OT问题。作者还介绍了两种先进的设计，建议采用这两种设计来充分利用OTA。
+
+##  Optimal Transport
+
+最佳运输（OT）描述了以下问题：假设某个领域有 $m$ 个供应商和 $n$ 个需求者。
+
+## OT for Label Assignment
+
+
+## Advanced Designs
+
+
 # Conclusion
 
 这篇文章提出了一种基于优化理论的标签分配策略——最优传输分配。
