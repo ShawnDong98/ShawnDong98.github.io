@@ -60,7 +60,7 @@ $$
 $$
 c_j^{bg} = L_{cls}(P_j^{cls}(\theta), \emptyset) \tag{3}
 $$
-
+其中 $\emptyset$ 表示背景类。 拼接 $c^{bg} \in \mathbb{R}^{1 \times n}$ 到 $c^{fg} \in \mathbb{R}^{m \times n}$最后一行。 
 
 
 
