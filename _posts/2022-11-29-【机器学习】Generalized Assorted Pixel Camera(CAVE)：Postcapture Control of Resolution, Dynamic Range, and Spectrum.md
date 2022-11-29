@@ -35,3 +35,5 @@ GAP相机使用复杂的 color filters 阵列（或马赛克）。
 # Conclusion
 
 这篇文章提出了 generalized assorted pixel 相机的概念。
+
+作者开发了一个用于设计GAP相机的一般框架，该框架可以同时捕获扩展的动态范围和更高的光谱分辨率。
