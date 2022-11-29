@@ -33,6 +33,11 @@ tags:
 
 在实验中，作者发现 Columbia 数据集提供了具有广泛光谱信息的图像，但空间分辨率低且略微失焦。同样，Harvard 数据集提供高空间分辨率，但光谱范围有限。为了提升这一点，作者捕获了一个新的高分辨率数据集，包括30张覆盖广泛光谱范围的高光谱图像。该系统的详细描述在补充材料中。图11和图12显示了一些示例；完整的数据集可以从项目网站下载。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669705043190.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669705068849.png)
+
+
 # Conclusion
 
 这篇文章提出了一种新的高光谱图像重建方法，该方法在空间分辨率和光谱精度方面都优于目前最先进的方法。
