@@ -38,6 +38,10 @@ GAP相机使用复杂的 color filters 阵列（或马赛克）。
 
 作者还使用 tunable filter(VariSpec Liquid Crystal Tunable Filter) 和 cooled CCD 相机 (Apogee Alta U260, 512 x 512 pixels) 捕获了几个静态场景的31波段多光谱图像（400-700纳米，间隔10纳米）。作者捕获了各种物体和材料的多光谱图像，包括纺织品、皮肤、头发、真假水果和蔬菜、糖果、饮料、油漆等。
 
+使用多光谱图像来模拟用GAP马赛克捕获的图像。图11和图12显示了这些以及针对两个不同场景的多模态去马赛克结果。对于这两个场景，单色和RGB图像中饱和片段的纹理和颜色在相配的HDR图像中可见。不出所料，人们可以在HDR单色图像中看到比HDR RGB 图像更多的细节。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669708789358.png)
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669709209349.png)
 # Conclusion
 
 这篇文章提出了 generalized assorted pixel 相机的概念。作者开发了一个用于设计GAP相机的一般框架，该框架可以同时捕获扩展的动态范围和更高的光谱分辨率。作者还提出了一种降噪算法，可以减少 aliasing artifacts。仿真结果基于真实的多光谱图像。
