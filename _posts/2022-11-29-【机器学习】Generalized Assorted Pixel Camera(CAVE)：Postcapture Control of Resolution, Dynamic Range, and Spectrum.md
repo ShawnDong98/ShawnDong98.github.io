@@ -33,3 +33,5 @@ GAP相机使用复杂的 color filters 阵列（或马赛克）。
 
 
 # Conclusion
+
+这篇文章提出了广义各式像素相机的概念概念。
