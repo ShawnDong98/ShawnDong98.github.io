@@ -30,6 +30,11 @@ tags:
 最后，作者讨论了在图像上每个位置平铺多个先验框以检测物体的必然性。
 
 
+# Adaptive Training Sample Selection
+
+在训练目标检测器时，首先需要定义正负样本进行分类，然后使用正样本进行回归。
+
+
 
 # Conclusion
 
