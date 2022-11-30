@@ -44,6 +44,8 @@ tags:
 
 **Selecting candidates based on the center distance be- tween anchor box and object.** 对于 RetinaNet，当先验框的中心更靠近物体中心时，IoU会更大。对于FCOS，靠近物体中心的先验点将产生更高质量的检测。因此，离物体中心越近的先验框/点就越好。
 
+**Using the sum of mean and standard deviation as the IoU threshold.** 目标的 IoU 均值是衡量预设先验对该目标适用性的指标。
+
 # Conclusion
 
 在这项工作中，作者指出，单阶段先验框检测器和基于中心的无先验检测器之间的本质区别实际上是正负训练样本的定义。
