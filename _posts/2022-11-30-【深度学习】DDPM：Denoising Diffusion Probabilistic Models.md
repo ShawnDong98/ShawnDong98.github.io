@@ -20,3 +20,5 @@ tags:
 在无条件的CIFAR10数据集中，作者获得了9.46的 Inception 分数和 3.17 的最先进的FID分数。
 # Conclusion
 
+作者使用扩散模型提出了高质量的图像采样，并发现了扩散模型和变分推断之间的联系， 该变分推断用于训练马尔可夫链、去噪分数匹配和annealed Langevin dynamics（以及扩展的基于能量的模型）、自回归模型和  progressive lossy compression。
+
