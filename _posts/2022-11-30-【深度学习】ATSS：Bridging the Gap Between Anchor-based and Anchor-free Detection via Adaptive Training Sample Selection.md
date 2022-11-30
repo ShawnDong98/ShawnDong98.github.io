@@ -44,7 +44,9 @@ tags:
 
 **Selecting candidates based on the center distance be- tween anchor box and object.** 对于 RetinaNet，当先验框的中心更靠近物体中心时，IoU会更大。对于FCOS，靠近物体中心的先验点将产生更高质量的检测。因此，离物体中心越近的先验框/点就越好。
 
-**Using the sum of mean and standard deviation as the IoU threshold.** 目标的 IoU 均值 $m_g$ 是衡量预设先验对该目标适用性的指标。一个高的 $m_g$ 如图3(a) 所示表明它有高质量的候选者。
+**Using the sum of mean and standard deviation as the IoU threshold.** 目标的 IoU 均值 $m_g$ 是衡量预设先验对该目标适用性的指标。一个高的 $m_g$ 如图3(a) 所示表明它有高质量的候选者。如图3(b)所示，低 $m_g$ 表明，其大多数候选者质量低，IoU 阈值应较低。此外，目标的 IoU 标准差 $v_g$ 是衡量哪些层适合检测该目标的指标。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669796437149.png)
 
 # Conclusion
 
