@@ -42,7 +42,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669795041418.png)
 
-**Selecting candidates based on the center distance be- tween anchor box and object.** 对于 RetinaNet，当先验框的中心更靠近物体中心时，IoU会更大。
+**Selecting candidates based on the center distance be- tween anchor box and object.** 对于 RetinaNet，当先验框的中心更靠近物体中心时，IoU会更大。对于FCOS，靠近物体中心的先验点将产生更高质量的检测。因此，离物体中心越近的先验框/点就越好。
 
 # Conclusion
 
