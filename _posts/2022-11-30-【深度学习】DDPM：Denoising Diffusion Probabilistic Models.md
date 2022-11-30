@@ -21,7 +21,7 @@ tags:
 
 # Background
 
-扩散模型是形式为 $p_\theta(x_0) := \int p_\theta(x_{0:T})dx_{1:T}$ 的隐向量模型， 其中 $x_1, ..., x_T$ 是与数据 $x_0 \thicksim q(x_0)$ 相同维度隐向量。
+扩散模型是形式为 $p_\theta(x_0) := \int p_\theta(x_{0:T})dx_{1:T}$ 的隐向量模型， 其中 $x_1, ..., x_T$ 是与数据 $x_0 \thicksim q(x_0)$ 相同维度隐向量。 联合分布 $p_\theta(x_{0:T})$ 被叫做逆过程。
 
 # Diffusion models and denoising autoencoders
 
