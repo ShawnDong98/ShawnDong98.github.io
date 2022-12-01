@@ -21,7 +21,23 @@ tags:
 
 # Background
 
-扩散模型是形式为 $p_\theta(x_0) := \int p_\theta(x_{0:T})dx_{1:T}$ 的隐向量模型， 其中 $x_1, ..., x_T$ 是与数据 $x_0 \thicksim q(x_0)$ 相同维度隐向量。 联合分布 $p_\theta(x_{0:T})$ 被叫做逆过程。
+扩散模型是形式为 $p_\theta(x_0) := \int p_\theta(x_{0:T})dx_{1:T}$ 的隐向量模型， 其中 $x_1, ..., x_T$ 是与数据 $x_0 \thicksim q(x_0)$ 相同维度隐向量。 联合分布 $p_\theta(x_{0:T})$ 被叫做逆过程， 它被定义为从 $p(x_T) = \mathcal{N}(x_T; 0, I)$可学习的高斯转移的马尔科夫链:
+
+$$
+p_\theta(x_{0:T}) := p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t), \quad p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t)) \tag{1}
+$$
+扩散模型与其它类型的隐变量模型的区别在于，估计后验 $q(x_{1:T} \mid x_0)$， 被叫做扩散过程的前向过程，其是一个马尔科夫链， 这个过程逐渐根据方差策略 $\beta_1, ..., \beta_T$ 添加噪声到数据中：
+
+$$
+q(x_{1:T} \mid x_0) := \prod_{t=1}^T q(x_t \mid x_{t-1}), \quad q(x_t \mid x_{t-1}) := \mathcal{N}(x_T; \sqrt{1 - \beta_t}x_{t-1}, \beta_t I) \tag{2}
+$$
+
+训练是通过优化负对数似然的变分下限：
+
+$$
+\mathbb{E}[-\log p_\theta(x_0)] \leq \mathbb{E}_q[- \log \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)}] = \mathbb{E}_q [- \log p(x_T) - \sum_{t \geq 1} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}] =: L \tag{3}
+$$
+前向过程方差 $\beta_t$ 可以通过重参数学习或者作为一个超参数保持为常数。
 
 # Diffusion models and denoising autoencoders
 
