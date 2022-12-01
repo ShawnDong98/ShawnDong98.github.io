@@ -53,8 +53,9 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669896497110.png)
 
-
 ## Reverse Trajectory
+
+生成分布将被训练来描述相反的过程
 
 ## Model Probability
 
