@@ -121,9 +121,12 @@ $$
 $$
 表1给出了高斯和二项扩散的具体估计目标。
 
+因此，估计概率分布的任务已简化为对设置高斯序列均值和协方差（或为伯努利试验序列设置状态翻转概率）的函数执行回归的任务。
 
 
 ### Setting The Diffusion Rate $\beta_t$
+
+在前向轨迹中 $\beta_t$ 的选择对于训练的模型的表现很重要。
 
 ## Multiplying Distributions, and Computing Posteriors
 
