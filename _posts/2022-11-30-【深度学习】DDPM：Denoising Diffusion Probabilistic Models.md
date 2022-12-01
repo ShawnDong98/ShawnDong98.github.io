@@ -40,10 +40,17 @@ $$
 前向过程方差 $\beta_t$ 可以通过重参数学习或者作为一个超参数保持为常数， 反向过程的表达选择高斯条件 $p_\theta(x_{t-1} \mid x_t)$， 因为两种过程在 $\beta_t$ 很小的时候有相同的函数形式。前向过程的一个显著性质是它以闭式的形式在任意时间步采样 $x_t$: 使用记号 $\alpha_t := 1 - \beta_t$ 和 $\bar \alpha_t := \prod_{s=1}^t \alpha_s$， 我们有：
 
 $$
-q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar \alpha_t}x_0, (1- \bar \alpha_t)I)
+q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar \alpha_t}x_0, (1- \bar \alpha_t)I) \tag{4}
 $$
 
-# Diffusion models and denoising autoencoders
+因此，通过优化随机梯度下降的 $L$ 随机项，可以进行高效训练。进一步的改进来自 variance reduction 通过重写 $L$ 为：
+
+$$
+\mathbb{E}_q[D_{KL} (q(x_T \mid x_0) \| p(x_T)) + \sum_{t>1} D_{KL}(q(x_{t-1} \mid x_t, x_0) \| p_\theta(x_{t-1} \mid x_t)) - \log_{p_\theta}(x_0 \mid x_1)] \tag{5}
+$$
+等式(5) 使用 KL 散度直接比较 $p_\theta(x_{t-1} \mid x_t)$ 和前向过程后验。
+  
+ # Diffusion models and denoising autoencoders
 
 
 # Conclusion
