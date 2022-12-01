@@ -126,7 +126,7 @@ $$
 
 ### Setting The Diffusion Rate $\beta_t$
 
-在前向轨迹中 $\beta_t$ 的选择对于训练的模型的表现很重要。
+在前向轨迹中 $\beta_t$ 的选择对于训练的模型的表现很重要。在AIS中，正确的中间分布时间表可以大大提高对数分区函数估计的准确性。
 
 ## Multiplying Distributions, and Computing Posteriors
 
