@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - 深度学习
-    - NIPS2022
+    - NIPS 2022
 ---
 
 # Abstract
