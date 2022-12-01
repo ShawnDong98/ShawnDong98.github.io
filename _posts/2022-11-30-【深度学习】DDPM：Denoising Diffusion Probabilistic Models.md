@@ -77,7 +77,9 @@ $$
  $$
  L_{t-1} = \mathbb{E}_q [\frac{1}{2\sigma_t^2} \|\tilde \mu_t(x_t, x_0) - \mu_\theta(x_t, t)\|^2] + C \tag{8}
  $$
-其中 $C$ 是一个常数， 其不依赖于 $\theta$。 因此，我们看到最直接的 $\mu_\theta$ 参数化是一个模型， 其预测 $\tilde \mu_t$， 前向过程后验均值。
+其中 $C$ 是一个常数， 其不依赖于 $\theta$。 因此，我们看到最直接的 $\mu_\theta$ 参数化是一个模型， 其预测 $\tilde \mu_t$， 前向过程后验均值。然后， 作者进一步用等式4拓展等式8为：  $x_t(x_0, \epsilon) = \sqrt{\bar \alpha_t} x_0 + \sqrt{1 - \bar \alpha_t} \epsilon， \epsilon \thicksim \mathcal{N}(0, I)$ 并且应用前向过程后验公式7：
+
+
 
 # Conclusion
 
