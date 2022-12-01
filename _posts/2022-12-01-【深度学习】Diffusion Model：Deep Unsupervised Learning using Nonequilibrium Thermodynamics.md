@@ -34,6 +34,26 @@ tags:
 
 首先标记数据分布 $q(x^{(0)})$。 数据分布逐渐转换为一个表现良好的分布 $\pi(y)$，通过对重复应用马尔科夫扩散核 $T_\pi(y \mid y'; \beta)$ ， 其中 $\beta$ 是扩散率。
 
+$$
+\pi(y) = \int dy' T_\pi(y \mid y'; \beta) \pi(y') \tag{1}
+$$
+
+$$
+q(x^{(t)} \mid x^{(t-1)}) = T_\pi(x^{(t)} \mid x^{(t-1)}; \beta_t) \tag{2}
+$$
+前向过程从开始的数据分布执行 $T$ 步扩散， 有：
+
+$$
+q(x^{(0, ..., T)}) = q(x^{(0)}) \prod_{t=1}^T q(x^{(t)} \mid x^{(t-1)}) \tag{3}
+$$
+
+对于下面展示的实验， $q(x^{(t)} \mid x^{(t-1)})$ 对应于高斯扩散到具有单位协方差的高斯分布，或二项式扩散到独立的二项分布。表1 给出了高斯分布和二项式分布的扩散核。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669896456293.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669896497110.png)
+
+
 ## Reverse Trajectory
 
 ## Model Probability
