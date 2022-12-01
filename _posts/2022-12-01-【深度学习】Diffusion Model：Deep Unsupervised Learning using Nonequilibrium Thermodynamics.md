@@ -32,6 +32,8 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669894877593.png)
 ## Forward Trajectory
 
+首先标记数据分布 $q(x^{(0)})$。 数据分布逐渐转换为一个表现良好的分布 $\pi(y)$，通过对重复应用马尔科夫扩散核 $T_\pi(y \mid y'; \beta)$ ， 其中 $\beta$ 是扩散率。
+
 ## Reverse Trajectory
 
 ## Model Probability
