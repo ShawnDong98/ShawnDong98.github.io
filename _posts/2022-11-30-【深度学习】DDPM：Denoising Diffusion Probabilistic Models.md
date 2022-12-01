@@ -48,8 +48,21 @@ $$
 $$
 \mathbb{E}_q[D_{KL} (q(x_T \mid x_0) \| p(x_T)) + \sum_{t>1} D_{KL}(q(x_{t-1} \mid x_t, x_0) \| p_\theta(x_{t-1} \mid x_t)) - \log_{p_\theta}(x_0 \mid x_1)] \tag{5}
 $$
-等式(5) 使用 KL 散度直接比较 $p_\theta(x_{t-1} \mid x_t)$ 和前向过程后验。
-  
+等式(5) 使用 KL 散度直接比较 $p_\theta(x_{t-1} \mid x_t)$ 和前向过程后验， 其可以以 $x_0$ 为条件追溯。
+
+$$
+q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde \mu_t(x_t, x_0), \tilde{\beta}_t I) \tag{6}
+$$
+
+$$
+\text{where} \quad \tilde \mu_t(x_t, x_0) := \frac{\sqrt{\bar \alpha_{t-1}} \beta_t}{1 - \bar \alpha_t} x_0 + \frac{\sqrt{\alpha_t}(1 - \bar \alpha_{t-1})}{1 - \bar \alpha_t} x_t \quad \text{and} \quad \tilde{\beta}_t := \frac{1 - \bar \alpha_{t-1}}{1 - \bar \alpha_t} \beta_t \tag{7}
+$$
+
+因此，等式5 所有 KL 散度和高斯噪声比较， 因此它们可以以 Rao-Blackwellized 形式以闭式表达计算， 不用高方差的蒙特卡洛估计。
+
+
+
+
  # Diffusion models and denoising autoencoders
 
 
