@@ -89,6 +89,31 @@ $$
 
 ## Training
 
+训练相当于最大化模型对数似然，
+
+$$
+\begin{align}
+L &= \int dx^{(0)} q(x^{(0)}) \log p(x^{(0)}) \\
+&= \int dx^{(0)} q(x^{(0)}) · \log[\int dx^{(1...T)} q(x^{(1 ... T)} \mid x^{(0)}) · p(x^{(T)}) \prod_{t=1}^T \frac{p(x^{(t-1)}\mid x^{(t)})}{q(x^{(t)} \mid x^{(t-1)})}]
+\end{align} \tag{10, 11}
+$$
+
+通过 Jensen 不等式有变分下限：
+
+$$
+L \geq \int dx^{(0 ... T)} q(x^{(0 ... T)}) · \log [p(x^{(T)}) \prod_{t=1}^T \frac{p(x^{(t-1)} \mid x^{(t)})}{q(x^{(t)} \mid x^{(t-1)})})] \tag{12}
+$$
+如附录B所述，对于扩散轨迹，这将减少到，
+
+$$
+L \geq K \\
+K = -\sum_{t=2}^T \int dx^{(0)} dx^{(t)} q(x^{(0)}, x^{(t)}) · D_{KL}(q(x^{(t-1)} \mid x^{(t)}, x^{(0)}) \| p(x^{(t-1)} \mid x^{(t)})) + H_q(X^{(T)} \mid X^{(0)}) - H_q(X^{(1)} \mid X^{(0)}) - H_p(X^{(T)}) \tag{14}
+$$
+
+其中可以分析计算熵和KL散度。这个界的推导与变分贝叶斯方法中对数似然届的推导类似。
+
+
+
 ### Setting The Diffusion Rate $\beta_t$
 
 ## Multiplying Distributions, and Computing Posteriors
