@@ -128,6 +128,7 @@ $$
 
 在前向轨迹中 $\beta_t$ 的选择对于训练的模型的表现很重要。在AIS中，正确的中间分布时间表可以大大提高对数分区函数估计的准确性。在热力学中，在平衡分布之间移动时采取的时间表决定了损失多少自由能量。
 
+在高斯扩散的例子中， 我们通过在 K 上梯度下降学习扩散时间表 $\beta_{2...T}$。 
 ## Multiplying Distributions, and Computing Posteriors
 
 ### Modified Marginal Distributions
