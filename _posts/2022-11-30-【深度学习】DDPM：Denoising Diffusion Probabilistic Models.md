@@ -70,7 +70,7 @@ $$
 
 ## Reverse process and $L_{1:{T-1}}$
 
-现在我们讨论在 $p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x, t), \Sigma_\theta(x_t, t)) \quad 1 < t \leq T$的选择。  
+现在讨论在 $p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x, t), \Sigma_\theta(x_t, t)) \quad 1 < t \leq T$的选择。 首先作者设置 $\Sigma_\theta(x_t, t) = \sigma_t^2 I$  为没有训练时的依赖变量。
 
 
 # Conclusion
