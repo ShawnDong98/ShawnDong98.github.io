@@ -37,7 +37,11 @@ $$
 $$
 \mathbb{E}[-\log p_\theta(x_0)] \leq \mathbb{E}_q[- \log \frac{p_\theta(x_{0:T})}{q(x_{1:T} \mid x_0)}] = \mathbb{E}_q [- \log p(x_T) - \sum_{t \geq 1} \log \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}] =: L \tag{3}
 $$
-前向过程方差 $\beta_t$ 可以通过重参数学习或者作为一个超参数保持为常数， 反向过程的表达选择高斯条件 $p_\theta(x_{t-1} \mid x_t)$， 因为两种过程在 $\beta_t$ 很小的时候有相同的函数形式。
+前向过程方差 $\beta_t$ 可以通过重参数学习或者作为一个超参数保持为常数， 反向过程的表达选择高斯条件 $p_\theta(x_{t-1} \mid x_t)$， 因为两种过程在 $\beta_t$ 很小的时候有相同的函数形式。前向过程的一个显著性质是它以闭式的形式在任意时间步采样 $x_t$: 使用记号 $\alpha_t := 1 - \beta_t$ 和 $\bar \alpha_t := \prod_{s=1}^t \alpha_s$， 我们有：
+
+$$
+q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar \alpha_t}x_0, (1- \bar \alpha_t)I)
+$$
 
 # Diffusion models and denoising autoencoders
 
