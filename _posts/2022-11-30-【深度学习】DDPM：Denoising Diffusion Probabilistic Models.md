@@ -72,6 +72,12 @@ $$
 
 现在讨论在 $p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x, t), \Sigma_\theta(x_t, t)) \quad 1 < t \leq T$的选择。 首先作者设置 $\Sigma_\theta(x_t, t) = \sigma_t^2 I$  为没有训练时的依赖变量。实验上， $\sigma_t^2 = \beta_t$ 和 $\sigma_t^2 = \tilde \beta_t = \frac{1 - \bar \alpha_{t-1}}{1 - \bar \alpha_t} \beta_t$ 有相似的结果 。第一个选择对 $x_0 \thicksim \mathcal{N}(0, I)$是最优的, 第二个对 $x_0$ 设置为一个确定性的点事最优的。对于有着 coordinatewise unit variance 的数据， 这是两个极端的选择对应着逆过程熵的上界和下界。
  
+ 其次， 对于表达均值 $\mu_\theta(x_t, t)$， 受到以下 $L_t$ 的分析的启发， 作者提出一个特定的参数化。 有了$p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2I)$：
+ 
+ $$
+ L_{t-1} = \mathbb{E}_q [\frac{1}{2\sigma_t^2} \|\tilde \mu_t(x_t, x_0) - \mu_\theta(x_t, t)\|^2] + C \tag{8}
+ $$
+其中 $C$ 是一个常数， 其不依赖于 $\theta$。 因此，我们看到最直接的 $\mu_\theta$ 参数化是一个模型， 其预测 $\tilde \mu_t$， 前向过程后验均值。
 
 # Conclusion
 
