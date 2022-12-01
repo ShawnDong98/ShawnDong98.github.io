@@ -70,6 +70,12 @@ $$
 
 ## Model Probability
 
+生成模型分配给数据的概率是：
+
+$$
+p(x^{(0)}) = \int dx^{(1...T)} p(x^{(0...T)})
+$$
+
 ## Training
 
 ### Setting The Diffusion Rate $\beta_t$
