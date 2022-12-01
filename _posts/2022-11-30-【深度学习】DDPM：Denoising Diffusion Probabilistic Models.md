@@ -59,11 +59,10 @@ $$
 $$
 
 因此，等式5 所有 KL 散度和高斯噪声比较， 因此它们可以以 Rao-Blackwellized 形式以闭式表达计算， 不用高方差的蒙特卡洛估计。
-
-
-
-
  # Diffusion models and denoising autoencoders
+
+扩散模型可能看起来是一类受限制的隐变量模型，但它们允许在实现中有很大程度的自由度。我们必须选择前向过程的方差 $\beta_t$ 和模型结构以及逆过程的高斯分布参数化。
+
 
 
 # Conclusion
