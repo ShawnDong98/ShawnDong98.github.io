@@ -60,6 +60,8 @@ $$
 p(x) = \int_z q_\phi(z \mid x) \frac{p_\theta(x \mid z) p(z)}{q_\phi(z \mid x)}
 $$
 
+
+
 $$
 \log p(x) = \log E_{z \thicksim q_\phi(z \mid x)}[\frac{p_\theta(x \mid z)p(z)}{q_\phi(z \mid x)}]
 $$
@@ -69,3 +71,35 @@ $$
 
 
 ## 多层 VAE 的原理与变分下界
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669964311290.png)
+$$
+p(x) = \int_{z_1} \int_{z_2} p_\theta(x, z_1, z_2)d{z_1}, d{z_2}
+$$
+
+$$
+p(x) = \int_{z_1} \int_{z_2} q_{\phi}(z_1, z_2 \mid x) \frac{p_\theta(x, z_1, z_2)}{q_\phi(z_1, z_2 \mid x)}
+$$
+
+$$
+p(x) = E_{z_1, z_2 \thicksim q_\phi(z_1, z_2 \mid x)} [\frac{p_\theta(x, z_1, z_2)}{q_\phi(z_1, z_2 \mid x)}]
+$$
+
+$$
+\log p(x) \geq E_{z_1, z_2 \thicksim q_\phi(z_1, z_2 \mid x)} [\log \frac{p_\theta(x, z_1, z_2)}{q_\phi(z_1, z_2 \mid x)}]
+$$
+$$
+p(x, z_1, z_2) = p(x \mid z_1) p(z_1 \mid z_2) p(z_2)
+$$
+
+$$
+q(z_1, z_2 \mid x) = q(z_1 \mid x) q(z_2 \mid z_1)
+$$
+
+$$
+L(\theta, \phi) = E_{q(z_1, z_2 \mid x)}[\log p(x \mid z_1) - \log q(z_1 \mid x) + \log p(z_1 \mid z_2) - \log q(z_2 \mid z_1) + \log p(z_2)]
+$$
+
+# 扩散过程 (Diffusion Process)
+
+1. 给定初始数据分布 $x_0 \thicksim q(x)$, 可以不断地向分布中添加高斯噪声， 该噪声的标准差是通过固定值 $\beta_t$ 确定的， 均值是以固定值 $\beta_t$ 和 当前 $t$ 时刻的数据 $x_t$ 决定的。 这个过程是一个马尔科夫链过程。
