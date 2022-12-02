@@ -136,3 +136,9 @@ $$
 
 Note： 两个正态分布 $X \thicksim N(\mu_1, \sigma_1)$ 和 $Y \thicksim N(\mu_2, \sigma_2)$ 的叠加后的分布 $aX + bY$ 的均值 $a \mu_1 + b \mu_2$， 方差为 $a^2 \sigma_1^2 + b^2 \sigma_2^2$ 。 所以 $ \sqrt{\alpha_t - \alpha_t \alpha_{t-1}}z_{t-2} + \sqrt{1 - \alpha_t} z_{t-1}$ 可以冲参数化成一个只含一个随机变量 $z$ 构成的 $\sqrt{1 - \alpha_t \alpha_{t-1}}z$ 的形式。
    
+
+
+# Reference
+1. Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli. Deep unsupervised learning using nonequilibrium thermodynamics. In International Conference on Machine Learning, pages 2256–2265, 2015.
+2. Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in Neural Information Processing Systems, 2020, 33: 6840-6851.
+3. https://www.bilibili.com/video/BV1b541197HX/?spm_id_from=..search-card.all.click&vd_source=256546053d955f1315050ba88e6059c3
