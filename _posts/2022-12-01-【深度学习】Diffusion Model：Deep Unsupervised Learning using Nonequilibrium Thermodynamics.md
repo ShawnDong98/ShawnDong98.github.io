@@ -145,7 +145,7 @@ $$
 ### Modified Marginal Distributions
 
 
-首先，为了计算 $\tilde p(x^{(0)})$ ， 作者通过对应的函数 $r(x^{(t)})$ 乘以每个中间分布。
+首先，为了计算 $\tilde p(x^{(0)})$ ， 作者通过对应的函数 $r(x^{(t)})$ 乘以每个中间分布。我们使用分布或马尔可夫转移上方的波浪号来表示它属于以这种方式修改的轨迹。 $\tilde p(x^{0...T})$是修改后的逆过程。
 
 ### Modified Diffusion Steps
 
