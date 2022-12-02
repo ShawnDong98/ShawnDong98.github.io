@@ -147,6 +147,27 @@ $$
 
 后验的扩散条件概率 $q(x_{t-1} \mid x_t, x_0)$ 分布是可以用公式表达的， 也就是说， 给定 $x_t$ 和 $x_0$， 可以计算出 $x_{t-1}$。
 
+$$
+q(x_{t-1} \mid x_t, x_0) = N(x_{t-1}; \tilde \mu(x_t, x_0), \tilde \beta_t I)
+$$
+
+使用贝叶斯规则，有：
+
+$$
+\begin{align}
+q(x_{t-1} \mid x_t, x_0) &= \frac{q(x_t, x_{t-1}, x_0)}{q(x_t, x_0)} = \frac{q(x_t \mid x_{t-1}, x_0) q(x_{t-1} \mid x_0) q(x_0)}{q(x_t, x_0)} = q(x_t \mid x_{t-1}, x_0)  \frac{q(x_{t-1} \mid x_0)}{q(x_t \mid x_0)} \\
+&\propto \exp (- \frac{1}{2}(\frac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t}) + \frac{(x_{t-1} - \sqrt{\bar \alpha_{t-1}}x_0)^2}{1 - \bar \alpha_{t-1}} - \frac{(x_t - \sqrt{\bar \alpha_t} x_0)^2}{1 - \bar \alpha_t})) \\
+&= \exp(-\frac{1}{2}((\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar \alpha_{t-1}})x_{t-1}^2 - (\frac{2\sqrt{\alpha_t}}{\beta_t}x_t + \frac{2\sqrt{\bar \alpha_t}}{1 - \bar \alpha_{t-1}}x_0)x_{t-1} + C(x_t, x_0)))
+\end{align}
+$$
+Note: 高斯分布的概率密度函数是 $f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$
+
+Note：$ax^2 + bx = a(x + \frac{b}{2a})^2 + C$
+
+
+
+
+
 # Reference
 1. Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli. Deep unsupervised learning using nonequilibrium thermodynamics. In International Conference on Machine Learning, pages 2256–2265, 2015.
 2. Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in Neural Information Processing Systems, 2020, 33: 6840-6851.
