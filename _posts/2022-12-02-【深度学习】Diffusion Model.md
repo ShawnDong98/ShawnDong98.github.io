@@ -141,6 +141,11 @@ Note： 两个正态分布 $X \thicksim N(\mu_1, \sigma_1)$ 和 $Y \thicksim N(\
 
 逆扩散过程是从高斯噪声中恢复原始数据， 可以假设它也是一个高斯分布， 但是无法逐步地去拟合分布， 所以需要构建一个参数分布去做估计。 逆扩散过程仍然是一个马尔科夫链过程。
 
+$$
+p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1} \mid x_t) \quad p_\theta(x_{t-1} \mid x_t) = N(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
+$$
+
+后验的扩散条件概率 $q(x_{t-1} \mid x_t, x_0)$ 分布是可以用公式表达的， 也就是说， 给定 $x_t$ 和 $x_0$， 可以计算出 $x_{t-1}$。
 
 # Reference
 1. Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli. Deep unsupervised learning using nonequilibrium thermodynamics. In International Conference on Machine Learning, pages 2256–2265, 2015.
