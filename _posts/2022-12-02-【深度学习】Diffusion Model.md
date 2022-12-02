@@ -50,7 +50,7 @@ $$
 
 # VAE 与多层 VAE
 
-## 单层 VAE 的原理公式与变分下限
+## 单层 VAE 的原理公式与变分下界
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669963890693.png)
 
@@ -68,4 +68,4 @@ $$
 $$
 
 
-## 多层 VAE 的原理与变分下限
+## 多层 VAE 的原理与变分下界
