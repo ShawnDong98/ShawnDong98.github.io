@@ -109,11 +109,22 @@ $$
 给定一个从真实数据分布 $x_0 \thicksim q(x)$ 采样的数据点。 定义一个前向扩散过程， 其在 $T$ 个时间步添加少量高斯噪声到样本上， 产生一个噪声样本序列 $x_1, ..., x_T$。 步长由一个方差时间表 ${\beta_t \in (0, 1)}_{t=1}^t$ 控制。
 
 $$
-q(x_t \mid x_{t-1}) = N(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t I) \quad q(x_{1...T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})
+q(x_t \mid x_{t-1}) = N(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t I) \quad q(x_{1...T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1}) \tag{1}
 $$
 3、 任意时刻的 $q(x_t)$ 推导可以完全基于 $x_0$ 和 $\beta_t$ 来计算出来， 不需要做迭代
 
 
 
+令 $\alpha_t = 1 - \beta_t$， 通过重参数技巧， 等式(1)可以写为：
 
+$$
+\begin{aligned}
+x_t &= \sqrt{\alpha_t} x_{t-1} + \sqrt{1 - \alpha_t} z_{t-1} \\
+&= \sqrt{\alpha_t} (\sqrt{\alpha_{t-1}} x_{t-2} + \sqrt{1- \alpha_{t-1}} z_{t-2}) + \sqrt{1 - \alpha_t} z_{t-1} \\
+&= \sqrt{\alpha_t \alpha_{t-1}} x_{t-2} + \sqrt{\alpha_t - \alpha_t \alpha_{t-1}}z_{t-2} + \sqrt{1 - \alpha_t} z_{t-1}
+\end{aligned}
+$$
+
+
+两个正态分布 $X \thicksim N(\mu_1, \sigma_1)$ 和 $Y \thicksim N(\mu_2, \sigma_2)$ 的叠加后的分布 $aX + bY$ 的均值 $a \mu_1 + b \mu_2$， 方差为 $a^2 \sigma_1^2 + b^2 \sigma_2^2$ 。 所以 $ \sqrt{\alpha_t - \alpha_t \alpha_{t-1}}z_{t-2} + \sqrt{1 - \alpha_t} z_{t-1}$ 可以冲参数化成一个只含一个随机变量 $z$ 构成的 $\sqrt{1 - \alpha_t \alpha_{t-1}}z$ 的形式。
    
