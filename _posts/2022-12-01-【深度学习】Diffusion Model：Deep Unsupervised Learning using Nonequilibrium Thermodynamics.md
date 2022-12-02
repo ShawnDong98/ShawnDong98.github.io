@@ -132,9 +132,9 @@ $$
 
 对于二项扩散，离散状态空间使具有 frozen noise 的梯度上升变得不可能。作者进而选择前向扩散时间表 $\beta_{1...T}$ 消除每个扩散步骤原始信号的常数步长 $\frac{1}{T}$， 产生一个 $\beta_t = (T - t + 1)^{-1}$ 的扩散率。
 
-
-
 ## Multiplying Distributions, and Computing Posteriors
+
+计算后验以进行信号去噪或推断缺失值等任务需要用第二个分布或有界正函数 $r(x^{(0)})$乘以模型分布 $p(x^{(0)})$, 产生新的分布 $\tilde p(x^{(0)}) \propto p(x^{(0)}) r(x^{(0)})$。  
 
 ### Modified Marginal Distributions
 
