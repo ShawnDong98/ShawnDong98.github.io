@@ -46,3 +46,26 @@ $$
 ## 重参数技巧
 
 若希望从高斯分布 $N(\mu, \sigma)$ 中采样， 可以先从标准发布 $N(0, 1)$ 采样出 $z$， 再得到 $\sigma * z + \mu$。 这样做的好处是将随机性转移到变量 $z$ 上， 而 $\sigma$ 和 $\mu$ 当做仿射变换网络的一部分。
+
+
+# VAE 与多层 VAE
+
+## 单层 VAE 的原理公式与变分下限
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669963890693.png)
+
+$$p(x) = \int_z p_\theta(x \mid z)p(z)$$
+
+$$
+p(x) = \int_z q_\phi(z \mid x) \frac{p_\theta(x \mid z) p(z)}{q_\phi(z \mid x)}
+$$
+
+$$
+\log p(x) = \log E_{z \thicksim q_\phi(z \mid x)}[\frac{p_\theta(x \mid z)p(z)}{q_\phi(z \mid x)}]
+$$
+$$
+\log p(x) \geq E_{z \thicksim q_\phi(z \mid x)}[\log \frac{p_\theta(x \mid z)p(z)}{q_\phi(z \mid x)}]
+$$
+
+
+## 多层 VAE 的原理与变分下限
