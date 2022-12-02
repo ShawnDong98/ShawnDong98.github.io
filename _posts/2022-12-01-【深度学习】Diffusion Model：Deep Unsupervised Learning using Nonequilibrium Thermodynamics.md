@@ -134,7 +134,9 @@ $$
 
 ## Multiplying Distributions, and Computing Posteriors
 
-计算后验以进行信号去噪或推断缺失值等任务需要用第二个分布或有界正函数 $r(x^{(0)})$乘以模型分布 $p(x^{(0)})$, 产生新的分布 $\tilde p(x^{(0)}) \propto p(x^{(0)}) r(x^{(0)})$。  
+计算后验以进行信号去噪或推断缺失值等任务需要用第二个分布或有界正函数 $r(x^{(0)})$乘以模型分布 $p(x^{(0)})$, 产生新的分布 $\tilde p(x^{(0)}) \propto p(x^{(0)}) r(x^{(0)})$。 
+
+对于许多技术来说，乘以分布既昂贵又困难，包括变分自编码器、GSN、NADE和大多数图形学模型。
 
 ### Modified Marginal Distributions
 
