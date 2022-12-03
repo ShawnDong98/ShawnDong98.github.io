@@ -172,10 +172,24 @@ $$
 $$
 \tilde \mu_t(x_t, x_0) = (\frac{\sqrt{\alpha_t}}{\beta_t} x_t + \frac{\sqrt{\bar \alpha_t}}{1 - \bar \alpha_t}x_0) / (\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar \alpha_{t-1}}) = \frac{\sqrt{\alpha_t}(1 - \bar \alpha_{t-1})}{1 - \bar \alpha_t}x_t + \frac{\sqrt{\bar \alpha_{t-1}} \beta_t}{1 - \bar \alpha_t} x_0
 $$
+根据 $x_0$ 和 $x_t$ 之间的关系式：
 
+$$
+x_t = \sqrt{\bar \alpha_t} x_0 + \sqrt{1 - \bar \alpha_t} z
+$$
 
+我们可以知道：
 
-# Reference
+$$
+x_0 = \frac{1}{\sqrt{\bar \alpha_t}}(x_t - \sqrt{1 - \bar \alpha_t} z_t)
+$$
+
+Q：既然 $x_{t}$ 可以通过 $x_0$ 和 $\beta$ 直接求出，那么$x_{t-1}$ 也应该可以直接求出， 为什么要通过该种方式求出 $x_{t-1}$?
+
+A: 注意此时求的是后验概率 $q(x_{t-1} \mid x_{t}, x_0)$， 这与 $q(x_{t-1} \mid x_0)$ 不同， 因为 $x_{t-1}$ 和 $x_t$ 并不是相互独立的。
+
+# Reference 
+
 1. Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli. Deep unsupervised learning using nonequilibrium thermodynamics. In International Conference on Machine Learning, pages 2256–2265, 2015.
 2. Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in Neural Information Processing Systems, 2020, 33: 6840-6851.
 3. https://www.bilibili.com/video/BV1b541197HX/?spm_id_from=..search-card.all.click&vd_source=256546053d955f1315050ba88e6059c3
