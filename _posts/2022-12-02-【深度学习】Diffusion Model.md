@@ -164,7 +164,14 @@ Note: 高斯分布的概率密度函数是 $f(x) = \frac{1}{\sqrt{2\pi} \sigma} 
 
 Note：$ax^2 + bx = a(x + \frac{b}{2a})^2 + C$
 
+根据韦达定理：
 
+$$
+\tilde \beta_t = 1 / (\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar \alpha_{t-1}}) = \frac{1 - \bar \alpha_{t-1}}{1 - \bar \alpha_t} · \beta_t
+$$
+$$
+\tilde \mu_t(x_t, x_0) = (\frac{\sqrt{\alpha_t}}{\beta_t} x_t + \frac{\sqrt{\bar \alpha_t}}{1 - \bar \alpha_t}x_0) / (\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar \alpha_{t-1}}) = \frac{\sqrt{\alpha_t}(1 - \bar \alpha_{t-1})}{1 - \bar \alpha_t}x_t + \frac{\sqrt{\bar \alpha_{t-1}} \beta_t}{1 - \bar \alpha_t} x_0
+$$
 
 
 
