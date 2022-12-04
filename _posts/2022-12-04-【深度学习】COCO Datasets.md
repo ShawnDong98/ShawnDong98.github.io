@@ -31,4 +31,103 @@ tags:
 
 # COCO API
 
-COCO API有助于在COCO中加载、解析和可视化标注。
+COCO API有助于在COCO中加载、解析和可视化标注。这些API支持多种格式。 
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1670141150347.png)
+
+## Python API demo
+
+导入包
+
+```python
+%matplotlib inline
+from pycocotools.coco import COCO
+import numpy as np
+import skimage.io as io
+import matplotlib.pyplot as plt
+import pylab
+pylab.rcParams['figure.figsize'] = (8.0, 10.0)
+```
+
+目录
+
+```python
+dataDir='..'
+dataType='val2017'
+annFile='{}/annotations/instances_{}.json'.format(dataDir,dataType)
+```
+
+初始化
+
+```python
+# initialize COCO api for instance annotations
+coco=COCO(annFile)
+```
+
+展示类别：
+
+```python
+# display COCO categories and supercategories
+cats = coco.loadCats(coco.getCatIds())
+nms=[cat['name'] for cat in cats]
+print('COCO categories: \n{}\n'.format(' '.join(nms)))
+
+nms = set([cat['supercategory'] for cat in cats])
+print('COCO supercategories: \n{}'.format(' '.join(nms)))
+```
+
+
+给定类别，得到所有包含该类别的图像， 随机选择一个
+
+```python
+# get all images containing given categories, select one at random
+catIds = coco.getCatIds(catNms=['person','dog','skateboard']);
+imgIds = coco.getImgIds(catIds=catIds );
+imgIds = coco.getImgIds(imgIds = [324158])
+img = coco.loadImgs(imgIds[np.random.randint(0,len(imgIds))])[0]
+```
+
+加载并展示一个图像
+
+```python
+# load and display image
+# I = io.imread('%s/images/%s/%s'%(dataDir,dataType,img['file_name']))
+# use url to load image
+I = io.imread(img['coco_url'])
+plt.axis('off')
+plt.imshow(I)
+plt.show()
+```
+
+加载并展示实例标注
+
+```python
+# load and display instance annotations
+plt.imshow(I); plt.axis('off')
+annIds = coco.getAnnIds(imgIds=img['id'], catIds=catIds, iscrowd=None)
+anns = coco.loadAnns(annIds)
+coco.showAnns(anns)
+```
+
+为人关键点标注初始化 COCO api
+
+```python
+# initialize COCO api for person keypoints annotations
+annFile = '{}/annotations/person_keypoints_{}.json'.format(dataDir,dataType)
+coco_kps=COCO(annFile)
+```
+
+加载并展示关键点标注
+
+```python
+# load and display keypoints annotations
+plt.imshow(I); plt.axis('off')
+ax = plt.gca()
+annIds = coco_kps.getAnnIds(imgIds=img['id'], catIds=catIds, iscrowd=None)
+anns = coco_kps.loadAnns(annIds)
+coco_kps.showAnns(anns)
+
+```
+
+
+# MASK API
