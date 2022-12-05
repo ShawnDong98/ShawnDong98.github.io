@@ -154,8 +154,9 @@ plt.imshow(I); plt.axis('off'); plt.show()
 
 # Mask API
 
-COCO为每个目标实例提供分割 mask。这就产生了两个挑战: 紧凑地存储 mask 和高效地执行 mask 计算。我们使用自定义 Run Length Encoding(RLE) 方案解决了这两个挑战。RLE表示的大小与 mask 的边界像素的数量成正比，并且可以直接在 RLE 上高效地计算诸如区域、并集或交集等操作。具体地说，假设相当简单的形状，RLE表示为 $O(\sqrt(n)$ ，其中 $n$ 是目标中的像素数，常见的计算也是O(n)。
+COCO为每个目标实例提供分割 mask。这就产生了两个挑战: 紧凑地存储 mask 和高效地执行 mask 计算。我们使用自定义 Run Length Encoding(RLE) 方案解决了这两个挑战。RLE表示的大小与 mask 的边界像素的数量成正比，并且可以直接在 RLE 上高效地计算诸如区域、并集或交集等操作。具体地说，假设相当简单的形状，RLE表示为 $O(\sqrt(n)$ ，其中 $n$ 是目标中的像素数，常见的计算也是 $O(\sqrt{n})$。 朴素地对解码后的 mask (存储为数组)进行相同的运算将是 $O(n)$ 。
 
+MASK API提供了一个接口，用于操作以 RLE 格式存储的 mask 。最后，我们注意到大部分的基本真实 mask 都存储为多边形(非常紧凑)，这些多边形在需要时被转换为RLE。
 
 # Reference
 
