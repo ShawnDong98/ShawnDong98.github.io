@@ -158,6 +158,8 @@ COCO为每个目标实例提供分割 mask。这就产生了两个挑战: 紧凑
 
 MASK API提供了一个接口，用于操作以 RLE 格式存储的 mask 。最后，我们注意到大部分的基本真实 mask 都存储为多边形(非常紧凑)，这些多边形在需要时被转换为RLE。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1670242295660.png)
+
 # Reference
 
 1. [https://cocodataset.org/#download](https://cocodataset.org/#download)
