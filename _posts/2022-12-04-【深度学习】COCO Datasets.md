@@ -154,6 +154,7 @@ plt.imshow(I); plt.axis('off'); plt.show()
 
 # Mask API
 
+COCO为每个目标实例提供分割 mask。这就产生了两个挑战: 紧凑地存储 mask 和高效地执行 mask 计算。
 
 
 # Reference
