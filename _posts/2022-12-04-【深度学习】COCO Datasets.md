@@ -150,6 +150,7 @@ coco_caps.showAnns(anns)
 plt.imshow(I); plt.axis('off'); plt.show()
 ```
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1670241957524.png)
 
 # Mask API
 
