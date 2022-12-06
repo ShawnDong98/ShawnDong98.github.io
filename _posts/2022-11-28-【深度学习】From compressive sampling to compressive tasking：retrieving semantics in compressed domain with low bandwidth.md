@@ -46,7 +46,7 @@ Kwan等人提出了一种新的目标跟踪和分类方案，使用 pixel-wise c
 
 ## A novel joint framework of SCI and SCV
 
-为了弥合新兴的SCI技术和SCV任务之间的差距，作者提出了一个新的联合框架（图3），以利用双方的优势，并高效地实施编码高速视频采集、定性描述属和定量描述生成的整个过程。
+为了弥合新兴的SCI技术和SCV任务之间的差距，作者提出了一个新的联合框架（图3），以利用双方的优势，并高效地实施编码高速视频采集、定性描述和定量描述生成的整个过程。  作者认为，该框架可以提供一种可能的途径，模糊高通量视频捕获和相应的高级语义信息检索之间的界限。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/WX20221206-111350@2x.png)
 ### Closing the loop
