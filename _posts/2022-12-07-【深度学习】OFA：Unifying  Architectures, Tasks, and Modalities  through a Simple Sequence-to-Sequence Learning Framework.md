@@ -19,3 +19,6 @@ tags:
 
 OFA使用任务指令进行预训练和微调，并且没有引入额外的特定于任务的层进行微调。
 
+实验结果表明，OFA在一系列多模态任务上实现了新的最先进性，包括图像字幕（COCO  test CIDEr：149.6）、文本到图像生成（COCO test FID：10.5）、VQA（test-std acc.：80.02）、SNLI-VE（test acc：90.20）和引用表达式理解（RefCOCOCO/RefCOCO+/RefCOg test acc：92.93/90.10/85.20）。
+
+通过广泛的分析，作者证明OFA在单模态任务（包括NLU、NLG和图像分类）中与单模态预训练模型（例如BERT、MAE、MoCo v3、SimCLR v2等）具有可比性能，并有效地转移到没有见过的任务和域。
