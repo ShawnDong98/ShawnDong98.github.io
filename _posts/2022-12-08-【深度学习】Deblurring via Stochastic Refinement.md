@@ -33,4 +33,6 @@ tags:
 
 # Introduction
 
+图像模糊是计算机视觉中一个长期存在的问题。
+
 # Conclusion
