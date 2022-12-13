@@ -15,6 +15,7 @@ tags:
 # Exact version of environment configuratioin
 
 ```
+cuda == 11.1
 mmdet == 0.17.1
 torch == 1.9.0
 mmcv-full == 1.3.14
