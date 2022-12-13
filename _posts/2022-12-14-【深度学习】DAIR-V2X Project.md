@@ -24,6 +24,10 @@ mmpycocotools == 12.0.3
 mmsegmentation == 0.14.1
 ```
 
+```
+pip install mmcv-full==1.3.14 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9/index.html
+```
+
 # Reference
 
 1. [ Exact version of environment configuratioin](https://github.com/AIR-THU/DAIR-V2X/issues/5)
