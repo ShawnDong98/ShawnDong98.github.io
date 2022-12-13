@@ -591,7 +591,7 @@ java -version
 ### 运行容器
 
 ```
-sudo docker run --net=host --env HTTP_PROXY="http://127.0.0.1:7890" --env HTTPS_PROXY="https://127.0.0.1:7890"  -p 8888:8888 -p 8787:8787 -p 8786:8786 -p 5555:5555 --gpus all --shm-size 8G -it -v $(pwd):/home kaggle /bin/zsh
+sudo docker run --net=host --env HTTP_PROXY="127.0.0.1:7890" --env HTTPS_PROXY="127.0.0.1:7890"  -p 8888:8888 -p 8787:8787 -p 8786:8786 -p 5555:5555 --gpus all --shm-size 8G -it -v $(pwd):/home kaggle /bin/zsh
 ```
 
 ### 删除运行中的容器
