@@ -592,6 +592,7 @@ java -version
 sudo docker run --net=host --env HTTP_PROXY="http://127.0.0.1:7890" --env HTTPS_PROXY="https://127.0.0.1:7890"  -p 8888:8888 -p 8787:8787 -p 8786:8786 -p 5555:5555 --gpus all --shm-size 8G -it -v $(pwd):/home kaggle /bin/zsh
 ```
 
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
