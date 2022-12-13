@@ -16,7 +16,7 @@ tags:
 
 ```
 cuda == 11.1
-mmdet == 0.17.1
+mmdet3d == 0.17.1
 torch == 1.9.0
 mmcv-full == 1.3.14
 mmdet == 2.14.0
