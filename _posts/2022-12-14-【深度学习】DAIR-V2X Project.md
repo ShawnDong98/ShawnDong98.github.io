@@ -16,7 +16,11 @@ tags:
 
 ```
 mmdet == 0.17.1
-torch == 
+torch == 1.9.0
+mmcv-full == 1.3.14
+mmdet == 2.14.0
+mmpycocotools == 12.0.3
+mmsegmentation == 0.14.1
 ```
 
 # Reference
