@@ -12,4 +12,13 @@ tags:
     - CVPR 2022
 ---
 
-# 
+# Exact version of environment configuratioin
+
+```
+mmdet == 0.17.1
+torch == 
+```
+
+# Reference
+
+1. [ Exact version of environment configuratioin](https://github.com/AIR-THU/DAIR-V2X/issues/5)
