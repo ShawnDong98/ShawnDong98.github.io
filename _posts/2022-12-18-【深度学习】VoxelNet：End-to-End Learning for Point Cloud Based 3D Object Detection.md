@@ -14,6 +14,8 @@ tags:
 
 # Abstract
 
+准确检测3D点云中的物体是许多应用的核心问题，例如自主导航、家政机器人和增强/虚拟现实。
+
 # Methods
 
 # Conclusion
