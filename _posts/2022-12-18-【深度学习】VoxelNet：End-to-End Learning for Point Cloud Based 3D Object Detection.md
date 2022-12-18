@@ -24,6 +24,8 @@ tags:
 
 通过这种方式，点云被编码为 descriptive volumetric 表征，然后连接到RPN以生成检测。
 
+KITTI汽车检测基准的实验表明，VoxelNet的表现远远优于最先进的基于激光雷达的3D检测方法。
+
 # Methods
 
 # Conclusion
