@@ -14,6 +14,7 @@ tags:
 
 # Abstract
 
+从数据中创建噪声很容易；从噪声中创建数据是生成建模.
 
 
 # Conclusion
