@@ -36,6 +36,8 @@ tags:
 
 ## Denoising Score Matching With Langevin Dynamics (SMLD)
 
+令 $p_{\sigma}(\tilde x \mid x) := N(\tilde x; x, \sigma^2 I)$ 表示一个扰动核， $p_{\sigma}(\tilde x) := \int p_{data}(x) p_{\sigma}(\tilde x \mid x)dx$， 其中 $p_{data}(x)$ 表示数据分布。
+
 ## Denoising Diffusion Probabilistic Models (DDPM)
 
 
