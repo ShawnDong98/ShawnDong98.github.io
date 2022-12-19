@@ -39,7 +39,11 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1671432406861.png)
 
+## Evaluation Metrics
 
+我们使用一套不同的指标来评估最先进的方法。
+
+我们的3D目标检测和方向估计基准分为三个部分：首先，我们使用[16]中描述的既定平均精度（AP）指标来测量性能来评估经典的2D对象检测。
 
 # Conclusion
 
