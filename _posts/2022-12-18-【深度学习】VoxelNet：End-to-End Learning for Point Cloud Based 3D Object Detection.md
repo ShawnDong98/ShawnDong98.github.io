@@ -91,7 +91,7 @@ $$
   L = \alpha \frac{1}{N_{pos}} \sum_i L_{cls}(p_i^{pos}, 1) + \beta \frac{1}{N_{neg}} \sum_j L_{cls}(p_j^{neg}, 0) + \frac{1}{N_{pos}} \sum_i L_{reg}(u_i, u_i^*)
   $$
   
-  
+  其中 $p_i^{pos}$ 和 $p_j^{neg}$ 表示正先验框和负先验框的 softmax 输出，$u_i \in R^7, u_i^* \in R^7$。
   
 # Experiments
 
