@@ -86,6 +86,13 @@ $$
 $$
 其中 $d^a = \sqrt{(l^a)^2 + (w^a)^2}$ 是先验框基的对角线。在这里，我们的目标是直接估计带方向的3D框，并与对角线 $d^a$ 均匀地归一化 $\Delta x$ 和 $\Delta y$。我们将损失函数定义如下：
    
+  
+  $$
+  L = \alpha \frac{1}{N_{pos}} \sum_i L_{cls}(p_i^{pos}, 1) + \beta \frac{1}{N_{neg}} \sum_j L_{cls}(p_j^{neg}, 0) + \frac{1}{N_{pos}} \sum_i L_{reg}(u_i, u_i^*)
+  $$
+  
+  
+  
 # Experiments
 
 我们在KITTI 3D目标检测基准[11]上评估了VoxelNet，该基准包含7,481个训练图像/点云和7,518个测试图像/点云，涵盖三个类别：汽车、行人和非机动车。
