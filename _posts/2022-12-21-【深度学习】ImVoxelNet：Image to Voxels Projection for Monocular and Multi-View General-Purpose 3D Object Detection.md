@@ -15,3 +15,5 @@ tags:
 # Abstract
 
 这篇文章介绍了基于多视图RGB的3D目标检测作为端到端优化问题的任务。
+
+为了解决这个问题，作者提出了ImVoxel-Net，这是一种基于摆 posed monocular 或多视图 RGB 图像的全卷积的3D目标检测方法。
