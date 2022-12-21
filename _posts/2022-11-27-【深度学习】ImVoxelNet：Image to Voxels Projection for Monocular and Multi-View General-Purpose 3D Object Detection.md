@@ -39,7 +39,9 @@ ImVoxelNet成功处理室内和室外场景，使其成为通用的。
 
 ## 3D Volume Construction
 
-令 $I_t \in \mathbb{R}^{W \times H \times 3}$ 作为一组 $T$ 个图像的第 $t$ 个图像。
+令 $I_t \in \mathbb{R}^{W \times H \times 3}$ 作为一组 $T$ 个图像的第 $t$ 个图像。这里 $T > 1$ 对应多视角输入的情况， $T = 1$ 对应单视角输入的情况。
+
+
 ## 3D Feature Extraction
 
 
