@@ -49,4 +49,43 @@ tags:
 
 #### Review of Sparse Convolutional Networks
 
-参考文献[25]是第一篇引入空间稀疏卷积的论文。在这种方法中，如果没有相关的输入点，则不会计算输出点。这种方法在基于激光雷达的检测中提供了计算优势，因为KITTI中点云的分组步骤将产生稀疏度接近0.005的5k-8k体素。作为正常稀疏卷积的替代方案，子流形卷积[27]限制当且仅当相应的输入位置处于激活状态， 输出位置为激活状态。这避免了产生太多的激活位置，这可能导致由于活动点数量众多而导致后续卷积层的速度下降。
+参考文献[25]是第一篇引入空间稀疏卷积的论文。在这种方法中，如果没有相关的输入点，则不会计算输出点。这种方法在基于激光雷达的检测中提供了计算优势，因为KITTI中点云的分组步骤将产生稀疏度接近0.005的5k-8k体素。作为正常稀疏卷积的替代方案，子流形卷积[27]限制当且仅当相应的输入位置处于激活状态， 输出位置为激活状态。这避免了产生太多的激活位置，其可能导致由于激活点数量众多而导致后续卷积层的速度下降。
+
+#### Sparse Convolution Algorithm
+
+
+让我们首先考虑二维稠密卷积算法。我们使用 $W_{u,v,l,m}$ 表示卷积核元素，$D_{u,v,l}$表示图像元素，其中 $u$ 和 $v$ 是空间位置索引，$l$ 表示输入通道，$m$ 表示输出通道。给定提供的输出位置, 函数 $P(x,y)$ 生成需要计算的输入位置。因此，$Y_{x,y,m}$ 的卷积输出由以下公式给出：
+
+
+#### Sparse Convolutional Middle Extractor
+
+
+###  Region Proposal Network
+
+
+### Anchors and Targets
+
+
+## Training and Inference
+
+
+### Loss
+
+#### Sine-Error Loss for Angle Regression
+
+#### Focal Loss for Classification
+
+### Data Augmentation
+
+#### Sample Ground Truths from the Database
+
+#### Object Noise
+
+
+#### Global Rotation and Scaling
+
+### Optimization
+
+### Network Details
+
+
