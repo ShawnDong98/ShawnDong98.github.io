@@ -42,6 +42,17 @@ ImVoxelNet成功处理室内和室外场景，使其成为通用的。
 ## 3D Feature Extraction
 
 
+## Detection Heads
+
+### Outdoor Head
+
+
+### Indoor Head
+
+
+## Extra 2D Head
+
+
 
 # Conclusion
 
