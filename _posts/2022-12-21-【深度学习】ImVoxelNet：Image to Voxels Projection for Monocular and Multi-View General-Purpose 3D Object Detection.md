@@ -11,3 +11,7 @@ tags:
     - Detection
     - WACV 2022
 ---
+
+# Abstract
+
+这篇文章介绍了基于多视图RGB的3D目标检测作为端到端优化问题的任务。
