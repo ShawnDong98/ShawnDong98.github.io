@@ -43,3 +43,10 @@ tags:
 ### Voxelwise Feature Extractor
 
 如[14]所述，我们使用体素特征编码（VFE）层来提取体素特征。VFE层将同一体素中的所有点作为输入，并使用由线性层、批处理规范化（BatchNorm）层和ReLU层组成的全连接网络（FCN）来提取逐点特征。然后，它使用元素最大池来获得每个体素的局部聚合特征。最后，它将获得的特征拼接在一起，并将这些特征和逐点特征连接在一起。我们使用 $VFE(c_{out})$ 表示一个 VFE 层， 其将输入特征变换为 $c_{out}$ 维度的输出特征。相似的， $FCN(c_{out})$ 表示一个 Linear-BatchNorm-ReLU 层， 其将输入特征转换为 $c_{out}$ 维输出特征。总体而言，voxelwise特征提取器由几个VFE层和一个FCN层组成。
+
+
+### Sparse Convolutional Middle Extractor
+
+#### Review of Sparse Convolutional Networks
+
+参考文献[25]是第一篇引入空间稀疏卷积的论文。在这种方法中，如果没有相关的输入点，则不会计算输出点。这种方法在基于激光雷达的检测中提供了计算优势，因为KITTI中点云的分组步骤将产生稀疏度接近0.005的5k-8k体素。作为正常稀疏卷积的替代方案，子流形卷积[27]将输出位置限制为激活状态，当且仅当相应的输入位置处于激活状态。
