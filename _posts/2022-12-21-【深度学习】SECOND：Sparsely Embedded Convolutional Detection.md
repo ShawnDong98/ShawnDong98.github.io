@@ -28,3 +28,14 @@ tags:
 # SECOND Detector
 
 在本节中，作者描述了所提出的 SECOND 检测器的架构，并介绍了有关训练和推断的相关细节。
+
+
+## Network Architecture
+
+如图1所示，所提出的 SECOND 检测器由三个部分组成：（1）体素级别特征提取器；（2）稀疏的卷积中间层；以及（3）RPN。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1671600167480.png)
+
+### Point Cloud Grouping
+
+在这里，作者遵循[14]中描述的简单程序来获得点云数据的体素表征。
