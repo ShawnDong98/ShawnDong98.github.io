@@ -69,7 +69,7 @@ $$
 $$
 \Delta (b_i, \tilde b_j) = (o_{ij}, r_i, d_{ij}) 
 $$
-函数 $\Delta: G \times C \rightarrow N \times N \times R$ 返回一个元组， 其中 $d_{ij}$ 是边界框位置之间的 $L_1$ 距离。
+函数 $\Delta: G \times C \rightarrow N \times N \times R$ 返回一个元组， 其中 $d_{ij}$ 是边界框位置之间的 $L_1$ 距离， $r_j$ 是排序或者 LSTM 预测序列输出的 $\tilde b_j$ 的索引。
 
 # Conclusion
 
