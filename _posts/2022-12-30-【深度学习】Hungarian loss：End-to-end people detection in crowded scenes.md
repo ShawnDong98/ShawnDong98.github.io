@@ -54,7 +54,6 @@ tags:
 $$
 L(G, C, f) = \alpha \sum_{i=1}^{\mid G \mid} l_{pos}(b_{pos}^i, \tilde b_{pos}^{f(i)}) + \sum_{j=1}^{\mid C \mid} l_c (\tilde b_c^j, y_j)
 $$
-其中 $l_{pos} = \| b_{pos}^i - \tilde b_{pos}^{f(i)} \|_1$ 真实位置和候选假设之间的误差, $l_c$ 是候选置信度的交叉熵损失， 其将会匹配到真实值。交叉熵损失的标签由 $y_j$ 提供。它由匹配函数 $y_j = 1{f^{-1}(j) \neq \emptyset}$ 定义。
-
+其中 $l_{pos} = \| b_{pos}^i - \tilde b_{pos}^{f(i)} \|_1$ 真实位置和候选假设之间的误差, $l_c$ 是候选置信度的交叉熵损失， 其将会匹配到真实值。交叉熵损失的标签由 $y_j$ 提供。它由匹配函数 $y_j = 1{f^{-1}(j) \neq \emptyset}$ 定义。$\alpha$ 是置信度误差和定位误差的权衡。
 # Conclusion
 
