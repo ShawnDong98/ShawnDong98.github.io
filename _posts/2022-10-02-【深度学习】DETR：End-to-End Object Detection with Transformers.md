@@ -42,7 +42,7 @@ $$
 
 其中 $L_{match}(y_i, \hat y_{\sigma(i)})$ 是真实标签和索引 $\sigma(i)$ 的一个预测的 pair-wise matching cost。  之前的工作使用匈牙利算法有效地计算了这个最优分配。
 
-匹配成本既考虑了类别预测，也考虑了预测和真实边界框的相似性。真实集合的每个元素 $i$ 可以被视为 $y_i = (c_i, b_i)$， 其中 $c_i$ 是目标类别标签(可能是 $\emptyset$) ， $b_i \in [0, 1]^4$ 是一个向量， 其定义了真实边界框相对比图像大小的中心坐标以及高和宽。对于索引 $\sigma(i)$ 的预测， 定义类别 $c_i$ 的概率为 $\hat p_{\sigma(i)}(c_i)$ 和预测的边界框为 $\hat b_{\sigma(i)}$。 有了这些注释， 定义 $L_{match}(y_i, \hat y_{\sigma(i)})$ 为 $-\mathbb{1}_{c_i \neq \emptyset} \hat p_{\sigma(i)}(c_i) + \mathbb{1}_{c_i \neq \emptyset} L_{box}(b_i, \hat b_{\sigma(i)})$。
+匹配成本既考虑了类别预测，也考虑了预测和真实边界框的相似性。真实集合的每个元素 $i$ 可以被视为 $y_i = (c_i, b_i)$， 其中 $c_i$ 是目标类别标签(可能是 $\emptyset$) ， $b_i \in [0, 1]^4$ 是一个向量， 其定义了真实边界框相对比图像大小的中心坐标以及高和宽。对于索引 $\sigma(i)$ 的预测， 定义类别 $c_i$ 的概率为 $\hat p_{\sigma(i)}(c_i)$ 和预测的边界框为 $\hat b_{\sigma(i)}$。  定义 $L_{match}(y_i, \hat y_{\sigma(i)})$ 为 $-\mathbb{1}_{c_i \neq \emptyset} \hat p_{\sigma(i)}(c_i) + \mathbb{1}_{c_i \neq \emptyset} L_{box}(b_i, \hat b_{\sigma(i)})$。
 
 这种查找匹配的过程与现代检测器中用于匹配提议或先验框与真实目标的启发式分配规则的作用相同。主要区别在于，DETR 需要找到一对一的匹配，用于没有重复的直接集合预测。
 
@@ -51,8 +51,6 @@ $$
 $$
 L_{Hungarian}(y, \hat y) = \sum_{i=1}^N [-\log \hat p_{\hat \sigma}(c_i) + \mathbb{1}_{c_i \neq \emptyset} L_{box}(b_i, \hat b_{\sigma}(i))]
 $$
-
-
 
 
 其中 $\hat \sigma$ 是第一步计算的最优分配。为了类别平衡， 实际中， 对于 $c_i = \emptyset$ 的对数概率项将其权重缩小10倍。这类似于 Faster R-CNN 训练程序如何通过子采样来平衡正/负提议。注意， 目标和 $\emptyset$ 之间的匹配成本不依赖于预测， 这意味着成本为常数。在匹配成本中， 作者使用概率 $\hat p_{\hat \sigma(i)}(c_i)$， 而不是对数概率。这使得类别预测项和 $L_{box}(·， ·)$ 相当， 并且观察到了更好的实验表现。
