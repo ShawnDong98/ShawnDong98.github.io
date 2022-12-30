@@ -49,5 +49,13 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672369099355.png)
 
+给定 $f$， 定义在集合对 $G$ 和 $C$ 上的损失函数为：
+
+$$
+L(G, C, f) = \alpha \sum_{i=1}^{\mid G \mid} l_{pos}(b_{pos}^i, \tilde b_{pos}^{f(i)}) + \sum_{j=1}^{\mid C \mid} l_c (\tilde b_c^j, y_j)
+$$
+其中 $l_{pos} = \| b_{pos}^i - \tilde b_{pos}^{f(i)} \|_1$ 真实位置和候选假设之间的误差。
+
+
 # Conclusion
 
