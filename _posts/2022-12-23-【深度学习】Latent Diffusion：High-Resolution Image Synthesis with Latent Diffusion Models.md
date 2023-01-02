@@ -95,4 +95,10 @@ $$
 
 ### Transformer Encoders for LDMs
 
-通过在LDM中引入基于交叉注意力的条件，我们打开了以前在扩散模型中未探索的各种条件模态。对于文本到图像图像建模，作者训练了一个1.45B参数 KL正则化 LDM，该参数以LAION-400M [78]上的语言提示为条件。其使用BERT-tokenizer[14]，并实现 $\tau_\theta$ 作为 Transformer [97]来推断一个隐编码，该编码通过（多头）交叉注意力映射到UNet。 
+通过在LDM中引入基于交叉注意力的条件，我们打开了以前在扩散模型中未探索的各种条件模态。对于文本到图像图像建模，作者训练了一个1.45B参数 KL正则化 LDM，该参数以LAION-400M [78]上的语言提示为条件。其使用BERT-tokenizer[14]，并实现 $\tau_\theta$ 作为 Transformer [97]来推断一个隐编码，该编码通过（多头）交叉注意力映射到UNet。 这种学习语言表示和视觉合成的特定领域专家的组合产生了一个强大的模型，该模型很好地泛化到复杂的用户定义文本提示，参见图8和图5。为了进行定量分析，作者遵循之前的工作，并评估MS-COCO[51]验证集上的文本到图像生成，其中我们的模型改进了强大的AR[17，66]和基于GAN的[109]方法，参见表2。我们注意到，应用无分类器扩散引导[32]极大地提高了样本质量，因此引导的LDM-KL-8-G与最近用于文本到图像合成的最新AR[26]和扩散模型[59]相当，同时大幅减少了参数计数。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672647407605.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672647251327.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672647282648.png)
