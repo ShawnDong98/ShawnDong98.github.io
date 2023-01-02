@@ -49,7 +49,7 @@ tags:
 
 更具体来讲， 给定一张图像 $x \in R^{H \times W \times 3}$， 编码器 $\varepsilon$ 编码 $x$ 到一个隐表征 $z \in \varepsilon(x)$, 解码器 $D$ 从隐空间重构图像， 有 $\tilde x = D(z) = D(\varepsilon(x))$， 其中 $z \in R^{h \times w \times c}$。    跟重要的事， 编码器以系数 $f = H / h = W / w$ 降采样图像， 作者调研了不同的降采样系数 $f = 2^m$。
 
-为了避免任意的高方差隐空间，作者实验了两种不同的正则化。
+为了避免任意的高方差隐空间，作者实验了两种不同的正则化。第一个变体KL-reg， 对学习的隐空间对标准正态施加轻微的 KL 惩罚，类似于VAE[46, 69]，而 VQ-reg 在解码器中使用矢量量化层[96]。
 
 
 # Conclusion
