@@ -88,3 +88,11 @@ $$
 L_{LDM} := E_{\varepsilon(x), y, \epsilon \thicksim N(0, 1), t} [\| \epsilon - \epsilon_\theta(z_t, t, \tau_\theta(y)) \|_2^2]
 $$
 其中 $\tau_\theta$ 和 $\epsilon_\theta$ 通过上式联合优化。这个条件机制是灵活地， 因为 $\tau_\theta$ 可以参数化为特定领域的专家， 例如当 $y$ 是文本提示时， 其是 Transformer。 
+
+# Experiments
+
+## Conditional Latent Diffusion
+
+### Transformer Encoders for LDMs
+
+通过在LDM中引入基于交叉注意力的条件，我们打开了以前在扩散模型中未探索的各种条件模态。
