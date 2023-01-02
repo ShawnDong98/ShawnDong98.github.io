@@ -106,3 +106,5 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672647737147.png)
 
+### Convolutional Sampling Beyond 256 x 256
+
