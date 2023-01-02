@@ -71,6 +71,10 @@ $$
 L_{LDM} := E_{\varepsilon(x), \varepsilon \thicksim N(0, 1), t} [\| \varepsilon - \varepsilon_\theta(z_t, t) \|_2^2]
 $$
 
-模型的神经主干 $\varepsilon_\theta(o, t)$ 实现为一个以时间为条件的 UNet。 由于前向过程是固定的， $z_t$ 可以在训练过程中从 $\varepsilon$ 高效地得到， 并且从 $p(z)$ 中采样可以通过 $D$ 解码到图像空间。 
+模型的神经主干 $\varepsilon_\theta(o, t)$ 实现为一个以时间为条件的 UNet。 由于前向过程是固定的， $z_t$ 可以在训练过程中从 $\varepsilon$ 高效地得到， 并且从 $p(z)$ 中采样可以通过 $D$ 解码到图像空间。
+
+## Conditioning Mechanisms
+
+与其他类型的生成模型类似，扩散模型原则上能够建模 $p（z \mid y）$ 形式的条件分布。这可以通过条件去噪自编码器 $\epsilon_\theta(z_t，t，y)$ 实现，并通过文本[68]、语义图[33、61]或其他图像到图像的翻译任务[34]等输入 $y$ 来控制合成过程。
 
 # Conclusion
