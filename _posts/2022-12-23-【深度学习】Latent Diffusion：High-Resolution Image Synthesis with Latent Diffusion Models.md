@@ -124,3 +124,6 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672648871524.png)
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672648907022.png)
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672649217027.png)
+
+由于双立方退化过程不能很好地泛化到不遵循此预处理的图像，作者还通过使用更多的逆退化来训练一个通用模型LDM-BSR。
