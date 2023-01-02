@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Latent Diffusion：High-Resolution Image Synthesis with Latent Diffusion Models"
+title:      "【深度学习】Stable Diffusion：High-Resolution Image Synthesis with Latent Diffusion Models"
 subtitle:   ""
 date:       2022-12-23
 author:     "ShawnD"
