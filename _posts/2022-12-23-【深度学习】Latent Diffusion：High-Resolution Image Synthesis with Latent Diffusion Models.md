@@ -119,4 +119,8 @@ $$
 
 ### Super-Resolution with Latent Diffusion
 
-通过拼接对低分辨率图像进行直接的条件，可以有效地训练LDM以获得超分辨率。 在第一个实验中，我们遵循SR3，并根据SR3的数据处理流程在ImageNet上使用4×下采样将图像退化修复为双立方插值。
+通过拼接对低分辨率图像进行直接的条件，可以有效地训练LDM以获得超分辨率。 在第一个实验中，我们遵循SR3，并根据SR3的数据处理流程在ImageNet上使用4×下采样将图像退化修复为双立方插值。我们使用OpenImages上预训练的 $f = 4$ 自编码模型（VQ-reg，参见表8）并将低分辨率条件 $y$ 和输入与UNet连接起来，即 $\tau_\theta$是恒等式。我们的定性和定量结果（见图10和表5）显示了有竞争力的性能，LDM-SR在FID中的表现优于SR3，而SR3的IS更好。一个简单的图像回归模型可以获得最高的PSNR和SSIM分数；然而，这些指标与人类感知不一致，比不完全对齐的高频细节更倾向于模糊。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672648871524.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672648907022.png)
