@@ -63,4 +63,6 @@ L_DM = E_{x, \epsilon \thicksim N(0, 1), t} [\|\epsilon - \epsilon_\theta(x_t, t
 $$
 其中 $t$ 从 {1... T} 中均匀采样。
 
+**Generative Modeling of Latent Representations** 有了由 $\varepsilon$ 和 $D$ 组成的训练好的感知压缩模型， 我们现在可以进入一个高效、低维的隐空间，其中高频、难以察觉的细节被抽象出来。
+
 # Conclusion
