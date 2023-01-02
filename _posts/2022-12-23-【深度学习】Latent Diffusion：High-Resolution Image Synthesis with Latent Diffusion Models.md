@@ -47,7 +47,9 @@ tags:
 
 作者的感知压缩模型基于之前的工作[23]，由感知损失[106]和基于 patch 的[33]对抗目标[20、23、103]训练的自编码器组成。这确保了通过强制执行局部真实将重建局限于图像流形，并避免了仅依靠L2或L1目标等像素空间损失而引入的模糊性。
 
-更具体来讲， 给定一张图像 $x \in R^{H \times W \times 3}$， 编码器 $\varepsilon$ 编码 $x$ 到一个隐表征 $z \in \varepsilon(x)$, 解码器 $D$ 从隐空间重构图像， 有 $\tilde x = D(z) = D(\varepsilon(x))$， 其中 $z \in R^{h \times w \times c}$。    跟重要的事， 编码器以系数 $f = H / h = W / w$ 降采样图像， 作者调研了不同的降采样系数 $f = 2^m$。 
+更具体来讲， 给定一张图像 $x \in R^{H \times W \times 3}$， 编码器 $\varepsilon$ 编码 $x$ 到一个隐表征 $z \in \varepsilon(x)$, 解码器 $D$ 从隐空间重构图像， 有 $\tilde x = D(z) = D(\varepsilon(x))$， 其中 $z \in R^{h \times w \times c}$。    跟重要的事， 编码器以系数 $f = H / h = W / w$ 降采样图像， 作者调研了不同的降采样系数 $f = 2^m$。
+
+为了避免任意的高方差隐空间，作者实验了两种不同的正则化。
 
 
 # Conclusion
