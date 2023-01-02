@@ -88,5 +88,3 @@ $$
 L_{LDM} := E_{\varepsilon(x), y, \epsilon \thicksim N(0, 1), t} [\| \epsilon - \epsilon_\theta(z_t, t, \tau_\theta(y)) \|_2^2]
 $$
 其中 $\tau_\theta$ 和 $\epsilon_\theta$ 通过上式联合优化。
-
-# Conclusion
