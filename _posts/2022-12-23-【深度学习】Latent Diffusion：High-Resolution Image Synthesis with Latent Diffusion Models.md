@@ -108,3 +108,4 @@ $$
 
 ### Convolutional Sampling Beyond 256 x 256
 
+通过将空间对齐的调节信息与 $\theta$ 的输入连接起来，LDM可以作为高效的通用图像到图像翻译模型。
