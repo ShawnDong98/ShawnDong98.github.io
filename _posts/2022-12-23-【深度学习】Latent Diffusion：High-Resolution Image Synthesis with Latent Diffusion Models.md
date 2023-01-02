@@ -127,3 +127,7 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672649217027.png)
 
 由于双立方退化过程不能很好地泛化到不遵循此预处理的图像，作者还通过使用更多的逆退化来训练一个通用模型LDM-BSR。
+
+###  Inpainting with Latent Diffusion
+
+绘画的任务是用新内容填充图像的 mask 区域，要么是因为图像的一部分被损坏，要么是替换图像中现有但不需要的内容。
