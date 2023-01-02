@@ -87,4 +87,4 @@ $$
 $$
 L_{LDM} := E_{\varepsilon(x), y, \epsilon \thicksim N(0, 1), t} [\| \epsilon - \epsilon_\theta(z_t, t, \tau_\theta(y)) \|_2^2]
 $$
-其中 $\tau_\theta$ 和 $\epsilon_\theta$ 通过上式联合优化。
+其中 $\tau_\theta$ 和 $\epsilon_\theta$ 通过上式联合优化。这个条件机制是灵活地， 因为 $\tau_\theta$ 可以参数化为特定领域的专家， 例如当 $y$ 是文本提示时， 其是 Transformer。 
