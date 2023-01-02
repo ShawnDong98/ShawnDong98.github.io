@@ -102,4 +102,4 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672647251327.png)
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672647282648.png)
-最后， 遵循之前的工作[3、15、21、23]，作者评估了最佳类条件ImageNet模型。
+最后， 遵循之前的工作[3、15、21、23]，作者评估了最佳类条件ImageNet模型。在这里，我们的表现优于最先进的扩散模型ADM[15]，同时显著减少了计算要求和参数计数，参见表18。
