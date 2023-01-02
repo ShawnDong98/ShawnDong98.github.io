@@ -116,3 +116,7 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672648308370.png)
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672648538122.png)
+
+### Super-Resolution with Latent Diffusion
+
+通过拼接对低分辨率图像进行直接的条件，可以有效地训练LDM以获得超分辨率。 在第一个实验中，我们遵循SR3，并根据SR3的数据处理流程在ImageNet上使用4×下采样将图像退化修复为双立方插值。
