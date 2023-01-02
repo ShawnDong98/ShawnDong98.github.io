@@ -77,4 +77,16 @@ $$
 
 与其他类型的生成模型类似，扩散模型原则上能够建模 $p（z \mid y）$ 形式的条件分布。这可以通过条件去噪自编码器 $\epsilon_\theta(z_t，t，y)$ 实现，并通过文本[68]、语义图[33、61]或其他图像到图像的翻译任务[34]等输入 $y$ 来控制合成过程。
 
+然而，在图像合成的背景下，将DM的生成力与类标签[15]或输入图像的模糊变体[72]以外的其他类型的条件相结合，是迄今为止未被探索的研究领域。
+
+作者通过交叉注意力机制[97]增强DM的底层UNet主干结构，将DM转化为更灵活的条件图像生成器，这对于学习各种输入模态联系的基于注意力的模型[35,36]有效。为了从各种模态（如语言提示符）预处理 $y$ ，作者引入了一个特定于域的编码器 $\tau(\theta)$，该编码器将 $y$ 投影到中间表示 $\tau_\theta(y) \in R^{M \times d_\tau}$， 其通过一个交叉注意力层 $Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d}}) · V$ 被映射到 UNet的中间层。如图3所示。
+
+![enter description here](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672646538630.png)
+基于图像-条件对， 学习条件 LDM 通过：
+
+$$
+L_{LDM} := E_{\varepsilon(x), y, \epsilon \thicksim N(0, 1), t} [\| \epsilon - \epsilon_\theta(z_t, t, \tau_\theta(y)) \|_2^2]
+$$
+其中 $\tau_\theta$ 和 $\epsilon_\theta$ 通过上式联合优化。
+
 # Conclusion
