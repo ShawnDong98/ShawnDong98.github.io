@@ -63,6 +63,6 @@ L_DM = E_{x, \epsilon \thicksim N(0, 1), t} [\|\epsilon - \epsilon_\theta(x_t, t
 $$
 其中 $t$ 从 {1... T} 中均匀采样。
 
-**Generative Modeling of Latent Representations** 有了由 $\varepsilon$ 和 $D$ 组成的训练好的感知压缩模型， 我们现在可以进入一个高效、低维的隐空间，其中高频、难以察觉的细节被抽象出来。
+**Generative Modeling of Latent Representations** 有了由 $\varepsilon$ 和 $D$ 组成的训练好的感知压缩模型， 我们现在可以进入一个高效、低维的隐空间，其中高频、难以察觉的细节被抽象出来。与高维像素空间相比，该空间更适合基于似然的生成模型，因为它们现在可以（i）专注于数据的重要、语义位，以及（ii）在较低的维度、计算效率更高的空间中训练。
 
 # Conclusion
