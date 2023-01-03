@@ -64,6 +64,10 @@ $$
 与标准SGD相比，随机梯度朗之万动力学在参数更新中注入了高斯噪声，以避免崩溃到局部极小值。
 
 
+## Reverse diffusion process
+
+如果我们能将上述过程反转， 并且从 $q(x_{t-1} \mid x_t)$ 采样， 我们将能够从高斯噪声输入中重建真实的样本 $x_T \thicksim N(0, I)$。 注意 $\beta_t$ 足够小， $ q(x_{t-1} \mid x_t)$ 将会变成高斯分布。
+
 # Reference
 
 1. [Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. https://lilianweng.github.io/posts/2021-07-11-diffusion-models/.](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
