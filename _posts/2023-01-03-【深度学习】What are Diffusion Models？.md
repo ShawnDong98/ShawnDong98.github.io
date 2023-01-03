@@ -59,7 +59,9 @@ $$
 $$
 x_t  = x_{t-1}  + \frac{\delta}{2} \nabla_x \log q(x_{t-1}) + \sqrt{\delta} \epsilon_t， \quad \epsilon_t\thicksim N(0, I)
 $$
-其中 $\delta$ 是步长。 当 $T \rightarrow \infty， \epsilon \rightarrow 0$， $x_T$ 等于真实概率密度 $p(x)$。  
+其中 $\delta$ 是步长。 当 $T \rightarrow \infty， \epsilon \rightarrow 0$， $x_T$ 等于真实概率密度 $p(x)$。 
+
+与标准SGD相比，随机梯度朗之万动力学在参数更新中注入了高斯噪声，以避免崩溃到局部极小值。
 
 
 # Reference
