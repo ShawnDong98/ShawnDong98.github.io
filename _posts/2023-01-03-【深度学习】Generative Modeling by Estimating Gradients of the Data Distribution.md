@@ -25,5 +25,11 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672728032162.png)
 然而，基于似然的模型和隐式生成模型都有很大的局限性。基于似然的模型要么需要对模型架构进行严格限制，以确保可处理的归一化常数用于似然计算，要么必须依赖代理目标来近似最大似然训练。另一方面，隐式生成模型通常需要对抗性训练，这是出了名的不稳定，并可能导致模式崩溃。
 
+在这篇博文中，将介绍另一种表示概率分布的方法，这种方法可能会规避这些限制。关键思想是对对数概率密度函数的梯度进行建模，这个量通常被称为(Stein)分数函数。这种基于分数的模型不需要有可处理的归一化常数，可以通过分数匹配直接学习。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672728173019.png)
+
+基于分数的模型已经在许多下游任务和应用程序上实现了最先进的性能。这些任务包括图像生成(是的，比GANs更好!)、音频合成、形状生成和音乐生成。
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
