@@ -48,7 +48,7 @@ $$
 q(x_t \mid x_0) = N(x_t; \sqrt{\bar \alpha_t}x_0, (1- \bar \alpha_t) I)
 $$
 
-其中 $\epsilon_{t-1}, \epsilon_{t-2}, ..., \thicksim N(0,1)$， $\bar \epsilon_{t-2}$ 合并两个高斯分布。
+其中 $\epsilon_{t-1}, \epsilon_{t-2}, ..., \thicksim N(0,1)$， $\bar \epsilon_{t-2}$ 合并两个高斯分布。回忆当我们融合两个不同方差的高斯分布， $N(0, \sigma_1^2 I)$ 和 $N(0, \sigma_2^2 I)$， 新的分布是 $N(0, (\sigma_1^2 + \sigma_2^2)I)$。 这里融合的标准差为 $\sqrt{(1 - \alpha_t) + \alpha_t(1 - \alpha_{t-1})} = \sqrt{1 - \alpha_t \alpha_{t-1}}$. 
 
 # Reference
 
