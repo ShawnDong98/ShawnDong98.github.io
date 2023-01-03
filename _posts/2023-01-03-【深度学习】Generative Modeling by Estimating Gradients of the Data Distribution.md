@@ -81,11 +81,9 @@ $$
 
 此外，使用分数匹配目标为我们提供了相当大的建模灵活性。Fisher divergence 本身并不要求 $s_\theta(x)$ 是任何归一化分布的实际分数函数，它只是比较真实数据分数和基于分数的模型之间的 $\ell_2$ 距离，对 $s_\theta(x)$ 的形式没有额外的假设。事实上，对基于分数的模型的唯一要求是它应该是一个输入和输出维数相同的向量值函数，这在实践中很容易满足。
 
-作为一个简短的总结，我们可以通过建模它的分数函数来表示一个分布，这个分布可以通过训练一个基于分数的自由形式架构模型来估计。在实践中，当 $\epsilon$ 足够小而 $K$ 足够大时，误差可以忽略不计。 
+作为一个简短的总结，我们可以通过建模它的分数函数来表示一个分布，这个分布可以通过训练一个基于分数的自由形式架构模型来估计。
 
-![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672730681004.png)
 
-注意到郎之万采样过程 $p(x)$ 仅通过 $\nabla_x \log p(x)$。 
 
 
 # Langevin dynamics
@@ -98,7 +96,15 @@ $$
 x_{i+1} \leftarrow x_i + \epsilon \nabla_x \log p(x) + \sqrt{2 \epsilon} z_i, i = 0, 1, ..., K
 $$
 
-其中 $z_i \thicksim N(0, I)$ 。 当 $\epsilon \rightarrow 0$ 和 $K \rightarrow \infty$， $x_K$ 从上式中得到收敛到从 $p(x)$ 中采样的一个样本。
+其中 $z_i \thicksim N(0, I)$ 。 当 $\epsilon \rightarrow 0$ 和 $K \rightarrow \infty$， $x_K$ 从上式中得到收敛到从 $p(x)$ 中采样的一个样本。在实践中，当 $\epsilon$ 足够小而 $K$ 足够大时，误差可以忽略不计。 
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672730681004.png)
+
+
+
+
+注意到郎之万采样过程 $p(x)$ 仅通过 $\nabla_x \log p(x)$。 因为 $s_\theta(x) \approx \nabla_x \log p(x)$, 我们从基于分数的模型 $s_\theta(x)$ 中产生样本， 通过将其插入上式得到。
 
 
 # Reference
