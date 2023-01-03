@@ -62,7 +62,13 @@ $$
 \nabla_x \log p(x)
 $$
 
-对于这个分数函数的模型被叫做基于分数的模型， 表示为 $s_\theta(x)$。 基于分数的模型学习 $s_\theta(x) \approx \nabla_x \log p(x)$， 并且可以无需担心归一化常数被参数化。
+对于这个分数函数的模型被叫做基于分数的模型， 表示为 $s_\theta(x)$。 基于分数的模型学习 $s_\theta(x) \approx \nabla_x \log p(x)$， 并且可以无需担心归一化常数被参数化。例如，我们可以很容易地用公式(1)中定义的基于能量的模型参数化基于分数的模型，通过：
+
+$$
+s_\theta(x) = \nabla_x \log p_\theta(x) = -\nabla_x f_\theta(x)  - \nabla_x \log Z_\theta = -\nabla_x f_\theta(x)
+$$
+
+注意到基于分数的模型 $s_\theta(x)$ 是独立于归一化常数 $Z_\theta$ 的。
 
 
 # Reference
