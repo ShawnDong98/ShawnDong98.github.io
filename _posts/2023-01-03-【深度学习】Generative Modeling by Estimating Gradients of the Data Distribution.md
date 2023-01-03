@@ -176,6 +176,20 @@ $$
 
 正如我们已经讨论过的，添加多个噪声尺度对于基于分数的生成模型的成功至关重要。通过将噪声尺度的数量推广到无穷大，我们不仅获得了更高质量的样本，而且还获得了精确的对数似然计算，以及用于逆问题求解的可控生成。
 
+## Perturbing data with an SDE
+
+当噪声尺度的数量接近无穷大时，我们本质上用不断增长的噪声水平扰乱数据分布。在这种情况下，噪声扰动过程是一个连续时间随机过程，如下所示：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672734606584.png)
+
+我们如何用简洁的方式表示一个随机过程?许多随机过程(特别是扩散过程)是随机微分方程(SDEs)的解。通常，SDE具有以下形式：
+
+$$
+dx = f(x, t)dt + g(t)dw
+$$
+
+其中 $f(·, t): R^d \rightarrow R^d$ 是一个被叫做漂移系数的 向量-值 函数， $g(t) \in R$ 是一个叫做扩散系数的实值函数。
+
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
