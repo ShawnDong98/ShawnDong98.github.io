@@ -160,5 +160,11 @@ $$
 
 在训练 noise-conditional score-based model $s_\theta(x, i)$ 后， 对于 $i = L, L -1, ..., 1$， 我们可以运行郎之万采样生成样本。这个方法叫做退火郎之万采样， 因为噪声尺度 $\sigma_i$ 随时间递减。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672732763540.png)
+
+下面是一些实用的建议，用于调整具有多个噪声尺度的基于分数的生成模型：
+
+- 选择 $\sigma_1 < \sigma_2 < ... < \sigma_L$ 作为几何级数， $\sigma_1$ 足够小， $\sigma_L$ 可与所有数据点之间的最大成对距离相比较。
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
