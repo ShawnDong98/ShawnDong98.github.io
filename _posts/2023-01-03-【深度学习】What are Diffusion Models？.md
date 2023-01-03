@@ -31,6 +31,25 @@ $$
 
 随着步长 $t$ 变大，数据样本 $x_0$ 逐渐失去其可区分的特征。最终， 当 $T \rightarrow \infty$， $x_T$ 等价于一个各向同性的高斯分布。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672715316581.png)
+
+上述过程有一个有一个好的性质， 我们可以用重参数技巧在任意时间步 $t$ 采样 $x_t$。 令 $\alpha_t = 1 - \beta_t$， $\bar \alpha_t = \prod_{i=1}^t \alpha_i$：
+
+$$
+\begin{align}
+x_t &= \sqrt{\alpha_t} x_{t-1} + \sqrt{1 - \alpha_t} \epsilon_{t-1} \\
+&= \sqrt{\alpha_t \alpha_{t-1}}x_{t-2} + \sqrt{1 - \alpha_t \alpha_{t-1}} \bar \epsilon_{t-2} \\
+&= ... \\
+&= \sqrt{\bar \alpha_t} x_0 + \sqrt{1 - \bar \alpha_t} \epsilon
+\end{align}
+$$
+
+$$
+q(x_t \mid x_0) = N(x_t; \sqrt{\bar \alpha_t}x_0, (1- \bar \alpha_t) I)
+$$
+
+其中 $\epsilon_{t-1}, \epsilon_{t-2}, ..., \thicksim N(0,1)$， $\bar \epsilon_{t-2}$ 合并两个高斯分布。
+
 # Reference
 
 1. [Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. https://lilianweng.github.io/posts/2021-07-11-diffusion-models/.](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
