@@ -229,6 +229,17 @@ $$
 
 德克萨斯大学奥斯汀分校最近的一项工作表明，基于分数的生成模型可以应用于解决医学成像中的逆问题，例如加速磁共振成像(MRI)。同时，我们不仅在加速MRI上，而且在稀疏视图计算机断层扫描(CT)上证明了基于分数的生成模型的优越性能。我们能够获得与监督式或展开式深度学习方法相当甚至更好的性能，同时在测试时对不同的测量过程更加健壮。
 
+下面我们将展示一些求解计算机视觉逆问题的例子。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672752218840.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672752232323.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672752254750.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672752288353.png)
+
+
 # Connection to diffusion models and others
 
 自2019年以来，我开始研究基于分数的生成建模，当时我正在努力使分数匹配可扩展，以便在高维数据集上训练基于深度能量的模型。我在这方面的第一次尝试导致了 sliced score matching 。 尽管 sliced score matching 对于训练基于能量的模型具有可扩展性，但令我惊讶的是，即使在MNIST数据集上，从这些模型中进行郎之万采样也无法产生合理的样本。我开始调查这个问题，发现了三个关键的改进，可以产生非常好的样本:(1)多个噪声尺度的扰动数据，并为每个噪声尺度训练基于分数的模型;(2)使用U-Net架构(我们使用了RefineNet，因为它是U-Net的现代版本)用于基于分数的模型; (3)将郎之万 MCMC应用于各个噪声尺度，并将它们链接在一起。通过这些方法，我能够在CIFAR-10上获得最先进的Inception评分(甚至比最好的GANs还要好!)，并生成分辨率最高的高保真图像样本。
