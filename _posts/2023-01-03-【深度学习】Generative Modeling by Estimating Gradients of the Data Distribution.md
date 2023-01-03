@@ -202,5 +202,25 @@ $$
 ## Reversing the SDE for sample generation
 
 回想一下，对于有限数量的噪声尺度，我们可以通过退火朗之万采样逆转扰动过程来生成样本，即使用朗之万采样从每个噪声扰动分布中依次采样。对于无限大的噪声尺度，我们可以通过使用反向SDE类似地反转样本生成的扰动过程。
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672737580040.png)
+
+重要的是，任何SDE都有一个对应的反向SDE，其闭式解为：
+
+$$
+dx = [f(x, t) - g^2(t) \nabla_x \log p_t(x)]dt + g(t) dw \tag{10}
+$$
+
+这里 $dt$ 表示负的无穷小时间步长，因为SDE(10)需要在时间上向后求解(从 $t = T$ 到 $t=0$)。为了计算逆SDE，我们需要估计 $\nabla_x \log p_t(x)$ ，这正是 $p_t(x)$ 的分数函数。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672737929282.png)
+
+# Connection to diffusion models and others
+
+自2019年以来，我开始研究基于分数的生成建模，当时我正在努力使分数匹配可扩展，以便在高维数据集上训练基于深度能量的模型。我在这方面的第一次尝试导致了 sliced score matching 。 
+
+
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
