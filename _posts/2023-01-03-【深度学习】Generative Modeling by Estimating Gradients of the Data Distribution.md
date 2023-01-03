@@ -70,6 +70,15 @@ $$
 
 注意到基于分数的模型 $s_\theta(x)$ 是独立于归一化常数 $Z_\theta$ 的。这极大地扩展了我们可以使用的模型家族，因为我们不需要任何特殊的结构来使规范化常数易于处理。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672729630091.png)
+
+与基于似然的模型相似， 我们可以训练基于分数的模型通过最小化模型和数据分布之间的 Fisher divergence， 定义为：
+
+$$
+E_{p(x)} [\| \nabla_x \log p(x) - s_\theta(x)\|_2^2]
+$$
+直观地，Fisher散度比较了真实数据分数和基于分数的模型之间的 $\ell_2$ 平方距离。
+
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
