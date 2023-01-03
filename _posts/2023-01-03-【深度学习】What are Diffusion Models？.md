@@ -52,6 +52,16 @@ $$
 
 通常，当样本变得嘈杂时，我们可以承担更大的更新步骤，所以 $\beta_1 < \beta_2 < ... < \beta_T$， 因此 $\bar \alpha_1 > .... > \bar \alpha_T$。 
 
+## Connection with stochastic gradient Langevin dynamics
+
+朗之万动力学是物理学的一个概念，用于分子系统的统计建模。与随机梯度下降相结合，随机梯度朗之万动力学(Welling & Teh 2011)可以从概率密度 $p(x)$ 中生成样本，只使用马尔科夫更新链中的梯度 $x \log p(x)$ ：
+
+$$
+x_t  = x_{t-1}  + \frac{\delta}{2} \nabla_x \log q(x_{t-1}) + \sqrt{\delta} \epsilon_t， \quad \epsilon_t\thicksim N(0, I)
+$$
+其中 $\delta$ 是步长。 当 $T \rightarrow \infty， \epsilon \rightarrow 0$， $x_T$ 等于真实概率密度 $p(x)$。  
+
+
 # Reference
 
 1. [Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. https://lilianweng.github.io/posts/2021-07-11-diffusion-models/.](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
