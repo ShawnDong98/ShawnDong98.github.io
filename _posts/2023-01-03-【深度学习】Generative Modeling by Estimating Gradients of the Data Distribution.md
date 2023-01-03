@@ -185,11 +185,13 @@ $$
 我们如何用简洁的方式表示一个随机过程?许多随机过程(特别是扩散过程)是随机微分方程(SDEs)的解。通常，SDE具有以下形式：
 
 $$
-dx = f(x, t)dt + g(t)dw
+dx = f(x, t)dt + g(t)dw \tag{8}
 $$
 
 其中 $f(·, t): R^d \rightarrow R^d$ 是一个被叫做漂移系数的 向量-值 函数， $g(t) \in R$ 是一个叫做扩散系数的实值函数， $w$ 表示标准布朗运动， $dw$ 可以视为有限白噪声。随机微分方程的解是随机变量的连续集合 ${x(t)}_{t \in [0, T]}$。 随着时间索引 $t$ 从开始时间 $0$ 到结束时间 $t$ 的增长，这些随机变量跟踪随机轨迹。 令 $p_t(x)$ 表示 $x(t)$ 的边缘概率密度函数。 这里 $t \in [0, T]$ 类似于 $i = 1, 2, ..., L$ 当我们有偶先数量的噪声尺度， $p_t(x)$ 类似于 $p_{\sigma_i}(x)$。显然， $p_0(x) = p(x)$ 是数据分布， 因为在 $t=0$ 时没有扰动施加于数据。 在足够长时间 $T$ 用随机过程扰动 $p(x)$ 后， $p_T(x)$ 变得接近于有迹可循的分布 $\pi(x)$, 叫做先验分布。注意到 $p_T(x)$ 类似于 $p_{\sigma_L}(x)$ 在有限噪声尺度情况下， 其对应于应用最大噪声扰动 $\sigma_L$ 到数据。
 
+
+等式 8 中的 SDE 是手工设计的， 相似于我们如何手工设计 $\sigma_1 < \sigma_2 < ... < \sigma_L$ 在有限噪声尺度的情况下。
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
