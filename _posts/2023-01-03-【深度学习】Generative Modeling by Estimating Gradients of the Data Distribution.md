@@ -126,6 +126,13 @@ $$
 
 当使用朗之万采样时，当数据位于高维空间时，初始样本极有可能位于低密度区域。因此，拥有一个不准确的基于分数的模型将从程序的一开始就偏离朗之万采样，阻止它生成具有数据代表性的高质量样本。
 
+# Score-based generative modeling with multiple noise perturbations
+
+在数据密度低的地区，如何绕过精确评分的困难? 我们的解决方案是用噪声扰动数据点，并在噪声数据点上训练基于分数的模型。当噪声幅度足够大时，它可以填充低数据密度区域，以提高估计分数的准确性。例如，这是当我们扰动两个高斯混合信号时，会发生的情况，这些高斯信号被额外的高斯噪声扰动。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672731661313.png)
+
+然而，另一个问题仍然存在:我们如何为扰动过程选择一个合适的噪声尺度？ 较大的噪声显然可以覆盖更多的低密度区域，以获得更好的得分估计，但它会过度破坏数据，使其与原始分布发生显著变化。另一方面，较小的噪声对原始数据分布的破坏较小，但不能像我们希望的那样覆盖低密度区域。
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
