@@ -188,7 +188,7 @@ $$
 dx = f(x, t)dt + g(t)dw
 $$
 
-其中 $f(·, t): R^d \rightarrow R^d$ 是一个被叫做漂移系数的 向量-值 函数， $g(t) \in R$ 是一个叫做扩散系数的实值函数。
+其中 $f(·, t): R^d \rightarrow R^d$ 是一个被叫做漂移系数的 向量-值 函数， $g(t) \in R$ 是一个叫做扩散系数的实值函数， $w$ 表示标准布朗运动。
 
 
 # Reference
