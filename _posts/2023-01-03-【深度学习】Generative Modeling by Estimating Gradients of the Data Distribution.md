@@ -68,7 +68,7 @@ $$
 s_\theta(x) = \nabla_x \log p_\theta(x) = -\nabla_x f_\theta(x)  - \nabla_x \log Z_\theta = -\nabla_x f_\theta(x)
 $$
 
-注意到基于分数的模型 $s_\theta(x)$ 是独立于归一化常数 $Z_\theta$ 的。
+注意到基于分数的模型 $s_\theta(x)$ 是独立于归一化常数 $Z_\theta$ 的。这极大地扩展了我们可以使用的模型家族，因为我们不需要任何特殊的结构来使规范化常数易于处理。
 
 
 # Reference
