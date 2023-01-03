@@ -197,6 +197,10 @@ $$
 dx = e^t dw \tag{9}
 $$
 
-用均值为零且方差呈指数增长的高斯噪声扰动数据，这类似于用 $N(0, \sigma_1^2I), N(0, \sigma_2^2I), ..., N(0, \sigma_L^2I)$ 当 $\sigma_1 < \sigma_2 < ... < \sigma_L$ 几何增长。 因此， SDE 应该被视为模型的一部， 更像 $\sigma_1, \sigma_2, ..., \sigma_L$。 我们提供了三种通常对图像工作良好的SDE: Variance Exploding SDE (VE SDE)，Variance Preserving SDE (VP SDE) 和 sub-VP  SDE。 
+用均值为零且方差呈指数增长的高斯噪声扰动数据，这类似于用 $N(0, \sigma_1^2I), N(0, \sigma_2^2I), ..., N(0, \sigma_L^2I)$ 当 $\sigma_1 < \sigma_2 < ... < \sigma_L$ 几何增长。 因此， SDE 应该被视为模型的一部， 更像 $\sigma_1, \sigma_2, ..., \sigma_L$。 我们提供了三种通常对图像工作良好的SDE: Variance Exploding SDE (VE SDE)，Variance Preserving SDE (VP SDE) 和 sub-VP  SDE。
+
+## Reversing the SDE for sample generation
+
+回想一下，对于有限数量的噪声尺度，我们可以通过退火朗之万采样逆转扰动过程来生成样本，即使用朗之万采样从每个噪声扰动分布中依次采样。
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
