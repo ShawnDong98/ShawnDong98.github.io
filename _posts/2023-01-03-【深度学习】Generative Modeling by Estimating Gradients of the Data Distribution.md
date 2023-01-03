@@ -83,6 +83,10 @@ $$
 
 作为一个简短的总结，我们可以通过建模它的分数函数来表示一个分布，这个分布可以通过训练一个基于分数的自由形式架构模型来估计。在实践中，当 $\epsilon$ 足够小而 $K$ 足够大时，误差可以忽略不计。 
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672730681004.png)
+
+注意到郎之万采样过程 $p(x)$ 仅通过 $\nabla_x \log p(x)$。 
+
 
 # Langevin dynamics
 
