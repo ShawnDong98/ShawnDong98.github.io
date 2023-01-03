@@ -149,8 +149,14 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672732229666.png)
 
-$s_\theta(x, i)$的训练目标是对所有噪声尺度的 Fisher divergences 的加权和。
+$s_\theta(x, i)$的训练目标是对所有噪声尺度的 Fisher divergences 的加权和：
 
+$$
+\sum_{i=1}^L \lambda(i) E_{p_{\sigma_i}(x)} [\| \nabla_x \log p_{\sigma_i}(x) - s_\theta(x, i)\|_2^2]
+$$
+
+
+其中 $\lambda(i) \in R_{>0}$ 是一个正加权函数， 通常被选择为 $\lambda(i) = \sigma_i^2$ 。 上述目标用分数匹配优化， 正如朴素基于分数的模型 $s_\theta(x)$ 的优化。
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
