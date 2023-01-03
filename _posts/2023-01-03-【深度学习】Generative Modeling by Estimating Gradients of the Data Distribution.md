@@ -166,6 +166,16 @@ $$
 
 - 选择 $\sigma_1 < \sigma_2 < ... < \sigma_L$ 作为几何级数， $\sigma_1$ 足够小， $\sigma_L$ 可与所有数据点之间的最大成对距离相比较。$L$ 通常是几百或几千的数量级。
 - 参数化基于分数的模型 $s_\theta(x, i)$ 用 U-Net 跳跃连接。
+- 在测试时使用基于分数的模型的权重上应用指数移动平均
+
+
+通过这样的最佳实践，我们能够在各种数据集上生成与GANs质量相当的高质量图像样本，如下所示：
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672733044575.png)
+# Score-based generative modeling with stochastic differential equations (SDEs)
+
+正如我们已经讨论过的，添加多个噪声尺度对于基于分数的生成模型的成功至关重要。通过将噪声尺度的数量推广到无穷大，我们不仅获得了更高质量的样本，而且还获得了精确的对数似然计算，以及用于逆问题求解的可控生成。
+
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
