@@ -66,7 +66,11 @@ $$
 
 ## Reverse diffusion process
 
-如果我们能将上述过程反转， 并且从 $q(x_{t-1} \mid x_t)$ 采样， 我们将能够从高斯噪声输入中重建真实的样本 $x_T \thicksim N(0, I)$。 注意 $\beta_t$ 足够小， $ q(x_{t-1} \mid x_t)$ 将会变成高斯分布。
+如果我们能将上述过程反转， 并且从 $q(x_{t-1} \mid x_t)$ 采样， 我们将能够从高斯噪声输入中重建真实的样本 $x_T \thicksim N(0, I)$。 注意 $\beta_t$ 足够小， $ q(x_{t-1} \mid x_t)$ 将是高斯分布。不幸的是， 我们不能直接估计 $q(x_{t-1} \mid x_t)$ ， 因为它需要使用整个数据集， 因此我们需要学习一个模型 $p_\theta$ 估计这些条件概率以便运行逆扩散过程：
+
+$$
+p_\theta(x_{0:T}) = p(x_T)\prod_{t=1}^T p_\theta(x_{t-1} \mid x_t)
+$$
 
 # Reference
 
