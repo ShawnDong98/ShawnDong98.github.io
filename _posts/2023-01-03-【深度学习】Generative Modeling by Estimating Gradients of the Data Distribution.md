@@ -158,7 +158,7 @@ $$
 
 其中 $\lambda(i) \in R_{>0}$ 是一个正加权函数， 通常被选择为 $\lambda(i) = \sigma_i^2$ 。 上述目标用分数匹配优化， 正如朴素基于分数的模型 $s_\theta(x)$ 的优化。
 
-在训练 noise-conditional score-based model $s_\theta(x, i)$ 后， 对于 $i = L, L -1, ..., 1$， 我们可以运行郎之万采样生成样本。
+在训练 noise-conditional score-based model $s_\theta(x, i)$ 后， 对于 $i = L, L -1, ..., 1$， 我们可以运行郎之万采样生成样本。这个方法叫做退火郎之万采样， 因为噪声尺度 $\sigma_i$ 随时间递减。
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
