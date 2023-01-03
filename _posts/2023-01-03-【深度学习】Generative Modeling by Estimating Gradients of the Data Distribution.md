@@ -31,5 +31,9 @@ tags:
 
 基于分数的模型已经在许多下游任务和应用程序上实现了最先进的性能。这些任务包括图像生成(是的，比GANs更好!)、音频合成、形状生成和音乐生成。此外，基于分数的模型与归一化流模型有联系，因此允许精确的似然计算和表示学习。此外，建模和估计分数有助于逆问题的解决，应用如图像修补、图像着色、压缩感知和医学图像重建(例如，CT, MRI)。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672728261162.png)
+
+这篇文章旨在向你展示基于分数的生成建模的动机和直觉，以及它的基本概念、属性和应用。
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
