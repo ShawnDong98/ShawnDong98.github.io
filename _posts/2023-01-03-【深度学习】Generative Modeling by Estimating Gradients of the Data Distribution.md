@@ -54,7 +54,7 @@ $$
 $$
 \max_\theta \sum_{i=1}^N  \log p_\theta(x_i)
 $$
-然而， 上式需要 $p_\theta(x)$ 被归一化概率密度函数，
+然而， 上式需要 $p_\theta(x)$ 被归一化概率密度函数。 
 
 
 # Reference
