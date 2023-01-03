@@ -56,6 +56,14 @@ $$
 $$
 然而， 上式需要 $p_\theta(x)$ 被归一化概率密度函数。 这是不希望的， 因为为了计算 $p_\theta(x)$， 对于任意 $f_\theta(x)$， 我们必须评估规范化常数 $Z_\theta - a$， 这通常是无迹可寻的。 因此，为了使最大似然训练可行，基于似然的模型必须限制其模型架构(例如，自回归模型中的因果卷积，归一化流模型中的可逆网络)以使 $Z_\theta$ 有迹可循，或者近似归一化常数(例如，VAEs中的变分推理，或对比散度中使用的MCMC采样)，这可能计算成本很高。
 
+通过对分数函数而不是密度函数建模，我们可以避免难以处理的常数归一化的困难。分布 $p(x)$ 的分数函数定义为：
+
+$$
+\nabla_x \log p(x)
+$$
+
+对于这个分数函数的模型被叫做基于分数的模型， 表示为 $s_\theta(x)$。 基于分数的模型学习 $s_\theta(x) \approx \nabla_x \log p(x)$， 并且可以无需担心归一化常数被参数化。
+
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
