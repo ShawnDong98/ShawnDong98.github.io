@@ -35,5 +35,19 @@ tags:
 
 这篇文章旨在向你展示基于分数的生成建模的动机和直觉，以及它的基本概念、属性和应用。
 
+
+# The score function, score-based models, and score matching
+
+假设我们有一个数据集 ${x_1, x_2，，x_N}$，其中每个点都独立于底层数据分布 $p(x)$ 。对于这个数据集，生成式建模的目标是将模型拟合到数据分布中，这样我们就可以通过从分布中采样来随意合成新的数据点。
+
+
+为了建立这样一个生成模型，我们首先需要一种表示概率分布的方法。与基于似然的模型一样，其中一种方法是直接对概率密度函数(p.d.f.)或概率质量函数(p.m.f.)建模。设 $f_\theta(x) \in R$ 是一个由可学习参数 $\theta$ 参数化的实值函数。我们可以定义一个 p.d.f. 通过：
+
+$$
+p_\theta(x) = \frac{e^{-f_\theta(x)}}{Z_\theta}
+$$
+
+其中 $Z_\theta > 0$ 是依赖于 $\theta$ 的归一化常数，
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
