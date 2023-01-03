@@ -17,5 +17,13 @@ tags:
 
 现有的生成建模技术可以根据它们表示概率分布的方式大致分为两类。
 
+- **基于似然的模型**， 通过(近似)最大似然直接学习分布的概率密度(或质量)函数。典型的基于似然的模型包括自回归模型、归一化流模型、基于能量的模型(EBMs)和变分自编码器(VAEs)。
+- **隐式生成模型**， 其中概率分布隐式地表示为采样过程的模型。最突出的例子是生成对抗网络(GANs)，其中通过使用神经网络转换随机高斯向量来合成来自数据分布的新样本。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672728011571.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672728032162.png)
+然而，基于似然的模型和隐式生成模型都有很大的局限性。基于似然的模型要么需要对模型架构进行严格限制，以确保可处理的归一化常数用于似然计算，要么必须依赖代理目标来近似最大似然训练。另一方面，隐式生成模型通常需要对抗性训练，这是出了名的不稳定，并可能导致模式崩溃
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
