@@ -134,5 +134,11 @@ $$
 
 然而，另一个问题仍然存在:我们如何为扰动过程选择一个合适的噪声尺度？ 较大的噪声显然可以覆盖更多的低密度区域，以获得更好的得分估计，但它会过度破坏数据，使其与原始分布发生显著变化。另一方面，较小的噪声对原始数据分布的破坏较小，但不能像我们希望的那样覆盖低密度区域。为了达到两全其美，我们同时使用多个尺度的噪声扰动。假设我们总是用各向同性高斯噪声扰动数据，并让总共有 $L$ 个递增的标准差 $\sigma_1 < \sigma_2 < ... < \sigma_L$。 我们首先用每个高斯噪声 $N(0，\sigma_i^2 I)，i=1,2，，L$ 扰动数据分布 $p(x)$ ，得到一个噪声扰动分布。 
 
+$$
+p_{\sigma_i}(x) = \int p(y) N(x; y, \sigma_i^2 I) dy
+$$
+注意我们可以轻易地通过采样 $x \thicksim p(x)$ 和计算 $x + \sigma_i z, z \thicksim N(0, I)$ ， 从 $p_{\sigma_i} (x)$ 采样。 
+
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
