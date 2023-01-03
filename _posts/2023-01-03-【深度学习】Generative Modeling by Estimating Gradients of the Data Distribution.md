@@ -49,5 +49,13 @@ $$
 
 其中 $Z_\theta > 0$ 是依赖于 $\theta$ 的归一化常数，以便 $\int p_\theta(x) dx = 1$。 这里函数 $f_\theta(x)$ 通常被叫做未归一化的概率模型或者基于能量的模型。
 
+我们可以训练 $p_\theta(x)$ 通过最大数据的对数似然：
+
+$$
+\max_\theta \sum_{i=1}^N  \log p_\theta(x_i)
+$$
+然而， 上式需要 $p_\theta(x)$ 被归一化概率密度函数，
+
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
