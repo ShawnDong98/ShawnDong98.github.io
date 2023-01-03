@@ -107,5 +107,10 @@ $$
 注意到郎之万采样过程 $p(x)$ 仅通过 $\nabla_x \log p(x)$。 因为 $s_\theta(x) \approx \nabla_x \log p(x)$, 我们从基于分数的模型 $s_\theta(x)$ 中产生样本， 通过将其插入上式得到。
 
 
+# Naive score-based generative modeling and its pitfalls
+
+到目前为止，我们已经讨论了如何训练一个基于分数匹配的模型，然后通过朗之万采样生成样本。
+
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
