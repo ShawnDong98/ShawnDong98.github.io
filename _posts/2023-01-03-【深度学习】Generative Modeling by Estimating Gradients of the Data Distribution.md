@@ -137,7 +137,19 @@ $$
 $$
 p_{\sigma_i}(x) = \int p(y) N(x; y, \sigma_i^2 I) dy
 $$
-注意我们可以轻易地通过采样 $x \thicksim p(x)$ 和计算 $x + \sigma_i z, z \thicksim N(0, I)$ ， 从 $p_{\sigma_i} (x)$ 采样。 
+注意我们可以轻易地通过采样 $x \thicksim p(x)$ 和计算 $x + \sigma_i z, z \thicksim N(0, I)$ ， 从 $p_{\sigma_i} (x)$ 采样。
+
+接下来， 我们估计每个噪声扰动分布的分数函数， $\nabla_x \log p_{\sigma_i}(x)$， 用分数匹配通过训练  Noise Conditional Score-Based Model $s_\theta(x, i)$(也叫做  Noise Conditional Score Network，NCSN)， 有:
+
+$$
+s_\theta(x, i) \approx \nabla_x \log p_{\sigma_i}(x) \quad \text{for all } i = 1, 2, ..., L
+$$
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672732196779.png)
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672732229666.png)
+
+$s_\theta(x, i)$的训练目标是对所有噪声尺度的 Fisher divergences 的加权和。
 
 
 # Reference
