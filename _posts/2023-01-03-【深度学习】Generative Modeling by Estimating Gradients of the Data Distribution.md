@@ -47,7 +47,7 @@ $$
 p_\theta(x) = \frac{e^{-f_\theta(x)}}{Z_\theta}
 $$
 
-其中 $Z_\theta > 0$ 是依赖于 $\theta$ 的归一化常数，
+其中 $Z_\theta > 0$ 是依赖于 $\theta$ 的归一化常数，以便 $\int p_\theta(x) dx = 1$。 这里函数 $f_\theta(x)$ 通常被叫做未归一化的概率模型或者基于能量的模型。
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
