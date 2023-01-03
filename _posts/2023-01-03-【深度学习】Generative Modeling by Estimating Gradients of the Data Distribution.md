@@ -225,7 +225,7 @@ $$
 \nabla_x \log p(x \mid y) = \nabla_x \log p(x) + \nabla_x \log p(y \mid x) \tag{15}
 $$
 
-通过分数匹配，我们可以训练一个模型来估计无条件数据分布的分数函数，即 $s_\theta(x) \approx \nabla_x \log p(x)$。这将使我们能够通过等式 15 轻松地从一直前向过程 $p(y \mid x)$ 计算后验分数函数 $\nabla_x \log p(x \mid y)$， 并且从中用郎之万采样。 
+通过分数匹配，我们可以训练一个模型来估计无条件数据分布的分数函数，即 $s_\theta(x) \approx \nabla_x \log p(x)$。这将使我们能够通过等式 15 轻松地从已知前向过程 $p(y \mid x)$ 计算后验分数函数 $\nabla_x \log p(x \mid y)$， 并且从中用郎之万采样。 
 
 # Connection to diffusion models and others
 
