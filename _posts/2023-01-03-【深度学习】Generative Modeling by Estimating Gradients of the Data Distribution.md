@@ -201,6 +201,6 @@ $$
 
 ## Reversing the SDE for sample generation
 
-回想一下，对于有限数量的噪声尺度，我们可以通过退火朗之万采样逆转扰动过程来生成样本，即使用朗之万采样从每个噪声扰动分布中依次采样。
+回想一下，对于有限数量的噪声尺度，我们可以通过退火朗之万采样逆转扰动过程来生成样本，即使用朗之万采样从每个噪声扰动分布中依次采样。对于无限大的噪声尺度，我们可以通过使用反向SDE类似地反转样本生成的扰动过程。
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
