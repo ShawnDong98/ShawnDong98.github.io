@@ -88,5 +88,14 @@ $$
 
 一旦我们有了训练好的基于分数的模型 $s_\theta(x) \approx \nabla_x \log p(x)$， 我们可以使用叫做郎之万采样的迭代的方式来从中采样。
 
+郎之万采样提供 MCMC 过程以从分布 $p(x)$ 中采样， 仅需使用分数函数 $\nabla_x \log p(x)$。 特别地， 它从一个任意的先验分布 $x_0 \thicksim \pi(x)$ 初始化， 然后用以下方式迭代：
+
+$$
+x_{i+1} \leftarrow x_i + \epsilon \nabla_x \log p(x) + \sqrt{2 \epsilon} z_i, i = 0, 1, ..., K
+$$
+
+其中 $z_i \thicksim N(0, I)$ 。 当 $\epsilon \rightarrow 0$ 和 $K \rightarrow \infty$， $x_K$ 从上式中得到收敛到从 $p(x)$ 中采样的一个样本。
+
+
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
