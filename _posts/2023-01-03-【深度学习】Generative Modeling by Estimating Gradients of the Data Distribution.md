@@ -219,7 +219,7 @@ $$
 
 # Controllable generation for inverse problem solving
 
-基于分数的生成模型特别适合解决逆问题。逆问题本质上与贝叶斯推理问题相同。设 $x$ 和 $y$ 是两个随机变量，假设我们知道从 $x$ 生成 $y$ 的正向过程，用转移概率分布表示 $p(y \mid x)$。 逆问题就是计算 $p(x \mid y)$。 
+基于分数的生成模型特别适合解决逆问题。逆问题本质上与贝叶斯推理问题相同。设 $x$ 和 $y$ 是两个随机变量，假设我们知道从 $x$ 生成 $y$ 的正向过程，用转移概率分布表示 $p(y \mid x)$。 逆问题就是计算 $p(x \mid y)$。 利用贝叶斯规则，有： $p(x \mid y) = p(x)p(y \mid x) / \int p(x) p(y \mid x) dx$。 
 
 # Connection to diffusion models and others
 
