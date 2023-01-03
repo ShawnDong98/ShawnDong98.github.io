@@ -62,7 +62,7 @@ $$
 \nabla_x \log p(x)
 $$
 
-对于这个分数函数的模型被叫做基于分数的模型， 表示为 $s_\theta(x)$。 基于分数的模型学习 $s_\theta(x) \approx \nabla_x \log p(x)$， 并且可以无需担心归一化常数被参数化。例如，我们可以很容易地用公式(1)中定义的基于能量的模型参数化基于分数的模型，通过：
+对这个分数函数建模的模型被叫做基于分数的模型， 表示为 $s_\theta(x)$。 基于分数的模型学习 $s_\theta(x) \approx \nabla_x \log p(x)$， 并且可以无需担心归一化常数被参数化。例如，我们可以很容易地用公式(1)中定义的基于能量的模型参数化基于分数的模型，通过：
 
 $$
 s_\theta(x) = \nabla_x \log p_\theta(x) = -\nabla_x f_\theta(x)  - \nabla_x \log Z_\theta = -\nabla_x f_\theta(x)
@@ -84,7 +84,9 @@ $$
 作为一个简短的总结，我们可以通过建模它的分数函数来表示一个分布，这个分布可以通过训练一个基于分数的自由形式架构模型来估计。
 
 
+# Langevin dynamics
 
+一旦我们有了训练好的基于分数的模型 $s_\theta(x) \approx \nabla_x \log p(x)$， 我们可以使用叫做郎之万采样的迭代的方式来从中采样。
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
