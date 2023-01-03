@@ -164,7 +164,8 @@ $$
 
 下面是一些实用的建议，用于调整具有多个噪声尺度的基于分数的生成模型：
 
-- 选择 $\sigma_1 < \sigma_2 < ... < \sigma_L$ 作为几何级数， $\sigma_1$ 足够小， $\sigma_L$ 可与所有数据点之间的最大成对距离相比较。
+- 选择 $\sigma_1 < \sigma_2 < ... < \sigma_L$ 作为几何级数， $\sigma_1$ 足够小， $\sigma_L$ 可与所有数据点之间的最大成对距离相比较。$L$ 通常是几百或几千的数量级。
+- 参数化基于分数的模型 $s_\theta(x, i)$ 用 U-Net 跳跃连接。
 
 # Reference
 1.[Generative Modeling by Estimating Gradients of the Data Distribution](https://yang-song.net/blog/2021/score/)
