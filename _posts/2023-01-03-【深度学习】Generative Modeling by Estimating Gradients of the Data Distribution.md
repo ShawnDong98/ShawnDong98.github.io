@@ -223,10 +223,18 @@ $$
 $s_\theta(x, t)$的训练目标是一个连续的 Fisher divergences 的加权组合：
 
 $$
-E_{t \in U(0, T)} E_{p_t(x)}[\lambda(t) \| \nabla_x \log p_t(x) - s_\theta(x, t)\|_2^2]
+E_{t \in U(0, T)} E_{p_t(x)}[\lambda(t) \| \nabla_x \log p_t(x) - s_\theta(x, t)\|_2^2] \tag{11}
 $$
 
 其中 $U(0, T)$ 表示一个在时间间隔 $[0, T]$ 上的均匀分布， 并且 $\lambda: R \rightarrow R_{>0}$ 是一个正加权函数。通常， 我们使用 $\lambda(t) \approx 1 / E[\| \nabla_{x(t) \log p(x(t) \mid x(0))} \|_2^2] $ 来平衡不同跨时间不同匹配损失的规模。
+
+与以前一样，我们的Fisher散度加权组合可以有效地优化分数匹配方法，如去噪分数匹配和切片分数匹配。 一旦我们的基于分数的模型 $s_\theta(x,t)$ 被训练到最优，我们可以将其插入到(10)中反向SDE的表达式中，以获得估计的反向SDE。
+
+$$
+dx = [f(x, t) - g^2(t) s_\theta(x, t)]dt + g(t)dw
+$$
+
+我们可以从 $x(T) \thicksim \pi$, 并且求解上述反向 SDE 来得到一个样本 $x(0)$。 
 
 
 # Controllable generation for inverse problem solving
