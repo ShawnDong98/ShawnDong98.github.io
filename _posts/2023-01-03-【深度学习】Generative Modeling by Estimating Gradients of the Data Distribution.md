@@ -218,8 +218,15 @@ $$
 
 # Estimating the reverse SDE with score-based models and score matching
 
-求反向SDE需要知道最终分布 $p_T(x)$， 分数函数为 $\nabla_x \log p_t(x)$。 通过设计， 前者接近于先验分布 $\pi(x)$。 为了估计 $\nabla_x \log p_t(x)$。 我们训练了一个时间依赖的基于分数的模型 $s_\theta(x, t)$， 因此有： $s_\theta(x, t) \approx \nabla_x \log p_t(x)$。 这类似于用于无穷噪声规模的 noise-conditional score-based model $s_\theta(x, i)$,  训练后有 $s_\theta(x, i) \approx \nabla_x \log p_{\sigma_i}(x)$。 
+求反向SDE需要知道最终分布 $p_T(x)$， 分数函数为 $\nabla_x \log p_t(x)$。 通过设计， 前者接近于先验分布 $\pi(x)$。 为了估计 $\nabla_x \log p_t(x)$。 我们训练了一个 Time-Dependent Score-Based Model $s_\theta(x, t)$， 因此有： $s_\theta(x, t) \approx \nabla_x \log p_t(x)$。 这类似于用于无穷噪声规模的 noise-conditional score-based model $s_\theta(x, i)$,  训练后有 $s_\theta(x, i) \approx \nabla_x \log p_{\sigma_i}(x)$。 
 
+$s_\theta(x, t)$的训练目标是一个连续的 Fisher divergences 的加权组合：
+
+$$
+E_{t \in U(0, T)} E_{p_t(x)}[\lambda(t) \| \nabla_x \log p_t(x) - s_\theta(x, t)\|_2^2]
+$$
+
+其中 $U(0, T)$ 表示一个在时间间隔 $[0, T]$ 上的均匀分布， 并且 $\lambda: R \rightarrow R_{>0}$ 是一个正加权函数。
 
 
 # Controllable generation for inverse problem solving
