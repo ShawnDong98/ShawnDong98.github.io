@@ -216,6 +216,9 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672737929282.png)
 
+# Estimating the reverse SDE with score-based models and score matching
+
+求反向SDE需要知道最终分布 $p_T(x)$， 分数函数为 $\nabla_x \log p_t(x)$。 通过设计， 前者接近于先验分布 $\pi(x)$。 
 
 # Controllable generation for inverse problem solving
 
