@@ -299,6 +299,10 @@ $$
 
 事实上，即使没有最大似然训练，我们的模型也能在 uniformly dequantized 的CIFAR-10图像上实现最先进的对数似然。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672801860787.png)
+
+当我们用之前讨论过的似然加权训练基于分数的模型，并使用变分去量化来获得离散图像上的似然时，我们可以获得与最先进的自回归模型相当甚至更好的似然(都没有任何数据增强)。
+
 
 # Controllable generation for inverse problem solving
 
