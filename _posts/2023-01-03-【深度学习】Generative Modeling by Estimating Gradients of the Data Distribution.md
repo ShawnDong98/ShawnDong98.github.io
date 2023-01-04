@@ -294,8 +294,10 @@ $$
 
 当 $\nabla_x \log p_t(x)$ 被它的估计 $s_\theta (x, t)$ 替换后， probability flow ODE 变成 probability flow ODE 的一个特殊例子。特别地，它是 continuous normalizing flows 的一个例子， 因为 probability flow ODE 将数据分布 $p_0(x)$ 转换为先验噪声分布 $p_T(x)$ (因为它与SDE共享相同的边际分布)并且完全可逆。
 
-因此，probability flow ODE 继承了 neural ODE 或 continuous normalizing flows 的所有属性，包括精确的对数似然计算。
+因此，probability flow ODE 继承了 neural ODE 或 continuous normalizing flows 的所有属性，包括精确的对数似然计算。具体来说，我们可以利用 instantaneous change-of-variable formula，用数值 ODE 求解器从已知先验密度 $p_T$ 计算未知数据密度 $p_0$。
 
+
+事实上，即使没有最大似然训练，我们的模型也能在 uniformly dequantized 的CIFAR-10图像上实现最先进的对数似然。
 
 
 # Controllable generation for inverse problem solving
