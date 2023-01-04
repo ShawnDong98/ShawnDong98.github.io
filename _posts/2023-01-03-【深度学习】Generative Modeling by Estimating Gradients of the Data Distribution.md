@@ -271,7 +271,23 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672799897999.png)
 
-采样方法对于高维数据也是可扩展的。例如，它可以成功地生成高分辨率的高保真图像。
+采样方法对于高维数据也是可扩展的。例如，它可以成功地生成高分辨率 $1024 \times 1024$ 的高保真图像。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672799992140.png)
+
+
+# Probability flow ODE
+
+尽管能够生成高质量的样本，基于Langevin MCMC 和 SDE 求解器的采样器并没有提供一种方法来计算基于分数的生成模型的精确对数似然值。下面，我们将介绍一个基于常微分方程(ODE)的采样器，它允许精确的似然计算。
+
+我们证明转换任何 SDE 为常微分方程(ODE)而不改变其边缘分布 ${p_t(x)}_{t \in [0, T]}$ 是可能的。 因此，通过求解这个ODE，我们可以从与反向SDE相同的分布中取样。SDE 对应的 ODE 称为 probability flow ODE：
+
+$$
+dx = [f(x, t) - \frac{1}{2} g^2(t) \nabla_x \log p_t(x)] dt \tag{14}
+$$ 
+下图描述了 SDE 和 probability flow ODE 的轨迹。虽然ODE轨迹明显比SDE轨迹更平滑，但它们将相同的数据分布转换为相同的先验分布，反之亦然，共享相同的边缘分布。
+
+
 
 # Controllable generation for inverse problem solving
 
