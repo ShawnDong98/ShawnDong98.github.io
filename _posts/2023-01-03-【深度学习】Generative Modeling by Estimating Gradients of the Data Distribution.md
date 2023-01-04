@@ -262,7 +262,7 @@ $$
 - 通过基于时间的分数模型 $s_\theta(x,t)$，我们得到了 $\nabla_x \log p_t(x)$ 的估计值。
 - 我们只关心每个边缘分布的抽采样 $p_t(x)$。 不同时间步长的样本可以有任意的相关性，不必形成从反向SDE中采样的特定轨迹。
 
-由于这两个性质的结果，我们可以应用 MCMC 方法来微调从数值SDE求解器获得的轨迹。具体地说，我们提出了 Predictor-Corrector samplers。 predictor 可以是从现有样本中预测 $x(t + \Delta t) \thicksim p_t+ \Delta t(x)$ 的任意数值SDE求解器。 
+由于这两个性质的结果，我们可以应用 MCMC 方法来微调从数值SDE求解器获得的轨迹。具体地说，我们提出了 Predictor-Corrector samplers。 predictor 可以是从现有样本中预测 $x(t + \Delta t) \thicksim p_t+ \Delta t(x)$ 的任意数值SDE求解器。 corrector 可以是任何 MCMC 程序，只依赖于分数函数，如朗之万采样和 Hamiltonian Monte Carlo。
 
 
 # Controllable generation for inverse problem solving
