@@ -255,8 +255,12 @@ x \leftarrow x + \Delta x \\
 t \leftarrow t + \Delta t
 $$
 
-这里 $z_t \thicksim N(0, I)$。 Euler-Maruyama 方法在性质上与朗之万采样相似，都是通过跟随被高斯噪声扰动的分数函数来更新 $x$。 除了Euler-Maruyama 方法外，其他数值 SDE 求解器可以直接用于求解样本生成的反向SDE，例如Milstein方法和 stochastic Runge-Kutta 方法。
+这里 $z_t \thicksim N(0, I)$。 Euler-Maruyama 方法在性质上与朗之万采样相似，都是通过跟随被高斯噪声扰动的分数函数来更新 $x$。 除了Euler-Maruyama 方法外，其他数值 SDE 求解器可以直接用于求解样本生成的反向SDE，例如Milstein方法和 stochastic Runge-Kutta 方法。我们提供了一个类似于 Euler-Maruyama 的反向扩散求解器，但更适合于求解逆时间 SDE。最近，作者引入了自适应步长SDE求解器，可以更快地生成更好的样本。
 
+此外，我们的反向SDE有两个特殊的性质，允许更灵活的采样方法:
+
+- 通过基于时间的分数模型 $s_\theta(x,t)$，我们得到了 $\nabla_x \log p_t(x)$ 的估计值。
+- 我们只关心每个边缘分布的抽采样 $p_t(x)$。 不同时间步长的样本可以有任意的相关性，不必形成从反向SDE中采样的特定轨迹。
 
 
 # Controllable generation for inverse problem solving
