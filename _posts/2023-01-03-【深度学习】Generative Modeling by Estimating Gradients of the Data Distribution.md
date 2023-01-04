@@ -234,7 +234,7 @@ $$
 dx = [f(x, t) - g^2(t) s_\theta(x, t)]dt + g(t)dw
 $$
 
-我们可以从 $x(T) \thicksim \pi$, 并且求解上述反向 SDE 来得到一个样本 $x(0)$。 
+我们可以从 $x(T) \thicksim \pi$, 并且求解上述反向 SDE 来得到一个样本 $x(0)$。 让我们用 $p_\theta$ 表示 $x(0)$ 的分布。 当基于分数的模型 $s_\theta(x, t)$ 训练好， 我们有 $p_\theta \approx p_0$， 在这种情况下 $x(0)$ 是从数据分布 $p_0$ 采样的一个估计样本。
 
 
 # Controllable generation for inverse problem solving
