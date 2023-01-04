@@ -287,6 +287,13 @@ dx = [f(x, t) - \frac{1}{2} g^2(t) \nabla_x \log p_t(x)] dt \tag{14}
 $$ 
 下图描述了 SDE 和 probability flow ODE 的轨迹。虽然ODE轨迹明显比SDE轨迹更平滑，但它们将相同的数据分布转换为相同的先验分布，反之亦然，共享相同的边缘分布 ${p_t(x)}_{t \in [0, T]}$。 换句话说，通过求解 probability flow ODE 得到的轨迹与 SDE 轨迹具有相同的边缘分布。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672801312474.png)
+
+
+这种 probability flow ODE 公式有几个独特的优点。
+
+当 $\nabla_x \log p_t(x)$ 被它的估计 $s_\theta (x, t)$ 替换后， probability flow ODE 变成 probability flow ODE 的一个特殊例子。
+
 
 
 # Controllable generation for inverse problem solving
