@@ -32,6 +32,8 @@ tags:
 
 # Introduction
 
+计算机断层扫描（CT）和磁共振成像（MRI）是医学诊断常用的成像工具。从原始观测（CT的 sinogram 和 MRI 的 k-spaces）重建 CT 和 MRI 图像是众所周知的逆问题。具体来说，CT中的观测是通过从不同方向对物体的X射线投影给出的，MRI中的观测是通过检查具有磁场的物体的傅里叶光谱获得的。然而，由于获得CT的完整 sinogram 会导致患者过度电离辐射，并且测量 MRI 的整个 k-space 非常耗时，因此减少 CT 和 MRI 中的观测次数变得很重要。
+
 # Sovling Inverse Problems in Medical Imaging with Score-Based Generative Models
 
 
