@@ -242,7 +242,7 @@ $$
 KL(p_0(x) \| p_\theta(x)) \leq \frac{T}{2} E_{t \in U(0, T)} E_{p_t}(x) [\lambda(t \| \nabla_x \log p_t(x) - s_\theta(x, t) \|_2^2] + KL(p_T \| \pi)
 $$
 
-由于这种特殊的联系到KL散度和最小化KL散度和最大化模型训练的似然之间的等价性, 我们叫做 $\lambda(t) = g(t)^2$ 为似然加权函数。
+由于这种特殊的联系到KL散度和最小化KL散度和最大化模型训练的似然之间的等价性, 我们叫做 $\lambda(t) = g(t)^2$ 为似然加权函数。使用这种似然加权函数，我们可以训练基于分数的生成模型来实现非常高的似然，与最先进的自回归模型相当，甚至更好
 
 
 # Controllable generation for inverse problem solving
