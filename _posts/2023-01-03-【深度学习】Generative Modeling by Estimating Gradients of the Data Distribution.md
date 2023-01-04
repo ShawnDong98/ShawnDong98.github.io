@@ -255,7 +255,7 @@ x \leftarrow x + \Delta x \\
 t \leftarrow t + \Delta t
 $$
 
-这里 $z_t \thicksim N(0, I)$。 Euler-Maruyama 方法在性质上与朗之万采样相似，都是通过跟随被高斯噪声扰动的分数函数来更新x。
+这里 $z_t \thicksim N(0, I)$。 Euler-Maruyama 方法在性质上与朗之万采样相似，都是通过跟随被高斯噪声扰动的分数函数来更新 $x$。 除了Euler-Maruyama 方法外，其他数值 SDE 求解器可以直接用于求解样本生成的反向SDE，例如Milstein方法和 stochastic Runge-Kutta 方法。
 
 
 
