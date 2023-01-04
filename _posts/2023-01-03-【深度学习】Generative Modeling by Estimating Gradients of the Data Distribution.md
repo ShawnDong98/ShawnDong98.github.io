@@ -226,7 +226,7 @@ $$
 E_{t \in U(0, T)} E_{p_t(x)}[\lambda(t) \| \nabla_x \log p_t(x) - s_\theta(x, t)\|_2^2]
 $$
 
-其中 $U(0, T)$ 表示一个在时间间隔 $[0, T]$ 上的均匀分布， 并且 $\lambda: R \rightarrow R_{>0}$ 是一个正加权函数。
+其中 $U(0, T)$ 表示一个在时间间隔 $[0, T]$ 上的均匀分布， 并且 $\lambda: R \rightarrow R_{>0}$ 是一个正加权函数。通常， 我们使用 $\lambda(t) \approx 1 / E[\| \nabla_{x(t) \log p(x(t) \mid x(0))} \|_2^2] $ 来平衡不同跨时间不同匹配损失的规模。
 
 
 # Controllable generation for inverse problem solving
