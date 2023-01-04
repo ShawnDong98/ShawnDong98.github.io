@@ -14,4 +14,15 @@ tags:
 
 # Abstract
 
-# Method
+从部分观测重建医学图像是计算机断层扫描（CT）和磁共振成像（MRI）中的一个重要逆问题。
+
+基于机器学习的现有解决方案通常训练一个模型，利用配对图像和观测的训练数据集，将观测结果直接映射到医学图像。
+
+这些观测通常使用观测过程的固定物理模型从图像中合成，这阻碍了模型对未知观测过程的泛化能力。
+
+
+# Introduction
+
+# Sovling Inverse Problems in Medical Imaging with Score-Based Generative Models
+
+
