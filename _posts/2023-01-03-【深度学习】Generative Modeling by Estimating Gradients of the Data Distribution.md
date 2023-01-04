@@ -218,7 +218,9 @@ $$
 
 # Estimating the reverse SDE with score-based models and score matching
 
-求反向SDE需要知道最终分布 $p_T(x)$， 分数函数为 $\nabla_x \log p_t(x)$。 通过设计， 前者接近于先验分布 $\pi(x)$。 为了估计 $\nabla_x \log p_t(x)$。 我们训练了一个时间依赖的基于分数的模型 $s_\theta(x, t)$， 因此有： $s_\theta(x, t) \approx \nabla_x \log p_t(x)$。 
+求反向SDE需要知道最终分布 $p_T(x)$， 分数函数为 $\nabla_x \log p_t(x)$。 通过设计， 前者接近于先验分布 $\pi(x)$。 为了估计 $\nabla_x \log p_t(x)$。 我们训练了一个时间依赖的基于分数的模型 $s_\theta(x, t)$， 因此有： $s_\theta(x, t) \approx \nabla_x \log p_t(x)$。 这类似于用于无穷噪声规模的 noise-conditional score-based model $s_\theta(x, i)$,  训练后有 $s_\theta(x, i) \approx \nabla_x \log p_{\sigma_i}(x)$。 
+
+
 
 # Controllable generation for inverse problem solving
 
