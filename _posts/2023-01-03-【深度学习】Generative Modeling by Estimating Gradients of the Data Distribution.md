@@ -242,7 +242,13 @@ $$
 KL(p_0(x) \| p_\theta(x)) \leq \frac{T}{2} E_{t \in U(0, T)} E_{p_t}(x) [\lambda(t \| \nabla_x \log p_t(x) - s_\theta(x, t) \|_2^2] + KL(p_T \| \pi)
 $$
 
-由于这种特殊的联系到KL散度和最小化KL散度和最大化模型训练的似然之间的等价性, 我们叫做 $\lambda(t) = g(t)^2$ 为似然加权函数。使用这种似然加权函数，我们可以训练基于分数的生成模型来实现非常高的似然，与最先进的自回归模型相当，甚至更好
+由于这种特殊的联系到KL散度和最小化KL散度和最大化模型训练的似然之间的等价性, 我们叫做 $\lambda(t) = g(t)^2$ 为似然加权函数。使用这种似然加权函数，我们可以训练基于分数的生成模型来实现非常高的似然，与最先进的自回归模型相当，甚至更好。 
+
+
+# How to solve the reverse SDE
+
+通过用数值 SDE 求解器求解估计的逆向SDE，我们可以模拟样本生成的逆向随机过程。也许最简单的数值 SDE 求解器是 Euler-Maruyama 方法。当应用于我们估计的反向SDE时，它使用有限时间步长和小高斯噪声离散SDE。具体来说，它选择了一个小的负时间步长 $\Delta t \approx 0$, 初始化 $t \leftarrow T$。 
+
 
 
 # Controllable generation for inverse problem solving
