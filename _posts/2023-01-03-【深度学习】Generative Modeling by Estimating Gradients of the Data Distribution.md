@@ -285,7 +285,7 @@ $$
 $$
 dx = [f(x, t) - \frac{1}{2} g^2(t) \nabla_x \log p_t(x)] dt \tag{14}
 $$ 
-下图描述了 SDE 和 probability flow ODE 的轨迹。虽然ODE轨迹明显比SDE轨迹更平滑，但它们将相同的数据分布转换为相同的先验分布，反之亦然，共享相同的边缘分布 ${p_t(x)}_{t \in [0, T]}$。 
+下图描述了 SDE 和 probability flow ODE 的轨迹。虽然ODE轨迹明显比SDE轨迹更平滑，但它们将相同的数据分布转换为相同的先验分布，反之亦然，共享相同的边缘分布 ${p_t(x)}_{t \in [0, T]}$。 换句话说，通过求解 probability flow ODE 得到的轨迹与 SDE 轨迹具有相同的边缘分布。
 
 
 
