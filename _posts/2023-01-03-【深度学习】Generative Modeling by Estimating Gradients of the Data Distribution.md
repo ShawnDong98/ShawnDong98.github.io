@@ -292,7 +292,9 @@ $$
 
 这种 probability flow ODE 公式有几个独特的优点。
 
-当 $\nabla_x \log p_t(x)$ 被它的估计 $s_\theta (x, t)$ 替换后， probability flow ODE 变成 probability flow ODE 的一个特殊例子。
+当 $\nabla_x \log p_t(x)$ 被它的估计 $s_\theta (x, t)$ 替换后， probability flow ODE 变成 probability flow ODE 的一个特殊例子。特别地，它是 continuous normalizing flows 的一个例子， 因为 probability flow ODE 将数据分布 $p_0(x)$ 转换为先验噪声分布 $p_T(x)$ (因为它与SDE共享相同的边际分布)并且完全可逆。
+
+因此，probability flow ODE 继承了 neural ODE 或 continuous normalizing flows 的所有属性，包括精确的对数似然计算。
 
 
 
