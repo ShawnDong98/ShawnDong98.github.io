@@ -247,7 +247,15 @@ $$
 
 # How to solve the reverse SDE
 
-通过用数值 SDE 求解器求解估计的逆向SDE，我们可以模拟样本生成的逆向随机过程。也许最简单的数值 SDE 求解器是 Euler-Maruyama 方法。当应用于我们估计的反向SDE时，它使用有限时间步长和小高斯噪声离散SDE。具体来说，它选择了一个小的负时间步长 $\Delta t \approx 0$, 初始化 $t \leftarrow T$。 
+通过用数值 SDE 求解器求解估计的逆向SDE，我们可以模拟样本生成的逆向随机过程。也许最简单的数值 SDE 求解器是 Euler-Maruyama 方法。当应用于我们估计的反向SDE时，它使用有限时间步长和小高斯噪声离散SDE。具体来说，它选择了一个小的负时间步长 $\Delta t \approx 0$, 初始化 $t \leftarrow T$, 并且遵循以下流程迭代直到 $t \approx 0$:
+
+$$
+\Delta x \leftarrow [f(x, t) - g^2(t)s_\theta(x, t)]\Delta t + g(t) \sqrt{\mid \Delta t \mid} z_t \\
+x \leftarrow x + \Delta x \\
+t \leftarrow t + \Delta t
+$$
+
+这里 $z_t \thicksim N(0, I)$。 Euler-Maruyama 方法在性质上与朗之万采样相似，都是通过跟随被高斯噪声扰动的分数函数来更新x。
 
 
 
