@@ -264,7 +264,7 @@ $$
 
 由于这两个性质的结果，我们可以应用 MCMC 方法来微调从数值SDE求解器获得的轨迹。具体地说，我们提出了 Predictor-Corrector samplers。 predictor 可以是从现有样本中预测 $x(t + \Delta t) \thicksim p_t+ \Delta t(x)$ 的任意数值SDE求解器。 corrector 可以是任何 MCMC 程序，只依赖于分数函数，如朗之万采样和 Hamiltonian Monte Carlo。
 
-在 Predictor-Corrector sampler 的每一步中，我们首先使用 predictor 选择适当的步长 $\Delta t < 0$， 然后预测 $x(t + \Delta t)$。 
+在 Predictor-Corrector sampler 的每一步中，我们首先使用 predictor 选择适当的步长 $\Delta t < 0$， 然后基于当前采样 $x(t)$ 预测 $x(t + \Delta t)$。接下来， 我们运行几个 corrector 步骤根据我们的基于分数的模型 $s_\theta(x, t + \Delta t)$ 提升采样 $x(t + \Delta t)$， 以便 $x(t + \Delta)$ 变成一个从 $p_{t + \Delta t}(x)$更高质量的样本。 
 
 
 # Controllable generation for inverse problem solving
