@@ -30,7 +30,6 @@ tags:
 
 从经验上讲，我们在 CT 和 MRI 的几项医学成像任务中观察到与监督学习技术具有可比或更好的性能，同时对未知观测过程的泛化要好得多。
 
-
 # Introduction
 
 # Sovling Inverse Problems in Medical Imaging with Score-Based Generative Models
