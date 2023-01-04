@@ -236,6 +236,8 @@ $$
 
 我们可以从 $x(T) \thicksim \pi$, 并且求解上述反向 SDE 来得到一个样本 $x(0)$。 让我们用 $p_\theta$ 表示 $x(0)$ 的分布。 当基于分数的模型 $s_\theta(x, t)$ 训练好， 我们有 $p_\theta \approx p_0$， 在这种情况下 $x(0)$ 是从数据分布 $p_0$ 采样的一个估计样本。
 
+当 $\lambda(t) = g^2(t)$， 我们有 Fisher divergences 的加权组合和 $p_0$ 到 $p_\theta$ 在一些约束条件下的 KL 散度之间的重要联系。
+
 
 # Controllable generation for inverse problem solving
 
