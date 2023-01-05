@@ -44,7 +44,18 @@ $$
 
 $q_\phi(z \mid x)$ 是用参数 $\Phi$ 估计真实后验分布 $p(z \mid x)$ 的变分分布。 在 VAE 中，我们通过调整参数 $\Phi$ 增大下界以最大化 ELBO， 我们得到一个模型能够建模真实数据分布并从中采样， 因此我们学习了一个生成模型。现在， 让我们进一步理解为什么 ELBO 是我们想要最大化的目标。
 
+使用等式1：
 
+$$
+\begin{aligned}
+\log p(x) &= \log \int p(x, z)dz  \quad &(应用等式 1)  \quad &(5)\\
+&= \log \int \frac{p(x, z) q_\phi(z \mid x)}{q_\phi(z \mid x)}dz \quad &(乘以 1 = \frac{q_\phi(z \mid x)}{q_\phi(z \mid x)}) \quad &(6) \\
+&= \log E_{q_{\phi}(z \mid x)}[\frac{p(x, z)}{q_\phi(z \mid x)}] \quad &(期望的定义) \quad &(7) \\
+&\geq E_{q_\phi(z \mid x)}[\log \frac{p(x, z)}{q_\phi(z \mid x)}] \quad &(应用 Jensen 不等式) \quad &(8)
+\end{aligned}
+$$
+
+这个证明无法在直觉上解释为什么ELBO是 evidence 的下界。
 
 
 ## VariationalAutoencoders
