@@ -78,7 +78,7 @@ $$
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672888515222.png)
 
-其次， 我们探索为什么我们想要最大化 ELBO。 我们想要优化变分后验 $q_\phi(z \mid x)$ 的参数来匹配真实的后验分布 $p(z \mid x)$， 这通过最小化它们的 KL 散度来实现。
+其次， 我们探索为什么我们想要最大化 ELBO。 我们想要优化变分后验 $q_\phi(z \mid x)$ 的参数来匹配真实的后验分布 $p(z \mid x)$， 这通过最小化它们的 KL 散度来实现。然而， 真实 $p(z \mid x)$ 分布是不知道的。
 
 
 
