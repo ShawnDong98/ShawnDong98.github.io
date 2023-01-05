@@ -55,7 +55,18 @@ $$
 \end{aligned}
 $$
 
-这个证明无法在直觉上解释为什么ELBO是 evidence 的下界。
+这个证明无法在直觉上解释为什么 ELBO 是 evidence 的下界， 因为Jesen不等式没有告诉我们少的这部分是哪些东西。
+
+用等式2推导：
+
+$$
+\begin{aligned}
+\log p(x) &= \log p(x) \int q_\phi(z \mid x) dz \quad &(乘以 1 = \int q_\phi(z \mid x)dz) \quad &(9) \\
+&= \int q_\phi(z \mid x)(\log p(x)) dz \quad &(将 evidence 引入 积分) \quad &(10) \\
+&= E_{q_\phi(z \mid x)}[\log p(x)] \quad &(期望的定义) \quad &(11) \\
+&= E_{q_\phi(z \mid x)}[\log \frac{p(x, z)}{p(z \mid x)}] \quad &(应用等式2) \quad &(12) \\
+\end{aligned}
+$$
 
 
 ## VariationalAutoencoders
