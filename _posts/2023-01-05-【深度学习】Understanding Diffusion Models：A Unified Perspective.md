@@ -79,9 +79,11 @@ $$
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672888515222.png)
 
 其次， 我们探索为什么我们想要最大化 ELBO。 我们想要优化变分后验 $q_\phi(z \mid x)$ 的参数来匹配真实的后验分布 $p(z \mid x)$， 这通过最小化它们的 KL 散度来实现。然而， 真实 $p(z \mid x)$ 分布是不知道的， 因此难以直接最小化 KL 散度。注意到等式15的左侧( evidence 项 $\log p(x)$ )总是一个常数， 因为它通过从联合分布 $p(x, z)$ 将所有隐变量 $z$ 边缘化计算得到的并且不依赖于参数 $\phi$。由于 ELBO 和 KL 散度的和是一个常数， 对应于参数 $\phi$， ELBO 的最大化等于 KL 散度项的最小化。因此， 对 $\phi$ 的 ELBO 的最大化作为如何完美建模真实隐后验分布的代理任务； 越优化 ELBO， 估计的后验分布越接近真实后验分布。此外， 一旦训练完成，ELBO 也可以用与估计观测或生成数据的似然， 因为它学习到了估计模型的 evidence $\log p(x)$。 
- 
 
 
-## VariationalAutoencoders
 
-## HierarchicalVariationalAutoencoders
+
+
+## Variational Autoencoders
+
+## Hierarchical Variational Autoencoders
