@@ -74,7 +74,7 @@ $$
 
 从这个推导我们看到 evidence 等于 ELBO 加上估计的后验 $q_\phi(z \mid x)$ 和真正的后验 $p(z \mid x)$ 之间的 KL 散度。
 
-
+首先，我们现在知道为什么ELBO确实是一个下限：evidence 和 ELBO 之间的差异是一个严格的非负的 KL 散度项，因此 ELBO 的值永远不会超过 evidence。
 
 
 
