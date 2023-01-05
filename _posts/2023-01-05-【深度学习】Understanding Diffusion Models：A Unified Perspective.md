@@ -26,11 +26,23 @@ $$
 或者根据概率的链式法则：
 
 $$
-p(x) = \frac{p(x, z)}{p(z \mid x)}
+p(x) = \frac{p(x, z)}{p(z \mid x)} \tag{2}
 $$
 
-直接计算并且最大化似然 $p(x)$ 是困难的， 因为在等式1中需要所有的隐变量 $z$ ， 这在复杂的模型里是无迹可寻的， 或者在等式2中访问真实隐编码器 $p(z \mid x)$。 然而，使用这两个等式， 我们可以得到叫做 Evidence Lower Bound (ELBO) 的项。 在这种情况下，Evidence 被量化为观测数据的对数似然。
+直接计算并且最大化似然 $p(x)$ 是困难的， 因为在等式1中需要所有的隐变量 $z$ ， 这在复杂的模型里是无迹可寻的， 或者在等式2中访问真实隐编码器 $p(z \mid x)$。 然而，使用这两个等式， 我们可以得到叫做 Evidence Lower Bound (ELBO) 的项。 在这种情况下，Evidence 被量化为观测数据的对数似然。然后，最大化 ELBO 成为优化隐变量模型的代理目标；在最好的情况下，当 ELBO 被参数化并完美优化时，它完全等同于 Evidence。形式上，ELBO的方程是：
 
+$$
+E_{q_{\phi}(z \mid x)} [\log \frac{p(x, z)}{q_\phi(z \mid x)}] \tag{3}
+$$
+
+为了明确与 evidence 的关系，我们可以用数学书写：
+
+$$
+\log p(x) \geq E_{q_{\phi}(z \mid x)}[\log \frac{p(x, z)}{q_\phi(z \mid x)}] \tag{4}
+$$
+
+
+$q_\phi(z \mid x)$ 是用参数 $\Phi$ 估计变分分布。 
 
 
 ## VariationalAutoencoders
