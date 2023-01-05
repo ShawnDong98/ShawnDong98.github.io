@@ -76,6 +76,9 @@ $$
 
 首先，我们现在知道为什么ELBO确实是一个下限：evidence 和 ELBO 之间的差异是一个严格的非负的 KL 散度项，因此 ELBO 的值永远不会超过 evidence。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672888515222.png)
+
+其次， 我们探索为什么我们想要最大化 ELBO。 我们想要优化变分后验 $q_\phi(z \mid x)$ 的参数来匹配真实的后验分布 $p(z \mid x)$。 
 
 
 
