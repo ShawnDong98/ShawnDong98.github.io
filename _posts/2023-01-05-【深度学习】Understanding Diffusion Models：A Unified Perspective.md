@@ -65,8 +65,18 @@ $$
 &= \int q_\phi(z \mid x)(\log p(x)) dz \quad &(将 evidence 引入 积分) \quad &(10) \\
 &= E_{q_\phi(z \mid x)}[\log p(x)] \quad &(期望的定义) \quad &(11) \\
 &= E_{q_\phi(z \mid x)}[\log \frac{p(x, z)}{p(z \mid x)}] \quad &(应用等式2) \quad &(12) \\
+&= E_{q_\phi(z \mid x)}[\log \frac{p(x, z) q_\phi(z \mid x)}{p(z \mid x) q_\phi(z \mid x)}] \quad &(乘以 1 = \frac{q_\phi(z \mid x)}{q_\phi(z \mid x)}) \quad &(13) \\
+&= E_{q_\phi(z \mid x)}[\log \frac{p(x, z)}{q_\phi(z \mid x)}] + E_{q_\phi(z \mid x)}[\log \frac{q_\phi(z \mid x)}{p(z \mid x)}] \quad &(拆分期望) \quad &(14) \\
+&= E_{q_\phi(z \mid x)}[\log \frac{p(x, z)}{q_\phi(z \mid x)}] + D_{KL}(q_\phi(z \mid x) \| p(z \mid x)) \quad &(KL 散度的定义) \quad &(15) \\
+&\geq E_{q_\phi(z \mid x)}[\log \frac{p(x, z)}{q_\phi(z \mid x)}] \quad &(KL 散度 \geq 0) \quad &(16)
 \end{aligned}
 $$
+
+从这个推导我们看到 evidence 等于 ELBO 加上估计的后验 $q_\phi(z \mid x)$ 和真正的后验 $p(z \mid x)$ 之间的 KL 散度。
+
+
+
+
 
 
 ## VariationalAutoencoders
