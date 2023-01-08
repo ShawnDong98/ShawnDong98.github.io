@@ -86,4 +86,13 @@ $$
 
 ## Variational Autoencoders
 
+VAE 的默认公式中， 我们直接最大化 ELBO。 这种方式叫做变分， 因为我们优化了 $\phi$  参数化的潜在后验分布家族中的最佳 $q_\phi(z \mid x)$。它被称为自编码器，因为它让人想起传统的自编码器模型，在经历了中间瓶颈表示步骤后，输入数据被训练以预测自己。为了明确这种联系，让我们进一步剖析 ELBO 项：
+
+$$
+\begin{aligned}
+E_{q_\phi(z \mid x)} [\log \frac{p(x, z)}{q_\phi(z \mid x)}] &= E_{q_\phi(z \mid x)}[\log \frac{p_\theta(x \mid z)p(z)}{q_\phi(z \mid x)}] \\
+&= E_{q_\phi(z \mid x)}[\log p_\theta(x \mid z)] + E_{q_\phi(z \mid x)}[\log \frac{p(z)}{q_\phi(z \mid x)}]
+\end{aligned}
+$$
+
 ## Hierarchical Variational Autoencoders
