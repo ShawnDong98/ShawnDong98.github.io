@@ -42,7 +42,7 @@ FCOS 是一个无先验框和无提议的目标检测器，以逐像素预测方
 
 ## Architecture
 
-图2显示了 CenterMask 的整体架构。CenterMask由三部分组成：（1）用于特征提取的骨干，（2）FCOS 检测头，以及（3）mask head。 mask 目标的过程包括从FCOS [33]盒头检测对象，然后以每像素的方式预测裁剪区域内的分割掩码。
+图2显示了 CenterMask 的整体架构。CenterMask由三部分组成：（1）用于特征提取的骨干，（2）FCOS 检测头，以及（3）mask head。 masking objects 的过程包括从 FCOS box head 检测目标，然后以逐像素的方式预测裁剪区域内的分割掩码。
 
 
 ## Adaptive RoI Assignment Function
