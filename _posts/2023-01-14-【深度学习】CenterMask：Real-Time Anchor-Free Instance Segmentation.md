@@ -18,7 +18,7 @@ tags:
 
 SAG-Mask 分支插入 FCOS 目标检测器，使用空间注意力图预测每个检测到的边界框上的分割 mask，这有助于关注信息像素并抑制噪声。
 
-
+作者还提出了一种改进的骨干网络 VoVNetV2，具有两种有效的策略：（1）残差连接以缓解更大的 VoVNet 的优化问题[19 ]和（2）effective Squeeze-Excitation (eSE)  处理原始 SE 的通道信息丢失问题。
 
 # Method
 
