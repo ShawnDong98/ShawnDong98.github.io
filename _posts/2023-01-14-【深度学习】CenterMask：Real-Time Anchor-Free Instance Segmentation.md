@@ -14,6 +14,7 @@ tags:
 
 # Abstract
 
+这篇文章提出了一种简单而高效的无先验框实例分割，称为CenterMask，它添加了一个新的spa-tial注意力引导掩码（SAG-Mask）分支，以与Mask R-CNN[9]相同的脉络无锚一级物体探测器（FCOS [33]）。
 
 # Method
 
