@@ -70,7 +70,7 @@ $$
 $$
 k = \lceil k_{max} - \log_2 A_{input} / A_{RoI} \rceil \tag{2}
 $$
-其中 $k_{max}$ 是主干特征图的最后的层级(例如 7)， $A_{input}$ 和 $A_{RoI}$ 分别是输入图像和 RoI 的区域。
+其中 $k_{max}$ 是主干特征图的最后的层级(例如 7)， $A_{input}$ 和 $A_{RoI}$ 分别是输入图像和 RoI 的区域。在等式1中没有 canonical size 224的情况下，方程2可以根据 input/RoI 面积的比率自适应地分配 RoI 池化尺度。如果 $k$ 低于最小层级（例如P3），k被阶段在最小层级。
 
 
 
