@@ -47,7 +47,21 @@ FCOS 是一个无先验框和无提议的目标检测器，以逐像素预测方
 
 ## Adaptive RoI Assignment Function
 
-在FCOS box head 预测目标提议后，CenterMask 使用与 Mask R-CNN 相同的预测框区域预测分割 mask。 由于RoIs是从特征金字塔网络(FPN)中不同级别的特征图预测的，因此提取特征的 RoI Align 应根据 RoI 比例分配到不同尺度的特征图尺度。
+在FCOS box head 预测目标提议后，CenterMask 使用与 Mask R-CNN 相同的预测框区域预测分割 mask。 
+
+由于RoIs是从特征金字塔网络(FPN)中不同级别的特征图预测的，因此提取特征的 RoI Align 应根据 RoI 比例分配到不同尺度的特征图尺度。
+
+具体来说，大尺度的 RoI 必须分配到更高的特征级别，反之亦然。
+
+基于 Mask R-CNN 的两阶段检测器使用 FPN 中的方程1来确定要分配的特征图。
+
+$$
+k  = \lfloor k_0 + \log_2 \sqrt{wh} / 224 \rfloor \tag{1}
+$$
+
+其中 $k_0$ 是 4 ， $w, h$ 是每个 RoI 的宽和高。
+
+
 
 ## Spatial Attention-Guided Mask
 
