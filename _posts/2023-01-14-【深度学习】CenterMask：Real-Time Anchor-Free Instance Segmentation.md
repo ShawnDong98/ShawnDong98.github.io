@@ -65,6 +65,15 @@ $$
 
 此外，等式1中的典型ImageNet预训练尺寸224是硬编码的，不适应特征尺度变化。例如，当输入维度为 $1024 \times 1024$，RoI的面积为 $224^2$ 时，RoI 被分配到相对较高的特征 P4，因为其相对于输入维度的面积较小，从而减少了小目标的 AP。
 
+因此，作者将等式2定义为适用于基于 CenterMask 的单阶段检测器的新 RoI 分配函数。
+
+$$
+k = \lceil k_{max} - \log_2 A_{input} / A_{RoI} \rceil \tag{2}
+$$
+其中 $k_{max}$ 是主干特征图的最后的层级(例如 7)， $A_{input}$ 和 $A_{RoI}$ 分别是输入图像和 RoI 的区域。
+
+
+
 
 
 ## Spatial Attention-Guided Mask
