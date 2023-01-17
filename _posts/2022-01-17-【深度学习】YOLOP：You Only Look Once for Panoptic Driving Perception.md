@@ -39,7 +39,16 @@ tags:
 
 ### Neck
 
-颈部用于融合骨干产生的特征。我们的颈部主要由空间金字塔池（SPP）模块和特征金字塔网络（FPN）模块组成。SPP生成和融合不同尺度的特征，FPN在不同的语义级别融合特征，使生成的特征包含多个尺度和多个语义级别信息。
+颈部用于融合骨干产生的特征。我们的颈部主要由空间金字塔池（SPP）模块和特征金字塔网络（FPN）模块组成。SPP生成和融合不同尺度的特征，FPN在不同的语义级别融合特征，使生成的特征包含多个尺度和多个语义级别信息。我们在工作中采用串联方法来融合特征。
+
+## Decoders
+
+### Detection head
+
+### Drivable area segment head & lane line segment head
+
+
+### Loss function
 
 # Conclusion
 
