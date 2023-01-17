@@ -47,6 +47,8 @@ tags:
 
 ### Detection head
 
+与YOLOv4类似，采用基于先验框的多尺度检测方案。首先，作者使用一种称为 path aggregation network （PAN）的结构，这是一个自下而上的金字塔网络。FPN自上而下传输语义特征，PAN传输定位特征自下而上。
+
 ### Drivable area segment head & lane line segment head
 
 
