@@ -43,6 +43,8 @@ tags:
 
 ## Decoders
 
+网络中的三个 head 是这三项任务的特定解码器。
+
 ### Detection head
 
 ### Drivable area segment head & lane line segment head
