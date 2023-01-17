@@ -1,0 +1,41 @@
+---
+layout:     post
+title:      "【深度学习】YOLOP: You Only Look Once for Panoptic Driving Perception"
+subtitle:   ""
+date:       2022-01-17
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - 深度学习
+    - MIR2022
+---
+# Abstract
+
+全景驾驶感知系统是自动驾驶的重要组成部分。
+
+高精度和实时感知系统可以帮助车辆在驾驶时做出合理的决策。
+
+作者提出了一个全景驾驶感知网络（you only look once for panoptic YOLOP）），以同时执行交通物体检测、可驾驶区域分割和车道检测。它由一个用于特征提取的编码器和三个用于处理特定任务的解码器组成。
+
+该模型在具有挑战性的BDD100K数据集中表现非常好，在所有三项任务的准确性和速度方面都达到了最先进的水平。
+
+此外，作者通过消融试验验证了联合训练的多任务学习模型的效果。
+
+
+# Method
+
+作者提出了一种简单高效的前向网络，可以完成交通物体检测、可驾驶区域分割和车道检测任务。如图2所示，我们的全景驾驶感知单阶段网络，称为you only look once for panoptic (YOLOP)，包含一个共享编码器和三个后续解码器，以解决特定任务。不同的解码器之间没有复杂而多余的共享块，这降低了计算消耗，并使网络易于端到端训练。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1673925317471.png)
+
+## Encoder
+
+该网络共享一个编码器，该编码器由骨干网络和一个颈部网络组成。
+
+### Backbone
+
+主干网络用于提取输入图像的特征。
+
+# Conclusion
+
