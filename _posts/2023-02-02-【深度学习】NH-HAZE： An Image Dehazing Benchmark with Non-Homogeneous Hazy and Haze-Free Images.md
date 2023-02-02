@@ -1,0 +1,21 @@
+---
+layout:     post
+title:      "【深度学习】NH-HAZE： An Image Dehazing Benchmark with Non-Homogeneous Hazy and Haze-Free Images"
+subtitle:   ""
+date:       2023-02-02
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - 深度学习
+    - CVPR 2020
+---
+
+# Abstract
+
+图像去雾是一个病态的问题，近年来得到了广泛研究。由于缺乏参考数据集，去雾方法的客观性能评估是主要障碍之一。
+
+合成数据集表现出局限性，而最近引入的少数真实数据集在整个场景中假设为均匀的雾。
+
+由于在许多真实情况下，雾分布不均匀，这篇文章引入了 NH-HAZE，这是一个非均匀的真实数据集，具有一对真正的朦胧和相应的无雾图像。
+
