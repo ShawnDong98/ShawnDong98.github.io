@@ -51,4 +51,4 @@ tags:
 
 **Galdran et al.** 使用 Retinex 理论解决图像去雾问题。 他们的方法将 Retinex 应用于雾输入图像的 inverted intensities，证明该策略对图像去雾有效。
 
-**Liu et al.** 还介绍了一种名为 GridDehazeNet 的基于CNN的方法。 
+**Liu et al.** 还介绍了一种名为 GridDehazeNet 的基于CNN的方法。 该网络由三个主要模块组成。第一个模块为预处理数据，产生具有更好的多样性和更相关特征的输入。
