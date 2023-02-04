@@ -43,4 +43,4 @@ tags:
 
 # Evaluated Dehazing Techniques
 
-**He et al.** 是最早的单一图像去雾技术之一。
+**He et al.** 是最早的单一图像去雾技术之一。他们引入了暗通道先验（DCP），这是暗对象的扩展。
