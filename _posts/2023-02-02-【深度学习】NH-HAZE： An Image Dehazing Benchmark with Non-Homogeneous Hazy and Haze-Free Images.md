@@ -67,3 +67,8 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1675499750994.png)
 
 此外，图3显示了 NH-HAZE 数据集不同场景的比较细节，以及之前提到的去雾技术的产生结果。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1675500028766.png)
+
+通过仔细检查，我们可以观察到，知名的DCP可以很好地恢复图像结构，但也放大了 color shifting artifacts，同时去除了场景中不同的模糊层。
+
