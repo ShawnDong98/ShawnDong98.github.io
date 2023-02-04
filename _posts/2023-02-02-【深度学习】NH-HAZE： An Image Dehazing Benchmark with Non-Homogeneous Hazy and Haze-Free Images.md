@@ -63,3 +63,7 @@ tags:
 # Results and Discussion
 
 新的 NH-HAZE 数据集已用于对第4节中介绍的最新竞争性单图像去雾技术进行全面评估。作者随机选择了数据集的几张图像，并在图2中显示（在第一列中，非均匀模糊图像，最后一列为无雾图像）。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1675499750994.png)
+
+此外，图3显示了 NH-HAZE 数据集不同场景的比较细节，以及之前提到的去雾技术的产生结果。
