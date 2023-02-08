@@ -46,6 +46,7 @@ $$
 $$
 \min_{\Theta} \| y - HT_\Theta(e) \|_2^2 \tag{6}
 $$
+
 想要的重构信号是 $\hat x = T_\Theta(e)$。DIP 和 现有的深度神经网络的关键区别在于 $\Theta$ 从每个 measurement $y$ 学习。相比之下，现有的监督网络从训练数据中学习网络参数，然后在测试(推断)过程中固定网络参数。在 DIP 中， $\Theta$ 的训练本身是 $x $的重构过程。这个过程是无监督的， 在学习和重构的期间没有真实标签。
 
 由于 data-cube 的第三维度被压缩为 2D measurement， 使用 DIP 能很好地重构空间信息，但有时不能很好的重构光谱信息。TV 先验通常能够较好地重构光谱信息，但是通常损失一些空间细节。这项工作结合了 DIP 先验和 TV 先验。
@@ -115,7 +116,9 @@ $$
 \hat x = \mathop{\text{argmin}}_x \frac{1}{2}\| y - Hx \|_2^2 + \frac{\mu}{2} \| x - T_\Theta(e) - b\|_2^2 + \frac{\eta}{2}\|x - u - v\|_2^2 \tag{14}
 $$
 
-这是一个二次型， 由于 $H$ 的特殊结构， 他有 closed-form 的解： $\hat x = (H^\top H + \mu I + \eta I)^{-1}[H^\top y + \mu(T_\Theta(e) + b) + \eta(u + v)]$。 
+这是一个二次型， 由于 $H$ 的特殊结构， 他有 closed-form 的解：
+
+$\hat x = (H^\top H + \mu I + \eta I)^{-1}[H^\top y + \mu(T_\Theta(e) + b) + \eta(u + v)]$。 
 
 2.2) $u$ - subproblem： $\hat u = \text{argmin}_u \eta \|x - u - v \|_2^2 + \lambda R(u)$。 这是一个去噪问题， 依赖于所选择的 $R$， 有：
 
