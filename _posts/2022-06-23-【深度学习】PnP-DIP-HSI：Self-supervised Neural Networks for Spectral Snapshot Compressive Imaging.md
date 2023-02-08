@@ -59,6 +59,7 @@ $$
 $$
 (\hat x, \hat \Theta) = \mathop{\text{argmin}}_{x, \Theta} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x), \quad \text{s.t} \quad x = T_\Theta(e) \tag{7}
 $$
+
 通过引入辅助变量 $b \in \mathbb{R}^{n_x n_y n_\lambda}$ 和平衡参数 $\mu$， 目标为最小化：
 
 $$
@@ -72,12 +73,14 @@ $$
 $$
 \min_{x, \Theta} \frac{1}{2} \| y - Hx\|_2^2  + \lambda R(x) + \frac{\rho}{2} \| y - H T_\Theta(e) \|_2^2 \quad \text{s.t.} \quad x = T_\Theta(e) \tag{9}
 $$
+
 为了求解 $(9)$， 相似地， 使用一个辅助变量 $b \in \mathbb{R}^{nn_\lambda}$ 和平衡参数 $\mu$， 现在目标为最小化：
 
 $$
 (\hat x, \hat \Theta, \hat b) = \mathop{\text{argmin}}_{x, \Theta, b} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) - \frac{\mu}{2} \| b \|_2^2  \\
 + \frac{\rho}{2}\| y - HT_\Theta(e)\|_2^2  + \frac{\mu}{2}\|x - T_\Theta(e) - b\|_2^2 \tag{10}
 $$
+
 使用以下子问题迭代求解 $(10)$。  
 
 1） $\Theta$ - subproblem: 给定 $x$ 和 $b$ ， 求解 $\Theta$ 通过：
@@ -96,6 +99,7 @@ $$
 $$
 \hat x = \mathop{\text{argmin}}_x \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(x) + \frac{\mu}{2}\| x - T_\Theta(e) - b \|_2^2
 $$
+
 通过引入 $u, v$ 使用 ADMM 使得最小化：
 
 $$
@@ -108,6 +112,7 @@ $$
 \min_{x, u} \frac{1}{2} \| y - Hx \|_2^2 + \lambda R(u) + \frac{u}{2}\| x - T_\Theta(e) - b \|_2^2 \\ 
 + \frac{\eta}{2} \| x - u - v \|_2^2 - \frac{\eta}{2} \| v \|_2^2 \tag{13} 
 $$
+
 其可以通过下面两个子问题求解：
 
 2.1) $x$-subproblem:
@@ -125,6 +130,7 @@ $\hat x = (H^\top H + \mu I + \eta I)^{-1}[H^\top y + \mu(T_\Theta(e) + b) + \et
 $$
 \hat u = \mathcal{D}_\sigma(x - v) \tag{16}
 $$
+
 其中 $\sigma$ 是依赖于 $\lambda / \eta$ 的估计的噪声等级。
 
 2.3） $v$ 由下式更新：
@@ -138,8 +144,6 @@ $$
 $$
 b^{k+1} = b^k - (x^k - T_\Theta^k(e)) \tag{18}
 $$
-
-
 
 
 
