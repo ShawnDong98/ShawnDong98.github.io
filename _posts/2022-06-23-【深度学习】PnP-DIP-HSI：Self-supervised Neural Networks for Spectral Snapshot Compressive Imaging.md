@@ -34,6 +34,7 @@ tags:
 $$
 \hat x = \mathop{\text{argmin}}_x \frac{1}{2} \| y - Hx\|_2^2 + \lambda R(x)  \tag{5}
 $$
+
 以往在光谱 SCI 中使用包括 TV、sparsity 和 low-rank 等不同先验。
 
 
