@@ -16,6 +16,8 @@ tags:
 
 然而，给定任务所需的图像数量越来越大。像卷积神经网络(也称为卷积网络或cnn)这样的算法可以处理庞大的图像数据集。
 
+ImageNet是一个著名的公共图像数据库，用于分类、检测和分割等任务的训练模型，它由超过1400万张图像组成。
+
 ## A Dataset to Play With
 
 ## Setup for Storing Images on Disk
