@@ -19,8 +19,9 @@ ImageNet是一个著名的公共图像数据库，用于分类、检测和分割
 
 # Setup
 
-
 ## A Dataset to Play With
+
+我们将使用 CIFAR-10 数据集，它由 60000 张 32x32 像素的彩色图像组成，属于不同的类别，如狗、猫和飞机。
 
 ## Setup for Storing Images on Disk
 
