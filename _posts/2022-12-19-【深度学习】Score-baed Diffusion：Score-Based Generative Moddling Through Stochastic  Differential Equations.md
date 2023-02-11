@@ -111,6 +111,7 @@ $$
 
 其中 $w$ 是标准维纳过程， $f(·, t): R^d \rightarrow R^d$ 是 vector-value 函数， 叫做 $x(t)$ 的 drift 系数， $g(·): R \rightarrow R$ 是标量函数，叫做 $x(t)$ 的 diffusion 系数。为了便于陈述，我们假设扩散系数是一个标量，并且不依赖于 $x$，但我们的理论可以推广到在这些情况下成立（见附录A）。只要系数在状态和时间上都是全局 Lipschitz，SDE就有一个唯一的强解。我们这里将 $p_t(x)$ 表示为 $x(t)$ 的概率密度， 使用 $p_{st}(x(t) \mid x(s))$ 表示从 $x(s)$ 到 $x(t)$ 的 transition kernel， 其中 $0 \leq s < t \leq T$。 
 
+通常，$p_T$ 是未构造的先验分布， 其不包含 $p_0$ 的信息。
 
 
 
