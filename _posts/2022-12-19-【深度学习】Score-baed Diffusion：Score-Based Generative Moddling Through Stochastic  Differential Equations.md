@@ -114,6 +114,8 @@ $$
 通常，$p_T$ 是未构造的先验分布， 其不包含 $p_0$ 的信息， 例如是一个固定均值和方差的高斯分布。构造 Eq.(5) 中的 SDE 有多种方式， 其将数据分布扩散到固定的先验分布。
 
 
+## Generating  Samples  by Reversing  the SDE
+
 
 # Conclusion
 
