@@ -95,7 +95,14 @@ $$
 
 # Score-Based Generative Mideling With SDEs
 
-具有多个噪声尺度的扰动数据是之前方法成功的关键。我们建议将这个想法进一步推广到无限数量的噪声刻度，以便扰动的数据分布随着噪声的加剧而根据SDE进行演变。
+具有多个噪声尺度的扰动数据是之前方法成功的关键。作者建议将这个想法进一步推广到无限数量的噪声尺度，以便扰动的数据分布随着噪声的加剧而根据SDE进行演变。框架的总览如图2所示。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676108141793.png)
+
+
+## Perturbing  Data With SDEs
+
+
 
 
 
