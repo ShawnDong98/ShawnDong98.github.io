@@ -51,7 +51,10 @@ tags:
 **Controllable generation:**  我们可以使用训练期间不可用的信息控制生成过程，因为条件反向时间 SDE 可以从无条件分数中有效地估计。这使类条件生成、图像绘制、着色和其他逆问题等应用程序都能够实现，所有这些都可以使用单个无条件的基于分数的模型实现，而无需重新训练。
 
 
-**Unified framework:** 
+**Unified framework:** 该框架提供了探索和调整各种SDE的统一方式，以改进基于分数的生成模型。SMLD 和 DDPM 的方法可以合并到该框架中，作为两个独立的 SDE 的离散化。尽管最近据报道 DDPM的样本质量高于SMLD，但作者表明，该框架允许的更好的架构和新的采样算法，SMLD可以赶上DDPM——它实现了CIFAR-10上新的最先进的Inception Score（9.89）和 FID Score（2.20），以及首次从基于分数的模型中高保真生成 $1024 \times 1024$ 图像。
+
+
+
 # Background
 
 ## Denoising Score Matching With Langevin Dynamics (SMLD)
