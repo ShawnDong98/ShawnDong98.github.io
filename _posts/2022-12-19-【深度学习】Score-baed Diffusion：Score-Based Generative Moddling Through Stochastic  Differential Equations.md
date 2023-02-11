@@ -109,7 +109,7 @@ $$
 dx = f(x, t) dt + g(t) dw \tag{5}
 $$
 
-其中 $w$ 是标准维纳过程， $f(·, t): R^d \rightarrow R^d$ 是 vector-value 函数， 叫做 $x(t)$ 的 drift 系数。
+其中 $w$ 是标准维纳过程， $f(·, t): R^d \rightarrow R^d$ 是 vector-value 函数， 叫做 $x(t)$ 的 drift 系数， $g(·): R \rightarrow R$ 是标量函数，叫做 $x(t)$ 的 diffusion 系数。
 
 
 
