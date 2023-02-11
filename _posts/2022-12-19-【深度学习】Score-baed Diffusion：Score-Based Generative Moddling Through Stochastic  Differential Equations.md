@@ -123,7 +123,7 @@ dx = [f(x, t) - g(t)^2 \nabla_x \log p_t(x)]dt + g(t)d \bar w \tag{6}
 $$
 
 
-其中 $\bar w$ 是标准 Wiener 过程，时间从 $T$ 流向 $0$,  $dt$ 是无线负时间步。
+其中 $\bar w$ 是标准 Wiener 过程，时间从 $T$ 流向 $0$,  $dt$ 是无穷小的负时间步。
 
 
 
