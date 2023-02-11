@@ -35,7 +35,7 @@ tags:
 
 # Introduction
 
-两类成功的概率生成模型涉及以缓慢增加的噪声顺序损坏训练数据，然后学习扭转这种损坏，以生成数据。Score matching with Langevin dynamics (SMLD) 在每个噪声尺度估计 score (数据对数概率密度的梯度)， 然后在生成过程中使用郎之万采样从一系列离散噪声尺度中采样样本。
+两类成功的概率生成模型涉及以缓慢增加的噪声顺序损坏训练数据，然后学习扭转这种损坏，以生成数据。Score matching with Langevin dynamics (SMLD) 在每个噪声尺度估计 score (数据对数概率密度的梯度)， 然后在生成过程中使用郎之万采样从一系列离散噪声尺度中采样样本。Denoising diffusion probabilistic modeling (DDPM) 训练一系列概率模型逆转噪声损坏的每一步，使用你分部的函数形式的知识使得训练可追溯。
 
 # Background
 
