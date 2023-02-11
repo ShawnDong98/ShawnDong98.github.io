@@ -32,6 +32,11 @@ tags:
 
 结合多种架构改进，作者在CIFAR-10上实现了无条件图像生成的破纪录性能，Inception score 为 9.89，FID为2.20，competitive likelihood 为2.99 bits/dim，并首次从基于分数的生成模型中演示了 $1024 \times 1024$ 图像的高保真生成。
 
+
+# Introduction
+
+两类成功的概率生成模型涉及以缓慢增加的噪声顺序损坏训练数据，然后学习扭转这种损坏，以生成数据。
+
 # Background
 
 ## Denoising Score Matching With Langevin Dynamics (SMLD)
