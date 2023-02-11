@@ -23,6 +23,8 @@ ImageNet是一个著名的公共图像数据库，用于分类、检测和分割
 
 我们将使用 CIFAR-10 数据集，它由 60000 张 32x32 像素的彩色图像组成，属于不同的类别，如狗、猫和飞机。相对而言，CIFAR不是一个非常大的数据集，但如果我们要使用完整的TinyImages数据集，那么您将需要大约400GB的空闲磁盘空间，这可能是一个限制因素。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1675912809536.png)
+
 ## Setup for Storing Images on Disk
 
 ## Getting Started With LMDB
