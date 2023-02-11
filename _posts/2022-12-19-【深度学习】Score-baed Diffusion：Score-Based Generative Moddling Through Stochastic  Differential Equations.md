@@ -90,7 +90,7 @@ $$
 x_{i-1} = \frac{1}{\sqrt{1 - \beta_i}}(x_i + \beta_i s_{\theta^*}(x_i, i)) + \sqrt{\beta_i} z_i, \quad i = N, N-1, ..., 1 \tag{4}
 $$
 
-作者称这种方式为 ancestral sampling， 
+作者称这种方式为 ancestral sampling， 因为它相当于从图形模型 $\prod_{i=1}^N p_\theta(x_{i-1} \mid x_i)$ 中执行祖先采样。 
 
 
 
