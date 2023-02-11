@@ -103,7 +103,13 @@ $$
 ## Perturbing  Data With SDEs
 
 
-我们的目标是构建一个扩散过程 ${x(t)}_{t=0}^T$ 通过一个连续时间变量 $t \in [0, T]$ 索引， 例如 $x(0) \thicksim p_0$ 和 $x(T) \thicksim p_T$。 
+我们的目标是构建一个扩散过程 ${x(t)}_{t=0}^T$ 通过一个连续时间变量 $t \in [0, T]$ 索引， 例如 $x(0) \thicksim p_0$ 和 $x(T) \thicksim p_T$。 $p_0$ 是数据分布， $p_T$ 是先验分布。 扩散过程可以被建模为 SDE 的解：
+
+$$
+dx = f(x, t) dt + g(t) dw \tag{5}
+$$
+
+其中 $w$ 是标准维纳过程， $f(·, t): R^d \rightarrow R^d$ 是 vector-value 函数， 叫做 $x(t)$ 的 drift 系数。
 
 
 
