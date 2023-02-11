@@ -48,7 +48,7 @@ tags:
 **Flexible sampling and likelihood computation:** 
 
 
-**Controllable generation:**  使用任何通用 SDE solver 来集成反向时间 SDE 进行采样。此外，作者提出了两种对一般 SDE 不可行的特殊方法：
+**Controllable generation:**  使用任何通用 SDE solver 来集成反向时间 SDE 进行采样。此外，作者提出了两种对一般 SDE 不可行的特殊方法：(i) Predictor-Corrector (PC) 将数 值SDE求解器与基于分数的MCMC 方法相结合的采样器，如 Langevin MCMC 和 HMC；
 
 **Unified framework:** 
 
