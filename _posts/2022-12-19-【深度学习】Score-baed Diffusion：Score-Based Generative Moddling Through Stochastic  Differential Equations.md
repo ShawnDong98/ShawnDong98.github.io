@@ -116,6 +116,8 @@ $$
 
 ## Generating  Samples  by Reversing  the SDE
 
+通过从 $x(T) \thicksim p_T$ 采样和逆过程， 我们可以得到样本 $x(0) \thicksim p_0$。 
+
 
 # Conclusion
 
