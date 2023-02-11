@@ -116,7 +116,7 @@ $$
 
 ## Generating  Samples  by Reversing  the SDE
 
-通过从 $x(T) \thicksim p_T$ 采样和逆过程， 我们可以得到样本 $x(0) \thicksim p_0$。 
+通过从 $x(T) \thicksim p_T$ 采样和逆过程， 我们可以得到样本 $x(0) \thicksim p_0$。 Anderson（1982）的一个显著结果表明，扩散过程的逆过程也是一个扩散过程，在时间上向后运行，并由反向时间SDE给出
 
 
 # Conclusion
