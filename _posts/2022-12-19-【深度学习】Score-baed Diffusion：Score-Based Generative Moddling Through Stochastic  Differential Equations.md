@@ -103,7 +103,7 @@ $$
 ## Perturbing  Data With SDEs
 
 
-我们的目标是构建一个扩散过程 ${x(t)}_{t=0}^T$ 通过一个连续时间变量 $t \in [0, T]$ 索引。
+我们的目标是构建一个扩散过程 ${x(t)}_{t=0}^T$ 通过一个连续时间变量 $t \in [0, T]$ 索引， 例如 $x(0) \thicksim p_0$ 和 $x(T) \thicksim p_T$。 
 
 
 
