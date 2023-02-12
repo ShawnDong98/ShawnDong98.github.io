@@ -125,7 +125,16 @@ $$
 
 其中 $\bar w$ 是标准 Wiener 过程，时间从 $T$ 流向 $0$,  $dt$ 是无穷小的负时间步。一旦得到每个时间 $t$ 的边缘分布的分数 $\nabla_x \log p_t(x)$， 我们可以得到 Eq.(6) 的逆扩散过程， 并仿真它从 $p_0$ 采样。
 
+## Estimating Scores for the SDE
 
+
+分布的 score 可以通过在样本上用 score matching 训练一个 score-based 模型来估计。 为了估计 $\nabla_x \log p_t(x)$， 我们可以通过连续泛化 Eqs.(1) 和 (3) 训练一个时间依赖的基于分数的模型 $s_\theta(x, t)$ ：
+
+$$
+\theta^* = \arg \min_\theta E_t \{\lambda(t) E_{x(0)} E_{x(t) \mid x(0)}[\|s_\theta(x(t), t) - \nabla_{x(t)} \log p_{0t}(x(t) \mid x(0)) \|_2^2] \} \tag{7}
+$$
+
+这里 $\lambda : [0, T] \rightarrow R_{>0}$ 是正加权函数， $t$ 在 $[0, T]$ 上均匀采样， $x(0) \thicksim p_0(x)$ 和 $x(t) \thicksim p_{0t}(x(t) \mid x(0))$。 
 
 # Conclusion
 
