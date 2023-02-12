@@ -142,5 +142,13 @@ $$
 
 SMLD 和 DDPM 中使用的噪声扰动可以被视为两种不同 SDE 的离散化。
 
+当使用总共 $N$ 个噪声尺度， SMLD 对应 $x_i$ 的分布的的扰动核 $p_{\sigma_i} (x \mid x_0)$ 遵循下面的马尔科夫链：
+
+$$
+x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2} z_{i-1} \quad i = 1, ..., N  \tag{8}
+$$
+
+其中 $z_{i-1} \thicksim N(0, I)$ , 我们引入 $\sigma_0 = 0$ 来简化表达。
+
 # Conclusion
 
