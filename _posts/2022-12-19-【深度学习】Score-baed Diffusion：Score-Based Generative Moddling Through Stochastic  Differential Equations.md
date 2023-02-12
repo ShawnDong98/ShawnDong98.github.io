@@ -166,7 +166,7 @@ $$
 dx = -\frac{1}{2} \beta(t) x dt + \sqrt{\beta(t)} dw \tag{11}
 $$
 
-
+因此 SMLD 和 DDPM 中使用的噪声扰动对应于 Eqs. (9) 和 (11) 中的 SDEs 的离散化。
 
 
   
