@@ -156,6 +156,17 @@ $$
 
 DDPM 的扰动核 ${p_{\alpha_i}(x \mid x_0)}_{i=1}^N$ 类似， 离散马尔科夫链为：
 
+$$
+x_i = \sqrt{1 - \beta_i} x_{i-1} + \sqrt{\beta_i} z_{i-1}, \quad i=1, ..., N \tag{10}
+$$
+
+当 $N \rightarrow \infty$， Eq. (10) 收敛到下列SDE
+
+$$
+dx = -\frac{1}{2} \beta(t) x dt + \sqrt{\beta(t)} dw \tag{11}
+$$
+
+
 
 
   
