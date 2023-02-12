@@ -136,7 +136,7 @@ $$
 
 这里 $\lambda : [0, T] \rightarrow R_{>0}$ 是正加权函数， $t$ 在 $[0, T]$ 上均匀采样， $x(0) \thicksim p_0(x)$ 和 $x(t) \thicksim p_{0t}(x(t) \mid x(0))$。 有足够的数据和模型容量， score matching 确保 Eq. (7) 的最优解 $s_{\theta^*}(x, t)$ 等于 $\nabla_x \log p_t(x)$。 在  SMLD 和 DDPM 中， 我们可以选择 $\lambda \propto 1 / E[\| \nabla_{x(t)} \log p_{0t}(x(t) \mid x(0))\|_2^2]$。 虽然 Eq. (7) 使用去噪分数匹配， 但是其他分数匹配目标也可以应用。
 
-我们通常需要知道 transition kernel $p_{0t}(x(t) \mid x(0))$ 来求解 Eq. (7)。 当 $f(·, t)$ 近似， transition kernel 总是一个高斯分布， 其中均值和方差是以闭式解的形式已知的， 并且我们可以通过标准技术得到。 
+我们通常需要知道 transition kernel $p_{0t}(x(t) \mid x(0))$ 来求解 Eq. (7)。 当 $f(·, t)$ 近似， transition kernel 总是一个高斯分布， 其中均值和方差是以闭式解的形式已知的， 并且我们可以通过标准技术得到。 对于更一般的 SDEs， 我们可以求解  Kolmogorov 前向方程来得到 $p_{0t}(x(t) \mid x(0))$。 或者，我们可以从 $p_{0t}(x(t) \mid x(0))$ 中采样来仿真 SDE， 并替换 Eq. (7) 的去噪分数匹配为 sliced score matching 用与建模训练， 其绕过了 $\nabla_{x(t)} \log p_{0t} (x(t) \mid x(0))$ 的计算。
 
 # Conclusion
 
