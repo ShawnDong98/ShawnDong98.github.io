@@ -174,7 +174,9 @@ $$
 dx = -\frac{1}{2} \beta(t)xdt + \sqrt{\beta(t)(1 - e^{-2 \int_0^t \beta(s)ds})} dw \tag{12}
 $$
 
-当使用相同的 $\beta(t)$ 并且从相同的初始分布开始， 在每个中间时间步 Eq. (12) 的随机过程总是被 VP SDE 限制。由于这个原因，我们叫 Eq. (12) 为 sub-VP SDE。
+当使用相同的 $\beta(t)$ 并且从相同的初始分布开始， 在每个中间时间步 Eq. (12) 的随机过程总是以 VP SDE 为界。由于这个原因，我们叫 Eq. (12) 为 sub-VP SDE。
+
+因为 VE, VP 和 sub-VP SDEs 
 
 
 
