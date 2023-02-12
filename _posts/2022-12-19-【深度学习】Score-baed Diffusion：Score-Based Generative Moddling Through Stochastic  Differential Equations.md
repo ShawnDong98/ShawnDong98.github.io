@@ -148,7 +148,7 @@ $$
 x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2} z_{i-1} \quad i = 1, ..., N  \tag{8}
 $$
 
-其中 $z_{i-1} \thicksim N(0, I)$ , 我们引入 $\sigma_0 = 0$ 来简化表达。
+其中 $z_{i-1} \thicksim N(0, I)$ , 我们引入 $\sigma_0 = 0$ 来简化表达。当有限的 $N \rightarrow \infty$,  ${\sigma_i}_{i=1}^N$ 变成一个函数 $\sigma(t)$, $z_i$ 变成 $z(t)$, 马尔科夫链 ${x_i}_{i=1}^N$ 变成一个连续随机过程 ${x(t)}_{t=1}^1$， 这里我们使用一个连续时间变量 $t \in [0, 1]$ 用于索引， 而不是一个整数 $i$。 
 
 # Conclusion
 
