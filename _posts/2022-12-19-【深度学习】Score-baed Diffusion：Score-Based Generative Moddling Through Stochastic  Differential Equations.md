@@ -179,6 +179,9 @@ $$
 因为 VE, VP 和 sub-VP SDEs  都有相似的漂移系数， 他们的扰动核 $p_{0t}(x(t) \mid x(0))$ 都是高斯分布， 并且可以以闭式解的形式计算。
 
 
+# Solving the Reverse SDE
+
+
 
   
 # Conclusion
