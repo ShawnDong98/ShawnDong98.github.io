@@ -140,7 +140,7 @@ $$
 
 ## Examples: VE, VP SDEs Aand Beyond
 
-
+SMLD 和 DDPM 中使用的噪声扰动可以被视为两种不同 SDE 的离散化。
 
 # Conclusion
 
