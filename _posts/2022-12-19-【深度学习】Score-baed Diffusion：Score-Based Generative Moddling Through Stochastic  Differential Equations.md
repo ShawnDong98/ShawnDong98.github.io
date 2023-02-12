@@ -134,7 +134,7 @@ $$
 \theta^* = \arg \min_\theta E_t \{\lambda(t) E_{x(0)} E_{x(t) \mid x(0)}[\|s_\theta(x(t), t) - \nabla_{x(t)} \log p_{0t}(x(t) \mid x(0)) \|_2^2] \} \tag{7}
 $$
 
-这里 $\lambda : [0, T] \rightarrow R_{>0}$ 是正加权函数， $t$ 在 $[0, T]$ 上均匀采样， $x(0) \thicksim p_0(x)$ 和 $x(t) \thicksim p_{0t}(x(t) \mid x(0))$。 
+这里 $\lambda : [0, T] \rightarrow R_{>0}$ 是正加权函数， $t$ 在 $[0, T]$ 上均匀采样， $x(0) \thicksim p_0(x)$ 和 $x(t) \thicksim p_{0t}(x(t) \mid x(0))$。 有足够的数据和模型容量， score matching 确保 Eq. (7) 的最优解 $s_{\theta^*}(x, t)$ 等于 $\nabla_x \log p_t(x)$。 
 
 # Conclusion
 
