@@ -166,7 +166,7 @@ $$
 dx = -\frac{1}{2} \beta(t) x dt + \sqrt{\beta(t)} dw \tag{11}
 $$
 
-因此 SMLD 和 DDPM 中使用的噪声扰动对应于 Eqs. (9) 和 (11) 中的 SDEs 的离散化。
+因此 SMLD 和 DDPM 中使用的噪声扰动对应于 Eqs. (9) 和 (11) 中的 SDEs 的离散化。有趣的是， Eq. (9) 的 SDE 当 $t \rightarrow \infty$ 总是方差爆炸， 而 Eq. (11) 当初始分布为单位方差产生固定的方差。
 
 
   
