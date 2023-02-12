@@ -181,7 +181,7 @@ $$
 
 # Solving the Reverse SDE
 
-
+在训练一个时间依赖的基于分数的模型 $s_\theta$ 后， 我们可以使用它构造逆时间 SDE 并且用数值方式仿真它来从 $p_0$ 生成样本。
 
   
 # Conclusion
