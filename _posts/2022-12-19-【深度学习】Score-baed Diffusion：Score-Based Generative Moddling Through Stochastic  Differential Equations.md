@@ -166,7 +166,16 @@ $$
 dx = -\frac{1}{2} \beta(t) x dt + \sqrt{\beta(t)} dw \tag{11}
 $$
 
-因此 SMLD 和 DDPM 中使用的噪声扰动对应于 Eqs. (9) 和 (11) 中的 SDEs 的离散化。有趣的是， Eq. (9) 的 SDE 当 $t \rightarrow \infty$ 总是方差爆炸， 而 Eq. (11) 当初始分布为单位方差产生固定的方差。
+因此 SMLD 和 DDPM 中使用的噪声扰动对应于 Eqs. (9) 和 (11) 中的 SDEs 的离散化。有趣的是， Eq. (9) 的 SDE 当 $t \rightarrow \infty$ 总是方差爆炸， 而 Eq. (11) 当初始分布为单位方差产生固定的方差。由于这种差异， 我们将 Eq. (9) 叫做 Variance Exploding (VE) SDE， Eq. (11) 叫做 Variance Preserving (VP) SDE。
+
+受到 VP SDE 的启发， 作者提出一种新型的 SDEs， 其在似然上表现地很好：
+
+$$
+dx = -\frac{1}{2} \beta(t)xdt + \sqrt{\beta(t)(1 - e^{-2 \int_0^t \beta(s)ds})} dw \tag{12}
+$$
+
+当使用相同的 $\beta(t)$ 并且从相同的初始分布开始， Eq. (12) 的随机过程总是被 VP SDE 限制。
+
 
 
   
