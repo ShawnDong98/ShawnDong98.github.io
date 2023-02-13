@@ -225,7 +225,7 @@ $$
 
 ## Architecture Improvements
 
-作者使用 VE 和 VP SDE 为基于分数的模型探索了几种新的架构设计，其摸模型有与 SMLD/DDPM 相同的离散目标。由于其相似性，我们直接将 VP SDE 的架构迁移到 Sub-VP SDE。
+作者使用 VE 和 VP SDE 为基于分数的模型探索了几种新的架构设计，其摸模型有与 SMLD/DDPM 相同的离散目标。由于其相似性，我们直接将 VP SDE 的架构迁移到 Sub-VP SDE。VE SDE 的最佳架构名为NCSN\+\+，使用PC采样器在CIFAR-10上实现了2.45的FID，而 VP SDE 的最佳架构，称为DDPM\+\+，达到2.78。
 
 # Conclusion
 
