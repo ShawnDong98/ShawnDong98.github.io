@@ -188,6 +188,8 @@ $$
 
 数值求解器提供来自SDE的近似轨迹。存在许多求解 SDE 的通用数值方法，例如 Euler-Maruyama 和 stochastic Ruge-Kutta方法（Kloe-den和Platen，2013年），它们对应于随机动力学的不同离散化。我们可以将其中任何一个应用于反向时间 SDE 进行样本生成。
 
+Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个反向时间 VP SDE (Eq. (11)) 的一个特殊离散情况。 然而，为新的 SDE 推导出祖先采样规则可能并不简单。
+
 
 
   
