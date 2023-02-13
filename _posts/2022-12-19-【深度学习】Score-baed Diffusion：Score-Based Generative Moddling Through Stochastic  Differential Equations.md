@@ -212,5 +212,7 @@ $$
   
 一旦分数已知， 那么其由 SDE 确定。 我们叫 Eq. (13) 中的 ODE 叫做 probability flow ODE。 当分数函数由时间依赖的基于分数的模型近似时，该模型通常是神经网络，这是一个 neural ODE的例子。
    
+**Exact likelihood computation** 利用与 Neural ODEs 的联系，我们可以通过变量公式的瞬时变化计算方程（13）定义的密度（Chen等人，2018年）
+
 # Conclusion
 
