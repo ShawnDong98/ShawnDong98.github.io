@@ -195,6 +195,8 @@ Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个
 
 与通用 SDE 不同，我们还有其他可以改进解的信息。由于我们有一个基于分数的模型 $s_{\theta^*}(x, t) = \nabla_x \log p_t(x)$， 我们可以使用基于分数的 MCMC 方法， 例如 Langevin MCMC 或者 HMC 来直接从 $p_t$ 中采样， 并且修正一个数值 SDE solver 的解。
 
+具体来说，在每个时间步骤中，数值 SDE sovler 首先在下一步给出对样本的估计，起着 “predictor” 的作用。
+
 
   
 # Conclusion
