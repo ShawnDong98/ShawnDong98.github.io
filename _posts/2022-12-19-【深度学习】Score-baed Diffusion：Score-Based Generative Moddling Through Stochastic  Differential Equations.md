@@ -204,7 +204,13 @@ Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个
 
 ## Probability Flow and Connection to Neural ODEs
 
-基于分数的模型为解决反向时间 SDE 提供了另一种数值方法。对于所有扩散过程，都存在一个相应的确定性过程，其轨迹具有相同的边缘概率密度 ${p_t(x)}_{t=0}^T$ 作为 SDE。 
+基于分数的模型为解决反向时间 SDE 提供了另一种数值方法。对于所有扩散过程，都存在一个相应的确定性过程，其轨迹具有相同的边缘概率密度 ${p_t(x)}_{t=0}^T$ 作为 SDE。 这个确定性过程满足一个 ODE：
+
+$$
+dx = [f(x, t) - \frac{1}{2} g(t)^2 \nabla_x \log p_t(x)]dt \tag{13}
+$$
+  
+一旦分数已知， 那么其由 SDE 确定。
   
 # Conclusion
 
