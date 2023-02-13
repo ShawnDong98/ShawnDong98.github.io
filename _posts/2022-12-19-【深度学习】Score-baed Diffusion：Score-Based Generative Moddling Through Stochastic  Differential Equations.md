@@ -234,6 +234,7 @@ $$
 
 # Controllable Generation
 
+框架的连续结构使我们不仅能够从 $p_0$ 中产生数据样本， 如果 $p_t(y \mid x(t))$ 一致， 还可以从 $p_0(x(0) \mid y)$ 中产生数据样本。
 
 
 
