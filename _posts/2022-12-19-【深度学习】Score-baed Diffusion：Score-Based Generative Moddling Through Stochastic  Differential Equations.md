@@ -190,6 +190,8 @@ $$
 
 Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个反向时间 VP SDE (Eq. (11)) 的一个特殊离散情况。 然而，为新的 SDE 推导出 ancestral sampling 规则可能并不简单。为了解决这个问题，作者提出了 reverse diffusion samplers（详见附录E），它以与前向采样相同的方式离散反向时间SDE，因此在前向离散化的情况下可以很容易地推导出。如表1所示，在 CIFAR-10 上，SMLD 和 DDPM 模型的反向扩散采样器的表现都略好于 ancestral sampling（DDPM型 ancestral sampling 也适用于 SMLD 模型，见附录F）。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676286643404.png)
+
 
 ## Predictor-Corrector Samplers
 
@@ -198,7 +200,7 @@ Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个
 具体来说，在每个时间步骤中，数值 SDE sovler 首先在下一步给出对样本的估计，起着 “predictor” 的作用。然后，基于分数的 MCMC 方法纠正了估计样本的边缘分布，起到了 “corrector” 的作用。这个想法类似于 Predictor-Corrector 方法，这是一个解方程组的数值连续技术家族（Allgower和Georg，2012年），作者同样将其混合采样算法命名为 Predictor-Corrector（PC）采样器。PC采样器泛化了 SMLD和 DDPM 的原始采样方法：前者使用恒等式作为 predictor，annealed Langevin dynamics 作为 corrector，而后者使用 ancestral sampling 作为 predictor 和恒等式作为 corrector。
 
 
-作者在 SMLD 和 DDPM 模型上测试 PC 采样器（见附录G中的算法2和3），使用 Eq. (1) 和 (3) 给出的原始离散目标进行训练。这展示了 PC 采样器与使用固定数量的噪声尺度训练的基于分数的模型的兼容性。
+作者在 SMLD 和 DDPM 模型上测试 PC 采样器（见附录G中的算法2和3），使用 Eq. (1) 和 (3) 给出的原始离散目标进行训练。这展示了 PC 采样器与使用固定数量的噪声尺度训练的基于分数的模型的兼容性。在表1中总结了不同采样器的性能，其中概率流是第4.3节中讨论的 predictor。我们观察到，反向扩散采样器的性能总是优于 ancestral sampling，corrector-only 的方法（C2000）在相同计算下的表现比其他竞争对手（P2000、PC1000）差（事实上，每个噪声尺度需要更多的校正步骤，从而需要更多的计算，以匹配其他采样器的性能）。对于所有 predictors，为每个 predictors 步骤添加一个 corrector 步骤（PC1000）使计算翻倍，但始终提高样本质量（相对P1000）。此外，这通常比在不添加 corrector（P2000）的情况下将 predictor 步数翻一番要好，在P2000中，我们必须为 SMLD/DDPM 模型插值噪声尺度。
 
 
   
