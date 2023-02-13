@@ -220,7 +220,7 @@ $$
 **Uniquely identifiable encoding** 与大多数当前的可逆模型不同，我们的编码是唯一可识别的，这意味着在足够的训练数据、模型容量和优化精度下，输入的编码由数据分布唯一确定。 这是因为给定完美的分数估计， 前向 SDE Eq. (5) 没有可训练的参数， 它对应的概率流 ODE Eq.(13) 提供相同的轨迹。
 
 
-**Efficient sampling** 与 neural ODE 相同， 我们从不同的最终条件 $x(T) \thicksim p_T$ 求解 Eq. (13) 来采样 $x(0) \thicksim p_0$。  使用固定离散化策略，我们可以生成有竞争力的样本，特别是当与 corrector 结合使用时
+**Efficient sampling** 与 neural ODE 相同， 我们从不同的最终条件 $x(T) \thicksim p_T$ 求解 Eq. (13) 来采样 $x(0) \thicksim p_0$。  使用固定离散化策略，我们可以生成有竞争力的样本，特别是当与 corrector 结合使用时。 
 
 # Conclusion
 
