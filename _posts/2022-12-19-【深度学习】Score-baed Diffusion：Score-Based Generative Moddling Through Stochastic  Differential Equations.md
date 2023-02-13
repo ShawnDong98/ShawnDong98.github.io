@@ -198,6 +198,9 @@ Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个
 具体来说，在每个时间步骤中，数值 SDE sovler 首先在下一步给出对样本的估计，起着 “predictor” 的作用。然后，基于分数的 MCMC 方法纠正了估计样本的边缘分布，起到了 “corrector” 的作用。这个想法类似于 Predictor-Corrector 方法，这是一个解方程组的数值连续技术家族（Allgower和Georg，2012年），作者同样将其混合采样算法命名为 Predictor-Corrector（PC）采样器。PC采样器泛化了 SMLD和 DDPM 的原始采样方法：前者使用恒等式作为 predictor，annealed Langevin dynamics 作为 corrector，而后者使用 ancestral sampling 作为 predictor 和恒等式作为 corrector。
 
 
+作者在 SMLD 和 DDPM 模型上测试 PC 采样器（见附录G中的算法2和3），使用方程（1）和（3）给出的原始离散目标进行训练。
+
+
   
 # Conclusion
 
