@@ -181,7 +181,14 @@ $$
 
 # Solving the Reverse SDE
 
-在训练一个时间依赖的基于分数的模型 $s_\theta$ 后， 我们可以使用它构造逆时间 SDE 并且用数值方式仿真它来从 $p_0$ 生成样本。
+在训练一个时间依赖的基于分数的模型 $s_\theta$ 后， 我们可以使用它构造反向时间 SDE 并且用数值方式仿真它来从 $p_0$ 生成样本。
+
+
+## General-purpose  Numerical SDE Solvers 
+
+数值求解器提供来自SDE的近似轨迹。存在许多求解 SDE 的通用数值方法，例如 Euler-Maruyama 和 stochastic Ruge-Kutta方法（Kloe-den和Platen，2013年），它们对应于随机动力学的不同离散化。我们可以将其中任何一个应用于反向时间 SDE 进行样本生成。
+
+
 
   
 # Conclusion
