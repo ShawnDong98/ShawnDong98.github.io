@@ -214,7 +214,7 @@ $$
    
 **Exact likelihood computation** 利用与 Neural ODEs 的联系，我们可以通过变量公式的瞬时变化计算Eq. (13) 定义的密度。 这使我们能够计算任何输入数据的精确似然。例如，我们在表2的 CIFAR-10 数据集中报告了以 bits/dim 为单位测量的负对数似然（NLL）。
 
-**Manipulating latent representations** 通过集成 Eq. (13)， 我们可以编码任意数据点 $x(0)$ 到一个隐空间 $x(T)$。 解码可以通过为反向时间 SDE 集成相应的 ODE 来实现。就像 neural ODE 和 normalizing flows  等其他可逆模型一样。
+**Manipulating latent representations** 通过集成 Eq. (13)， 我们可以编码任意数据点 $x(0)$ 到一个隐空间 $x(T)$。 解码可以通过为反向时间 SDE 集成相应的 ODE 来实现。就像 neural ODE 和 normalizing flows  等其他可逆模型一样， 我们可以操纵这种隐表征进行图像编辑，例如插值和 temperature scaling (见图3)。 
 
 # Conclusion
 
