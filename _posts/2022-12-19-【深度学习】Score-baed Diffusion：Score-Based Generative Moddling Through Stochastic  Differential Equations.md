@@ -217,7 +217,7 @@ $$
 **Manipulating latent representations** 通过集成 Eq. (13)， 我们可以编码任意数据点 $x(0)$ 到一个隐空间 $x(T)$。 解码可以通过为反向时间 SDE 集成相应的 ODE 来实现。就像 neural ODE 和 normalizing flows  等其他可逆模型一样， 我们可以操纵这种隐表征进行图像编辑，例如插值和 temperature scaling (见图3)。 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676289082338.png)
-**Uniquely identifiable encoding** 与大多数当前的可逆模型不同，我们的编码是唯一可识别的，这意味着在足够的训练数据、模型容量和优化精度下，输入的编码由数据分布唯一决定。 
+**Uniquely identifiable encoding** 与大多数当前的可逆模型不同，我们的编码是唯一可识别的，这意味着在足够的训练数据、模型容量和优化精度下，输入的编码由数据分布唯一确定。 
 
 
 # Conclusion
