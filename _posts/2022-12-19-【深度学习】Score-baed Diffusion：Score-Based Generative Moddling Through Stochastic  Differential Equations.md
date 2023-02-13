@@ -241,7 +241,7 @@ dx = \{f(x, t) - g(t)^2 [\nabla_x \log p_t(x) + \nabla_x \log p_t(y \mid x)]\}dt
 $$
 
 
-
+通常， 一旦给定前向过程梯度的估计 $\nabla_x \log p_t(y \mid x(t))$， 我们使用基于分数的生成模型以 Eq.(14) 求解逆问题。 在一些情况下， 可以单独训练一个模型学习前向过程 $\log p_t(y \mid x(t))$ 并且计算它的梯度。
 
 
 
