@@ -245,3 +245,5 @@ $$
 
 
 我们用这种方法考虑了可控生成的三种应用：class-conditional generation、image imputation 和 colorization。当 $y$ 表示类别标签， 我们训练一个时间依赖的分类器 $p_t(y \mid x(t))$ 作为类条件采样。 由于前向 SDE 是可追溯的， 我们可以轻松地为时间依赖的分类器通过首先从数据集中采样 $(x(0), y)$ 创建训练数据 $(x(t), y)$,  然后采样 $x(t) \thicksim p_{0t}(x(t) \mid x(0))$。  之后，我们可能会在不同的时间步骤中使用交叉熵损失， 像 Eq. (7)， 来训练时间依赖的分类器 $p_t(y \mid x(t))$。 
+
+Imputation 是条件采样的特殊情况。
