@@ -204,7 +204,7 @@ Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个
 
 ## Probability Flow and Connection to Neural ODEs
 
-
+基于分数的模型为解决反向时间 SDE 提供了另一种数值方法。
   
 # Conclusion
 
