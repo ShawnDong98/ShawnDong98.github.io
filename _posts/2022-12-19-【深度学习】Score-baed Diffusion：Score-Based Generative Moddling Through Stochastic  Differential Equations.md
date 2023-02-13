@@ -244,4 +244,4 @@ $$
 通常， 一旦给定前向过程梯度的估计 $\nabla_x \log p_t(y \mid x(t))$， 我们使用基于分数的生成模型以 Eq.(14) 求解逆问题。 在一些情况下， 可以单独训练一个模型学习前向过程 $\log p_t(y \mid x(t))$ 并且计算它的梯度。或者，我们可以用启发式和领域知识来估计梯度。
 
 
-我们用这种方法考虑了可控生成的三种应用：class-conditional generation、image imputation 和 colorization。
+我们用这种方法考虑了可控生成的三种应用：class-conditional generation、image imputation 和 colorization。当 $y$ 表示类别标签， 我们训练一个时间依赖的分类器 $p_t(y \mid x(t))$ 作为类条件采样。 
