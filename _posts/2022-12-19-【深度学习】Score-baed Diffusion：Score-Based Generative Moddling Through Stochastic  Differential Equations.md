@@ -188,7 +188,7 @@ $$
 
 数值求解器提供来自SDE的近似轨迹。存在许多求解 SDE 的通用数值方法，例如 Euler-Maruyama 和 stochastic Ruge-Kutta方法（Kloe-den和Platen，2013年），它们对应于随机动力学的不同离散化。我们可以将其中任何一个应用于反向时间 SDE 进行样本生成。
 
-Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个反向时间 VP SDE (Eq. (11)) 的一个特殊离散情况。 然而，为新的 SDE 推导出祖先采样规则可能并不简单。为了解决这个问题，作者提出了 reverse diffusion samplers（详见附录E），它以与前向采样相同的方式离散反向时间SDE，因此在前向离散化的情况下可以很容易地推导出。
+Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个反向时间 VP SDE (Eq. (11)) 的一个特殊离散情况。 然而，为新的 SDE 推导出 ancestral sampling 规则可能并不简单。为了解决这个问题，作者提出了 reverse diffusion samplers（详见附录E），它以与前向采样相同的方式离散反向时间SDE，因此在前向离散化的情况下可以很容易地推导出。如表1所示，在 CIFAR-10 上，SMLD 和 DDPM 模型的反向扩散采样器的表现都略好于 ancestral sampling（DDPM型 ancestral sampling 也适用于 SMLD 模型，见附录F）。
 
 
 
