@@ -191,6 +191,10 @@ $$
 Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个反向时间 VP SDE (Eq. (11)) 的一个特殊离散情况。 然而，为新的 SDE 推导出 ancestral sampling 规则可能并不简单。为了解决这个问题，作者提出了 reverse diffusion samplers（详见附录E），它以与前向采样相同的方式离散反向时间SDE，因此在前向离散化的情况下可以很容易地推导出。如表1所示，在 CIFAR-10 上，SMLD 和 DDPM 模型的反向扩散采样器的表现都略好于 ancestral sampling（DDPM型 ancestral sampling 也适用于 SMLD 模型，见附录F）。
 
 
+## Predictor-Corrector Samplers
+
+与通用 SDE 不同，我们还有其他可以改进解的信息。
+
 
   
 # Conclusion
