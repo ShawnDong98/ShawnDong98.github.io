@@ -225,7 +225,7 @@ $$
 
 ## Architecture Improvements
 
-作者使用 VE 和 VP SDE 为基于分数的模型探索了几种新的架构设计，其摸模型有与 SMLD/DDPM 相同的离散目标。
+作者使用 VE 和 VP SDE 为基于分数的模型探索了几种新的架构设计，其摸模型有与 SMLD/DDPM 相同的离散目标。由于其相似性，我们直接将 VP SDE 的架构迁移到 Sub-VP SDE。
 
 # Conclusion
 
