@@ -225,9 +225,9 @@ $$
 
 ## Architecture Improvements
 
-作者使用 VE 和 VP SDE 为基于分数的模型探索了几种新的架构设计，其摸模型有与 SMLD/DDPM 相同的离散目标。由于其相似性，我们直接将 VP SDE 的架构迁移到 Sub-VP SDE。VE SDE 的最佳架构名为NCSN\+\+，使用PC采样器在CIFAR-10上实现了2.45的FID，而 VP SDE 的最佳架构，称为DDPM\+\+，达到2.78。
+作者使用 VE 和 VP SDE 为基于分数的模型探索了几种新的架构设计，其摸模型有与 SMLD/DDPM 相同的离散目标。由于其相似性，我们直接将 VP SDE 的架构迁移到 Sub-VP SDE。VE SDE 的最佳架构名为NCSN++ ，使用PC采样器在CIFAR-10上实现了2.45的FID，而 VP SDE 的最佳架构，称为DDPM++ ，达到2.78。
 
-通过切换 Eq. (7) 中的连续训练目标， 增加网络的深度， 可以进一步提升采样质量。
+通过切换 Eq. (7) 中的连续训练目标， 增加网络的深度， 可以进一步提升采样质量。最终的架构叫做 NCSN++  和 DDPM++ 。表3中报告的结果适用于训练过程中FID最小的 checkpoint，该 checkpoint 使用 PC 采样器生成样本。  
 
 # Conclusion
 
