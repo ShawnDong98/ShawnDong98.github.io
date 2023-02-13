@@ -210,7 +210,7 @@ $$
 dx = [f(x, t) - \frac{1}{2} g(t)^2 \nabla_x \log p_t(x)]dt \tag{13}
 $$
   
-一旦分数已知， 那么其由 SDE 确定。 我们叫 Eq. (13) 中的 ODE 叫做 probability flow ODE。 
+一旦分数已知， 那么其由 SDE 确定。 我们叫 Eq. (13) 中的 ODE 叫做 probability flow ODE。 当分数函数由时间依赖的基于分数的模型近似时，该模型通常是神经网络，这是一个 neural ODE的例子。
    
 # Conclusion
 
