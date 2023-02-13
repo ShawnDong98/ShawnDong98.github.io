@@ -195,7 +195,7 @@ Ancestral sampling， DDPM 的采样方法 (Eq. (4))， 实际上对应着一个
 
 与通用 SDE 不同，我们还有其他可以改进解的信息。由于我们有一个基于分数的模型 $s_{\theta^*}(x, t) = \nabla_x \log p_t(x)$， 我们可以使用基于分数的 MCMC 方法， 例如 Langevin MCMC 或者 HMC 来直接从 $p_t$ 中采样， 并且修正一个数值 SDE solver 的解。
 
-具体来说，在每个时间步骤中，数值 SDE sovler 首先在下一步给出对样本的估计，起着 “predictor” 的作用。然后，基于分数的 MCMC 方法纠正了估计样本的边缘分布，起到了 “corrector” 的作用。这个想法类似于 Predictor-Corrector 方法，这是一个解方程组的数值连续技术家族（Allgower和Georg，2012年），作者同样将其混合采样算法命名为 Predictor-Corrector（PC）采样器。
+具体来说，在每个时间步骤中，数值 SDE sovler 首先在下一步给出对样本的估计，起着 “predictor” 的作用。然后，基于分数的 MCMC 方法纠正了估计样本的边缘分布，起到了 “corrector” 的作用。这个想法类似于 Predictor-Corrector 方法，这是一个解方程组的数值连续技术家族（Allgower和Georg，2012年），作者同样将其混合采样算法命名为 Predictor-Corrector（PC）采样器。PC采样器泛化了 SMLD和 DDPM 的原始采样方法：前者使用恒等式作为 predictor，退火朗格文动力学作为校正器，而后者使用祖先采样作为预测器和恒等式作为校正器。
 
 
   
