@@ -24,4 +24,4 @@ tags:
 
 在实验中，作者证明提出的方法在 image deraining, deblurring, 和 denoising 的定量比较中实现了极具竞争力的性能，为两个 deraining 数据集取得了新的最先进的性能。
 
-最后，通过图像 image super-resolution, inpainting 和 dehazing 的定性结果，进一步证明了我们方法的一般适用性。
+最后，通过图像 image super-resolution, inpainting 和 dehazing 的定性结果，进一步证明了该方法的一般适用性。
