@@ -14,4 +14,4 @@ tags:
 
 这篇文章提出了一种用于通用图像恢复的随机微分方程（SDE）方法。
 
-关键结构包括 mean-reverting SDE，将高质量图像转换为具有固定高斯噪声的 mean state 的退化对应图像。
+关键结构包括 mean-reverting SDE，将高质量图像转换为对应的退化图像， 其是固定高斯噪声的 mean state 的。
