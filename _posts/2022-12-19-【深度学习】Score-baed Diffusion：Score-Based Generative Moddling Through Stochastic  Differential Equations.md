@@ -263,4 +263,27 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 
 Imputation 是条件采样的一个特殊情况。将 $\Omega(x)$ 和 $\bar \Omega(x)$ 分别表示为 $x$ 的已知和未知维度， 令 $f_{\bar \Omega}(·，t)$ 和 $G_{\bar \Omega}(·， t)$ 表示服从未知维度的 $f(·, t)$ 和 $G(·, t)$。 对于 VE/VP SDEs,  drift 系数 $f(·, t)$ 是 element-wise 的， diffusion 系数 $G(·, t)$ 是对角的。当 $f(·, t)$ 是 element-wise 的， $f_{\bar \Omega}(·, t)$ 表示应用于未知维度的 element-wise 函数。当 $G(·, t)$ 是对角的，$G_{\bar \Omega(·, t)}$ 表示服从于未知维度的子矩阵。
 
-对于 imputation, 我们的目标是从 $p(\bar \Omega(x(0)) \mid \Omega(x(0)) = y)$。 
+对于 imputation, 我们的目标是从 $p(\bar \Omega(x(0)) \mid \Omega(x(0)) = y)$。 定义一个新的扩散过程 $z(t) = \bar \Omega(x(t))$, 对 $z(t)$ 的 SDE 可以写作：
+
+$$
+dz = f_{\bar \Omega}(z, t) dt + G_{\bar \Omega}(z, t) dw 
+$$
+
+以 $\Omega(x(0)) = y$ 为条件， 反向时间 SDE 为：
+
+$$
+dz = \{f_{\bar \Omega(z, t)} - \nabla · [G_{\bar \Omega}(z, t) G_{\bar \Omega}(z, t)^\top] - G_{\bar \Omega}(z, t)G_{\bar \Omega}(z, t)^\top \nabla_z \log p_t(z \mid \Omega(z(0)) = y)\}dt + G_{\bar \Omega}(z, t) d\bar w
+$$
+
+尽管 $p_t(z(t) \mid \Omega(x(0)) = y)$ 通常无法得到， 但是它可以被估计。 用 $A$ 表示 $\Omega(x(0)) = y$， 有：
+
+$$
+\begin{aligned}
+p_t(z(t) \mid \Omega(x(0)) = y) = p_t(z(t) \mid A) &= \int p_t(z(t) \mid \Omega(x(t)), A) p_t(\Omega(x(t)) \mid A) d \Omega(x(t)) \\
+&= E_{p_t(\Omega(x(t)) \mid A)}[p_t(z(t) \mid \Omega(x(t)), A)] \\
+&\approx E_{p_t(\Omega(x(t) \mid A)}[p_t(z(t) \mid \Omega(x(t)))] \\
+&\approx p_t(z(t) \mid \hat \Omega(x(t)))
+\end{aligned}
+$$
+
+其中 $\hat \Omega(x(t))$ 是从 $p_t(\Omega(x(t)) \mid A)$ 随机采样，
