@@ -261,4 +261,4 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 
 ### Imputation
 
-Imputation 是条件采样的一个特殊情况。将 $\Omega(x)$ 和 $\bar \Omega(x)$ 分别表示为 $x$ 的已知和未知维度， 令 $f_{\bar \Omega}(·，t)$ 和 $G_{\bar \Omega}(·， t)$ 表示服从未知维度的 $f(·, t)$ 和 $G(·, t)$。 对于 VE/VP SDEs,  drift 系数 $f(·, t)$ 是 element-wise 的， diffusion 系数 $G(·, t)$ 是对角的。当 $f(·, t)$ 是 element-wise 的， $f_{\bar \Omega}(·, t)$ 表示应用于未知维度的 element-wise 函数。
+Imputation 是条件采样的一个特殊情况。将 $\Omega(x)$ 和 $\bar \Omega(x)$ 分别表示为 $x$ 的已知和未知维度， 令 $f_{\bar \Omega}(·，t)$ 和 $G_{\bar \Omega}(·， t)$ 表示服从未知维度的 $f(·, t)$ 和 $G(·, t)$。 对于 VE/VP SDEs,  drift 系数 $f(·, t)$ 是 element-wise 的， diffusion 系数 $G(·, t)$ 是对角的。当 $f(·, t)$ 是 element-wise 的， $f_{\bar \Omega}(·, t)$ 表示应用于未知维度的 element-wise 函数。当 $G(·, t)$ 是对角的，$G_{\bar \Omega(·, t)}$ 表示服从于未知维度的子矩阵。 
