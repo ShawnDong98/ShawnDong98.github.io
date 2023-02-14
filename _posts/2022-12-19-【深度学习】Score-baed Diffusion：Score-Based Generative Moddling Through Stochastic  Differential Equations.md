@@ -257,3 +257,4 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 
 ## Controllable Generation
 
+### Imputation
