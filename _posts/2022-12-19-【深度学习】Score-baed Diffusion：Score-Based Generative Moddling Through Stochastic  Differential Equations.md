@@ -257,4 +257,8 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 
 ## Controllable Generation
 
+
+
 ### Imputation
+
+Imputation 是条件采样的一个特殊情况。将 $\Omega(x)$ 和 $\bar \Omega(x)$ 分别表示为 $x$ 的已知和未知维度， 令 $f_{\bar \Omega}(·，t)$ 和 $G_{\bar \Omega}(·， t)$ 表示服从未知维度的 $f(·, t)$ 和 $G(·, t)$。 
