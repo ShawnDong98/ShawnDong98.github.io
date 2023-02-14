@@ -286,4 +286,11 @@ p_t(z(t) \mid \Omega(x(0)) = y) = p_t(z(t) \mid A) &= \int p_t(z(t) \mid \Omega(
 \end{aligned}
 $$
 
-其中 $\hat \Omega(x(t))$ 是从 $p_t(\Omega(x(t)) \mid A)$ 随机采样，
+其中 $\hat \Omega(x(t))$ 是从 $p_t(\Omega(x(t)) \mid A)$ 随机采样，这是一个 tractable 的分布。 因此：
+
+$$
+\begin{aligned}
+\nabla_z \log p_t(z(t) \mid \Omega(x(0)) = y) &\approx \nabla_z \log p_t(z(t) \mid \hat \Omega(x(t))) \\
+&= \nabla_z \log p_t([z(t); \hat \Omega(x(t))])
+\end{aligned}
+$$
