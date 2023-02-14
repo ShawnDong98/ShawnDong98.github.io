@@ -294,3 +294,5 @@ $$
 &= \nabla_z \log p_t([z(t); \hat \Omega(x(t))])
 \end{aligned}
 $$
+
+其中 $[z(t); \hat \Omega(x(t))]$ 表示一个向量 $u(t)$， 使得 $\Omega(u(t)) = \hat \Omega(x(t))$ 并且 $\bar \Omega(u(t)) = z(t)$ ， 保持恒等因为： $\nabla_z \log p_t ([z(t); \hat \Omega(x(t))]) = \nabla_z \log p_t(z(t) \mid \hat \Omega(x(t))) = \nabla_z \log p_t(z(t) \mid \hat \Omega(x(t)))$。 
