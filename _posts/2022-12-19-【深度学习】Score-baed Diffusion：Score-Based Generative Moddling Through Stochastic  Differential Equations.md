@@ -250,3 +250,10 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676295933530.png)
+
+
+
+# Appendix
+
+## Controllable Generation
+
