@@ -22,4 +22,4 @@ tags:
 
 此外，作者提出了一个最大概率目标来学习最佳反向轨迹，该轨迹稳定了训练并改善了恢复结果。
 
-在实验中，作者证明提出的方法在 image deraining, deblurring, 和 denoising 的定量比较中实现了极具竞争力的性能，为两个去污数据集设置了新的最先进的性能。
+在实验中，作者证明提出的方法在 image deraining, deblurring, 和 denoising 的定量比较中实现了极具竞争力的性能，为两个 deraining 数据集设置了新的最先进的性能。
