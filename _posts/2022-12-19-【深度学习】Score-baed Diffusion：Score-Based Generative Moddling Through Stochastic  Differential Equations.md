@@ -358,7 +358,7 @@ $$
 \Sigma_{VP}(t) = I + e^{\int_0^t -\beta(s)ds} (\Sigma_{VP}(0) - I) \tag{26}
 $$
 
-从这里我们可以看到方差 $\Sigma_{VP}(t)$ 总是以 $\Sigma_{VP}(0)$ 为界。此外， $\Sigma_{VP}(t) \equiv I \quad \text{if } \Sigma_{VP}(0) = I$。 
+从这里我们可以看到方差 $\Sigma_{VP}(t)$ 总是以 $\Sigma_{VP}(0)$ 为界。此外， $\Sigma_{VP}(t) \equiv I \quad \text{if } \Sigma_{VP}(0) = I$。 由于这种差异， 我们吧 Eq. (9) 叫做 Variance Exploding (VE) SDE, 并且把 Eq. (11) 叫做 Variance Preserving (VP) SDE。 
 
 
 ## Controllable Generation
