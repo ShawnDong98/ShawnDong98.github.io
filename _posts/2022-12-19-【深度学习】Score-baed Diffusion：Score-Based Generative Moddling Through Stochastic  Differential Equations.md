@@ -366,7 +366,13 @@ $$
 dx = -\frac{1}{2} \beta(t)x dt + \sqrt{\beta(t)(1 - e^{-2 \int_0^t \beta(s)ds})} dw \tag{27}
 $$
 
-遵循标准的推导， 很直觉地发现 $E[x(t)]$ 对于 VP 和 Sub-VP SDEs 都是相同的。
+遵循标准的推导， 很直觉地发现 $E[x(t)]$ 对于 VP 和 Sub-VP SDEs 都是相同的； sub-VP SDEs 的方差函数不同：
+
+$$
+\Sigma_{sub-VP(t)} = I + e^{-2\int_0^t \beta(s)ds}I + e^{-\int_0^t \beta(s)ds}(\Sigma_{sub-VP}(0) - 2I) \tag{28}
+$$
+
+对于过程 ${x(t)}_{t=0}^1$ 的 $\Sigma_{sub-VP}(t) := Cov[x(t)]$ 通过求解 Eq. (27) 得到。
 
 
 ## Controllable Generation
