@@ -285,7 +285,13 @@ $$
 $$
 dx = \{f(x, t) - \nabla · [G(x, t)G(x, t)^\top] - G(x, t)G(x, t)^\top \nabla_x \log p_t(x) - G(x, t)G(x, t)^\top \nabla_x \log p_t(y \mid x)\}dt + G(x, t)d \bar w \tag{18}
 $$
-当一个 SDE 的 drift 和 diffusion 系数不相似的时候，以闭式解的形式计算 transition kernel $p_{0t}(x(t) \mid x(0))$ 非常困难。这阻碍了基于分数的模型的训练， 因为 Eq. (7) 需要知道 $\nabla_{x(t)} \log p_{0t}(x(t) \mid x(0))$。 
+当一个 SDE 的 drift 和 diffusion 系数不相似的时候，以闭式解的形式计算 transition kernel $p_{0t}(x(t) \mid x(0))$ 非常困难。这阻碍了基于分数的模型的训练， 因为 Eq. (7) 需要知道 $\nabla_{x(t)} \log p_{0t}(x(t) \mid x(0))$。 例如， 当使用 sliced score matching 时， Eq. (7) 的训练目标变成：
+
+$$
+\theta^* = \arg \min_\theta E_t \{\lambda(t) E_{x(0)} E_{x(t)}E_{v \thicksim p_v}[\frac{1}{2}\|s_\theta(x(t), t)\|_2^2 + v^\top s_\theta(x(t), t)v]\} \tag{19}
+$$
+
+其中 $\lambda: [0, T] \rightarrow R^+$ 是正加权函数， $t \thicksim U(0, T)$， $E[v] = 0$ 并且 $Cov[v] = I$。 我们总是可以仿真 SDE 从 $p_{0t}(x(t) \mid x(0))$ 里采样， 并且求解 Eq. (19) 来训练时间依赖的基于分数的模型 $s_\theta(x, t)$。 
 
 
 ## Controllable Generation
