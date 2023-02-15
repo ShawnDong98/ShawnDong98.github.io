@@ -303,8 +303,19 @@ $$
 $$
 x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2} z_{i-1}, \quad  i = 1, ..., N \tag{20}
 $$
-其中 $z_{i-1} \thicksim N(0, I)$， $x_0 \thicksim p_{data}$ ， 并且我们引入 $\sigma_0 = 0$ 简化表示。 在 $N \rightarrow \infty$ 的限制下， 马尔科夫链 ${x_i}_{i=1}^N$ 变成一个连续随机过程 ${x(t)}_{t=0}^1$， ${\sigma_i}_{i=1}^N$ 变成一个函数 $\sigma(t)$， $z_i$ 变成 $z(t)$， 其中我们有一个用于索引的连续时间变量 $t \in [0, 1]$， 而不是一个整数 $i \in \{1, 2, ..., N\}$。 对于 $i = 1, 2, ..., N$， 令 $x(\frac{i}{N}) = x_i$， $\sigma(\frac{i}{N}) = \sigma_i$ 和 $z(\frac{i}{N}) = z_i$。 
+其中 $z_{i-1} \thicksim N(0, I)$， $x_0 \thicksim p_{data}$ ， 并且我们引入 $\sigma_0 = 0$ 简化表示。 在 $N \rightarrow \infty$ 的限制下， 马尔科夫链 ${x_i}_{i=1}^N$ 变成一个连续随机过程 ${x(t)}_{t=0}^1$， ${\sigma_i}_{i=1}^N$ 变成一个函数 $\sigma(t)$， $z_i$ 变成 $z(t)$， 其中我们有一个用于索引的连续时间变量 $t \in [0, 1]$， 而不是一个整数 $i \in \{1, 2, ..., N\}$。 对于 $i = 1, 2, ..., N$， 令 $x(\frac{i}{N}) = x_i$， $\sigma(\frac{i}{N}) = \sigma_i$ 和 $z(\frac{i}{N}) = z_i$。 我们用 $\Delta t = \frac{1}{N}$ 和 $t \in {0, \frac{1}{N}, ..., \frac{N-1}{N}}$ 重写 Eq. (20)：
 
+$$
+x(t + \Delta t) = x(t) + \sqrt{\sigma^2(t + \Delta t) - \sigma^2(t)} z(t) \approx x(t) + \sqrt{\frac{d[\sigma^2(t)]}{dt} \Delta t} z(t)
+$$
+
+当 $\Delta t \ll 1$ 时， 约等于成立。 在 $\Delta t \rightarrow 0$  的限制下， 收敛为：
+
+$$
+dx = \sqrt{\frac{d[\sigma^2(t)]}{dt}}dw \tag{21}
+$$
+
+这便是 VE SDE。 
 
 
 ## Controllable Generation
