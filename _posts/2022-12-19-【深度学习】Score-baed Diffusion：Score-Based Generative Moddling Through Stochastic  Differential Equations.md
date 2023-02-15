@@ -303,7 +303,7 @@ $$
 $$
 x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2} z_{i-1}, \quad  i = 1, ..., N \tag{20}
 $$
-其中 $z_{i-1} \thicksim N(0, I)$， $x_0 \thicksim p_{data}$ ， 并且我们引入 $\sigma_0 = 0$ 简化表示。 在 $N \rightarrow \infty$ 的限制下， 马尔科夫链 ${x_i}_{i=1}^N$ 变成一个连续随机过程 ${x(t)}_{t=0}^1$， 
+其中 $z_{i-1} \thicksim N(0, I)$， $x_0 \thicksim p_{data}$ ， 并且我们引入 $\sigma_0 = 0$ 简化表示。 在 $N \rightarrow \infty$ 的限制下， 马尔科夫链 ${x_i}_{i=1}^N$ 变成一个连续随机过程 ${x(t)}_{t=0}^1$， ${\sigma_i}_{i=1}^N$ 变成一个函数 $\sigma(t)$， $z_i$ 变成 $z(t)$， 其中我们有一个用于索引的连续时间变量 $t \in [0, 1]$， 而不是一个整数 $i \in \{1, 2, ..., N\}$。 对于 $i = 1, 2, ..., N$， 令 $x(\frac{i}{N}) = x_i$， $\sigma(\frac{i}{N}) = \sigma_i$ 和 $z(\frac{i}{N}) = z_i$。 
 
 
 
