@@ -259,7 +259,13 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 
 ## The Fraamework for More General SDEs
 
-在正文中，我们介绍了基于简化的SDE Eq. (5) 的框架，其中扩散系数独立于 $x(t)$。 
+在正文中，我们介绍了基于简化的SDE Eq. (5) 的框架，其中扩散系数独立于 $x(t)$。 事实证明，所提出的框架可以扩展到更一般的扩散系数。我们可以以如下形式考虑 SDEs：
+
+$$
+dx = f(x, t)dt + G(x, t)dw \tag{15}
+$$
+其中 $f(·, t): R^d \rightarrow R^d$ 和 $G(·, t): R^d \rightarrow R^{d \times d}$。 
+
 
 ## Controllable Generation
 
