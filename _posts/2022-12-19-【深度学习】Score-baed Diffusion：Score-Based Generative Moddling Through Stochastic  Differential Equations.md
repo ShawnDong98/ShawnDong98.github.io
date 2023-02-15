@@ -293,6 +293,10 @@ $$
 
 其中 $\lambda: [0, T] \rightarrow R^+$ 是正加权函数， $t \thicksim U(0, T)$， $E[v] = 0$ 并且 $Cov[v] = I$。 我们总是可以仿真 SDE 从 $p_{0t}(x(t) \mid x(0))$ 里采样， 并且求解 Eq. (19) 来训练时间依赖的基于分数的模型 $s_\theta(x, t)$。 
 
+## VE, VP and Sub-VP SDEs
+
+
+
 
 ## Controllable Generation
 
