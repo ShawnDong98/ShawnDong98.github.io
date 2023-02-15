@@ -295,7 +295,7 @@ $$
 
 ## VE, VP and Sub-VP SDEs
 
-
+下面我们提供了详细的推导，以证明SMLD和DDPM的噪声扰动分别是 Variance Exploding(VE) 和Variance Preserving(VP) SDE的离散化。
 
 
 ## Controllable Generation
