@@ -317,6 +317,13 @@ $$
 
 这便是 VE SDE。 
 
+对于 DDPM 中是用的扰动核 ${p_{\alpha_i}(x \mid x_0)}_{i=1}^N$， 离散马尔科夫链为：
+
+$$
+x_i = \sqrt{1- \beta_i} x_{i-1} + \sqrt{\beta_i} z_{i-1}, \quad i=1, ..., N \tag{22}
+$$
+其中 $z_{i-1} \thicksim N(0, I)$。 
+
 
 ## Controllable Generation
 
