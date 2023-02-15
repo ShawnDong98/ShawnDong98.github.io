@@ -298,6 +298,15 @@ $$
 下面我们提供了详细的推导，以证明 SMLD 和 DDPM 的噪声扰动分别是 Variance Exploding(VE) 和Variance Preserving(VP) SDEs 的离散化。我们还引入了 Sub-VP SDE，这是对 VP SDE的修改，通常在样品质量和似然方面实现更好的性能。
 
 
+首先， 当使用总共 N 个噪声尺度， 每个 SMLD 的扰动核 $p_{\sigma_i}(x \mid x_0)$ 可以通过下面的马尔科夫链推导得到：
+
+$$
+x_i = x_{i-1} + \sqrt{\sigma_i^2 - \sigma_{i-1}^2} z_{i-1}, \quad  i = 1, ..., N \tag{20}
+$$
+其中 $z_{i-1} \thicksim N(0, I)$， $x_0 \thicksim p_{data}$ ， 并且我们引入 $\sigma_0 = 0$ 简化表示。。。
+
+
+
 ## Controllable Generation
 
 
