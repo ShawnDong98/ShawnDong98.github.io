@@ -360,6 +360,14 @@ $$
 
 从这里我们可以看到方差 $\Sigma_{VP}(t)$ 总是以 $\Sigma_{VP}(0)$ 为界。此外， $\Sigma_{VP}(t) \equiv I \quad \text{if } \Sigma_{VP}(0) = I$。 由于这种差异， 我们吧 Eq. (9) 叫做 Variance Exploding (VE) SDE, 并且把 Eq. (11) 叫做 Variance Preserving (VP) SDE。 
 
+受 VP SDE 的启发，作者提出了一个新的SDE，称为  Sub-VP SDE，即：
+
+$$
+dx = -\frac{1}{2} \beta(t)x dt + \sqrt{\beta(t)(1 - e^{-2 \int_0^t \beta(s)ds})} dw \tag{27}
+$$
+
+
+
 
 ## Controllable Generation
 
