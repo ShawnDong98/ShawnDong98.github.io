@@ -267,6 +267,13 @@ $$
 其中 $f(·, t): R^d \rightarrow R^d$ 和 $G(·, t): R^d \rightarrow R^{d \times d}$。 接下来解释贯穿全文的 SDEs。 
 
 
+反向时间 SDE 有下式给定：
+
+$$
+dx = \{f(x, t) - \nabla · [G(x, t)G(x, t)^\top] - G(x, t)G(x, t)^\top \nabla_x \log p_t(x)\}dt + G(x, t)d\bar w \tag{16}
+$$
+其中，我们定义 $\nabla · F(x) := (\nabla · f^1(x), \nabla · f^2(x)， ..., \nabla f^d(x))^\top$ 对于 matrix-valued 函数 $F(x):= (f^1(x), f^2(x), ..., f^d(x))$ 贯穿全文。
+
 ## Controllable Generation
 
 
