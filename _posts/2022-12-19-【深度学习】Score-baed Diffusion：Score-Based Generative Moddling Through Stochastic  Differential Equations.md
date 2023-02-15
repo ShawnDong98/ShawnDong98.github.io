@@ -358,7 +358,7 @@ $$
 \Sigma_{VP}(t) = I + e^{\int_0^t -\beta(s)ds} (\Sigma_{VP}(0) - I) \tag{26}
 $$
 
-从这里我们可以看到方差 $\Sigma_{VP}(t)$ 总是以 $\Sigma_{VP}(0)$ 为界。
+从这里我们可以看到方差 $\Sigma_{VP}(t)$ 总是以 $\Sigma_{VP}(0)$ 为界。此外， $\Sigma_{VP}(t) \equiv I \quad \text{if } \Sigma_{VP}(0) = I$。 
 
 
 ## Controllable Generation
