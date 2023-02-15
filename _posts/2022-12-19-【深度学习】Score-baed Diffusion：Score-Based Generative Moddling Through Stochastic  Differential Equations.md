@@ -366,7 +366,7 @@ $$
 dx = -\frac{1}{2} \beta(t)x dt + \sqrt{\beta(t)(1 - e^{-2 \int_0^t \beta(s)ds})} dw \tag{27}
 $$
 
-
+遵循标准的推导， 很直觉地发现 $E[x(t)]$ 对于 VP 和 Sub-VP SDEs 都是相同的。
 
 
 ## Controllable Generation
