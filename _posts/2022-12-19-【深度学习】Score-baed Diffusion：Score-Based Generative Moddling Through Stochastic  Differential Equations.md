@@ -333,8 +333,21 @@ $$
 在 $N \rightarrow \infty$ 的限制下， ${\bar \beta_i}_{i=1}^N$ 变成一个由 $t \in [0, 1]$ 索引的函数 $\beta(t)$。 令 $\beta(\frac{i}{N}) = \bar \beta_i, x(\frac{1}{N}) = x_i, z(\frac{i}{N}) = z_i$。 我们可以用 $\Delta t = \frac{1}{N}$ 和 $t \in {0, 1, ..., \frac{N-1}{N}}$ 重写 Eq. (23) 的马尔科夫链：
 
 $$
-x(t + \Delta t)
+\begin{aligned}
+x(t + \Delta t) &= \sqrt{1 - \beta(t + \Delta t) \Delta t} x(t) + \sqrt{\beta(t + \Delta t) \Delta t} z(t)  \\
+&\approx x(t) - \frac{1}{2} \beta(t + \Delta t) \Delta t x(t) + \sqrt{\beta(t + \Delta t)\Delta t} z(t) \\
+&\approx x(t) - \frac{1}{2}\beta(t)\Delta t x(t) + \sqrt{\beta(t)\Delta t} z(t)
+\end{aligned} \tag{24}
 $$
+
+当 $\Delta t \ll 1$ 时， 约等于成立。 因此， 在 $\Delta t \rightarrow 0$ 的限制下， Eq. (24) 收敛到如下的 VP SDE： 
+
+$$
+dx = -\frac{1}{2} \beta(t) x dt + \sqrt{\beta(t)} dw \tag{25}
+$$
+
+到目前为止，我们已经证明，SMLD 和 DDPM 中使用的噪声扰动分别对应于 VE 和 VP SDE 的离散化。
+
 
 
 ## Controllable Generation
