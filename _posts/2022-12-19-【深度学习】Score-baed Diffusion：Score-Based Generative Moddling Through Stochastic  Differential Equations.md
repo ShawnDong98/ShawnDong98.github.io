@@ -322,7 +322,13 @@ $$
 $$
 x_i = \sqrt{1- \beta_i} x_{i-1} + \sqrt{\beta_i} z_{i-1}, \quad i=1, ..., N \tag{22}
 $$
-其中 $z_{i-1} \thicksim N(0, I)$。 当 $N \rightarrow \infty$ ， 为了得到马尔科夫链的限制， 我们定义一个辅助噪声尺度集合 $\{\bar \beta_i = N \beta_i\}_{i=1}^N$。 
+其中 $z_{i-1} \thicksim N(0, I)$。 当 $N \rightarrow \infty$ ， 为了得到马尔科夫链的限制， 我们定义一个辅助噪声尺度集合 $\{\bar \beta_i = N \beta_i\}_{i=1}^N$， 然后重写 Eq. (22) 如下：
+
+$$
+x_i = \sqrt{q - \frac{\bar \beta_i}{N}} x_{i-1} + \sqrt{\frac{\bar \beta_i}{N}} z_{i-1}, \quad i = 1, ..., N \tag{23}
+$$
+
+在 $N \rightarrow \infty$ 的限制下， ${\bar \beta_i}_{i=1}^N$ 变成一个由 $t \in [0, 1]$ 索引的函数 $\beta(t)$。 令 $\beta(\frac{i}{N}) = \bar \beta_i$， 
 
 
 ## Controllable Generation
