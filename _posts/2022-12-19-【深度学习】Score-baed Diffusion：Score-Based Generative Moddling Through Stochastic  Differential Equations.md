@@ -255,6 +255,8 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 
 # Appendix
 
+所提出的框架允许具有 matrix-valued 扩散系数的一般 SDE，该系数取决于状态，我们在附录A中对此进行了详细讨论。我们在附录B中给出了 VE、VP 和 sub-VP SDE 的完整推导，并在附录C中讨论如何从从业者的角度使用它们。我们详细阐述了附录D中框架的概率流表述，包括概率流ODE的推导（附录D.1）、精确似然计算（附录D.2）、具有固定离散化策略的概率流采样（附录D.3）、黑盒ODE求解器采样（附录D.4）和唯一可识别编码的实验验证（附录D.5）。我们在附录E给出了中反向扩散采样器、附录F中SMLD模型的DDPM型祖先采样器和附录G中的预测器校正器采样器的完整描述。
+
 ## Controllable Generation
 
 
@@ -296,3 +298,5 @@ $$
 $$
 
 其中 $[z(t); \hat \Omega(x(t))]$ 表示一个向量 $u(t)$， 使得 $\Omega(u(t)) = \hat \Omega(x(t))$ 并且 $\bar \Omega(u(t)) = z(t)$ ， 保持恒等因为： $\nabla_z \log p_t ([z(t); \hat \Omega(x(t))]) = \nabla_z \log p_t(z(t) \mid \hat \Omega(x(t))) = \nabla_z \log p_t(z(t) \mid \hat \Omega(x(t)))$。 
+
+
