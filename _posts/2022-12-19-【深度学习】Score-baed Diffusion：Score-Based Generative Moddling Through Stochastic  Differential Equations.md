@@ -328,7 +328,7 @@ $$
 x_i = \sqrt{q - \frac{\bar \beta_i}{N}} x_{i-1} + \sqrt{\frac{\bar \beta_i}{N}} z_{i-1}, \quad i = 1, ..., N \tag{23}
 $$
 
-在 $N \rightarrow \infty$ 的限制下， ${\bar \beta_i}_{i=1}^N$ 变成一个由 $t \in [0, 1]$ 索引的函数 $\beta(t)$。 令 $\beta(\frac{i}{N}) = \bar \beta_i$， 
+在 $N \rightarrow \infty$ 的限制下， ${\bar \beta_i}_{i=1}^N$ 变成一个由 $t \in [0, 1]$ 索引的函数 $\beta(t)$。 令 $\beta(\frac{i}{N}) = \bar \beta_i, x(\frac{1}{N}) = x_i, z(\frac{i}{N}) = z_i$。 
 
 
 ## Controllable Generation
