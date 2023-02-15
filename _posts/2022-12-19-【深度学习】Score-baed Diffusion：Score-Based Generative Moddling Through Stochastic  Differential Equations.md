@@ -322,7 +322,7 @@ $$
 $$
 x_i = \sqrt{1- \beta_i} x_{i-1} + \sqrt{\beta_i} z_{i-1}, \quad i=1, ..., N \tag{22}
 $$
-其中 $z_{i-1} \thicksim N(0, I)$。 
+其中 $z_{i-1} \thicksim N(0, I)$。 当 $N \rightarrow \infty$ ， 为了得到马尔科夫链的限制， 我们定义一个辅助噪声尺度集合 $\{\bar \beta_i = N \beta_i\}_{i=1}^N$。 
 
 
 ## Controllable Generation
