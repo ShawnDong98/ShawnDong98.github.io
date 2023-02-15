@@ -352,8 +352,13 @@ $$
 \frac{d \Sigma_{VP}(t)}{dt} = \beta(t)(I - \Sigma_{VP}(t))
 $$
 
+其中 $\Sigma_{VP}(t) := Cov[x(t)] \quad \text{for } {x(t)}_{t=0}^1$ 服从一个 VP  SDE。 求解这个 ODE, 我们得到:
 
+$$
+\Sigma_{VP}(t) = I + e^{\int_0^t -\beta(s)ds} (\Sigma_{VP}(0) - I) \tag{26}
+$$
 
+从这里我们可以看到方差 $\Sigma_{VP}(t)$ 总是以 $\Sigma_{VP}(0)$ 为界。
 
 
 ## Controllable Generation
