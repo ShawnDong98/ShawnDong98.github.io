@@ -264,7 +264,7 @@ Imputation 是条件采样的特殊情况。假设我们有一个不完整的数
 $$
 dx = f(x, t)dt + G(x, t)dw \tag{15}
 $$
-其中 $f(·, t): R^d \rightarrow R^d$ 和 $G(·, t): R^d \rightarrow R^{d \times d}$。 
+其中 $f(·, t): R^d \rightarrow R^d$ 和 $G(·, t): R^d \rightarrow R^{d \times d}$。 接下来解释贯穿全文的 SDEs。 
 
 
 ## Controllable Generation
