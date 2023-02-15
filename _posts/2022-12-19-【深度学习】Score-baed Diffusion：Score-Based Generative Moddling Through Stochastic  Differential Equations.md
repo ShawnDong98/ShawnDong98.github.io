@@ -346,7 +346,7 @@ $$
 dx = -\frac{1}{2} \beta(t) x dt + \sqrt{\beta(t)} dw \tag{25}
 $$
 
-到目前为止，我们已经证明，SMLD 和 DDPM 中使用的噪声扰动分别对应于 VE 和 VP SDE 的离散化。
+到目前为止，我们已经证明，SMLD 和 DDPM 中使用的噪声扰动分别对应于 VE 和 VP SDE 的离散化。当 $t \rightarrow \infty$ 时， VE SDE 总是产生方差爆炸的过程。 而 VP SDE 产生方差有界的过程。
 
 
 
