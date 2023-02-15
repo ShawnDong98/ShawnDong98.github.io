@@ -285,7 +285,7 @@ $$
 $$
 dx = \{f(x, t) - \nabla · [G(x, t)G(x, t)^\top] - G(x, t)G(x, t)^\top \nabla_x \log p_t(x) - G(x, t)G(x, t)^\top \nabla_x \log p_t(y \mid x)\}dt + G(x, t)d \bar w \tag{18}
 $$
-当一个 SDE 的 drift 和 diffusion 系数不相似的时候，以闭式解的形式计算 transition kernel $p_{0t}(x(t) \mid x(0))$ 非常困难。
+当一个 SDE 的 drift 和 diffusion 系数不相似的时候，以闭式解的形式计算 transition kernel $p_{0t}(x(t) \mid x(0))$ 非常困难。这阻碍了基于分数的模型的训练， 因为 Eq. (7) 需要知道 $\nabla_{x(t)} \log p_{0t}(x(t) \mid x(0))$。 
 
 
 ## Controllable Generation
