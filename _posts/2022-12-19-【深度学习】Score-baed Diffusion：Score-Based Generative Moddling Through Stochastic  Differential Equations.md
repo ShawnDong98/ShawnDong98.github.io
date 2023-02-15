@@ -274,6 +274,19 @@ dx = \{f(x, t) - \nabla · [G(x, t)G(x, t)^\top] - G(x, t)G(x, t)^\top \nabla_x 
 $$
 其中，我们定义 $\nabla · F(x) := (\nabla · f^1(x), \nabla · f^2(x)， ..., \nabla f^d(x))^\top$ 对于 matrix-valued 函数 $F(x):= (f^1(x), f^2(x), ..., f^d(x))$ 贯穿全文。
 
+对应于 Eq. (15) 的概率流 ODE 有如下形式， 推导见附录 D.1:
+
+$$
+dx = \{f(x, t) - \frac{1}{2} \nabla · [G(x, t) G(x, t)^\top ] - \frac{1}{2} G(x, t) G(x, t)^\top \nabla_x \log p_t(x)\}dt \tag{17}
+$$
+
+最终对于通用 SDE Eq. (15) 的条件生成， 我们可以求解如下的条件反向时间 SDE， 细节在附录 I：
+
+$$
+dx = \{f(x, t) - \nabla · [G(x, t)G(x, t)^\top] - G(x, t)G(x, t)^\top \nabla_x \log p_t(x) - G(x, t)G(x, t)^\top \nabla_x \log p_t(y \mid x)\}dt + G(x, t)d \bar w \tag{18}
+$$
+
+
 ## Controllable Generation
 
 
