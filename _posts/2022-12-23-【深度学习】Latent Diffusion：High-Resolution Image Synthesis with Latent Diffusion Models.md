@@ -148,3 +148,4 @@ $$
 
 ### Implementations of $\tau_\theta$ for conditional LDMs
 
+对于 text-to-image 和 layout-to-image 生成的实验， 我们实现条件器 $\tau_\theta$
