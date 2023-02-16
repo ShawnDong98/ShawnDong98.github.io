@@ -139,3 +139,12 @@ $$
 基于这些初步结果，在没有注意力的情况下，在VQ正则化第一阶段的隐空间中训练了一个更大的扩散融合模型（在表7中很大）。随后[15]，该扩散模型的UNet在其特征层次结构的三个级别上使用注意力层，即用于上下采样的BigGAN残差块，并具有387M参数，而不是215M。经过培训，我们注意到 $256^2$ 和 $512^2$ 分辨率生产的样本质量存在差异，我们假设这是额外的注意力模块造成的。然而，在 $512^2$ 分辨率下对模型进行半个 epoch 的微调，可以使模型适应新特征统计信息，并在图像绘画上设置新的最先进的FID。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1672649582661.png)
+
+
+# Appendix 
+
+
+##  Implementation Details
+
+### Implementations of $\tau_\theta$ for conditional LDMs
+
