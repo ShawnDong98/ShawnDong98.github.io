@@ -74,5 +74,5 @@ $$
 \lambda = \frac{\nabla_{G_L}[L_{rec}]}{\nabla_{G_L}[L_{GAN}] + \delta} \tag{7}
 $$
 
-
+其中 $L_{rec}$ 是感知重建损失， $\nabla_{G_L}[·]$ 表示输入的梯度。
 
