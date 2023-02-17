@@ -78,4 +78,9 @@ $$
 
 ## Learning the Composition of Images with Transformers
 
-**Latent Transformers** 有了 $E$ 和 $G$ 可用， 我们现在根据图像的编码中码表索引来表示图像。更具体来说， 图像 $x$ 量化的编码由 $z_q = q(E(x)) \in R^{h \times w \times n_z}$ 给定， 并且等价于一组来自码表的索引序列 $s \in {0, ..., \mid Z \mid - 1}^{h \times w}$ 。 
+**Latent Transformers** 有了 $E$ 和 $G$ 可用， 我们现在根据图像的编码中码表索引来表示图像。更具体来说， 图像 $x$ 量化的编码由 $z_q = q(E(x)) \in R^{h \times w \times n_z}$ 给定， 并且等价于一组来自码表的索引序列 $s \in {0, ..., \mid Z \mid - 1}^{h \times w}$ ， 其可以通过索引替换码表 $Z$ 中的编码得到：
+
+$$
+s_{ij} = k \text{ such that } (z_q)_{ij} = z_k \tag{8}
+$$
+
