@@ -49,3 +49,11 @@ $$
 Eq. (3) 中的不可微量化操作是通过 straight-through gradient estimator 实现的， 只需将梯度从解码器复制到编码器， 因此，模型和码表可以通过损失函数进行端到端训练。
 
 
+$$
+L_{VQ}(E, G, Z) = \| x - \hat x\|^2 + \|sg[E(x)] - z_q \|_2^2 + \|sg[z_q] - E(x) \|_2^2 \tag{4}
+$$
+
+
+$L_{rec} = \| x - \hat x \|^2$ 是重构损失， $sg[·]$ 表示 stop-gradient 操作， $\|sg[z_q] - E(x)\|_2^2$ 是所谓的 "commitment loss"。 
+
+
