@@ -62,6 +62,11 @@ $$
 L_{GAN}(\{E, G, Z\}, D) = [\log D(x) + \log (1 - D(\hat x))] \tag{5}
 $$
 
+完整地目标如下：
+
+$$
+L = \arg \min_{E, G, Z} \max_D E_{x \thicksim p(x)}[L_{VQ}(E, G, Z) + \lambda L_{GAN}(\{E, G, Z\}, D)] \tag{6}
+$$
 
 
 
