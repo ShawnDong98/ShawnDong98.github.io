@@ -46,6 +46,6 @@ $$
 \hat x = G(z_q) = G(q(E(x))) \tag{3}
 $$
 
-
+Eq. (3) 中的不可微量化操作是通过 straight-through gradient estimator 实现的， 只需将梯度从解码器复制到编码器， 因此，模型和码表可以通过损失函数进行端到端训练。
 
 
