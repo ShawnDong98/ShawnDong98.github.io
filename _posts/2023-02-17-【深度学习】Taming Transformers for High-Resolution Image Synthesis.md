@@ -101,4 +101,4 @@ $$
 p(s \mid c) = \prod_i p(s_i \mid s_{<i}, c) \tag{10}
 $$
 
-如果条件信息 $c$ 具有空间范围, 我们首先学习另一个 VQGAN 得到一个基于索引的表征 $r \in {0, ..., \mid Z_c \mid - 1}^{h_c \times w_c}$。 
+如果条件信息 $c$ 具有空间范围, 我们首先学习另一个 VQGAN 得到一个基于索引的表征 $r \in {0, ..., \mid Z_c \mid - 1}^{h_c \times w_c}$， 训练好的码表为 $Z_c$。 由于 Transformer 的自回归结构， 我们可以预先准备 $r$ 到 $s$ 并且限制对 $p(s_i \mid s_{<i}, r)$ 负对数似然的计算。 这种 "decoder-only" 的策略也成功应用于 text-summarization 任务。
