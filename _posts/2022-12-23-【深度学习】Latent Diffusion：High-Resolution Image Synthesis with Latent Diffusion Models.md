@@ -144,12 +144,15 @@ $$
 # Appendix 
 
 
-##  Implementation Details
+## E. Implementation Details and Hyperparameters
 
-### Implementations of $\tau_\theta$ for conditional LDMs
+### E.2. Implementation Details
+
+#### E.2.1 Implementations of $\tau_\theta$ for conditional LDMs
 
 对于 text-to-image 和 layout-to-image 生成的实验， 我们实现条件器 $\tau_\theta$ 作为一个 unmask 的 Transformer， 其处理一个 tokenized 的输入 $y$， 产生一个输出 $\xi := \tau_\theta(y)$， 其中 $\xi \in R^{M \times d_\tau}$。 更具体地说， Transformer 由 N 个 Transformer Block 实现，这些 Transformer Block 由全局自注意层、层归一化和 position-wise MLP组成，如下所示：
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676541510169.png)
 
 有了 $\xi$， 条件通过 图3所示 的 cross-attention 机制映射入 UNet。 
+
