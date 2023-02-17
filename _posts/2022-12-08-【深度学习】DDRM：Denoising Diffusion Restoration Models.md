@@ -40,3 +40,8 @@ DDRM还很好地泛化到ImageNet训练集分布之外的自然图像。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1670464430613.png)
 作者通过与各种竞争性无监督方法进行比较，如深度生成先验、SNIPS和去噪正则化，展示了DDRM的有效性。在 ImageNet 样本中，DDRM在PSNR和KID度量的无噪声超分辨率和去模糊下大多优于神经网络基线，当它位居第二时，其NFE的效率至少高出50倍。当涉及观测噪声时，DDRM的优势会变得更大，因为迭代方法产生的噪声瑕疵不会出现在该情况下。
+
+
+# Denoising Diffusion Restoration Models
+
+基于后验采样的逆问题解经常面临两难境地：无监督方法适用于一般问题，但效率低下，而监督方法有效，但只能解决特定问题。
