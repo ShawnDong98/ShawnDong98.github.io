@@ -151,7 +151,7 @@ $$
 
 #### D.6.1 LDM-BSR: General Purpose SR Model via Diverse Image Degradation
 
-为了评估 LDM-SR 的泛化能力，我们将其应用于 Conditional ImageNet 模型的合成 LDM 样本和从互联网上爬出来的图像。有趣的是，我们观察到，仅使用 bicubicly 下采样条件训练的 LDM-SR 不能很好地推广到不遵循这种预处理的图像。
+为了评估 LDM-SR 的泛化能力，我们将其应用于 Conditional ImageNet 模型的合成 LDM 样本和从互联网上爬出来的图像。有趣的是，我们观察到，仅使用 bicubicly 下采样条件训练的 LDM-SR 不能很好地泛化到不遵循这种预处理的图像。因此，为了获得各种现实世界图像的超分辨率模型，该模型可以包含相机噪声、压缩伪影、模糊和插值的复杂叠加，我们用[105]的退化流程取代了 LDM-SR 中的 bicubic 下采样操作。
 
 
 ## E. Implementation Details and Hyperparameters
