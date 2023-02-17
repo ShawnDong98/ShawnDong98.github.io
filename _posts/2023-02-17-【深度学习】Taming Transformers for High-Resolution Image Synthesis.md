@@ -68,5 +68,11 @@ $$
 L = \arg \min_{E, G, Z} \max_D E_{x \thicksim p(x)}[L_{VQ}(E, G, Z) + \lambda L_{GAN}(\{E, G, Z\}, D)] \tag{6}
 $$
 
+自适应权重 $\lambda$ 根据下式计算：
+
+$$
+\lambda = \frac{\nabla_{G_L}[L_{rec}]}{\nabla_{G_L}[L_{GAN}] + \delta} \tag{7}
+$$
+
 
 
