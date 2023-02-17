@@ -149,7 +149,9 @@ $$
 
 为了更好地在像素空间中将 LDM和扩散模型之间进行比较，我们从表5中扩展了我们的分析，将训练为相同步骤和参数数量为相当的扩散模型与LDM比较。这种比较的结果显示在表11的最后两行中，并表明LDM实现了更好的性能，同时允许更快的采样。图20进行了定性比较，显示了像素空间中LDM和扩散模型的随机样本。
 
+#### D.6.1 LDM-BSR: General Purpose SR Model via Diverse Image Degradation
 
+为了评估 LDM-SR 的泛化能力，我们将其应用于 Conditional ImageNet 模型的合成 LDM 样本和从互联网上爬出来的图像。有趣的是，我们观察到，仅使用 bicubicly 下采样条件训练的 LDM-SR 不能很好地推广到不遵循这种预处理的图像。
 
 
 ## E. Implementation Details and Hyperparameters
