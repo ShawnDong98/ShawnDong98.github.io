@@ -104,4 +104,4 @@ $$
 如果条件信息 $c$ 具有空间范围, 我们首先学习另一个 VQGAN 得到一个基于索引的表征 $r \in {0, ..., \mid Z_c \mid - 1}^{h_c \times w_c}$， 训练好的码表为 $Z_c$。 由于 Transformer 的自回归结构， 我们可以预先准备 $r$ 到 $s$ 进而限制对 $p(s_i \mid s_{<i}, r)$ 负对数似然的计算。 这种 "decoder-only" 的策略也成功应用于 text-summarization 任务。
 
 
-**Generating High-Resolution Images** 变压器的注意力机制限制了其输入 $s$ 的序列长度 $h \times w$。当我们在 VQGAN 采用 $m$ 个降采样块来减小图像 $H \times W$ 到 $h = H/w^m \times w = W / 2^m$，我们观察到超过某个关键的 $m$ 值后会带来重构质量的下降， 具体取决于数据集。
+**Generating High-Resolution Images** 变压器的注意力机制限制了其输入 $s$ 的序列长度 $h \times w$。当我们在 VQGAN 采用 $m$ 个降采样块来减小图像 $H \times W$ 到 $h = H/w^m \times w = W / 2^m$，我们观察到超过某个关键的 $m$ 值后会带来重构质量的下降， 具体取决于数据集。为了在百万像素状态下生成图像，我们必须按 patch 和裁剪图像，以便在训练期间将 $s$ 的长度限制在最大可行的大小。 
