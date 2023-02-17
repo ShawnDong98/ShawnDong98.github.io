@@ -56,6 +56,6 @@ $$
 
 $L_{rec} = \| x - \hat x \|^2$ 是重构损失， $sg[·]$ 表示 stop-gradient 操作， $\|sg[z_q] - E(x)\|_2^2$ 是所谓的 "commitment loss"。 
 
-**Learning a Perceptually Rich Codebook** 使用 Transformer 将图像表示为潜在图像组成的分布，需要我们突破压缩的限制，并学习丰富的码表。为此，我们提出了VQ-GAN，这是原始VQVAE的变体，并使用判别器和感知损失来以更高的压缩率保持良好的感知质量。
+**Learning a Perceptually Rich Codebook** 使用 Transformer 将图像表示为潜在图像组成的分布，需要我们突破压缩的限制，并学习丰富的码表。为此，我们提出了VQ-GAN，这是原始VQVAE的变体，并使用判别器和感知损失来以更高的压缩率保持良好的感知质量。请注意，这与之前在  shallow quantization 模型之上应用基于像素和基于 Transformer 的自回归模型的工作形成鲜明对比。
 
 
