@@ -93,3 +93,6 @@ $$
 L_{Transformer} = E_{x \thicksim p(x)}[- \log p(s)] \tag{9}
 $$
 
+
+
+**Conditioned Synthesis** 在许多图像生成任务中，用户要求通过提供额外信息来控制生成过程。
