@@ -56,4 +56,6 @@ $$
 
 $L_{rec} = \| x - \hat x \|^2$ 是重构损失， $sg[·]$ 表示 stop-gradient 操作， $\|sg[z_q] - E(x)\|_2^2$ 是所谓的 "commitment loss"。 
 
+**Learning a Perceptually Rich Codebook** 使用 Transformer 将图像表示为潜在图像组成的分布，需要我们突破理解的极限，并学习丰富的码表。
+
 
