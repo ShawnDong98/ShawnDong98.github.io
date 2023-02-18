@@ -178,4 +178,4 @@ $$
 L_{\text{Autoencoder}} = \min_{E, D} \max_{\psi} (L_{rec}(x, D(E(x))) - L_{adv}(D(E(x))) + \log D_{\psi}(x) + L_{reg}(x; E, D)) \tag{25}
 $$
 
-**DM Training in Latent Space** 请注意，对于在学习的隐空间上训练扩散模型，我们在学习时再次区分两种情况 $p(z)$ 或者 $p(z \mid y)。 $
+**DM Training in Latent Space** 请注意，对于在学习的隐空间上训练扩散模型，我们在学习时再次区分两种情况 $p(z)$ 或者 $p(z \mid y)$。 
