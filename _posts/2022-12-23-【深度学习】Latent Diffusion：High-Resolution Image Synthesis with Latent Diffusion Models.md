@@ -166,3 +166,8 @@ $$
 
 有了 $\xi$， 条件通过 图3所示 的 cross-attention 机制映射入 UNet。 
 
+
+
+## G. Details on Autoencoder Models
+
+我们以对抗训练的方式训练所有的自编码器模型
