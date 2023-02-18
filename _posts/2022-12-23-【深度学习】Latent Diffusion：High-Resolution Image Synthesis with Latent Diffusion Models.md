@@ -170,4 +170,4 @@ $$
 
 ## G. Details on Autoencoder Models
 
-我们以对抗训练的方式训练所有的自编码器模型， 因此，对优化基于 Patch 的判别器 $D_\psi$，以区分原始图像和重建 $D(E(x))$。为了避免任意缩放隐空间，我们将隐变量 $z$ 正则化为零中心，并通过引入正则化损失项 $L_{reg}$ 获得小方差。 我们研究了两种不同的正则化方法：(i) 一个在 $q_E(z \mid x) = N(z; E_\mu, E_{\sigma^2})$ 和 标准正态分布 $N(z; (0, 1))$ 之间的 low-weighted Kullback-Leibler 项， 作为一个标准自编码器； (ii) 通过学习 $\mid Z \mid$ 不同样本的码表使用 vector quantization 层正则化隐空间。
+我们以对抗训练的方式训练所有的自编码器模型， 因此，对优化基于 Patch 的判别器 $D_\psi$，以区分原始图像和重建 $D(E(x))$。为了避免任意缩放隐空间，我们将隐变量 $z$ 正则化为零中心，并通过引入正则化损失项 $L_{reg}$ 获得小方差。 我们研究了两种不同的正则化方法：(i) 一个在 $q_E(z \mid x) = N(z; E_\mu, E_{\sigma^2})$ 和 标准正态分布 $N(z; (0, 1))$ 之间的 low-weighted Kullback-Leibler 项， 作为一个标准自编码器； (ii) 通过学习 $\mid Z \mid$ 不同样本的码表使用 vector quantization 层正则化隐空间。为了获得高保真重建，我们对这两种情况都只使用非常小的正则化。 我们将 KL 项以系数 $~ 10^{-6}$ 加权或选择一个高维度的码表 $\mid Z \mid$。 
