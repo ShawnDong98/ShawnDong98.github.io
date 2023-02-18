@@ -178,4 +178,9 @@ $$
 L_{\text{Autoencoder}} = \min_{E, D} \max_{\psi} (L_{rec}(x, D(E(x))) - L_{adv}(D(E(x))) + \log D_{\psi}(x) + L_{reg}(x; E, D)) \tag{25}
 $$
 
-**DM Training in Latent Space** 请注意，对于在学习的隐空间上训练扩散模型，我们在学习时再次区分两种情况 $p(z)$ 或者 $p(z \mid y)$。 
+**DM Training in Latent Space** 请注意，对于在学习的隐空间上训练扩散模型，我们在学习时再次区分两种情况 $p(z)$ 或者 $p(z \mid y)$： (i) 对于 KL 正则的隐空间， 我们采样 $z = E_\mu(x) + E_{\sigma}(x) · \epsilon =: E(x)$, 其中 $\epsilon \thicksim N(0, 1)$。 在重新缩放隐变量时，我们估计了分量方差：
+
+$$
+\hat \sigma^2 = \frac{1}{bchw} \sum_{b, c, h, w} (z^{b, c, h, w} - \hat \mu)^2
+$$
+
