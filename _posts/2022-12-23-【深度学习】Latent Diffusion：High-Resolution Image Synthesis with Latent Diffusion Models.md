@@ -184,4 +184,4 @@ $$
 \hat \sigma^2 = \frac{1}{bchw} \sum_{b, c, h, w} (z^{b, c, h, w} - \hat \mu)^2
 $$
 
-来自于数据的第一批量， 其中 $\hat \mu =\frac{1}{bchw} \sum_{b, c, h, w} z^{b, c, h, w}$。 $E$ 的输出被缩放以便缩放后的隐变量有单位标准差,  $z \leftarrow \frac{z}{\hat \sigma} = \frac{E(x)}{\hat \sigma}$ 
+来自于数据的第一批量， 其中 $\hat \mu =\frac{1}{bchw} \sum_{b, c, h, w} z^{b, c, h, w}$。 $E$ 的输出被缩放以便缩放后的隐变量有单位标准差,  $z \leftarrow \frac{z}{\hat \sigma} = \frac{E(x)}{\hat \sigma}$ 。 (ii) 对于 VQ-regularized 隐空间， 我们在量化层前提取 $z$， 并且将量化操作加入解码器， 例如将其作为 $D$ 的第一层。
