@@ -98,6 +98,9 @@ $$
 表8显示了本节比较的用于LDM的第一阶段模型的超参数和重建性能。图6显示了在 ImageNet 数据集上 class-模型的 2M步骤训练进度的样本质量。我们看到，i）LDM-{1,2}的下采样系数很小，导致训练缓慢，而ii）f 值过大，会导致保真度难以提升。重温上述分析（图1和图2），我们将此归因于 i）将大部分感知压缩留给扩散模型，ii）过于强的第一阶段压缩导致信息丢失，从而限制可实现的质量。LDM-{4-16}在效率和感知忠实的结果之间取得了良好的平衡，这表现在2M训练步骤后，基于像素的扩散（LDM-1）和LDM-8之间的 FID 差距为38。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676794900954.png)
+在图7中，我们将在 CelebA HQ 和ImageNet上训练的模型与DDIM采样器比较了不同数量的去噪步骤的采样速度，并根据FID分数进行绘制。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676795435409.png)
 
 
 
