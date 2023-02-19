@@ -91,6 +91,10 @@ $$
 
 # Experiments
 
+## On Perceptual Compression Tradeoffs
+
+本节用不同的下采样因子 $f \in {1, 2, 4, 8, 16, 32}$ 分析 LDM 的表现（缩写为 LDM-f, 其中 LDM-1 对应于 pixel-based DMs ）
+
 ## Conditional Latent Diffusion
 
 ### Transformer Encoders for LDMs
