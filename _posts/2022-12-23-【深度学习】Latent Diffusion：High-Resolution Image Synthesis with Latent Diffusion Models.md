@@ -93,7 +93,7 @@ $$
 
 ## On Perceptual Compression Tradeoffs
 
-本节用不同的下采样因子 $f \in {1, 2, 4, 8, 16, 32}$ 分析 LDM 的表现（缩写为 LDM-f, 其中 LDM-1 对应于 pixel-based DMs ）
+本节用不同的下采样因子 $f \in {1, 2, 4, 8, 16, 32}$ 分析 LDM 的表现（缩写为 LDM-f, 其中 LDM-1 对应于 pixel-based DMs ）。我们将所有实验的计算资源固定单个NVIDIA A100，并为相同数量的步骤和相同数量的参数训练所有模型。
 
 ## Conditional Latent Diffusion
 
