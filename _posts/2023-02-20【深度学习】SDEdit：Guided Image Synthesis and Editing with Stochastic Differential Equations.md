@@ -27,3 +27,6 @@ tags:
 SDEdit不需要特定任务的训练或反转，自然可以在保真度和忠实度之间实现平衡。
 
 根据一项人类感知研究，在多项任务（包括基于笔画的图像合成和编辑以及图像合成）上，SDEdit在保真度方面比最先进的GAN方法优于98.09%，总体满意度得分为91.72%。
+
+
+# Guided Image Synthesis and Editing with SDEdit 
