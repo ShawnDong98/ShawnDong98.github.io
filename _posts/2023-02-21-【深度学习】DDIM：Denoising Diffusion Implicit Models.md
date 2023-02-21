@@ -40,4 +40,4 @@ tags:
 
 # Variational Inference for Non-Markovian Forward Process
 
-
+由于生成模型近似于推理过程的反面，我们需要重新思考推理过程，以减少生成模型所需的迭代次数。
