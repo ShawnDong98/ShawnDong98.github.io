@@ -40,4 +40,4 @@ tags:
 
 # Variational Inference for Non-Markovian Forward Process
 
-由于生成模型近似于推理过程的反面，我们需要重新思考推理过程，以减少生成模型所需的迭代次数。
+由于生成模型近似于推理过程的反面，我们需要重新思考推理过程，以减少生成模型所需的迭代次数。我们的一个关键观察是 DDPM 的目标 $L_{\gamma}$ 仅仅依赖于边缘分布 $q(x_t \mid x_0)$， 而不是联合分布 $q(x_{1:T} \mid x_0)$。 
