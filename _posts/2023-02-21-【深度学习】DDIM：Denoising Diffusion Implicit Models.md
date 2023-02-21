@@ -41,3 +41,11 @@ tags:
 # Variational Inference for Non-Markovian Forward Process
 
 由于生成模型近似于推理过程的反面，我们需要重新思考推理过程，以减少生成模型所需的迭代次数。我们的一个关键观察是 DDPM 的目标 $L_{\gamma}$ 仅仅依赖于边缘分布 $q(x_t \mid x_0)$， 而不是联合分布 $q(x_{1:T} \mid x_0)$。 因为对于相同的边缘分布有很多联合分布， 我们将这种替代的推理过程叫做非马尔科夫， 这将导致新的生成过程(图1， 右)。 
+
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1676964994341.png)
+
+这些非马尔科夫推理过程导致与 DDPM 相同的代理目标函数，我们将在下面展示。
+
+## Non-markovian Forward Processes
+
