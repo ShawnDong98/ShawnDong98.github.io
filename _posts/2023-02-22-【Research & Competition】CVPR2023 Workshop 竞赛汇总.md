@@ -144,3 +144,29 @@ tags:
 # VAND: Visual Anomaly and Novelty Detection
 
 [https://sites.google.com/view/vand-cvpr23/challenge?authuser=0](https://sites.google.com/view/vand-cvpr23/challenge?authuser=0)
+
+
+# 1st Workshop on Compositional 3D Vision & 3DCoMPaT Challenge
+
+[https://3dcompat-dataset.org/workshop/#main-section](https://3dcompat-dataset.org/workshop/#main-section)
+
+
+# The Fifth Workshop on Deep Learning for Geometric Computing
+
+[https://sites.google.com/view/dlgc-workshop-cvpr2023/challenge?authuser=0](https://sites.google.com/view/dlgc-workshop-cvpr2023/challenge?authuser=0)
+
+
+# The Second Workshop on Structural and Compositional Learning on 3D Data
+
+[https://struco3d.github.io/cvpr2023/](https://struco3d.github.io/cvpr2023/)
+
+
+# AI for Content Creation
+
+[https://ai4cc.net/](https://ai4cc.net/)
+
+
+# 4th Workshop on Continual Learning in Computer Vision (CLVision)
+
+[https://sites.google.com/view/clvision2023](https://sites.google.com/view/clvision2023)
+
