@@ -80,3 +80,8 @@ tags:
 # EarthVision: Large Scale Computer Vision for Remote Sensing Imagery
 
 [https://www.grss-ieee.org/events/earthvision-2023/](https://www.grss-ieee.org/events/earthvision-2023/)
+
+
+# 3rd Workshop and Challenge on Computer Vision in the Built Environment for the Design, Construction, and Operation of Buildings
+
+[https://cv4aec.github.io/#challenge](https://cv4aec.github.io/#challenge)
