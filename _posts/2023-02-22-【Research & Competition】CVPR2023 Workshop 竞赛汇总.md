@@ -20,3 +20,30 @@ tags:
 
 [https://cvpr2023.wad.vision/](https://cvpr2023.wad.vision/)
 
+
+# Workshop on End-to-end Autonomous Driving
+
+[https://opendrivelab.com/e2ead/cvpr23](https://opendrivelab.com/e2ead/cvpr23)
+
+
+# CVPR 2023 Biometrics Workshop
+
+
+# The 4th Face Anti-spoofing Workshop and Challenge
+
+[https://sites.google.com/view/face-anti-spoofing-challenge/winners-results/challengecvpr2023?authuser=0](https://sites.google.com/view/face-anti-spoofing-challenge/winners-results/challengecvpr2023?authuser=0)
+
+# 8th New Trends in Image Restoration and Enhancement Workshop and Challenges
+
+[https://cvlai.net/ntire/2023/](https://cvlai.net/ntire/2023/)
+
+
+# Second Workshop of Mobile Intelligent Photography and Imaging
+
+[http://mipi-challenge.org/MIPI2023/](http://mipi-challenge.org/MIPI2023/)
+
+# The 3rd Workshop on Light Fields for Computer Vision LFNAT: New Applications and Trends in Light Fields
+
+[http://www.lfchallenge.com/LFNAT@CVPR2023/challenge/](http://www.lfchallenge.com/LFNAT@CVPR2023/challenge/)
+
+# 19th CVPR Workshop on Perception Beyond the Visible Spectrum (PBVS 2023)
