@@ -194,3 +194,37 @@ tags:
 # Computer Vision in the Wild
 
 [https://computer-vision-in-the-wild.github.io/cvpr-2023/](https://computer-vision-in-the-wild.github.io/cvpr-2023/)
+
+
+# OmniLabel: Infinite label spaces for semantic understanding via natural language
+
+[https://sites.google.com/view/omnilabel-workshop-cvpr23/challenge?authuser=0](https://sites.google.com/view/omnilabel-workshop-cvpr23/challenge?authuser=0)
+
+
+# Visual Perception via Learning in an Open World
+
+[https://vplow.github.io/vplow_3rd.html#competition](https://vplow.github.io/vplow_3rd.html#competition)
+
+
+# 2nd Workshop on Tracking and Its Many Guises: Tracking Any Object in Open-World
+
+[http://taodataset.org/workshop/cvpr23/](http://taodataset.org/workshop/cvpr23/)
+
+
+# 9th IEEE International Workshop on Computer Vision in Sports (CVsports)
+
+[https://www.soccer-net.org/challenges/2023](https://www.soccer-net.org/challenges/2023)
+
+
+# Workshop on Foundation Models: 1st Foundation Model Challenge
+
+[https://foundation-model.com/competition](https://foundation-model.com/competition)
+
+
+# 4th Embodied AI Workshop
+
+[https://embodied-ai.org/#challenges](https://embodied-ai.org/#challenges)
+
+
+
+
