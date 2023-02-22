@@ -100,3 +100,18 @@ tags:
 # 2nd Workshop and Challenge on Vision Datasets Understanding
 
 [https://sites.google.com/view/vdu-cvpr23/competition](https://sites.google.com/view/vdu-cvpr23/competition)
+
+
+# 3rd Mobile AI Workshop and Challenges
+
+[https://ai-benchmark.com/workshops/mai/2023/#challenges](https://ai-benchmark.com/workshops/mai/2023/#challenges)
+
+
+# 5th Workshop and Competition on Affective Behavior Analysis in-the-wild
+
+[https://ibug.doc.ic.ac.uk/resources/cvpr-2023-5th-abaw/](https://ibug.doc.ic.ac.uk/resources/cvpr-2023-5th-abaw/)
+
+
+# 2nd Challenge on Machine Visual Common Sense: Perception, Prediction, Planning
+
+[https://mvcs-workshop.github.io/](https://mvcs-workshop.github.io/)
