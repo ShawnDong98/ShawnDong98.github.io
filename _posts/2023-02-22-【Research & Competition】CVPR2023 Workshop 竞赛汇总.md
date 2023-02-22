@@ -54,3 +54,10 @@ tags:
 # 19th CVPR Workshop on Perception Beyond the Visible Spectrum (PBVS 2023)
 
 [https://pbvs-workshop.github.io/challenge.html](https://pbvs-workshop.github.io/challenge.html)
+
+
+# 
+
+# AVA: Accessibility, Vision, and Autonomy Meet
+
+[https://accessibility-cv.github.io/index.html#challenge](https://accessibility-cv.github.io/index.html#challenge)
