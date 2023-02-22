@@ -237,3 +237,7 @@ tags:
 
 
 
+# First Rhobin Challenge - Reconstruction of human-object interaction
+
+[https://rhobin-challenge.github.io/](https://rhobin-challenge.github.io/)
+
