@@ -61,3 +61,8 @@ tags:
 # AVA: Accessibility, Vision, and Autonomy Meet
 
 [https://accessibility-cv.github.io/index.html#challenge](https://accessibility-cv.github.io/index.html#challenge)
+
+
+# 2023 VizWiz Grand Challenge Workshop
+
+[https://vizwiz.org/workshops/2023-workshop/](https://vizwiz.org/workshops/2023-workshop/)
