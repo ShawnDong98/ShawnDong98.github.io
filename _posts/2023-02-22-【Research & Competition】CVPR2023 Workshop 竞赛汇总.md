@@ -66,3 +66,7 @@ tags:
 # 2023 VizWiz Grand Challenge Workshop
 
 [https://vizwiz.org/workshops/2023-workshop/](https://vizwiz.org/workshops/2023-workshop/)
+
+# 8th Workshop on Computer Vision for Microscopy Image Analysis
+
+[https://cvmi-workshop.github.io/index.html](https://cvmi-workshop.github.io/index.html)
