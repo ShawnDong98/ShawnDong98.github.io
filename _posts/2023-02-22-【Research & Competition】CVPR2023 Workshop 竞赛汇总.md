@@ -231,4 +231,9 @@ tags:
 [https://vision4allseason.net/](https://vision4allseason.net/)
 
 
+# 2nd Monocular Depth Estimation Challenge
+
+[https://jspenmar.github.io/MDEC/#challenge](https://jspenmar.github.io/MDEC/#challenge)
+
+
 
