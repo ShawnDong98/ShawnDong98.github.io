@@ -46,6 +46,11 @@ tags:
 
 [http://www.lfchallenge.com/LFNAT@CVPR2023/challenge/](http://www.lfchallenge.com/LFNAT@CVPR2023/challenge/)
 
+# The 6th Workshop and Prize Challenge Bridging the Gap between Computational Photography and Visual Recognition (UG2+) in conjunction with IEEE CVPR 2023
+
+
+[http://cvpr2023.ug2challenge.org/index.html](http://cvpr2023.ug2challenge.org/index.html)
+
 # 19th CVPR Workshop on Perception Beyond the Visible Spectrum (PBVS 2023)
 
 [https://pbvs-workshop.github.io/challenge.html](https://pbvs-workshop.github.io/challenge.html)
