@@ -170,3 +170,17 @@ tags:
 
 [https://sites.google.com/view/clvision2023](https://sites.google.com/view/clvision2023)
 
+
+# FGVC10: 10th Workshop on Fine-grained Visual Categorization
+
+[https://sites.google.com/view/fgvc10/competitions?authuser=0](https://sites.google.com/view/fgvc10/competitions?authuser=0)
+
+
+# L3D-IVU: 2nd Workshop on Learning with Limited Labelled Data for Image and Video Understanding
+
+[https://sites.google.com/view/l3d-ivu-2023/challenges?authuser=0](https://sites.google.com/view/l3d-ivu-2023/challenges?authuser=0)
+
+
+# The 3rd Workshop of Adversarial Machine Learning on Computer Vision: Art of Robustness
+
+[https://robustart.github.io/#challenge](https://robustart.github.io/#challenge)
