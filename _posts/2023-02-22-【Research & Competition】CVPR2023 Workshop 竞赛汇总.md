@@ -115,3 +115,12 @@ tags:
 # 2nd Challenge on Machine Visual Common Sense: Perception, Prediction, Planning
 
 [https://mvcs-workshop.github.io/](https://mvcs-workshop.github.io/)
+
+# 4D Hand Object Interaction: Geometric Understanding and Applications in Dexterous Manipulation
+
+[https://4dhoi.github.io/](https://4dhoi.github.io/)
+
+
+# Catch UAVs that Want to Watch You: Detection and Tracking of Unmanned Aerial Vehicle (UAV) in the Wild and the 3rd Anti-UAV Workshop & Challenge
+
+[https://anti-uav.github.io/](https://anti-uav.github.io/)
