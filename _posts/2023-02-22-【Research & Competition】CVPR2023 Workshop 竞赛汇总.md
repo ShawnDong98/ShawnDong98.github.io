@@ -70,3 +70,8 @@ tags:
 # 8th Workshop on Computer Vision for Microscopy Image Analysis
 
 [https://cvmi-workshop.github.io/index.html](https://cvmi-workshop.github.io/index.html)
+
+
+# 2nd Workshop on Multimodal Learning for Earth and Environment (MultiEarth)
+
+[https://sites.google.com/view/rainforest-challenge/multiearth-2023](https://sites.google.com/view/rainforest-challenge/multiearth-2023)
