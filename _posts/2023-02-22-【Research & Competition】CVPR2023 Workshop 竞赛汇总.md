@@ -241,3 +241,12 @@ tags:
 
 [https://rhobin-challenge.github.io/](https://rhobin-challenge.github.io/)
 
+
+# 7th AI City Challenge Workshop
+
+[https://www.aicitychallenge.org/2023-challenge-tracks/](https://www.aicitychallenge.org/2023-challenge-tracks/)
+
+
+# Joint 3rd Ego4D and 11th EPIC Workshop on Egocentric Vision
+
+[https://sites.google.com/view/ego4d-epic-cvpr2023-workshop/](https://sites.google.com/view/ego4d-epic-cvpr2023-workshop/)
