@@ -255,3 +255,8 @@ tags:
 # Pixel-level Video Understanding in the Wild Challenge
 
 [https://www.vspwdataset.com/Workshop%202023.html](https://www.vspwdataset.com/Workshop%202023.html)
+
+
+# New Frontiers for Zero-Shot Image Captioning Evaluation
+
+[https://nice.lgresearch.ai/](https://nice.lgresearch.ai/)
