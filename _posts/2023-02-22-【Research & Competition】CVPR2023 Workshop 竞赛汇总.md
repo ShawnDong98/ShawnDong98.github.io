@@ -226,5 +226,9 @@ tags:
 [https://embodied-ai.org/#challenges](https://embodied-ai.org/#challenges)
 
 
+# Vision for All Seasons: Adverse Weather and Lighting Conditions
+
+[https://vision4allseason.net/](https://vision4allseason.net/)
+
 
 
