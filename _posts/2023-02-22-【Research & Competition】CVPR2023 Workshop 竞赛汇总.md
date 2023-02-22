@@ -250,3 +250,8 @@ tags:
 # Joint 3rd Ego4D and 11th EPIC Workshop on Egocentric Vision
 
 [https://sites.google.com/view/ego4d-epic-cvpr2023-workshop/](https://sites.google.com/view/ego4d-epic-cvpr2023-workshop/)
+
+
+# Pixel-level Video Understanding in the Wild Challenge
+
+[https://www.vspwdataset.com/Workshop%202023.html](https://www.vspwdataset.com/Workshop%202023.html)
