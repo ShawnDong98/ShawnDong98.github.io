@@ -134,3 +134,13 @@ tags:
 # OmniCV 4 Workshop Proposal
 
 [https://sites.google.com/view/omnicv2023/home?authuser=0](https://sites.google.com/view/omnicv2023/home?authuser=0)
+
+
+# RetailVision - Revolutionizing the World of Retail
+
+[https://retailvisionworkshop.github.io/#challenge](https://retailvisionworkshop.github.io/#challenge)
+
+
+# VAND: Visual Anomaly and Novelty Detection
+
+[https://sites.google.com/view/vand-cvpr23/challenge?authuser=0](https://sites.google.com/view/vand-cvpr23/challenge?authuser=0)
