@@ -95,3 +95,8 @@ tags:
 # Workshop on Vision-based InduStrial InspectiON (VISION)
 
 [https://vision-based-industrial-inspection.github.io/cvpr-2023/](https://vision-based-industrial-inspection.github.io/cvpr-2023/)
+
+
+# 2nd Workshop and Challenge on Vision Datasets Understanding
+
+[https://sites.google.com/view/vdu-cvpr23/competition](https://sites.google.com/view/vdu-cvpr23/competition)
