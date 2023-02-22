@@ -85,3 +85,8 @@ tags:
 # 3rd Workshop and Challenge on Computer Vision in the Built Environment for the Design, Construction, and Operation of Buildings
 
 [https://cv4aec.github.io/#challenge](https://cv4aec.github.io/#challenge)
+
+
+# DL-UIA: Deep Learning in Ultrasound Image Analysis
+
+[https://www.cvpr2023-dl-ultrasound.com/](https://www.cvpr2023-dl-ultrasound.com/)
