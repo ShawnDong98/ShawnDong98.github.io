@@ -75,3 +75,8 @@ tags:
 # 2nd Workshop on Multimodal Learning for Earth and Environment (MultiEarth)
 
 [https://sites.google.com/view/rainforest-challenge/multiearth-2023](https://sites.google.com/view/rainforest-challenge/multiearth-2023)
+
+
+# EarthVision: Large Scale Computer Vision for Remote Sensing Imagery
+
+[https://www.grss-ieee.org/events/earthvision-2023/](https://www.grss-ieee.org/events/earthvision-2023/)
