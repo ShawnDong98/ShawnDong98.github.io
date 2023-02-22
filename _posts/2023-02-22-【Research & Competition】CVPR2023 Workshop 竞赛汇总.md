@@ -184,3 +184,13 @@ tags:
 # The 3rd Workshop of Adversarial Machine Learning on Computer Vision: Art of Robustness
 
 [https://robustart.github.io/#challenge](https://robustart.github.io/#challenge)
+
+
+# 5th ScanNet Indoor Scene Understanding Challenge
+
+[http://www.scan-net.org/cvpr2023workshop/](http://www.scan-net.org/cvpr2023workshop/)
+
+
+# Computer Vision in the Wild
+
+[https://computer-vision-in-the-wild.github.io/cvpr-2023/](https://computer-vision-in-the-wild.github.io/cvpr-2023/)
