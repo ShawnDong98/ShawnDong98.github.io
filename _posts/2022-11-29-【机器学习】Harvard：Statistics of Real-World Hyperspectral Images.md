@@ -6,7 +6,7 @@ date:       2022-11-29
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     true
-tags: 'HSI,CVPR 2011'
+tags: 
     - 机器学习
     - HSI
     - CVPR 2011
