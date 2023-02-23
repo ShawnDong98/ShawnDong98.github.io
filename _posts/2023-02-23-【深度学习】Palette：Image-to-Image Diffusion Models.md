@@ -39,7 +39,7 @@ $$
 E_{(x, y)}E_{\epsilon \thicksim N(0, I)}E_\gamma \| f_\theta(x, \sqrt{\gamma} y + \sqrt{1 - \gamma} \epsilon, \gamma) - \epsilon \|_p^p \tag{1}
 $$
 
-之前的工作建议使用 $L_1$ 范数， 然而标准公式基于 $L_2$ 范数。
+之前的工作建议使用 $L_1$ 范数， 然而标准公式基于 $L_2$ 范数。我们在下面仔细进行消融试验，并分析范数选择的影响。
 
 
 
