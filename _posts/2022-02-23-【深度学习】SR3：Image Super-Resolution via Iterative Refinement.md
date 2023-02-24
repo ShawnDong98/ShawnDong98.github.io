@@ -96,3 +96,19 @@ $$
 相比于将 $f_\theta$ 的输出回归 $\epsilon$， 我们可以回归 $f_\theta$ 的输出为 $y_0$。 给定 $\gamma$ 和 $\tilde y$, $\epsilon$ 和 $y_0$ 的值可以从彼此确定性地得到， 但是改变回归目标对于损失函数的规模有一个大的影响。如果考虑损失函数的规模而改变 $p(\gamma)$， 我们估计两个变体都可以很好地工作。进一步研究用于训练去噪模型的损失函数是该领域未来研究的有趣途径。
 
 ##  Inference via Iterative Refinement
+
+在我们的模型下，推断被定义为反向马尔可夫过程，该过程与前向传播过程相反的方向发展，从高斯噪声 $y_T$ 开始：
+
+$$
+p_\theta(y_{0:T} \mid x) = p(y_T)\prod_{t=1}^T p_\theta(y_{t-1} \mid y_t, x) \tag{7}
+$$
+
+$$
+p(y_T) = N(y_T \mid 0, I) \tag{8}
+$$
+
+$$
+p_\theta(y_{t-1} \mid y_t, x) = N(y_{t-1} \mid \mu_\theta(x, y_t, \gamma_t), \sigma_t^2I) \tag{9}
+$$
+
+我们根据各向同性的高斯条件分布定义推理过程， $p_\theta(y_{t-1} \mid y_t, x)$， 其通过学习得到。
