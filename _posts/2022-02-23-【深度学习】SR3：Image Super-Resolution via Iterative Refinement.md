@@ -118,4 +118,12 @@ $$
 $$
 \hat y_0 = \frac{1}{\sqrt{\gamma_t}}(y_t - \sqrt{1 - \gamma_t} f_\theta(x, y_t, \gamma_t)) \tag{10}
 $$
+将估计的 $\hat y_0$  替换 (4) 中的 $q(y_{t-1} \mid y_0, y_t)$ 的后验分布来参数化 $p_\theta(y_{t-1} \mid y_t, x)$ 的均值：
 
+$$
+\mu_\theta(x, y_t, \gamma_t) = \frac{1}{\sqrt{\alpha_t}}(y_t)
+$$
+
+$$
+
+$$
