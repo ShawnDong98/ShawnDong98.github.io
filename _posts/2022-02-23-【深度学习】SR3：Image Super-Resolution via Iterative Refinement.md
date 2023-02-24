@@ -63,3 +63,4 @@ $$
 q(y_t \mid y_0) = N(y_t \mid \sqrt{\gamma_t}y_0, (1 - \gamma_t)I) \tag{3}
 $$
 
+其中 $\gamma_t = \prod_{i=1}^t \alpha_i$。 
