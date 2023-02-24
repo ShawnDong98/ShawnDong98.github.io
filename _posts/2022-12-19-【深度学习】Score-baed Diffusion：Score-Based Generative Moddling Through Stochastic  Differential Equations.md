@@ -138,7 +138,7 @@ $$
 
 我们通常需要知道 transition kernel $p_{0t}(x(t) \mid x(0))$ 来求解 Eq. (7)。 当 $f(·, t)$ 近似， transition kernel 总是一个高斯分布， 其中均值和方差是以闭式解的形式已知的， 并且我们可以通过标准技术得到。 对于更一般的 SDEs， 我们可以求解  Kolmogorov 前向方程来得到 $p_{0t}(x(t) \mid x(0))$。 或者，我们可以从 $p_{0t}(x(t) \mid x(0))$ 中采样来仿真 SDE， 并替换 Eq. (7) 的去噪分数匹配为 sliced score matching 用与建模训练， 其绕过了 $\nabla_{x(t)} \log p_{0t} (x(t) \mid x(0))$ 的计算。
 
-## Examples: VE, VP SDEs Aand Beyond
+## Examples: VE, VP SDEs and Beyond
 
 SMLD 和 DDPM 中使用的噪声扰动可以被视为两种不同 SDE 的离散化。
 
