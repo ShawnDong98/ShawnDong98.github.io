@@ -111,4 +111,4 @@ $$
 p_\theta(y_{t-1} \mid y_t, x) = N(y_{t-1} \mid \mu_\theta(x, y_t, \gamma_t), \sigma_t^2I) \tag{9}
 $$
 
-我们根据各向同性的高斯条件分布定义推理过程， $p_\theta(y_{t-1} \mid y_t, x)$， 其通过学习得到。
+我们根据各向同性的高斯条件分布定义推理过程， $p_\theta(y_{t-1} \mid y_t, x)$， 其通过学习得到。如果将前进过程步骤的噪声方差设置为尽可能小， 例如 $\alpha_{1:T} \approx 1$， 最优的反向过程 $p(y_{t-1} \mid y_t, x)$ 将估计高斯噪声。
