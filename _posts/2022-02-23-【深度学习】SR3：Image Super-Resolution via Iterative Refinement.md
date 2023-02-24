@@ -73,3 +73,13 @@ $$
 
 当参数化反向链并制定反向链对数似然的变分下限时，这种后验分布很有帮助。接下来，我们将讨论如何学习神经网络来反转这种高斯扩散过程。
 
+
+##  Optimizing the Denoising Model
+
+为了帮助逆扩散过程， 我们利用额外的源图像 $x$ 信息， 并且优化一个神经去噪模型 $f_\theta$， 其将源图像 $x$ 和噪声目标 $\tilde y$ 作为输入
+
+$$
+\tilde y = \sqrt{\gamma} y_0 + \sqrt{1 - \gamma} \epsilon, \quad \epsilon \thicksim N(0, I) \tag{5}
+$$
+
+目标位恢复无噪声的目标图像 $y_0$。 噪声目标图像 $\tilde y$ 的定义与 Eq. (3) 中前向过程不同步骤的噪声图像的边缘分布相似。
