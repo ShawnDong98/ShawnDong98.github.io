@@ -91,3 +91,6 @@ E_{(x, y)} E_{\epsilon, \gamma} \| f_\theta(x, \sqrt{\gamma} y_0 + \sqrt{1 - \ga
 $$
 
 其中 $\epsilon \thicksim N(0, 1)$， $(x, y)$ 从训练数据集中采样得到， $p \in {1, 2}$， 并且 $\gamma \in p(\gamma)$。 $\gamma$ 的分布对于模型和生成输出的质量和有大的影响。 我们在 2.4 节中讨论了 $p(\gamma)$ 的选择。 
+
+
+相比于将 $f_\theta$ 的输出回归 $\epsilon$。 
