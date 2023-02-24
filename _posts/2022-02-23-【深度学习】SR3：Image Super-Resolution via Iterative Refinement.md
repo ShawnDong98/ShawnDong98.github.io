@@ -55,4 +55,4 @@ $$
 y(y_t \mid y_{t-1}) = N(y_t \mid \sqrt{\alpha}_t y_{t-1}, (1 - \alpha_t) I) \tag{2}
 $$
 
-其中， 标量参数 $\alpha_{1:T}$ 是超参数， 服从于 $1 < \alpha_t < 1$， 其决定了每次迭代添加噪声的方差。
+其中， 标量参数 $\alpha_{1:T}$ 是超参数， 服从于 $1 < \alpha_t < 1$， 其决定了每次迭代添加噪声的方差。注意到 $y_{t-1}$ 由 $\sqrt{\alpha_t}$ 来确保随机变量的方差有界,当 $t \rightarrow \infty$。 
