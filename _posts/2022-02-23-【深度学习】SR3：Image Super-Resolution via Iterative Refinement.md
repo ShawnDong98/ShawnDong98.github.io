@@ -90,3 +90,4 @@ $$
 E_{(x, y)} E_{\epsilon, \gamma} \| f_\theta(x, \sqrt{\gamma} y_0 + \sqrt{1 - \gamma} \epsilon, \gamma) - \epsilon \|_p^p \tag{6}
 $$
 
+其中 $\epsilon \thicksim N(0, 1)$， $(x, y)$ 从训练数据集中采样得到， $p \in {1, 2}$， 并且 $\gamma \in p(\gamma)$。 
