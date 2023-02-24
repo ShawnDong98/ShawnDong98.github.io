@@ -112,3 +112,10 @@ p_\theta(y_{t-1} \mid y_t, x) = N(y_{t-1} \mid \mu_\theta(x, y_t, \gamma_t), \si
 $$
 
 我们根据各向同性的高斯条件分布定义推理过程， $p_\theta(y_{t-1} \mid y_t, x)$， 其通过学习得到。如果将前进过程步骤的噪声方差设置为尽可能小， 例如 $\alpha_{1:T} \approx 1$， 最优的反向过程 $p(y_{t-1} \mid y_t, x)$ 将接近高斯噪声。因此，我们在推断过程（9）中选择高斯条件可以合理地拟合真实逆过程。 同时， $1 - \gamma_T$ 应该足够大， 以便 $y_T$ 根据先验 $p(y_T) = N(y_T \mid 0, I)$ 估计分布， 允许采样过程从一个纯高斯噪声开始。
+
+给定任意噪声图像 $\tilde y$ 包括 $y_t$。 去噪模型 $f_\theta$ 被训练用于估计 $\epsilon$。因此， 给定 $y_t$， 我们可以通过重写 (5) 式估计 $y_0$ ：
+
+$$
+\hat y_0 = \frac{1}{\sqrt{\gamma_t}}(y_t - \sqrt{1 - \gamma_t} f_\theta(x, y_t, \gamma_t)) \tag{10}
+$$
+
