@@ -63,4 +63,13 @@ $$
 q(y_t \mid y_0) = N(y_t \mid \sqrt{\gamma_t}y_0, (1 - \gamma_t)I) \tag{3}
 $$
 
-其中 $\gamma_t = \prod_{i=1}^t \alpha_i$。 
+其中 $\gamma_t = \prod_{i=1}^t \alpha_i$。 此外，给定 $(y_0, y_t)$ ， 通过一些代数操作和完全平方， 我们可以得到 $y_{t-1}$ 的后验分布：
+
+$$
+q(y_{t-1} \mid y_0, y_t) = N(y_{t-1} \mid \mu, \sigma^2 I) \\
+\mu = \frac{\sqrt{\gamma_{t-1}}(1 - \alpha_t)}{1 - \gamma_t} y_0 + \frac{\sqrt{\alpha_t}(1 - \gamma_{t-1})}{1 - \gamma_t} y_t \\
+\sigma^2 = \frac{(1 - \gamma_{t-1})(1 - \alpha_t)}{1 - \gamma_t} \tag{4}
+$$
+
+当参数化反向链并制定反向链对数似然的变分下限时，这种后验分布很有帮助。接下来，我们将讨论如何学习神经网络来反转这种高斯扩散过程。
+
