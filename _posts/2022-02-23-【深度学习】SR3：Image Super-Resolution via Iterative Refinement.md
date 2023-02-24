@@ -56,3 +56,10 @@ y(y_t \mid y_{t-1}) = N(y_t \mid \sqrt{\alpha}_t y_{t-1}, (1 - \alpha_t) I) \tag
 $$
 
 其中， 标量参数 $\alpha_{1:T}$ 是超参数， 服从于 $1 < \alpha_t < 1$， 其决定了每次迭代添加噪声的方差。注意到 $y_{t-1}$ 由 $\sqrt{\alpha_t}$ 来确保随机变量的方差有界,当 $t \rightarrow \infty$。 例如， $y_{t-1}$ 的方差为1， $y_t$ 的方差也是1。 
+
+重要的是， 给定 $y_0$ 我们可以确定 $y_t$ 的分布， 通过边缘化中间步骤：
+
+$$
+q(y_t \mid y_0) = N(y_t \mid \sqrt{\gamma_t}y_0, (1 - \gamma_t)I) \tag{3}
+$$
+
