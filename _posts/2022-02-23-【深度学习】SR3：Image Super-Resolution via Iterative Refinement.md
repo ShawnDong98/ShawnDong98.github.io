@@ -84,4 +84,9 @@ $$
 
 目标位恢复无噪声的目标图像 $y_0$。 噪声目标图像 $\tilde y$ 的定义与 Eq. (3) 中前向过程不同步骤的噪声图像的边缘分布相似。
 
-除了源图像 $x$ 和 噪声目标图像 $\tilde y$，  因为有噪声 $\gamma$ 的方差， 去噪模型 $f_\theta(x, \tilde y, \gamma)$ 有足够多的数据作为输入， 被训练用来预测噪声向量 $\epsilon$。 
+除了源图像 $x$ 和 噪声目标图像 $\tilde y$，  因为有噪声 $\gamma$ 的方差， 去噪模型 $f_\theta(x, \tilde y, \gamma)$ 有足够多的数据作为输入， 被训练用来预测噪声向量 $\epsilon$。 训练 $f_\theta$ 的目标函数为：
+
+$$
+E_{(x, y)} E_{\epsilon, \gamma} \| f_\theta(x, \sqrt{\gamma} y_0 + \sqrt{1 - \gamma} \epsilon, \gamma) - \epsilon \|_p^p \tag{6}
+$$
+
