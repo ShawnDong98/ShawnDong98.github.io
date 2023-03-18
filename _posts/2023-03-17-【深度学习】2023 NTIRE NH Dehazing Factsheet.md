@@ -56,3 +56,19 @@ tags:
 融合是指模型融合和自我融合。
 
 全分辨率表示您的模型是否在给定输入的原始分辨率上训练/推理。
+
+# Competition particularities
+
+与其他挑战（如果适用）相比，本次竞争解决方案的任何特殊性。
+
+
+# Technical details
+
+请务必写下语言和实现细节：框架、优化器、学习率、GPU、用于训练的数据集、训练时间、训练策略、效率优化策略。
+
+
+# Other details
+
+- 计划在NTIRE 2023研讨会上提交解决方案描述文件 [YES / NO]
+- NTIRE 2023 NonHomogeneous Dehazing Challenge的一般评论和印象（我们感谢您的反馈，以便在未来的版本中改进）。
+- 您对图像恢复、增强和操作方面的新挑战有什么期望？
