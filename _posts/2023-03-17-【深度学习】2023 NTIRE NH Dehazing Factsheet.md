@@ -51,3 +51,8 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1679108611104.png)
 
+请填写下表，指定技术信息（除了写作外），需要1分钟。
+
+融合是指模型融合和自我融合。
+
+全分辨率表示您的模型是否在给定输入的原始分辨率上训练/推理。
