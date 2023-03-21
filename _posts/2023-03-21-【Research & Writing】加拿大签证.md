@@ -53,3 +53,7 @@ tags:
 
 [https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/facts.html](https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/facts.html) 和 [https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/protecting-appplicants-privacy.html](https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/protecting-appplicants-privacy.html).
 
+
+## What you need to do next:
+
+您需要随附这封信，并亲自前往任何生物识别收集服务点拍摄指纹和照片。在你去之前，你需要预约。
