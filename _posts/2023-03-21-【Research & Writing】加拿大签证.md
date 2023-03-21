@@ -57,3 +57,9 @@ tags:
 ## What you need to do next:
 
 您需要随附这封信，并亲自前往任何生物识别收集服务点拍摄指纹和照片。在你去之前，你需要预约。
+
+- 如果您在加拿大或美国境外，您可以前往任何对您最方便的签证申请中心（VAC）。
+- 如果您在美国，您可以前往位于美国或其领土的美国公民及移民服务局（USCIS）、申请支持中心（ASC）或签证申请中心（VAC）。
+- 如果您在加拿大，您可以前往指定的加拿大服务地点。
+
+有关在哪里提供生物识别信息的更多信息，请访问：[https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/where-to-give-biometrics.html](https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/where-to-give-biometrics.html)
