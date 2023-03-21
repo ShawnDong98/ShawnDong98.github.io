@@ -63,3 +63,27 @@ tags:
 - 如果您在加拿大，您可以前往指定的加拿大服务地点。
 
 有关在哪里提供生物识别信息的更多信息，请访问：[https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/where-to-give-biometrics.html](https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/where-to-give-biometrics.html)
+
+
+# What you need to bring with you:
+
+当您在自己选择的生物识别收集服务点展示自己时，您必须携带以下内容：
+
+- 这封信的副本，以及
+- 您在申请中引用的护照或旅行证件。
+
+
+注意：这封信也是您的证明：
+
+- 您已经支付了生物识别费用；或
+- 您已根据《移民和难民保护条例》（IRPR）第315.1条申请豁免生物识别费用。如果在审查您的请求后，确定您不符合豁免资格，并且需要支付生物识别费用，IRCC将与您联系，并将向您解释您的费用支付选项。
+
+
+## Important Information
+
+
+从本信发出之日起，您有30天的时间在生物识别收集服务点展示自己，以提供您的生物识别：
+
+您必须在xxxx年x月xx日或之前访问生物识别收集服务点，以扫描您的指纹并拍摄照片。如果您不遵守，您的申请可能会被拒绝。如果您的申请被拒绝，您必须提交新的申请并支付适用的费用。
+
+如果您无法提供您的生物识别信息（照片和/或指纹），或者如果您需要超过30天，请在[https://www.cic.gc.ca/english/contacts/web-form.asp](https://www.cic.gc.ca/english/contacts/web-form.asp]) 上填写网页表单并提供详细说明。
