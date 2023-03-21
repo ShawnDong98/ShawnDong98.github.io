@@ -22,9 +22,14 @@ tags:
 完成最终的 CVPR 2023 论文提交有一个可选步骤和四个必要步骤：
 
 0） （可选）改善受视觉影响的PDF可访问性。
+
 1）使用IEEE PDF eXpress 验证您的 Camera-Ready Paper（不含页码）。
+
 2） 注册CVPR 2023的作者。
+
 3） 将经过验证的PDF和论文信息提交到论文收集网站：[https://openreview.net/group?id=thecvf.com/CVPR/2023/Conference/Authors](https://openreview.net/group?id=thecvf.com/CVPR/2023/Conference/Authors)
+
+
 4） 填写并提交IEEE电子版权表格
 
 
