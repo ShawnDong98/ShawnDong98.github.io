@@ -8,7 +8,7 @@ header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
 tags:
     - CVPR 2023
-    -
+    - Research & Writing
 ---
 
 仔细阅读这些说明并严格遵循它们，以尽量减少 conference proceedings 的 production 中出现的问题和延误。
