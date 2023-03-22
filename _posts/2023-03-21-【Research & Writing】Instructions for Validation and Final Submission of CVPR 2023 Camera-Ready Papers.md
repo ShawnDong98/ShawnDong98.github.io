@@ -53,10 +53,41 @@ tags:
 
 # 1. Use IEEE PDF eXpress to validate your paper for inclusion in IEEE Xplore.
 
+**IMPORTANT NOTE:** 不要在camera-ready 的 paper 中包含页码。
+
+会议记录中的PDF文件有10 MB（10,485,760字节）的严格大小限制。如果你的论文比这个大，你可能在图表中使用了非常大的图像。通常，您的图像在每英寸600像素时看起来会很好，您应该相应地对图表中使用的图像进行下采样。较小的PDF文件也通过PDF eXpress更快地验证。
+
+所有论文的页数限制为8页，额外的页面仅允许引用的参考文献。为了澄清，论文的正文，包括数字、表格、方程、致谢等，不得超过8页。其他页面只能包含引用的参考资料，而不是 acknowledgments、附录、补充材料或其他文本、图表、表格等。请注意，没有 paper 或额外页面费用。然而，超过8页的论文（不包括参考资料）将不会被处理，也不会出现在会议记录或IEEE Xplore上。
+
+IEEE要求输入IEEE Xplore数字图书馆的所有论文都符合IEEE风格指南。与IEEE要求兼容的LaTeX和MS Word样式文件可通过CVPR 2023网站获得：
+
+[https://cvpr2023.thecvf.com/Conferences/2023/AuthorGuidelines](https://cvpr2023.thecvf.com/Conferences/2023/AuthorGuidelines)
+
+不符合这些准则的论文将不会放在Xplore中。这是IEEE的政策。
+
+
+**Note:** PDF eXpress不收集文件。验证您的论文后，您仍然必须将其上传到 Camera-Ready 收集网站（OpenReview）进行 production，如第3步所述。
+
+
+使用IEEE PDF eXpress有两种方法。如果您生成 PDF 文件，PDF eXpress可以验证它。如果您使用的是以下任何文档格式化系统，PDF eXpress可以从以下源文件生成符合Xplore的文档：MS Word、WordPerfect、RTF（富文本格式）、Freelance、LaTeX、PageMaker、FrameMaker、Word Pro或Quark。如果您使用LaTeX、PageMaker或Quark准备论文，则需要一些额外的步骤才能向IEEE提供图像。
+
+- 登录PDF express：[https://ieee-pdf-express.org/](https://ieee-pdf-express.org/), 会议ID是：52729X
+- 如果您以前没有使用过PDF eXpress，则必须创建一个帐户。单击“新用户”按钮，然后按照说明操作。如果您在之前的会议上使用了PDF eXpress，您可以使用上次会议的电子邮件地址和密码登录；然后它会要求您通过输入密码为该会议创建一个帐户——它可以是相同的密码。验证（并在必要时更新）您的联系信息，然后单击“提交”。一旦您有了帐户，您可以随时登录，以处理所有论文。
+- 为您提交的每篇论文创建一个新标题。
+- 提交您想要验证的 PDF 文件或提交您想要转换的源文件。PDF eXpress 将消化提交的文件，并酌情向您发送一封包含验证结果或生成的PDF的电子邮件。
+- 重复步骤d，直到您对结果感到满意。
+- 转到步骤c来处理您的其他文件。
+
+验证失败的主要来源是在数字中使用不可嵌入的字体。确保您的论文使用可嵌入的字体作为论文的正文以及数字、图形标题、参考文献、脚注等。另一个故障来源是LaTeX源文件中包含超引用包的行。如果你有困难，你可能想评论这行。如果您在使用IEEE PDF eXpress时遇到进一步的问题，请联系pdfsupport@ieee.org
 
 # 2. Register an author for the conference.
 
+通过CVPR“注册”网页 ([https://cvpr2023.thecvf.com/Conferences/2023/Pricing2](https://cvpr2023.thecvf.com/Conferences/2023/Pricing2)) 顶部的注册链接注册CVPR 2023。每篇论文至少有一名作者必须注册完整的 in-person 护照才能参加会议。如果没有一位作者注册参加会议，该论文将不会包含在会议记录中，也不会出现在IEEE Xplore中。同样，由于没有出现而没有提交的论文和海报将不会出现在程序中。
+
+- 登录OpenReview论文收集网站：[https://openreview.net/group?id=thecvf.com/CVPR/2023/Conference/Authors](https://openreview.net/group?id=thecvf.com/CVPR/2023/Conference/Authors)- - 您接受的论文将列在 OpenReview “Author Console” 的 “Your Submissions” 选项卡下。 要创建/编辑 camera-ready 提交，请单击论文标题以将您带到论文摘要页面，然后单击 “Camera Ready Submission” 按钮（右上角），以将您带到已接受论文的 camera-ready submission 页面。
 
 # 3. Final paper submission for production
+
+截止日期：所有CVPR 2023论文的截止日期为太平洋夏令时间2023年3月24日晚上11:59。这个截止日期不会延长。截止日期后到达的论文可能不会出现在会议记录中，也可能不会放在IEEE Xplore中。
 
 # 4. Complete and digitally sign the IEEE Electronic Copyright Form for your paper and submit it along with your final paper.
