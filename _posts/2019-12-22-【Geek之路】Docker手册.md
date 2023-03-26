@@ -1089,5 +1089,6 @@ sysctl -p
 11. [System has not been booted with systemd as init system (PID 1). Can't operate #457](https://github.com/MicrosoftDocs/WSL/issues/457)
 12. [ubuntu16.04离线安装与卸载docker和nvidia-docker](https://blog.csdn.net/weixin_43077628/article/details/114520707)
 13. [Ubuntu(20.04)：用户和用户组的相关命令](https://blog.csdn.net/jiemashizhen/article/details/127060663)
+14. [如何在Linux中以非root用户运行Docker？](https://www.51cto.com/article/614623.html)
 
 
