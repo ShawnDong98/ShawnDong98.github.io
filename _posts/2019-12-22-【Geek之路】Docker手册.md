@@ -1013,6 +1013,22 @@ EXPOSE 6666
 CMD ["zsh"]
 ```
 
+# 非 root 用户使用 Docker
+
+要解决Docker权限被拒绝错误，并以非root用户的身份使用Docker，请使用以下命令创建一个名为“docker”的组：
+
+```
+sudo groupadd docker 
+```
+
+接下来，将你的用户添加到docker组：
+
+```
+sudo gpasswd -a user userG
+
+或：sudo usermod -aG userG user
+```
+
 # Bugs
 
 ## docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
@@ -1072,6 +1088,6 @@ sysctl -p
 10. [linux安装jdk8](https://blog.csdn.net/pdsu161530247/article/details/81582980)
 11. [System has not been booted with systemd as init system (PID 1). Can't operate #457](https://github.com/MicrosoftDocs/WSL/issues/457)
 12. [ubuntu16.04离线安装与卸载docker和nvidia-docker](https://blog.csdn.net/weixin_43077628/article/details/114520707)
-
+13. [Ubuntu(20.04)：用户和用户组的相关命令](https://blog.csdn.net/jiemashizhen/article/details/127060663)
 
 
