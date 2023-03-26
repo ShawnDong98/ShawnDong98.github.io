@@ -990,7 +990,7 @@ docker login --username=**** registry.cn-shanghai.aliyuncs.com
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
-  "registry-mirrors": ["https://out9gaoc.mirror.aliyuncs.com"]
+  "registry-mirrors": ["https://xxx.mirror.aliyuncs.com"]
 }
 EOF
 sudo systemctl daemon-reload
