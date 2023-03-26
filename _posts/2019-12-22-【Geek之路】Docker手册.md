@@ -1029,6 +1029,17 @@ sudo gpasswd -a user userG
 或：sudo usermod -aG userG user
 ```
 
+将用户添加到docker组后，注销并重新登录，使更改生效。
+
+从现在开始，普通用户(非root用户)可以在没有sudo权限的情况下使用Docker。
+
+不妨以普通用户的身份运行以下命令：
+
+```
+docker version  
+docker run hello-world 
+```
+
 # Bugs
 
 ## docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
