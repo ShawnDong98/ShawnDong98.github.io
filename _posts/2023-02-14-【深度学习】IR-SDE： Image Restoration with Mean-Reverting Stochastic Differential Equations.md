@@ -45,4 +45,4 @@ $$
  # Method
  
  
-我们提议的图像恢复方法的关键想法是将 mean-reverting SDE 与神经网络训练的最大似然目标相结合。因此将其叫做  Image Restoration Stochastic Differential Equation（IR-SDE）。
+我们提议的图像恢复方法的关键想法是将 mean-reverting SDE 与神经网络训练的最大似然目标相结合。因此将其叫做  Image Restoration Stochastic Differential Equation（IR-SDE）。首先，我们描述了 mean-reverting SDE的正向和反向过程，并调整之前描述的基于分数的训练方法来估计此 SDE。
