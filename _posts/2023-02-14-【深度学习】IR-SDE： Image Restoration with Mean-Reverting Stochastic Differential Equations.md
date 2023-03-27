@@ -25,3 +25,14 @@ tags:
 在实验中，作者证明提出的方法在 image deraining, deblurring, 和 denoising 的定量比较中实现了极具竞争力的性能，为两个 deraining 数据集取得了新的最先进的性能。
 
 最后，通过图像 image super-resolution, inpainting 和 dehazing 的定性结果，进一步证明了该方法的通用性。
+
+# Background
+
+在本节中，我们简要回顾了基于SDE的扩散模型所依据的关键概念，并展示了使用反向时间SDE生成样本的过程。令 $p_0$ 表示数据的初始分布，$t \in [0, T]$ 表示连续时间变量。 我们考虑由 SDE 的扩散过程 ${x(t)}_{t=0}^T$, 
+
+$$
+dx = f(x, t) dt + g(t)dw, \quad x(0) \thicksim p_0(x), \tag{1}
+$$
+
+其中 $f$ 和 $g$ 是漂移和扩散函数， $w$ 是标准的 Wiener 过程， $x(0) \in R^d$ 是一个初始条件。 通常，最终状态 $x(T)$ 服从一个固定均值和方差的。 通常 SDE 的思路是逐渐将数据分布变换到固定的高斯噪声。
+
