@@ -65,15 +65,40 @@ $$
 
 $$
 
-x(t) = \mu + (x(s) - \mu) e^{-\bar \theta_{z:t}} +\int_s^t \sigma_z e^{- \bar \theta_{z:t}} dw(z) \tag{4}
+x(t) = \mu + (x(s) - \mu) e^{-\bar \theta_{s:t}} +\int_s^t \sigma_z e^{- \bar \theta_{z:t}} dw(z) \tag{4}
 $$
 
 其中 $\bar \theta_{s:t} := \int_s^t \theta_z dz$ 是已知的， 并且 transition kernel $p(x(t) \mid x(s)) = N(x(t) \mid m_{s:t}(x(s)), v_{s:t})$ 是高斯分布， 其均值 $m_{s:t}$ 和 方差 $v_{s:t}$ 由下式给定：
 
+$$
+m_{s:t}(x(s)) := \mu + (x(s) - \mu) e^{-\theta_{s:t}} \\
+v_{s:t} = \int_s^t \sigma_z^2 e^{-2 \bar \theta_{z:t}}dz \\
+=\lambda^2 (1 - e^{-2 \bar \theta_{s:t}}) \tag{5}
+$$
 
+证明见 附录 A。 为了简化表示， 当开始状态为 $x(0)$， 我们用 $\bar \theta_{t}, m_t, v_t$ 替换 $\bar \theta_{0:t}, m_{0:t}, v_{0:t}$。 然后我们在任意时刻 $t$ 有 $x(t)$ 的边缘分布：
+
+$$
+p_t(x) = N(x(t) \mid m_t(x), v_t), \\
+m_t(x) := \mu + (x(0) - \mu)e^{-\bar \theta_t} \\
+v_t := \lambda^2 (1 - e^{-2 \bar \theta_t}) \tag{6}
+$$
+
+注意当 $t \rightarrow \infty$， 均值 $m_t$ 收敛到低质量的图像 $\mu$ 并且方差 $v_t$ 收敛到固定的方差 $\lambda^2$ (因此叫做 "mean-reverting")。 换句话说，前向 SDE（3）将高质量图像扩散到具有固定高斯噪声的低质量图像中。
+
+**Proof.** 回想一下我们要求解的 SDE：
+
+$$
+dx = \theta_t(\mu - x) dt + \sigma_t dw \tag{18}
+$$
+其中 $\theta_t$ 和 $\sigma_t$ 是依赖时间的正函数。 
  
 
 ## Reverse-Time SDE for Image Restoration
 
+
+
 ## Maximum Likelihood Learning
+
+
 
