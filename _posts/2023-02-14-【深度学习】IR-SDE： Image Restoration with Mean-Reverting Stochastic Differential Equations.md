@@ -56,7 +56,7 @@ $$
 dx = \theta_t(\mu - x)dt + \sigma_t dw \tag{3}
 $$
 
-其中 $\theta_t$ 和 $\sigma_t$ 是依赖于时间正参数， 其分别描述  mean-reversion 的速度 和 随机加速度。在选择 $\theta_t$ 和 $\sigma_t$ 时有很多自由，正如我们将在第5.3节中看到的，这种选择会对由此产生的复原性能产生重大影响。为了进行图像退化，我们让 $x(0)$ 和 $\mu$ 成为真实高质量（HQ）图像及其退化的低质量（LQ）图像，
+其中 $\theta_t$ 和 $\sigma_t$ 是依赖于时间正参数， 其分别描述  mean-reversion 的速度 和 随机加速度。在选择 $\theta_t$ 和 $\sigma_t$ 时有很多自由，正如我们将在第5.3节中看到的，这种选择会对由此产生的复原性能产生重大影响。为了进行图像退化，我们让 $x(0)$ 和 $\mu$ 分别成为真实高质量（HQ）图像及其退化的低质量（LQ）图像 （见图1）
 
 ## Reverse-Time SDE for Image Restoration
 
