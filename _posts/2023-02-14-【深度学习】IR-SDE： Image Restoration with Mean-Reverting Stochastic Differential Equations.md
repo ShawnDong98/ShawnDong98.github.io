@@ -56,7 +56,7 @@ $$
 dx = \theta_t(\mu - x)dt + \sigma_t dw \tag{3}
 $$
 
-其中 $\theta_t$ 和 $\sigma_t$ 是依赖于时间正参数， 其分别描述  mean-reversion 的速度 和 随机加速度。
+其中 $\theta_t$ 和 $\sigma_t$ 是依赖于时间正参数， 其分别描述  mean-reversion 的速度 和 随机加速度。在选择 $\theta_t$ 和 $\sigma_t$ 时有很多自由，正如我们将在第5.3节中看到的，这种选择会对由此产生的复原性能产生重大影响。
 
 ## Reverse-Time SDE for Image Restoration
 
