@@ -39,4 +39,10 @@ $$
 $$
 dx = [f(x, t) - g(t)^2 \nabla_x \log p_t(x)]dt + g(t)d \hat w, \quad x(T) \thicksim p_T(x) \tag{2}
 $$
-其中 $\hat w$ 是反向时间 Wiener 过程， $p_t(x)$ 表示在时间 $t$ 时 $x(t)$ 的边缘概率密度函数。分数函数 $\nabla_x \log p_t(x)$ 通常无法得到， 因此基于 SDE 的扩散模型通过训练一个和时间相关的神经网络 $s_\theta(x, t)$ 来估计它， 使用一个所谓的分数匹配目标优化。
+其中 $\hat w$ 是反向时间 Wiener 过程， $p_t(x)$ 表示在时间 $t$ 时 $x(t)$ 的边缘概率密度函数。分数函数 $\nabla_x \log p_t(x)$ 通常无法得到， 因此基于 SDE 的扩散模型通过训练一个和时间相关的神经网络 $s_\theta(x, t)$ 来估计它， 优化一个所谓的分数匹配目标。
+
+
+ # Method
+ 
+ 
+我们提议的图像恢复方法的关键想法是将均值还原SDE与神经网络训练的最大likeli-hood目标相结合。
