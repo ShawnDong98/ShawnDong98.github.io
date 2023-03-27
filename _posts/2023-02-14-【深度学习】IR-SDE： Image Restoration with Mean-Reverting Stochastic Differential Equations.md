@@ -59,7 +59,18 @@ $$
 其中 $\theta_t$ 和 $\sigma_t$ 是依赖于时间正参数， 其分别描述  mean-reversion 的速度 和 随机加速度。在选择 $\theta_t$ 和 $\sigma_t$ 时有很多自由，正如我们将在第5.3节中看到的，这种选择会对由此产生的复原性能产生重大影响。为了进行图像退化，我们让 $x(0)$ 和 $\mu$ 分别成为真实高质量（HQ）图像及其退化的低质量（LQ）图像 （见图1）。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1679909898347.png)
-为了 SDE (3) 有闭式解， 我们设定 $\sigma_t^2 / \theta_t = 2 \lambda^2$， 其中 $\lambda^2$ 是不变的方方差。
+为了 SDE (3) 有闭式解， 我们设定 $\sigma_t^2 / \theta_t = 2 \lambda^2$， 其中 $\lambda^2$ 是不变的方差。
+
+**Proposition 3.1.** 假设在(3) 中的 SDE 系数对所有时间步 $t$ 满足 $\sigma_t^2  / \theta_t = 2 \lambda^2$。 然后， 给定开始状态 $x(s),  s < t$， SDE 的解为：
+
+$$
+
+x(t) = \mu + (x(s) - \mu) e^{-\bar \theta_{z:t}} +\int_s^t \sigma_z e^{- \bar \theta_{z:t}} dw(z) \tag{4}
+$$
+
+其中 $\bar \theta_{s:t} := \int_s^t \theta_z dz$ 是已知的， 并且 transition kernel $p(x(t) \mid x(s)) = N(x(t) \mid m_{s:t}(x(s)), v_{s:t})$ 是高斯分布， 其均值 $m_{s:t}$ 和 方差 $v_{s:t}$ 由下式给定：
+
+
  
 
 ## Reverse-Time SDE for Image Restoration
