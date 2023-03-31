@@ -26,4 +26,8 @@ tags:
 
 这种现象被正式解释为随机差分方程的 contraction 理论，例如我们的条件扩散策略——反向扩散的交替应用，然后是 non-expansive data consistency 步骤。
 
+被称为 Come-Closer-Diffuse-Faster（CCDF）的新采样策略也揭示了关于逆问题现有前馈神经网络方法如何与扩散模型协同结合的新见解。
+
+超分辨率、图像绘画和压缩感知 MRI 的实验结果表明，我们的方法可以在显著减少采样步骤的情况下实现最先进的重建性能。
+
 # Conclusion
