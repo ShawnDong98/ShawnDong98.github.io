@@ -85,7 +85,7 @@ $$
 
 ## Problem Setting
 
-考虑一个重构信号 $x \in R^N$， 其中 $x \thicksim p(x)$ 并且 $p(x)$ 未知。
+考虑一个从观测 $y = Hx + z$ 重构信号 $x \in R^N$ 的问题， 其中 $x \thicksim p(x)$ 并且 $p(x)$ 未知， $y \in R^M, H \in R^{M \times N},  M \leq B, z \thicksim N(0, \sigma_0^2I)$,  $H$ 和 $\sigma_0$ 已知。
 
 
 ## Derivation of the Conditional Score Function
