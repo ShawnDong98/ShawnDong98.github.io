@@ -70,4 +70,10 @@ $$
 
 其中 $z_t \thicksim N(0, I)$ 并且 $\alpha$ 是一个合适的小常数。 加上的 $z$ 允许随机采样， 避免分布的最大化的崩溃。随机初始化，经过足够多的迭代，在一些温和的条件下，这个过程收敛到从想要的分布 $p(x)$ 采样样本。
 
-[44]中报告的工作将上述算法扩展到 annealed Langevin dynamics。提出的退火用模糊的版本取代了 Eq. 2 中的分数函数，$\nabla_{\tilde x_t} \log p(\tilde x_t)$， 其中 $\tilde x_t = x_t + n$, 并且 $n \thicksim N(0, \sigma^2 I)$ 是注入的噪声。 核心想法是从非常高的噪声水平 $\sigma$ 开始，并逐渐将其降至接近零，同时使用取决于噪声水平的步长 $\alpha$。 这些改变使得算法更快地收敛以及更好的表现。
+[44]中报告的工作将上述算法扩展到 annealed Langevin dynamics。提出的退火用模糊的版本取代了 Eq. 2 中的分数函数，$\nabla_{\tilde x_t} \log p(\tilde x_t)$， 其中 $\tilde x_t = x_t + n$, 并且 $n \thicksim N(0, \sigma^2 I)$ 是注入的噪声。 核心想法是从非常高的噪声水平 $\sigma$ 开始，并逐渐将其降至接近零，同时使用取决于噪声水平的步长 $\alpha$。 这些改变使得算法更快地收敛以及更好的表现。[20] 通过使用 Miyasawa 的联系进一步发展了它， 得到：
+
+$$
+\nabla_{\tilde x_t} \log p(\tilde x_t) = \frac{D(\tilde x_t, \sigma) - \tilde x_t}{\sigma^2} \tag{3}
+$$
+
+其中，$D(\tilde x, \sigma) = E[x \mid \tilde x_t]$ 睡觉哦 MSE 的最小化 $E[\|x - D(\tilde x, \sigma)\|_2^2]$， 其通过一个去噪神经网络来估计。
