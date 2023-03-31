@@ -79,3 +79,14 @@ $$
 其中，$D(\tilde x, \sigma) = E[x \mid \tilde x_t]$ 睡觉哦 MSE 的最小化 $E[\|x - D(\tilde x, \sigma)\|_2^2]$， 其通过一个去噪神经网络来估计。这有助于在 Langevin dynamics 中使用 denoisers 来替代得分函数。
 
 当转向解决逆问题时，之前的工作建议使用退火的Langevin dynamics[20，46，21]或类似方法[15，18，42，26]从后验分布 $p(x \mid y)$ 中采样，用条件函数替换生成算法中使用的分数函数。事实证明，如果可以对观测形成提出限制性假设，那么条件分数是 tractable 的，因此将退火的Langevin过程推广到这些问题是可以实现的。事实上，在[44, 20, 46, 42, 26]中，对于 $H$ 的特定和简化选择，核心假设是 $y = Hx$，并且观测中没有噪声。[15，23]中的作品完全避免了这些困难，回到了原来的（非退火）Langevin方法，不可避免的代价是变得极慢。此外，他们的算法在逆问题上得到了证明，其中加性噪声被限制为非常弱。[21]中的工作范围更广，允许任意加性高斯白噪声，但将 $H$ 限制在去噪或 inpainting 的问题上。虽然所有这些作品都展示了高质量的结果，但目前没有明确的方法来推导方程1中提出的一般线性逆问题的模糊分数函数。下面，我们提出了这样的推导。
+
+
+# The Proposed Approach: Deriving the Conditional Score Function
+
+## Problem Setting
+
+考虑一个重构信号 $x \in R^N$， 其中 $x \thicksim p(x)$ 并且 $p(x)$ 未知。
+
+
+## Derivation of the Conditional Score Function
+
