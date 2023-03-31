@@ -70,4 +70,4 @@ $$
 
 其中 $z_t \thicksim N(0, I)$ 并且 $\alpha$ 是一个合适的小常数。 加上的 $z$ 允许随机采样， 避免分布的最大化的崩溃。随机初始化，经过足够多的迭代，在一些温和的条件下，这个过程收敛到从想要的分布 $p(x)$ 采样样本。
 
-[44]中报告的工作将上述算法扩展到 annealed Langevin dynamics。提出的退火用模糊的版本取代了 Eq. 2 中的分数函数，$\nabla_{\tilde x_t} \log p(\tilde x_t)$， 其中 $\tilde x_t = x_t + n$, 并且 $n \thicksim N(0, \sigma^2 I)$。 
+[44]中报告的工作将上述算法扩展到 annealed Langevin dynamics。提出的退火用模糊的版本取代了 Eq. 2 中的分数函数，$\nabla_{\tilde x_t} \log p(\tilde x_t)$， 其中 $\tilde x_t = x_t + n$, 并且 $n \thicksim N(0, \sigma^2 I)$ 是注入的噪声。 
