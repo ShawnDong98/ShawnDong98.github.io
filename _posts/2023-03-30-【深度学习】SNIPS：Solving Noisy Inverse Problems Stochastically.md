@@ -69,3 +69,5 @@ x_{t+1} = x_t + \alpha \nabla_{x_t} \log p(x_t) + \sqrt{2 \alpha}z_t \tag{2}
 $$
 
 其中 $z_t \thicksim N(0, I)$ 并且 $\alpha$ 是一个合适的小常数。 加上的 $z$ 允许随机采样， 避免分布的最大化的崩溃。随机初始化，经过足够多的迭代，在一些温和的条件下，这个过程收敛到从想要的分布 $p(x)$ 采样样本。
+
+[44]中报告的工作将上述算法扩展到 annealed Langevin dynamics。
