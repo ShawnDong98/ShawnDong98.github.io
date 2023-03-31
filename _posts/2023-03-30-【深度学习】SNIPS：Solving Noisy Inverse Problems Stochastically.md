@@ -85,7 +85,9 @@ $$
 
 ## Problem Setting
 
-考虑一个从观测 $y = Hx + z$ 重构信号 $x \in R^N$ 的问题， 其中 $x \thicksim p(x)$ 并且 $p(x)$ 未知， $y \in R^M, H \in R^{M \times N},  M \leq B, z \thicksim N(0, \sigma_0^2I)$,  $H$ 和 $\sigma_0$ 已知。我们的最终目标是从后验概率 $p(x \mid y)$ 采样。然而， 由于得分函数 $\nabla_x \log p(x \mid y)$ 无法得到，我们重定义目标， 从模糊的后验分布 $p(\tilde x \mid y)$ 采样，其中 $\tilde x = x + n, n \thicksim N(0, \sigma^2I)$， 噪声规模 $\sigma$ 从非常大开始减小到0。 
+考虑一个从观测 $y = Hx + z$ 重构信号 $x \in R^N$ 的问题， 其中 $x \thicksim p(x)$ 并且 $p(x)$ 未知， $y \in R^M, H \in R^{M \times N},  M \leq B, z \thicksim N(0, \sigma_0^2I)$,  $H$ 和 $\sigma_0$ 已知。我们的最终目标是从后验概率 $p(x \mid y)$ 采样。然而， 由于得分函数 $\nabla_x \log p(x \mid y)$ 无法得到，我们重定义目标， 从模糊的后验分布 $p(\tilde x \mid y)$ 采样，其中 $\tilde x = x + n, n \thicksim N(0, \sigma^2I)$， 噪声规模 $\sigma$ 从非常大开始减小到0。
+
+采样应该从 SVD 域以便得到一个 tractable 的模糊的得分函数的导数。 因此我们考虑 $H$ 的奇异值分解 $H = U \Sigma V^T$， 其中 $U \in R^{M \times M}$ 并且 $V \in R^{N \times N}$ 是正交矩阵， $\Sigma \in R^{M \times N}$是个矩形对角矩阵， 其包含 $H$ 的奇异值。
 
 
 ## Derivation of the Conditional Score Function
