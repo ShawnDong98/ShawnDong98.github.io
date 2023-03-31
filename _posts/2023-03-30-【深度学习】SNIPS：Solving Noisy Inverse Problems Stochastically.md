@@ -76,4 +76,4 @@ $$
 \nabla_{\tilde x_t} \log p(\tilde x_t) = \frac{D(\tilde x_t, \sigma) - \tilde x_t}{\sigma^2} \tag{3}
 $$
 
-其中，$D(\tilde x, \sigma) = E[x \mid \tilde x_t]$ 睡觉哦 MSE 的最小化 $E[\|x - D(\tilde x, \sigma)\|_2^2]$， 其通过一个去噪神经网络来估计。
+其中，$D(\tilde x, \sigma) = E[x \mid \tilde x_t]$ 睡觉哦 MSE 的最小化 $E[\|x - D(\tilde x, \sigma)\|_2^2]$， 其通过一个去噪神经网络来估计。这有助于在 Langevin dynamics 中使用denoisers来替代规避得分函数。
