@@ -109,3 +109,5 @@ $$
 
 
 现在我们有了显示加速捷径存在的主要结果。
+
+**Theorem 2** (Shortcut path) 对于任意 $0 < \mu \leq 1$， 存在一个最小值 $N' (= t_0N < N)$, 使得 $\bar \epsilon_{0, r} \leq \mu \epsilon_0$。 此外， 只要 $\epsilon_0$ 变小， $N'$ 减小。
