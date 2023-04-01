@@ -78,4 +78,34 @@ $$
  
  现在，我们准备展示为什么 CCDF 提供的收敛速度比从高斯噪声开始的标准条件扩散模型快得多。事实上，关键的创新来自于数学发现，即虽然正向扩散增加了估计误差，但条件反向扩散以指数速度将其降低得更快。因此，我们可以找到一个“sweet spot” $N′$，使得正向扩散到 $N′$，然后是反向扩散，可以显著减少初始估计 $x_0$ 的估计误差。这种快速收敛原理显示在以下定理中，其证明可以在补充材料中找到。首先，以下引理是高斯噪声独立性的一个简单结果。
  
- **Lemma 1.** 令 $\tilde x_0 \in R^n$ 和 $x_0 \in R^n$ 分别表示真实的干净的图像和初始估计， 并且初始估计误差表示为 $\epsilon_0 = \| x_0 = \tilde x_0 \|^2$。 此外，假设 $x_{N′}$ 和 $x_{\tilde N′}$ 分别表示从 $x_0$ 和 $\tilde x_0$ 前向扩散，使用（12）。然后，前向扩散后的估计误差由
+ **Lemma 1.** 令 $\tilde x_0 \in R^n$ 和 $x_0 \in R^n$ 分别表示真实的干净的图像和初始估计， 并且初始估计误差表示为 $\epsilon_0 = \| x_0 = \tilde x_0 \|^2$。 此外，假设 $x_{N′}$ 和 $x_{\tilde N′}$ 分别表示从 $x_0$ 和 $\tilde x_0$ 前向扩散，使用（12）。然后，前向扩散后的估计误差由：
+ 
+ $$
+ \bar \epsilon_{N'} :=  E \| x_{N'} - \tilde x_{N'}\|^2 \ \\
+ = a_{N'}^2 \epsilon_0 + 2b_{N'}^2 n \tag{16}
+$$
+
+现在，以下定理是我们证明的关键步骤，来自随机差分方程的随机 contraction 性质：
+
+**Theorem 1.** 使用 (13) 和 (14) 考虑反向扩散， 我们有：
+
+$$
+\bar \epsilon_{0, r} \leq \frac{2 C_{\tau}}{1 - \lambda^2} + \lambda^{2N'} \bar \epsilon_{N'} \tag{17} 
+$$
+
+其中 $\bar \epsilon_{0, r}$ 表示反向条件扩散路径到 $i=0$ 的估计的误差， 并且 $\tau = \frac{Tr(A^\top A)}{n}$。此外，收缩率 $\lambda$ 和常数 $C$ 具有以下闭式表达式：
+
+
+$$
+\lambda = \begin{cases}
+\max_{i \in [N']} \sqrt{\alpha_i}(\frac{1 - \bar \alpha_{i-1}}{1 - \bar \alpha_i}) \qquad (DDPM) \\
+\max_{i \in [N']} \frac{\sigma_{i-1}^2 - \sigma_0^2}{\sigma_i^2 - \sigma_0^2} \qquad (SMLD) \\
+\max_{i \in [N']} \frac{\sigma_{i-1}}{\sigma_i} \qquad (DDIM) \tag{18}
+\end{cases}
+$$
+
+
+
+
+
+现在我们有了显示加速捷径存在的主要结果。
