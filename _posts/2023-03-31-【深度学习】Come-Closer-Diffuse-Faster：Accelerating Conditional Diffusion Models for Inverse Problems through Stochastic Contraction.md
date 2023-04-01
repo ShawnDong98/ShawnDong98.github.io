@@ -30,4 +30,23 @@ tags:
 
 超分辨率、图像绘画和压缩感知 MRI 的实验结果表明，我们的方法可以在显著减少采样步骤的情况下实现最先进的重建性能。
 
-# Conclusion
+# Background
+
+## Score-based Diffusion Models
+
+## Discrete Forms of SDEs
+
+# Main Contribution
+
+## The CCDF Algorithm
+
+我们的CCDF加速方案的目标是使反向扩散从 $N′ := N_{t0} < N$ 开始，以便可以显著减少反向扩散步数。为此，我们的CCDF算法由两个步骤组成：向前扩散到 $N′$，具有更好的初始化 $x_0$，然后是反向条件扩散到 $i = 0$。
+
+具体来说，对于给定的初始估计 $x_0$，正向扩散过程可以通过单步扩散执行，如下所示：
+
+$$
+x_{N'} = a_{N'} x_0 + b_{N'} z \tag{12}
+$$
+
+
+$z \thicksim N(0, I)$， 并且 $a_{N'}, b_{N'}$ 对于 SMLD 和 DDPM 可以使用 (10) 和 (5) 分别对每个扩散模型计算。
