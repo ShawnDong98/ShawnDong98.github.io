@@ -6,7 +6,7 @@ date:       2022-11-01
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
-tags: CVPR 2020
+tags:
     - 深度学习
     - CVPR 2020
 ---
