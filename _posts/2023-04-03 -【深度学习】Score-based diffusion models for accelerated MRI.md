@@ -60,4 +60,12 @@ $$
 
 ## Reverse SDE for Accelerated MR Reconstruction
 
+一个经典的找到等式 (7) 的解的方法是求解下列有约束的优化问题：
+
+$$
+\min_x \Psi(x) \qquad \text{subject to} \qquad y = Ax \tag{10}
+$$
+
+其中 $\Psi(·)$ 是从压缩感知理论中得到的 sparsity promoting regularizer。 
+
 
