@@ -58,3 +58,6 @@ $$
 在 single-coil acquisition 的情况下， $S$ 简化为单位矩阵，因此有 $A_{(sc)} = P_{\Omega}F$。
 
 
+## Reverse SDE for Accelerated MR Reconstruction
+
+
