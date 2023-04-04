@@ -89,6 +89,7 @@ $$
 $$
 x_{i-1} = \frac{1}{\sqrt{1 - \beta_i}}(x_i + \beta_i s_{\theta^*}(x_i, i)) + \sqrt{\beta_i} z_i, \quad i = N, N-1, ..., 1 \tag{4}
 $$
+**Note:** 该项的推导来自于重参数技巧 $x_t = \sqrt{1 - \beta_t} x_{t-1} + \sqrt{\beta_t} z_t $. 
 
 作者称这种方式为 ancestral sampling， 因为它相当于从图模型 $\prod_{i=1}^N p_\theta(x_{i-1} \mid x_i)$ 中执行祖先采样。Eq.(1) 和 Eq.(3) 的目标都是去噪分数匹配目标的加权和， 这表明最优的模型 $s_{\theta^*}(\tilde x, i)$ 匹配扰动数据分布的分数 $\nabla_x \log p_{\alpha_i}(x)$。 值得注意的是， Eq.(1) 和 Eq.(3) 的权重， 也就是 $\sigma_i^2$ 和 $(1 - \alpha_i)$ 与以相同的形式与扰动核相关： $\sigma_i^2 \propto E[\| \nabla_x \log p_{\sigma_i} (\tilde x \mid x) \|_2^2]$ 和 $(1 - \alpha_i) \propto 1 / E[\| \nabla_x \log p_{\alpha_i}(\tilde x \mid x)\|_2^2]$。 
  
