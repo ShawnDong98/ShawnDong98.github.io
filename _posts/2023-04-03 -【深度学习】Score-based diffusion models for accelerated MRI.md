@@ -68,4 +68,4 @@ $$
 
 其中 $\Psi(·)$ 是从压缩感知理论中得到的 sparsity promoting regularizer， 例如 $l_1$ 小波变换以及 TV。 求解 Eq. (10) 通常包含 proximal 算法， 例如 variable splitting 或者 projection onto the convex sets (POCS)， 其解耦先验项和前向一致性项的优化。然后，人们可以交替解决两个子问题，以达到最佳状态。 
 
-在贝叶斯角度， 我们立即看到 Eq. (10) 中的 $\Psi(x)$ 是数据的先验分布， 例如 $p(x)$。 
+在贝叶斯角度， 我们立即看到 Eq. (10) 中的 $\Psi(x)$ 是数据的先验分布， 例如 $p(x)$。 因此， 我们可以想象更精准地估计复杂的先验分布以取得更高质量的样本。
