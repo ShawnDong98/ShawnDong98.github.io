@@ -92,3 +92,5 @@ $$
 $$
 
 例如 projection onto convex sets (POCS) 或者带有可控步长的标准梯度下降对应 non-expansive 数据一致性映射。在下文中，(9) 中的标准化步骤对于确保 $(I − \lambda A^*A)$ non- expansive 至关重要：
+
+**Proposition 1.** 有了 Eq. (9) 的 sensitivity normalization， $(I - \lambda A^*A)$ 对于 $\lambda \in [0, 1]$ 是 non-expansive 的。
