@@ -84,3 +84,11 @@ x_i \leftarrow x_i + \lambda A^* (y - Ax_i) = (I - \lambda A^*A)x_i + A^*y \tag{
 $$
 
 对于 $\lambda \in [0, 1]$， 其中 $A^*$ 表示 $A$ 的 Hermitian adjoint。 
+
+我们对算子 $A$ 施加约束使得 $I - \lambda A^*A$ 是一个 non-expansive mapping：
+
+$$
+\|(I - \lambda A^* A)x - (I - \lambda A^*A)x'\| \leq \| x - x'\|, \qquad \forall x, x' \tag{13}
+$$
+
+例如 projection onto convex sets (POCS) 或者带有可控步长的标准梯度下降对应 non-expansive 数据一致性映射。
