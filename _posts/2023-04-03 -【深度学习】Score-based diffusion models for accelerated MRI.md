@@ -66,6 +66,6 @@ $$
 \min_x \Psi(x) \qquad \text{subject to} \qquad y = Ax \tag{10}
 $$
 
-其中 $\Psi(·)$ 是从压缩感知理论中得到的 sparsity promoting regularizer， 例如 $l_1$ 小波变换以及 TV。 求解 Eq. (10) 通常包含 proximal 算法， 例如 variable splitting 或者 projection onto the convex sets (POCS)， 其解耦先验项和前向一致性项的优化。 
+其中 $\Psi(·)$ 是从压缩感知理论中得到的 sparsity promoting regularizer， 例如 $l_1$ 小波变换以及 TV。 求解 Eq. (10) 通常包含 proximal 算法， 例如 variable splitting 或者 projection onto the convex sets (POCS)， 其解耦先验项和前向一致性项的优化。然后，人们可以交替解决两个子问题，以达到最佳状态。 
 
 
