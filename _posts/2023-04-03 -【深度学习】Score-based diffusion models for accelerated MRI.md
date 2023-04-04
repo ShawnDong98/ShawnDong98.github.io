@@ -49,4 +49,12 @@ $$
 A := P_{\Omega} F S \tag{8} 
 $$
 
-其中 $S := {S^{(1)}; ...; S^{(c)}}$ 是 $c$ 个不同 coil 的 sensitivity map， $F$ 表示傅里叶变换， $P_{\Omega}$ 是对角矩阵表示给定采样模式 $\Omega$ 的欠采样操作。
+其中 $S := {S^{(1)}; ...; S^{(c)}}$ 是 $c$ 个不同 coil 的 sensitivity map， $F$ 表示傅里叶变换， $P_{\Omega}$ 是对角矩阵表示给定采样模式 $\Omega$ 的欠采样操作。 Sensitivity map $S$ 被规范化，因此有：
+
+$$
+S^* S = I \tag{9}
+$$
+
+在 single-coil acquisition 的情况下， $S$ 简化为单位矩阵，因此有 $A_{(sc)} = P_{\Omega}F$。
+
+
