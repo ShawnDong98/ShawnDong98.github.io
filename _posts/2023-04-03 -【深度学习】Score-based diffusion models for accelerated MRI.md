@@ -30,3 +30,23 @@ tags:
 除了所有优点外，我们的方法还具有非常强大的性能，甚至击败了经过全面监督训练的模型。
 
 通过广泛的实验，我们验证了我们的方法在质量和实用性方面的优越性。
+
+
+# Main Contributions
+
+
+## Forward Measurement Model
+
+在 accelerated MRI 中，我们考虑以下观测模型：
+
+$$
+y = Ax \tag{7}
+$$
+
+参数化前向观测矩阵 $A \in C^{m \times n}$ 被定义为：
+
+$$
+A := P_{\Omega} F S \tag{8} 
+$$
+
+其中 $S := {S^{(1)}; ...; S^{(c)}}$ 是 $c$ 个不同 coil 的 sensitivity map， $F$ 表示傅里叶变换， $P_{\Omega}$ 是对角矩阵表示给定采样模式 $\Omega$ 的欠采样操作。
