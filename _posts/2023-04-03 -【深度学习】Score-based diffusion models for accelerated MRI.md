@@ -91,4 +91,4 @@ $$
 \|(I - \lambda A^* A)x - (I - \lambda A^*A)x'\| \leq \| x - x'\|, \qquad \forall x, x' \tag{13}
 $$
 
-例如 projection onto convex sets (POCS) 或者带有可控步长的标准梯度下降对应 non-expansive 数据一致性映射。
+例如 projection onto convex sets (POCS) 或者带有可控步长的标准梯度下降对应 non-expansive 数据一致性映射。在下文中，(9) 中的标准化步骤对于确保 $(I − \lambda A^*A)$ non- expansive 至关重要：
