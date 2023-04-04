@@ -69,3 +69,18 @@ $$
 其中 $\Psi(·)$ 是从压缩感知理论中得到的 sparsity promoting regularizer， 例如 $l_1$ 小波变换以及 TV。 求解 Eq. (10) 通常包含 proximal 算法， 例如 variable splitting 或者 projection onto the convex sets (POCS)， 其解耦先验项和前向一致性项的优化。然后，人们可以交替解决两个子问题，以达到最佳状态。 
 
 在贝叶斯角度， 我们立即看到 Eq. (10) 中的 $\Psi(x)$ 是数据的先验分布， 例如 $p(x)$。 因此， 我们可以想象更精准地估计复杂的先验分布以取得更高质量的样本。
+
+话虽如此，与经典方法相比，所提出的方法的重要区别之一是，而不是对先验分布 $p(x)$ 进行建模, 我们利用它的随机样本。具体来说，从先验分布采样的样本可以从 Eq. (4) 中的反向 SDE 中获得，该 SDE 可以离散化，如算法1所示：
+
+
+$$
+x_i \leftarrow (\sigma_{i+1}^2 - \sigma_i^2)s_\theta(x_{i+1}, \sigma_{i+1}) + \sqrt{\sigma_{i+1}^2 - \sigma_i^2}z \tag{11}
+$$
+
+然后，（10）中约束上的数据一致性映射可以通过
+
+$$
+x_i \leftarrow x_i + \lambda A^* (y - Ax_i) = (I - \lambda A^*A)x_i + A^*y \tag{12}
+$$
+
+对于 $\lambda \in [0, 1]$， 其中 $A^*$ 表示 $A$ 的 Hermitian adjoint。 
