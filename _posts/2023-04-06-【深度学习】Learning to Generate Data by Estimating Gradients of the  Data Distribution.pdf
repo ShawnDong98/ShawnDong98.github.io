@@ -46,4 +46,4 @@ $$
 
 其忽略了规范化常数 $Z$。 由于不需要计算评估 score functions 的归一化常数，因此使用灵活的深度神经网络对它们进行建模要容易得多。
 
-从现在开始，我们将 score function 的模型称为 score model ，其表示为 $s_\theta(x)$， 其中 $\theta$ 表示模型参数。分数模型的唯一约束是，它必须是 scalar-valued function 的梯度，或者换句话说，它必须表示 conservative vector field。这可以通过用一个深度神经网络参数化能量函数 $E_\theta(x)$ 来强制执行， 然后用 $s_\theta(x) = -\nabla_x E_\theta(x)$ 构造 score model。通过反向传播[Hin02]或自动微分，计算深度神经网络的梯度通常是有效的 
+从现在开始，我们将 score function 的模型称为 score model ，其表示为 $s_\theta(x)$， 其中 $\theta$ 表示模型参数。分数模型的唯一约束是，它必须是 scalar-valued function 的梯度，或者换句话说，它必须表示 conservative vector field。这可以通过用一个深度神经网络参数化能量函数 $E_\theta(x)$ 来强制执行， 然后用 $s_\theta(x) = -\nabla_x E_\theta(x)$ 构造 score model。通过反向传播[Hin02]或自动微分，计算深度神经网络的梯度通常是有效的。 因此，以这种方式构建的分数模型的评估速度很快。
