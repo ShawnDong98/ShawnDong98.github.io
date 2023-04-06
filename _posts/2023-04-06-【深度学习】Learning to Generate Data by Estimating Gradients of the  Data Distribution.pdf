@@ -1,0 +1,26 @@
+---
+layout:     post
+title:      "【深度学习】Learning to Generate Data by Estimating Gradients of the  Data Distribution.pdf"
+subtitle:   ""
+date:       2023-04-06
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - 深度学习
+    - Diffusion
+---
+
+# Background
+
+
+## Score Functions and Score Models
+
+Stein score function [Ste72; HD05; LLJ16] 被定义为概率分布的对数密度的梯度。特别地，对于一个概率密度函数 $p(x)$， 对应的 Stein score function $s(x)$ 为：
+
+$$
+s(x) := \nabla_x \log p(x)
+$$
+
+注意与 Fisher score function 的差异，Fisher score function 被定义为对数密度相对于模型参数的梯度。相比之下，Stein score function 取相对于随机变量的导数。为了简洁起见，我们从今以后将 “Stein score function” 简称为 “score” 或 “score function”。
+
