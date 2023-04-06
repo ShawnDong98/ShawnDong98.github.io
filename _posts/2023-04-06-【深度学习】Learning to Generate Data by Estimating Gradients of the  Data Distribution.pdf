@@ -44,4 +44,4 @@ $$
 s(x) = \nabla_x \log \frac{\tilde p(x)}{Z} = \nabla_x \log \tilde p(x) - \nabla_x \log Z = \nabla_x \log \tilde p(x)
 $$
 
-其忽略了规范化常数 $Z$。 
+其忽略了规范化常数 $Z$。 由于不需要计算评估 score functions 的归一化常数，因此使用灵活的深度神经网络对它们进行建模要容易得多。
