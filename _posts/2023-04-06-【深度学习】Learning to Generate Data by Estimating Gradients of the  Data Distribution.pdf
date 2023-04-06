@@ -38,4 +38,9 @@ $$
 
 因此，score function 在用于表示概率分布时保留的信息量与概率密度函数相同。
 
-忽略归一化是分数函数优于密度函数的关键优势。 特别地， 假设 $\tilde p(x)$ 是未规范化的概率密度， $\int \tilde p(x) dx = Z \neq 1$。 
+忽略归一化是分数函数优于密度函数的关键优势。 特别地， 假设 $\tilde p(x)$ 是未规范化的概率密度， $\int \tilde p(x) dx = Z \neq 1$。 score function 为：
+
+$$
+s(x) = \nabla_x \log \frac{\tilde p(x)}{Z} = \nabla_x \log \tilde p(x) - \nabla_x \log Z = \nabla_x \log \tilde p(x)
+$$
+
