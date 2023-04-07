@@ -351,6 +351,15 @@ with tf.device('/cpu:0'):
     ...  # your code which need RngReadAndSkip low-level method here
 ```
 
+# tensorflow.python.framework.errors_impl.ResourceExhaustedError: Too many open files
+
+
+```python
+import resource
+low, high = resource.getrlimit(resource.RLIMIT_NOFILE)
+resource.setrlimit(resource.RLIMIT_NOFILE, (high, high))
+```
+
 # Reference
 1. [Tensorflow2.1-gpu安装后出现 ImportError: DLL load failed: 找不到指定的模块问题](https://blog.csdn.net/qq_43060552/article/details/104614124)
 2. [keras Input 介绍](https://blog.csdn.net/weixin_38145317/article/details/90694258)
@@ -359,3 +368,4 @@ with tf.device('/cpu:0'):
 5. [[苹果M1]：我没有注册与节点{{RngReadAndSkip RngReadAndSkip}}兼容的'GPU‘设备的’OpKernel‘节点。已注册:设备=‘CPU’](https://cloud.tencent.com/developer/ask/sof/749100)
 6. [How to save TextVectorization to disk in tensorflow?](https://stackoverflow.com/questions/65103526/how-to-save-textvectorization-to-disk-in-tensorflow)
 7. [os.environ[‘PYTHONHASHSEED‘] = ‘0‘ | 如何在 Keras 开发过程中获取可复现的结果？](https://blog.csdn.net/weixin_38665509/article/details/105349060)
+8. []()
