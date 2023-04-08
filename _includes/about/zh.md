@@ -4,7 +4,7 @@
 
 ## 个人信息 
 
-* 教育背景：西安电子科技大学 &emsp; 计算机科学与技术 &emsp;&emsp;&emsp;&emsp;    2020 年 9 月 - 目前
+* 教育背景：西安电子科技大学 &emsp; 计算机科学与技术 &emsp;&emsp;&emsp;&emsp;    2020 年 9 月 - 至今
 
 * 西安电子科技大学 人工智能学院  &emsp;&emsp; 智能成像与语义通信实验室(IISC)
 * 邮 箱：ShawnDong98@gmail.com  
