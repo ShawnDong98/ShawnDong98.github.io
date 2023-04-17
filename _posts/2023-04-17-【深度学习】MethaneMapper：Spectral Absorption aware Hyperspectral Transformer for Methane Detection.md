@@ -23,3 +23,7 @@ tags:
 为了应对这些挑战，我们提出了一个新的端到端 spectral absorption wavelength aware transformer 网络MethaneMapper，以检测和量化排放。
 
 MethaneMapper引入了两个新颖的模块，这些模块有助于定位光谱域中最相关的甲烷 plume 区域，并使用它们来准确定位这些区域。
+
+彻底的评估表明，与当前最先进的技术相比，MethaneMapper在检测中实现了0.63 mAP，并减少了模型尺寸（5×）。
+
+此外，我们还为2015-2022年超过1200条AVIRIS-NG飞行线路引入了甲烷 plume 分割掩码的大规模数据集。
