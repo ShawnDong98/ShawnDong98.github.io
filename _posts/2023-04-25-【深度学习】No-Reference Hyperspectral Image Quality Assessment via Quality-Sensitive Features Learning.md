@@ -65,6 +65,16 @@ $$
 
 其中 $\lambda = 1, 2, ..., L$ 是光谱索引， $C$ 是用于当分母趋向于0时稳定规范化的常数。 实验中 $C$ 设置为 1。 $\mu(\lambda)$ 和 $\sigma(\lambda)$ 分别表示局部均值和标准差。
 
+$$
+\mu(\lambda) = \sum_{k = -K}^K w_k s(\lambda + k) \tag{2}
+$$
+
+$$
+\sigma(\lambda) = \sqrt{\sum_{k = -K}^K w_k [s(\lambda + k) - \mu(\lambda)]^2} \tag{3}
+$$
+
+其中 $w = \{w_k \mid -K, -K + 1, ..., K\}$ 是高斯权重窗口。 $K$ 决定窗口的宽度。
+
 
 
 ## 
