@@ -63,7 +63,7 @@ $$
 \bar s(\lambda) = \frac{s(\lambda) - \mu(\lambda)}{\sigma(\lambda) + C} \tag{1}
 $$
 
-
+其中 $\lambda = 1, 2, ..., L$ 是光谱索引， $C$ 是用于当分母趋向于0时稳定规范化的常数。 实验中 $C$ 设置为 1。 $\mu(\lambda)$ 和 $\sigma(\lambda)$ 分别表示局部均值和标准差。
 
 
 
