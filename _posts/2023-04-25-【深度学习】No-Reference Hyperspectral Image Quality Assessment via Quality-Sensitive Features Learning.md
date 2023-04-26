@@ -59,4 +59,12 @@ tags:
 在本小节中，在分析光谱域中的统计数据后，提出了对光谱质量敏感的特征。我们观察到，原始 HSI 的局部归一化光谱将遵循高斯分布，而失真的 HSI 的光谱将偏离。给定一个原始的 $HSI \in R^{M \times N \times L}$，我们首先将局部归一化应用于光谱 $s$。 
 
 
+$$
+\bar s(\lambda) = \frac{s(\lambda) - \mu(\lambda)}{\sigma(\lambda) + C} \tag{1}
+$$
+
+
+
+
+
 ## 
