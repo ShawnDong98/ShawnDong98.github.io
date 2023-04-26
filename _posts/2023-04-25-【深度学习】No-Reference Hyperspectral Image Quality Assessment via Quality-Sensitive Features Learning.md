@@ -78,12 +78,30 @@ $$
 
 我们从AVIRIS数据[23]中裁剪一个子图像，然后将上述局部归一化应用于光谱，如图1所示。噪声和模糊是HSI[24-26]失真引起的常见影响，因此我们为原始HSI添加噪声或将其模糊以模拟失真HSI。图2显示了添加不同噪声级别（高斯噪声）和模糊（平均滤波）的子图像。我们绘制了图3中子图像中所有光谱的直方图。据观察，原始HSI的局部归一化光谱的分布遵循零均值的高斯分布，而失真的HSI的局部归一化光谱偏离。图3中有两个有趣的发现。首先，每种类型的失真都会以自己的方式修改分布。例如，随着噪声的增加，分布曲线变得平坦，并倾向于均匀分布。当HSI模糊时，分布曲线变得很薄，并倾向于拉普拉斯分布。其次，更严重的失真会导致分布的更大修改。标准差 $\sigma = 0.20$ 的噪声使分布曲线比 $\sigma = 0.05$ 的噪声平坦得多，$5 \times 5$ 模糊核产生比 $3 \times 3$ 核更窄的钟形曲线。
 
-因此，光谱域中的一些统计属性可以通过失真来修改，测量这些统计数据的变化可以评估光谱失真。广义高斯分布（GGD）可用于捕获原始和失真的HSI之间的统计变化。零均值的GGD的函数是
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1682490728411.png)
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1682491023232.png)
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1682491057338.png)
+
+因此，光谱域中的一些统计属性可以通过失真来修改，测量这些统计数据的变化可以评估光谱失真。广义高斯分布（GGD）可用于捕获原始和失真的HSI之间的统计变化。零均值的GGD的函数是：
+
+$$
+f(x; \alpha, \beta, \sigma^2) = \frac{\alpha}{2 \beta \Gamma(1 / \alpha)} \exp[-(\frac{\mid x \mid}{\beta})^{\alpha}] \tag{4}
+$$
+
+其中：
+
+$$
+\beta = \sigma \sqrt{\frac{\Gamma(1 / \alpha)}{\Gamma (3 / \alpha)}} \tag{5}
+$$
+
+$$
+\Gamma(a) = \int_0^\infty t^{a-1} e^{-t} dt \qquad a > 0 \tag{6}
+$$
+
+其中 $\alpha$ 和 $\beta$ 分别表示形状参数和尺度参数
+
 
 ## 
