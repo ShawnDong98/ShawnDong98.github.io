@@ -56,5 +56,7 @@ tags:
 
 ## Statistics Features in Spectral Domain
 
+在本小节中，在分析光谱域中的统计数据后，提出了对光谱质量敏感的特征。我们观察到，原始 HSI 的局部归一化光谱将遵循高斯分布，而失真的 HSI 的光谱将偏离。
+
 
 ## 
