@@ -101,7 +101,7 @@ $$
 \Gamma(a) = \int_0^\infty t^{a-1} e^{-t} dt \qquad a > 0 \tag{6}
 $$
 
-其中 $\alpha$ 和 $\beta$ 分别表示形状参数和尺度参数。 $\sigma$ 是标准差。
+其中 $\alpha$ 和 $\beta$ 分别表示形状参数和尺度参数。 $\sigma$ 是标准差。GGD 模型可以广泛描述多个分布的统计信息。
 
 
 ## 
