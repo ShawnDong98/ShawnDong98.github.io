@@ -50,6 +50,35 @@ tags:
 - 我们的 HerosNet 在模拟和真实数据集方面表现优于最先进的方法。
 
 
+# Related Works
+
+## Mask Optimization Algorithms
+
+关于传统CS的一些现有工作探索了联合掩模优化和图像重建的可能性。例如，Zhang等人[50]提出了一个受约束的优化启发网络，用于自适应采样和恢复。You等人[45]引入了随机投影增强策略，以学习任意采样矩阵并提高模型的泛化能力。在光谱SCI中，Arguello等人[4]根据限制等距属性（RIP）[10]理论将掩码优化转化为秩最小化问题。此外，Wang等人[33]重新排列了移位的3D数据立方体，并将其划分为四个参数共享子 patch，用于采样掩码学习。同时，Zhang等人[52]设计了一个端到端可学习的自编码器，以优化 illumination pattern 并压缩HSI。尽管上述方法在一定程度上实现了自适应采样，但在光谱SCI中将掩码优化与DUN相结合仍然具有挑战性，值得探索。
+
+
+# Proposed Method
+
+## Architecture of Proposed HerosNet
+
+### Sampling Subnet
+
+在本文中，采样网络旨在学习HSI压缩感知的最佳二值掩码，该掩码保留了足够的光谱空间信息并消除了冗余信息。采样子网的训练过程分为三个阶段，包括随机化、二值化和压缩。为了学习二进制掩码 $M$，采用均值 $\mu_b$ 和方差 $\sigma_b$ 的随机高斯初始化来生成连续矩阵 $\tilde M$。此外，我们设计了一个element-wise 二值函数 BinarySign（·），将连续矩阵转换为二值掩码，如下所示：
+
+$$
+M = \text{BinarySign}(\tilde M) \tag{4} \qquad \text{with BinarySign(z) =1 if z} \geq \mu_b \quad \text{or 0 else}
+$$
+
+根据 3.1 中的成像规则， 我们使用一个转换函数 $\text{Mask2Mat}(·)$ 来将二值掩码 $M$ 转换为 Eq. (3) 中的感知矩阵 $\Phi$：
+
+$$
+\Phi = \text{Mask2Mat}(M) \tag{6}
+$$
+
+因为感知矩阵 $\Phi$ 被视为可学习的参数， 二值函数的导数被定义一个常数， 例如 $\text{BinarySign}'(z)=1$。 最后， 根据 Eq. (1) 和 Eq. (2)， 3D 高光谱图像别压缩为观测 $y$. 
+
+
+
 
 
 # Conclusion
