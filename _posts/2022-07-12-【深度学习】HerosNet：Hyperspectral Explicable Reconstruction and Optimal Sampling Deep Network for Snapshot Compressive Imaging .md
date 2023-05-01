@@ -63,7 +63,7 @@ tags:
 
 ### Sampling Subnet
 
-在本文中，采样网络旨在学习HSI压缩感知的最佳二值掩码，该掩码保留了足够的光谱空间信息并消除了冗余信息。采样子网的训练过程分为三个阶段，包括随机化、二值化和压缩。为了学习二进制掩码 $M$，采用均值 $\mu_b$ 和方差 $\sigma_b$ 的随机高斯初始化来生成连续矩阵 $\tilde M$。此外，我们设计了一个element-wise 二值函数 BinarySign（·），将连续矩阵转换为二值掩码，如下所示：
+在本文中，采样子网络旨在学习HSI压缩感知的最佳二值掩码，该掩码保留了足够的光谱空间信息并消除了冗余信息。采样子网络的训练过程分为三个阶段，包括随机化、二值化和压缩。为了学习二进制掩码 $M$，采用均值 $\mu_b$ 和方差 $\sigma_b$ 的随机高斯初始化来生成连续矩阵 $\tilde M$。此外，我们设计了一个element-wise 二值函数 BinarySign（·），将连续矩阵转换为二值掩码，如下所示：
 
 $$
 M = \text{BinarySign}(\tilde M) \tag{4} \qquad \text{with BinarySign(z) =1 if z} \geq \mu_b \quad \text{or 0 else}
