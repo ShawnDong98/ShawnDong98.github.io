@@ -105,7 +105,7 @@ $$
 $b^r$ 是 $B_1$ 的实值元素。 来自于 coding CNN 学习到的 $b^b$ 是 $B_1$的值并且建立了最优编码模板。通过重复这种学习元素来获得完整的编码模板，以适应编码模板的空间分辨率。可以在采用 DMD 或 LCoS 的现有系统上轻松实现这种编码模板。
 
 
-
+由于学习的编码模板均匀地用于每个 oblique parallelepiped HSI patch，因此相应的重建 patch 是非重叠的。 因此，很容易引入 blocky artifacts。
 
 # Conclusion and Discussion
 
