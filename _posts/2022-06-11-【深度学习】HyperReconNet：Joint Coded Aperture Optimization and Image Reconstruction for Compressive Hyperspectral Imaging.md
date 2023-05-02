@@ -52,6 +52,12 @@ tags:
 
 # Joint Coded Apeture Optimization and HSI Reconstruction
 
+## HSI Reconstruction
+
+受基于学习的图像恢复[54]-[56]令人印象深刻的发展的启发，我们建议通过CNN进行HSI重建。鉴于HSI的3D性质，训练特定网络需要高计算资源。因此，很难在网络内支持完整的图像吞吐量。为此，我们建议采用分而治之策略，并每次重建小的 3D HSI patch[19]，[20]，[29]。
+
+然而，2D patch 将包含来自相邻 HSI patch 的场景信息，并且不能映射到单个HSI patch。因此，图4a 中的分解方法无法满足要求。
+
 ## Coded Aperture Optimization
 
 从Sec III-B 的分析，我们可以在3D oblique parallelepiped HSI patch 和 2D 压缩 patch 之间获得一对一的映射。一对一映射允许我们将图像重建分解为小规模问题。然而，对于 图4b 中的正向模型，具有 $P \times P$ 空间点和 $K$ 光谱带的小型 oblique parallelepiped HSI patch 由尺寸 $(P + K − 1）\times P$ 的编码孔径 patch 进行空间调制。很明显，编码孔径 patch 的空间分辨率大于 oblique parallelepiped。因此，编码模板 patch 不仅调制当前 oblique parallelepiped 补丁，还调制其相邻的 patch。也就是说，与相邻的 oblique parallelepiped  patches 相对应的编码模板 patches 将具有重叠区域。从这个意义上说，如果我们为当前 oblique parallelepiped HSI patch 优化编码模板 patch，我们必须考虑它对相邻 patch 的影响。这种串扰将遍布整个图像，因此一对一映射是无效的。
@@ -62,7 +68,7 @@ tags:
 为了消除编码模板的串扰效应，我们建议设计一个局部随机和全局重复编码孔径。在这个设计中，$P \times P$ 实体被视为基本单位。一旦优化，基本单元将拼贴到全分辨率，作为最终编码编码模板。通过这种方式，对于大小为 $(P + K − 1) \times P$ 的每个编码模板 patch，上部 $(K − 1) \times P$ 实体（如图4b中编码孔径的红色框所示）与下部 $(K −1) \times P$ 实体相同。
 
 
-然而，2D patch 将包含来自相邻 HSI patch 的场景信息，并且不能映射到单个HSI patch。因此，图4a 中的分解方法无法满足要求。
+
 
 # Conclusion and Discussion
 
