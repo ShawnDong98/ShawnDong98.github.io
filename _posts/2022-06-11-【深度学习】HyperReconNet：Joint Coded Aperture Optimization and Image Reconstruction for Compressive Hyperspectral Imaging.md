@@ -102,7 +102,7 @@ b^b = \begin{cases}
 0, \qquad b^r \leq 0
 \end{cases} \tag{13}
 $$
-
+$b^r$ 是 $B_1$ 的实值元素。 来自于 coding CNN 学习到的 $b^b$ 是 $B_1$的值并且建立了最优编码模板。
 
 
 # Conclusion and Discussion
