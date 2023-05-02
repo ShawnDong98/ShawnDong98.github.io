@@ -80,6 +80,11 @@ tags:
 
 例如，图6显示了三个相邻波段的编码模板。
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683021435848.png)
+
+
+为了将这种结构转换为神经网络并学习最佳编码模板，我们首先将 oblique parallelepiped patch $s^i$ 的下部移动到图7中橙色线所示的上部位置，然后得到一个立方HSI patch $\hat s^i_p$。
+
 
 # Conclusion and Discussion
 
