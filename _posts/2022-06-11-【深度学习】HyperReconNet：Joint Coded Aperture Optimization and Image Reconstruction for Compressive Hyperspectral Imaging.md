@@ -39,7 +39,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1682993395205.png)
 
-本文的其余部分组织如下。第二节回顾了相关工作。第三节介绍了拟议的方法。实验结果见第四节。第五节得出结论并讨论未来方向。
+本文的其余部分组织如下。第二节回顾了相关工作。第三节介绍了提出的方法。实验结果见第四节。第五节得出结论并讨论未来方向。
 
 # Conclusion and Discussion
 
