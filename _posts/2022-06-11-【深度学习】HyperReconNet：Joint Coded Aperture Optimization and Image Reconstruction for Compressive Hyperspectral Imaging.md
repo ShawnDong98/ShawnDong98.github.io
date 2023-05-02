@@ -54,7 +54,7 @@ tags:
 
 ## Coded Aperture Optimization
 
-从Sec III-B 的分析，我们可以在3D oblique parallelepiped HSI patch 和 2D 压缩 patch 之间获得一对一的映射。一对一映射允许我们将图像重建分解为小规模问题。然而，对于 图4b 中的正向模型，具有 $P \times P$ 空间点和 $K$ 光谱带的小型 oblique parallelepiped HSI patch 由尺寸 $(P + K − 1）\times P$ 的编码孔径 patch 进行空间调制。很明显，编码孔径 patch 的空间分辨率大于 oblique parallelepiped。因此，编码模板 patch 不仅调制当前 oblique parallelepiped 补丁，还调制其相邻的 patch。也就是说，与相邻的 oblique parallelepiped  patches 相对应的编码模板 patches 将具有重叠区域。
+从Sec III-B 的分析，我们可以在3D oblique parallelepiped HSI patch 和 2D 压缩 patch 之间获得一对一的映射。一对一映射允许我们将图像重建分解为小规模问题。然而，对于 图4b 中的正向模型，具有 $P \times P$ 空间点和 $K$ 光谱带的小型 oblique parallelepiped HSI patch 由尺寸 $(P + K − 1）\times P$ 的编码孔径 patch 进行空间调制。很明显，编码孔径 patch 的空间分辨率大于 oblique parallelepiped。因此，编码模板 patch 不仅调制当前 oblique parallelepiped 补丁，还调制其相邻的 patch。也就是说，与相邻的 oblique parallelepiped  patches 相对应的编码模板 patches 将具有重叠区域。从这个意义上说，如果我们为当前 oblique parallelepiped HSI patch 优化编码模板 patch，我们必须考虑它对相邻 patch 的影响。这种串扰将遍布整个图像，因此一对一映射是无效的。
 
 
 # Conclusion and Discussion
