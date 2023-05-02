@@ -52,6 +52,9 @@ tags:
 
 # Joint Coded Apeture Optimization and HSI Reconstruction
 
+## Coded Aperture Optimization
+
+从Sec III-B 的分析，我们可以在3D oblique parallelepiped HSI patch 和 2D 压缩 patch 之间获得一对一的映射。
 
 
 # Conclusion and Discussion
