@@ -94,7 +94,15 @@ $$
 
 然后，通过返回橙色线所示的移动部分，我们得到了编码的 oblique parallelepiped。到目前为止，空间调制模型是为基于 CNN 的编码模板优化而构建的。然后，通过以下光谱色散和求和，我们获得了二维压缩测量。
 
-BinaryConnect方法[59]用于通过符号函数将 $B_1$ 中的元素学习为0或1，即
+BinaryConnect方法[59]用于通过符号函数将 $B_1$ 中的元素学习为 0 或 1，即，
+
+$$
+b^b = \begin{cases}
+1, \qquad b^r > 0 \\
+0, \qquad b^r \leq 0
+\end{cases} \tag{13}
+$$
+
 
 
 # Conclusion and Discussion
