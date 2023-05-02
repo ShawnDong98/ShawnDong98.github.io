@@ -45,7 +45,7 @@ tags:
 
 ##  Optimal Coded Aperture Design
 
-根据CS理论，将 HSI 映射到 CASSI 中压缩图像的感知矩阵在重建质量中起着至关重要的作用。
+根据CS理论，将 HSI 映射到 CASSI 中压缩图像的感知矩阵在重建质量中起着至关重要的作用。使用固定探测器和色散棱镜，感知矩阵仅由编码孔径的实体决定。编码模板的初始采用随机二值设计。
 
 # Conclusion and Discussion
 
