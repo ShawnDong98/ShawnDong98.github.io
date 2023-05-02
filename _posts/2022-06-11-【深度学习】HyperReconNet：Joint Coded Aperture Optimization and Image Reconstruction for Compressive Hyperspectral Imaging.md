@@ -78,7 +78,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683021359471.png)
 
-例如，图6显示了三个相邻波段的编码模板模式。
+例如，图6显示了三个相邻波段的编码模板。
 
 
 # Conclusion and Discussion
