@@ -70,7 +70,11 @@ tags:
 为了消除编码模板的串扰效应，我们建议设计一个局部随机和全局重复编码孔径。在这个设计中，$P \times P$ 实体被视为基本单位。一旦优化，基本单元将拼贴到全分辨率，作为最终编码编码模板。通过这种方式，对于大小为 $(P + K − 1) \times P$ 的每个编码模板 patch，上部 $(K − 1) \times P$ 实体（如图4b中编码孔径的红色框所示）与下部 $(K −1) \times P$ 实体相同。
 
 
+具体来说，编码模板的基本单位表示为：
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683020975948.png)
+
+其中 $B_1$ 中的元素需要学习， 例如 $b_p = 1$ 或者 $0$ ($p = 1, ..., P^2$)。
 
 # Conclusion and Discussion
 
