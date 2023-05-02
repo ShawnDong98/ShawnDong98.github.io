@@ -85,9 +85,16 @@ tags:
 
 为了将这种结构转换为神经网络并学习最佳编码模板，我们首先将 oblique parallelepiped patch $s^i$ 的下部移动到图7中橙色线所示的上部位置，然后得到一个立方HSI patch $\hat s^i_p$。我们在 $\hat s^i$ 中提取空间位置 $p(p = 1，···，P^2)$ 的所有光谱元素，表示为 $\hat s^i_p \in R^K$ 。令 $\hat s^i_{p,k}(k = 1,···，K)$ 表示 $\hat s^i_p$ 中的第 $k$ 个光谱元素。我们将 $b_p$ 设置为 $1 \times 1$ 权重，并获得编码的 3D patch。
 
+$$
+\hat e(s_p^i) = \sum_{k=1}^K b_p \hat s^i_{p, k} \tag{12}
+$$
+
+
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683021866246.png)
 
+然后，通过返回橙色线所示的移动部分，我们得到了编码的 oblique parallelepiped。到目前为止，空间调制模型是为基于 CNN 的编码模板优化而构建的。然后，通过以下光谱色散和求和，我们获得了二维压缩测量。
 
+BinaryConnect方法[59]用于通过符号函数将 $B_1$ 中的元素学习为0或1，即
 
 
 # Conclusion and Discussion
