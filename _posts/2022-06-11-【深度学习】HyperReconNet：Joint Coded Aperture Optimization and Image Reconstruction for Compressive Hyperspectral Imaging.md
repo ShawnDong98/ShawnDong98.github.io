@@ -59,7 +59,7 @@ tags:
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683015335590.png)
 
 
-为了消除编码模板的串扰效应，我们建议设计一个局部随机和全局重复编码孔径。在这个设计中，P×P实体被视为基本单位。
+为了消除编码模板的串扰效应，我们建议设计一个局部随机和全局重复编码孔径。在这个设计中，$P \times P$ 实体被视为基本单位。
 
 
 # Conclusion and Discussion
