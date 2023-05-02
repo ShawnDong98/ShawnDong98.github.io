@@ -54,7 +54,7 @@ tags:
 
 ## Coded Aperture Optimization
 
-从Sec III-B 的分析，我们可以在3D oblique parallelepiped HSI patch 和 2D 压缩 patch 之间获得一对一的映射。
+从Sec III-B 的分析，我们可以在3D oblique parallelepiped HSI patch 和 2D 压缩 patch 之间获得一对一的映射。一对一映射允许我们将图像重建分解为小规模问题。然而，对于 图4b 中的正向模型，具有 $P \times P$ 空间点和 $K$ 光谱带的小型 oblique parallelepiped HSI patch 由尺寸 $(P + K − 1）\times P$ 的编码孔径 patch 进行空间调制。
 
 
 # Conclusion and Discussion
