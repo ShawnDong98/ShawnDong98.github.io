@@ -74,7 +74,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683020975948.png)
 
-其中 $B_1$ 中的元素需要学习， 例如 $b_p = 1$ 或者 $0$ ($p = 1, ..., P^2$)。
+其中 $B_1$ 中的元素需要学习， 例如 $b_p = 1$ 或者 $0$ ($p = 1, ..., P^2$)。由于信息由棱镜光谱色散，因此对应于每个光谱带的编码孔径相对于其相邻带具有一像素的偏移。因此，第k个光谱带的二值编码模板可以描述为 $B_1$ 的循环位移，即
 
 # Conclusion and Discussion
 
