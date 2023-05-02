@@ -58,7 +58,7 @@ tags:
 
 现在，瓶颈在于如何将基于图像的重建划分为基于 patch 的重建。直观上，我们可以通过系统正向模型跟踪一个大小为 $P \times P \times K (P<M，P<N)$ 的 3D HSI patch ，如图 4a 所示。在HSI patch 被编码模板调制并由棱镜色散后，探测器上的相应测量是尺寸 $(P+K-1) \times P$ 的二维 patch。然而，2D patch 将包含来自相邻 HSI patch 的场景信息，并且不能映射到单个HSI patch。因此，图4a 中的分解方法无法满足要求。
 
-根据 CASSI 正向模型的性质，我们通过光学系统在探测器上追踪 $P \times P$ 补丁，如图4b [21]所示。我们可以看到，相应的 HSI patch 不再是一个立方体，而是一个具有 $K$ 位移光谱带的 oblique parallelepiped。 
+根据 CASSI 正向模型的性质，我们通过光学系统在探测器上追踪 $P \times P$ 补丁，如图4b [21]所示。我们可以看到，相应的 HSI patch 不再是一个立方体，而是一个具有 $K$ 位移光谱带的 oblique parallelepiped。 每个波段相对于其相邻波段在色散方向上有一个像素的偏移。图 4b 中的分解方法提供了一种在 oblique parallelepiped HSI patch 和探测器上的二维压缩 patch 之间的一对一映射，从而有效地符合分而治之策略。
 
 ## Coded Aperture Optimization
 
