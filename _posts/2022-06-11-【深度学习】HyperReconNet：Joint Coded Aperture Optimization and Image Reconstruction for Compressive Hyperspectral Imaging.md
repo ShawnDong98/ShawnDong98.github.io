@@ -105,7 +105,7 @@ $$
 $b^r$ 是 $B_1$ 的实值元素。 来自于 coding CNN 学习到的 $b^b$ 是 $B_1$的值并且建立了最优编码模板。通过重复这种学习元素来获得完整的编码模板，以适应编码模板的空间分辨率。可以在采用 DMD 或 LCoS 的现有系统上轻松实现这种编码模板。
 
 
-由于学习的编码模板均匀地用于每个 oblique parallelepiped HSI patch，因此相应的重建 patch 是非重叠的。 因此，很容易引入 blocky artifacts。为了减轻 blocky artifacts 并提高重建质量，我们提出了重叠处理。通过这种方式，每个 oblique parallelepiped patch 被划分为四个大小为 $\frac{P}{2} \times \frac{P}{2} \times K$ 的 patch， 其共享编码模板。因此对于 $B_1$ 中ed编码模板，需要学习 $\frac{P^2}{4}$ 而不是 $P^2$ 个值。 这种处理可以使大小为 $P \times P \times K$ 的重建的 oblique parallelepiped patch 具有大小 $\frac{P}{2} \times \frac{P}{2}$ 与其相邻 patch 的空间重叠。因此，重建的完整 HSI 可以通过融合所有 patches 和 平均重叠区域得到。
+由于学习的编码模板均匀地用于每个 oblique parallelepiped HSI patch，因此相应的重建 patch 是非重叠的。 因此，很容易引入 blocky artifacts。为了减轻 blocky artifacts 并提高重建质量，我们提出了重叠处理。通过这种方式，每个 oblique parallelepiped patch 被划分为四个大小为 $\frac{P}{2} \times \frac{P}{2} \times K$ 的 patch， 其共享编码模板。因此对于 $B_1$ 中ed编码模板，需要学习 $\frac{P^2}{4}$ 而不是 $P^2$ 个值。 这种处理可以使大小为 $P \times P \times K$ 的重建的 oblique parallelepiped patch 具有大小 $\frac{P}{2} \times \frac{P}{2}$ 与其相邻 patch 的空间重叠。因此，重建的完整 HSI 可以通过融合所有 patches 和 平均重叠区域得到。以 $P = 8$ 为例，如图7 所示，它可以分为四个尺寸为 $4 \times 4 \times K$ 的 sub-patches。因此，只需要估计16个二值，每个二值对应四个不同的输入。例如，$\hat e(s_1^i), \hat e(s_5^i), \hat e(s_{33}^i), \hat e(s_{37}^i)$ 共享等式 12 中的参数 $b_1$。 
 
 # Conclusion and Discussion
 
