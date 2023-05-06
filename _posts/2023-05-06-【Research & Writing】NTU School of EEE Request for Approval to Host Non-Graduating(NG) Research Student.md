@@ -44,3 +44,11 @@ NG 研究计划期间发生的所有费用（包括NG注册费、研究费、杂
 ## 医疗和保险
 
 NG研究的学生必须订阅大学安排的团体住院和手术保险（GHS）和团体个人事故（GPA）保险计划。NG研究的学生也必须订阅大学安排的医疗计划。这是为了确保学生在住院或手术时获得经济保障。有关保险计划的更多信息，请访问[http://www.ntu.edu.sg/SAO/OurServices/OneStop/OurServices/Insurance/](http://www.ntu.edu.sg/SAO/OurServices/OneStop/OurServices/Insurance/)。
+
+## 住宿
+
+除了NTU-India Connect实习等特殊计划外，一般不向NG研究学生提供住房。
+
+## 研究诚信课程
+
+NG研究学生必须完成在线研究诚信课程。
