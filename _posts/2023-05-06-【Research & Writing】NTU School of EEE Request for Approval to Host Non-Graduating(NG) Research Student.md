@@ -10,3 +10,7 @@ tags:
     - Research & Writing
     -
 ---
+
+# Part I 由外方导师完成
+
+Important：在填写此托管表格之前，请先阅读附件A。
