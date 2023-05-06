@@ -39,3 +39,8 @@ NG 研究计划期间发生的所有费用（包括NG注册费、研究费、杂
 杂项费用每学期收取，每学年可进行修订。没有按比例计算的费用，申请人的研究期少于1个学期，或者他/她的研究跨越三个学期。支付的费用也不予退还。
 
 有关当前学年杂项费用的详细信息，请参阅 [http://admissions.ntu.edu.sg/graduate/R-Programs/BeforeApplying-Research/pages/fees.aspx](http://admissions.ntu.edu.sg/graduate/R-Programs/BeforeApplying-Research/pages/fees.aspx)。
+
+
+## 医疗和保险
+
+NG研究的学生必须订阅大学安排的团体住院和手术保险（GHS）和团体个人事故（GPA）保险计划。NG研究的学生也必须订阅大学安排的医疗计划。这是为了确保学生在住院或手术时获得经济保障。有关保险计划的更多信息，请访问[http://www.ntu.edu.sg/SAO/OurServices/OneStop/OurServices/Insurance/](http://www.ntu.edu.sg/SAO/OurServices/OneStop/OurServices/Insurance/)。
