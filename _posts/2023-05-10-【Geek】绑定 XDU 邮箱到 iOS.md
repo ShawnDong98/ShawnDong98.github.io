@@ -25,3 +25,5 @@ tags:
 用户名和密码与你的邮箱的用户名和密码相同。
 
 # Reference
+
+1. [邮箱应该选择IMAP还是POP3呢？](https://www.zhihu.com/question/312936844/answer/867798586)
