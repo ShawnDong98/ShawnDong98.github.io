@@ -34,5 +34,7 @@ $$
 
 通过显示设备将（x，y）进一步转换为 RGB 值以输出，需要通过适当的色度矩阵进行转换。从几何上讲，这将上述颜色“舌头”中的点映射到 RGB “色域”内的点子集，即所示的三角形区域。颜色系统可以由三个原色色度(三角形的顶点)和一个白点组成的矩阵来定义:一组色度坐标为某种目的定义了“颜色”白色。
 
+![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1683818660234]]]" )
+
 # Reference
 1. [Converting a spectrum to a colour](https://scipython.com/blog/converting-a-spectrum-to-a-colour/)
