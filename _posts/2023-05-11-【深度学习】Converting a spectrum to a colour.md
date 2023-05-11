@@ -13,7 +13,7 @@ tags:
 
 本文提供了一个Python脚本，用于将波长光谱映射到颜色的表示形式。
 
-
+没有独特的方法来做到这一点，但这里使用的公式是基于色彩匹配函数(CIE, colour matching functions)， $x(\lambda), y(\lambda)$ 和 $z(\lambda)$。 这些模型通过映射波长的能量光谱来模拟 “standard observer” 的 chromatic response。
 
 # Reference
 1. [Converting a spectrum to a colour](https://scipython.com/blog/converting-a-spectrum-to-a-colour/)
