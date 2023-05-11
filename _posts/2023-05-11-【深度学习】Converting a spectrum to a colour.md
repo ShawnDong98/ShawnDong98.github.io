@@ -20,9 +20,19 @@ $$X = \int P(\lambda) x(\lambda)d\lambda$$
 $$Y = \int P(\lambda) y(\lambda)d\lambda$$
 $$Z = \int P(\lambda)z(\lambda)d\lambda$$
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683817862408.png)
 
+X、Y 和 Z 可以通过除以它们的总和来归一化（以失去有关光亮度的信息为代价）：
 
+$$
+x = \frac{X}{X+Y+Z}, \quad y = \frac{Y}{X + Y + Z}, \quad z = \frac{Z}{X + Y + Z} = 1 - x - y
+$$
 
+这样，只需要两个参数，x 和 y 来描述光的颜色（更准确地说，色度）。CIE标准色度图如下所示。
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683818429632.png)
+
+通过显示设备将（x，y）进一步转换为 RGB 值以输出，需要通过适当的色度矩阵进行转换。从几何上讲，这将上述颜色“舌头”中的点映射到 RGB “色域”内的点子集，即所示的三角形区域。颜色系统可以由三个原色色度(三角形的顶点)和一个白点组成的矩阵来定义:一组色度坐标为某种目的定义了“颜色”白色。
 
 # Reference
 1. [Converting a spectrum to a colour](https://scipython.com/blog/converting-a-spectrum-to-a-colour/)
