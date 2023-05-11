@@ -13,3 +13,7 @@ tags:
 
 本文提供了一个Python脚本，用于将波长光谱映射到颜色的表示形式。
 
+
+
+# Reference
+1. [Converting a spectrum to a colour](https://scipython.com/blog/converting-a-spectrum-to-a-colour/)
