@@ -72,7 +72,7 @@ class ColorMatchFunc:
 ```
 
 
-# 应用 colormap
+# 应用 colormap (matplotlib)
 
 ```python
 from scipy import io as sio
