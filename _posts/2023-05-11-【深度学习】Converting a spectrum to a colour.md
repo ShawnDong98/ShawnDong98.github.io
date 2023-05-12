@@ -85,7 +85,6 @@ cm = mcolors.LinearSegmentedColormap.from_list(cmap_name, list(cmap), N=len(cmap
 mapped_img = cm(hsi[:, :, 0])
 
 plt.imshow(mapped_img)
-
 ```
 
 
