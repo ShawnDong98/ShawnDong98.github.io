@@ -40,6 +40,8 @@ $$
 
 # 将波长映射为 XYZ 色彩空间， 再将 XYZ 色彩空间映射为 sRGB 色彩空间 
 
+将波长映射为 XYZ 色彩空间， 再将 XYZ 色彩空间映射为 sRGB 色彩空间 .
+
 ```python
 import numpy as np
 from PIL import ImageCms, Image 
@@ -49,7 +51,7 @@ from colormath.color_conversions import convert_color
 
 class ColorMatchFunc:
     def __init__(self):
-        self.cmf = np.loadtxt("cie-cmf.txt", usecols=(0, 1, 2, 3))
+        self.cmf = np.loadtxt("cmf.txt", usecols=(0, 1, 2, 3))
         lams, Xs, Ys, Zs = self.cmf[:, 0], self.cmf[:, 1], self.cmf[:, 2], self.cmf[:, 3]
         self.f = interp1d(lams, np.column_stack((Xs, Ys, Zs)), kind='linear', fill_value=(0,0,0), bounds_error=False, axis=0)
 
