@@ -72,6 +72,22 @@ class ColorMatchFunc:
 ```
 
 
+# 应用 colormap
+
+```python
+from scipy import io as sio
+import matplotlib.colors as mcolors
+
+hsi = sio.loadmat("./TSA_simu_data/Truth/scene01.mat")['img']
+
+cmap_name = 'CustomColormap'
+cm = mcolors.LinearSegmentedColormap.from_list(cmap_name, list(cmap), N=len(cmap))
+mapped_img = cm(hsi[:, :, 0])
+
+plt.imshow(mapped_img)
+
+```
+
 
 # Reference
 1. [Converting a spectrum to a colour](https://scipython.com/blog/converting-a-spectrum-to-a-colour/)
