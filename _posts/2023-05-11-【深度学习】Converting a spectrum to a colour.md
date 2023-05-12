@@ -40,7 +40,7 @@ $$
 
 # 将波长映射为 XYZ 色彩空间， 再将 XYZ 色彩空间映射为 sRGB 色彩空间 
 
-将波长映射为 XYZ 色彩空间， 再将 XYZ 色彩空间映射为 sRGB 色彩空间。
+将波长映射为 XYZ 色彩空间， 再将 XYZ 色彩空间映射为 sRGB 色彩空间， 最后将 sRGB 色彩空间对应到灰度图上。
 
 ```python
 import numpy as np
