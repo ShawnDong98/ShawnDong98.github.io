@@ -34,7 +34,42 @@ $$
 
 通过显示设备将（x，y）进一步转换为 RGB 值以输出，需要通过适当的色度矩阵进行转换。从几何上讲，这将上述颜色“舌头”中的点映射到 RGB “色域”内的点子集，即所示的三角形区域。颜色系统可以由三个原色色度(三角形的顶点)和一个白点组成的矩阵来定义:一组色度坐标为某种目的定义了“颜色”白色。
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1683818660234]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1683818660233.png)
+
+因此，将（x，y，z）值的向量乘以该矩阵的倒数，给出描述所用系统中相应颜色的 RGB 值。
+
+# 将波长映射为 XYZ 色彩空间， 再将 XYZ 色彩空间映射为 sRGB 色彩空间 
+
+```python
+import numpy as np
+from PIL import ImageCms, Image 
+from scipy.interpolate import interp1d
+from colormath.color_objects import sRGBColor, XYZColor
+from colormath.color_conversions import convert_color
+
+class ColorMatchFunc:
+    def __init__(self):
+        self.cmf = np.loadtxt("cie-cmf.txt", usecols=(0, 1, 2, 3))
+        lams, Xs, Ys, Zs = self.cmf[:, 0], self.cmf[:, 1], self.cmf[:, 2], self.cmf[:, 3]
+        self.f = interp1d(lams, np.column_stack((Xs, Ys, Zs)), kind='linear', fill_value=(0,0,0), bounds_error=False, axis=0)
+
+    def spec2srgb(self, lam):
+        XYZ = self.f(lam)
+        xyz = XYZColor(*XYZ)
+        sRGB = convert_color(xyz, sRGBColor).get_value_tuple()
+        return sRGB
+    
+    def __call__(self, lam):
+        srgb = self.spec2srgb(lam)
+        srgb = np.kron(np.ones((3, 1)), srgb)
+        gray = np.arange(0., 1., 1/256.)[:, None].repeat(3, axis=1)
+        cmM = np.dot(gray, srgb)
+        cmM = cmM / np.max(cmM)
+
+        return cmM
+```
+
+
 
 # Reference
 1. [Converting a spectrum to a colour](https://scipython.com/blog/converting-a-spectrum-to-a-colour/)
