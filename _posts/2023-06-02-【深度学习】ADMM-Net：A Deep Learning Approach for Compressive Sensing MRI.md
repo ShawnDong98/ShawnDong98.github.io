@@ -93,6 +93,16 @@ $$
 \text{arg}\min_\beta \sum_{l=1}^L <\beta_l, D_l x - z_l>
 \end{cases} \tag{4}
 $$
+将 $A = PF$ 带入等式(4)， 然后这三个子问题有如下的解：
+
+$$
+\begin{cases}
+X^{(n)}: x^{(n)} = F^T[P^TP + \sum_{l=1}^L \rho_l FD_l^TD_lF^T]^{-1}[P^Ty + \sum_{l=1}^L\rho_lFD_l^T(z_l^{(n-1)} - \beta_l^{(n-1)})], \\
+Z^{(n)}: z_l^{(n)} = S(D_lx^{(n)} + \beta_l^{(n-1)}; \lambda_l / \rho_l), \\
+M^{(n)}: \beta_l^{(n)} = \beta_l^{(n-1)} + \eta_l (D_l x^{(n)} - z_l^{(n)})
+\end{cases} \tag{5}
+$$
+其中 $n \in {1, 2, ..., N_s}$ 表示第 n 个迭代并且上标 T 分别指实数和复数的转置和共轭转置运算符。
 
 
 
