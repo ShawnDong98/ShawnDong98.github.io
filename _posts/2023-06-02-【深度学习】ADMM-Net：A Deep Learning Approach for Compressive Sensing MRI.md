@@ -84,7 +84,7 @@ $$
 L_p(x, z, \alpha) = \frac{1}{2} \|Ax - y \|_2^2 + \sum_{l=1}^L[\lambda_l g(z_l) + <\alpha_l, D_lx - z_l> + \frac{\rho_l}{2}\|D_lx - z_l\|_2^2] \tag{3}
 $$
 
-
+其中 $\alpha = {\alpha_l}$ 是拉格朗日乘子表示对偶变量， $\rho = {\rho_l}$ 是惩罚参数。
 
 
 
