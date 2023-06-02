@@ -67,4 +67,4 @@ $$
 \hat x = arg min_x {\frac{1}{2} \| Ax - y \|_2^2 + \sum_{l=1}^L \lambda_l g(D_lx)} \tag{1}
 $$
 
-其中 $A = PF \in R^{N' \times N}$ 是一个观测矩阵， $P \in R^{N' \times N}$ 欠采样矩阵， $F$ 是一个傅里叶变换。$D_l$ 表示一个滤波操作的变换矩阵， 例如离散小波变换(DWT)， 离散余弦变换(DCT)等。
+其中 $A = PF \in R^{N' \times N}$ 是一个观测矩阵， $P \in R^{N' \times N}$ 欠采样矩阵， $F$ 是一个傅里叶变换。$D_l$ 表示一个滤波操作的变换矩阵， 例如离散小波变换(DWT)， 离散余弦变换(DCT)等， $g(·)$ 是来自数据先验的正则函数。
