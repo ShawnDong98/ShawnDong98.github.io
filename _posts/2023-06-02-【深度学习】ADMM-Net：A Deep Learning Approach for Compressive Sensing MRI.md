@@ -70,3 +70,23 @@ $$
 其中 $A = PF \in R^{N' \times N}$ 是一个观测矩阵， $P \in R^{N' \times N}$ 欠采样矩阵， $F$ 是一个傅里叶变换。$D_l$ 表示一个滤波操作的变换矩阵， 例如离散小波变换(DWT)， 离散余弦变换(DCT)等， $g(·)$ 是来自数据先验的正则函数， 例如稀疏先验的 $l_q$ 正则其。 $\lambda_l$ 是正则化参数。
 
 上述优化问题可以通过 ADMM 算法有效解决。以下求解器是两种形式的 ADMM 算法，取决于不同的辅助变量。
+
+**ADMM solver I:** 通过在变换域中引入独立的辅助变量 $z = {z_1, z_2, ..., z_L}$ ， 等式（1）等价于：
+
+$$
+\min_x \frac{1}{2} \|Ax - y\|_2^2 + \sum_{l=1}^L \lambda_l g(z_l) \\
+s.t. z_l = D_l x, \quad \forall l \in {1, 2, ..., L} \tag{2}
+$$
+
+它的增强的拉格朗日函数是：
+
+$$
+L_p(x, z, \alpha) = \frac{1}{2} \|Ax - y \|_2^2 + \sum_{l=1}^L[\lambda_l g(z_l) + <\alpha_l, D_lx - z_l> + \frac{\rho_l}{2}\|D_lx - z_l\|_2^2] \tag{3}
+$$
+
+
+
+
+
+
+**ADMM solver II:** 
