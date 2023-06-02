@@ -84,7 +84,17 @@ $$
 L_p(x, z, \alpha) = \frac{1}{2} \|Ax - y \|_2^2 + \sum_{l=1}^L[\lambda_l g(z_l) + <\alpha_l, D_lx - z_l> + \frac{\rho_l}{2}\|D_lx - z_l\|_2^2] \tag{3}
 $$
 
-其中 $\alpha = {\alpha_l}$ 是拉格朗日乘子表示对偶变量， $\rho = {\rho_l}$ 是惩罚参数。
+其中 $\alpha = {\alpha_l}$ 是拉格朗日乘子表示对偶变量， $\rho = {\rho_l}$ 是惩罚参数。为了简单， 我们使用缩放的定义 $\beta_l = \frac{\alpha_l}{\rho_l}(l \in {1, 2, ..., L})$， ADMM通过求解下面三个子问题交替优化 ${x, z, \beta}$:
+
+$$
+\begin{cases}
+\text{arg}\min_x \frac{1}{2} \|Ax - y\|_2^2 + \sum_{l=1}^L \frac{\rho_l}{2} \|D_lx + \beta_l - z_l \|_2^2 \\
+\text{arg}\min_z \sum_{l=1}^L [\lambda_l g(z_l) + \frac{\rho_l}{2}\|D_lx + \beta_l - z_l\|_2^2] \\
+\text{arg}\min_\beta \sum_{l=1}^L <\beta_l, D_l x - z_l>
+\end{cases} \tag{4}
+$$
+
+
 
 
 
