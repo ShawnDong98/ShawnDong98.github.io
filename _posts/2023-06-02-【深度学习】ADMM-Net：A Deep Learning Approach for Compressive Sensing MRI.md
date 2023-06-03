@@ -112,7 +112,33 @@ $$
 $$
 
 
+通过这种方式， 他的增广拉格朗日函数是：
 
+$$
+L_p(x, z, \alpha) = \frac{1}{2} \|Ax - y\|_2^2 + \sum_{l=1}^L \lambda_l g(D_l z) + <\alpha, x-z> + \frac{\rho}{2}\|x - z\|_2^2 \tag{7}
+$$
+
+使用缩放的拉格朗日乘子 $\beta = \frac{\alpha}{\rho}$， 我们可以表达子问题为：
+
+$$
+\begin{cases}
+\text{arg} \min_x \frac{1}{2} \|Ax - y\|_2^2 - \frac{\rho}{2}\|x + \beta - z\|_2^2, \\
+\text{arg} \min_z \sum_{l=1}^L \lambda_l g(D_l z) + \frac{\rho}{2}\|x + \beta -z \|_2^2 \\
+\text{arg} \max_\beta<\beta, x -z>
+\end{cases} \tag{8}
+$$
+
+一种求解第二个子问题的方式是直接应用梯度下降算法，其产生ADMM算法的迭代：
+
+$$
+\begin{cases}
+X^{(n)}: x^{(n)} = F^T(P^TP + \rho I)^{-1}[P^Ty + \rho F(z^{(n-1) - \beta^{(n-1)}})], \\
+Z^{(n)}: z^{(n, k)} = \mu_1 z^{(n, k-1)} + \mu_2(x^{(n)} + \beta^{(n-1)}) - \sum_{l=1}^L \tilde \lambda_l D_l^T H(D_l z^{(n, k -1)}), \\
+M^{(n)}: \beta^{(n)} = \beta^{(n-1)} + \tilde \eta (x^{(n)} - z^{(n)})
+\end{cases} \tag{9}
+$$
+
+其中 I 是一个大小为 $N \times N$ 的单位矩阵。
 
 
 
