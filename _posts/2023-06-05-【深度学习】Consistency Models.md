@@ -32,4 +32,4 @@ tags:
 
 # Introduction
 
-扩散模型（Sohl-Dickstein等人，2015年；Song & Ermon，2019年；2020年；Ho等人，2020年；Song等人，2021年），也被称为基于分数的生成模型，在多个领域取得了前所未有的成功，包括图像生成（Dhariwal和Nichol，2021年；Nichol等人，2021年；Ramesh等人），音频生成（(Kong et al., 2020; Chen et al., 2021; Popov et al., 2021）和视频生成 (Ho et al., 2022b;a)。与生成对抗网络（GANs，Goodfellow等人（2014））不同，这些模型不依赖于对抗性训练，因此不太容易出现训练不稳定和模式崩溃等问题。
+扩散模型（Sohl-Dickstein等人，2015年；Song & Ermon，2019年；2020年；Ho等人，2020年；Song等人，2021年），也被称为基于分数的生成模型，在多个领域取得了前所未有的成功，包括图像生成（Dhariwal和Nichol，2021年；Nichol等人，2021年；Ramesh等人），音频生成（(Kong et al., 2020; Chen et al., 2021; Popov et al., 2021）和视频生成 (Ho et al., 2022b;a)。与生成对抗网络（GANs，Goodfellow等人（2014））不同，这些模型不依赖于对抗性训练，因此不太容易出现训练不稳定和模式崩溃等问题。此外，扩散模型对模型架构施加的严格约束与自回归模型（Bengio和Bengio，1999年；Uria等人，2013年；2016年；Van Den Oord等人，2016年）、变分自编码器（VAEs，Kingma和Welling（2014年）；Rezende等人（2014年））或归一化流（Dinh et al., 2015; 2017; Kingma & Dhariwal, 2018）。
