@@ -32,3 +32,4 @@ tags:
 
 # Introduction
 
+扩散模型（Sohl-Dickstein等人，2015年；Song & Ermon，2019年；2020年；Ho等人，2020年；Song等人，2021年），也被称为基于分数的生成模型，在多个领域取得了前所未有的成功，包括图像生成（Dhariwal和Nichol，2021年；Nichol等人，2021年；Ramesh等人。
