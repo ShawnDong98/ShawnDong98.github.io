@@ -26,4 +26,4 @@ tags:
 
 得益于其自监督的性质和扩散过程，与现有的基于扩散的方法相比，DDS2M对各种HSI具有更强的泛化能力，与现有的HSI恢复方法相比，DDS2M对噪声的鲁棒性更强。
 
-关于各种HSI上的HSI去噪、noisy HSI completion 和超分辨率的广泛实验证明了DDS2M优于现有的特定任务的先进技术。
+关于各种HSI上的HSI去噪、noisy HSI completion 和超分辨率的广泛实验证明了 DDS2M 优于现有的特定任务的先进技术。
