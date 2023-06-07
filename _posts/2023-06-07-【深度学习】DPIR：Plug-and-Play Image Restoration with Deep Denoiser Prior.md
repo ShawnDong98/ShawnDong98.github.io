@@ -35,7 +35,12 @@ tags:
 由于IR是一个病态的逆问题，因此需要采用也称为正则化的先验问题来约束解空间。从贝叶斯的角度来看，可以通过求解最大后验（MAP）估计问题来获得解 $\hat x$，
 
 $$
-\hat x = \text{arg} \max_x \log p(y \mid x) + \log p(x)
+\hat x = \text{arg} \max_x \log p(y \mid x) + \log p(x) \tag{1}
 $$
 
-其中 $\log p(y \mid x)$ 表示观测 $y$ 的对数似然， $\log p(x)$ 提供干净图像的先验并且独立于退化图像 $y$。 
+其中 $\log p(y \mid x)$ 表示观测 $y$ 的对数似然， $\log p(x)$ 提供干净图像的先验并且独立于退化图像 $y$。更正式地， (1) 可以重新公式化为：
+
+$$
+\hat x = \text{arg} \min_x \frac{1}{2\sigma^2} \| y - Ax \|^2 + \lambda R(x) \tag{2}
+$$
+
