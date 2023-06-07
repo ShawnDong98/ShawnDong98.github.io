@@ -44,3 +44,4 @@ $$
 \hat x = \text{arg} \min_x \frac{1}{2\sigma^2} \| y - Ax \|^2 + \lambda R(x) \tag{2}
 $$
 
+其中解为最小化数据保真项 $\frac{1}{2 \sigma^2} \| y - Ax \|^2$ 的能量函数以及正则项 $\lambda R(x)$。 
