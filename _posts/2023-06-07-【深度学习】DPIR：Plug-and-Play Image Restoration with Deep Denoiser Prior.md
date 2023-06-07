@@ -56,4 +56,4 @@ s.t. \quad \hat x_i = \text{arg} \min_x \frac{1}{2\sigma^2}\|y_i - Ax\|^2 + \lam
 \end{cases} \tag{3}
 $$
 
-其中 $\Theta$ 表示可训练的参数， $L(\hat x_i, x_i)$ 测量估计的干净 $\hat x_i$ 和真实图像 $x_i$ 之间的距离。
+其中 $\Theta$ 表示可训练的参数， $L(\hat x_i, x_i)$ 测量估计的干净 $\hat x_i$ 和真实图像 $x_i$ 之间的距离。通过将展开推理 3(b)替换为一个预定义的函数 $\hat x = f(y, \Theta)$。  
