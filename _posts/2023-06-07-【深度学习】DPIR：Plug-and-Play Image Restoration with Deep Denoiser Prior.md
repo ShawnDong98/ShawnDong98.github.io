@@ -38,3 +38,4 @@ $$
 \hat x = \text{arg} \max_x \log p(y \mid x) + \log p(x)
 $$
 
+其中 $\log p(y \mid x)$ 表示观测 $y$ 的对数似然， $\log p(x)$ 提供干净图像的先验并且独立于退化图像 $y$。 
