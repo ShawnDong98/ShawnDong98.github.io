@@ -92,6 +92,24 @@ $$
 
 ## ADMM
 
+ADMM 求解等式（3）可以写作：
+
+$$
+x^{k+1} = \text{arg} \min_x \frac{1}{2}\|Ax - y\|_2^2 + \frac{\rho}{2}\|x - (z^k - \mu^k) \|_2^2 
+$$
+
+$$
+z^{k+1} = \text{arg}\min_z \lambda R(z) + \frac{\rho}{2}\| z - (x^{k+1} + \mu^k) \|_2^2
+$$
+
+$$
+\mu^{k+1} = \mu^k + (x^{k+1} - z^{k+1})
+$$
+
+
+
+
+
 # Diffusion Model
 
 ## DDPM
@@ -109,8 +127,10 @@ $$
 # CASSI System
 
 
+
+
 # Reference
 1. Dong Y, Gao D, Qiu T, et al. Residual Degradation Learning Unfolding Framework with Mixing Priors across Spectral and Spatial for Compressive Spectral Imaging[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2023: 22262-22271.
 2. Zhang K, Li Y, Zuo W, et al. Plug-and-play image restoration with deep denoiser prior[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2021, 44(10): 6360-6376.
 3. Zheng S, Liu Y, Meng Z, et al. Deep plug-and-play priors for spectral snapshot compressive imaging[J]. Photonics Research, 2021, 9(2): B18-B29.
-4. 
+4. Wang L, Sun C, Zhang M, et al. Dnu: Deep non-local unrolling for computational spectral imaging[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020: 1661-1671.
