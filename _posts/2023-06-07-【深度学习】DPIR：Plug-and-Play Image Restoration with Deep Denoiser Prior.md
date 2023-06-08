@@ -99,3 +99,13 @@ L_\mu(x, z) = \frac{1}{2\rho^2} \| y - Ax \|^2 + \lambda R(z) + \frac{\mu}{2}\|z
 $$
 
 其中 $\mu$ 是惩罚参数。这个问题可以通过迭代解决 $x$ 和 $z$ 的以下子问题来解决，同时保持其余变量的固定，
+
+
+$$
+\begin{cases}
+x_k = \text{arg} \min_x \|y - Ax \|^2 + \mu \sigma^2\|x - z_{k-1}\|^2 \\
+z_k = \text{arg} \min_z \frac{1}{2(\sqrt{\lambda / \mu})} \| z - x_k \|^2 + R(z)
+\end{cases}
+$$
+
+因此，数据项和先验项被解耦成两个单独的子问题。
