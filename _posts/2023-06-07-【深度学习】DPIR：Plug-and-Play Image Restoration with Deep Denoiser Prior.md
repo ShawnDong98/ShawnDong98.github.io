@@ -98,4 +98,4 @@ $$
 L_\mu(x, z) = \frac{1}{2\rho^2} \| y - Ax \|^2 + \lambda R(z) + \frac{\mu}{2}\|z - x\|^2 \tag{5}
 $$
 
-
+其中 $\mu$ 是惩罚参数。
