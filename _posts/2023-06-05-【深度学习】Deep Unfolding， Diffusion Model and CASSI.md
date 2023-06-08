@@ -76,7 +76,7 @@ $$
 L_\mu(x, z) = \frac{1}{2 \sigma^2} \|y - \Phi x\|^2 + \lambda R(z) + \frac{\mu}{2}\|z - x\|^2 \tag{9}
 $$
 
-
+其中 $\mu$ 是惩罚参数。
 
 
 ## ADMM
