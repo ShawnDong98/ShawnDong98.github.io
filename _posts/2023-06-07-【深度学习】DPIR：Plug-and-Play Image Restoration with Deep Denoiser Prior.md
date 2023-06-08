@@ -92,5 +92,10 @@ $$
 \hat x = \text{arg} \min_x \frac{1}{2\sigma^2}\| y - Ax \|^2 + \lambda R(z) \qquad \text{s.t.} \qquad z = x. \tag{4}
 $$
 
+上式可以通过最小化如下问题求解：
+
+$$
+L_\mu(x, z) = \frac{1}{2\rho^2} \| y - Ax \|^2 + \lambda R(z) + \frac{\mu}{2}\|z - x\|^2 \tag{5}
+$$
 
 
