@@ -105,7 +105,7 @@ $$
 \begin{cases}
 x_k = \text{arg} \min_x \|y - Ax \|^2 + \mu \sigma^2\|x - z_{k-1}\|^2 \\
 z_k = \text{arg} \min_z \frac{1}{2(\sqrt{\lambda / \mu})} \| z - x_k \|^2 + R(z)
-\end{cases}
+\end{cases} \tag{6}
 $$
 
-因此，数据项和先验项被解耦成两个单独的子问题。
+因此，数据项和先验项被解耦成两个单独的子问题。具体来说，(6a) 的子问题目标是找到 $z_{k-1}$ 的近端点， 通常根据 A 有闭式解， 而 (6b) 的子问题从贝叶斯视角对应一个噪声规模为 $\sqrt{\lambda / \mu}$ 在 $x_k$ 上的高斯去噪。
