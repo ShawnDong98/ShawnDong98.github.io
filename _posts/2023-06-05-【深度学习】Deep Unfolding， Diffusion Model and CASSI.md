@@ -132,7 +132,13 @@ $$
 X'_{n_\lambda} = M \odot X_{n_\lambda}
 $$
 
+然后， 调制后的 HSI $X'$ 经过色散过程， 其可以表示为：
 
+$$
+X''(h, w, n_\lambda) = X'(h, w+d_{n_\lambda}, n_\lambda) 
+$$
+
+其中 $X'' \in R^{H \times (W + d_{N_\lambda}) \times N_\lambda}$， $d_{n_\lambda}$ 表示第 $n_\lambda^{th}$ 个波长的位移距离。
 
 
 
