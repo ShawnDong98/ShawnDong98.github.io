@@ -14,7 +14,18 @@ tags:
 
 # Deep Unfolding
 
-深度展开网路在
+病态逆问题通常求解下式：
+
+$$
+y = \Phi x + n
+$$
+
+从贝叶斯视角，可以是用最大后验估计，求解上式
+
+$$
+\hat x = \text{arg} \max_x p(x \mid y) = \text{arg} \max_x \frac{p(y \mid x) p(x)}{p(y)} = \text{arg} \max_x p(y \mid x)p(x)
+$$
+
 
 
 ## Proximal Gradient Descent
@@ -38,3 +49,7 @@ tags:
 
 
 # CASSI System
+
+
+# Reference
+
