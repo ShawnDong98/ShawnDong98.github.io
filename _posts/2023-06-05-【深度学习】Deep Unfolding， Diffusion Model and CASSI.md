@@ -126,6 +126,14 @@ $$
 
 # CASSI System
 
+CASSI系统的退化可以归因于各种因素，包括编码模板、色散棱镜和CCD。编码模板表示为 $M \in R^{H \times W}$， 作为原始信号 $X \in R^{H \times  W \times N_\lambda}$ 的调制器， 因此调制图像第 $n_\lambda^{th}$ 个波长表示为：
+
+$$
+X'_{n_\lambda} = M \odot X_{n_\lambda}
+$$
+
+
+
 
 
 
