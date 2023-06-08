@@ -26,12 +26,12 @@ $$
 \hat x = \text{arg} \max_x p(x \mid y) = \text{arg} \max_x \frac{p(y \mid x) p(x)}{p(y)} = \text{arg} \max_x p(y \mid x)p(x) \tag{2}
 $$
 
-假设 $y$ 的加性高斯白噪声 $\epsilon \thicksim N(0, \sigma_\epsilon^2)$, MAP形式的等式（2）可以写作：
+假设 $y$ 的加性高斯白噪声 $\epsilon \thicksim N(0, \sigma^2)$, MAP形式的等式（2）可以写作：
 
 $$
 \begin{aligned}
 \hat x &= \text{arg} \max_x \exp[-\frac{1}{2 \sigma_\epsilon^2} \|y - \Phi x\|_2^2 + \log p(x)] \\
-&= \text{arg} \min_x \frac{1}{2} \|y - \Phi x\|_2^2 - \sigma_\epsilon^2 \log p(x) 
+&= \text{arg} \min_x \frac{1}{2} \|y - \Phi x\|_2^2 - \sigma^2 \log p(x) 
 \end{aligned}\tag{3}
 $$
 
@@ -76,7 +76,18 @@ $$
 L_\mu(x, z) = \frac{1}{2 \sigma^2} \|y - \Phi x\|^2 + \lambda R(z) + \frac{\mu}{2}\|z - x\|^2 \tag{9}
 $$
 
-其中 $\mu$ 是惩罚参数。
+其中 $\mu$ 是惩罚参数。该问题可以通过迭代求解下列 $x$ 和 $z$ 子问题解决：
+
+$$
+x_k = \text{arg} \min_x \|y - \Phi x\|^2 + \mu \sigma^2\|x - z_{k-1}\|^2  \tag{6a}
+$$
+
+$$
+z_k = \text{arg} \min_z \frac{1}{2(\sqrt{\lambda / \mu})^2} \| z - x_k \|^2 + R(z)
+$$
+
+(6a) 的子问题目标是找到一个 $z_{k-1}$ 的近端点，并且通常有一个快速地依赖于 $\Phi$ 的闭式解。 
+
 
 
 ## ADMM
