@@ -150,7 +150,9 @@ $$
 y = \Phi x + n
 $$
 
-其中 $y \in R^{H \times W}, x \in R^{HWN_{\lambda}}$, $\Phi \in R^{HW \times HWN_{\lambda}}$。 
+其中 $y \in R^{H \times W}, x \in R^{HWN_{\lambda}}$, $\Phi \in R^{HW \times HWN_{\lambda}}$。$\Phi$ 是一个块对角矩阵。
+
+
 
 
 
