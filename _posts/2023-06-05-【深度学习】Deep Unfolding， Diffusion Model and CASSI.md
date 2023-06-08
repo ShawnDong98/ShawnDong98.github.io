@@ -30,15 +30,15 @@ $$
 
 $$
 \begin{aligned}
-\hat x &= \text{arg} \max_x \exp[-\frac{1}{2 \sigma_\epsilon^2} \|y - Ax\|_2^2 + \log p(x)] \\
-&= \text{arg} \min_x \frac{1}{2} \|y - Ax\|_2^2 - \sigma_\epsilon^2 \log p(x) 
+\hat x &= \text{arg} \max_x \exp[-\frac{1}{2 \sigma_\epsilon^2} \|y - \Phi x\|_2^2 + \log p(x)] \\
+&= \text{arg} \min_x \frac{1}{2} \|y - \Phi x\|_2^2 - \sigma_\epsilon^2 \log p(x) 
 \end{aligned}\tag{3}
 $$
 
 通过将位置噪声变量 $\sigma_\epsilon^2$ 替换为噪声平衡系数 $\lambda$， 将负对数先验函数 $p(x)$ 替换为正则项 $R(x)$， 等式（3）可写作：
 
 $$
-\hat x = \text{arg}\max_x \frac{1}{2} \| y - Ax\|_2^2 + \lambda R(x) \tag{4}
+\hat x = \text{arg}\max_x \frac{1}{2} \| y - \Phi x\|_2^2 + \lambda R(x) \tag{4}
 $$
 
 
@@ -48,23 +48,36 @@ PGD 算法通过以下迭代函数将等式（4）估计为迭代收敛问题：
 
 
 $$
-\hat x^k = \text{arg} \min_x \frac{1}{2 \rho} \| x - (\hat x^{k-1} - \rho \Phi^T(\Phi \hat x^{k-1} - y))\|_2^2 + \lambda R(x)
+\hat x^k = \text{arg} \min_x \frac{1}{2 \rho} \| x - (\hat x^{k-1} - \rho \Phi^T(\Phi \hat x^{k-1} - y))\|_2^2 + \lambda R(x) \tag{5}
 $$
 
 它得到一个数据子问题（梯度下降）和一个先验子问题（近端映射）：
 
 $$
-v^k = \hat x^{k-1} - \rho \Phi^T(\Phi x^{k-1} - y)
+v^k = \hat x^{k-1} - \rho \Phi^T(\Phi x^{k-1} - y) \tag{6}
 $$
 
 $$
-\hat x^k = \text{prox}_{\lambda, J}(v^k) 
+\hat x^k = \text{prox}_{\lambda, J}(v^k)  \tag{7}
 $$
-
-
 
 
 ## HQS
+
+为了解耦等式（3）中的数据项和先验项， HQS引入一个辅助变量 $z$， 产生如下的优化问题：
+
+$$
+\hat x = \text{arg} \min_x \frac{1}{2\sigma^2} \| y - \Phi x\| + \lambda R(z) \qquad s.t. \qquad z = x \tag{8}
+$$
+
+上式可以通过最小化下列问题求解：
+
+$$
+L_\mu(x, z) = \frac{1}{2 \sigma^2} \|y - \Phi x\|^2 + \lambda R(z) + \frac{\mu}{2}\|z - x\|^2 \tag{9}
+$$
+
+
+
 
 ## ADMM
 
