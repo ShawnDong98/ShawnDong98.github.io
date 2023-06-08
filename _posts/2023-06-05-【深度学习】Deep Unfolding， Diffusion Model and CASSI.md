@@ -138,7 +138,12 @@ $$
 X''(h, w, n_\lambda) = X'(h, w+d_{n_\lambda}, n_\lambda) 
 $$
 
-其中 $X'' \in R^{H \times (W + d_{N_\lambda}) \times N_\lambda}$， $d_{n_\lambda}$ 表示第 $n_\lambda^{th}$ 个波长的位移距离。
+其中 $X'' \in R^{H \times (W + d_{N_\lambda}) \times N_\lambda}$， $d_{n_\lambda}$ 表示第 $n_\lambda^{th}$ 个波长的位移距离。最后，位移后的编码高光谱图像被CCD捕获为2D观测图像。该过程可以公式化为：
+
+$$
+Y = \sum_{n_\lambda = 1}^{N_\lambda} X''_{n_\lambda}
+$$
+
 
 
 
