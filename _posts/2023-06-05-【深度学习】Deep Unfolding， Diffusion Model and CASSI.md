@@ -153,7 +153,7 @@ $$
 其中 $y \in R^{H \times W}, x \in R^{HWN_{\lambda}}$, $\Phi \in R^{HW \times HWN_{\lambda}}$。$\Phi$ 是一个块对角矩阵。
 
 
-Note：每一行表示对每一个像素编码，一共有 $N_\lambda$ 个块，因此是一个块对角矩阵, 如下图。
+Note：每一行表示对每一个像素编码，一共有 $N_\lambda$ 个块，$N_\lambda$ 对应编码 $N_\lambda$ 个波段， 因此是一个块对角矩阵, 如下图。
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1686299988749.png)
 
