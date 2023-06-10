@@ -20,7 +20,7 @@ tags:
 
 当不适用强正则化在中等大小数据集上(比如ImageNet)训练， 模型产生的结果比同样大小的ResNet低几个百分点。
 
-# RELATED WORK 
+# Related Work  
 
 通常图像的自注意力需要计算每个像素值对其它像素值的权重。
 
