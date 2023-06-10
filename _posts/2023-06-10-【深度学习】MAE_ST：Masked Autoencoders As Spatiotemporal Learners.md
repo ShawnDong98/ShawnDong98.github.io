@@ -15,3 +15,6 @@ tags:
 
 
 这篇文章研究了 Masked Autoencoders （MAE）在概念上简单的扩展，以从视频中学习时空表示。
+
+
+我们在视频中随机 mask 时空 patch，并学习自编码器以像素重建它们。
