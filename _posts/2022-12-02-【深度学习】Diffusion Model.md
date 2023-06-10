@@ -65,6 +65,7 @@ $$
 $$
 \log p(x) = \log E_{z \thicksim q_\phi(z \mid x)}[\frac{p_\theta(x \mid z)p(z)}{q_\phi(z \mid x)}]
 $$
+
 $$
 \log p(x) \geq E_{z \thicksim q_\phi(z \mid x)}[\log \frac{p_\theta(x \mid z)p(z)}{q_\phi(z \mid x)}]
 $$
@@ -111,6 +112,7 @@ $$
 $$
 q(x_t \mid x_{t-1}) = N(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t I) \quad q(x_{1...T} \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1}) \tag{1}
 $$
+
 3、 任意时刻的 $q(x_t)$ 推导可以完全基于 $x_0$ 和 $\beta_t$ 来计算出来， 不需要做迭代
 
 
