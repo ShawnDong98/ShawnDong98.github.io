@@ -33,7 +33,7 @@ tags:
 
 # Method
 
-在模型设计中，我们尽可能密切地遵循原始 Transformer（Vaswani等人，2017年）。
+在模型设计中，我们尽可能遵循原始 Transformer（Vaswani等人，2017年）。
 
 ## Vision Transformer (VIT)
 
