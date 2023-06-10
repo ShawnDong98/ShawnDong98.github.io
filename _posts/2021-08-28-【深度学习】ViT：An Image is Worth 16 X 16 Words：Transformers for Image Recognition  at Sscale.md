@@ -43,7 +43,7 @@ tags:
 
 **Hybrid Architecture**：在 hybrid 模型中，将卷积特征进行patch embedding。 patch的尺寸可以是1x1， 这意味着输入序列来自于仅仅将特征图的空间维度映射投影Transformer的维度。
 
-## FINE-TUNING AND HIGHER RESOLUTION 
+## Fine-Tuning and Higher Resolution  
 
 在微调时，将分类头换为一个零初始化的 $D \times K$ 的线性层， K表示类别数。
 
