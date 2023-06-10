@@ -33,6 +33,8 @@ tags:
 
 # Method
 
+在模型设计中，我们尽可能密切地遵循原始 Transformer（Vaswani等人，2017年）。
+
 ## Vision Transformer (VIT)
 
 为了处理 2D 图像， 将图像 $x \in \mathbb{R}^{H \times W \times C}$ reshape 成一个拉平的 2D patch 的序列 $x_p \in \mathbb{R}^{N \times (P^2 · C)}$。
