@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】ViT：AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE "
+title:      "【深度学习】ViT：An Image is Worth 16 X 16 Words: Transformers for Image Recognition  at Sscale"
 subtitle:   ""
 date:       2021-08-28
 author:     "ShawnD"
