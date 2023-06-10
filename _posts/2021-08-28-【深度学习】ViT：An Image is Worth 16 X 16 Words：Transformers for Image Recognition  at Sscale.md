@@ -19,6 +19,8 @@ tags:
 
 我们证明对CNNs的依赖不是必须的， 直接对图像patch序列使用 transformer 也可以在图像分类任务上表现地很好。
 
+当对大量数据进行预训练并迁移到多个中型或小型图像识别基准（ImageNet、CIFAR-100、VTAB等）时，与最先进的卷积网络相比，Vision Transformer（ViT）取得了优异的成绩，同时需要更少的计算资源来训练。
+
 
 # Introduction 
 
