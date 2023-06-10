@@ -25,4 +25,6 @@ tags:
 
 高 mask 率会导致大幅加速，例如，>4倍甚至更多。
 
-我们使用 vanilla Vision Transformers 报告了几个具有挑战性的视频数据集的竞争结果
+我们使用 vanilla Vision Transformers 报告了几个具有挑战性的视频数据集的竞争结果。
+
+我们观察到，MAE可以以很大的优势优于监督的预训练。
