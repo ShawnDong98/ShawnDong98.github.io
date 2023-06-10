@@ -11,12 +11,12 @@ tags:
     - ICLR 2020
 ---
 
-# ABSTRACT
+# Abstract
 
 在视觉中，注意力通常和卷积神经网络组合起来或者替换掉特定的卷及网络以保持它们的整体结构。我们证明对CNNs的依赖不是必须的， 直接对图像patch序列使用transformer也可以在图像分类任务上表现地很好。
 
 
-# INTRODUCTION
+# Introduction 
 
 当不适用强正则化在中等大小数据集上(比如ImageNet)训练， 模型产生的结果比同样大小的ResNet低几个百分点。
 
