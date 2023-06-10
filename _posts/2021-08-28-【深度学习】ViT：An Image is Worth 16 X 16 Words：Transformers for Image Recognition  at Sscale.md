@@ -33,7 +33,7 @@ tags:
 
 # Method
 
-在模型设计中，我们尽可能遵循原始 Transformer（Vaswani等人，2017年）。
+在模型设计中，我们尽可能遵循原始 Transformer（Vaswani等人，2017年）。这种有意的简单设置的一个优点是，可扩展的 NLP Transformer 架构及其高效实现几乎可以开箱即用。
 
 ## Vision Transformer (VIT)
 
