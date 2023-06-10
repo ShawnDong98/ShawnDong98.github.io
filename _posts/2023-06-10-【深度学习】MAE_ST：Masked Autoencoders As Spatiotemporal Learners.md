@@ -13,3 +13,5 @@ tags:
 
 # Abstract
 
+
+这篇文章研究了 Masked Autoencoders （MAE）[31]在概念上简单的扩展，以从视频中学习时空表示。
