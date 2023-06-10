@@ -29,4 +29,4 @@ tags:
 
 我们观察到，MAE可以以很大的优势优于监督的预训练。
 
-我们进一步报告了关于现实世界、 uncurated Instagram 数据的令人鼓舞的培训结果。
+我们进一步报告了关于现实世界、 uncurated Instagram 数据的令人鼓舞的训练结果。
