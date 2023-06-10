@@ -27,7 +27,7 @@ tags:
 
 # Method
 
-## VISION TRANSFORMER (VIT)
+## Vision Transformer (VIT)
 
 为了处理 2D 图像， 将图像 $x \in \mathbb{R}^{H \times W \times C}$ reshape 成一个拉平的 2D patch 的序列 $x_p \in \mathbb{R}^{N \times (P^2 · C)}$。
 
