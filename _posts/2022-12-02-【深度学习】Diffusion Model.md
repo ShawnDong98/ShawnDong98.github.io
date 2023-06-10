@@ -74,6 +74,7 @@ $$
 ## 多层 VAE 的原理与变分下界
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1669964311290.png)
+
 $$
 p(x) = \int_{z_1} \int_{z_2} p_\theta(x, z_1, z_2)d{z_1}, d{z_2}
 $$
@@ -89,6 +90,7 @@ $$
 $$
 \log p(x) \geq E_{z_1, z_2 \thicksim q_\phi(z_1, z_2 \mid x)} [\log \frac{p_\theta(x, z_1, z_2)}{q_\phi(z_1, z_2 \mid x)}]
 $$
+
 $$
 p(x, z_1, z_2) = p(x \mid z_1) p(z_1 \mid z_2) p(z_2)
 $$
@@ -162,6 +164,7 @@ q(x_{t-1} \mid x_t, x_0) &= \frac{q(x_t, x_{t-1}, x_0)}{q(x_t, x_0)} = \frac{q(x
 &= \exp(-\frac{1}{2}((\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar \alpha_{t-1}})x_{t-1}^2 - (\frac{2\sqrt{\alpha_t}}{\beta_t}x_t + \frac{2\sqrt{\bar \alpha_t}}{1 - \bar \alpha_{t-1}}x_0)x_{t-1} + C(x_t, x_0)))
 \end{align}
 $$
+
 Note: 高斯分布的概率密度函数是 $f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$
 
 Note：$ax^2 + bx = a(x + \frac{b}{2a})^2 + C$
@@ -171,9 +174,12 @@ Note：$ax^2 + bx = a(x + \frac{b}{2a})^2 + C$
 $$
 \tilde \beta_t = 1 / (\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar \alpha_{t-1}}) = \frac{1 - \bar \alpha_{t-1}}{1 - \bar \alpha_t} · \beta_t
 $$
+
 $$
 \tilde \mu_t(x_t, x_0) = (\frac{\sqrt{\alpha_t}}{\beta_t} x_t + \frac{\sqrt{\bar \alpha_t}}{1 - \bar \alpha_t}x_0) / (\frac{\alpha_t}{\beta_t} + \frac{1}{1 - \bar \alpha_{t-1}}) = \frac{\sqrt{\alpha_t}(1 - \bar \alpha_{t-1})}{1 - \bar \alpha_t}x_t + \frac{\sqrt{\bar \alpha_{t-1}} \beta_t}{1 - \bar \alpha_t} x_0
 $$
+
+
 根据 $x_0$ 和 $x_t$ 之间的关系式：
 
 $$
