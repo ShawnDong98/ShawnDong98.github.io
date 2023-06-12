@@ -101,6 +101,9 @@ $$
 
 
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1686539335864.png)
+
+
 # Conclusion
 
 这篇文章提出一种叫做 Swin Transformer的新的 Vision Transformer 的结构， 它会产生层级的特征表示， 并且对于输入图像的尺寸具有线性增长的计算复杂度。
@@ -108,3 +111,9 @@ $$
 Swin Transformer 的一个关键设计， 基于 shifted window 的 self-attention 在视觉人物上表现出有效性。
 
 
+
+
+
+# Reference
+
+1. [Swin Transformer之相对位置编码详解](https://zhuanlan.zhihu.com/p/577855860)
