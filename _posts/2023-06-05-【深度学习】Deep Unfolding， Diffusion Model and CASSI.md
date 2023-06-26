@@ -67,13 +67,13 @@ $$
 为了解耦等式（3）中的数据项和先验项， HQS引入一个辅助变量 $z$， 产生如下的优化问题：
 
 $$
-\hat x = \text{arg} \min_x \frac{1}{2\sigma^2} \| y - \Phi x\| + \lambda R(z) \qquad s.t. \qquad z = x \tag{8}
+\hat x = \text{arg} \min_x \frac{1}{2} \| y - \Phi x\| + \lambda R(z) \qquad s.t. \qquad z = x \tag{8}
 $$
 
 上式可以通过最小化下列问题求解：
 
 $$
-L_\mu(x, z) = \frac{1}{2 \sigma^2} \|y - \Phi x\|^2 + \lambda R(z) + \frac{\mu}{2}\|z - x\|^2 \tag{9}
+L_\mu(x, z) = \frac{1}{2} \|y - \Phi x\|^2 + \lambda R(z) + \frac{\mu}{2}\|z - x\|^2 \tag{9}
 $$
 
 其中 $\mu$ 是惩罚参数。该问题可以通过迭代求解下列 $x$ 和 $z$ 子问题解决：
