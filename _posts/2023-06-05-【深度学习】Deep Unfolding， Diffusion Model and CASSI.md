@@ -114,6 +114,18 @@ $$
 
 ## DDPM
 
+前向过程：
+
+$$
+q(x_{1:T} \mid x_0) := \prod_{t=1}^T q(x_t \mid x_{t-1}), \qquad q(x_t \mid x_{t-1}) := N(x_t; \sqrt{1-\beta_t}x_{t-1}, \beta_t I)  \tag{1}
+$$
+
+前向过程任意时间步采样 $x_t$ 在有闭式解：令 $\alpha_t := 1 - \beta_t$, $\bar \alpha_t = \prod_{s=1}^t \alpha_s$， 有：
+
+$$
+q(x_t \mid x_0) = N(x_t; \sqrt{\bar \alpha_t}x_0, (1 - \bar \alpha_t)I)
+$$
+
 ## SMLD
 
 
