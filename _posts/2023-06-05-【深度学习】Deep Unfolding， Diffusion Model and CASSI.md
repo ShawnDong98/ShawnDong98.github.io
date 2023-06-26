@@ -79,7 +79,7 @@ $$
 其中 $\mu$ 是惩罚参数。该问题可以通过迭代求解下列 $x$ 和 $z$ 子问题解决：
 
 $$
-x_k = \text{arg} \min_x \|y - \Phi x\|^2 + \mu \sigma^2\|x - z_{k-1}\|^2  \tag{6a}
+x_k = \text{arg} \min_x \|y - \Phi x\|^2 + \mu\|x - z_{k-1}\|^2  \tag{6a}
 $$
 
 $$
