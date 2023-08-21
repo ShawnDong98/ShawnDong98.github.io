@@ -20,4 +20,6 @@ tags:
 
 在这个文章中，我们建议充分利用所需HSI的高维结构来提高重建质量。
 
+我们首先通过利用HSI中的非局部相似性来构建高阶张量。
 
+然后，我们提出了一个discriminative low-rank tensor recovery（DLTR）模型来自适应地描述每个维度中的结构先验。
