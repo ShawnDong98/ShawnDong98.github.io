@@ -126,11 +126,18 @@ $$
 z^{k+1} = \text{arg} \min_z \frac{1}{2 (\sqrt{\lambda / \rho})^2} \| z - (x^{k+1} +\mu^k) \|_2^2 + R(z)  \tag{12} 
 $$
 
+将 Eq. (12) 代入 Eq. (11) 得到：
+
+$$
+x^{k+1} = (z^k - \mu^k) + A^\top [y - A(z^k - u^k)] ./ [\text{Diag}(AA^\top) + \rho] \tag{13}
+$$
+  
 其可以视为在噪声等级为$\sigma^2 = \lambda / \rho$ 的图像 $(x^{k+1} + \mu^k)$ 上高斯去噪：
 
 $$
-z^{k+1} = \mathcal{D}_{\sigma_k}(x^{k+1}+\mu^k, \sqrt{\lambda / \mu}) \tag{13}
+z^{k+1} = \mathcal{D}_{\sigma_k}(x^{k+1}+\mu^k, \sqrt{\lambda / \mu}) \tag{14}
 $$
+
 
 
 
