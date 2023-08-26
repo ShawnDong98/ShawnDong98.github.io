@@ -83,8 +83,9 @@ x_k = \text{arg} \min_x \|y - \Phi x\|^2 + \mu\|x - z_{k-1}\|^2  \tag{6a}
 $$
 
 $$
-z_k = \text{arg} \min_z \frac{1}{2(\sqrt{\lambda / \mu})^2} \| z - x_k \|^2 + R(z)
+z_k = \text{arg} \min_z \frac{1}{2(\sqrt{\lambda / \mu})^2} \| z - x_k \|^2 + R(z) \tag{6b}
 $$
+
 
 (6a) 的子问题目标是找到一个 $z_{k-1}$ 的近端点，并且通常有一个快速地依赖于 $\Phi$ 的闭式解。 (6b) 的子问题从贝叶斯视角看， 对应于在噪声等级为 $\sqrt{\lambda / \mu}$ 的 $x_k$ 上高斯去噪。  
 
@@ -95,16 +96,49 @@ $$
 ADMM 求解等式（3）可以写作：
 
 $$
-x^{k+1} = \text{arg} \min_x \frac{1}{2}\|Ax - y\|_2^2 + \frac{\rho}{2}\|x - (z^k - \mu^k) \|_2^2 
+x^{k+1} = \text{arg} \min_x \frac{1}{2}\|Ax - y\|_2^2 + \frac{\rho}{2}\|x - (z^k - \mu^k) \|_2^2  \tag{7}
 $$
 
 $$
-z^{k+1} = \text{arg}\min_z \lambda R(z) + \frac{\rho}{2}\| z - (x^{k+1} + \mu^k) \|_2^2
+z^{k+1} = \text{arg}\min_z \lambda R(z) + \frac{\rho}{2}\| z - (x^{k+1} + \mu^k) \|_2^2 \tag{8}
 $$
 
 $$
-\mu^{k+1} = \mu^k + (x^{k+1} - z^{k+1})
+\mu^{k+1} = \mu^k + (x^{k+1} - z^{k+1}) \tag{9}
 $$
+
+
+Eq. (9) 有闭式解：
+
+$$
+x^{k+1} = (A^\top A + \rho I)^{-1} · [A^\top y + \rho(z^k - \mu^k)] \tag{10}
+$$
+
+$AA^\top$ 是一个对角矩阵， $(A^\top A + \rho I)^{-1}$ 可以通过矩阵逆公式高效求解：
+
+$$
+(A^\top A + \rho I)^{-1}  = \rho^{-1} I - \rho^{-1} A^\top (I + \rho A A^\top)^{-1} A \rho^{-1} \tag{11}
+$$
+
+Eq. (8) 可以重写为：
+
+$$
+z^{k+1} = \text{arg} \min_z \frac{1}{2 (\sqrt{\lambda / \rho})^2} \| z - (x^{k+1} +\mu^k) \|_2^2 + R(z)  \tag{12} 
+$$
+
+其可以视为在噪声等级为$\sigma^2 = \lambda / \rho$ 的图像 $(x^{k+1} + \mu^k)$ 上高斯去噪：
+
+$$
+z^{k+1} = \mathcal{D}_{\sigma_k}(x^{k+1}+\mu^k, \sqrt{\lambda / \mu}) \tag{13}
+$$
+
+
+
+
+
+
+
+
 
 
 
