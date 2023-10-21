@@ -14,6 +14,10 @@ tags:
 
 # 链接到 github 仓库
 
+编辑器左下角位置，点击
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1697904022467.png)
+
 
 
 # 使用 github 图库
