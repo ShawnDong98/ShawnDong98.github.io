@@ -26,6 +26,10 @@ token 值从此获取 [https://github.com/settings/tokens/new](https://github.co
 
 # 使用 github 图库
 
+输入相应的信息
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1697904311946.png)
+
 # 关闭声效和动画
 
 打开 设置 -> 编辑器
