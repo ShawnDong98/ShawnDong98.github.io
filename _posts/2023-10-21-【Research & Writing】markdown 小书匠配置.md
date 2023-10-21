@@ -20,6 +20,8 @@ tags:
 
 # 关闭声效和动画
 
-打开设置
+打开 设置 -> 编辑器
 
-关闭打字机
+取消勾选 打字机滚动效果
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1697903974148.png)
