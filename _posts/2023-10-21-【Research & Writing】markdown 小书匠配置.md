@@ -18,7 +18,11 @@ tags:
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1697904022467.png)
 
+输入响应的信息
 
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1697904254712.png)
+
+token 值从此获取 [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new)
 
 # 使用 github 图库
 
