@@ -29,6 +29,7 @@ token 值从此获取 [https://github.com/settings/tokens/new](https://github.co
 输入相应的信息
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1697904311946.png)
+token 值从此获取 [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new)
 
 # 关闭声效和动画
 
