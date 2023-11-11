@@ -1,5 +1,4 @@
 ---
---
 layout:     post
 title:      "【Research & Writing】CVPR 2024 注意事项"
 subtitle:   ""
