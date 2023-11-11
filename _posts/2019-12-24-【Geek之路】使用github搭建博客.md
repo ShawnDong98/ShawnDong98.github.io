@@ -180,7 +180,7 @@ tags:
 
 ## 替换域名
 
-免费域名：
+免费域名：[https://my.freenom.com/clientarea.php](https://my.freenom.com/clientarea.php)
 
 在github中的settings中的custom domain设置成自己的域名。
 
