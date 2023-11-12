@@ -416,6 +416,11 @@ export https_proxy=http://$host_ip:7890
 ```
 
 
+```
+export http_proxy="http://host.docker.internal:7890"
+export https_proxy="http://host.docker.internal:7890"
+```
+
 ## DockerFile
 
 DockerFile 是用来构建 docker 镜像的文件， 命令参数脚本。
