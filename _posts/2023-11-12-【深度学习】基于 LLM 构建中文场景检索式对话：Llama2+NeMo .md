@@ -38,7 +38,15 @@ cd NeMo
 # 安装 Llama index
 
 ```
-!pip -qqq install bitsandbytes accelerate
+pip install llama
+```
+
+```
+pip install accelerate
+```
+
+```
+pip install -i https://test.pypi.org/simple/ bitsandbytes
 ```
 
 
