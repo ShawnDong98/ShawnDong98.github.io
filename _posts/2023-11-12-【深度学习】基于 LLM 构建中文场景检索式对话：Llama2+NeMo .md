@@ -37,8 +37,12 @@ cd NeMo
 
 # 安装 Llama index
 
+```
+
+```
 
 
 # Reference
 1. [https://github.com/NVIDIA/NeMo](https://github.com/NVIDIA/NeMo)
 2. [OSError: dlopen(libopencc.so.1, 6): image not found](https://blog.csdn.net/GodDavide/article/details/94892949)
+3. [ImportError: Using `low_cpu_mem_usage=True` or a `device_map` requires Accelerate: `pip install accelerate`](https://stackoverflow.com/questions/76902752/importerror-using-low-cpu-mem-usage-true-or-a-device-map-requires-accelerat)
