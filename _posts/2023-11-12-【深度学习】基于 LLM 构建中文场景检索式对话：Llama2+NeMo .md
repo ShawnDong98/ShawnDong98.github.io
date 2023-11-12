@@ -60,3 +60,4 @@ pip install pypdf
 2. [OSError: dlopen(libopencc.so.1, 6): image not found](https://blog.csdn.net/GodDavide/article/details/94892949)
 3. [ImportError: Using `low_cpu_mem_usage=True` or a `device_map` requires Accelerate: `pip install accelerate`](https://stackoverflow.com/questions/76902752/importerror-using-low-cpu-mem-usage-true-or-a-device-map-requires-accelerat)
 4. [使用HuggingFace的Accelerate库加载和运行超大模型](https://zhuanlan.zhihu.com/p/605640431?utm_id=0&wd=&eqid=adb7385f00032b0e000000066480ba12)
+5. 
