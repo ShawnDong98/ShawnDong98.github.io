@@ -14,9 +14,21 @@ tags:
 
 Note: 需要  python 3.10 以上，否则部分代码会报错
 
-
 ```
+# [optional] install mecab using Homebrew, to use sacrebleu for NLP collection
+# you can install Homebrew here: https://brew.sh
+brew install mecab
+
+# [optional] install pynini using Conda, to use text normalization
+conda install -c conda-forge pynini
+
+# install Cython manually
 pip install cython
+
+# clone the repo and install in development mode
+git clone https://github.com/NVIDIA/NeMo
+cd NeMo
+./reinstall.sh
 ```
 
 ```
