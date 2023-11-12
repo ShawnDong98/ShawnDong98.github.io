@@ -41,3 +41,4 @@ cd NeMo
 
 # Reference
 1. [https://github.com/NVIDIA/NeMo](https://github.com/NVIDIA/NeMo)
+2. [OSError: dlopen(libopencc.so.1, 6): image not found](https://blog.csdn.net/GodDavide/article/details/94892949)
