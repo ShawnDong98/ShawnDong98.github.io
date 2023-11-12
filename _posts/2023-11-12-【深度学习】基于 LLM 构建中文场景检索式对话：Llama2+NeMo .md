@@ -38,7 +38,7 @@ cd NeMo
 # 安装 Llama index
 
 ```
-
+!pip -qqq install bitsandbytes accelerate
 ```
 
 
