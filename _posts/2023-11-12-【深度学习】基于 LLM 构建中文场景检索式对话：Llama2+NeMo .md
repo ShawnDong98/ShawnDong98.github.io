@@ -32,11 +32,12 @@ cd NeMo
 ```
 
 ```
-
-```
-
-```
  pip install opencc-python-reimplemented==0.1.4
 ```
 
 # 安装 Llama index
+
+
+
+# Reference
+1. [https://github.com/NVIDIA/NeMo](https://github.com/NVIDIA/NeMo)
