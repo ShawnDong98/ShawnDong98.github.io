@@ -10,3 +10,10 @@ tags:
     - Research & Writing
     - 
 ---
+
+# 要选择的 License
+
+
+
+# Reference
+1. [Arxiv 论文提交流程——看这篇就够了](https://zhuanlan.zhihu.com/p/109405192)
