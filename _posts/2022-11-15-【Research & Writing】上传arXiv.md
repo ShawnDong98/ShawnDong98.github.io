@@ -13,6 +13,9 @@ tags:
 
 # 要选择的 License
 
+许可选 `arXiv.org perpetual, non-exclusive license` 就可以了
+
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1700035136833.png)
 
 
 # Reference
