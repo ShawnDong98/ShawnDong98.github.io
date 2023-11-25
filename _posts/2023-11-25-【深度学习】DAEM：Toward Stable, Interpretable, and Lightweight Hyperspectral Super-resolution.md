@@ -43,4 +43,9 @@ p(\mathcal{X \mid Z}, \theta) = \sum_{i=1}^H \sum_{j=1}^W \mathcal{N}(x_{i, j} \
 p(\mathcal{Y \mid Z}, \theta) = \sum_{i=1}^H \sum_{j=1}^W \mathcal{N}(y_{i, j} \mid ((Z \times_3 C) \downarrow_s)_{i, j}, \epsilon_3^2I) \\
 $$
 
-通常，LR-HSI的光谱退化和HR-HSI的空间退化彼此保持接近， 其叫做所谓空间-光谱一致性。
+通常，LR-HSI的光谱退化和HR-HSI的空间退化彼此保持接近， 其叫做所谓空间-光谱一致性。因此， $p(\theta \mid \mathcal{X, Y})$ 与这两种退化的相似性成正比。 我们建模 $\theta$ 的后验分布为：
+
+$$
+p(\theta \mid \mathcal{X, Y}) \propto exp(\| \mathcal{X \times_3 R - (Y * C) \downarrow_s \|^2})
+$$
+
