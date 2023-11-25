@@ -34,3 +34,12 @@ $$
 $$
 R_{i, j}  = \sum_{k=1}^K \frac{1}{\sqrt{2\pi} \sigma_{j, k}} exp(-\frac{(i - \mu_{j, k})^2}{2 \sigma_{j, k}^2})
 $$
+
+其中 $\mu_{j, k}$ 和 $\sigma_{j, k}$ 是 HR-MSI 的第 $j$ 个谱段中第 $k$ 个高斯成分的均值和方差。 有了估计的退化参数， 似然 $p(\mathcal{X, Y \mid Z}, \theta)$ 可以被公式化为：
+
+$$
+p(\mathcal{X, Y \mid Z}, \theta) = p(\mathcal{X \mid Z}, \theta) p(\mathcal{Y \mid Z}, \theta) \\
+p(\mathcal{X \mid Z}, \theta) = \sum_{i=1}^H \sum_{j=1}^W \mathcal{N}(x_{i, j} \mid ((Z * C) \downarrow_s)_{i, j}, \epsilon_2^2I) \\
+p(\mathcal{Y \mid Z}, \theta) = \sum_{i=1}^H \sum_{j=1}^W \mathcal{N}(y_{i, j} \mid ((Z \times_3 C) \downarrow_s)_{i, j}, \epsilon_3^2I) \\
+$$
+
