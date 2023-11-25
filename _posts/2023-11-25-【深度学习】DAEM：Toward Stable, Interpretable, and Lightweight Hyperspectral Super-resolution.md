@@ -24,5 +24,5 @@ tags:
 
 $$
 C_{i, j} = \frac{1}{2 \pi} \sqrt{|\Lambda|} exp (-\frac{1}{2}S^\top \Lambda S) \\
-S = [i, j]^\top, i, j \in -s/s, ...., s/2
+S = [i, j]^\top, i, j \in -s/2, ...., s/2
 $$
