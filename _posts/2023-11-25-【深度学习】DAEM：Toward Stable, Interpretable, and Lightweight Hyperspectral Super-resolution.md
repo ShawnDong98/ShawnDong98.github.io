@@ -23,6 +23,8 @@ tags:
 在这里，我们的目标是明确捕捉固有的退化模式，期待稳定和精确的估计。与广泛认可的退化模型[36,39]类似，我们用各向异性高斯核模拟 PSF $C$：
 
 $$
-C_{i, j} = \frac{1}{2 \pi} \sqrt{|\Lambda|} exp (-\frac{1}{2}S^\top \Lambda S) \\
-S = [i, j]^\top, i, j \in -s/2, ...., s/2
+C_{i, j} = \frac{1}{2 \pi} \sqrt{|\Lambda|} exp (-\frac{1}{2}S^\top \Lambda S), \\
+S = [i, j]^\top, i, j \in -s/2, ...., s/2,
 $$
+
+其中 $\Lambda \in \mathbb{R}^2$ 是高斯模糊核的协方差， 并且 $\Lambda$ 是对称正定矩阵。 因此，只有3个参数可以处理模糊内核。
