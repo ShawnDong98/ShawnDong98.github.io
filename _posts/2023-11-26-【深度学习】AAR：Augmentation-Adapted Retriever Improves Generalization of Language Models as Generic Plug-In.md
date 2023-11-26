@@ -20,3 +20,5 @@ tags:
 在本文中，我们探索了通用检索插件的方案：检索器旨在帮助事先不知道或无法一起微调的LM。
 
 为使未见过的LM检索有用文档，我们提出了增强适应检索器（AAR），它学习从已知来源LM获得的LM的偏好。
+
+MMLU和PopQA数据集的实验表明，我们训练有 small source LM 的 AAR 能够显著改善从250M Flan-T5到175B InstructGPT的大型 LM 的 zero-shot 的泛化性。
