@@ -22,3 +22,5 @@ tags:
 我们将 N-Gram 定义为 Swin 中相邻的局部窗口，这与将 N-Gram 视为连续字符或单词的文本分析不同。
 
 N-Grams 通过滑动 WSA 交互，扩展看到的区域以恢复退化的像素。
+
+使用 N-Gram 上下文，我们提出 NGswin，这是一个高效的SR网络，具有SCDP bottleneck，采用层次型编码器的多尺度输出。
