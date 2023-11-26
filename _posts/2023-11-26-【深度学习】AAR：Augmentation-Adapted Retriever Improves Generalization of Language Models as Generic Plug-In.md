@@ -22,3 +22,5 @@ tags:
 为使未见过的LM检索有用文档，我们提出了增强适应检索器（AAR），它学习从已知来源LM获得的LM的偏好。
 
 MMLU和PopQA数据集的实验表明，我们训练有 small source LM 的 AAR 能够显著改善从250M Flan-T5到175B InstructGPT的大型 LM 的 zero-shot 的泛化性。
+
+进一步的分析表明，不同LM的偏好重叠，使使用单一 source LM 训练的 AAR 能够作为各种 LM 的通用插件。
