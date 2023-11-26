@@ -10,3 +10,7 @@ tags:
     - 深度学习
     - CVPR 2023
 ---
+
+# Abstract
+
+虽然一些研究已经证明，具有窗口自注意力（WSA）的 Swin Transformer（Swin）适用于图像超分辨率（SR），但由于感受野有限，普通WSA在重建高分辨率图像时忽略了广阔的区域。
