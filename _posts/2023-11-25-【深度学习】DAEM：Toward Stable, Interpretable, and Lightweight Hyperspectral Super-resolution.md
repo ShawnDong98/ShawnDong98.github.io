@@ -48,4 +48,3 @@ $$
 $$
 p(\theta \mid \mathcal{X, Y}) \propto exp(\| \mathcal{X \times_3 R - (Y * C) \downarrow_s \|^2})
 $$
-
