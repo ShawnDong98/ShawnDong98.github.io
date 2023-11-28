@@ -36,7 +36,7 @@ tags:
 
 通常，RGB图像的二叉树是由自上而下的算法（算法1）构建的，该算法迭代选择按评分函数排名的“最重要”图像块，并将其拆分为4个图像块，有效地使用4倍的像素来表示选定的图像区域。我们称这个评分功能为“图像块打分器”。
 
-我们使用 Quadtree 算法作为 tokenizer，将图像拆分成混合分辨率的图像块马赛克，然后将其输入标准 Transformer 模型。我们试验了几个图像块评分器（图3）：通常用于 Quadtree 图像压缩的 pixel-blur scorer ，一种使用神经表示估计显著性的新 feature-based scorer，以及一个Grad-CAM Oracle 评分器，它利用标签感知的显著性方法，并为我们希望实现的评分质量提供了一个松散的上限。
+我们使用 Quadtree 算法作为 tokenizer，将图像拆分成混合分辨率的图像块马赛克，然后将其输入标准 Transformer 模型。我们试验了几个图像块评分器（图3）：通常用于 Quadtree 图像压缩的 pixel-blur scorer ，一种使用神经表示估计显著性的新 feature-based scorer，以及一个 Grad-CAM oracle scorer ，它利用标签感知的显著性方法，并为我们希望实现的评分质量提供了一个松散的上限。
 
 
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1701141018907.png)
