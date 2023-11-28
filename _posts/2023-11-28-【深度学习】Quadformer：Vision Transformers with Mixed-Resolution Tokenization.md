@@ -26,3 +26,10 @@ tags:
 #  Background and related work
 
 **Existing methods for image tokenization.** 一些方法使用CNN主干从输入图像创建表示，使用 activation volumes 作为 token[10,42]。另一类专为图像生成设计的视觉 Transformers 使用矢量量化网络来学习离散 token 的码本，也使用统一的二维网格[7，24]。一些极少的有方法完全放弃空间 tokenization，并使用一种称为 token learning 的技术，其中每个 token 都会汇总整个图像中的信息[29]。
+
+
+# Method
+
+## Saliency-based Quadtrees
+
+**Quadtrees for RGB images.** Quadtrees 是递归地将二维空间分割成象限树的数据结构，其中每个内部节点正好有四个子节点。树中的每个节点代表由轴对齐的矩形或正方形定义的特定空间区域。在表示RGB图像的四叉树中，每个叶子都包含图像块的压缩表示，通常是该图像块的副本，下采样到一些预定的大小。
