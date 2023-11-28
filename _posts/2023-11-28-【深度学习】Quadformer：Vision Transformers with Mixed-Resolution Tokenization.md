@@ -22,3 +22,7 @@ tags:
 使用四叉树算法和一个新的显著性评分器，我们构建了一个图片块马赛克，在这个马赛克中，图像中的低显著性区域以低分辨率处理，将模型更多的容量路由到重要的图像区域。
 
 使用与普通 ViTs 相同的架构，我们的 Quadformer 模型在控制计算预算的情况下，在图像分类上实现了显著的准确性提升。
+
+#  Background and related work
+
+**Existing methods for image tokenization.** 一些方法使用CNN主干从输入图像创建表示，使用 activation volumes 作为 token[10,42]。另一类专为图像生成设计的视觉 Transformers 使用矢量量化网络来学习离散 token 的码本，也使用统一的二维网格[7，24]。一些极少的有方法完全放弃空间 tokenization，并使用一种称为 token learning 的技术，其中每个 token 都会汇总整个图像中的信息[29]。
