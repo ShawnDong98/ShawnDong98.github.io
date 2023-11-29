@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】SUDF：Spectral Bayesian Uncertainty for Image Super-resolution"
+title:      "【CVPR 2023】SUDF：Spectral Bayesian Uncertainty for Image Super-resolution"
 subtitle:   ""
 date:       2023-11-24
 author:     "ShawnD"
