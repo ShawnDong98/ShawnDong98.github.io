@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】MaskedDenoising：Masked Image Training for Generalizable Deep Image Denoising"
+title:      "【CVPR 2023】MaskedDenoising：Masked Image Training for Generalizable Deep Image Denoising"
 subtitle:   ""
 date:       2023-11-27
 author:     "ShawnD"
