@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】DAEM：Toward Stable, Interpretable, and Lightweight Hyperspectral Super-resolution"
+title:      "【CVPR 2023】DAEM：Toward Stable, Interpretable, and Lightweight Hyperspectral Super-resolution"
 subtitle:   ""
 date:       2023-11-25
 author:     "ShawnD"
