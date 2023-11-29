@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Burstormer: Burst Image Restoration and Enhancement Transformer"
+title:      "【CVPR 2023】Burstormer: Burst Image Restoration and Enhancement Transformer"
 subtitle:   ""
 date:       2023-11-22
 author:     "ShawnD"
