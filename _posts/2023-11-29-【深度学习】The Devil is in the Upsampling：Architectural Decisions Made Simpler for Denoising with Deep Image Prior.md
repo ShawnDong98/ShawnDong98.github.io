@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】The Devil is in the Upsampling：Architectural Decisions Made Simpler for Denoising with Deep Image Prior"
+title:      "【ICCV 2023】The Devil is in the Upsampling：Architectural Decisions Made Simpler for Denoising with Deep Image Prior"
 subtitle:   ""
 date:       2023-11-29
 author:     "ShawnD"
