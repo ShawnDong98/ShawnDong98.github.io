@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】Quadformer：Vision Transformers with Mixed-Resolution Tokenization"
+title:      "【CVPRW 2023】Quadformer：Vision Transformers with Mixed-Resolution Tokenization"
 subtitle:   ""
 date:      2023-11-28 
 author:     "ShawnD"
