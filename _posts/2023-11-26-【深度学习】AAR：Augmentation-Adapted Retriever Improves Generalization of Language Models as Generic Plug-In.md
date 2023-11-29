@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】AAR：Augmentation-Adapted Retriever Improves Generalization of Language Models as Generic Plug-In"
+title: 【ACL 2023】AAR：Augmentation-Adapted Retriever Improves Generalization of Language Models as Generic Plug-In
 subtitle:   ""
 date:      2023-11-26 
 author:     "ShawnD"
