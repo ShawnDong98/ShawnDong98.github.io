@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【深度学习】What Makes for Good Tokenizers in Vision Transformer?"
+title:      "【TPAMI 2023】What Makes for Good Tokenizers in Vision Transformer?"
 subtitle:   ""
 date:       2023-11-28
 author:     "ShawnD"
