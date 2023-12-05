@@ -35,3 +35,7 @@ tags:
 这篇文章引入了一类新的迭代方法，称为TwIST， 其有 two-step iterative shrinkage/thresholding(TwIST) 算法的形式。更新方程依赖于之前的两个估计(因此是 two-step)，而不是仅仅依赖于前一个。该方法包含并拓展了最近引入的 iterative shrinkage/thresholding(IST) 方法。
 
 作者证明了TwIST收敛到目标函数的最小值(在一定的算法参数范围内)，并导出了收敛因子作为定义算法参数的函数的边界。实验结果(wavelet-based 和 TV-based 的 deconvolution)表明，TwIST实际上可以调整到比原始IST更快的收敛速度，特别是在严重的病态问题中，在典型的去模糊问题中，速度可以达到两个数量级。作者还引入了MTwIST, TwIST的monotonic变体，用于 noninvertible 的 observation operators; 利用该方法对缺失样本的图像恢复问题进行了研究。
+
+
+# Reference
+
