@@ -19,6 +19,12 @@ tags:
 defaults write com.apple.dock static-only -boolean true; killall Dock
 ```
 
+如果你想恢复成默认设置，只需再次输入命令，并回车确认即可：
+
+```
+defaults write com.apple.dock static-only -bool FALSE; killall Dock
+```
+
 
 # Reference
 1. [让 Dock 栏只显示已打开的应用程序 | 一日一技 · Mac](https://sspai.com/post/33479)
