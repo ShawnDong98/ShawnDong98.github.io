@@ -15,7 +15,7 @@ tags:
 
 
 
-审稿周期一年左右，平均8.1个月
+审稿周期一年左右，平均8.1个月。
 
 # Transactions on Computational Imaging 
 
