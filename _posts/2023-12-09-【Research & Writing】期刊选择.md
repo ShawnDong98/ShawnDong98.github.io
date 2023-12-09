@@ -62,6 +62,13 @@ tags:
 
 ## Neurocomputing
 
+网友分享经验：
+平均5.7个月
+
+
+来源Elsevier官网：
+平均15.5周
+
 ## Signal Processing
 
 ## Remote Sensing
