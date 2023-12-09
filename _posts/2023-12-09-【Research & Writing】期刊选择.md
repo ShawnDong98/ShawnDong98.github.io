@@ -47,6 +47,9 @@ tags:
 
 ## IEEE Transactions on Geoscience and Remote Sensing
 
+网友分享经验：
+平均4.0个月
+
 ## IEEE Transactions on Signal Processing
 
 ## IEEE Transactions on Multimedia
