@@ -25,6 +25,9 @@ tags:
 
 # Optica
 
+网友分享经验：
+15 Weeks
+
 # 西电一类贡献度
 
 ## IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing
