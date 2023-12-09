@@ -37,6 +37,9 @@ tags:
 
 ## IEEE Journal of Selected Topics in Signal Processing
 
+网友分享经验：
+平均3.0个月
+
 
 ## IEEE Transactions on Circuits and Systems for Video Technology
 
