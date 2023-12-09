@@ -11,20 +11,43 @@ tags:
     - 
 ---
 
-# Transactions on Image Processing (TIP)
+
+# CASSI
+
+
+## Transactions on Image Processing (TIP)
 
 审稿周期一年左右，平均8.1个月。
 
-# Transactions on Computational Imaging 
+## Transactions on Computational Imaging 
 
 四五个月左右。
 
 性价比不高， Rebuttal 要回复40-80
 
-# Optica
+## Optica
 
 网友分享经验：
 15 Weeks
+
+## Remote Sensing
+
+期刊官网数据：
+平均20.66天
+
+网友分享经验：
+一般,3-8周
+
+## Sensors
+
+期刊官网数据：
+平均21.03天
+
+
+网友分享经验：
+平均1.7个月
+
+
 
 # 西电一类贡献度
 
@@ -75,13 +98,7 @@ tags:
 来源Elsevier官网：
 平均6.8周
 
-## Remote Sensing
 
-期刊官网数据：
-平均20.66天
-
-网友分享经验：
-一般,3-8周
 
 
 
