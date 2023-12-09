@@ -66,6 +66,11 @@ tags:
 来源Elsevier官网：
 33%
 
+##  IEEE Geoscience and Remote Sensing Letters 
+
+网友分享经验：
+平均3.4个月
+
 # 西电一类贡献度
 
 ## IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing
