@@ -73,6 +73,12 @@ tags:
 
 ## Remote Sensing
 
+期刊官网数据：
+平均20.66天
+
+网友分享经验：
+一般,3-8周
+
 
 
 # Reference
