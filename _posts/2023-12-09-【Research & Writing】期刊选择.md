@@ -71,6 +71,14 @@ tags:
 网友分享经验：
 平均3.4个月
 
+## Optics Communications
+
+网友分享经验：
+平均3.2个月
+
+来源Elsevier官网：
+平均6.3周
+
 
 
 # 西电一类贡献度
