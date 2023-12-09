@@ -31,6 +31,8 @@ tags:
 
 ## IEEE Transactions on Circuits and Systems for Video Technology
 
+要多引用 TCSVT 的论文，否则会被直接拒。
+
 ## IEEE Transactions on Geoscience and Remote Sensing
 
 ## IEEE Transactions on Signal Processing
