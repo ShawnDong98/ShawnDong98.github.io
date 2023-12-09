@@ -11,7 +11,19 @@ tags:
     - 
 ---
 
-# Transaction on Image Processing (TIP)
+# Transactions on Image Processing (TIP)
+
+
+审稿周期一年左右
+
+# Transactions on Computational Imaging 
+
+# Optica
 
 
 
+
+# Reference
+1. [https://www.letpub.com.cn/index.php?journalid=3390&page=journalapp&view=detail](https://www.letpub.com.cn/index.php?journalid=3390&page=journalapp&view=detail)
+2. [https://www.letpub.com.cn/index.php?page=journalapp&view=detail&journalid=10623](https://www.letpub.com.cn/index.php?page=journalapp&view=detail&journalid=10623)
+3. 
