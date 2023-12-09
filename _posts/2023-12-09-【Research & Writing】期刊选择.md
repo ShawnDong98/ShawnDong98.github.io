@@ -57,6 +57,9 @@ tags:
 
 ## IEEE Transactions on Multimedia
 
+网友分享经验：
+平均3.0个月
+
 ## Neurocomputing
 
 ## Signal Processing
