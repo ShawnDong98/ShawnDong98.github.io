@@ -13,6 +13,7 @@ tags:
 
 # Transactions on Image Processing (TIP)
 
+平均8.1个月
 
 审稿周期一年左右
 
