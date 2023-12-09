@@ -52,6 +52,9 @@ tags:
 
 ## IEEE Transactions on Signal Processing
 
+平均审稿速度	网友分享经验：
+平均3.0个月
+
 ## IEEE Transactions on Multimedia
 
 ## Neurocomputing
