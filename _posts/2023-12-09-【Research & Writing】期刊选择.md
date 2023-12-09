@@ -19,6 +19,8 @@ tags:
 
 # Transactions on Computational Imaging 
 
+四五个月左右。
+
 性价比不高， Rebuttal 要回复40-80
 
 # Optica
