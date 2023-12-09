@@ -24,12 +24,11 @@ tags:
 
 # 西电一类贡献度
 
-## Remote Sensing
-
 ## IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing
 
-
 ## IEEE Journal of Selected Topics in Signal Processing
+
+
 ## IEEE Transactions on Circuits and Systems for Video Technology
 
 ## IEEE Transactions on Geoscience and Remote Sensing
@@ -42,7 +41,7 @@ tags:
 
 ## Signal Processing
 
-
+## Remote Sensing
 
 
 
