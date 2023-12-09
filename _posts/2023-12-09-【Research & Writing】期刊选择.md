@@ -18,6 +18,8 @@ tags:
 
 # Transactions on Computational Imaging 
 
+性价比不高， Rebuttal 要回复40-80
+
 # Optica
 
 
