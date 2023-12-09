@@ -30,8 +30,6 @@ tags:
 
 
 ## IEEE Journal of Selected Topics in Signal Processing
-
-
 ## IEEE Transactions on Circuits and Systems for Video Technology
 
 ## IEEE Transactions on Geoscience and Remote Sensing
