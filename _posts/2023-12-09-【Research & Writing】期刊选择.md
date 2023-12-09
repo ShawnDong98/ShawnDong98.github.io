@@ -13,8 +13,6 @@ tags:
 
 # Transactions on Image Processing (TIP)
 
-
-
 审稿周期一年左右，平均8.1个月。
 
 # Transactions on Computational Imaging 
@@ -64,7 +62,6 @@ tags:
 
 网友分享经验：
 平均5.7个月
-
 
 来源Elsevier官网：
 平均15.5周
