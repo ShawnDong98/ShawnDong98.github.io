@@ -32,6 +32,9 @@ tags:
 
 ## IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing
 
+网友分享经验：
+平均3.0个月
+
 ## IEEE Journal of Selected Topics in Signal Processing
 
 
