@@ -20,3 +20,11 @@ tags:
 
 
 我们对人造噪声、现实世界相机噪声和显微镜噪声的实验表明，我们称之为 ZS-N2N（Zero Shot Noise2Noise）的方法通常比现有的无数据集方法性能更优，且成本更低，使其适用于数据稀缺和计算能力有限的使用案例。
+
+
+# 3. Method
+
+## 3.1. Background: Noise2Noise and Neigh- bour2Neighbour
+
+监督去噪方法通常是神经网络 $f_\theta$，将噪声图像 $y$ 映射到干净图像 $x$ 的估计 $f_\theta (y)$ 。监督去噪方法通常在一对干净的图像 $x$ 和噪声测量 $y = x + e$ 上训练，其中 $e$ 是噪声。我们将监督降噪称为Noise2Clean（N2C）。
+
