@@ -102,3 +102,14 @@ $$
 # Appendix B
 
 所有附录部分都必须在正文中引用。在附录中，图表、表格等应以“A”开头标注，例如，图A1、图A2等。
+
+
+# References 
+1. Author 1, T. The title of the cited article. Journal Abbreviation 2008, 10, 142–149. 
+2. Author 2, L. The title of the cited contribution. In The Book Title; Editor 1, F., Editor 2, A., Eds.; Publishing House: City, Country, 154 2007; pp. 32–58. 
+3. Author 1, A.; Author 2, B. Book Title, 3rd ed.; Publisher: Publisher Location, Country, 2008; pp. 154–196. 
+4. Author 1, A.B.; Author 2, C. Title of Unpublished Work. Abbreviated Journal Name year, phrase indicating stage of publication 157 (submitted; accepted; in press). 
+5. Author 1, A.B. (University, City, State, Country); Author 2, C. (Institute, City, State, Country). Personal communication, 2012. 
+6. Author 1, A.B.; Author 2, C.D.; Author 3, E.F. Title of presentation. In Proceedings of the Name of the Conference, Location of 160 Conference, Country, Date of Conference (Day Month Year); Abstract Number (optional), Pagination (optional). 
+7. Author 1, A.B. Title of Thesis. Level of Thesis, Degree-Granting University, Location of University, Date of Completion. 
+8. Title of Site. Available online: URL (accessed on Day Month Year).
