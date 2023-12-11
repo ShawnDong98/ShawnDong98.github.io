@@ -27,4 +27,18 @@ tags:
 
 对于语言生成任务，我们发现 RAG 模型生成的语言比最先进的仅参数 seq2seq 基线模型更具体、多样化且事实性强。
 
+# 2 Methods
+
+## 2.1 Models
+
+
+## 2.2 Retriever: DPR
+
+
+## 2.3 Generator: BART
+
+## 2.4 Training
+
+## 2.5 Decoding
+
 
