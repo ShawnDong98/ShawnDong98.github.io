@@ -34,6 +34,10 @@ tags:
 
 ## 2.1 Models
 
+**RAG-Sequence Model** RAG序列模型使用相同的检索文档来生成完整的序列。从技术上讲，它将检索到的文档视为单个潜在变量，该变量被边缘化，以通过top-K近似获得seq2seq概率p（y|x）。具体来说，使用检索器检索顶部K文档，生成器为每个文档生成输出序列概率，然后这些文档被边缘化，
+
+**RAG-Token Model**
+
 
 ## 2.2 Retriever: DPR
 
