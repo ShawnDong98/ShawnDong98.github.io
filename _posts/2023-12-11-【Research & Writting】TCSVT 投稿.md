@@ -44,3 +44,12 @@ tags:
 # Submit Your Article
 
 在检查你的文章是否符合目标期刊的投稿指南之后，你就可以投稿了。在期刊的 IEEE Xplore 主页上点击Submit Your Manuscript 按钮。您将进入期刊的在线提交系统，该系统将引导您完成提交过程。
+
+
+# TCSVT Submission of a Manuscript
+
+## A. Submission of a Manuscript
+
+1. 只有电子提交才会被考虑。您需要一个ScholarOne帐户和一个开放研究人员和贡献者ID（ORCID）才能提交手稿。详细说明发布在TCSVT ScholarOne提交网站上。未来作者应熟悉IEEE作者中心网站（[ https://ieeeauthorcenter.ieee.org/](https://ieeeauthorcenter.ieee.org/) 上发布的作者一般信息。在困难的情况下，作者可以通过发送电子邮件至（单击以显示电子邮件）来寻求帮助。
+2. 所有文章都必须写得清晰且井井有条。手稿应在导言中说明这个问题的意义。文章应以明确讨论文章与最相关的先前工作的关系为动机。
+3. 使用IEEE双列交易格式，包括数字在内的交易文件提交手稿的总长度不得超过十四（14）页，或交易信提交提交的总长度不得超过五（5）页。（注：超长费用从交易文件的第2页开始，或交易信件的第6页开始。详情见下文。）LaTeX和Word的样式文件可以从IEEE作者中心网站下载，寻找交易的一般模板。最终提交格式必须是PDF。
