@@ -55,7 +55,7 @@ $$
 $$
 p_\eta(z \mid x) \propto \text{exp}(d(z)^\top q(x)) \qquad d(z) = \text{BERT}_d(z), \quad q(x) = \text{BERT}_q(x)
 $$
-其中 $d(z)$ 是由 $\text{BERT}_{\text{BASE}}$ 文档编码器生成的文档的稠密表征， 并且 $q(x)$ 是由一个 query encoder 生成的 query 表征。
+其中 $d(z)$ 是由 $\text{BERT}_{\text{BASE}}$ 文档编码器生成的文档的稠密表征， 并且 $q(x)$ 是由一个 query encoder 生成的 query 表征， 其也是基于 $\text{BERT}_{\text{BASE}}$ 。
 
 
 ## 2.3 Generator: BART
