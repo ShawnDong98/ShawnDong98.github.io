@@ -40,8 +40,11 @@ $$
 p_{\text{RAG-Sequence}}(y \mid x) \approx \sum_{z \in \text{top-k}(p(· \mid x))} p_\eta (z \mid x) p_\theta(y | x, z) = \sum_{z \in \text{top-k}(p(· \mid x))}  p_\eta(z \mid x) \prod_i^N p_\theta (y_i \mid x, z, y_{1:i-1})
 $$
 
-**RAG-Token Model**
+**RAG-Token Model** 在 RAG-Token 模型中，我们可以为每个目标标记采样不同的潜在文档，并相应地进行边际化。这使得生成器在生成答案时可以从多个文档中选择内容。具体来说，使用检索器检索前K个文档，然后生成器为每个文档的下一个输出标记产生一个分布，然后进行边际化处理，并在后续的输出标记中重复这个过程。形式上，我们定义如下：
 
+$$
+P_{\text{RAG-Token}}(y \mid x) \approx \prod_i^N \sum_{z \in \text{top-k}(p(· \mid x))} p_\eta (z \mid x) p_\theta (y_i \mid x, z_i, y_{1:i-1})
+$$
 
 ## 2.2 Retriever: DPR
 
