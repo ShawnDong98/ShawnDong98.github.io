@@ -60,6 +60,8 @@ $$
 
 ## 2.3 Generator: BART
 
+生成器组件 $p_\theta(y_i \mid x, z, y_{1:i-1})$ 可以被建模为任意的编码器-解码器。
+
 ## 2.4 Training
 
 ## 2.5 Decoding
