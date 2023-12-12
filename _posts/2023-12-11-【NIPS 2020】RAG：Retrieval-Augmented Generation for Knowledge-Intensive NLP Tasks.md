@@ -50,6 +50,13 @@ $$
 
 ## 2.2 Retriever: DPR
 
+检索组件 $p_\eta(z \mid x)$ 基于 DPR。 DPR 遵循双向编码器结构：
+
+$$
+p_\eta(z \mid x) \propto \text{exp}(d(z)^\top q(x)) \qquad d(z) = \text{BERT}_d(z), \quad q(x) = \text{BERT}_q(x)
+$$
+
+
 
 ## 2.3 Generator: BART
 
