@@ -72,5 +72,5 @@ $$
 
 在测试时，RAG-Sequence 和 RAG-Token 需要采用不同的方式来近似求解 $\arg \max_y p(y \mid x)$。
 
-**RAG-Token** RAG-Token 模型可以视为标准的自回归 seq2seq 生成器，其转移概率为 $p_\theta'(y_i \mid x, y_{1:i-1}) = \sum_{z \in \text{top-k}(p(· \mid x))} p_\eta (z_i \mid x)p_\theta(y_i \mid x, z_i, y_{1:i-1})$。 
+**RAG-Token** RAG-Token 模型可以视为标准的自回归 seq2seq 生成器，其转移概率为 $p_\theta'(y_i \mid x, y_{1:i-1}) = \sum_{z \in \text{top-k}(p(· \mid x))} p_\eta (z_i \mid x)p_\theta(y_i \mid x, z_i, y_{1:i-1})$。 对于解码，我们插入 $p'_\theta(y_i \mid x, y_{1:i-1})$ 进标准的 beam decoder。
 
