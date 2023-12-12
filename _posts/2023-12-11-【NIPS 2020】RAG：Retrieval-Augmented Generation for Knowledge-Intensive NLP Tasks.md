@@ -55,7 +55,7 @@ $$
 $$
 p_\eta(z \mid x) \propto \text{exp}(d(z)^\top q(x)) \qquad d(z) = \text{BERT}_d(z), \quad q(x) = \text{BERT}_q(x)
 $$
-其中 $d(z)$ 是由 $\text{BERT}_{\text{BASE}}$ 文档编码器生成的文档的稠密表征， 并且 $q(x)$ 是由一个 query encoder 生成的 query 表征， 其也是基于 $\text{BERT}_{\text{BASE}}$ 。计算 $\text{top-k}(p_\eta(· \mid x))$， 文档 $z$ 的 k 个列表有最高的先验概率 $p_\eta(z \mid x)$， 其是最大内积搜索（MIPS）问题， 其大约可以在亚线性时间内完成。
+其中 $d(z)$ 是由 $\text{BERT}_{\text{BASE}}$ 文档编码器生成的文档的稠密表征， 并且 $q(x)$ 是由一个 query encoder 生成的 query 表征， 其也是基于 $\text{BERT}_{\text{BASE}}$ 。计算 $\text{top-k}(p_\eta(· \mid x))$， 文档 $z$ 的 k 个列表有最高的先验概率 $p_\eta(z \mid x)$， 其是最大内积搜索（MIPS）问题， 其大约可以在亚线性时间内完成。我们使用来自 DPR 的预训练双编码器来初始化我们的检索器并构建文档索引。该检索器经过训练，用于检索包含 TriviaQA [24] 和 Natural Questions [29] 问题答案的文档。我们将这个文档索引称为 non-parametric memory。
 
 
 ## 2.3 Generator: BART
