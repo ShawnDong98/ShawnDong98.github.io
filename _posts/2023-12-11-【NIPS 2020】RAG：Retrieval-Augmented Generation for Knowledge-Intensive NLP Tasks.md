@@ -34,10 +34,11 @@ tags:
 
 ## 2.1 Models
 
-**RAG-Sequence Model** 
-这段话的翻译如下：
+**RAG-Sequence Model** RAG-Sequence 模型使用相同的检索文档来生成完整的序列。从技术上讲，它将检索到的文档视为一个单一的潜变量，通过一种前K个的近似方法来获得 $p(y \mid x)$ 的 seq2seq 概率。具体来说，使用检索器检索前K个文档，生成器为每个文档生成输出序列概率，然后对这些概率进行边际化处理，
 
-RAG-Sequence 模型使用相同的检索文档来生成完整的序列。从技术上讲，它将检索到的文档视为一个单一的潜变量，通过一种前K个的近似方法来获得 $p(y \mid x)$ 的 seq2seq 概率。具体来说，使用检索器检索前K个文档，生成器为每个文档生成输出序列概率，然后对这些概率进行边际化处理，
+$$
+p_{\text{RAG-Sequence}}(y \mid x) \approx \sum_{z \in \text{top-k(p(· \mid x))}} p_\eta (z \mid x) p_\theta(y \mid x, z) = \sum_{z \in \text{top-k(p(· \mid x))}}  p_\eta(z \mid x) \prod_i^N p_\theta (y_i \mid x, z, y_{1:i-1})
+$$
 
 **RAG-Token Model**
 
