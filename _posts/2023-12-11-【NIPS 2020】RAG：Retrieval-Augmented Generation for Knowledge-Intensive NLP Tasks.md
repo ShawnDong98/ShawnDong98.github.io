@@ -60,7 +60,7 @@ $$
 
 ## 2.3 Generator: BART
 
-生成器组件 $p_\theta(y_i \mid x, z, y_{1:i-1})$ 可以被建模为任意的编码器-解码器。
+生成器组件 $p_\theta(y_i \mid x, z, y_{1:i-1})$ 可以被建模为任意的编码器-解码器。我们使用了 BART-large [32]，这是一个预训练的包含 400M 参数的 seq2seq Transformer [58]。在使用 BART 进行生成时，为了将输入 $x$ 与检索到的内容 $z$ 结合起来，我们简单地将它们连接在一起。BART 是使用去噪目标和各种不同的去噪函数进行预训练的。它在各种生成任务中取得了最先进的结果，并在性能上优于大小相当的 T5 模型 [32]。我们将 BART 生成器的参数 $\theta$ 称为 parametric memory。
 
 ## 2.4 Training
 
