@@ -66,6 +66,11 @@ $$
 
 我们在没有任何直接监督什么文档应该被检索的情况下联合训练 retriver 和 generator 组件。 给定输入输出对 $(x_j, y_j)$ 的微调训练语料库， 我们最小化每个目标的边际负对数似然， $\sum_j - \log p(y_j \mid x_j)$
  使用Adam优化器随机梯度下降。在训练期间更新文档编码器 $\text{BERT}_d$ 成本高昂，因为它需要像REALM 预训练[20]期间那样定期更新文档索引[20]。我们发现强大的性能不需要此步骤，并保持文档编码器（和索引）固定，只是微调查询编码器 $\text{BERT}_q$ 和 BART生成器。
+ 
 ## 2.5 Decoding
 
+
+在测试时，RAG-Sequence 和 RAG-Token 需要采用不同的方式来近似求解 $\arg \max_y p(y \mid x)$。
+
+**RAG-Token** RAG-Token 模型可以视为标准的自回归 seq2seq 生成器，其转移概率为 $p_\theta'(y_i \mid x, y_{1:i-1}) = \sum_{z \in \text{top-k}(p(· \mid x))} p_\eta (z_i \mid x)p_\theta(y_i \mid x, z_i, y_{1:i-1})$
 
