@@ -46,6 +46,8 @@ $$
 P_{\text{RAG-Token}}(y \mid x) \approx \prod_i^N \sum_{z \in \text{top-k}(p(· \mid x))} p_\eta (z \mid x) p_\theta (y_i \mid x, z_i, y_{1:i-1})
 $$
 
+最后，我们注意到，通过将目标类视为长度 1 的目标序列，RAG可用于序列分类任务，在这种情况下，RAG-Sequence 和 RAG-Token是等价的。
+
 ## 2.2 Retriever: DPR
 
 
