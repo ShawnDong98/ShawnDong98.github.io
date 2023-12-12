@@ -53,3 +53,5 @@ tags:
 1. 只有电子提交才会被考虑。您需要一个ScholarOne帐户和一个开放研究人员和贡献者ID（ORCID）才能提交手稿。详细说明发布在TCSVT ScholarOne提交网站上。未来作者应熟悉IEEE作者中心网站（[ https://ieeeauthorcenter.ieee.org/](https://ieeeauthorcenter.ieee.org/) 上发布的作者一般信息。在困难的情况下，作者可以通过发送电子邮件至（单击以显示电子邮件）来寻求帮助。
 2. 所有文章都必须写得清晰且井井有条。手稿应在导言中说明这个问题的意义。文章应以明确讨论文章与最相关的先前工作的关系为动机。
 3. 使用IEEE双列交易格式，包括数字在内的交易文件提交手稿的总长度不得超过十四（14）页，或交易信提交提交的总长度不得超过五（5）页。（注：超长费用从交易文件的第2页开始，或交易信件的第6页开始。详情见下文。）LaTeX和Word的样式文件可以从IEEE作者中心网站 ( [https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/tools-for-ieee-authors/ieee-article-templates/](https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/tools-for-ieee-authors/ieee-article-templates/) ) 下载，寻找交易的一般模板。最终提交格式必须是PDF。
+4. 插图原件应在接受手稿后立即提交。
+5. 作者必须从TCSVT EDICS（可在TCSVT ScholarOne提交网站上找到）中选择至少一个主题类别进行提交。作者可以指定的详细EDICS类别越多，它们就越能帮助识别匹配的副编辑和审稿人和审稿人。
