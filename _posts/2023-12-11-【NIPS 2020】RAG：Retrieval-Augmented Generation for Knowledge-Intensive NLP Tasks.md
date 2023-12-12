@@ -64,6 +64,8 @@ $$
 
 ## 2.4 Training
 
+我们在没有任何直接监督什么文档应该被检索的情况下联合训练 retriver 和 generator 组件。 给定输入输出对 $(x_j, y_j)$ 的微调训练语料库， 我们最小化每个目标的边际负对数似然， $\sum_j - \log p(y_j \mid x_j)$
+ 使用Adam优化器随机梯度下降。
 ## 2.5 Decoding
 
 
