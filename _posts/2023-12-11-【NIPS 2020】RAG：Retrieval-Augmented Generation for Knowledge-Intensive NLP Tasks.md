@@ -76,3 +76,4 @@ $$
 
 **RAG-Sequence** 对于 RAG-Sequence， 似然 $p(y \mid x)$ 没有打破传统 per-token 似然， 因此， 我们不能使用单个 beam search 求解它。 进而，我们为每个文档 $z$ 使用 beam search, 使用 $p_\theta(y_i \mid x, z, y_{1:i-1})$ 打分每个假设。 这会产生一组假设 Y，其中一些可能没有出现在所有文档的 beam 中。为了估计一个假设 $y$ 的概率， 我们为每个文档 $z$ 运行一个额外的前向过程， $y$ 不出现在 beam， 乘以生成器概率 $p_\eta(z \mid x)$， 然后为边缘求出 beams 的概率。我们将此解码过程称为“Thorough Decoding”。对于更长的输出序列，$\mid Y \mid$可以变大，需要许多前向传递。为了更有效的解码，我们可以进一步近似 $p_\theta (y \mid x, z_i) \approx 0$，其中从 $x, z_i$ 进行 beam search 时没有生成 $y$。这避免了在生成候选集 $Y$ 后运行额外的前向传播。我们将此解码过程称为“Fast Decoding”。
 
+
