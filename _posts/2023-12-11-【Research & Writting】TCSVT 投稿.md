@@ -55,3 +55,20 @@ tags:
 3. 使用IEEE双列交易格式，包括数字在内的交易文件提交手稿的总长度不得超过十四（14）页，或交易信提交提交的总长度不得超过五（5）页。（注：超长费用从交易文件的第2页开始，或交易信件的第6页开始。详情见下文。）LaTeX和Word的样式文件可以从IEEE作者中心网站 ( [https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/tools-for-ieee-authors/ieee-article-templates/](https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/tools-for-ieee-authors/ieee-article-templates/) ) 下载，寻找交易的一般模板。最终提交格式必须是PDF。
 4. 插图原件应在接受手稿后立即提交。
 5. 作者必须从TCSVT EDICS（可在TCSVT ScholarOne提交网站上找到）中选择至少一个主题类别进行提交。作者可以指定的详细EDICS类别越多，它们就越能帮助识别匹配的副编辑和审稿人和审稿人。
+
+
+# Template
+
+## Abstract
+
+本文档描述了最常见的文章元素以及如何使用IEEEtran类与LATEX一起生成适合提交给IEEE的文件。IEEEtran可以根据类选项的适当选择，生成会议期刊和技术说明（通信）论文。
+
+
+## Introduction
+
+本文件旨在作为IEEE期刊论文的“示例文章文件”，在LATEX下使用IEEEtran.cls版本1.8b及以后版本制作。最常见的元素在“New IEEEtran how-to.pdf”中有简化和更新的指导。对于不太常见的元素，您可以参考原始的“IEEEtran HOWTO.pdf”。假设读者具有LATEX的基本工作知识。LATEX新手被鼓励阅读Tobias Oetiker的“The Not So Short Introduction to LATEX”，该文档提供了关于使用LATEX的概览。
+
+
+## THE DESIGN, INTENT, AND LIMITATIONS OF THE TEMPLATES
+
+这些模板旨在近似文章/论文的最终外观和页面长度。它们并非旨在成为在打印或IEEEXplore®上展示的最终制作作品。它们将帮助作者大致了解最终版本中的页面数量。LATEX文件的结构设计使得它们可以轻松转换为IEEE使用的组合系统的XML。这些XML文件用于制作最终的打印/IEEEXplore PDF，然后转换为IEEEXplore的HTML格式。
