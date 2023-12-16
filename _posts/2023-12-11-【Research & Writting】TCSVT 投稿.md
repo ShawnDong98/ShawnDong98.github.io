@@ -72,3 +72,28 @@ tags:
 ## THE DESIGN, INTENT, AND LIMITATIONS OF THE TEMPLATES
 
 这些模板旨在近似文章/论文的最终外观和页面长度。它们并非旨在成为在打印或IEEEXplore®上展示的最终制作作品。它们将帮助作者大致了解最终版本中的页面数量。LATEX文件的结构设计使得它们可以轻松转换为IEEE使用的组合系统的XML。这些XML文件用于制作最终的打印/IEEEXplore PDF，然后转换为IEEEXplore的HTML格式。
+
+
+## WHERE TO GET LATEX HELP — USER GROUPS
+
+以下在线组对初学者和经验丰富的LATEX用户很有帮助。搜索他们的档案可以为常见问题提供许多答案。
+
+- [http://www.latex-community.org/](http://www.latex-community.org/)
+- [https://tex.stackexchange.com/](https://tex.stackexchange.com/)
+
+## OTHER RESOURCES
+
+有关将数学格式化为文本的资源以及使用LATEX的其他帮助，请参阅[1]-[5]。
+
+
+## TEXT
+
+## SOME COMMON ELEMENTS
+
+### A. Sections and Subsections
+
+对章节标题进行编号是可取的，但非必需的。在编号时，请在整篇文章中保持一致，即文章中的所有标题和所有级别的章节标题都应进行编号。主要标题用罗马数字表示，次要标题用大写字母表示，三级标题用阿拉伯数字表示；四级标题用小写字母表示。参考文献和致谢标题与文中所有其他章节标题不同。它们从不进行编号。
+
+### B. Citations to the Bibliography
+
+文献引用的编码使用LATEX的 \cite 命令完成。这将显示为：见[1]。对于多个引用，编码如下：\cite{ref1,ref2,ref3}，这将产生[1]–[3]。对于不连续的引用范围，编码为 \cite{ref1,ref2,ref3,ref9}，这将产生[1]–[3], [9]。
