@@ -19,3 +19,15 @@ tags:
 # MODEL-BASED IMAGE INTERPOLATION AND RESTORATION
 
 我们首先简要回顾了基于模型的图像插值（例如，NARM [26]）和图像恢复（例如，DPDNN [20]）的先前工作，为模型引导的网络设计奠定了基础。NARM模型在基于模型的图像插值（SISR的一种特殊情况，只涉及下采样而没有任何抗混叠低通滤波器）中实现了最先进的性能。去噪先验驱动的DNN（DPDNN）[20]代表了最新的MoG深度展开网络设计，其变体已被采用为我们研究中的基准方法。
+
+## Nonlocal Auto-Regressive Model (NARM)
+
+
+## Model-Based Image Restoration
+
+非局部自回归模型背后的基本思想（参见图2）是通过重新定义邻域来扩展传统的自回归（AR）模型。对于给定的 patch $x_i$，NARM 寻求其在一组非局部（而非局部）邻域上的稀疏线性分解。遵循 [26] 中的记号，我们有：
+
+$$
+x_i \approx \sum_j w_i^j x_i^j
+$$
+
