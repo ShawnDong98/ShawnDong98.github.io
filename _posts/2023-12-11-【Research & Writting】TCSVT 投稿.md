@@ -111,15 +111,15 @@ tags:
 
 请注意，IEEE论文中的多部分图形通常不会在图像本身内部放置标签（使用\subfloat[]的可选参数），而是会在主标题中引用/描述所有这些部分（a），（b）等。请注意，为了生成（a），（b）等子图形标签，subfig.sty需要\subfloat的可选参数存在。如果不需要子标题，请将其内容留空，例如\subfloat[]。
 
-### VII. TABLES
+## VII. TABLES
 
 请注意，对于IEEE风格的表格，\caption命令应该放在表格之前。表格标题使用标题大小写。冠词（a、an、the）、并列连词（and、but、for、or、nor）以及大多数短介词在非首词或末词时应使用小写。表格文字默认为\footnotesize，因为IEEE通常对表格使用这种较小的字体。如同往常，\label必须放在\caption之后。
 
-### VIII. ALGORITHMS
+## VIII. ALGORITHMS
 
 算法应该编号，并包括一个简短的标题。它们用标题上下和最后一行之后的规则与文本区分开来。
 
-### IX. MATHEMATICAL TYPOGRAPHY AND WHY IT MATTERS
+## IX. MATHEMATICAL TYPOGRAPHY AND WHY IT MATTERS
 
 数学公式的排版规范已经被开发出来，以提供数学文本中的统一性和清晰性。这使得阅读这些文本的读者既能理解作者的想法，又能迅速掌握新概念。虽然像LATEX和MathType®这样的软件在正确使用时可以产生美观的数学公式，但也很容易误用这些软件，可能导致数学显示不正确。
 
