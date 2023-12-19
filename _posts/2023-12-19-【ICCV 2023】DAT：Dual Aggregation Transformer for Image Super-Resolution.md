@@ -25,7 +25,7 @@ tags:
 
 具体而言，我们在连续的 Transformer  Block 中交替应用空间和通道自注意力。
 
-这种交替策略使DAT能够捕获全局上下文并实现区块间特征聚合。
+这种交替策略使DAT能够捕获全局上下文并实现块间特征聚合。
 
 此外，我们提出了自适应交互模块（Adaptive Interaction Module，简称AIM）和空间门控前馈网络（Spatial-Gate Feed-Forward Network，简称SGFN）来实现区块内特征聚合。
 
