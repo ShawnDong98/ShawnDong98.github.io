@@ -2,7 +2,7 @@
 layout:     post
 title:      "【NIPS 2023】Hyper-Skin: A Hyperspectral Dataset for Reconstructing Facial Skin-Spectra from RGB Images"
 subtitle:   ""
-date:       2023-01-06
+date:       2024-01-06
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
