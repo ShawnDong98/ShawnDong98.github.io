@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【TNNLS 2023】Combining Low-Rank and Deep Plug-and-Play Priors for Snapshot Compressive Imaging"
+title: 【TNNLS 2023】LR2DP：Combining Low-Rank and Deep Plug-and-Play Priors for Snapshot Compressive Imaging
 subtitle:   ""
 date:      2024-04-13
 author:     "ShawnD"
@@ -10,3 +10,4 @@ tags:
     - TNNLS 2023
     - 
 ---
+
