@@ -61,6 +61,6 @@ $$
 \mathcal{X} = \mathcal{Z} \times_3 E
 $$
 
-其中 $E \in \mathbb{R}^{B \times l}$ 表示捕获不通光谱信号常见子空间的正交基。
+其中 $E \in \mathbb{R}^{B \times l}$ 表示捕获不通光谱信号常见子空间的正交基， $\mathcal{Z} \in \mathbb{R}^{h \times w \times l}$ 是子空间表示系数。图 4 展示了通过 LRSR 表示的 HSI 的全局光谱联系。
 
 
