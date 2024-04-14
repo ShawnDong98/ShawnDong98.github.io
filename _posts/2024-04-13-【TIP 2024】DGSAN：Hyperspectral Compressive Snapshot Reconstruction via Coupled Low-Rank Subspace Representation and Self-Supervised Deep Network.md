@@ -50,7 +50,7 @@ tags:
 
 ## Notations
 
-在这篇文章中，标量，向量，矩阵和
+在这篇文章中，标量，向量，矩阵和张量表示为小写和大写($b, B \in \mathbb{R}$), 粗体小写 ($\bf{x} \in \mathbb{R}$), 粗体大写字母 ($\bf{X} \in \mathbb{R}^{I_1 \times I_2 \times ... \times I_n}$)。 
 
 
 
