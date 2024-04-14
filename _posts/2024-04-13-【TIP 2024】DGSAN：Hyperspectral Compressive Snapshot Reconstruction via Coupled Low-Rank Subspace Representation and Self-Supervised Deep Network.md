@@ -58,11 +58,22 @@ tags:
 全局光谱相关性是存在于HSI中的内在先验，在不同的应用中被广泛使用，如压缩高光谱成像、超分辨率和恢复。为了捕获HSI的全局光谱相关性，引入了低秩子空间表示(LRSR)，近似如下：
 
 $$
-\mathcal{X} = \mathcal{Z} \times_3 E
+\mathcal{X} = \mathcal{Z} \times_3 E \tag{7}
 $$
+
 
 其中 $E \in \mathbb{R}^{B \times l}$ 表示捕获不通光谱信号常见子空间的正交基， $\mathcal{Z} \in \mathbb{R}^{h \times w \times l}$ 是子空间表示系数。图 4 展示了通过 LRSR 表示的 HSI 的全局光谱联系。
 
-![](https://markdown.xiaoshujiang.com/img/spinner.gif "[[[1713077439362]]]" )
+![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1713077439361.png)
+
+利用低秩子空间分解，HSI的重建可以转化为光谱基和子空间系数的估计。由于真实图像 $X$ 是未知的，直接从（7）中学习光谱基是困难的。为了获得光谱基，我们使用上一次迭代中 $\hat X$ 的奇异值分解（SVD）来学习近似解。给定 $\hat X$ 的估计结果，我们可以按以下方式获得光谱基础：
+
+$$
+E = U(:, 1:l) \tag{8}
+$$
+
+
+
+
 
 
