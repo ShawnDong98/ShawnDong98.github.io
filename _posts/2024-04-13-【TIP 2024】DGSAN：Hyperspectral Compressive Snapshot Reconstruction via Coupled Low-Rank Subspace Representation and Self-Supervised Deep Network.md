@@ -53,7 +53,14 @@ tags:
 在这篇文章中，标量，向量，矩阵和张量表示为小写和大写($b, B \in \mathbb{R}$), 粗体小写 ($\bf{x} \in \mathbb{R}^b$), 粗体大写字母 ($\bf{X} \in \mathbb{R}^{I \times J}$)以及话题字母（$\mathcal{X} \in \mathbb{R}^{I_1 \times I_2 \times ... \times I_n}$）。 
 
 
+## Proposed Method
 
+全局光谱相关性是存在于HSI中的内在先验，在不同的应用中被广泛使用，如压缩高光谱成像、超分辨率和恢复。为了捕获HSI的全局光谱相关性，引入了低秩子空间表示(LRSR)，近似如下：
 
+$$
+\mathcal{X} = \mathcal{Z} \times_3 E
+$$
+
+其中 $E \in \mathbb{R}^{B \times l}$ 表示捕获不通光谱信号常见子空间的正交基。
 
 
