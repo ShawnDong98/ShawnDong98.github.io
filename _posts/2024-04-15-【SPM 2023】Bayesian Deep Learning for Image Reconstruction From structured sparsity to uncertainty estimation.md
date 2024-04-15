@@ -38,5 +38,5 @@ tags:
 
 ## Model-based image reconstruction via sparse coding
 
-我们从贝叶斯稀疏编码的公式开始。然后，我们将考虑与均值和方差相关的不确定性，分别导致 nonlocal centralized 和 simultaneous 稀疏编码的扩展。系数
+我们从贝叶斯稀疏编码的公式开始。然后，我们将考虑与均值和方差相关的不确定性，分别导致 nonlocal centralized 和 simultaneous 稀疏编码的扩展。稀疏编码的核心是分解一个信号 $x \in R^n$ (n 是一个 image patch 的大小) 为基向量的线性组合。
 
