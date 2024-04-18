@@ -72,7 +72,15 @@ $$
 受（3）和最近的图像超分辨率 [24]，[53] 的启发，如图 3(d) 所示，我们提出了一个 Trans-Fourier 块（TFB），它由一个 estimation block、一个 Trans-block 和一个 dynamic Fourier block 组成。estimation block 用于估计退化特征图，其中包含了输入的退化信息。Trans-block 和后续模块的 filter weight 所需的 inverse factors 是使用退化特征图生成的。
 
 
-首先，给定特征图 $F \in \mathbb{R}^{w \times h \times c}$, 它通过 estimation block 来生成退化特征图 $K \in \mathbb{R}^{w \times h \times c}$。 estimation block 由一个层规范化， 一个 LFB， 一个层规范化， 一个 conv 3x3, 一个 ReLU 和一个 conv 3x3 组成。 estimation block 中的 LFB 的 filter weight 是通过学习生成的。 
+首先，给定特征图 $F \in \mathbb{R}^{w \times h \times c}$, 它通过 estimation block 来生成退化特征图 $K \in \mathbb{R}^{w \times h \times c}$。 estimation block 由一个层规范化， 一个 LFB， 一个层规范化， 一个 conv 3x3, 一个 ReLU 和一个 conv 3x3 组成。 estimation block 中的 LFB 的 filter weight 是通过学习生成的。
+
+然后， $K$ 通过一个 softmax 层和两个并行分支（GenScale 和 GenBias 模块）来生成 inverse scale factor $\hat A \in \mathbb{R}^{w \times h \times c}$ 和 inverse bias factor $\hat B \in \mathbb{R}^{w \times h \times c}$。 经过改善后的特征 $F_{refine} \in \mathbb{R}^{w \times h \times c}$ 可以表示如下：
+
+$$
+F_{refine} = \hat A \odot F + \hat B \tag{7}
+$$
+
+
 
 
 
