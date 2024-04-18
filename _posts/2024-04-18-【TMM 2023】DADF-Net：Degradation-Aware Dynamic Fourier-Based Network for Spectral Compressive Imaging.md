@@ -80,7 +80,7 @@ $$
 F_{refine} = \hat A \odot F + \hat B \tag{7}
 $$
 
-
+细节上, GenScale 和 GenBias 模块有相同的结构， 由一个 conv 3x3， 一个激活层， 和一个 conv 3x3 层组成。
 
 
 
