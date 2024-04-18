@@ -47,3 +47,32 @@ tags:
 - 我们提出了一个局部增强傅里叶模块，包括局部和非局部分支，以捕获局部和非局部特征。将这些非局部特征与局部分支提取的局部特征结合起来，提高了网络的整体性能。
 - 我们引入了一个多尺度设计，包括多尺度特征融合和多尺度重建损失约束。这一设计旨在最小化网络内的信息损失，并增强跨不同尺度的特征处理能力，从而提高重建性能。
 - 我们的方法DADF-Net 实现了最先进的定量结果和令人满意的视觉效果。
+
+
+# Method
+
+## Degradation Analysis
+
+$$
+X_{init} = A \odot X + B, \tag{3}
+$$
+
+合理地利用深度学习方法生成 inverse scale factor $\bar A$ 和 inverse bias factor $\bar B$  来反转（3）中提到的过程是合理的。因此，近似重建的 HSI 可以表示为：
+
+$$
+\bar X = \bar A \odot X_{init} + \bar B.
+$$
+
+
+## Overall Architecture
+
+## Trans-Fourier Block
+
+
+受（3）和最近的图像超分辨率 [24]，[53] 的启发，如图 3(d) 所示，我们提出了一个 Trans-Fourier 块（TFB），它由一个 estimation block、一个 Trans-block 和一个 dynamic Fourier block 组成。estimation block 用于估计退化特征图，其中包含了输入的退化信息。Trans-block 和后续模块的 filter weight 所需的 inverse factors 是使用退化特征图生成的。
+
+
+首先，给定特征图 $F \in \mathbb{R}^{w \times h \times c}$, 它通过 estimation block 来生成退化特征图 $K \in \mathbb{R}^{w \times h \times c}$。 estimation block 由一个层规范化， 一个 LFB， 一个层规范化， 一个 conv 3x3, 一个 ReLU 和一个 conv 3x3 组成。 estimation block 中的 LFB 的 filter weight 是通过学习生成的。 
+
+
+
