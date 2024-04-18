@@ -58,8 +58,10 @@ tags:
 **Pixel-Adaptive Prior Module.** 从公式 (10) 可以观察到， $\frac{1}{1 + \mu}$ 在 $x$ 的优化中扮演一个重要的觉得。为了简单，我们使用 $F_\sigma$ 表示 $\frac{1}{1+\mu}$ 为：
 
 $$
-x^{k+1} = z^k + F_{\sigma} \Phi^\top (\Phi \Phi^\top)(y - \Phi z^k)
+x^{k+1} = z^k + F_{\sigma} \Phi^\top (\Phi \Phi^\top)(y - \Phi z^k) \tag{12}
 $$
+
+
 
 
 
