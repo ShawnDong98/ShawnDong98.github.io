@@ -606,6 +606,26 @@ sudo docker rm -f $(sudo docker ps -aq)
 ```
 
 
+
+### 容器自动重启
+
+情况一：启动容器前的指令设置restart选项
+
+在启动容器的时候，添加--restart=always即可，例如：
+
+```
+docker run --restart=always docker_id
+```
+
+情况二：已启动容器通过 docker update 对设置 restart 选项
+
+
+```
+docker update --restart=always docker_id
+```
+
+
+
 # ubuntu 配置 Nvida-Docker
 
 ## 安装 Docker 环境（CPU）
