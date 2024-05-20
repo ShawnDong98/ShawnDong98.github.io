@@ -11,7 +11,71 @@ tags:
     - 
 ---
 
-# 
+# Overleaf Toolkit
+
+
+## Upgrading TexLive
+
+要在 Overleaf 容器内启动 shell，请运行
+
+
+```
+bin/shell
+```
+
+你将收到如下提示：
+
+
+```
+root@309b192d4030:/#
+
+```
+
+在以下说明中，我们将假设您位于容器中。
+
+## 
+## 确定当前的 TeX Live 版本
+
+TeX Live 每年在 4 月份左右发布。使用 `tlmgr` 的步骤有所不同，具体取决于您使用的是当前版本还是旧版本。您可以使用 `tlmgr --version` 检查正在运行的 TeX Live 版本。例如，此安装运行 TeX Live 2021：
+
+
+```
+tlmgr --version
+tlmgr revision 59291 (2021-05-21 05:14:40 +0200)
+tlmgr using installation: /usr/local/texlive/2021
+TeX Live (https://tug.org/texlive) version 2021
+```
+
+
+## 安装软件包
+
+要安装完整的 TeX Live 安装，请在 Overleaf 容器内运行以下命令：
+
+
+```
+tlmgr install scheme-full
+```
+
+
+## 保存你的更改
+
+您刚刚所做的更改已经更改了 `sharelatex` 容器，但它们是短暂的 --- 如果 Compose 重新创建容器，它们将会丢失，例如作为更新配置的一部分。
+
+要使它们持久化，请使用 `docker commit` 将更改保存到新的 docker 映像：
+
+
+```
+cat config/version
+5.0.3
+#^^^^ --------------- matching version ----------- |
+#                                                vvvvv
+$ docker commit sharelatex sharelatex/sharelatex:5.0.3-with-texlive-full
+
+$ echo 5.0.3-with-texlive-full > config/version
+```
+
+提交更改后，相应地更新 `config/version` 。然后运行 `bin/up` 来重新创建容器。
+
 
 
 # tlmgr 下载速度慢
