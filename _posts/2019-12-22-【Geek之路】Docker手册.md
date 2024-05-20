@@ -1127,4 +1127,5 @@ sysctl -p
 13. [Ubuntu(20.04)：用户和用户组的相关命令](https://blog.csdn.net/jiemashizhen/article/details/127060663)
 14. [如何在Linux中以非root用户运行Docker？](https://www.51cto.com/article/614623.html)
 15. [解决特定情况下 Docker Container 内无法使用代理的问题](https://zhuanlan.zhihu.com/p/606348321)
+16. [# Docker 容器开机自动启动](https://lingshunlab.com/book/docker/docker-automatic-container-start-up-on-power-up)
 
