@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "【arXiv 2024】FriendNet: Detection-Friendly Dehazing Network"
+title:      "【arXiv 2024】FriendNet：Detection-Friendly Dehazing Network"
 subtitle:   ""
 date:      2024-06-25
 author:     "ShawnD"
