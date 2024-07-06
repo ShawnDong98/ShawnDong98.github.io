@@ -21,7 +21,7 @@ tags:
 
 我们将标准的ResNet逐步现代化， 使其向 vision Transformer 的设计看齐， 并且发现了几个关键的组件导致性能上的差异。
 
-完全由标准ConvNet模块构建，ConvNeXts在准确性和可扩展性方面优于transformer，实现了87.8%的ImageNet准确度，在COCO检测和ADE20K分割方面优于Swin transformer，同时保持了标准ConvNet的简单性和效率。
+完全由标准ConvNet模块构建，ConvNeXts在准确性和可扩展性方面优于 Transformer，实现了87.8%的ImageNet准确度，在COCO检测和ADE20K分割方面优于Swin transformer，同时保持了标准ConvNet的简单性和效率。
 
 # Conclusion
 
