@@ -51,7 +51,7 @@ Transformer 最初是为自然语言处理（NLP）提出的，自从Vision Tran
 
 ## From Self-Attention to Focal Modulation
 
-给定一个视觉特征图 \(\mathbf{X} \in \mathbb{R}^{H \times W \times C}\) 作为输入，一个通用的编码过程为每个视觉标记（查询）\(\mathbf{x}_i \in \mathbb{R}^C\) 生成一个特征表示 \(\mathbf{y}_i \in \mathbb{R}^C\)，通过与其周围环境 \(\mathbf{X}\)（例如，邻近标记）和上下文聚合 \(\mathcal{M}\) 的交互 \(\mathcal{T}\)。
+给定一个视觉特征图 $\mathbf{X} \in \mathbb{R}^{H \times W \times C}$ 作为输入，一个通用的编码过程为每个视觉 token（query）$\mathbf{x}_i \in \mathbb{R}^C$ 生成一个特征表示 $\mathbf{y}_i \in \mathbb{R}^C$，通过与其周围环境 $\mathbf{X}$（例如，邻近 token）和上下文聚合 $\mathcal{M}$ 的交互 $\mathcal{T}$。
 
 **自注意力**。自注意力模块使用后期聚合过程，公式如下：
 
