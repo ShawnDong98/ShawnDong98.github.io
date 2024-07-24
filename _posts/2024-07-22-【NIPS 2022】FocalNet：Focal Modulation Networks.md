@@ -64,9 +64,9 @@ $$
 
 **Folcal Modulation**。相反，Folcal Modulation 使用早期聚合过程生成细化的表示 $\mathbf{y}_i$，公式如下：
 
-\[
+$$
 \mathbf{y}_i = \mathcal{T}_2(\mathcal{M}_2(i, \mathbf{X}), \mathbf{x}_i),
-\]
+$$
 
 其中上下文特征首先在每个位置 \(i\) 使用 \(\mathcal{M}_2\) 聚合，然后查询根据 \(\mathcal{T}_2\) 与聚合特征交互以形成 \(\mathbf{y}_i\)。
 
