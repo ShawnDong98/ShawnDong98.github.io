@@ -47,3 +47,28 @@ Transformer 最初是为自然语言处理（NLP）提出的，自从Vision Tran
 ![](https://raw.githubusercontent.com/ShawnDong98/gitimage/main/小书匠/1721631660544.png)
 最后，在图像分类、目标检测和分割任务上的大量实验显示，我们的FocalNets在与最先进的SA对手相当的成本下，始终显著优于它们。值得注意的是，我们的FocalNet在使用tiny和base模型大小时分别达到了82.3%和83.9%的top-1准确率，但其吞吐量与Swin和Focal Transformer相当且分别翻倍。当在2242分辨率的ImageNet-22K上预训练后，我们的FocalNets在2242和3842分辨率下分别达到了86.5%和87.3%的准确率，这些结果与Swin在类似成本下的表现相当或更好。这个优势在迁移到密集预测任务时尤为显著。在COCO的目标检测中，我们的tiny和base模型大小的FocalNets在Mask R-CNN 1×上分别达到了46.1和49.0的box mAP，超越了3×计划的Swin（46.0和48.5 box mAP）。在ADE20k的语义分割中，我们的base模型大小的FocalNet在单尺度评估中达到了50.5的mIoU，超越了Swin在多尺度评估中的表现（49.7 mIoU）。使用预训练的大型FocalNet，我们在ADE20K语义分割中达到了58.5 mIoU，在COCO全景分割中基于Mask2former 达到了57.9 PQ。使用巨大的FocalNet和DINO，我们在COCO minival和test-dev上分别达到了64.3和64.4的mAP，建立了COCO上的新最先进标准，超越了更大的基于注意力的模型，如Swinv2-G 和 BEIT-3 。请参见图3中的视觉比较，实验详细信息请参见相关部分。最后，我们将焦点调制应用于与ViTs类似的整体布局，并明确展示了其在不同模型大小下的优越性。
 
+# Focal Modulation Network
+
+## From Self-Attention to Focal Modulation
+
+给定一个视觉特征图 \(\mathbf{X} \in \mathbb{R}^{H \times W \times C}\) 作为输入，一个通用的编码过程为每个视觉标记（查询）\(\mathbf{x}_i \in \mathbb{R}^C\) 生成一个特征表示 \(\mathbf{y}_i \in \mathbb{R}^C\)，通过与其周围环境 \(\mathbf{X}\)（例如，邻近标记）和上下文聚合 \(\mathcal{M}\) 的交互 \(\mathcal{T}\)。
+
+**自注意力**。自注意力模块使用后期聚合过程，公式如下：
+
+
+$$
+\mathbf{y}_i = \mathcal{M}_1(\mathcal{T}_1(\mathbf{x}_i, \mathbf{X}), \mathbf{X})
+$$
+
+其中在上下文 \(\mathbf{X}\) 上的聚合 \(\mathcal{M}_1\) 是在通过交互 \(\mathcal{T}_1\) 计算查询和目标之间的注意力分数之后进行的。
+
+**焦点调制**。相反，焦点调制使用早期聚合过程生成细化的表示 \(\mathbf{y}_i\)，公式如下：
+
+\[
+\mathbf{y}_i = \mathcal{T}_2(\mathcal{M}_2(i, \mathbf{X}), \mathbf{x}_i),
+\]
+
+其中上下文特征首先在每个位置 \(i\) 使用 \(\mathcal{M}_2\) 聚合，然后查询根据 \(\mathcal{T}_2\) 与聚合特征交互以形成 \(\mathbf{y}_i\)。
+
+对比公式（1）和公式（2），我们看到：（i）焦点调制的上下文聚合 \(\mathcal{M}_2\) 通过共享操作（例如，深度卷积）摊销上下文的计算，而自注意力中的 \(\mathcal{M}_1\) 更加计算密集，因为它需要在不同查询上求和非共享的注意力分数；（ii）交互 \(\mathcal{T}_2\) 是一个轻量级操作符，用于标记及其上下文之间，而 \(\mathcal{T}_1\) 涉及计算标记到标记的注意力分数，这具有二次复杂度。
+
