@@ -60,7 +60,7 @@ $$
 \mathbf{y}_i = \mathcal{M}_1(\mathcal{T}_1(\mathbf{x}_i, \mathbf{X}), \mathbf{X})
 $$
 
-其中在上下文 \(\mathbf{X}\) 上的聚合 \(\mathcal{M}_1\) 是在通过交互 \(\mathcal{T}_1\) 计算查询和目标之间的注意力分数之后进行的。
+其中在上下文 $\mathbf{X}$ 上的聚合 $\mathcal{M}_1$ 是在通过交互 $\mathcal{T}_1$ 计算查询和目标之间的注意力分数之后进行的。
 
 **焦点调制**。相反，焦点调制使用早期聚合过程生成细化的表示 \(\mathbf{y}_i\)，公式如下：
 
