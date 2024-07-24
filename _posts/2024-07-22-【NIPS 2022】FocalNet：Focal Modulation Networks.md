@@ -75,3 +75,11 @@ $$
 （i）Folcal Modulation 的上下文聚合 $\mathcal{M}_2$ 通过共享操作（例如，深度卷积）摊销上下文的计算，而自注意力中的 $\mathcal{M}_1$ 更加计算密集，因为它需要在不同查询上求和非共享的注意力分数；
 （ii）交互 $\mathcal{T}_2$ 是一个轻量级操作符，用于 token 及其上下文之间，而 $\mathcal{T}_1$ 涉及计算 token 到token 的注意力分数，这具有二次复杂度。
 
+基于等式（2）， 我们实例化 Focal Modulation 为：
+
+$$
+y_i = q(x_i) \odot m(i, X) \tag{3}
+$$
+
+
+
