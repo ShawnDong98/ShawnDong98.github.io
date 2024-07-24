@@ -57,7 +57,7 @@ Transformer 最初是为自然语言处理（NLP）提出的，自从Vision Tran
 
 
 $$
-\mathbf{y}_i = \mathcal{M}_1(\mathcal{T}_1(\mathbf{x}_i, \mathbf{X}), \mathbf{X})
+\mathbf{y}_i = \mathcal{M}_1(\mathcal{T}_1(\mathbf{x}_i, \mathbf{X}), \mathbf{X}) \tag{1}
 $$
 
 其中在上下文 $\mathbf{X}$ 上的聚合 $\mathcal{M}_1$ 是在通过交互 $\mathcal{T}_1$ 计算查询和目标之间的注意力分数之后进行的。
@@ -65,7 +65,7 @@ $$
 **Folcal Modulation**。相反，Folcal Modulation 使用早期聚合过程生成细化的表示 $\mathbf{y}_i$，公式如下：
 
 $$
-\mathbf{y}_i = \mathcal{T}_2(\mathcal{M}_2(i, \mathbf{X}), \mathbf{x}_i),
+\mathbf{y}_i = \mathcal{T}_2(\mathcal{M}_2(i, \mathbf{X}), \mathbf{x}_i), \tag{2}
 $$
 
 其中上下文特征首先在每个位置 $i$ 使用 $\mathcal{M}_2$ 聚合，然后查询根据 $\mathcal{T}_2$ 与聚合特征交互以形成 $\mathbf{y}_i$。
