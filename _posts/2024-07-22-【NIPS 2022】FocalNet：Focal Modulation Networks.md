@@ -83,7 +83,7 @@ $$
 
 其中 $q(\cdot)$ 是一个 query projection 函数，$\odot$ 是元素级乘法。$m(\cdot)$ 是一个上下文聚合函数，其输出称为调制器。图4(a)和(b)比较了自注意力和焦点调制。所提出的 Focal Modulation 具有以下有利特性：
 
-- **平移不变性**。由于 $q(\cdot)$ 和 $m(\cdot)$ 始终以 query token $i$ 为中心，并且未使用位置嵌入，因此调制对输入特征图 $\mathbf{X}$ 的平移是不变的。
+- **Translation invariance**。由于 $q(\cdot)$ 和 $m(\cdot)$ 始终以 query token $i$ 为中心，并且未使用位置嵌入，因此调制对输入特征图 $\mathbf{X}$ 的平移是不变的。
 - **Explicit input-dependency**。调制器通过 $m(\cdot)$ 通过聚合目标位置 $i$ 周围的局部特征计算，因此我们的 Focal Modulation 显式依赖于输入。
 - **Spatial- and channel-specific**。目标位置 $i$ 作为 $m(\cdot)$ 的指针使得空间特异性调制成为可能。元素级乘法使得通道特异性调制成为可能。
 - **解耦特征粒度**。$q(\cdot)$ 保留了单个标记的最精细信息，而 $m(\cdot)$ 提取较粗的上下文。它们是解耦的，但通过调制结合在一起。
