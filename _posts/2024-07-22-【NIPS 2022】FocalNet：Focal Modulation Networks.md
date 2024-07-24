@@ -101,12 +101,12 @@ $$
 给定输入特征图 $\mathbf{X}$，我们首先通过线性层 $\mathbf{Z}^0 = f_z(\mathbf{X}) \in \mathbb{R}^{H \times W \times C}$ 将其投影到新的特征空间。然后，使用 $L$ 层深度卷积获得上下文的层次化表示。在焦点级别 $\ell \in \{1, ..., L\}$，输出 $\mathbf{Z}^\ell$ 由以下公式得出：
 
 $$
-\mathbf{Z}^\ell = f_a^\ell(\mathbf{Z}^{\ell-1}) \triangleq \text{GeLU}(\text{DWConv}(\mathbf{Z}^{\ell-1})) \in \mathbb{R}^{H \times W \times C},
+\mathbf{Z}^\ell = f_a^\ell(\mathbf{Z}^{\ell-1}) \triangleq \text{GeLU}(\text{DWConv}(\mathbf{Z}^{\ell-1})) \in \mathbb{R}^{H \times W \times C}, \tag{4}
 $$
 
-其中 $f_a^\ell$ 是 $\ell$ 层的上下文化函数，通过具有核大小 $k^\ell$ 的深度卷积 DWConv 实现，后接 GeLU 激活函数 [31]。层次化上下文化中使用深度卷积的动机在于其理想的特性。与池化 [100, 35] 相比，深度卷积是可学习的且具有结构感知。与常规卷积相比，它是通道级的，因此计算成本要低得多。
+其中 $f_a^\ell$ 是 $\ell$ 层的上下文函数，通过具有核大小 $k^\ell$ 的深度卷积 DWConv 实现，后接 GeLU 激活函数 [31]。层次化上下文化中使用深度卷积的动机在于其理想的特性。与池化 [100, 35] 相比，深度卷积是可学习的且具有结构感知。与常规卷积相比，它是通道级的，因此计算成本要低得多。
 
-公式(4)的层次化上下文化生成了 $L$ 层特征图。在 $\ell$ 层，有效感受野是 $r^\ell = 1 + \sum_{i=1}^\ell (k^i - 1)$，这比核大小 $k^\ell$ 大得多。为了捕获整个输入的全局上下文，这可能是高分辨率的，我们在第 $L$ 层特征图 $\mathbf{Z}^{L+1} = \text{Avg-Pool}(\mathbf{Z}^L)$ 上应用全局平均池化。因此，我们在总共 $(L + 1)$ 个特征图 $\{\mathbf{Z}^\ell\}_{\ell=1}^{L+1}$ 中获得了，分别捕获了不同粒度级别的短期和长期上下文。
+公式(4)的层次化上下文化生成了 $L$ 层特征图。在 $\ell$ 层，有效感受野是 $r^\ell = 1 + \sum_{i=1}^\ell (k^i - 1)$，这比核大小 $k^\ell$ 大得多。为了捕获整个输入的全局上下文，这可能是高分辨率的，我们在第 $L$ 层特征图 $\mathbf{Z}^{L+1} = \text{Avg-Pool}(\mathbf{Z}^L)$ 上应用全局平均池化。因此，我们在总共获得了 $(L + 1)$ 个特征图 $\{\mathbf{Z}^\ell\}_{\ell=1}^{L+1}$ ，分别捕获了不同粒度级别的短期和长期上下文。
 
 
 
