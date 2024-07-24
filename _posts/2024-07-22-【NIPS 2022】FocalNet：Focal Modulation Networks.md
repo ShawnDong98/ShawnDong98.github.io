@@ -116,8 +116,16 @@ $$
 \mathbf{Z}^{\text{out}} = \sum_{\ell=1}^{L+1} \mathbf{G}^\ell \odot \mathbf{Z}^\ell \in \mathbb{R}^{H \times W \times C}
 $$
 
-其中 $\mathbf{G}^\ell \in \mathbb{R}^{H \times W \times 1}$ 是 $\mathbf{G}$ 在 $\ell$ 级别的切片。当我们在图5中可视化这些门控图时，惊讶地发现我们的FocalNet确实学会了自适应地从不同焦点级别聚合上下文。正如我们所见，对于一个小对象上的标记，它在低焦点级别上更多地关注细粒度的局部结构，而在统一背景上的标记需要意识到来自更高层级的更大范围的上下文。到目前为止，所有的聚合都是空间上的。为了促进跨不同通道的通信，我们使用另一个线性层 $h(\cdot)$ 来获得调制器。
+其中 $\mathbf{G}^\ell \in \mathbb{R}^{H \times W \times 1}$ 是 $\mathbf{G}$ 在 $\ell$ 级别的切片。当我们在图5中可视化这些门控图时，惊讶地发现我们的FocalNet确实学会了自适应地从不同焦点级别聚合上下文。正如我们所见，对于一个小对象上的标记，它在低焦点级别上更多地关注细粒度的局部结构，而在统一背景上的标记需要意识到来自更高层级的更大范围的上下文。到目前为止，所有的聚合都是空间上的。为了促进跨不同通道的通信，我们使用另一个线性层 $h(\cdot)$ 来获得调制器映射 $M = h(Z^{\text{out}}) \in \mathbb{R}^{H \times W \times C}$。在图6中，我们可视化了FocalNet最后一层调制器M的幅度。有趣的是，调制器会自动更多地关注诱导类别的对象，这意味着解释FocalNets的一种简单方法。
 
+
+**Focal Modulation** 鉴于上述 $m(\cdot)$ 的实现，Eq.(3)的Focal Modulation可以在token级别重写为
+
+$$
+y_i = q(x_i) \odot h\left(\sum_{\ell=1}^{L+1} g_i^\ell \cdot z_i^\ell\right) \tag{6}
+$$
+
+其中 $g_i^\ell$ 和 $z_i^\ell$ 分别是 $G^\ell$ 和 $Z^\ell$ 在位置 $i$ 的门控值和视觉特征。我们在算法1中以Pytorch风格的伪代码总结了所提出的Focal Modulation，其实现采用了少量深度卷积和线性层。
 
 
 
