@@ -53,7 +53,7 @@ Transformer 最初是为自然语言处理（NLP）提出的，自从Vision Tran
 
 给定一个视觉特征图 $\mathbf{X} \in \mathbb{R}^{H \times W \times C}$ 作为输入，一个通用的编码过程为每个视觉 token（query）$\mathbf{x}_i \in \mathbb{R}^C$ 生成一个特征表示 $\mathbf{y}_i \in \mathbb{R}^C$，通过与其周围环境 $\mathbf{X}$（例如，邻近 token）和上下文聚合 $\mathcal{M}$ 的交互 $\mathcal{T}$。
 
-**自注意力**。自注意力模块使用后期聚合过程，公式如下：
+**Self-Attention**。自注意力模块使用后期聚合过程，公式如下：
 
 
 $$
@@ -62,7 +62,7 @@ $$
 
 其中在上下文 $\mathbf{X}$ 上的聚合 $\mathcal{M}_1$ 是在通过交互 $\mathcal{T}_1$ 计算查询和目标之间的注意力分数之后进行的。
 
-**焦点调制**。相反，焦点调制使用早期聚合过程生成细化的表示 \(\mathbf{y}_i\)，公式如下：
+**Folcal Modulation**。相反，焦点调制使用早期聚合过程生成细化的表示 \(\mathbf{y}_i\)，公式如下：
 
 \[
 \mathbf{y}_i = \mathcal{T}_2(\mathcal{M}_2(i, \mathbf{X}), \mathbf{x}_i),
