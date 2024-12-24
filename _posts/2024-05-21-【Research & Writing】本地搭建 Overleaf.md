@@ -11,6 +11,19 @@ tags:
     - 
 ---
 
+#  环境配置
+
+在阿里云服务器上，没有图形界面配置 overleaf 会有一些坑
+
+## 安装 docker
+
+## 安装 docker-compose
+
+
+## 安装图形界面
+
+
+
 # Overleaf Toolkit
 
 
