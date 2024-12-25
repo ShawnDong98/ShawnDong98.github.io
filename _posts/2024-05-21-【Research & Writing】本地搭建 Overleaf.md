@@ -112,6 +112,8 @@ tlmgr option repository http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive
 # Bugs
 
 
+
+
 ## rosetta error: Rosetta is only intended to run on Apple Silicon with a macOS host using Virtualization.framework with Rosetta mode enabled
 
 Update: I'm not sure if this is a generalizable workaround for others, but in Docker Desktop under Features in development -> Beta features, unchecking `Use Rosetta for x86/amd64 emulation on Apple Silicon` seems to at least prevent the Java-based containers from going down on startup for me.
@@ -120,3 +122,4 @@ Update: I'm not sure if this is a generalizable workaround for others, but in Do
 1. [# Community Edition: Upgrading TexLive](https://github.com/overleaf/toolkit/blob/master/doc/ce-upgrading-texlive.md)
 2. [本地部署 Overleaf 服务](https://www.cnblogs.com/Undefined443/p/18155463)
 3. [rosetta error: Rosetta is only intended to run on Apple Silicon with a macOS host using Virtualization.framework with Rosetta mode enabled](https://github.com/docker/for-mac/issues/7006)
+4. [阿里云服务器部署ShareLaTex(Overleaf)](https://blog.csdn.net/CYS_zxcvbnm/article/details/106139505)
