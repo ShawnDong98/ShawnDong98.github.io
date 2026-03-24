@@ -4,9 +4,13 @@ title: Curriculum Vitae (EN)
 ---
 <h1>Yubo Dong</h1>
 
-[Email](mailto:ybdong98@163.com) | [GitHub](https://github.com/ShawnDong98) | [Google Scholar](https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en)
+<p style="text-align: center; margin-bottom: 2rem; color: var(--secondary-text);">
+    <a href="mailto:ybdong98@163.com" style="color: inherit; text-decoration: none;">Email</a> | 
+    <a href="https://github.com/ShawnDong98" style="color: inherit; text-decoration: none;">GitHub</a> | 
+    <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: inherit; text-decoration: none;">Google Scholar</a>
+</p>
 
-This paper presents a novel approach to building personal websites using AI-driven CLI tools. We demonstrate how Gemini CLI can automate the entire development lifecycle, from project initialization to minimalist design and deployment
+I received my Ph.D. degree from Xidian University, 2025. My research interests lie at the intersection of Computational Imaging and Computer Vision.
 
 ---
 
