@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1>{{ page.title }}</h1>
+  <div class="post-meta">
+    <span class="note-date">{{ page.date | date: "%b %d, %Y" }}</span>
+    <div class="note-tags">
+      {% for tag in page.keywords %}
+      <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="entry">
+    {{ content }}
+  </div>
+</article>
+
+<style>
+  .post h1 { margin-bottom: 0.5rem; }
+  .post-meta { margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
+  .note-date { color: var(--secondary-text); font-size: 0.9rem; }
+  .entry { font-family: 'Lora', serif; font-size: 1.1rem; }
+</style>
+
+<hr>
+<a href="{{ site.baseurl }}/notes/">&larr; Back to Digital Garden</a>

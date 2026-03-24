@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yubo Dong's Page - Preview</title>
+    <script src="marked.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --secondary-text: #666666;
+            --link-color: #0070f3;
+            --accent-color: #fafafa;
+            --header-bg: rgba(255, 255, 255, 0.8);
+            --border-color: #eaeaea;
+            --tag-bg: #f3f4f6;
+            --tag-text: #4b5563;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 10%;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--header-bg);
+            backdrop-filter: saturate(180%) blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
+            letter-spacing: -0.02em;
+        }
+
+        nav { display: flex; gap: 2rem; }
+        nav a { text-decoration: none; color: var(--secondary-text); font-weight: 500; font-size: 0.9rem; transition: color 0.2s ease; cursor: pointer; }
+        nav a:hover { color: var(--text-color); }
+
+        .container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        #content { margin-top: 2rem; }
+
+        h1, h2, h3 { color: var(--text-color); font-weight: 700; letter-spacing: -0.02em; }
+        h1 { font-size: 2.25rem; margin-bottom: 1rem; }
+        h2 { font-size: 1.5rem; margin-top: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+
+        p { margin-bottom: 1.25rem; color: #374151; }
+
+        footer {
+            margin-top: 6rem;
+            padding: 3rem 10%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Table of Contents Styling */
+        #toc-container {
+            position: fixed;
+            right: 2rem;
+            top: 150px;
+            width: 220px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+            background: white;
+            padding: 1rem;
+            border-left: 1px solid var(--border-color);
+            display: none; /* Default hidden, shown for notes */
+            z-index: 1000; /* High enough to be on top */
+        }
+
+        #toc-container h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--secondary-text);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        #toc-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #toc-container li {
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        #toc-container a {
+            text-decoration: none;
+            color: var(--secondary-text);
+            transition: color 0.2s;
+        }
+
+        #toc-container a:hover {
+            color: var(--link-color);
+        }
+
+        #toc-container li.level-1 { font-weight: 600; color: var(--text-color); }
+        #toc-container li.level-2 { padding-left: 0.75rem; }
+        #toc-container li.level-3 { padding-left: 1.5rem; font-size: 0.8rem; }
+
+        /* TOC Toggle Button */
+        #toc-toggle {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            width: 45px;
+            height: 45px;
+            background: var(--text-color);
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1001;
+            font-size: 1.2rem;
+        }
+
+        /* Tag Styling */
+        .tag {
+            display: inline-block;
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 0.15rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .tag .count { margin-left: 0.3rem; opacity: 0.6; font-weight: 400; }
+        .tag.clickable { cursor: pointer; }
+        .tag.clickable:hover { background-color: #e5e7eb; color: var(--text-color); }
+        .tag.active { background-color: var(--text-color); color: white; }
+
+        /* Optimized Tag Cloud */
+        .tag-cloud-container { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
+        .tag-cloud-label { font-size: 0.8rem; font-weight: 600; color: var(--secondary-text); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; max-height: 150px; overflow-y: auto; padding-right: 0.5rem; }
+        .tag-cloud::-webkit-scrollbar { width: 4px; }
+        .tag-cloud::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+
+        /* Notes List Styling */
+        #notes-list ul { list-style: none; padding: 0; }
+        #notes-list li {
+            margin-bottom: 0.5rem;
+            padding: 0.6rem 0.75rem;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #notes-list li:hover { background-color: var(--accent-color); }
+        #notes-list li a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 1rem; }
+        #notes-list li .note-date { font-size: 0.85rem; color: var(--secondary-text); font-variant-numeric: tabular-nums; }
+        #notes-list li .tag { display: none; }
+
+        /* CV Header Layout */
+        .cv-header-grid { display: grid; grid-template-columns: 1fr 200px; gap: 3rem; margin-bottom: 3.5rem; align-items: flex-start; }
+        .cv-info-header { text-align: left; }
+        .cv-info-header h1 { text-align: center; margin-top: 0; margin-bottom: 0.5rem; font-size: 2.25rem; }
+        .cv-info-header p:nth-of-type(1) { text-align: center; margin-bottom: 1.5rem; color: var(--secondary-text); font-size: 0.95rem; }
+        .cv-info-header p:nth-of-type(n+2) { text-align: left; font-size: 1.05rem; line-height: 1.7; }
+        .cv-photo { width: 100%; aspect-ratio: 1080 / 1440; background-color: #f3f4f6; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .cv-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .cv-body { width: 100%; }
+
+        /* Publication Styling */
+        .pub-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; margin-bottom: 3.5rem; padding-bottom: 1.5rem; }
+        .pub-media { width: 100%; aspect-ratio: 4 / 3; background-color: var(--accent-color); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .pub-media img { width: 100%; height: 100%; object-fit: cover; image-rendering: -webkit-optimize-contrast; }
+        .pub-info { display: flex; flex-direction: column; gap: 0.35rem; }
+        .pub-title { font-size: 1.05rem; font-weight: 700; color: var(--text-color); line-height: 1.3; margin-bottom: 0.1rem; }
+        .pub-authors { font-size: 0.85rem; color: #4b5563; }
+        .pub-venue { font-size: 0.85rem; font-weight: 600; color: #6b7280; }
+        .pub-links { margin-top: 0.3rem; display: flex; gap: 0.5rem; }
+        .pub-links a { text-decoration: none; color: #374151; padding: 0.15rem 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.75rem; font-weight: 500; transition: all 0.2s; }
+        .pub-links a:hover { background-color: var(--text-color); color: white; border-color: var(--text-color); }
+        .pub-abstract { margin-top: 0.5rem; font-size: 0.85rem; color: #4b5563; line-height: 1.55; font-family: 'Lora', serif; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+        .lang-switch { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; padding: 0.25rem; background-color: #f3f4f6; border-radius: 20px; width: fit-content; margin-left: auto; margin-right: auto; }
+        .lang-switch a { color: var(--secondary-text); text-decoration: none; cursor: pointer; font-weight: 600; font-size: 0.8rem; padding: 0.2rem 0.85rem; border-radius: 15px; transition: all 0.2s; }
+        .lang-switch a.active { background-color: white; color: var(--text-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+        #show-all-tags { display: block; margin: 1.5rem auto; padding: 0.5rem 1.25rem; background-color: var(--text-color); color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+
+        @media (max-width: 1300px) {
+            #toc-container { display: none !important; }
+            #toc-toggle { display: flex; }
+        }
+
+        @media (max-width: 850px) {
+            .pub-item { grid-template-columns: 1fr; }
+            .pub-media { max-width: 240px; }
+            .cv-header-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+            .cv-photo { width: 180px; order: -1; }
+            header { padding: 1.25rem 5%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo" onclick="navigateTo('_intro/cv-en.md')">Yubo Dong's Page</a>
+        <nav id="nav">
+            <a onclick="navigateTo('_intro/cv-en.md')">CV</a>
+            <a onclick="navigateTo('notes/index.md')">Notes</a>
+        </nav>
+    </header>
+
+    <div id="toc-container">
+        <h4>On this page</h4>
+        <ul id="toc-list"></ul>
+    </div>
+
+    <div id="toc-toggle" onclick="toggleTOC()">☰</div>
+
+    <div class="container">
+        <main id="content" onclick="handleContentClick(event)">
+            <p>Loading...</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026. Built with 🚀 <strong>Gemini CLI</strong>. Minimalism & Research.</p>
+    </footer>
+
+    <script>
+        let cachedNotes = null;
+
+        function toggleTOC() {
+            const toc = document.getElementById('toc-container');
+            if (toc.style.display === 'block') {
+                toc.style.display = 'none';
+            } else {
+                toc.style.display = 'block';
+            }
+        }
+
+        function generateTOC(path) {
+            const tocList = document.getElementById('toc-list');
+            const tocContainer = document.getElementById('toc-container');
+            const tocToggle = document.getElementById('toc-toggle');
+            tocList.innerHTML = '';
+            
+            // Only show TOC for individual notes (files in _notes/ but NOT the index)
+            if (!path.includes('_notes/') || path === 'notes/index.md') {
+                tocContainer.style.display = 'none';
+                tocToggle.style.display = 'none';
+                return;
+            }
+
+            const headers = document.querySelectorAll('#content h1, #content h2, #content h3');
+            // If it's a note, we want to see TOC if there's at least 1 header (besides the potential page title h1)
+            // If the first H1 is the title (from MD), we check if there are more.
+            // In our loadPage, we might have an H1 from marked.parse(text).
+            const headerArray = Array.from(headers);
+            if (headerArray.length <= 1) {
+                tocContainer.style.display = 'none';
+                tocToggle.style.display = 'none';
+                return;
+            }
+
+            headerArray.forEach((header, index) => {
+                // Skip the first h1 only if we suspect it's just the page title
+                if (index === 0 && header.tagName === 'H1' && headerArray.length > 1) return;
+                
+                const id = 'header-' + index;
+                header.id = id;
+                const li = document.createElement('li');
+                li.className = 'level-' + header.tagName.substring(1);
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = header.textContent;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    header.scrollIntoView({ behavior: 'smooth' });
+                };
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+
+            if (window.innerWidth > 1300) {
+                tocContainer.style.display = 'block';
+                tocToggle.style.display = 'none';
+            } else {
+                tocContainer.style.display = 'none';
+                tocToggle.style.display = 'flex';
+            }
+        }
+
+        async function getNotes() {
+            if (cachedNotes) return cachedNotes;
+            try {
+                const response = await fetch('notes_data.json?t=' + Date.now());
+                if (!response.ok) return [];
+                cachedNotes = await response.json();
+                cachedNotes.forEach(n => {
+                    const match = n.path.match(/(\d{4}-\d{2}-\d{2})/);
+                    n.date = match ? match[1] : '0000-00-00';
+                });
+                cachedNotes.sort((a, b) => b.date.localeCompare(a.date));
+                return cachedNotes;
+            } catch (e) {
+                console.error('Failed to load notes data', e);
+                return [];
+            }
+        }
+
+        function handleContentClick(event) {
+            let target = event.target;
+            while (target && target.tagName !== 'A') target = target.parentElement;
+            
+            if (target && target.tagName === 'A' && target.hasAttribute('href')) {
+                const href = target.getAttribute('href');
+                if (href.endsWith('.md')) {
+                    event.preventDefault();
+                    // Resolve relative paths if needed
+                    navigateTo(href);
+                }
+            }
+            if (event.target.classList.contains('tag')) {
+                const tagName = event.target.getAttribute('data-tag-name') || event.target.textContent.split('(')[0].trim();
+                filterByTag(tagName, event.target);
+            }
+        }
+
+        function filterByTag(tagName, element) {
+            const listItems = document.querySelectorAll('#notes-list li');
+            if (listItems.length === 0) return;
+            const isActive = element && element.classList.contains('active');
+            document.querySelectorAll('.tag-cloud .tag').forEach(t => t.classList.remove('active'));
+            listItems.forEach(li => li.style.display = 'flex');
+            if (!isActive) {
+                if (element) element.classList.add('active');
+                listItems.forEach(li => {
+                    const tags = li.getAttribute('data-tags').split(',').map(t => t.trim());
+                    if (!tags.includes(tagName)) li.style.display = 'none';
+                });
+                if (!document.getElementById('show-all-tags')) {
+                    const btn = document.createElement('button');
+                    btn.id = 'show-all-tags';
+                    btn.textContent = 'Show All Notes';
+                    btn.onclick = () => {
+                        listItems.forEach(li => li.style.display = 'flex');
+                        document.querySelectorAll('.tag-cloud .tag').forEach(t => t.classList.remove('active'));
+                        btn.remove();
+                    };
+                    document.getElementById('notes-list').after(btn);
+                }
+            } else {
+                const btn = document.getElementById('show-all-tags');
+                if (btn) btn.remove();
+            }
+        }
+
+        function navigateTo(path) {
+            loadPage(path);
+            const url = new URL(window.location);
+            url.searchParams.set('page', path);
+            window.history.pushState({path}, '', url);
+        }
+
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.path) loadPage(event.state.path);
+            else loadPage('_intro/cv-en.md');
+        });
+
+        async function loadPage(path) {
+            // Standardize path: remove leading / and ./
+            if (path.startsWith('/')) path = path.substring(1);
+            if (path.startsWith('./')) path = path.substring(2);
+            
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = '<p>Loading...</p>';
+            console.log('Final resolved path:', path);
+            try {
+                const response = await fetch(path + '?t=' + Date.now());
+                if (!response.ok) throw new Error('File not found: ' + path);
+                let text = await response.text();
+                if (text.startsWith('---')) {
+                    const secondDashes = text.indexOf('---', 3);
+                    if (secondDashes !== -1) text = text.substring(secondDashes + 3);
+                }
+                let htmlContent = '';
+                if (window.marked) htmlContent = marked.parse(text);
+                else htmlContent = '<pre>' + text + '</pre>';
+
+                if (path.includes('cv-')) {
+                    const isZh = path.includes('cv-zh');
+                    const switchHtml = `<div class="lang-switch">
+                        <a onclick="navigateTo('_intro/cv-en.md')" class="${!isZh ? 'active' : ''}">EN</a>
+                        <a onclick="navigateTo('_intro/cv-zh.md')" class="${isZh ? 'active' : ''}">CN</a>
+                    </div>`;
+                    const hrIndex = htmlContent.indexOf('<hr>');
+                    let topContent = htmlContent, bottomContent = '';
+                    if (hrIndex !== -1) {
+                        topContent = htmlContent.substring(0, hrIndex);
+                        bottomContent = htmlContent.substring(hrIndex);
+                    }
+                    htmlContent = `${switchHtml}
+                        <div class="cv-header-grid">
+                            <div class="cv-info-header">${topContent}</div>
+                            <div class="cv-photo"><img src="images/image_1774253215094.jpg" alt="Yubo Dong"></div>
+                        </div>
+                        <div class="cv-body">${bottomContent}</div>`;
+                }
+
+                if (path === 'notes/index.md') {
+                    const notes = await getNotes();
+                    const tagCounts = {};
+                    notes.flatMap(n => n.tags).forEach(t => tagCounts[t] = (tagCounts[t] || 0) + 1);
+                    const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+                    const cloudHtml = `
+                        <div class="tag-cloud-container">
+                            <div class="tag-cloud-label">Topic Cloud (by count)</div>
+                            <div class="tag-cloud">
+                                ${sortedTags.map(([t, count]) => `<span class="tag clickable" data-tag-name="${t}">${t}<span class="count">${count}</span></span>`).join('')}
+                            </div>
+                        </div>`;
+                    const listHtml = `<div id="notes-list"><ul>${notes.map(n => `
+                        <li data-tags="${n.tags.join(',')}">
+                            <a href="#" onclick="event.preventDefault(); navigateTo('${n.path.replace(/'/g, "\\'")}')">${n.title}</a>
+                            <span class="note-date">${n.date === '0000-00-00' ? '' : n.date}</span>
+                            ${n.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                        </li>`).join('')}</ul></div>`;
+                    htmlContent = `<h1>🌿 Digital Garden</h1>${cloudHtml}${listHtml}`;
+                }
+
+                contentDiv.innerHTML = htmlContent;
+                contentDiv.querySelectorAll('.tag').forEach(t => t.classList.add('clickable'));
+                generateTOC(path);
+                
+                // Trigger MathJax typesetting
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([contentDiv]).catch((err) => console.log('MathJax error:', err));
+                }
+                
+                window.scrollTo(0, 0);
+            } catch (err) {
+                contentDiv.innerHTML = '<p style="color: red;">Error: ' + err.message + '</p>';
+            }
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialPage = urlParams.get('page') || '_intro/cv-en.md';
+        loadPage(initialPage);
+    </script>
+</body>
+</html>

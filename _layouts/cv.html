@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<div class="lang-switch">
+    <a href="{{ site.baseurl }}/intro/cv-en/" class="{% if page.url contains 'cv-en' %}active{% endif %}">EN</a>
+    <a href="{{ site.baseurl }}/intro/cv-zh/" class="{% if page.url contains 'cv-zh' %}active{% endif %}">CN</a>
+</div>
+
+{% assign content_parts = content | split: '<hr>' %}
+
+<div class="cv-header-grid">
+    <div class="cv-info-header">
+        {{ content_parts[0] }}
+    </div>
+    <div class="cv-photo">
+        <img src="{{ site.baseurl }}/images/image_1774253215094.jpg" alt="Yubo Dong">
+    </div>
+</div>
+
+<div class="cv-body">
+    {% for part in content_parts offset:1 %}
+        <hr>
+        {{ part }}
+    {% endfor %}
+</div>

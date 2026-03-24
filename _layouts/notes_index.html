@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+{{ content }}
+
+<div class="tag-cloud" id="tag-cloud">
+    <!-- Tag cloud will be generated via JS for dynamic filtering -->
+</div>
+
+<div id="notes-list">
+    <ul>
+        {% for note in site.notes %}
+        <li data-tags="{{ note.keywords | join: ',' }}">
+            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+            <span class="note-date">{{ note.date | date: "%b %d, %Y" }}</span>
+            <div class="note-tags" style="display: none;">
+                {% for tag in note.keywords %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const notes = document.querySelectorAll('#notes-list li');
+        const tagCloud = document.getElementById('tag-cloud');
+        let allTags = [];
+
+        notes.forEach(li => {
+            const tags = li.getAttribute('data-tags').split(',');
+            tags.forEach(tag => {
+                if (tag && !allTags.includes(tag.trim())) {
+                    allTags.push(tag.trim());
+                }
+            });
+        });
+
+        if (allTags.length > 0) {
+            allTags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tag clickable';
+                span.textContent = tag;
+                span.onclick = () => filterByTag(tag, span);
+                tagCloud.appendChild(span);
+            });
+        }
+
+        function filterByTag(tag, element) {
+            const isActive = element.classList.contains('active');
+            
+            // Reset all
+            document.querySelectorAll('.tag-cloud .tag').forEach(t => t.classList.remove('active'));
+            notes.forEach(li => li.style.display = 'block');
+
+            if (!isActive) {
+                element.classList.add('active');
+                notes.forEach(li => {
+                    const tags = li.getAttribute('data-tags').split(',').map(t => t.trim());
+                    if (!tags.includes(tag)) {
+                        li.style.display = 'none';
+                    }
+                });
+
+                if (!document.getElementById('show-all-btn')) {
+                    const btn = document.createElement('button');
+                    btn.id = 'show-all-btn';
+                    btn.textContent = 'Show All Notes';
+                    btn.id = 'show-all-tags'; // Match CSS
+                    btn.onclick = () => {
+                        notes.forEach(li => li.style.display = 'block');
+                        document.querySelectorAll('.tag-cloud .tag').forEach(t => t.classList.remove('active'));
+                        btn.remove();
+                    };
+                    document.getElementById('notes-list').after(btn);
+                }
+            } else {
+                const btn = document.getElementById('show-all-tags');
+                if (btn) btn.remove();
+            }
+        }
+    });
+</script>

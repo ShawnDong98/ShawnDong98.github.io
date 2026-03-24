@@ -1,0 +1,16 @@
+---
+layout:     post
+title: 【Research & Writing】draw.io Tutorial - Exerciese 1：添加 draw.io diagram 到 Confluence page
+subtitle:   ""
+date:       2022-07-05
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - Research & Writing
+    - 
+---
+
+我们培训课程的第一部分涵盖了在Confluence（云、服务器或数据中心）中使用draw.io的基础知识：向页面添加图表并编辑现有图表。
+
+要做到这一点，您需要知道如何向 Confluence 页面添加空白和模板图，并更改当有人查看您的页面时它们的显示方式。
