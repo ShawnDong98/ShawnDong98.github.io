@@ -7,7 +7,11 @@ layout: default
     <a href="{{ site.baseurl }}/intro/cv-zh/" class="{% if page.url contains 'cv-zh' %}active{% endif %}">CN</a>
 </div>
 
-{% assign content_parts = content | split: '<hr>' %}
+{% if content contains '<hr />' %}
+  {% assign content_parts = content | split: '<hr />' %}
+{% else %}
+  {% assign content_parts = content | split: '<hr>' %}
+{% endif %}
 
 <div class="cv-header-grid">
     <div class="cv-info-header">
