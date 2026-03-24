@@ -4,7 +4,7 @@ title: 个人简历 (CN)
 ---
 <h1>董宇波</h1>
 
-[邮箱] | [GitHub] | [LinkedIn]
+[邮箱](mailto:ybdong98@163.com) | [GitHub](https://github.com/ShawnDong98) | [Google Scholar](https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en)
 
 本文提出了一种使用 AI 驱动的 CLI 工具构建个人网站的新方法。我们展示了 Gemini CLI 如何自动化整个开发生命周期，从项目初始化到极简设计和部署。
 

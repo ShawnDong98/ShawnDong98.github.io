@@ -4,7 +4,7 @@ title: Curriculum Vitae (EN)
 ---
 <h1>Yubo Dong</h1>
 
-[Email] | [GitHub] | [LinkedIn]
+[Email](mailto:ybdong98@163.com) | [GitHub](https://github.com/ShawnDong98) | [Google Scholar](https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en)
 
 This paper presents a novel approach to building personal websites using AI-driven CLI tools. We demonstrate how Gemini CLI can automate the entire development lifecycle, from project initialization to minimalist design and deployment
 
