@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{{ content }}
+<h1>🌿 Digital Garden</h1>
 
 {% assign all_tags = "" %}
 {% for note in site.notes %}
@@ -13,7 +13,7 @@ layout: default
 {% assign tag_array = all_tags | split: "," | sort %}
 
 <div class="tag-cloud-container">
-    <div class="tag-cloud-label">Topic Cloud</div>
+    <div class="tag-cloud-label">Topic Cloud (by count)</div>
     <div class="tag-cloud" id="tag-cloud">
         <!-- We'll use JS to count and sort tags for better performance and flexibility -->
     </div>
@@ -25,10 +25,8 @@ layout: default
         {% for note in sorted_notes %}
         <li data-tags="{{ note.tags | join: ',' }}">
             <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
-            <span class="note-date">{{ note.date | date: "%b %d, %Y" }}</span>
-            <div class="note-tags" style="display: none;">
-                {% for tag in note.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
-            </div>
+            <span class="note-date">{{ note.date | date: "%Y-%m-%d" }}</span>
+            {% for tag in note.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
         </li>
         {% endfor %}
     </ul>
@@ -93,6 +91,18 @@ layout: default
 </script>
 
 <style>
-    #notes-list li { display: flex; justify-content: space-between; align-items: center; }
-    .note-date { font-size: 0.85rem; color: var(--secondary-text); }
+    #notes-list ul { list-style: none; padding: 0; }
+    #notes-list li {
+        margin-bottom: 0.5rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #notes-list li:hover { background-color: var(--accent-color); }
+    #notes-list li a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 1rem; }
+    #notes-list li .note-date { font-size: 0.85rem; color: var(--secondary-text); font-variant-numeric: tabular-nums; }
+    #notes-list li .tag { display: none; }
 </style>
