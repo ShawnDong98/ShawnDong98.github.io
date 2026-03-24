@@ -21,11 +21,14 @@ layout: default
 
 <div id="notes-list">
     <ul>
-        {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+        {% assign sorted_notes = site.notes | sort: 'path' | reverse %}
         {% for note in sorted_notes %}
+        {% assign file_name = note.path | split: '/' | last %}
+        {% assign file_date_parts = file_name | split: '-' %}
+        {% assign file_date = file_date_parts[0] | append: '-' | append: file_date_parts[1] | append: '-' | append: file_date_parts[2] %}
         <li data-tags="{{ note.tags | join: ',' }}">
             <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
-            <span class="note-date">{{ note.date | date: "%Y-%m-%d" }}</span>
+            <span class="note-date">{{ file_date }}</span>
             {% for tag in note.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
         </li>
         {% endfor %}
