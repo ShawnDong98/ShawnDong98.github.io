@@ -5,9 +5,9 @@ title: Curriculum Vitae (EN)
 <h1>Yubo Dong</h1>
 
 <p style="text-align: center; margin-bottom: 2rem; color: var(--secondary-text);">
-    <a href="mailto:ybdong98@163.com" style="color: inherit; text-decoration: none;">Email</a> | 
-    <a href="https://github.com/ShawnDong98" style="color: inherit; text-decoration: none;">GitHub</a> | 
-    <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: inherit; text-decoration: none;">Google Scholar</a>
+    <a href="mailto:ybdong98@163.com" style="color: var(--link-color); text-decoration: none;">📧 Email</a> | 
+    <a href="https://github.com/ShawnDong98" style="color: var(--link-color); text-decoration: none;">🐙 GitHub</a> | 
+    <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: var(--link-color); text-decoration: none;">🎓 Google Scholar</a>
 </p>
 
 I received my Ph.D. degree from Xidian University, 2025. My research interests lie at the intersection of Computational Imaging and Computer Vision.

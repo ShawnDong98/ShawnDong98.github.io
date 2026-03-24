@@ -5,9 +5,9 @@ title: 个人简历 (CN)
 <h1>董宇波</h1>
 
 <p style="text-align: center; margin-bottom: 2rem; color: var(--secondary-text);">
-    <a href="mailto:ybdong98@163.com" style="color: inherit; text-decoration: none;">邮箱</a> | 
-    <a href="https://github.com/ShawnDong98" style="color: inherit; text-decoration: none;">GitHub</a> | 
-    <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: inherit; text-decoration: none;">Google Scholar</a>
+    <a href="mailto:ybdong98@163.com" style="color: var(--link-color); text-decoration: none;">📧 邮箱</a> | 
+    <a href="https://github.com/ShawnDong98" style="color: var(--link-color); text-decoration: none;">🐙 GitHub</a> | 
+    <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: var(--link-color); text-decoration: none;">🎓 Google Scholar</a>
 </p>
 
 本文提出了一种使用 AI 驱动的 CLI 工具构建个人网站的新方法。我们展示了 Gemini CLI 如何自动化整个开发生命周期，从项目初始化到极简设计和部署。
