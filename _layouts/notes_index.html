@@ -4,20 +4,30 @@ layout: default
 
 {{ content }}
 
-<div class="tag-cloud" id="tag-cloud">
-    <!-- Tag cloud will be generated via JS for dynamic filtering -->
+{% assign all_tags = "" %}
+{% for note in site.notes %}
+  {% for tag in note.tags %}
+    {% assign all_tags = all_tags | append: tag | append: "," %}
+  {% endfor %}
+{% endfor %}
+{% assign tag_array = all_tags | split: "," | sort %}
+
+<div class="tag-cloud-container">
+    <div class="tag-cloud-label">Topic Cloud</div>
+    <div class="tag-cloud" id="tag-cloud">
+        <!-- We'll use JS to count and sort tags for better performance and flexibility -->
+    </div>
 </div>
 
 <div id="notes-list">
     <ul>
-        {% for note in site.notes %}
-        <li data-tags="{{ note.keywords | join: ',' }}">
+        {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+        {% for note in sorted_notes %}
+        <li data-tags="{{ note.tags | join: ',' }}">
             <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
             <span class="note-date">{{ note.date | date: "%b %d, %Y" }}</span>
             <div class="note-tags" style="display: none;">
-                {% for tag in note.keywords %}
-                <span class="tag">{{ tag }}</span>
-                {% endfor %}
+                {% for tag in note.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
             </div>
         </li>
         {% endfor %}
@@ -28,22 +38,24 @@ layout: default
     document.addEventListener('DOMContentLoaded', function() {
         const notes = document.querySelectorAll('#notes-list li');
         const tagCloud = document.getElementById('tag-cloud');
-        let allTags = [];
+        const tagCounts = {};
 
         notes.forEach(li => {
             const tags = li.getAttribute('data-tags').split(',');
             tags.forEach(tag => {
-                if (tag && !allTags.includes(tag.trim())) {
-                    allTags.push(tag.trim());
+                if (tag.trim()) {
+                    tagCounts[tag.trim()] = (tagCounts[tag.trim()] || 0) + 1;
                 }
             });
         });
 
-        if (allTags.length > 0) {
-            allTags.forEach(tag => {
+        const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+
+        if (sortedTags.length > 0) {
+            sortedTags.forEach(([tag, count]) => {
                 const span = document.createElement('span');
                 span.className = 'tag clickable';
-                span.textContent = tag;
+                span.innerHTML = `${tag}<span class="count">${count}</span>`;
                 span.onclick = () => filterByTag(tag, span);
                 tagCloud.appendChild(span);
             });
@@ -51,27 +63,22 @@ layout: default
 
         function filterByTag(tag, element) {
             const isActive = element.classList.contains('active');
-            
-            // Reset all
             document.querySelectorAll('.tag-cloud .tag').forEach(t => t.classList.remove('active'));
-            notes.forEach(li => li.style.display = 'block');
+            notes.forEach(li => li.style.display = 'flex');
 
             if (!isActive) {
                 element.classList.add('active');
                 notes.forEach(li => {
                     const tags = li.getAttribute('data-tags').split(',').map(t => t.trim());
-                    if (!tags.includes(tag)) {
-                        li.style.display = 'none';
-                    }
+                    if (!tags.includes(tag)) li.style.display = 'none';
                 });
 
-                if (!document.getElementById('show-all-btn')) {
+                if (!document.getElementById('show-all-tags')) {
                     const btn = document.createElement('button');
-                    btn.id = 'show-all-btn';
+                    btn.id = 'show-all-tags';
                     btn.textContent = 'Show All Notes';
-                    btn.id = 'show-all-tags'; // Match CSS
                     btn.onclick = () => {
-                        notes.forEach(li => li.style.display = 'block');
+                        notes.forEach(li => li.style.display = 'flex');
                         document.querySelectorAll('.tag-cloud .tag').forEach(t => t.classList.remove('active'));
                         btn.remove();
                     };
@@ -84,3 +91,8 @@ layout: default
         }
     });
 </script>
+
+<style>
+    #notes-list li { display: flex; justify-content: space-between; align-items: center; }
+    .note-date { font-size: 0.85rem; color: var(--secondary-text); }
+</style>

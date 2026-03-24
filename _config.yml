@@ -1,6 +1,9 @@
-title: Yubo Dong's Web Page
+title: Yubo Dong's Page
 description: Academic CV & Digital Garden
 remote_theme: pages-themes/minimal@v0.2.0
+baseurl: "" # Set this to your repo name if not a user site, e.g. "/repo-name"
+url: "https://ShawnDong98.github.io"
+
 plugins:
   - jekyll-remote-theme
   - jekyll-feed
@@ -14,3 +17,15 @@ collections:
   intro:
     output: true
     permalink: /intro/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+      type: "intro"
+    values:
+      layout: "cv"

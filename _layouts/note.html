@@ -3,26 +3,66 @@ layout: default
 ---
 
 <article class="post">
-  <h1>{{ page.title }}</h1>
-  <div class="post-meta">
-    <span class="note-date">{{ page.date | date: "%b %d, %Y" }}</span>
-    <div class="note-tags">
-      {% for tag in page.keywords %}
-      <span class="tag">{{ tag }}</span>
-      {% endfor %}
-    </div>
+  <div id="toc-container">
+    <h4>On this page</h4>
+    <ul id="toc-list"></ul>
   </div>
+  <div id="toc-toggle" onclick="toggleTOC()">☰</div>
 
   <div class="entry">
     {{ content }}
   </div>
 </article>
 
+<script>
+    function toggleTOC() {
+        const toc = document.getElementById('toc-container');
+        toc.style.display = (toc.style.display === 'block') ? 'none' : 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const tocList = document.getElementById('toc-list');
+        const tocContainer = document.getElementById('toc-container');
+        const tocToggle = document.getElementById('toc-toggle');
+        
+        const content = document.querySelector('.entry');
+        const headers = content.querySelectorAll('h1, h2, h3');
+        
+        if (headers.length <= 1) {
+            tocContainer.style.display = 'none';
+            tocToggle.style.display = 'none';
+            return;
+        }
+
+        headers.forEach((header, index) => {
+            if (index === 0 && header.tagName === 'H1') return;
+            const id = 'header-' + index;
+            header.id = id;
+            const li = document.createElement('li');
+            li.className = 'level-' + header.tagName.substring(1);
+            const a = document.createElement('a');
+            a.href = '#' + id;
+            a.textContent = header.textContent;
+            a.onclick = (e) => {
+                e.preventDefault();
+                header.scrollIntoView({ behavior: 'smooth' });
+            };
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+
+        if (window.innerWidth > 1300) {
+            tocContainer.style.display = 'block';
+            tocToggle.style.display = 'none';
+        } else {
+            tocToggle.style.display = 'flex';
+        }
+    });
+</script>
+
 <style>
-  .post h1 { margin-bottom: 0.5rem; }
-  .post-meta { margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
-  .note-date { color: var(--secondary-text); font-size: 0.9rem; }
   .entry { font-family: 'Lora', serif; font-size: 1.1rem; }
+  .entry h1:first-child { text-align: left; margin-bottom: 2rem; }
 </style>
 
 <hr>
