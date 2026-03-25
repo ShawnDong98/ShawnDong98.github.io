@@ -25,8 +25,8 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
         <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Danhua Liu, Yanli Liu, Guangming Shi</div>
         <div class="pub-venue">IEEE Transactions on Image Processing (TIP), 2025</div>
         <div class="pub-links">
-            <a href="#">Paper</a>
-            <a href="#">Project</a>
+            <a href="assets/Alternating_Direction_Unfolding_With_a_Cross_Spectral_Attention_Prior_for_Dual-Camera_Compressive_Hyperspectral_Imaging.pdf">Paper</a>
+            <a href="https://github.com/ShawnDong98/ADRNN-XST">Code</a>
             <a href="bibtex/adrnn_xst.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
@@ -43,9 +43,9 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
         <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Yuyan Li, Guangming Shi, Danhua Liu</div>
         <div class="pub-venue">IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2024</div>
         <div class="pub-links">
-            <a href="#">Paper</a>
-            <a href="#">Project</a>
-            <a href="#">Bibtex</a>
+            <a href="assets/Degradation_Estimation_Recurrent_Neural_Network_With_Local_and_Non-Local_Priors_for_Compressive_Spectral_Imaging.pdf">Paper</a>
+            <a href="https://github.com/ShawnDong98/DERNN-LNLT">Code</a>
+            <a href="bibtex/dernn_lnlt.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
         </div>
@@ -61,28 +61,14 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
         <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Tian Qiu, Yuyan Li, Minxi Yang, Guangming Shi</div>
         <div class="pub-venue"> Conference on Computer Vision and Pattern Recognition (CVPR), 2023</div>
         <div class="pub-links">
-            <a href="#">Paper</a>
-            <a href="#">Project</a>
-            <a href="#">Leaderboard</a>
-            <a href="#">Bibtex</a>
+            <a href="assets/Residual_Degradation_Learning_Unfolding_Framework_With_Mixing_Priors_Across_Spectral_CVPR_2023_paper.pdf">Paper</a>
+            <a href="https://github.com/ShawnDong98/RDLUF_MixS2">Code</a>
+            <a href="bibtex/rdluf_mixs2.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
         </div>
     </div>
 </div>
-
----
-
-## 🎓 Education
-- **Ph.D. in [Field]**, [University Name], 202x - Present
-- **M.S. in [Field]**, [University Name], 20xx - 20xx
-- **B.S. in [Field]**, [University Name], 20xx - 20xx
-
----
-
-## 🛠 Skills
-- **Languages**: [Python, C++, LaTeX, etc.]
-- **Tools**: [Git, Docker, PyTorch, etc.]
 
 ---
 

@@ -6,7 +6,7 @@ date:       2022-06-23
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
 catalog:     flase
-tags: '深度学习,HSI,CVPR 2021'
+tags: 
     - 深度学习
     - HSI
     - CVPR 2021

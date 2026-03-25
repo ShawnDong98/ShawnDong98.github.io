@@ -1,0 +1,9 @@
+@ARTICLE{adrnn_xst,
+  author={Dong, Yubo and Gao, Dahua and Liu, Danhua and Liu, Yanli and Shi, Guangming},
+  journal={IEEE Transactions on Image Processing}, 
+  title={Alternating Direction Unfolding With a Cross Spectral Attention Prior for Dual-Camera Compressive Hyperspectral Imaging}, 
+  year={2025},
+  volume={34},
+  number={},
+  pages={5325-5340},
+  doi={10.1109/TIP.2025.3597775}}
