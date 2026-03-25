@@ -18,20 +18,18 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
 
 <div class="pub-item">
     <div class="pub-media">
-        <img src="images/image_1774253210555.png" alt="Publication GIF/Image">
+        <span style="color: #999;">Project GIF/Image</span>
     </div>
     <div class="pub-info">
-        <div class="pub-title">Example Paper Title: Advancing AI with Gemini CLI</div>
-        <div class="pub-authors"><strong>Yubo Dong</strong>, Jane Doe, John Smith</div>
-        <div class="pub-venue">International Conference on Machine Learning (ICML), 2026</div>
+        <div class="pub-title">Alternating Direction Unfolding With a Cross Spectral Attention Prior for Dual-Camera Compressive Hyperspectral Imaging</div>
+        <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Danhua Liu, Yanli Liu, Guangming Shi</div>
+        <div class="pub-venue">IEEE Transactions on Image Processing (TIP), 2025</div>
         <div class="pub-links">
             <a href="#">Paper</a>
             <a href="#">Project</a>
-            <a href="#">Leaderboard</a>
-            <a href="#">Bibtex</a>
+            <a href="bibtex/adrnn_xst.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
-            This paper presents a novel approach to building personal websites using AI-driven CLI tools. We demonstrate how Gemini CLI can automate the entire development lifecycle, from project initialization to minimalist design and deployment...
         </div>
     </div>
 </div>
@@ -41,16 +39,34 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
         <span style="color: #999;">Project GIF/Image</span>
     </div>
     <div class="pub-info">
-        <div class="pub-title">Another Great Research Paper Title</div>
-        <div class="pub-authors">Alice Johnson, <strong>Yubo Dong</strong>, Bob Wilson</div>
-        <div class="pub-venue">Journal of Artificial Intelligence, 2025</div>
+        <div class="pub-title">Degradation estimation recurrent neural network with local and non-local priors for compressive spectral imaging</div>
+        <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Yuyan Li, Guangming Shi, Danhua Liu</div>
+        <div class="pub-venue">IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2024</div>
         <div class="pub-links">
             <a href="#">Paper</a>
             <a href="#">Project</a>
             <a href="#">Bibtex</a>
         </div>
         <div class="pub-abstract">
-            A comprehensive study on the efficiency of minimalist web designs for academic purposes. We find that reducing clutter leads to a 40% increase in reader engagement with research content...
+        </div>
+    </div>
+</div>
+
+<div class="pub-item">
+    <div class="pub-media">
+        <img src="images/image_1774253210555.png" alt="Publication GIF/Image">
+    </div>
+    <div class="pub-info">
+        <div class="pub-title">Residual degradation learning unfolding framework with mixing priors across spectral and spatial for compressive spectral imaging</div>
+        <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Tian Qiu, Yuyan Li, Minxi Yang, Guangming Shi</div>
+        <div class="pub-venue"> Conference on Computer Vision and Pattern Recognition (CVPR), 2023</div>
+        <div class="pub-links">
+            <a href="#">Paper</a>
+            <a href="#">Project</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Bibtex</a>
+        </div>
+        <div class="pub-abstract">
         </div>
     </div>
 </div>
