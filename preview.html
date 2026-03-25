@@ -215,9 +215,9 @@
         .cv-body { width: 100%; }
 
         /* Publication Styling */
-        .pub-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; margin-bottom: 3.5rem; padding-bottom: 1.5rem; }
-        .pub-media { width: 100%; aspect-ratio: 4 / 3; background-color: var(--accent-color); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
-        .pub-media img { width: 100%; height: 100%; object-fit: cover; image-rendering: -webkit-optimize-contrast; }
+        .pub-item { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; margin-bottom: 3.5rem; padding-bottom: 1.5rem; align-items: start; }
+        .pub-media { width: 100%; display: flex; align-items: flex-start; justify-content: center; }
+        .pub-media img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); image-rendering: -webkit-optimize-contrast; }
         .pub-info { display: flex; flex-direction: column; gap: 0.35rem; }
         .pub-title { font-size: 1.05rem; font-weight: 700; color: var(--text-color); line-height: 1.3; margin-bottom: 0.1rem; }
         .pub-authors { font-size: 0.85rem; color: #4b5563; }
