@@ -10,7 +10,7 @@ title: 个人简历 (CN)
     <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: var(--link-color); text-decoration: none;">🎓 Google Scholar</a>
 </p>
 
-本文提出了一种使用 AI 驱动的 CLI 工具构建个人网站的新方法。我们展示了 Gemini CLI 如何自动化整个开发生命周期，从项目初始化到极简设计和部署。
+I received my Ph.D. degree from Xidian University, 2025. My research interests lie at the intersection of Computational Imaging and Computer Vision.
 
 ---
 
@@ -18,39 +18,54 @@ title: 个人简历 (CN)
 
 <div class="pub-item">
     <div class="pub-media">
-        <img src="images/image_1774253210555.png" alt="项目演示 GIF/图片">
+        <span style="color: #999;">Project GIF/Image</span>
     </div>
     <div class="pub-info">
-        <div class="pub-title">示例论文标题: 利用 Gemini CLI 推动人工智能发展</div>
-        <div class="pub-authors"><strong>董宇波</strong>, Jane Doe, John Smith</div>
-        <div class="pub-venue">国际机器学习会议 (ICML), 2026</div>
+        <div class="pub-title">Alternating Direction Unfolding With a Cross Spectral Attention Prior for Dual-Camera Compressive Hyperspectral Imaging</div>
+        <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Danhua Liu, Yanli Liu, Guangming Shi</div>
+        <div class="pub-venue">IEEE Transactions on Image Processing (TIP), 2025</div>
         <div class="pub-links">
-            <a href="#">论文</a>
-            <a href="#">项目</a>
-            <a href="#">排行榜</a>
-            <a href="#">Bibtex</a>
+            <a href="assets/Alternating_Direction_Unfolding_With_a_Cross_Spectral_Attention_Prior_for_Dual-Camera_Compressive_Hyperspectral_Imaging.pdf">Paper</a>
+            <a href="https://github.com/ShawnDong98/ADRNN-XST">Code</a>
+            <a href="bibtex/adrnn_xst.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
-            本文提出了一种使用 AI 驱动的 CLI 工具构建个人网站的新方法。我们展示了 Gemini CLI 如何自动化整个开发生命周期，从项目初始化到极简设计和部署...
         </div>
     </div>
 </div>
 
 <div class="pub-item">
     <div class="pub-media">
-        <span style="color: #999;">项目演示 GIF/图片</span>
+        <span style="color: #999;">Project GIF/Image</span>
     </div>
     <div class="pub-info">
-        <div class="pub-title">另一篇优秀的研究论文标题</div>
-        <div class="pub-authors">Alice Johnson, <strong>董宇波</strong>, Bob Wilson</div>
-        <div class="pub-venue">人工智能期刊, 2025</div>
+        <div class="pub-title">Degradation estimation recurrent neural network with local and non-local priors for compressive spectral imaging</div>
+        <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Yuyan Li, Guangming Shi, Danhua Liu</div>
+        <div class="pub-venue">IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2024</div>
         <div class="pub-links">
-            <a href="#">论文</a>
-            <a href="#">项目</a>
-            <a href="#">Bibtex</a>
+            <a href="assets/Degradation_Estimation_Recurrent_Neural_Network_With_Local_and_Non-Local_Priors_for_Compressive_Spectral_Imaging.pdf">Paper</a>
+            <a href="https://github.com/ShawnDong98/DERNN-LNLT">Code</a>
+            <a href="bibtex/dernn_lnlt.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
-            关于学术用途极简网页设计效率的综合研究。我们发现，减少干扰可以使读者对研究内容的参与度提高 40%...
+        </div>
+    </div>
+</div>
+
+<div class="pub-item">
+    <div class="pub-media">
+        <img src="images/image_1774253210555.png" alt="Publication GIF/Image">
+    </div>
+    <div class="pub-info">
+        <div class="pub-title">Residual degradation learning unfolding framework with mixing priors across spectral and spatial for compressive spectral imaging</div>
+        <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Tian Qiu, Yuyan Li, Minxi Yang, Guangming Shi</div>
+        <div class="pub-venue"> Conference on Computer Vision and Pattern Recognition (CVPR), 2023</div>
+        <div class="pub-links">
+            <a href="assets/Residual_Degradation_Learning_Unfolding_Framework_With_Mixing_Priors_Across_Spectral_CVPR_2023_paper.pdf">Paper</a>
+            <a href="https://github.com/ShawnDong98/RDLUF_MixS2">Code</a>
+            <a href="bibtex/rdluf_mixs2.txt">Bibtex</a>
+        </div>
+        <div class="pub-abstract">
         </div>
     </div>
 </div>
