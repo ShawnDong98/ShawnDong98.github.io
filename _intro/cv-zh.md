@@ -10,9 +10,8 @@ title: 个人简历 (CN)
     <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: var(--link-color); text-decoration: none;">🎓 Google Scholar</a>
 </p>
 
-我现在是一名高校青年教师。之前，2025年，我在西安电子科技大学 人工智能学院从事过博士后研究。我在2025.6月取得计算机科学与技术博士学位，西安电子科技大学，人工智能学院。2023-2024年在中国留学基金委员会（CSC）的资助下新加坡南洋理工大学，EEE学院访问学生。
 
-I received my Ph.D. degree from Xidian University, 2025. My research interests lie at the intersection of Computational Imaging and Computer Vision.
+我现在是一名高校青年教师。此前，我在西安电子科技大学人工智能学院从事过博士后研究。2025 年 6 月，我在西安电子科技大学人工智能学院取得计算机科学与技术博士学位。读博期间（2023-2024年），受国家留学基金委员会（CSC）资助，我曾赴新加坡南洋理工大学电气与电子工程（EEE）学院进行访学。我的研究方向包括计算机视觉、计算成像等。
 
 ---
 
@@ -75,5 +74,3 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
 ---
 
 ## 🏆 获奖情况
-- [奖项 1], 20xx
-- [奖项 2], 20xx

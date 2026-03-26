@@ -10,10 +10,7 @@ title: Curriculum Vitae (EN)
     <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: var(--link-color); text-decoration: none;">🎓 Google Scholar</a>
 </p>
 
-I received my Ph.D. degree from Xidian University, 2025. My research interests lie at the intersection of Computational Imaging and Computer Vision.
-
-
-From 2023 to 2024, I was a visiting researcher at the School of Electrical and Electronic Engineering (EEE), Nanyang Technological University (NTU), Singapore.
+I am currently a university faculty member. Previously, I worked as a postdoctoral researcher at the School of Artificial Intelligence, Xidian University, where I also received my Ph.D. in Computer Science in June 2025. From 2023 to 2024, supported by the China Scholarship Council (CSC), I was a visiting researcher at the School of Electrical and Electronic Engineering (EEE), Nanyang Technological University (NTU), Singapore. My research interests include computer vision and computational imaging.
 
 ---
 
@@ -76,5 +73,3 @@ From 2023 to 2024, I was a visiting researcher at the School of Electrical and E
 ---
 
 ## 🏆 Awards & Honors
-- [Award 1], 20xx
-- [Award 2], 20xx
