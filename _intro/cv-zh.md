@@ -54,7 +54,7 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
 
 <div class="pub-item">
     <div class="pub-media">
-        <img src="images/image_1774253210555.png" alt="Publication GIF/Image">
+        <img src="images/rdluf_mixs2.png" alt="Publication GIF/Image">
     </div>
     <div class="pub-info">
         <div class="pub-title">Residual degradation learning unfolding framework with mixing priors across spectral and spatial for compressive spectral imaging</div>
