@@ -10,6 +10,8 @@ title: 个人简历 (CN)
     <a href="https://scholar.google.com/citations?user=1naamkEAAAAJ&hl=en" style="color: var(--link-color); text-decoration: none;">🎓 Google Scholar</a>
 </p>
 
+我现在是一名高校青年教师。之前，2025年，我在西安电子科技大学 人工智能学院从事过博士后研究。我在2025.6月取得计算机科学与技术博士学位，西安电子科技大学，人工智能学院。2023-2024年在中国留学基金委员会（CSC）的资助下新加坡南洋理工大学，EEE学院访问学生。
+
 I received my Ph.D. degree from Xidian University, 2025. My research interests lie at the intersection of Computational Imaging and Computer Vision.
 
 ---
@@ -18,16 +20,16 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
 
 <div class="pub-item">
     <div class="pub-media">
-        <img src="images/adrnn_xst.png" alt="Publication GIF/Image">
+        <img src="/images/adrnn_xst.png" alt="Publication GIF/Image">
     </div>
     <div class="pub-info">
         <div class="pub-title">Alternating Direction Unfolding With a Cross Spectral Attention Prior for Dual-Camera Compressive Hyperspectral Imaging</div>
         <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Danhua Liu, Yanli Liu, Guangming Shi</div>
         <div class="pub-venue">IEEE Transactions on Image Processing (TIP), 2025</div>
         <div class="pub-links">
-            <a href="assets/Alternating_Direction_Unfolding_With_a_Cross_Spectral_Attention_Prior_for_Dual-Camera_Compressive_Hyperspectral_Imaging.pdf">Paper</a>
+            <a href="/assets/Alternating_Direction_Unfolding_With_a_Cross_Spectral_Attention_Prior_for_Dual-Camera_Compressive_Hyperspectral_Imaging.pdf">Paper</a>
             <a href="https://github.com/ShawnDong98/ADRNN-XST">Code</a>
-            <a href="bibtex/adrnn_xst.txt">Bibtex</a>
+            <a href="/bibtex/adrnn_xst.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
         </div>
@@ -36,16 +38,16 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
 
 <div class="pub-item">
     <div class="pub-media">
-        <img src="images/dernn_lnlt.png" alt="Publication GIF/Image">
+        <img src="/images/dernn_lnlt.png" alt="Publication GIF/Image">
     </div>
     <div class="pub-info">
         <div class="pub-title">Degradation estimation recurrent neural network with local and non-local priors for compressive spectral imaging</div>
         <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Yuyan Li, Guangming Shi, Danhua Liu</div>
         <div class="pub-venue">IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2024</div>
         <div class="pub-links">
-            <a href="assets/Degradation_Estimation_Recurrent_Neural_Network_With_Local_and_Non-Local_Priors_for_Compressive_Spectral_Imaging.pdf">Paper</a>
+            <a href="/assets/Degradation_Estimation_Recurrent_Neural_Network_With_Local_and_Non-Local_Priors_for_Compressive_Spectral_Imaging.pdf">Paper</a>
             <a href="https://github.com/ShawnDong98/DERNN-LNLT">Code</a>
-            <a href="bibtex/dernn_lnlt.txt">Bibtex</a>
+            <a href="/bibtex/dernn_lnlt.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
         </div>
@@ -54,16 +56,16 @@ I received my Ph.D. degree from Xidian University, 2025. My research interests l
 
 <div class="pub-item">
     <div class="pub-media">
-        <img src="images/rdluf_mixs2.png" alt="Publication GIF/Image">
+        <img src="/images/rdluf_mixs2.png" alt="Publication GIF/Image">
     </div>
     <div class="pub-info">
         <div class="pub-title">Residual degradation learning unfolding framework with mixing priors across spectral and spatial for compressive spectral imaging</div>
         <div class="pub-authors"><strong>Yubo Dong</strong>, Dahua Gao, Tian Qiu, Yuyan Li, Minxi Yang, Guangming Shi</div>
         <div class="pub-venue"> Conference on Computer Vision and Pattern Recognition (CVPR), 2023</div>
         <div class="pub-links">
-            <a href="assets/Residual_Degradation_Learning_Unfolding_Framework_With_Mixing_Priors_Across_Spectral_CVPR_2023_paper.pdf">Paper</a>
+            <a href="/assets/Residual_Degradation_Learning_Unfolding_Framework_With_Mixing_Priors_Across_Spectral_CVPR_2023_paper.pdf">Paper</a>
             <a href="https://github.com/ShawnDong98/RDLUF_MixS2">Code</a>
-            <a href="bibtex/rdluf_mixs2.txt">Bibtex</a>
+            <a href="/bibtex/rdluf_mixs2.txt">Bibtex</a>
         </div>
         <div class="pub-abstract">
         </div>
