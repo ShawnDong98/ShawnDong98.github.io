@@ -1,4 +1,17 @@
 
+---
+layout:     post
+title:      "【Geek之路】Windows开发环境配置"
+subtitle:   ""
+date:       2026-04-01
+author:     "ShawnD"
+header-img: "img/post-bg-rwd.jpg"
+catalog:     flase
+tags:
+    - Geek
+    - Windows
+---
+
 
 # wsl 安装 anaconda
 
@@ -246,3 +259,40 @@ winget install Microsoft.PowerShell
     
 
 **一句话建议：** 别在旧版的蓝窗（5.1）里浪费时间修补了，直接上 **PowerShell 7 (黑窗)**，那才是真正的 Windows 终端终点。
+
+
+# 跨平台实现每次创建新文章后自动添加 front matter, 并且自动更新 notes_data.json 和 notes_inline.js
+
+已加跨平台 Node.js 实现，无需安装依赖。
+
+新增文件：
+
+- /C:/Users/Lenovo/Documents/MainPage/package.json
+- /C:/Users/Lenovo/Documents/MainPage/scripts/notes.mjs
+- notes_inline.js 会自动生成
+
+用法：
+
+npm run note:new -- --title "【Geek之路】Windows开发环境配置" --date 2026-04-01 --tags Geek,Windows
+
+这会自动：
+
+1. 在 _notes/ 下创建 2026-04-01-【Geek之路】Windows开发环境配置.md
+2. 写入 front matter
+3. 更新 notes_data.json
+4. 更新 notes_inline.json
+5. 更新 notes_inline.js
+
+如果你是手动创建 .md 文件，比如在 Obsidian 里新建，可以运行：
+
+```
+npm run notes:fix
+```
+
+它会扫描 _notes，给缺少 front matter 的文章补上，并更新索引。
+
+如果想常驻自动监听 _notes：
+
+```
+npm run notes:watch
+```

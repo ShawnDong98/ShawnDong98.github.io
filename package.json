@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "note:new": "node scripts/notes.mjs new",
+    "notes:sync": "node scripts/notes.mjs sync",
+    "notes:fix": "node scripts/notes.mjs sync --fix-front-matter",
+    "notes:watch": "node scripts/notes.mjs watch"
+  }
+}
