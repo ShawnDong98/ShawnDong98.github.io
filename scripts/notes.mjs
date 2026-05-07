@@ -68,7 +68,7 @@ function buildFrontMatter({ title, date, tags }) {
     `date:       ${date}`,
     'author:     "ShawnD"',
     'header-img: "img/post-bg-rwd.jpg"',
-    "catalog:     flase",
+    "catalog:     false",
     "tags:",
     tagLines,
     "---",

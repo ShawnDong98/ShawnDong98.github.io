@@ -1,4 +1,3 @@
-
 ---
 layout:     post
 title:      "【Geek之路】Windows开发环境配置"
@@ -6,7 +5,7 @@ subtitle:   ""
 date:       2026-04-01
 author:     "ShawnD"
 header-img: "img/post-bg-rwd.jpg"
-catalog:     flase
+catalog:     false
 tags:
     - Geek
     - Windows
