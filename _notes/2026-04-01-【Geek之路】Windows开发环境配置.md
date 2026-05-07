@@ -269,13 +269,15 @@ winget install Microsoft.PowerShell
 
 新增文件：
 
-- /C:/Users/Lenovo/Documents/MainPage/package.json
-- /C:/Users/Lenovo/Documents/MainPage/scripts/notes.mjs
+- C:/Users/Lenovo/Documents/MainPage/package.json
+- C:/Users/Lenovo/Documents/MainPage/scripts/notes.mjs
 - notes_inline.js 会自动生成
 
 用法：
 
+```
 npm run note:new -- --title "【Geek之路】Windows开发环境配置" --date 2026-04-01 --tags Geek,Windows
+```
 
 这会自动：
 
