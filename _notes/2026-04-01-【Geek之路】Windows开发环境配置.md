@@ -260,7 +260,10 @@ winget install Microsoft.PowerShell
 **一句话建议：** 别在旧版的蓝窗（5.1）里浪费时间修补了，直接上 **PowerShell 7 (黑窗)**，那才是真正的 Windows 终端终点。
 
 
-# 跨平台实现每次创建新文章后自动添加 front matter, 并且自动更新 notes_data.json 和 notes_inline.js
+# 跨平台创建文章自动添加front matter, 并更新索引
+
+
+跨平台实现每次创建新文章后自动添加 front matter, 并且自动更新 notes_data.json 和 notes_inline.js
 
 已加跨平台 Node.js 实现，无需安装依赖。
 
